@@ -14,8 +14,10 @@ end
 
 Rails.application.routes.draw do
 
+  devise_for :users
   constraints SubdomainConstraint do 
     get '/', to: "dashboard#index", as: 'root_extranet'
+    mount Cms::Engine => "/cms", as: 'cms'
   end
 
   constraints DomainConstraint do 
