@@ -1,0 +1,82 @@
+%aside#sidebar
+  .sidebar-inner
+    .si-inner
+      .profile-menu
+        %a{:href => ""}
+          .profile-pic
+            = image_tag "picture_example.jpg", size: "50x50"
+          .profile-info
+            Usuário
+            %i.md.md-arrow-drop-down
+        %ul.main-menu
+          %li
+            %a{:href => "profile-about.html"}
+              %i.md.md-person
+              Meu Perfil
+          %li
+            %a{:href => ""}
+              %i.md.md-settings-input-antenna
+              Configurações
+          %li
+            %a{:href => ""}
+              %i.md.md-history
+              Sair
+      %ul.main-menu
+        - if defined? DashboardEngine
+          %li
+            = link_to "<i class='md  md-view-quilt'></i> Dashboard".html_safe, main_app.root_path
+        - if defined? PersonEngine
+          %li.sub-menu{class: ('toggled' if @module == "person_engine")}
+            %a{:href => ""}
+              %i.md.md-assignment-ind
+              Gestão de Pessoas
+            %ul{style: ('display:block;' if @module == "person_engine")}
+              %li
+                = link_to "funcionários", person_engine.users_path
+              %li
+                = link_to "cargos", person_engine.jobs_path
+              %li
+                = link_to "setores", person_engine.sectors_path
+              %li
+                = link_to "ramais", person_engine.sectors_path
+              %li.divider
+              %li
+                = link_to "sistemas", person_engine.systems_path
+              %li
+                = link_to "relatórios", person_engine.reports_path
+              %li
+
+        - if defined? ScheduleEngine
+          %li.sub-menu
+            %a{:href => ""}
+              %i.md.md-today
+              Agendamento
+            %ul
+              %li
+                = link_to "agendas", schedule_engine.agendas_path
+              %li
+                = link_to "relatórios", person_engine.new_user_path
+              %li
+                = link_to "atendentes", person_engine.new_user_path
+              %li
+                = link_to "supervisores", person_engine.new_user_path
+        - if defined? ProtocolEngine
+          %li.sub-menu
+            %a{:href => ""}
+              %i.md.md-trending-up>
+              Charts
+            %ul
+              %li
+                %a{:href => "flot-charts.html"} Flot Charts
+              %li
+                %a{:href => "other-charts.html"} Other Charts
+        - if defined? JuridicalEngine
+          %li.sub-menu
+            %a{:href => ""}
+              %i.md.md-trending-up>
+              Juridico
+            %ul
+              %li
+                %a{:href => "flot-charts.html"} Flot Charts
+              %li
+                %a{:href => "other-charts.html"} Other Charts

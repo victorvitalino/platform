@@ -1,4 +1,7 @@
 module Concourse
-  class Candidate::ProjectsController < ApplicationController
-end
+  module Candidate
+    class ProjectsController < ApplicationController
+      layout 'layouts/portal/application'
+    end
+  end
 end

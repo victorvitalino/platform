@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   end
 
   mount Concourse::Engine => "/concursos", as: 'concourse'
+  mount Schedule::Engine => "/agendamento", as: 'schedule'
   
 end
