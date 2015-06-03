@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  acron: MyString
+  father_id: 
+  responsible_id: 
+  status: false
+
+two:
+  name: MyString
+  acron: MyString
+  father_id: 
+  responsible_id: 
+  status: false

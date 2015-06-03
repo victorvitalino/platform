@@ -2,13 +2,32 @@
 <html>
 <head>
   <title>Person</title>
+
   <%= stylesheet_link_tag    "person/application", media: "all" %>
   <%= javascript_include_tag "person/application" %>
   <%= csrf_meta_tags %>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
 </head>
 <body>
 
 <%= yield %>
+
+
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+     </div>
+  </div>
+</div>
 
 </body>
 </html>
