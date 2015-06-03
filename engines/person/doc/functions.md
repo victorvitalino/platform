@@ -13,7 +13,5 @@
     - utilizar template de folha de ponto e trazer informações do funcionário para a folha
   - emissão de crachá
     - emitir template de crachá para funcionário
-
-
-## 
+ 
   
