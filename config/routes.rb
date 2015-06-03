@@ -24,6 +24,6 @@ Rails.application.routes.draw do
     get '/', to: "portal/home#index", as: 'root_portal'
   end
 
-  mount Concourse::Engine => "/concurso", as: 'concourse'
+  mount Concourse::Engine => "/concursos", as: 'concourse'
   
 end
