@@ -11,9 +11,10 @@ gem 'carrierwave'
 
 gem 'simple_form'
 gem 'haml-rails'
+gem 'devise'
+gem 'pundit'
 
-
-
+ 
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'

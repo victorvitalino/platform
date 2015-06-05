@@ -1,0 +1,81 @@
+= render 'layouts/concourse/partials/nav_project'
+.card
+  .card-header
+    .row
+      .col-md-6
+        %h2
+          Formulário de inscrição
+        %br
+        %br/ 
+        Campos padrão
+        %br/
+         
+
+        %table.table.condensed
+          %thead
+            %tr
+              %th
+                Campo
+              %th
+                Tipo
+              %th
+                Validação
+          %tbody
+            %tr
+              %td Nome
+              %td texto
+              %td obrigatório
+            %tr
+              %td CPF
+              %td texto
+              %td obrigatório, único
+
+        %br
+        Campos customizados
+        %br/ 
+
+        %table.table.condensed
+          %thead
+            %tr
+              %th
+                Campo
+              %th
+                Tipo
+              %th
+                Validação
+              %th
+                Ação
+          %tbody
+            %tr
+              %td Nome
+              %td texto
+              %td obrigatório
+            %tr
+              %td CPF
+              %td texto
+              %td obrigatório, único
+
+      .col-md-6
+        %h2
+          Formulário de envio de projeto
+        %br/ 
+        %br/
+
+        Campos customizados
+        %br/ 
+
+        %table.table.condensed
+          %thead
+            %tr
+              %th
+                Campo
+              %th
+                Tipo
+              %th
+                Validação
+              %th
+                Ação
+          %tbody
+         
+
+        = link_to "inserir campo"

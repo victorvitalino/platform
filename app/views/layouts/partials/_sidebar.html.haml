@@ -1,0 +1,53 @@
+%aside#sidebar
+  .sidebar-inner
+    .si-inner
+      .profile-menu
+        %a{:href => ""}
+          .profile-pic
+            = image_tag "picture_example.jpg", size: "50x50"
+          .profile-info
+            Usuário
+            %i.md.md-arrow-drop-down
+        %ul.main-menu
+          %li
+            %a{:href => "profile-about.html"}
+              %i.md.md-person
+              Meu Perfil
+          %li
+            %a{:href => ""}
+              %i.md.md-settings-input-antenna
+              Configurações
+          %li
+            %a{:href => ""}
+              %i.md.md-history
+              Sair
+      %ul.main-menu
+        %li
+          = link_to "<i class='md  md-view-quilt'></i> Dashboard".html_safe, main_app.root_extranet_path
+
+        %li.sub-menu{class: ('toggled' if @module == "person")}
+          %a{:href => ""}
+            %i.md.md-assignment-ind
+            Gestão de Pessoas
+          %ul{style: ('display:block;' if @module == "person")}
+        %li.sub-menu
+          %a{:href => ""}
+            %i.md.md-trending-up>
+            Gestão Concursos
+          %ul
+            %li
+              = link_to "concursos", concourse.administrator_projects_path
+            %li
+              = link_to "novo concurso", concourse.new_administrator_project_path
+            %li
+              = link_to "relatórios", concourse.administrator_reports_path
+           
+        %li.sub-menu
+          %a{:href => ""}
+            %i.md.md-trending-up>
+            Juridico
+          %ul
+            %li
+              %a{:href => "flot-charts.html"} Flot Charts
+            %li
+              %a{:href => "other-charts.html"} Other Charts

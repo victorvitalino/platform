@@ -1,1 +1,23 @@
-aqui você gerencia
+.block-header
+  %h2 Concursos 
+.row
+  - @projects.each do |p|
+    .col-md-3
+      .card
+        .card-header.ch-alt.m-b-20
+          %h2
+            = p.name
+            %small 
+              = p.description
+          %ul.actions
+            %li.dropdown
+              %a{"data-toggle" => "dropdown", :href => ""}
+                %i.md.md-more-vert
+              %ul.dropdown-menu.dropdown-menu-right
+                %li
+                  = link_to "editar", edit_administrator_project_path(p)
+                %li
+                  = link_to "inativar"
+          = link_to "<i class='md md-add'></i>".html_safe, administrator_project_path(p), class: 'btn bgm-red btn-float waves-effect waves-effect waves-button waves-float'
+        .card-body.card-padding
+          Logo

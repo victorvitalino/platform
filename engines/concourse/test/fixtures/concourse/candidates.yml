@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: 
+  name: MyString
+  cpf: MyString
+  telphone: MyString
+  celphone: MyString
+  city_id: 
+  state_id: 
+  email: MyString
+  password: MyString
+  parameters_fields: MyText
+  status: false
+  status_project: 1
+
+two:
+  project_id: 
+  name: MyString
+  cpf: MyString
+  telphone: MyString
+  celphone: MyString
+  city_id: 
+  state_id: 
+  email: MyString
+  password: MyString
+  parameters_fields: MyText
+  status: false
+  status_project: 1

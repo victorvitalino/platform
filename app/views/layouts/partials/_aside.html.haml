@@ -1,0 +1,103 @@
+%aside#chat
+  %ul.tab-nav.tn-justified{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "0"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "friends", "aria-expanded" => "true", "data-toggle" => "tab", :href => "#friends", :role => "tab"} Pessoas
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "online", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#online", :role => "tab"} Meu Setor
+  .chat-search
+    .fg-line
+      %input.form-control{:placeholder => "Pesquisar...", :type => "text"}/
+  .tab-content
+    #friends.tab-pane.fade.active.in{:role => "tabpanel"}
+      .listview
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left.p-relative
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/2.jpg"}/
+              %i.chat-status-busy
+            .media-body
+              .lv-title Jonathan Morris
+              %small.lv-small Available
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/1.jpg"}/
+            .media-body
+              .lv-title David Belle
+              %small.lv-small Last seen 3 hours ago
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left.p-relative
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/3.jpg"}/
+              %i.chat-status-online
+            .media-body
+              .lv-title Fredric Mitchell Jr.
+              %small.lv-small Availble
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left.p-relative
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/4.jpg"}/
+              %i.chat-status-online
+            .media-body
+              .lv-title Glenn Jecobs
+              %small.lv-small Availble
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/5.jpg"}/
+            .media-body
+              .lv-title Bill Phillips
+              %small.lv-small Last seen 3 days ago
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/6.jpg"}/
+            .media-body
+              .lv-title Wendy Mitchell
+              %small.lv-small Last seen 2 minutes ago
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left.p-relative
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/7.jpg"}/
+              %i.chat-status-busy
+            .media-body
+              .lv-title Teena Bell Ann
+              %small.lv-small Busy
+    #online.tab-pane.fade{:role => "tabpanel"}
+      .listview
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left.p-relative
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/2.jpg"}/
+              %i.chat-status-busy
+            .media-body
+              .lv-title Jonathan Morris
+              %small.lv-small Available
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left.p-relative
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/3.jpg"}/
+              %i.chat-status-online
+            .media-body
+              .lv-title Fredric Mitchell Jr.
+              %small.lv-small Availble
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left.p-relative
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/4.jpg"}/
+              %i.chat-status-online
+            .media-body
+              .lv-title Glenn Jecobs
+              %small.lv-small Availble
+        %a.lv-item{:href => ""}
+          .media
+            .pull-left.p-relative
+              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/7.jpg"}/
+              %i.chat-status-busy
+            .media-body
+              .lv-title Teena Bell Ann
+              %small.lv-small Busy
+  #ascrail2001.nicescroll-rails.nicescroll-rails-vr{:style => "width: 1px; z-index: 5; cursor: default; position: absolute; top: 20px; left: 259px; height: 48px; display: none; opacity: 0;"}
+    .nicescroll-cursors{:style => "position: relative; top: 0px; float: right; width: 1px; height: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0); background-clip: padding-box;"}
+  #ascrail2001-hr.nicescroll-rails.nicescroll-rails-hr{:style => "height: 1px; z-index: 5; top: 67px; left: 0px; position: absolute; cursor: default; display: none; opacity: 0;"}
+    .nicescroll-cursors{:style => "position: absolute; top: 0px; height: 1px; width: 0px; border: 0px; border-radius: 0px; left: 0px; background-color: rgba(0, 0, 0, 0); background-clip: padding-box;"}

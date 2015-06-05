@@ -1,11 +1,11 @@
-class SubdomainConstraint 
+class SubdomainConstraint
   def self.matches?(request)
     permitted = 'extranet'
     request.subdomain.include? permitted
   end
 end
 
-class DomainConstraint 
+class DomainConstraint
   def self.matches?(request)
     permitted = 'extranet'
     !request.subdomain.include? permitted
@@ -14,14 +14,17 @@ end
 
 Rails.application.routes.draw do
 
-  constraints SubdomainConstraint do 
+  devise_for :users
+  constraints SubdomainConstraint do
     get '/', to: "dashboard#index", as: 'root_extranet'
+    mount Cms::Engine => "/cms", as: 'cms'
+    mount Person::Engine => "/pessoas", as: 'person'
   end
 
-  constraints DomainConstraint do 
+  constraints DomainConstraint do
     get '/', to: "portal/home#index", as: 'root_portal'
   end
 
-  mount Concourse::Engine => "/concurso", as: 'concourse'
-  
+  mount Concourse::Engine => "/concursos", as: 'concourse'
+  mount Schedule::Engine => "/agendamento", as: 'schedule'
 end

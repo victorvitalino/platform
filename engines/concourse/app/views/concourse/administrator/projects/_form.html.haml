@@ -1,0 +1,41 @@
+= simple_form_for [:administrator, @project] do |f|
+  .col-md-12
+    .card
+      .card-body.card-padding
+        .row
+          .col-md-6
+            = f.label :name, class: 'fg-label'
+            = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+          .col-md-4
+            = f.label :project_category,  class: 'fg-label'
+            = f.input :project_category, label: false, prompt: 'selecione...'
+
+        .row
+          .col-md-6
+            = f.label :description, class: 'fg-label'
+            = f.input :description, label: false, input_html: { placeholder: 'Digite um nome'}
+        .row
+          .col-md-3
+            = f.label :backgroud, as: 'file', class: 'fg-label'
+            = f.input :backgroud, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
+          .col-md-3
+            = f.label :logo, as: 'file', class: 'fg-label'
+            = f.input :logo, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
+        %br/
+        .row
+          .col-md-1
+            = f.label :start, as: 'string', class: 'fg-label'
+            = f.input :start, as: 'string', label: false, input_html: { placeholder: '00/00/0000'}
+          .col-md-1
+            = f.label :end, as: 'string', class: 'fg-label'
+            = f.input :end, as: 'string', label: false, input_html: { placeholder: '00/00/0000'}
+        .row
+          .col-md-1
+            = f.label :hour_end,  class: 'fg-label'
+            = f.input :hour_end, as: 'string', label: false
+          .col-md-2
+            = f.label :status,  class: 'fg-label'
+            = f.input :status, as: 'select', label: false, prompt: 'selecione...'
+        .row
+          .col-md-12
+            = f.button :submit, class: 'btn btn-success'
