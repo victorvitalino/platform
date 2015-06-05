@@ -17,14 +17,17 @@ Rails.application.routes.draw do
   devise_for :users
   constraints SubdomainConstraint do 
     get '/', to: "dashboard#index", as: 'root_extranet'
-    mount Cms::Engine => "/cms", as: 'cms'
+
+    mount Cms::Engine => "/cms", as: 'cms', module: 'cms'
+    mount Cms::Engine => "/pessoas", as: 'person', module: 'person'
+
   end
 
   constraints DomainConstraint do 
     get '/', to: "portal/home#index", as: 'root_portal'
   end
 
-  mount Concourse::Engine => "/concursos", as: 'concourse'
-  mount Schedule::Engine => "/agendamento", as: 'schedule'
+  mount Concourse::Engine => "/concursos", as: 'concourse', module: 'concourse'
+  mount Schedule::Engine => "/agendamento", as: 'schedule', module: 'schedule'
   
 end
