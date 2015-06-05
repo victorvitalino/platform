@@ -4,7 +4,6 @@ PATH
     concourse (0.0.1)
       haml-rails
       rails (~> 4.2.1)
-      simple_form
 
 GEM
   remote: https://rubygems.org/
@@ -104,9 +103,6 @@ GEM
     ruby_parser (3.6.6)
       sexp_processor (~> 4.1)
     sexp_processor (4.5.1)
-    simple_form (3.1.0)
-      actionpack (~> 4.0)
-      activemodel (~> 4.0)
     sprockets (3.2.0)
       rack (~> 1.0)
     sprockets-rails (2.3.1)

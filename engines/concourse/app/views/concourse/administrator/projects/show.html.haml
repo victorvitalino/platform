@@ -1,12 +1,4 @@
-.block-header
-  %h2 
-    = @project.name
-.btn-group-demo
-  .btn-group.btn-group-lg{:role => "group"}
-    = link_to "Participantes", administrator_project_path(@project), class: 'btn btn-default waves-effect waves-button waves-float'
-    = link_to "Projetos enviados", administrator_project_path(@project), class: 'btn btn-inverse waves-effect waves-button waves-float'
-    = link_to "Formulários", administrator_project_path(@project), class: 'btn btn-inverse waves-effect waves-button waves-float'
-    = link_to "Relatórios", administrator_project_path(@project), class: 'btn btn-inverse waves-effect waves-button waves-float'
+= render 'layouts/concourse/partials/nav_project'
 .card
   .card-header
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "4"}
@@ -15,7 +7,7 @@
         %tr
           %th #
           %th Nome
-          %th Email
+          %th Email 
           %th Telefone
           %th Data de inscrição
           %th Visualizar inscrição

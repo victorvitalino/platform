@@ -28,7 +28,26 @@
 
 ## Candidate ##
 
+- project:references
+- name:string
+- cpf:string
+- telphone:string
+- celphone:string
+- city:references
+- estate:references
+- email:string
+- password:string
+- parameters_fields:text
+
 ## CandidateField ##
+
+- project:references
+- name
+- field_type
+- required:boolean
+- unique:boolean
+- regular_expression
+
 
 ## CandidateUpload ##
 

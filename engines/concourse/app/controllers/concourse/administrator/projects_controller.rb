@@ -10,6 +10,7 @@ module Concourse
 
     # GET /projects/1
     def show
+      @module = "candidates"
     end
 
     # GET /projects/new
