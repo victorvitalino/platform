@@ -1,0 +1,231 @@
+.mobile-wrap
+  .all-nav-wrap
+    #top-nav.nomobile{:tabindex => "0"}
+      .container
+        .sixteen.columns
+          %nav.servicos-bar-nav{"aria-label" => "top nav", :role => "navigation"}
+            %ul
+              %li
+                %a{:href => "http://www.df.gov.br", :target => "_Blank"} Portal Brasília
+              %li
+                %a{:href => "./"} CODHAB
+                %ul#nav-sub-1
+                  %li.first
+                    %a{:href => "#"} A Companhia
+                    %ul
+                      %li
+                        = ##link_nav_to 'História', 'geral'
+                      %li
+                        = ##link_nav_to 'Missão', 'geral'
+                      %li
+                        = #link_nav_to 'Visão', 'geral'
+                      %li
+                        = #link_nav_to 'Valores', 'geral'
+                  %li
+                    %a{:href => "#"} Organização
+                    %ul#nav-sub-2
+                      %li.first
+                        = #link_nav_to 'Organograma', 'geral'
+                      %li
+                        = #link_nav_to 'Diretoria Executiva', 'geral'
+                      %li
+                        = #link_nav_to 'Assessorias', 'geral'
+                  %li
+                    %a{:href => "#"} Conselhos
+                    %ul#nav-sub-3
+                      %li.first
+                        = #link_nav_to 'Conselho Administrativo', 'geral'
+                      %li
+                        = #link_nav_to 'Conselho Fiscal', 'geral'
+                  %li
+                    %a{:href => "#"} Documentos
+                    %ul#nav-sub-4
+                      %li.first
+                        = #link_nav_to 'Estatuto Social', 'geral'
+                      %li
+                        = #link_nav_to 'Regimento Interno', 'geral'
+                      %li
+                        = #link_nav_to 'Resoluções', 'geral'
+              %li
+                %a{:href => "#"} Imprensa
+                %ul#nav-sub-5
+                  %li
+                    %ul
+                      %li.first
+                        = #link_nav_to 'Notícias', 'geral'
+                      %li
+                        = #link_nav_to 'Vídeos', 'geral'
+                      %li
+                        = #link_nav_to 'Mídias Sociais', 'geral'
+              %li
+                = #link_nav_to 'Dúvidas Frequentes', 'geral'
+              %li
+                = #link_nav_to 'Legislação', 'geral'
+              %li
+                %a{:href => "#"} Baixe o APP
+              %li
+                %a{:href => "#"} Fale Conosco
+                %ul#nav-sub-7
+                  %li.first
+                    %a{:href => "#"} Telefone
+                    %ul
+                      %li
+                        %a{:href => "#"} 156
+                  %li.first
+                    %a{:href => "#"} Postos de Atendimento
+                    %ul
+                      %li
+                        %a{:href => "#"} Setor Comercial Sul, Quadra 06, Lotes 13/14, Bloco A, 5º Andar - Edifício SEDHAB
+                  %li.first
+                    %a{:href => "#"} Ouvidoria
+                    %ul
+                      %li
+                        %a{:href => "#"} e-SIC
+                      %li
+                        %a{:href => "#"} Presencial
+    #main-menu-bar{:role => "banner", :tabindex => "0"}
+      .container
+        .sixteen.columns
+          .logo.mobilewrap
+            %a.mobile.menubutton{:alt => "ACC menu button", :href => "#"}
+            %a.link-logo{:href => "#"}
+              = image_tag('jeruza/img/logo_codhab.png', width: '132', class: 'nomobile')
+              = image_tag('jeruza/img/logo_codhab.png', width: '185', class: 'mobile')
+          %nav#main-menu
+            %ul
+              %li.habitacao.main-link
+                %a{:href => "#"} Habitação
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#"} Programa Morar Bem
+                    %ul.submenu-item
+                      %li.first
+                        = #link_nav_to 'Conheça o Programa', 'habitacao'
+                      %li
+                        = #link_nav_to 'Documentos Necessários', 'habitacao'
+                      %li
+                        = #link_nav_to 'Agendar / Reagendar Atendimento', 'habitacao'
+                  %li.first
+                    %a{:href => "#"} Relação de Habilitados
+                    %ul.submenu-item
+                      %li.first
+                        = #link_nav_to 'Diferença entre RII e RIE', 'habitacao'
+                      %li
+                        = #link_nav_to 'Lista de RII', 'habitacao'
+                      %li
+                        = #link_nav_to 'Lista de RIE', 'habitacao'
+                  %li.first
+                    %a{:href => "#"} Convocados Não Habilitados
+                    %ul.submenu-item
+                      %li.first
+                        = #link_nav_to 'O que são convocados não habilitados?', 'habitacao'
+                      %li
+                        = #link_nav_to 'Lista de convocados não habilitados', 'habitacao'
+              %li.regularizacao.main-link
+                %a{:href => "#"} Regularização
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#"} Regularizou é seu
+                    %ul.submenu-item
+                      %li
+                        = #link_nav_to 'Informações', 'regularizacao'
+                      %li
+                        = #link_nav_to 'Cadastro', 'regularizacao'
+                      %li
+                        = #link_nav_to 'Agendar / Reagendar atendimento', 'regularizacao'
+                  %li.first
+                    %a{:href => "#"} Cidades Consolidadas
+                    %ul.submenu-item
+                      %li
+                        = #link_nav_to 'Andamento de sua localidade', 'regularizacao'
+                      %li
+                        = #link_nav_to 'Critérios de Habilitação', 'regularizacao'
+                      %li
+                        = #link_nav_to 'Documentos Necessários', 'regularizacao'
+                  %li.first
+                    %a{:href => "#"} Parcelamentos Informais
+                    %ul.submenu-item
+                      %li
+                        = #link_nav_to 'Andamento de sua localidade', 'parcelamentos_informais'
+                      %li
+                        = #link_nav_to 'Critérios de Habilitação', 'parcelamentos_informais'
+                      %li
+                        = #link_nav_to 'Documentos Necessários', 'parcelamentos_informais'
+              %li.entidades.main-link
+                %a{:href => "#"} Entidades
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#"} Informações
+                    %ul.submenu-item
+                      %li
+                        = #link_nav_to 'Sobre o programa', 'Associacoes'
+                      %li
+                        = #link_nav_to 'Entidades e associações cadastradas', 'Associacoes'
+                      %li
+                        = #link_nav_to 'Pré-requisitos para cadastramento de entidade / associação', 'Associacoes'
+                      %li
+                        = #link_nav_to 'Manual da entidade', 'Associacoes'
+                  %li.first
+                    %a{:href => "#"} Atendimento
+                    %ul.submenu-item
+                      %li
+                        = #link_nav_to 'Cadastro', 'Associacoes'
+                      %li
+                        = #link_nav_to 'Acesso a Entidades', 'Associacoes'
+                      %li
+                        = #link_nav_to 'Agendar / Reagendar atendimento', 'Associacoes'
+              %li.servicos.main-link
+                %a{:href => "#"} Serviços
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#"} Documentos
+                    %ul.submenu-item
+                      %li
+                        = #link_nav_to 'Escrituras', 'Servicos'
+                      %li#nav-sub-1002.first
+                        = #link_nav_to 'Emitir Boletos', 'Servicos'
+                      %li#nav-sub-1003
+                        = #link_nav_to 'Emitir Certidão Positiva', 'Servicos'
+                      %li#nav-sub-1004
+                        = #link_nav_to 'Validar Certidão Positiva', 'Servicos'
+                      %li#nav-sub-1005
+                        = #link_nav_to 'Verificar Processo', 'Servicos'
+                  %li.first
+                    %a{:href => "#"} Responsabilidade Social
+                    %ul.submenu-item
+                      %li.first
+                        = #link_nav_to 'Capacitação', 'Servicos'
+                      %li
+                        = #link_nav_to 'Geração de Renda', 'Servicos'
+                      %li.first
+                        = #link_nav_to 'Canal do Cidadão', 'Servicos'
+                      
+              %li.editais.main-link
+                %a{:href => "#"} Editais
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#"} Licitações
+                    %ul.submenu-item
+                      %li
+                        = #link_nav_to 'Equipamentos e Materiais', 'Editais'
+                      %li
+                        = #link_nav_to 'Obras e Serviços', 'Editais'
+                  %li.first
+                    %a{:href => "#"} Entidades
+                    %ul.submenu-item
+                      %li
+                        = #link_nav_to 'Credenciamento', 'Editais'
+                      %li
+                        = #link_nav_to 'Chamamento', 'Editais'
+
+                %li.concursos.main-link
+                  %a{:href => "#"} Concursos
+                  %ul.submenu
+                    %li.first
+                      %ul.submenu-item
+                        %li
+                          = #link_nav_to 'O que são?', 'Concursos'
+                        %li
+                          = #link_nav_to 'Logo CODHAB', 'Concursos'
+                        %li
+                          = #link_nav_to 'Projetos Habitacionais', 'Concursos'
