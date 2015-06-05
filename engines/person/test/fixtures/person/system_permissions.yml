@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  action: MyString
+  code: MyString
+  status: false
+  system_id: 
+
+two:
+  action: MyString
+  code: MyString
+  status: false
+  system_id: 
