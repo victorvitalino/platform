@@ -19,8 +19,7 @@ Rails.application.routes.draw do
     get '/', to: "dashboard#index", as: 'root_extranet'
 
     mount Cms::Engine => "/cms", as: 'cms', module: 'cms'
-    mount Cms::Engine => "/pessoas", as: 'person', module: 'person'
-
+  
   end
 
   constraints DomainConstraint do 

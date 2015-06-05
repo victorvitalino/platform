@@ -23,48 +23,25 @@
               Sair
       %ul.main-menu
         %li
-          = link_to "<i class='md  md-view-quilt'></i> Dashboard".html_safe, root_extranet_path
+          = link_to "<i class='md  md-view-quilt'></i> Dashboard".html_safe, main_app.root_extranet_path
+
         %li.sub-menu{class: ('toggled' if @module == "person")}
           %a{:href => ""}
             %i.md.md-assignment-ind
             Gestão de Pessoas
           %ul{style: ('display:block;' if @module == "person")}
-            %li
-              = link_to "funcionários", person.users_path
-            %li
-              = link_to "cargos", person.jobs_path
-            %li
-              = link_to "setores", person.sectors_path
-            %li
-              = link_to "ramais", person.sectors_path
-            %li.divider
-            %li
-              = link_to "sistemas", person.systems_path
-            %li
-              = link_to "relatórios", person.reports_path
-            %li       - if defined? ScheduleEngine
-        %li.sub-menu
-          %a{:href => ""}
-            %i.md.md-today
-            Agendamento
-          %ul
-            %li
-              = link_to "agendas", schedule.agendas_path
-            %li
-              = link_to "relatórios", person.new_user_path
-            %li
-              = link_to "atendentes", person.new_user_path
-            %li
-              = link_to "supervisores", person.new_user_path
         %li.sub-menu
           %a{:href => ""}
             %i.md.md-trending-up>
-            Charts
+            Gestão Concursos
           %ul
             %li
-              %a{:href => "flot-charts.html"} Flot Charts
+              = link_to "concursos", concourse.administrator_projects_path
             %li
-              %a{:href => "other-charts.html"} Other Charts
+              = link_to "novo concurso", concourse.new_administrator_project_path
+            %li
+              = link_to "relatórios", concourse.administrator_reports_path
+           
         %li.sub-menu
           %a{:href => ""}
             %i.md.md-trending-up>

@@ -1,0 +1,30 @@
+.block-header
+  %h2 
+    = @project.name
+.btn-group-demo
+  .btn-group.btn-group-lg{:role => "group"}
+    = link_to "Participantes", administrator_project_path(@project), class: 'btn btn-default waves-effect waves-button waves-float'
+    = link_to "Projetos enviados", administrator_project_path(@project), class: 'btn btn-inverse waves-effect waves-button waves-float'
+    = link_to "Formulários", administrator_project_path(@project), class: 'btn btn-inverse waves-effect waves-button waves-float'
+    = link_to "Relatórios", administrator_project_path(@project), class: 'btn btn-inverse waves-effect waves-button waves-float'
+.card
+  .card-header
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "4"}
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th #
+          %th Nome
+          %th Email
+          %th Telefone
+          %th Data de inscrição
+          %th Visualizar inscrição
+          %th Ações
+      %tbody
+        %tr
+          %td 1
+          %td Alexandra
+          %td Christopher
+          %td @makinton
+          %td Ducky
+    

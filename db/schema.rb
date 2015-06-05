@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603191627) do
+ActiveRecord::Schema.define(version: 20150605121228) do
 
   create_table "cms_pages", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,29 @@ ActiveRecord::Schema.define(version: 20150603191627) do
   end
 
   add_index "cms_pages", ["user_id"], name: "index_cms_pages_on_user_id"
+
+  create_table "concourse_project_categories", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "concourse_projects", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "background"
+    t.string   "logo"
+    t.date     "start"
+    t.date     "end"
+    t.time     "hour_end"
+    t.boolean  "status"
+    t.integer  "project_category_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "concourse_projects", ["project_category_id"], name: "index_concourse_projects_on_project_category_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
