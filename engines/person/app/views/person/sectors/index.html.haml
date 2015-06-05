@@ -1,0 +1,18 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Setores
+      = link_to 'novo setor', new_sector_path, remote: true, class: 'btn btn-success pull-right'
+      %small Listagem de setors
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Nome
+          %th Sigla
+          %th Setor Pai
+          %th Responsável
+          %th Ações
+      %tbody.index-sector
+        = render 'index'
