@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Extranet
+    = stylesheet_link_tag  'material', media: 'all'
+    = csrf_meta_tags
+  %body.toggled.sw-toggled
+    = render "layouts/partials/nav" if !user_signed_in?
+    %section#main
+      = render "layouts/partials/aside" 
+      = render "layouts/partials/sidebar" 
+      %section#content
+        %div.container
+          = yield
+    = javascript_include_tag 'material'
+
+    #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content

@@ -1,0 +1,30 @@
+#footer
+  .star-footer
+  .container
+    .social.sixteen.columns
+    .sixteen.columns
+      .five.columns.contact-form.alpha
+        = image_tag('jeruza/img/logo_codhab.png', class: 'logo_footer')
+      .five.columns
+        %h3 Últimas Notícias
+        .footer-box
+          - post_each('morarbem', 3, 'DESC') do |p|
+            .noticias-footer
+              %p
+                = link_to p.title, content_post_path(p)
+              %p 
+                = p.created_at.strftime('%d/%m/%Y')
+      .five.columns.omega
+        %h3 Entre em Contato
+        .footer-box
+          %p
+            %span{"aria-label" => "address"}
+              Edifício SEDHAB - Setor Comercial Sul
+              %br
+                Quadra 06, Bloco A - Lotes 12/13 - Térreo.
+                %br
+                  Brasília/DF
+          %h3 Central de Atendimento
+          %p
+            %span{"aria-label" => "address"}
+              156 opção 5. Das 7h às 19h
