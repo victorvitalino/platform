@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150608124038) do
 
   create_table "cms_pages", force: :cascade do |t|
     t.string   "title"
-    t.boolean  "content"
+    t.text     "content"
     t.boolean  "publish"
     t.integer  "page_category_id"
     t.datetime "created_at",       null: false
