@@ -1,35 +1,87 @@
-%h1 Listing posts
+.block-header
+  %h2 Posts
+.row
+  .col-md-12
+    .card
+      .card-header
+        = link_to 'New Post', new_post_path, class: 'btn btn-primary pull-right'
+        #data-table-command-header.bootgrid-header.container-fluid
+          .row
+            .col-sm-12.actionBar
+              .search.form-group
+                .input-group
+                  %span.md.icon.input-group-addon.glyphicon-search
+                  %input.search-field.form-control{:placeholder => "Search", :type => "text"}/
+              .actions.btn-group
+                .dropdown.btn-group
+                  %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                    %span.dropdown-text 10
+                    %span.caret
+                  %ul.dropdown-menu.pull-right{:role => "menu"}
+                    %li.active{"aria-selected" => "true"}
+                      %a.dropdown-item.dropdown-item-button{:href => "#10"} 10
+                    %li{"aria-selected" => "false"}
+                      %a.dropdown-item.dropdown-item-button{:href => "#25"} 25
+                    %li{"aria-selected" => "false"}
+                      %a.dropdown-item.dropdown-item-button{:href => "#50"} 50
+                    %li{"aria-selected" => "false"}
+                      %a.dropdown-item.dropdown-item-button{:href => "#-1"} All
+                .dropdown.btn-group
+                  %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                    %span.dropdown-text
+                      %span.md.icon.md-view-module
+                    %span.caret
+                  %ul.dropdown-menu.pull-right{:role => "menu"}
+                    %li
+                      .checkbox
+                        %label.dropdown-item
+                          %input.dropdown-item-checkbox{:checked => "checked", :name => "id", :type => "checkbox", :value => "1"}/
+                          %i.input-helper
+                          ID
+                    %li
+                      .checkbox
+                        %label.dropdown-item
+                          %input.dropdown-item-checkbox{:checked => "checked", :name => "sender", :type => "checkbox", :value => "1"}/
+                          %i.input-helper
+                          Sender
+                    %li
+                      .checkbox
+                        %label.dropdown-item
+                          %input.dropdown-item-checkbox{:checked => "checked", :name => "received", :type => "checkbox", :value => "1"}/
+                          %i.input-helper
+                          Received
+                    %li
+                      .checkbox
+                        %label.dropdown-item
+                          %input.dropdown-item-checkbox{:checked => "checked", :name => "commands", :type => "checkbox", :value => "1"}/
+                          %i.input-helper
+                          Commands
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Content
-      %th Post category
-      %th Slider
-      %th Thumb
-      %th Resume
-      %th Date
-      %th Publish
-      %th
-      %th
-      %th
+          %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+            %thead
+              %tr
+                %th Title
+                %th Content
+                %th Post category
+                %th Slider
+                %th Thumb
+                %th Resume
+                %th Date
+                %th Publish
+                %th Action
+                %th
+                %th
 
-  %tbody
-    - @posts.each do |post|
-      %tr
-        %td= post.title
-        %td= post.content
-        %td= post.post_category
-        %td= post.slider
-        %td= post.thumb
-        %td= post.resume
-        %td= post.date
-        %td= post.publish
-        %td= link_to 'Show', post
-        %td= link_to 'Edit', edit_post_path(post)
-        %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Post', new_post_path
+            %tbody
+              - @posts.each do |post|
+                %tr
+                  %td= post.title
+                  %td= post.content
+                  %td= post.post_category
+                  %td= post.slider
+                  %td= post.thumb
+                  %td= post.resume
+                  %td= post.date
+                  %td= post.publish
+                  %td= link_to '', edit_post_path(post), class: 'md md-edit btn btn-primary'
+                  %td= link_to '', post, :method => :delete, class: 'md md-delete btn btn-danger', :data => { :confirm => 'Are you sure?' }
