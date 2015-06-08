@@ -14,15 +14,6 @@
           .col-md-6
             = f.label :description, class: 'fg-label'
             = f.input :description, label: false, input_html: { placeholder: 'Digite um nome'}
-        .row
-          .col-md-3
-            = f.label :background, as: 'file', class: 'fg-label'
-            = f.input :background, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
-          .col-md-3
-            = f.label :logo, as: 'file', class: 'fg-label'
-            = f.input :logo, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
-        %br/
-        .row
           .col-md-1
             = f.label :start, as: 'string', class: 'fg-label'
             = f.input :start, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
@@ -32,10 +23,21 @@
           .col-md-1
             = f.label :hour_end,  class: 'fg-label'
             = f.input :hour_end, as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
-        .row
-          .col-md-2
+          .col-md-3
             = f.label :status,  class: 'fg-label'
             = f.input :status, as: 'boolean', label: false, prompt: 'selecione...'
+        %br/
+        .row
+          .col-md-3
+            = f.label :background, as: 'file', class: 'fg-label'
+            = f.input :background, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
+            = image_tag @project.background_url, width: '150' if @project.background?
+          .col-md-3
+            = f.label :logo, as: 'file', class: 'fg-label'
+            = f.input :logo, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
+            = image_tag @project.logo_url, width: '150' if @project.logo?
+        %hr/
         .row
           .col-md-12
             = f.button :submit, class: 'btn btn-success'
+            = link_to "voltar", concourse.administrator_projects_path, class: 'btn btn-default'
