@@ -33,11 +33,13 @@ module Person
 		private
 
 		def sector_params
-			params.require(:sector).permit(:name,:acron,:status)
+			params.require(:sector).permit(:name,:acron,:status,:father_id, :responsible_id)
 		end
+
 
 		def set_sectors
 			@sectors = Sector.all
+			@person = User.all
 		end
 
 		def set_sector
