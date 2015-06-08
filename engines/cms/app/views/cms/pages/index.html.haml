@@ -4,7 +4,9 @@
   %thead
     %tr
       %th Title
-      %th User
+      %th Content
+      %th Publish
+      %th Page category
       %th
       %th
       %th
@@ -13,7 +15,9 @@
     - @pages.each do |page|
       %tr
         %td= page.title
-        %td= page.user
+        %td= page.content
+        %td= page.publish
+        %td= page.page_category
         %td= link_to 'Show', page
         %td= link_to 'Edit', edit_page_path(page)
         %td= link_to 'Destroy', page, :method => :delete, :data => { :confirm => 'Are you sure?' }

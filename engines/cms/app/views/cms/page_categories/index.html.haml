@@ -1,0 +1,23 @@
+%h1 Listing page_categories
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Status
+      %th
+      %th
+      %th
+
+  %tbody
+    - @page_categories.each do |page_category|
+      %tr
+        %td= page_category.name
+        %td= page_category.status
+        %td= link_to 'Show', page_category
+        %td= link_to 'Edit', edit_page_category_path(page_category)
+        %td= link_to 'Destroy', page_category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Page category', new_page_category_path

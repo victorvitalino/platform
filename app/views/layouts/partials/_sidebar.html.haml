@@ -41,6 +41,20 @@
               = link_to "novo concurso", concourse.new_administrator_project_path
             %li
               = link_to "relatórios", concourse.administrator_reports_path
+        %li.sub-menu
+          %a{:href => ""}
+            %i.md.md-trending-up>
+            Gestão Site
+          %ul
+            %li
+              = link_to "postagens", cms.posts_path
+            %li
+              = link_to "páginas", cms.pages_path
+            %li.divider
+            %li
+              = link_to "categorias de post", cms.post_categories_path
+            %li
+              = link_to "categorias de página", cms.page_categories_path
            
         %li.sub-menu
           %a{:href => ""}

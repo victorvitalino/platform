@@ -3,7 +3,9 @@
 
   .form-inputs
     = f.input :title
-    = f.association :user
+    = f.input :content
+    = f.input :publish
+    = f.association :page_category
 
   .form-actions
     = f.button :submit
