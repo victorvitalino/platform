@@ -64,9 +64,7 @@
                     %th Content
                     %th Publish
                     %th Page category
-                    %th Actions
-                    %th
-                    %th
+                    %th{:colspan => "3"} Actions
 
                 %tbody
                   - @pages.each do |page|
@@ -74,7 +72,7 @@
                       %td= page.title
                       %td= page.content
                       %td= page.publish
-                      %td= page.page_category
-                      %td= link_to 'Show', page
-                      %td= link_to 'Edit', edit_page_path(page)
-                      %td= link_to 'Destroy', page, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                      %td= page.page_category.name
+                      %td.col-md-2
+                        = link_to '', edit_page_path(page), class: 'md md-edit btn btn-primary'
+                        = link_to '', page, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
