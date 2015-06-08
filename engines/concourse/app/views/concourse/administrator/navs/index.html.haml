@@ -1,0 +1,31 @@
+= render 'layouts/concourse/partials/nav_project'
+.card
+  .card-header
+    = link_to "novo menu", concourse.new_administrator_project_nav_path(@project), class: 'btn btn-success'
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "4"}
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th #
+          %th Link
+          %th Ação
+          %th Tipo
+          %th Publicado?
+          %th Página interna
+          %th Página externa
+          %th Data de criação
+          %th Ações
+      %tbody
+        - @navs.each_with_index do |p, i|
+          %tr
+            %td= p.order
+            %td= p.link
+            %td= p.target
+            %td= p.page_action
+            %td= p.publish
+            %td= p.page if p.page.present?
+            %td= p.external_link
+            %td= p.created_at.strftime('%d/%m/%Y')
+            %td
+              = link_to "editar", concourse.edit_administrator_project_page_path(project_id: @project, id: p)
+              = link_to "excluir"

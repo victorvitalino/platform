@@ -5,6 +5,8 @@ Concourse::Engine.routes.draw do
       resources :projects do 
         resources :forms
         resources :candidate_field
+        resources :pages
+        resources :navs
       end
       resources :project_categories
       resources :reports
@@ -13,7 +15,9 @@ Concourse::Engine.routes.draw do
 
   constraints DomainConstraint do 
     namespace :portal, path: '/' do 
-      resources :projects
+      resources :projects, path: '/'
+      resources :pages
+      resources :candidates
       root 'projects#index'
     end
   end

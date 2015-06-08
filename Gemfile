@@ -14,6 +14,8 @@ gem 'haml-rails'
 gem 'devise'
 gem 'pundit'
 
+gem 'friendly_id'
+
  
 group :development, :test do
   gem 'sqlite3'
