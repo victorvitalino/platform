@@ -1,0 +1,30 @@
+= render 'layouts/concourse/partials/nav_project'
+.card
+  .card-header
+    = link_to "nova página", concourse.new_administrator_project_page_path(@project), class: 'btn btn-success'
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "4"}
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th #
+          %th Título
+          %th Publicada?
+          %th Data de criação
+          %th Data última atualização
+          %th Ações
+      %tbody
+        - @pages.each_with_index do |p, i|
+          %tr
+            %td
+              = i + 1
+            %td
+              = p.title
+            %td
+              = p.publish
+            %td
+              = p.created_at.strftime('%d/%m/%Y')
+            %td
+              = p.updated_at.strftime('%d/%m/%Y')
+            %td
+              = link_to "editar", concourse.edit_administrator_project_page_path(project_id: @project, id: p)
+              = link_to "excluir"
