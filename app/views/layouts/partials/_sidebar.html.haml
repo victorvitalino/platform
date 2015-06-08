@@ -36,9 +36,11 @@
             Gestão Concursos
           %ul
             %li
+              = link_to "novo concurso", concourse.new_administrator_project_path
+            %li
               = link_to "concursos", concourse.administrator_projects_path
             %li
-              = link_to "novo concurso", concourse.new_administrator_project_path
+              = link_to "categorias de concurso", concourse.administrator_project_categories_path
             %li
               = link_to "relatórios", concourse.administrator_reports_path
         %li.sub-menu

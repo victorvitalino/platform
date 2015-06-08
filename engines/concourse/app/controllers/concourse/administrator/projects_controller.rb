@@ -37,8 +37,9 @@ module Concourse
     # PATCH/PUT /projects/1
     def update
       if @project.update(project_params)
-        redirect_to @project, notice: 'Project was successfully updated.'
-      else
+        flash[:success] =  t :success
+        redirect_to action: 'index'
+       else
         render :edit
       end
     end
