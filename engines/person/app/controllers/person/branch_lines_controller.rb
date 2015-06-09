@@ -2,6 +2,7 @@ require_dependency "person/application_controller"
 
 module Person
 	class BranchLinesController < ApplicationController
+		layout 'layouts/material'
 		before_action :set_branch_lines, only: [:index, :create, :destroy, :update]
 		before_action :set_branch_line, only: [:show,:edit, :destroy, :update]
 

@@ -1,5 +1,3 @@
-
-
 module Person
 	class UsersController < ApplicationController
 		layout 'layouts/material'
@@ -18,11 +16,12 @@ module Person
 		def create
 			@user = User.new(user_params)
 
-      if @user.save
-        redirect_to @user, notice: 'User was successfully created.'
-      else
-        render :new
-      end
+			if @user.save
+			  flash[:success] =  t :success
+			  redirect_to action: 'index'
+		  else
+			  render :new
+		  end
 		end
 
 		def edit
@@ -30,10 +29,11 @@ module Person
 
 		def update
 			if @user.update(user_params)
-        redirect_to @user, notice: 'User was successfully updated.'
-      else
-        render :edit
-      end
+				flash[:success] =  t :success
+				redirect_to action: 'index'
+			else
+				render :edit
+			end
 		end
 
 		def destroy
@@ -44,12 +44,14 @@ module Person
 		private
 
 		def user_params
-			params.require(:user).permit(:name,:cpf,:rg,:rg_org,:born,:blood_type,:curriculum,:encrypted_password, :end_hour,:start_hour,:wekeend,:attendant,:email,:date_contract,:code,:status)
+			params.require(:user).permit(:name,:cpf,:rg,:rg_org,:born,:blood_type,:curriculum,:password,:password_confirmation ,:end_hour,:start_hour,:wekeend,:attendant,:email,:date_contract,:code,:status,:avatar,:sector_current_id,:sector_origin_id, :jobs_id,:branch_lines_id)
 		end
 
 		def set_users
 			@users = User.all
 			@sectors = Sector.all
+			@jobs = Job.all
+			@branch_lines = BranchLine.all
 		end
 
 		def set_user

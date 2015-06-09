@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Código</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% j.each do |m, c| %>
+    <tr>
+      <td><%= c + 1 %></td>
+      <td><%= m.system_permissions.name + 1 %></td>
+      <td><%= m.system_permissions.code %></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
