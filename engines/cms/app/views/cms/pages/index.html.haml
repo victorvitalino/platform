@@ -60,17 +60,17 @@
               %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
                 %thead
                   %tr
+                    %th #
                     %th Title
-                    %th Content
                     %th Publish
                     %th Page category
                     %th{:colspan => "3"} Actions
 
                 %tbody
-                  - @pages.each do |page|
+                  - @pages.each_with_index do |page, i|
                     %tr
+                      %td= i + 1
                       %td= page.title
-                      %td= page.content
                       %td= page.publish
                       %td= page.page_category.name
                       %td.col-md-2

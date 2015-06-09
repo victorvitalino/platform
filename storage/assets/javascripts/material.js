@@ -12,3 +12,4 @@
 //= require material/vendors/bootstrap-growl/bootstrap-growl.min
 //= require material/js/functions
 //= require material/js/demo
+//= require redactor-rails

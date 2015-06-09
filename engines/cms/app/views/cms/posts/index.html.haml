@@ -60,26 +60,18 @@
           %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
             %thead
               %tr
+                %th #
                 %th Title
-                %th Content
                 %th Post category
-                %th Slider
-                %th Thumb
-                %th Resume
-                %th Date
                 %th Publish
                 %th{:colspan => '3'} Action
 
             %tbody
-              - @posts.each do |post|
+              - @posts.each_with_index do |post, i|
                 %tr
+                  %td= i+1
                   %td= post.title
-                  %td= post.content
-                  %td= post.post_category
-                  %td= post.slider
-                  %td= post.thumb
-                  %td= post.resume
-                  %td= post.date
+                  %td= post.post_category.name
                   %td= post.publish
                   %td.col-md-2
                     = link_to '', edit_post_path(post), class: 'md md-edit btn btn-primary'
