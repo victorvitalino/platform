@@ -29,6 +29,14 @@
           %a{:href => ""}
             %i.md.md-assignment-ind
             Gestão de Pessoas
+          %ul
+            %li
+              = link_to "cargos", person.jobs_path
+            %li
+              = link_to "usuarios", person.users_path
+            %li.divider
+            %li
+              = link_to "setor", person.sectors_path
           %ul{style: ('display:block;' if @module == "person")}
         %li.sub-menu
           %a{:href => ""}
@@ -57,7 +65,7 @@
               = link_to "categorias de post", cms.post_categories_path
             %li
               = link_to "categorias de página", cms.page_categories_path
-           
+
         %li.sub-menu
           %a{:href => ""}
             %i.md.md-trending-up>
