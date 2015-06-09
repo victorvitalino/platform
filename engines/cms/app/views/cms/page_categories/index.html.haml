@@ -60,13 +60,15 @@
               %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
                 %thead
                   %tr
+                    %th #
                     %th Name
                     %th Status
                     %th{:colspan => "3"} Actions
 
                 %tbody
-                  - @page_categories.each do |page_category|
+                  - @page_categories.each_with_index do |page_category, i|
                     %tr
+                      %td= i+1
                       %td= page_category.name
                       %td= page_category.status
                       %td.col-md-2
