@@ -89,8 +89,8 @@
           .logo.mobilewrap
             %a.mobile.menubutton{:alt => "ACC menu button", :href => "#"}
             %a.link-logo{:href => "#"}
-              = image_tag('jeruza/img/logo_codhab.png', width: '132', class: 'nomobile')
-              = image_tag('jeruza/img/logo_codhab.png', width: '185', class: 'mobile')
+              = image_tag('portal/img/logo_codhab.png', width: '132', class: 'nomobile')
+              = image_tag('portal/img/logo_codhab.png', width: '185', class: 'mobile')
           %nav#main-menu
             %ul
               %li.habitacao.main-link
@@ -224,8 +224,7 @@
                     %li.first
                       %ul.submenu-item
                         %li
-                          = #link_nav_to 'O que são?', 'Concursos'
-                        %li
-                          = #link_nav_to 'Logo CODHAB', 'Concursos'
-                        %li
-                          = #link_nav_to 'Projetos Habitacionais', 'Concursos'
+                          = link_to "o que são", "#"
+                        - Concourse::Project.all.each do |c|
+                          %li
+                            = link_to "#{c.name}", concourse.portal_project_path(c)                          

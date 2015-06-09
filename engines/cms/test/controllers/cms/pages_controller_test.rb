@@ -19,7 +19,7 @@ module Cms
 
     test "should create page" do
       assert_difference('Page.count') do
-        post :create, page: { title: @page.title, user_id: @page.user_id }
+        post :create, page: { content: @page.content, page_category_id: @page.page_category_id, publish: @page.publish, title: @page.title }
       end
 
       assert_redirected_to page_path(assigns(:page))
@@ -36,7 +36,7 @@ module Cms
     end
 
     test "should update page" do
-      patch :update, id: @page, page: { title: @page.title, user_id: @page.user_id }
+      patch :update, id: @page, page: { content: @page.content, page_category_id: @page.page_category_id, publish: @page.publish, title: @page.title }
       assert_redirected_to page_path(assigns(:page))
     end
 

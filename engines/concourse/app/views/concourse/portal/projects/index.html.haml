@@ -1,0 +1,16 @@
+.container.main
+  .content
+    %h2 
+      %b
+        Concursos Codhab
+
+  %hr/
+  .row
+    - @projects.each do |p|
+      .col-md-3
+        .panel-default
+          .panel-body
+            Imagem do concurso
+          .panel-footer
+            = link_to "detalhes", concourse.portal_project_path(p), class: 'btn btn-info'
+            = link_to "inscrição", concourse.portal_project_path(p), class: 'btn btn-success'

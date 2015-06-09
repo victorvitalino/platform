@@ -1,23 +1,78 @@
-%h1 Listing pages
+.block-header
+  %h2 Páginas
+.row
+  .col-md-12
+    .card
+      .card-header
+        = link_to 'New Page', new_page_path, class: 'btn btn-primary pull-right'
+        #data-table-command-header.bootgrid-header.container-fluid
+          .row
+            .col-sm-12.actionBar
+              .search.form-group
+                .input-group
+                  %span.md.icon.input-group-addon.glyphicon-search
+                  %input.search-field.form-control{:placeholder => "Search", :type => "text"}/
+              .actions.btn-group
+                .dropdown.btn-group
+                  %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                    %span.dropdown-text 10
+                    %span.caret
+                  %ul.dropdown-menu.pull-right{:role => "menu"}
+                    %li.active{"aria-selected" => "true"}
+                      %a.dropdown-item.dropdown-item-button{:href => "#10"} 10
+                    %li{"aria-selected" => "false"}
+                      %a.dropdown-item.dropdown-item-button{:href => "#25"} 25
+                    %li{"aria-selected" => "false"}
+                      %a.dropdown-item.dropdown-item-button{:href => "#50"} 50
+                    %li{"aria-selected" => "false"}
+                      %a.dropdown-item.dropdown-item-button{:href => "#-1"} All
+                .dropdown.btn-group
+                  %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                    %span.dropdown-text
+                      %span.md.icon.md-view-module
+                    %span.caret
+                  %ul.dropdown-menu.pull-right{:role => "menu"}
+                    %li
+                      .checkbox
+                        %label.dropdown-item
+                          %input.dropdown-item-checkbox{:checked => "checked", :name => "id", :type => "checkbox", :value => "1"}/
+                          %i.input-helper
+                          ID
+                    %li
+                      .checkbox
+                        %label.dropdown-item
+                          %input.dropdown-item-checkbox{:checked => "checked", :name => "sender", :type => "checkbox", :value => "1"}/
+                          %i.input-helper
+                          Sender
+                    %li
+                      .checkbox
+                        %label.dropdown-item
+                          %input.dropdown-item-checkbox{:checked => "checked", :name => "received", :type => "checkbox", :value => "1"}/
+                          %i.input-helper
+                          Received
+                    %li
+                      .checkbox
+                        %label.dropdown-item
+                          %input.dropdown-item-checkbox{:checked => "checked", :name => "commands", :type => "checkbox", :value => "1"}/
+                          %i.input-helper
+                          Commands
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th User
-      %th
-      %th
-      %th
+              %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+                %thead
+                  %tr
+                    %th Title
+                    %th Content
+                    %th Publish
+                    %th Page category
+                    %th{:colspan => "3"} Actions
 
-  %tbody
-    - @pages.each do |page|
-      %tr
-        %td= page.title
-        %td= page.user
-        %td= link_to 'Show', page
-        %td= link_to 'Edit', edit_page_path(page)
-        %td= link_to 'Destroy', page, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Page', new_page_path
+                %tbody
+                  - @pages.each do |page|
+                    %tr
+                      %td= page.title
+                      %td= page.content
+                      %td= page.publish
+                      %td= page.page_category.name
+                      %td.col-md-2
+                        = link_to '', edit_page_path(page), class: 'md md-edit btn btn-primary'
+                        = link_to '', page, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }

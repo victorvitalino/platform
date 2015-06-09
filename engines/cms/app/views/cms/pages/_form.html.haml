@@ -1,9 +1,27 @@
 = simple_form_for(@page) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :title
-    = f.association :user
-
-  .form-actions
-    = f.button :submit
+  .col-md-12
+    .card
+      .card-body.card-padding
+        .row
+          .col-md-12
+            = f.label :title, class: 'fg-label'
+            = f.input :title, label: false, input_html: { placeholder: 'Digite um título'}
+        .row
+          .col-md-12
+            = f.label :content, class: 'fg-label'
+            = f.input :content, label: false, input_html: { placeholder: 'Digite um conteúdo'}
+        .row
+          .col-md-12
+            = f.label :publish, class: 'fg-label'
+            = f.input :custom_field, class: 'toggle-switch', :label => false do
+              = check_box_tag :publish
+              %label{:for => 'publish', :class => 'ts-helper'}
+        .row
+          .col-md-12
+            = f.label :page_category, class: 'fg-label'
+            = f.association :page_category, label: false, prompt: 'Selecione...'
+        .row
+          .col-md-12
+            = f.button :button, class: 'btn btn-success' do
+              Enviar
+            = link_to 'Back', pages_path , class: 'btn btn-danger'
