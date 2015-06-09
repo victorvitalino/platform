@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @nav.link %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @nav.target %>
+</p>
+
+<p>
+  <strong>Page:</strong>
+  <%= @nav.page %>
+</p>
+
+<p>
+  <strong>Page action:</strong>
+  <%= @nav.page_action %>
+</p>
+
+<p>
+  <strong>Type action:</strong>
+  <%= @nav.type_action %>
+</p>
+
+<p>
+  <strong>Publish:</strong>
+  <%= @nav.publish %>
+</p>
+
+<%= link_to 'Edit', edit_nav_path(@nav) %> |
+<%= link_to 'Back', navs_path %>

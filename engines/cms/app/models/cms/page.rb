@@ -1,5 +1,6 @@
 module Cms
   class Page < ActiveRecord::Base
-    belongs_to :user, class_name: 'User'
+    belongs_to :page_category
+    validates_presence_of :title, :content
   end
 end

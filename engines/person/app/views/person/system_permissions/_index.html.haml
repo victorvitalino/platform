@@ -1,0 +1,13 @@
+- @system_permissions.each_with_index do |j, i|
+ %tr
+  %td.col-md-1
+   = i + 1
+  %td
+   = j.action
+  %td
+   = j.code
+  %td
+   = j.system.name
+  %td.col-md-2
+   = link_to "", edit_system_permission_path(j), remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
+   = link_to "", system_permission_path(j), method: :delete, class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}

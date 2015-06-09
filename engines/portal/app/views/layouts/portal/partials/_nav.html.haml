@@ -224,8 +224,7 @@
                     %li.first
                       %ul.submenu-item
                         %li
-                          = #link_nav_to 'O que são?', 'Concursos'
-                        %li
-                          = #link_nav_to 'Logo CODHAB', 'Concursos'
-                        %li
-                          = #link_nav_to 'Projetos Habitacionais', 'Concursos'
+                          = link_to "o que são", "#"
+                        - Concourse::Project.all.each do |c|
+                          %li
+                            = link_to "#{c.name}", concourse.portal_project_path(c)                          

@@ -1,0 +1,75 @@
+.row
+ .col-md-12
+  = simple_form_for @user, remote: true do |f|
+   .row
+    .col-md-12
+     = f.label :name, class: 'fg-label'
+     = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+   .row
+    .col-md-12
+     = f.label :code, class: 'fg-label'
+     = f.input :code, label: false, input_html: { placeholder: 'Digite a matrícula'}
+   .row
+    .col-md-12
+     = f.label :cpf, class: 'fg-label'
+     = f.input :cpf, label: false, input_html: { placeholder: 'Digite cpf'}
+   .row
+    .col-md-12
+     = f.label :rg, class: 'fg-label'
+     = f.input :rg, label: false, input_html: { placeholder: 'Digite o RG'}
+   .row
+    .col-md-12
+     = f.label :rg_org, class: 'fg-label'
+     = f.input :rg_org, label: false, input_html: { placeholder: 'Digite o orgão emissor do RG'}
+   .row
+    .col-md-12
+     = f.label :blood_type, class: 'fg-label'
+     = f.input :blood_type, label: false, input_html: { placeholder: 'Digite um tipo sanguíneo'}
+   .row
+    .col-md-12
+     = f.label :born, class: 'fg-label'
+     = f.input :born, label: false, input_html: { placeholder: 'Digite a data de nascimento'}
+   .row
+    .col-md-12
+     = f.label :email, class: 'fg-label'
+     = f.input :email, label: false, input_html: { placeholder: 'Digite um email'}
+   .row
+    .col-md-12
+     = f.label :encrypted_password, class: 'fg-label'
+     = f.input :encrypted_password, label: false, input_html: { placeholder: 'Digite uma senha'}
+   .row
+    .col-md-12
+     = f.label :sector_origin, class: 'fg-label'
+     = f.association :sector_origin, label: false
+   .row
+    .col-md-12
+     = f.label :sector_current, class: 'fg-label'
+     = f.association :sector_current, label: false
+   .row
+    .col-md-12
+     = f.label :start_hour, class: 'fg-label'
+     = f.input :start_hour, label: false, input_html: { placeholder: 'Digite a hora de inicio de trabalho'}
+   .row
+    .col-md-12
+     = f.label :end_hour, class: 'fg-label'
+     = f.input :end_hour, label: false, input_html: { placeholder: 'Digite a hora fim de trabalho'}
+   .row
+    .col-md-12
+     = f.label :date_contract, class: 'fg-label'
+     = f.input :date_contract, label: false, input_html: { placeholder: 'Digite a data de contratação'}
+   .row
+    .col-md-12
+     = f.label :attendant, class: 'fg-label'
+     = f.input :attendant, label: false, wrapper_html: { class: 'options' }
+   .row
+    .col-md-12
+     = f.label :wekeend, class: 'fg-label'
+     = f.input :wekeend, label: false, wrapper_html: { class: 'options' }
+   .row
+    .col-md-12
+     = f.label :status, class: 'fg-label'
+     = f.input :status, label: false, wrapper_html: { class: 'options' }
+   .row
+    .col-md-12
+     = f.submit :submit, class: 'btn btn-success'
+   %br/

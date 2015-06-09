@@ -4,8 +4,14 @@
   %b Title:
   = @page.title
 %p
-  %b User:
-  = @page.user
+  %b Content:
+  = @page.content
+%p
+  %b Publish:
+  = @page.publish
+%p
+  %b Page category:
+  = @page.page_category
 
 = link_to 'Edit', edit_page_path(@page)
 \|

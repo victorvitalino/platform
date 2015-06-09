@@ -2,8 +2,12 @@
 
 one:
   title: MyString
-  user_id: 
+  content: false
+  publish: false
+  page_category_id: 
 
 two:
   title: MyString
-  user_id: 
+  content: false
+  publish: false
+  page_category_id: 

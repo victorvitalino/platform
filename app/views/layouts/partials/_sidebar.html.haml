@@ -29,6 +29,14 @@
           %a{:href => ""}
             %i.md.md-assignment-ind
             Gestão de Pessoas
+          %ul
+            %li
+              = link_to "cargos", person.jobs_path
+            %li
+              = link_to "usuarios", person.users_path
+            %li.divider
+            %li
+              = link_to "setor", person.sectors_path
           %ul{style: ('display:block;' if @module == "person")}
         %li.sub-menu
           %a{:href => ""}
@@ -36,12 +44,28 @@
             Gestão Concursos
           %ul
             %li
-              = link_to "concursos", concourse.administrator_projects_path
-            %li
               = link_to "novo concurso", concourse.new_administrator_project_path
             %li
+              = link_to "concursos", concourse.administrator_projects_path
+            %li
+              = link_to "categorias de concurso", concourse.administrator_project_categories_path
+            %li
               = link_to "relatórios", concourse.administrator_reports_path
-           
+        %li.sub-menu
+          %a{:href => ""}
+            %i.md.md-trending-up>
+            Gestão Site
+          %ul
+            %li
+              = link_to "postagens", cms.posts_path
+            %li
+              = link_to "páginas", cms.pages_path
+            %li.divider
+            %li
+              = link_to "categorias de post", cms.post_categories_path
+            %li
+              = link_to "categorias de página", cms.page_categories_path
+
         %li.sub-menu
           %a{:href => ""}
             %i.md.md-trending-up>

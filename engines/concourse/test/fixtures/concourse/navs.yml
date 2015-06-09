@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  link: MyString
+  target: MyString
+  page_id: 
+  page_action: 1
+  type_action: 1
+  publish: false
+
+two:
+  link: MyString
+  target: MyString
+  page_id: 
+  page_action: 1
+  type_action: 1
+  publish: false

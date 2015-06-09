@@ -30,7 +30,7 @@
 
 - name:string
 - number:string
-- patrimonio:references
+- patrimony_id:integer
 
 ## Patrimony ##
 
@@ -42,4 +42,3 @@
 - property:references
 - serial_number:references
 - user:references
-

@@ -6,4 +6,6 @@
     = link_to "Participantes", administrator_project_path(@project), :class => (@module == "candidates") ? "btn btn-default waves-effect waves-button waves-float" : "btn btn-inverse waves-effect waves-button waves-float"
     = link_to "Projetos enviados", administrator_project_path(@project), :class => (@module == "send_projects") ? "btn btn-default waves-effect waves-button waves-float" : "btn btn-inverse waves-effect waves-button waves-float"
     = link_to "Formulários", administrator_project_forms_path(@project), :class => (@module == "forms") ? "btn btn-default waves-effect waves-button waves-float" : "btn btn-inverse waves-effect waves-button waves-float"
+    = link_to "Páginas", administrator_project_pages_path(@project), :class => (@module == "pages") ? "btn btn-default waves-effect waves-button waves-float" : "btn btn-inverse waves-effect waves-button waves-float"
+    = link_to "Menus", administrator_project_navs_path(@project), :class => (@module == "navs") ? "btn btn-default waves-effect waves-button waves-float" : "btn btn-inverse waves-effect waves-button waves-float"
     = link_to "Relatórios", administrator_project_path(@project), :class => (@module == "reports") ? "btn btn-default waves-effect waves-button waves-float" : "btn btn-inverse waves-effect waves-button waves-float"

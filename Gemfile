@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.1'
 
+
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 
@@ -13,8 +14,12 @@ gem 'simple_form'
 gem 'haml-rails'
 gem 'devise'
 gem 'pundit'
+gem 'redactor-rails'
+gem 'mini_magick'
 
- 
+gem 'friendly_id'
+
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
@@ -25,7 +30,7 @@ group :development, :test do
   gem 'guard-livereload'
 end
 
-group :production do 
+group :production do
   gem 'pg'
 end
 
