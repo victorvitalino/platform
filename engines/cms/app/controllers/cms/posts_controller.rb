@@ -27,7 +27,7 @@ module Cms
       @post = Post.new(post_params)
 
       if @post.save
-        redirect_to @post, notice: 'Post was successfully created.'
+        redirect_to action: 'index'
       else
         render :new
       end
@@ -36,7 +36,7 @@ module Cms
     # PATCH/PUT /posts/1
     def update
       if @post.update(post_params)
-        redirect_to @post, notice: 'Post was successfully updated.'
+        redirect_to action: 'index'
       else
         render :edit
       end

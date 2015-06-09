@@ -27,7 +27,7 @@ module Cms
       @page = Page.new(page_params)
 
       if @page.save
-        redirect_to @page, notice: 'Page was successfully created.'
+        redirect_to action: 'index'
       else
         render :new
       end
@@ -36,7 +36,7 @@ module Cms
     # PATCH/PUT /pages/1
     def update
       if @page.update(page_params)
-        redirect_to @page, notice: 'Page was successfully updated.'
+        redirect_to action: 'index'
       else
         render :edit
       end
