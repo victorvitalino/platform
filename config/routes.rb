@@ -14,6 +14,7 @@ end
 
 Rails.application.routes.draw do
 
+  mount RedactorRails::Engine => '/redactor_rails'
   devise_for :users
   constraints SubdomainConstraint do
     get '/', to: "dashboard#index", as: 'root_extranet'
