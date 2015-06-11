@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Intranet::VERSION
   s.authors     = ["elton.silva@codhab.df.gov.br"]
   s.email       = ["elton.silva@codhab.df.gov.br"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Intranet."
-  s.description = "TODO: Description of Intranet."
+  s.homepage    = ""
+  s.summary     = ": Summary of Intranet."
+  s.description = ": Description of Intranet."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

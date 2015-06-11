@@ -1,0 +1,22 @@
+= form_for @type_material do |f|
+  - if @type_material.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@type_material.errors.count, "error")} prohibited this type_material from being saved:"
+      %ul
+        - @type_material.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :percentage
+    = f.number_field :percentage
+  .field
+    = f.label :life_cycle
+    = f.number_field :life_cycle
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @material.name
+%p
+  %b Description:
+  = @material.description
+%p
+  %b Type material:
+  = @material.type_material
+
+= link_to 'Edit', edit_material_path(@material)
+\|
+= link_to 'Back', materials_path

@@ -1,0 +1,19 @@
+= form_for @serial_number do |f|
+  - if @serial_number.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@serial_number.errors.count, "error")} prohibited this serial_number from being saved:"
+      %ul
+        - @serial_number.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :number
+    = f.text_field :number
+  .field
+    = f.label :patrimony
+    = f.text_field :patrimony
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @type_material.name
+%p
+  %b Description:
+  = @type_material.description
+%p
+  %b Percentage:
+  = @type_material.percentage
+%p
+  %b Life cycle:
+  = @type_material.life_cycle
+
+= link_to 'Edit', edit_type_material_path(@type_material)
+\|
+= link_to 'Back', type_materials_path
