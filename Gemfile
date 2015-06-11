@@ -19,6 +19,10 @@ gem 'mini_magick'
 
 gem 'friendly_id'
 
+gem 'validates_cpf_cnpj'
+
+gem 'validates_timeliness'
+
 
 group :development, :test do
   gem 'sqlite3'
