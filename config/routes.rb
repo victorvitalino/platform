@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   mount RedactorRails::Engine => '/redactor_rails'
  
   constraints SubdomainConstraint do
-    devise_for :users
+
+    devise_for :users, path: '/'
     
     authenticate :user do 
       mount Dashboard::Engine => '/',              as: 'dashboard'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
       mount Person::Engine => "/pessoas",          as: 'person'
     end
   end
+  
   constraints DomainConstraint do
     mount Portal::Engine => '/',            as: 'portal'
   end
