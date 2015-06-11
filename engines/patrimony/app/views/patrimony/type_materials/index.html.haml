@@ -1,0 +1,27 @@
+%h1 Listing type_materials
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Percentage
+      %th Life cycle
+      %th
+      %th
+      %th
+
+  %tbody
+    - @type_materials.each do |type_material|
+      %tr
+        %td= type_material.name
+        %td= type_material.description
+        %td= type_material.percentage
+        %td= type_material.life_cycle
+        %td= link_to 'Show', type_material
+        %td= link_to 'Edit', edit_type_material_path(type_material)
+        %td= link_to 'Destroy', type_material, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Type material', new_type_material_path

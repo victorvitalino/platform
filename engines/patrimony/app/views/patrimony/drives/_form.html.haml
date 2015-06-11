@@ -1,0 +1,28 @@
+= form_for @drife do |f|
+  - if @drife.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@drife.errors.count, "error")} prohibited this drife from being saved:"
+      %ul
+        - @drife.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :date_drive
+    = f.date_select :date_drive
+  .field
+    = f.label :sector_old
+    = f.number_field :sector_old
+  .field
+    = f.label :user_old
+    = f.number_field :user_old
+  .field
+    = f.label :sector
+    = f.text_field :sector
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :patrimony
+    = f.text_field :patrimony
+  .actions
+    = f.submit 'Save'

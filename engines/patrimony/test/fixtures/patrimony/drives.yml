@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_drive: 2015-06-11
+  sector_old: 1
+  user_old: 1
+  sector_id: 
+  user_id: 
+  patrimony_id: 
+
+two:
+  date_drive: 2015-06-11
+  sector_old: 1
+  user_old: 1
+  sector_id: 
+  user_id: 
+  patrimony_id: 

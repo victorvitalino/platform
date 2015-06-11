@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Date drive:
+  = @drife.date_drive
+%p
+  %b Sector old:
+  = @drife.sector_old
+%p
+  %b User old:
+  = @drife.user_old
+%p
+  %b Sector:
+  = @drife.sector
+%p
+  %b User:
+  = @drife.user
+%p
+  %b Patrimony:
+  = @drife.patrimony
+
+= link_to 'Edit', edit_drife_path(@drife)
+\|
+= link_to 'Back', drives_path

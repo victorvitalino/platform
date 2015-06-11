@@ -1,0 +1,19 @@
+= form_for @material do |f|
+  - if @material.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@material.errors.count, "error")} prohibited this material from being saved:"
+      %ul
+        - @material.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :type_material
+    = f.text_field :type_material
+  .actions
+    = f.submit 'Save'

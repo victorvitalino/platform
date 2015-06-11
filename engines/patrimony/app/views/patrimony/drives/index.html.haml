@@ -1,0 +1,31 @@
+%h1 Listing drives
+
+%table
+  %thead
+    %tr
+      %th Date drive
+      %th Sector old
+      %th User old
+      %th Sector
+      %th User
+      %th Patrimony
+      %th
+      %th
+      %th
+
+  %tbody
+    - @drives.each do |drife|
+      %tr
+        %td= drife.date_drive
+        %td= drife.sector_old
+        %td= drife.user_old
+        %td= drife.sector
+        %td= drife.user
+        %td= drife.patrimony
+        %td= link_to 'Show', drife
+        %td= link_to 'Edit', edit_drife_path(drife)
+        %td= link_to 'Destroy', drife, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Drive', new_drife_path
