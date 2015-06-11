@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Queued::VERSION
   s.authors     = ["elton.silva@codhab.df.gov.br"]
   s.email       = ["elton.silva@codhab.df.gov.br"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Queued."
-  s.description = "TODO: Description of Queued."
+  s.homepage    = "TOD"
+  s.summary     = ": Summary of Queued."
+  s.description = ": Description of Queued."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

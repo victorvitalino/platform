@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Dashboard::VERSION
   s.authors     = ["elton.silva@codhab.df.gov.br"]
   s.email       = ["elton.silva@codhab.df.gov.br"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Dashboard."
-  s.description = "TODO: Description of Dashboard."
+  s.homepage    = ""
+  s.summary     = ": Summary of Dashboard."
+  s.description = ": Description of Dashboard."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

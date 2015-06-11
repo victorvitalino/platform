@@ -45,4 +45,4 @@ gem 'cms',            path: 'engines/cms'
 gem 'portal',         path: 'engines/portal'
 gem 'dashboard',      path: 'engines/dashboard'
 gem 'intranet',       path: 'engines/intranet'
-
+gem 'patrimony',      path: 'engines/patrimony'

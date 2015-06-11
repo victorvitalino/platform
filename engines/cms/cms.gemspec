@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Cms::VERSION
   s.authors     = ["elton.silva@codhab.df.gov.br"]
   s.email       = ["elton.silva@codhab.df.gov.br"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Cms."
-  s.description = "TODO: Description of Cms."
+  s.homepage    = ""
+  s.summary     = ": Summary of Cms."
+  s.description = ": Description of Cms."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

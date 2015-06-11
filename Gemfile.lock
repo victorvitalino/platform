@@ -25,6 +25,13 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/patrimony
+  specs:
+    patrimony (0.0.1)
+      haml-rails
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/person
   specs:
     person (0.0.1)
@@ -277,6 +284,7 @@ DEPENDENCIES
   intranet!
   jquery-rails
   mini_magick
+  patrimony!
   person!
   pg
   portal!
@@ -291,3 +299,6 @@ DEPENDENCIES
   validates_cpf_cnpj
   validates_timeliness
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.3
