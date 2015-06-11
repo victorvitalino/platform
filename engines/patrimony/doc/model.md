@@ -40,5 +40,4 @@
 - sector:references
 - material:references
 - property:references
-- serial_number:references
 - user:references
