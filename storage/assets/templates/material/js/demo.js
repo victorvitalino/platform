@@ -24,7 +24,4 @@ $(document).ready(function(){
         });
     };
     
-    if (!$('.login-content')[0]) {
-        notify('Welcome back Mallinda Hollaway', 'inverse');
-    } 
 });
