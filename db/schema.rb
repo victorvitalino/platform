@@ -233,6 +233,9 @@ ActiveRecord::Schema.define(version: 20150609094703) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "failed_attempts",        default: 0,    null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.integer  "branch_lines_id"
     t.integer  "jobs_id"
     t.integer  "sector_origin_id"
