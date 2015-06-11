@@ -24,9 +24,10 @@
                     %th Código
                     %th
                 %tbody
-                  - j.system_permissions.each do |m, c|
+                  - j.system_permissions.each do |m|
                     %tr
                       %td
                       %td= m.action
                       %td= m.code
-                      %td= check_box_tag "m[]", m.id
+                      %td{ class: "tr-#{m.id}"}
+                        = link_permission_to @user.id, m.id

@@ -1,12 +1,15 @@
 Person::Engine.routes.draw do
-  resources :jobs
-  resources :systems
-  resources :branch_lines
+  resources :jobs, path: 'cargos'
+  resources :systems, path: 'sistemas'
+  resources :branch_lines, path: 'ramais'
   resources :system_permissions
-  resources :sectors
-  resources :user_permissions
-  resources :users
-
-  get '/tree_data', to: 'user_permissions#tree_data'
-
+  resources :sectors, path: 'setores'
+  resources :users , path: 'usuarios' do
+    get 'enable'
+    get 'disable'
+    resources :user_permissions do
+      get 'enable'
+      get 'disable'
+    end
+  end
 end
