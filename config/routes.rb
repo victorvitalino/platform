@@ -15,18 +15,22 @@ end
 Rails.application.routes.draw do
 
   mount RedactorRails::Engine => '/redactor_rails'
-  devise_for :users
+ 
   constraints SubdomainConstraint do
-    get '/', to: "dashboard#index", as: 'root_extranet'
-    mount Cms::Engine => "/cms", as: 'cms'
-    mount Person::Engine => "/pessoas", as: 'person'
-  
+    devise_for :users
+    
+    authenticate :user do 
+      mount Dashboard::Engine => '/',              as: 'dashboard'
+      mount Intranet::Engine => '/intranet',       as: 'intranet'
+      mount Cms::Engine => "/cms",                 as: 'cms'
+      mount Person::Engine => "/pessoas",          as: 'person'
+    end
   end
-
   constraints DomainConstraint do
-    get '/', to: "portal/home#index", as: 'root_portal'
+    mount Portal::Engine => '/',            as: 'portal'
   end
 
-  mount Concourse::Engine => "/concursos", as: 'concourse'
+  mount Concourse::Engine => "/concursos",  as: 'concourse'
   mount Schedule::Engine => "/agendamento", as: 'schedule'
+
 end

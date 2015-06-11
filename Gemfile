@@ -20,7 +20,6 @@ gem 'mini_magick'
 gem 'friendly_id'
 
 gem 'validates_cpf_cnpj'
-
 gem 'validates_timeliness'
 
 
@@ -44,3 +43,6 @@ gem 'schedule',       path: 'engines/schedule'
 gem 'person',         path: 'engines/person'
 gem 'cms',            path: 'engines/cms'
 gem 'portal',         path: 'engines/portal'
+gem 'dashboard',      path: 'engines/dashboard'
+gem 'intranet',       path: 'engines/intranet'
+

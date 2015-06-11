@@ -13,6 +13,18 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/dashboard
+  specs:
+    dashboard (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/intranet
+  specs:
+    intranet (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/person
   specs:
     person (0.0.1)
@@ -255,12 +267,14 @@ DEPENDENCIES
   carrierwave
   cms!
   concourse!
+  dashboard!
   devise
   friendly_id
   guard
   guard-livereload
   guard-rails
   haml-rails
+  intranet!
   jquery-rails
   mini_magick
   person!
