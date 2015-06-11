@@ -4,6 +4,7 @@ Person::Engine.routes.draw do
   resources :branch_lines, path: 'ramais'
   resources :system_permissions
   resources :sectors, path: 'setores'
+  resources :profiles
   resources :users , path: 'usuarios' do
     get 'enable'
     get 'disable'
