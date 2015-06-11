@@ -39,7 +39,6 @@
           .col-md-3
             %b Data de Nascimento
             = f.input :born, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
-
         .row
           .col-md-4
             = f.label :password, class: 'fg-label'
@@ -74,14 +73,22 @@
         .row
           .col-md-2
             = f.label :attendant, class: 'fg-label'
-            = f.input :attendant, as: 'boolean', label: false, prompt: 'selecione...'
+            = f.input :custom_field, class: 'toggle-switch', :label => false do
+              = check_box_tag :attendant
+              %label{:for => 'attendant', :class => 'ts-helper'}
           .col-md-2
             = f.label :wekeend, class: 'fg-label'
-            = f.input :wekeend, as: 'boolean', label: false, prompt: 'selecione...'
+            = f.input :custom_field, class: 'toggle-switch', :label => false do
+              = check_box_tag :wekeend
+              %label{:for => 'wekeend', :class => 'ts-helper'}
           .col-md-2
             = f.label :status, class: 'fg-label'
-            = f.input :status, as: 'boolean', label: false, prompt: 'selecione...'
+            = f.input :custom_field, class: 'toggle-switch', :label => false do
+              = check_box_tag :status
+              %label{:for => 'status', :class => 'ts-helper'}
         .row
           .col-md-12
-            = f.button :submit, class: 'btn btn-success'
-        %br/
+            = f.button :button, class: 'btn btn-success' do
+              Gravar
+            = link_to 'Back', users_path , class: 'btn btn-danger'
+

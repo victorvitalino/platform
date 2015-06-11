@@ -13,6 +13,18 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/dashboard
+  specs:
+    dashboard (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/intranet
+  specs:
+    intranet (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/person
   specs:
     person (0.0.1)
@@ -227,6 +239,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    timeliness (0.3.7)
     timers (4.0.1)
       hitimes
     tzinfo (1.2.2)
@@ -234,6 +247,10 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    validates_cpf_cnpj (0.2.0)
+      activemodel (>= 3.0.0)
+    validates_timeliness (3.0.14)
+      timeliness (~> 0.3.6)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.1.2)
@@ -250,12 +267,14 @@ DEPENDENCIES
   carrierwave
   cms!
   concourse!
+  dashboard!
   devise
   friendly_id
   guard
   guard-livereload
   guard-rails
   haml-rails
+  intranet!
   jquery-rails
   mini_magick
   person!
@@ -269,4 +288,6 @@ DEPENDENCIES
   spring
   sqlite3
   uglifier (>= 1.3.0)
+  validates_cpf_cnpj
+  validates_timeliness
   web-console (~> 2.0)

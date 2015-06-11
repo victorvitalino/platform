@@ -3,12 +3,12 @@ class DeviseCreateUsers < ActiveRecord::Migration
     create_table(:users) do |t|
       ## Database authenticatable
       t.string :name
-      t.string :cpf
-      t.string :rg
+      t.string :cpf, unique: true
+      t.string :rg,  unique: true
       t.string :rg_org
-      t.string :code
+      t.string :code, unique: true
       t.string :blood_type
-      t.date :born
+      t.date   :born
       t.string :avatar
       t.string :curriculum
       t.string :email,              null: false, default: ""
@@ -18,7 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.date :date_contract
       t.boolean :attendant
       t.boolean :wekeend
-      t.boolean :status
+      t.boolean :status, default: true
 
       ## Recoverable
       t.string   :reset_password_token
@@ -41,13 +41,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
-      # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
-      # t.string   :unlock_token # Only if unlock strategy is :email or :both
-      # t.datetime :locked_at
+      t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
+      t.string   :unlock_token # Only if unlock strategy is :email or :both
+      t.datetime :locked_at
+      
       t.references :branch_lines, index: true, foreign_key: true
       t.references :jobs, index: true, foreign_key: true
       t.references :sector_origin, index: true, foreign_key: true
       t.references :sector_current, index: true, foreign_key: true
+      t.references :user_responsible, index: true, foreign_key: true
 
       t.timestamps null: false
     end

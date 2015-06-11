@@ -23,8 +23,9 @@
               Sair
       %ul.main-menu
         %li
-          = link_to "<i class='md  md-view-quilt'></i> Dashboard".html_safe, main_app.root_extranet_path
-
+          = link_to "<i class='md  md-view-quilt'></i> Intranet".html_safe, intranet.root_path
+        %li
+          = link_to "<i class='md  md-view-quilt'></i> Dashboard".html_safe, dashboard.root_path
         %li.sub-menu{class: ('toggled' if @module == "person")}
           %a{:href => ""}
             %i.md.md-assignment-ind

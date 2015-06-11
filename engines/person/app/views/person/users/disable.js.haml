@@ -1,0 +1,2 @@
+- if !@user.errors.any?
+    $(".tr-#{@user.id}").html("#{escape_javascript(link_status_to(@user.id))}")
