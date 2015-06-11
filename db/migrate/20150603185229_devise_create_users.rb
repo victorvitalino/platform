@@ -3,10 +3,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
     create_table(:users) do |t|
       ## Database authenticatable
       t.string :name
-      t.string :cpf
+      t.string :cpf, unique: true
       t.string :rg
       t.string :rg_org
-      t.string :code
+      t.string :code, unique: true
       t.string :blood_type
       t.date :born
       t.string :avatar
@@ -18,7 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.date :date_contract
       t.boolean :attendant
       t.boolean :wekeend
-      t.boolean :status
+      t.boolean :status, default: true
 
       ## Recoverable
       t.string   :reset_password_token
@@ -48,6 +48,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.references :jobs, index: true, foreign_key: true
       t.references :sector_origin, index: true, foreign_key: true
       t.references :sector_current, index: true, foreign_key: true
+      t.references :user_responsible, index: true, foreign_key: true
 
       t.timestamps null: false
     end
