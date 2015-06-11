@@ -1,5 +1,5 @@
 module Patrimony
-  class Patrimony < ActiveRecord::Base
+  class Good < ActiveRecord::Base
     belongs_to :sector
     belongs_to :user
     belongs_to :material

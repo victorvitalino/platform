@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611162627) do
+ActiveRecord::Schema.define(version: 20150611202642) do
 
   create_table "patrimony_drives", force: :cascade do |t|
     t.date     "date_drive"
@@ -19,14 +19,31 @@ ActiveRecord::Schema.define(version: 20150611162627) do
     t.integer  "user_old"
     t.integer  "sector_id"
     t.integer  "user_id"
-    t.integer  "patrimony_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "good_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "patrimony_drives", ["patrimony_id"], name: "index_patrimony_drives_on_patrimony_id"
+  add_index "patrimony_drives", ["good_id"], name: "index_patrimony_drives_on_good_id"
   add_index "patrimony_drives", ["sector_id"], name: "index_patrimony_drives_on_sector_id"
   add_index "patrimony_drives", ["user_id"], name: "index_patrimony_drives_on_user_id"
+
+  create_table "patrimony_goods", force: :cascade do |t|
+    t.string   "code_goods"
+    t.date     "date_acquisition"
+    t.boolean  "status"
+    t.integer  "sector_id"
+    t.integer  "user_id"
+    t.integer  "material_id"
+    t.integer  "property_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "patrimony_goods", ["material_id"], name: "index_patrimony_goods_on_material_id"
+  add_index "patrimony_goods", ["property_id"], name: "index_patrimony_goods_on_property_id"
+  add_index "patrimony_goods", ["sector_id"], name: "index_patrimony_goods_on_sector_id"
+  add_index "patrimony_goods", ["user_id"], name: "index_patrimony_goods_on_user_id"
 
   create_table "patrimony_materials", force: :cascade do |t|
     t.string   "name"
@@ -38,23 +55,6 @@ ActiveRecord::Schema.define(version: 20150611162627) do
 
   add_index "patrimony_materials", ["type_material_id"], name: "index_patrimony_materials_on_type_material_id"
 
-  create_table "patrimony_patrimonies", force: :cascade do |t|
-    t.string   "code_patrimony"
-    t.date     "date_acquisition"
-    t.boolean  "status"
-    t.integer  "sector_id"
-    t.integer  "user_id"
-    t.integer  "material_id"
-    t.integer  "property_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "patrimony_patrimonies", ["material_id"], name: "index_patrimony_patrimonies_on_material_id"
-  add_index "patrimony_patrimonies", ["property_id"], name: "index_patrimony_patrimonies_on_property_id"
-  add_index "patrimony_patrimonies", ["sector_id"], name: "index_patrimony_patrimonies_on_sector_id"
-  add_index "patrimony_patrimonies", ["user_id"], name: "index_patrimony_patrimonies_on_user_id"
-
   create_table "patrimony_properties", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -65,12 +65,12 @@ ActiveRecord::Schema.define(version: 20150611162627) do
   create_table "patrimony_serial_numbers", force: :cascade do |t|
     t.string   "name"
     t.string   "number"
-    t.integer  "patrimony_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "good_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "patrimony_serial_numbers", ["patrimony_id"], name: "index_patrimony_serial_numbers_on_patrimony_id"
+  add_index "patrimony_serial_numbers", ["good_id"], name: "index_patrimony_serial_numbers_on_good_id"
 
   create_table "patrimony_type_materials", force: :cascade do |t|
     t.string   "name"

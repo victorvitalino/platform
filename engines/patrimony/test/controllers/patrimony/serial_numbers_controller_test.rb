@@ -19,7 +19,7 @@ module Patrimony
 
     test "should create serial_number" do
       assert_difference('SerialNumber.count') do
-        post :create, serial_number: { name: @serial_number.name, number: @serial_number.number, patrimony_id: @serial_number.patrimony_id }
+        post :create, serial_number: { good_id: @serial_number.good_id, name: @serial_number.name, number: @serial_number.number }
       end
 
       assert_redirected_to serial_number_path(assigns(:serial_number))
@@ -36,7 +36,7 @@ module Patrimony
     end
 
     test "should update serial_number" do
-      patch :update, id: @serial_number, serial_number: { name: @serial_number.name, number: @serial_number.number, patrimony_id: @serial_number.patrimony_id }
+      patch :update, id: @serial_number, serial_number: { good_id: @serial_number.good_id, name: @serial_number.name, number: @serial_number.number }
       assert_redirected_to serial_number_path(assigns(:serial_number))
     end
 

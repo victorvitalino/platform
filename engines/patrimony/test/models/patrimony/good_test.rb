@@ -1,7 +1,7 @@
 require 'test_helper'
 
 module Patrimony
-  class PatrimonyTest < ActiveSupport::TestCase
+  class GoodTest < ActiveSupport::TestCase
     # test "the truth" do
     #   assert true
     # end

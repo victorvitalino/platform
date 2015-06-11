@@ -1,7 +1,7 @@
-class CreatePatrimonyPatrimonies < ActiveRecord::Migration
+class CreatePatrimonyGoods < ActiveRecord::Migration
   def change
-    create_table :patrimony_patrimonies do |t|
-      t.string :code_patrimony
+    create_table :patrimony_goods do |t|
+      t.string :code_goods
       t.date :date_acquisition
       t.boolean :status
       t.references :sector, index: true, foreign_key: true

@@ -6,7 +6,7 @@ one:
   user_old: 1
   sector_id: 
   user_id: 
-  patrimony_id: 
+  good_id: 
 
 two:
   date_drive: 2015-06-11
@@ -14,4 +14,4 @@ two:
   user_old: 1
   sector_id: 
   user_id: 
-  patrimony_id: 
+  good_id: 

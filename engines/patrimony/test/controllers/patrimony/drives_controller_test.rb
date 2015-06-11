@@ -19,7 +19,7 @@ module Patrimony
 
     test "should create drife" do
       assert_difference('Drive.count') do
-        post :create, drife: { date_drive: @drife.date_drive, patrimony_id: @drife.patrimony_id, sector_id: @drife.sector_id, sector_old: @drife.sector_old, user_id: @drife.user_id, user_old: @drife.user_old }
+        post :create, drife: { date_drive: @drife.date_drive, good_id: @drife.good_id, sector_id: @drife.sector_id, sector_old: @drife.sector_old, user_id: @drife.user_id, user_old: @drife.user_old }
       end
 
       assert_redirected_to drife_path(assigns(:drife))
@@ -36,7 +36,7 @@ module Patrimony
     end
 
     test "should update drife" do
-      patch :update, id: @drife, drife: { date_drive: @drife.date_drive, patrimony_id: @drife.patrimony_id, sector_id: @drife.sector_id, sector_old: @drife.sector_old, user_id: @drife.user_id, user_old: @drife.user_old }
+      patch :update, id: @drife, drife: { date_drive: @drife.date_drive, good_id: @drife.good_id, sector_id: @drife.sector_id, sector_old: @drife.sector_old, user_id: @drife.user_id, user_old: @drife.user_old }
       assert_redirected_to drife_path(assigns(:drife))
     end
 

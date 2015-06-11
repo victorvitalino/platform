@@ -6,7 +6,7 @@ class CreatePatrimonyDrives < ActiveRecord::Migration
       t.integer :user_old
       t.references :sector, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
-      t.references :patrimony, index: true, foreign_key: true
+      t.references :good, index: true, foreign_key: true
 
       t.timestamps null: false
     end

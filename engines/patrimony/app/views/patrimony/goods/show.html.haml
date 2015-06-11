@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Code goods:
+  = @good.code_goods
+%p
+  %b Date acquisition:
+  = @good.date_acquisition
+%p
+  %b Status:
+  = @good.status
+%p
+  %b Sector:
+  = @good.sector
+%p
+  %b User:
+  = @good.user
+%p
+  %b Material:
+  = @good.material
+%p
+  %b Property:
+  = @good.property
+
+= link_to 'Edit', edit_good_path(@good)
+\|
+= link_to 'Back', goods_path

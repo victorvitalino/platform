@@ -56,7 +56,7 @@ module Patrimony
 
       # Only allow a trusted parameter "white list" through.
       def drife_params
-        params.require(:drife).permit(:date_drive, :sector_old, :user_old, :sector_id, :user_id, :patrimony_id)
+        params.require(:drife).permit(:date_drive, :sector_old, :user_old, :sector_id, :user_id, :good_id)
       end
   end
 end

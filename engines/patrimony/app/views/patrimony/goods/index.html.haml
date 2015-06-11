@@ -1,0 +1,33 @@
+%h1 Listing goods
+
+%table
+  %thead
+    %tr
+      %th Code goods
+      %th Date acquisition
+      %th Status
+      %th Sector
+      %th User
+      %th Material
+      %th Property
+      %th
+      %th
+      %th
+
+  %tbody
+    - @goods.each do |good|
+      %tr
+        %td= good.code_goods
+        %td= good.date_acquisition
+        %td= good.status
+        %td= good.sector
+        %td= good.user
+        %td= good.material
+        %td= good.property
+        %td= link_to 'Show', good
+        %td= link_to 'Edit', edit_good_path(good)
+        %td= link_to 'Destroy', good, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Good', new_good_path

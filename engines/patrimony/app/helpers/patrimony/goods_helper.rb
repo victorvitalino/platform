@@ -1,4 +1,4 @@
 module Patrimony
-  module PatrimoniesHelper
+  module GoodsHelper
   end
 end
