@@ -2,6 +2,7 @@ require_dependency "person/application_controller"
 
 module Person
 	class SectorsController < ApplicationController
+		layout 'layouts/material'
 		before_action :set_sectors, only: [:index, :create, :destroy, :update]
 		before_action :set_sector, only: [:edit, :destroy, :update]
 

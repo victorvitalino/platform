@@ -27,7 +27,7 @@ module Cms
       @post_category = PostCategory.new(post_category_params)
 
       if @post_category.save
-        redirect_to @post_category, notice: 'Post category was successfully created.'
+        redirect_to action: 'index'
       else
         render :new
       end
@@ -36,7 +36,7 @@ module Cms
     # PATCH/PUT /post_categories/1
     def update
       if @post_category.update(post_category_params)
-        redirect_to @post_category, notice: 'Post category was successfully updated.'
+        redirect_to action: 'index'
       else
         render :edit
       end

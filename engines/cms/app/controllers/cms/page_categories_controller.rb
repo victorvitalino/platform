@@ -27,7 +27,7 @@ module Cms
       @page_category = PageCategory.new(page_category_params)
 
       if @page_category.save
-        redirect_to @page_category, notice: 'Page category was successfully created.'
+        redirect_to action: 'index'
       else
         render :new
       end
@@ -36,7 +36,7 @@ module Cms
     # PATCH/PUT /page_categories/1
     def update
       if @page_category.update(page_category_params)
-        redirect_to @page_category, notice: 'Page category was successfully updated.'
+        redirect_to action: 'index'
       else
         render :edit
       end

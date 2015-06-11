@@ -1,0 +1,14 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Permissões
+      %small Listagem de Sistemas
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Nome
+          %th Código
+      %tbody.index-user_permissions
+        = render 'index'

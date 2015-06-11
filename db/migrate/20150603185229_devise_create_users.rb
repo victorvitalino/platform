@@ -12,7 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :avatar
       t.string :curriculum
       t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""      
+      t.string :encrypted_password, null: false, default: ""
       t.time :start_hour
       t.time :end_hour
       t.date :date_contract
@@ -44,7 +44,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
+      t.references :branch_lines, index: true, foreign_key: true
+      t.references :jobs, index: true, foreign_key: true
+      t.references :sector_origin, index: true, foreign_key: true
+      t.references :sector_current, index: true, foreign_key: true
 
       t.timestamps null: false
     end
