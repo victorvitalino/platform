@@ -19,9 +19,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   constraints SubdomainConstraint do
-    mount Dashboard::Engine => '/',         as: 'dashboard'
-    mount Cms::Engine => "/cms",            as: 'cms'
-    mount Person::Engine => "/pessoas",     as: 'person'
+    mount Dashboard::Engine => '/',              as: 'dashboard'
+    mount Intranet::Engine => '/intranet',       as: 'intranet'
+    mount Cms::Engine => "/cms",                 as: 'cms'
+    mount Person::Engine => "/pessoas",          as: 'person'
   end
 
   constraints DomainConstraint do
