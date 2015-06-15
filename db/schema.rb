@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611202642) do
+ActiveRecord::Schema.define(version: 20150615135427) do
+
+  create_table "cms_nav_categories", force: :cascade do |t|
+    t.string   "title"
+    t.string   "code"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cms_navs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "href"
+    t.integer  "target"
+    t.integer  "internal_link_id"
+    t.string   "external_link"
+    t.integer  "nav_category_id"
+    t.integer  "order"
+    t.boolean  "status"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "cms_navs", ["internal_link_id"], name: "index_cms_navs_on_internal_link_id"
+  add_index "cms_navs", ["nav_category_id"], name: "index_cms_navs_on_nav_category_id"
 
   create_table "cms_page_categories", force: :cascade do |t|
     t.string   "name"
@@ -65,6 +89,28 @@ ActiveRecord::Schema.define(version: 20150611202642) do
   end
 
   add_index "concourse_candidate_fields", ["project_id"], name: "index_concourse_candidate_fields_on_project_id"
+
+  create_table "concourse_candidate_informations", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "field_type"
+    t.string   "field_name"
+    t.text     "field_value"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "concourse_candidate_informations", ["candidate_id"], name: "index_concourse_candidate_informations_on_candidate_id"
+
+  create_table "concourse_candidate_uploads", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "field_type"
+    t.string   "field_name"
+    t.string   "field_value"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "concourse_candidate_uploads", ["candidate_id"], name: "index_concourse_candidate_uploads_on_candidate_id"
 
   create_table "concourse_candidates", force: :cascade do |t|
     t.integer  "project_id"
@@ -124,7 +170,9 @@ ActiveRecord::Schema.define(version: 20150611202642) do
     t.date     "start"
     t.date     "end"
     t.time     "hour_end"
-    t.boolean  "status"
+    t.integer  "status"
+    t.boolean  "registration_fee"
+    t.float    "fee_value"
     t.integer  "project_category_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
