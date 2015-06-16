@@ -1,19 +1,21 @@
 .row
  .col-md-12
-  = simple_form_for @branch_line, remote: true do |f|
+  = simple_form_for [:sector, @branch_line], remote: true do |f|
    .row
     .col-md-12
-     = f.label :name, class: 'fg-label'
-     = f.input :name, label: false, input_html: { placeholder: 'Digite um local'}
+     = f.label :description, class: 'fg-label'
+     = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
    .row
-    .col-md-12
-     = f.label :code, class: 'fg-label'
-     = f.input :code, label: false, input_html: { placeholder: 'Digite um ramal'}
-   .row
-    .col-md-12
+    .col-md-4
+     = f.label :telephone, class: 'fg-label'
+     = f.input :telephone, label: false, input_html: { placeholder: 'Digite um ramal'}
+    .col-md-4
      = f.label :status, class: 'fg-label'
-     = f.input :status, label: false, wrapper_html: { class: 'options' }
+     = f.check_box :status, class: 'toggle-switch'
+    .col-md-4
+     = f.button :button, class: 'btn btn-success' do
+      Gravar
    .row
     .col-md-12
-     = f.submit :submit, class: 'btn btn-success'
-   %br/
+     = render 'index'
+

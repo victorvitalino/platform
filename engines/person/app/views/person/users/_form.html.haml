@@ -37,29 +37,30 @@
             = f.label :email, class: 'fg-label'
             = f.input :email, label: false, input_html: { placeholder: 'Digite um email'}
           .col-md-3
-            %b Data de Nascimento
-            = f.input :born, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
-        .row
-          .col-md-4
-            = f.label :password, class: 'fg-label'
-            = f.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
-          .col-md-4
-            = f.label :password_confirmation, class: 'fg-label'
-            = f.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
+            = f.label :born, as: 'string', class: 'fg-label'
+            = f.input :born, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@user.born) ? localize(f.object.born) : nil}
+        - if @user.new_record?
+          .row
+            .col-md-4
+              = f.label :password, class: 'fg-label'
+              = f.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
+            .col-md-4
+              = f.label :password_confirmation, class: 'fg-label'
+              = f.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
         .row
           .col-md-5
             = f.label :sector_origin, class: 'fg-label'
-            = f.association :sector_origin, label: false
+            = f.association :sector_origin, label: false, prompt: 'selecione...'
           .col-md-5
             = f.label :sector_current, class: 'fg-label'
-            = f.association :sector_current, label: false
+            = f.association :sector_current, label: false, prompt: 'selecione...'
         .row
           .col-md-5
-            = f.label :jobs, class: 'fg-label'
-            = f.association :jobs, label: false
+            = f.label :job, class: 'fg-label'
+            = f.association :job, label: false, prompt: 'selecione...'
           .col-md-5
-            = f.label :branch_lines, class: 'fg-label'
-            = f.association :branch_lines, label: false
+            = f.label :branch_line, class: 'fg-label'
+            = f.association :branch_line, label: false, label_method: :telephone, prompt: 'selecione...'
         .row
           .col-md-1
             = f.label :start_hour, class: 'fg-label'
@@ -68,24 +69,18 @@
             = f.label :end_hour, class: 'fg-label'
             = f.input :end_hour, as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
           .col-md-3
-            %b Data de Contratação
+            = f.label :date_contract, as: 'string', class: 'fg-label'
             = f.input :date_contract, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
         .row
           .col-md-2
             = f.label :attendant, class: 'fg-label'
-            = f.input :custom_field, class: 'toggle-switch', :label => false do
-              = check_box_tag :attendant
-              %label{:for => 'attendant', :class => 'ts-helper'}
+            = f.check_box :attendant, class: 'toggle-switch'
           .col-md-2
             = f.label :wekeend, class: 'fg-label'
-            = f.input :custom_field, class: 'toggle-switch', :label => false do
-              = check_box_tag :wekeend
-              %label{:for => 'wekeend', :class => 'ts-helper'}
+            = f.check_box :wekeend, class: 'toggle-switch'
           .col-md-2
             = f.label :status, class: 'fg-label'
-            = f.input :custom_field, class: 'toggle-switch', :label => false do
-              = check_box_tag :status
-              %label{:for => 'status', :class => 'ts-helper'}
+            = f.check_box :status, class: 'toggle-switch'
         .row
           .col-md-12
             = f.button :button, class: 'btn btn-success' do

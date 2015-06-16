@@ -20,8 +20,9 @@
    .row
     .col-md-12
      = f.label :status, class: 'fg-label'
-     = f.input :status, label: false, wrapper_html: { class: 'options' }
+     = f.check_box :status, class: 'toggle-switch'
    .row
     .col-md-12
-     = f.submit :submit, class: 'btn btn-success'
+     = f.button :button, class: 'btn btn-success' do
+      Gravar
    %br/

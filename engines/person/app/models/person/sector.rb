@@ -8,6 +8,8 @@ module Person
     belongs_to :father, class_name: "Sector"
     belongs_to :responsible, class_name: "User"
 
+    has_many :branch_lines
+
     validates_presence_of :name, :acron
 
 

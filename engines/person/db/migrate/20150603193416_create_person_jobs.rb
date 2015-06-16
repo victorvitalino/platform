@@ -5,6 +5,8 @@ class CreatePersonJobs < ActiveRecord::Migration
       t.string :code
       t.boolean :status
 
+
+
       t.timestamps null: false
     end
   end
