@@ -5,14 +5,14 @@ class User < ActiveRecord::Base
 
   belongs_to :sector_origin,       class_name: "Person::Sector"
   belongs_to :sector_current,      class_name: "Person::Sector"
-  belongs_to :jobs,                class_name: "Person::Job"
-  belongs_to :branch_lines,        class_name: "Person::BranchLine"
+  belongs_to :job,                class_name: "Person::Job"
+  belongs_to :branch_line,        class_name: "Person::BranchLine"
 
   has_many :permissions,           class_name: 'Person::UserPermisson'
 
-  validates_presence_of :name, :code, :email, :rg, :rg_org
+ # validates_presence_of :name, :code, :email, :rg, :rg_org, :born, :date_contract, :sector_current, :job_id
   validates_uniqueness_of :code, :rg, :cpf
-  
+
   validates :cpf, cpf: true
   validates_date :born, :before => lambda {18.years.ago}
 
