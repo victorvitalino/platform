@@ -1,19 +1,23 @@
-= form_for @material do |f|
-  - if @material.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@material.errors.count, "error")} prohibited this material from being saved:"
-      %ul
-        - @material.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :type_material
-    = f.text_field :type_material
-  .actions
-    = f.submit 'Save'
+.row
+ .col-md-12
+  = simple_form_for @material, remote: true do |f|
+   .row
+    .col-md-12
+     = f.label :name, class: 'fg-label'
+     = f.input :name, label: false, input_html: { placeholder: 'Digite o material'}
+   .row
+    .col-md-12
+     = f.label :description, class: 'fg-label'
+     = f.input :description, label: false, input_html: { placeholder: 'Digite a descrição'}
+   .row
+    .col-md-12
+     = f.label :type_material, class: 'fg-label'
+     = f.association :type_material, label: false
+   .row 
+    .col-md-12
+     = f.label :status, class: 'fg-label'
+     = f.input :status, label: false, input_html: { class: 'options' }
+   .row
+    .col-md-12
+     = f.submit :submit, class: 'btn btn-success'
+   %br/

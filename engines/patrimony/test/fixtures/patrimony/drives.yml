@@ -1,17 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  date_drive: 2015-06-11
-  sector_old: 1
-  user_old: 1
+  date_drive: 2015-06-16
   sector_id: 
   user_id: 
   good_id: 
+  status: false
 
 two:
-  date_drive: 2015-06-11
-  sector_old: 1
-  user_old: 1
+  date_drive: 2015-06-16
   sector_id: 
   user_id: 
   good_id: 
+  status: false

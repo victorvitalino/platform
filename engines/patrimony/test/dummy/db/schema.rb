@@ -11,15 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611202642) do
+ActiveRecord::Schema.define(version: 20150616121315) do
 
   create_table "patrimony_drives", force: :cascade do |t|
     t.date     "date_drive"
-    t.integer  "sector_old"
-    t.integer  "user_old"
     t.integer  "sector_id"
     t.integer  "user_id"
     t.integer  "good_id"
+    t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150611202642) do
     t.string   "name"
     t.string   "description"
     t.integer  "type_material_id"
+    t.boolean  "status"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150611202642) do
   create_table "patrimony_properties", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
+    t.boolean  "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 20150611202642) do
     t.string   "name"
     t.string   "number"
     t.integer  "good_id"
+    t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150611202642) do
     t.string   "description"
     t.integer  "percentage"
     t.integer  "life_cycle"
+    t.boolean  "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

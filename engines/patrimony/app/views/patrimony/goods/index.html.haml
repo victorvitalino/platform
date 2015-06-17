@@ -1,33 +1,20 @@
-%h1 Listing goods
-
-%table
-  %thead
-    %tr
-      %th Code goods
-      %th Date acquisition
-      %th Status
-      %th Sector
-      %th User
-      %th Material
-      %th Property
-      %th
-      %th
-      %th
-
-  %tbody
-    - @goods.each do |good|
-      %tr
-        %td= good.code_goods
-        %td= good.date_acquisition
-        %td= good.status
-        %td= good.sector
-        %td= good.user
-        %td= good.material
-        %td= good.property
-        %td= link_to 'Show', good
-        %td= link_to 'Edit', edit_good_path(good)
-        %td= link_to 'Destroy', good, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Good', new_good_path
+.card
+  .card-header.ch-alt
+    %h2
+      Patrimônios
+      = link_to 'novo patrimõnio', new_good_path, remote: true, class: 'btn btn-success pull-right'
+      %small Listagem de Patrimônios
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Patrimõnio
+          %th Data de Aquisição
+          %th Status
+          %th Setor
+          %th Material
+          %th Propriedade
+          %th Ações
+      %tbody.index-good
+        = render 'index'

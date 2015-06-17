@@ -19,7 +19,7 @@ module Patrimony
 
     test "should create type_material" do
       assert_difference('TypeMaterial.count') do
-        post :create, type_material: { description: @type_material.description, life_cycle: @type_material.life_cycle, name: @type_material.name, percentage: @type_material.percentage }
+        post :create, type_material: { description: @type_material.description, life_cycle: @type_material.life_cycle, name: @type_material.name, percentage: @type_material.percentage, status: @type_material.status }
       end
 
       assert_redirected_to type_material_path(assigns(:type_material))
@@ -36,7 +36,7 @@ module Patrimony
     end
 
     test "should update type_material" do
-      patch :update, id: @type_material, type_material: { description: @type_material.description, life_cycle: @type_material.life_cycle, name: @type_material.name, percentage: @type_material.percentage }
+      patch :update, id: @type_material, type_material: { description: @type_material.description, life_cycle: @type_material.life_cycle, name: @type_material.name, percentage: @type_material.percentage, status: @type_material.status }
       assert_redirected_to type_material_path(assigns(:type_material))
     end
 

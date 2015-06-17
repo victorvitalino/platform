@@ -4,8 +4,10 @@ one:
   name: MyString
   number: MyString
   good_id: 
+  status: false
 
 two:
   name: MyString
   number: MyString
   good_id: 
+  status: false

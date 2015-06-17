@@ -11,11 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611202642) do
+ActiveRecord::Schema.define(version: 20150616121315) do
+
+  create_table "cms_nav_categories", force: :cascade do |t|
+    t.string   "title"
+    t.string   "code"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cms_navs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "href"
+    t.integer  "target"
+    t.integer  "internal_link_id"
+    t.string   "external_link"
+    t.integer  "nav_category_id"
+    t.integer  "order"
+    t.boolean  "status"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "cms_navs", ["internal_link_id"], name: "index_cms_navs_on_internal_link_id"
+  add_index "cms_navs", ["nav_category_id"], name: "index_cms_navs_on_nav_category_id"
 
   create_table "cms_page_categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "title"
     t.boolean  "status"
+    t.string   "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -23,7 +48,9 @@ ActiveRecord::Schema.define(version: 20150611202642) do
   create_table "cms_pages", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
+    t.date     "date"
     t.boolean  "publish"
+    t.string   "thumb"
     t.integer  "page_category_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -32,21 +59,22 @@ ActiveRecord::Schema.define(version: 20150611202642) do
   add_index "cms_pages", ["page_category_id"], name: "index_cms_pages_on_page_category_id"
 
   create_table "cms_post_categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "title"
     t.boolean  "status"
+    t.string   "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "cms_posts", force: :cascade do |t|
     t.string   "title"
-    t.text     "content"
-    t.integer  "post_category_id"
-    t.boolean  "slider"
-    t.string   "thumb"
     t.text     "resume"
+    t.text     "content"
     t.date     "date"
     t.boolean  "publish"
+    t.boolean  "slider"
+    t.string   "thumb"
+    t.integer  "post_category_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -134,11 +162,10 @@ ActiveRecord::Schema.define(version: 20150611202642) do
 
   create_table "patrimony_drives", force: :cascade do |t|
     t.date     "date_drive"
-    t.integer  "sector_old"
-    t.integer  "user_old"
     t.integer  "sector_id"
     t.integer  "user_id"
     t.integer  "good_id"
+    t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -168,6 +195,7 @@ ActiveRecord::Schema.define(version: 20150611202642) do
     t.string   "name"
     t.string   "description"
     t.integer  "type_material_id"
+    t.boolean  "status"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -177,6 +205,7 @@ ActiveRecord::Schema.define(version: 20150611202642) do
   create_table "patrimony_properties", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
+    t.boolean  "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -185,6 +214,7 @@ ActiveRecord::Schema.define(version: 20150611202642) do
     t.string   "name"
     t.string   "number"
     t.integer  "good_id"
+    t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -196,6 +226,7 @@ ActiveRecord::Schema.define(version: 20150611202642) do
     t.string   "description"
     t.integer  "percentage"
     t.integer  "life_cycle"
+    t.boolean  "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
