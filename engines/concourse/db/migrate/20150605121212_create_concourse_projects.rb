@@ -8,7 +8,11 @@ class CreateConcourseProjects < ActiveRecord::Migration
       t.date :start
       t.date :end
       t.time :hour_end
-      t.boolean :status
+      t.integer :status
+
+      t.boolean :registration_fee
+      t.float   :fee_value
+      
       t.references :project_category, index: true, foreign_key: true
 
       t.timestamps null: false

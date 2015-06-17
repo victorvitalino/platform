@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150616121315) do
+=======
+ActiveRecord::Schema.define(version: 20150615135427) do
+>>>>>>> 191e40867118b47c4528fa820e21f64aa253bbf8
 
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "title"
@@ -94,6 +98,28 @@ ActiveRecord::Schema.define(version: 20150616121315) do
 
   add_index "concourse_candidate_fields", ["project_id"], name: "index_concourse_candidate_fields_on_project_id"
 
+  create_table "concourse_candidate_informations", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "field_type"
+    t.string   "field_name"
+    t.text     "field_value"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "concourse_candidate_informations", ["candidate_id"], name: "index_concourse_candidate_informations_on_candidate_id"
+
+  create_table "concourse_candidate_uploads", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "field_type"
+    t.string   "field_name"
+    t.string   "field_value"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "concourse_candidate_uploads", ["candidate_id"], name: "index_concourse_candidate_uploads_on_candidate_id"
+
   create_table "concourse_candidates", force: :cascade do |t|
     t.integer  "project_id"
     t.string   "name"
@@ -152,7 +178,9 @@ ActiveRecord::Schema.define(version: 20150616121315) do
     t.date     "start"
     t.date     "end"
     t.time     "hour_end"
-    t.boolean  "status"
+    t.integer  "status"
+    t.boolean  "registration_fee"
+    t.float    "fee_value"
     t.integer  "project_category_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
