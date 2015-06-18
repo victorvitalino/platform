@@ -1,0 +1,158 @@
+.container
+  .block-header
+    %h2
+      =@user.name
+      %small
+        = @user.job.present? ? @user.job.name : nil
+    %ul.actions.m-t-20.hidden-xs
+      %li.dropdown
+        %a{"data-toggle" => "dropdown", :href => ""}
+          %i.md.md-more-vert
+        %ul.dropdown-menu.dropdown-menu-right
+          %li
+            %a{:href => ""} Privacy Settings
+          %li
+            %a{:href => ""} Account Settings
+          %li
+            %a{:href => ""} Other Settings
+  #profile-main.card
+    .pm-overview.c-overflow{:style => "overflow: hidden; outline: none;", :tabindex => "4"}
+      .pmo-pic
+        .p-relative
+          %a{:href => ""}
+            %img.img-responsive{:alt => "", :src => @user.avatar}
+          .dropdown.pmop-message
+            %a.btn.bgm-white.btn-float.z-depth-1.waves-effect.waves-button.waves-float{"data-toggle" => "dropdown", :href => ""}
+              %i.md.md-message
+            .dropdown-menu
+              %textarea{:placeholder => "Write something..."}
+              %button.btn.bgm-green.btn-icon.waves-effect.waves-button.waves-float
+                %i.md.md-send
+          %a.pmop-edit{:href => ""}
+            %i.md.md-camera-alt
+            %span.hidden-xs Update Profile Picture
+        .pmo-stat
+          %h2.m-0.c-white 1562
+          Total Connections
+      .pmo-block.pmo-contact.hidden-xs
+        %h2 Contact
+        %ul
+          %li
+            %i.md.md-phone
+            /=@user.sector_current.branch_lines.telephone.present?
+          %li
+            %i.md.md-email
+            =@user.email
+          %li
+            %i.md.md-location-on
+            %address.m-b-0
+              = @user.sector_current.present? ? @user.sector_current.name : nil
+      .pmo-block.pmo-items.hidden-xs
+        %h2 Connections
+        .pmob-body
+          .row
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/1.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/2.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/3.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/4.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/5.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/6.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/7.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/8.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/1.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/2.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/3.jpg"}
+            %a.col-xs-2{:href => ""}
+              %img.img-circle{:alt => "", :src => "img/profile-pics/4.jpg"}
+    .pm-body.clearfix
+      .pmb-block
+        .pmbb-header
+          %h2
+            %i.md.md-equalizer.m-r-5
+            Summary
+          %ul.actions
+            %li.dropdown
+              %a{"data-toggle" => "dropdown", :href => ""}
+                %i.md.md-more-vert
+              %ul.dropdown-menu.dropdown-menu-right
+                %li
+                  %a{"data-pmb-action" => "edit", :href => ""} Edit
+        .pmbb-body.p-l-30
+          .pmbb-view
+            Sed eu est vulputate, fringilla ligula ac, maximus arcu. Donec sed felis vel magna mattis ornare ut non turpis. Sed id arcu elit. Sed nec sagittis tortor. Mauris ante urna, ornare sit amet mollis eu, aliquet ac ligula. Nullam dolor metus, suscipit ac imperdiet nec, consectetur sed ex. Sed cursus porttitor leo.
+          .pmbb-edit
+            .fg-line
+              %textarea.form-control{:placeholder => "Summary...", :rows => "5"} Sed eu est vulputate, fringilla ligula ac, maximus arcu. Donec sed felis vel magna mattis ornare ut non turpis. Sed id arcu elit. Sed nec sagittis tortor. Mauris ante urna, ornare sit amet mollis eu, aliquet ac ligula. Nullam dolor metus, suscipit ac imperdiet nec, consectetur sed ex. Sed cursus porttitor leo.
+            .m-t-10
+              %button.btn.btn-primary.btn-sm.waves-effect.waves-button.waves-float Save
+              %button.btn.btn-link.btn-sm.waves-effect.waves-button.waves-float{"data-pmb-action" => "reset"} Cancel
+      .pmb-block
+        .pmbb-header
+          %h2
+            %i.md.md-person.m-r-5
+            Basic Information
+          %ul.actions
+            %li.dropdown
+              %a{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => ""}
+                %i.md.md-more-vert
+              %ul.dropdown-menu.dropdown-menu-right
+                %li
+                  %a{"data-pmb-action" => "edit", :href => ""} Edit
+        .pmbb-body.p-l-30
+          .pmbb-view
+            %dl.dl-horizontal
+              %dt Nome Completo
+              %dd
+                =@user.name
+            %dl.dl-horizontal
+              %dt Matrícula
+              %dd
+                =@user.code
+            %dl.dl-horizontal
+              %dt Aniversário
+              %dd
+                =@user.born
+            %dl.dl-horizontal
+              %dt Tipo Sanguineo
+              %dd
+                =@user.blood_type
+      .pmb-block
+        .pmbb-header
+          %h2
+            %i.md.md-phone.m-r-5
+            Contact Information
+          %ul.actions
+            %li.dropdown
+              %a{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => ""}
+                %i.md.md-more-vert
+              %ul.dropdown-menu.dropdown-menu-right
+                %li
+                  %a{"data-pmb-action" => "edit", :href => ""} Edit
+        .pmbb-body.p-l-30
+          .pmbb-view
+            %dl.dl-horizontal
+              %dt Mobile Phone
+              %dd 00971 12345678 9
+            %dl.dl-horizontal
+              %dt Email Address
+              %dd
+                =@user.email
+            %dl.dl-horizontal
+              %dt Setor de Origem
+              %dd
+                = @user.sector_origin.present? ? @user.sector_origin.name : nil
+            %dl.dl-horizontal
+              %dt Setor Corrente
+              %dd
+                = @user.sector_current.present? ? @user.sector_current.name : nil

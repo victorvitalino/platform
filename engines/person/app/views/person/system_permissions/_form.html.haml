@@ -1,6 +1,6 @@
 .row
  .col-md-12
-  = simple_form_for @system_permission, remote: true do |f|
+  = simple_form_for [:system, @system_permission], remote: true do |f|
    .row
     .col-md-12
      = f.label :action, class: 'fg-label'
@@ -11,13 +11,14 @@
      = f.input :code, label: false, input_html: { placeholder: 'Digite um código identificador'}
    .row
     .col-md-12
-     = f.label :system, class: 'fg-label'
-     = f.association :system, label: false
-   .row
-    .col-md-12
      = f.label :status, class: 'fg-label'
-     = f.input :status, label: false, wrapper_html: { class: 'options' }
+     = f.check_box :status, class: 'toggle-switch'
    .row
     .col-md-12
-     = f.submit :submit, class: 'btn btn-success'
-   %br/
+     %br
+     = f.button :button, class: 'btn btn-success' do
+      Gravar
+   .row
+    .col-md-12
+     %br
+     = render 'index'

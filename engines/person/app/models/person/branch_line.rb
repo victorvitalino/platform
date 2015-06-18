@@ -1,8 +1,10 @@
 module Person
   class BranchLine < ActiveRecord::Base
-    validates_presence_of :name, :code
-    validates :name, :code, uniqueness: true
+    validates_presence_of :telephone, :description
+    validates :telephone, :description, uniqueness: true
 
-    has_many :user
+    belongs_to :sector
+    has_many :users
+
   end
 end

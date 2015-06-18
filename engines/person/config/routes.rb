@@ -1,9 +1,11 @@
 Person::Engine.routes.draw do
   resources :jobs, path: 'cargos'
-  resources :systems, path: 'sistemas'
-  resources :branch_lines, path: 'ramais'
-  resources :system_permissions
-  resources :sectors, path: 'setores'
+  resources :systems, path: 'sistemas' do
+    resources :system_permissions, path:'acoes'
+  end
+  resources :sectors, path: 'setores' do
+    resources :branch_lines, path: 'ramais'
+  end
   resources :profiles
   resources :users , path: 'usuarios' do
     get 'enable'

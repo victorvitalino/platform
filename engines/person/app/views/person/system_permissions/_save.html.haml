@@ -1,5 +1,8 @@
 - if @system_permission.errors.any?
-	$('#modal .modal-content').html("#{escape_javascript(render 'new')}")
+    $('#modal .modal-content').html("#{escape_javascript(render 'new')}")
 - else
-	$('#modal').modal('hide')
-	$('.index-system_permission').html("#{escape_javascript(render 'index')}")
+    $('#modal').modal('hide')
+    $('.index-system_permission').html("#{escape_javascript(render 'index')}")
+
+
+
