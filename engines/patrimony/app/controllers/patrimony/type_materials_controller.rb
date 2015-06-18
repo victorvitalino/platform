@@ -2,15 +2,11 @@ require_dependency "patrimony/application_controller"
 
 module Patrimony
   class TypeMaterialsController < ApplicationController
-    before_action :set_type_material, only: [:show, :edit, :update, :destroy]
+    before_action :set_type_materials, only: [:index, :create, :destroy, :update]
+    before_action :set_type_material, only: [:edit, :destroy, :update]
 
     # GET /type_materials
     def index
-      @type_materials = TypeMaterial.all
-    end
-
-    # GET /type_materials/1
-    def show
     end
 
     # GET /type_materials/new
@@ -25,38 +21,35 @@ module Patrimony
     # POST /type_materials
     def create
       @type_material = TypeMaterial.new(type_material_params)
-
-      if @type_material.save
-        redirect_to @type_material, notice: 'Type material was successfully created.'
-      else
-        render :new
-      end
+      @type_material.save 
     end
 
     # PATCH/PUT /type_materials/1
     def update
-      if @type_material.update(type_material_params)
-        redirect_to @type_material, notice: 'Type material was successfully updated.'
-      else
-        render :edit
-      end
+      @type_material.update(type_material_params)
     end
 
     # DELETE /type_materials/1
     def destroy
-      @type_material.destroy
-      redirect_to type_materials_url, notice: 'Type material was successfully destroyed.'
+      if @type_material.destroy
+        redirect_to action: 'index'
+      end  
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
+      
+     
+      def type_material_params
+        params.require(:type_material).permit(:name, :description, :percentage, :life_cycle, :status)
+      end
+
       def set_type_material
         @type_material = TypeMaterial.find(params[:id])
       end
 
-      # Only allow a trusted parameter "white list" through.
-      def type_material_params
-        params.require(:type_material).permit(:name, :description, :percentage, :life_cycle)
+      def set_type_materials
+        @type_materials = TypeMaterial.all
       end
+
   end
 end

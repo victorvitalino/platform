@@ -10,10 +10,8 @@ class CreateConcourseCandidates < ActiveRecord::Migration
       t.references :state, index: true, foreign_key: true
       t.string :email
       t.string :password
-      t.text :parameters_fields
-      t.boolean :status
-      t.integer :status_project
-
+      t.integer :status
+      
       t.timestamps null: false
     end
   end

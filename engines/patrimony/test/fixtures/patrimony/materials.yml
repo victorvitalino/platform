@@ -4,8 +4,10 @@ one:
   name: MyString
   description: MyString
   type_material_id: 
+  status: false
 
 two:
   name: MyString
   description: MyString
   type_material_id: 
+  status: false

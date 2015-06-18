@@ -1,0 +1,36 @@
+.row
+ .col-md-12
+  = simple_form_for @good, remote: true do |f|
+   .row
+    .col-md-8
+     = f.label :code_goods, class: 'fg-label'
+     = f.input :code_goods, label: false, input_html: { placeholder: 'Digite número de patrimônio'}
+    .col-md-3
+     = f.label :date_acquisition, class: 'fg-label'
+     = f.input :date_acquisition,as: 'string', label: false, input_html:  { class: 'date', placeholder: '00/00/0000'}
+   .row
+    .col-md-6
+     = f.label :sector, class: 'fg-label'
+     = f.association :sector, label: false
+    .col-md-6
+     = f.label :property, class: 'fg-label'
+     = f.association :property, label: false
+   .row
+    .col-md-6
+     = f.label :type_material, class: 'fg-label'
+     = collection_select(:type_material_id, :type_material_id, @type_materials, :id, :name, {:prompt => ''},{:class=>'select optional form-control'})
+    .col-md-6
+     = f.label :material, class: 'fg-label'
+     = collection_select(:material_id, :material_id, @materials, :id, :name, {:prompt => ''},{:class=>'select optional form-control'})
+   .row
+    .col-md-12
+     = f.label :status, class: 'fg-label'
+     = f.check_box :status, class: "checkbox"
+   %br/  
+   .row
+    .col-md-12
+     = f.submit :submit, class: 'btn btn-success'
+   %br/
+
+
+   

@@ -62,10 +62,10 @@
             = f.label :branch_line, class: 'fg-label'
             = f.association :branch_line, label: false, label_method: :telephone, prompt: 'selecione...'
         .row
-          .col-md-1
+          .col-md-2
             = f.label :start_hour, class: 'fg-label'
             = f.input :start_hour,as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
-          .col-md-1
+          .col-md-2
             = f.label :end_hour, class: 'fg-label'
             = f.input :end_hour, as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
           .col-md-3
@@ -75,7 +75,7 @@
           .col-md-2
             = f.label :attendant, class: 'fg-label'
             = f.check_box :attendant, class: 'toggle-switch'
-          .col-md-2
+          .col-md-3
             = f.label :wekeend, class: 'fg-label'
             = f.check_box :wekeend, class: 'toggle-switch'
           .col-md-2

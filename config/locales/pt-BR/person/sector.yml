@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'person/sector': Setor
+    attributes:
+      'person/sector':
+        name: "Nome"
+        acron: "Sigla"
+        father: "Setor Pai"
+        responsible: "Responsável"

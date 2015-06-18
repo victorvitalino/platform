@@ -1,0 +1,61 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Relatórios
+  .table-responsive{:style => "overflow: hidden; outline: none;"}
+    %h2
+      .col-sm-6.col-md-4
+        .mini-charts-item.bgm-bluegray
+          .clearfix
+            .chart.stats-bar
+              %canvas{:height => "45", :style => "display: inline-block; width: 83px; height: 45px; vertical-align: top;", :width => "83"}
+            .count
+              %h6 Total de Patrimônios
+              %h2= @goods
+      .col-sm-6.col-md-4
+        .mini-charts-item.bgm-orange
+          .clearfix
+            .chart.stats-bar
+              %canvas{:height => "45", :style => "display: inline-block; width: 83px; height: 45px; vertical-align: top;", :width => "83"}
+            .count
+              %h6 Patrimônios da CODHAB
+              %h2= @goods_codhab
+      .col-sm-6.col-md-4
+        .mini-charts-item.bgm-cyan
+          .clearfix
+            .chart.stats-bar
+              %canvas{:height => "45", :style => "display: inline-block; width: 83px; height: 45px; vertical-align: top;", :width => "83"}
+            .count
+              %h6 Patrimônios da SEGETH
+              %h2= @goods_segeth
+    
+
+    .row{:style => "margin-left: 2px"}
+      .col-md-12
+        = simple_form_for @report, remote: true do |f|
+          .row
+            .col-md-4
+              = f.label :code_goods, class: 'fg-label'
+              = f.input :code_goods, label: false, input_html: { placeholder: 'Digite o número de patrimônio'}
+            .col-md-7
+              = f.label :sector, class: 'fg-label'
+              = f.association :sector, label: false
+          .row
+            .col-md-4
+              = f.label :material, class: 'fg-label'
+              
+            .col-md-4
+              = f.label :material, class: 'fg-label'
+              = f.association :material, label: false
+          .row
+            .col-md-4
+              = f.label :status, class: 'fg-label'
+              = check_box_tag :status
+          %br/
+          %br/     
+          .row{:style => "margin-left: 2px"}
+            .col-md-12
+            = f.button :button, class: 'btn btn-success' do
+              Enviar
+        %br/
+  

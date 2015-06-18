@@ -26,7 +26,8 @@ module Concourse
       @project_category = ProjectCategory.new(project_category_params)
 
       if @project_category.save
-        redirect_to @project_category, notice: 'Project category was successfully created.'
+        flash[:sucess] = t :success
+        redirect_to action: 'index'
       else
         render :new
       end
@@ -35,7 +36,8 @@ module Concourse
     # PATCH/PUT /project_categories/1
     def update
       if @project_category.update(project_category_params)
-        redirect_to @project_category, notice: 'Project category was successfully updated.'
+        flash[:sucess] = t :success
+        redirect_to action: 'index'
       else
         render :edit
       end
@@ -43,8 +45,10 @@ module Concourse
 
     # DELETE /project_categories/1
     def destroy
-      @project_category.destroy
-      redirect_to project_categories_url, notice: 'Project category was successfully destroyed.'
+      if @project_category.destroy
+        flash[:sucess] = t :success
+        redirect_to action: 'index'
+      end
     end
 
     private

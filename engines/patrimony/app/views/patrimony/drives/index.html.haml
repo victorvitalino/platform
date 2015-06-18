@@ -1,31 +1,14 @@
-%h1 Listing drives
-
-%table
-  %thead
-    %tr
-      %th Date drive
-      %th Sector old
-      %th User old
-      %th Sector
-      %th User
-      %th Patrimony
-      %th
-      %th
-      %th
-
-  %tbody
-    - @drives.each do |drife|
-      %tr
-        %td= drife.date_drive
-        %td= drife.sector_old
-        %td= drife.user_old
-        %td= drife.sector
-        %td= drife.user
-        %td= drife.patrimony
-        %td= link_to 'Show', drife
-        %td= link_to 'Edit', edit_drife_path(drife)
-        %td= link_to 'Destroy', drife, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Drive', new_drife_path
+.card
+  .card-header.ch-alt
+    %h2
+      Movimentações
+      = link_to 'nova movimentação', new_good_drife_path, remote: true, class: 'btn btn-success pull-right'
+      %small Listagem de Movimentações
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Ações
+      %tbody.index-drive
+        = render 'index'

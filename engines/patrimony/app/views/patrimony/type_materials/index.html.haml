@@ -1,27 +1,19 @@
-%h1 Listing type_materials
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th Percentage
-      %th Life cycle
-      %th
-      %th
-      %th
-
-  %tbody
-    - @type_materials.each do |type_material|
-      %tr
-        %td= type_material.name
-        %td= type_material.description
-        %td= type_material.percentage
-        %td= type_material.life_cycle
-        %td= link_to 'Show', type_material
-        %td= link_to 'Edit', edit_type_material_path(type_material)
-        %td= link_to 'Destroy', type_material, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Type material', new_type_material_path
+.card
+  .card-header.ch-alt
+    %h2
+      Tipo de Materiais
+      = link_to 'novo tipo material', new_type_material_path, remote: true, class: 'btn btn-success pull-right'
+      %small Listagem de cargos
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Tipo de Material
+          %th Descrição
+          %th Porcentagem
+          %th Vida Ultil
+          %th Status
+          %th Ações
+      %tbody.index-type_material
+        = render 'index'

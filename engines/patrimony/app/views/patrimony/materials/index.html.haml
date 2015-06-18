@@ -1,25 +1,17 @@
-%h1 Listing materials
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th Type material
-      %th
-      %th
-      %th
-
-  %tbody
-    - @materials.each do |material|
-      %tr
-        %td= material.name
-        %td= material.description
-        %td= material.type_material
-        %td= link_to 'Show', material
-        %td= link_to 'Edit', edit_material_path(material)
-        %td= link_to 'Destroy', material, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Material', new_material_path
+.card
+  .card-header.ch-alt
+    %h2
+      Materiais
+      = link_to 'novo material', new_material_path, remote: true, class: 'btn btn-success pull-right'
+      %small Listagem de materiais
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Material
+          %th Descrição
+          %th Status
+          %th Ações
+      %tbody.index-material
+        = render 'index'

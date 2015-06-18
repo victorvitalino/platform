@@ -3,9 +3,11 @@
 one:
   name: MyString
   number: MyString
-  patrimony_id: 
+  good_id: 
+  status: false
 
 two:
   name: MyString
   number: MyString
-  patrimony_id: 
+  good_id: 
+  status: false

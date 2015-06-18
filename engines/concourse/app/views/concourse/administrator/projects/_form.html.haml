@@ -36,6 +36,12 @@
             = f.label :logo, as: 'file', class: 'fg-label'
             = f.input :logo, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
             = image_tag @project.logo_url, width: '150' if @project.logo?
+          .col-md-2
+            = f.label :registration_fee,  class: 'fg-label'
+            = f.input :registration_fee, as: 'select', label: false, prompt: 'selecione...'
+          .col-md-1
+            = f.label :fee_value,  class: 'fg-label'
+            = f.input :fee_value, label: false, prompt: 'selecione...'
         %hr/
         .row
           .col-md-12

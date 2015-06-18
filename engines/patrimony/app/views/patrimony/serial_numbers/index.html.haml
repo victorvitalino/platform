@@ -5,7 +5,8 @@
     %tr
       %th Name
       %th Number
-      %th Patrimony
+      %th Good
+      %th Status
       %th
       %th
       %th
@@ -15,7 +16,8 @@
       %tr
         %td= serial_number.name
         %td= serial_number.number
-        %td= serial_number.patrimony
+        %td= serial_number.good
+        %td= serial_number.status
         %td= link_to 'Show', serial_number
         %td= link_to 'Edit', edit_serial_number_path(serial_number)
         %td= link_to 'Destroy', serial_number, :method => :delete, :data => { :confirm => 'Are you sure?' }

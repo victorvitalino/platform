@@ -1,5 +1,5 @@
 module Patrimony
   class SerialNumber < ActiveRecord::Base
-    belongs_to :patrimony
+    belongs_to :good
   end
 end

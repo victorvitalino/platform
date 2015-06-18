@@ -1,0 +1,20 @@
+- @goods.each_with_index do |j, i|
+ %tr
+  %td.col-md-1
+   = i + 1
+  %td
+   = j.code_goods 
+  %td
+   = j.date_acquisition
+  %td
+   = j.status ? "Ativo" : "Inativo"
+  %td
+   = j.sector.name
+  %td
+   = j.material.name
+  %td
+   = j.property.name
+  %td.col-md-2
+   = link_to "", edit_good_path(j), remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
+   = link_to "", good_path(j), method: :delete, class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}
+   = link_to "", new_good_drife_path(j), remote: true, class: 'md-swap-horiz btn btn-warning waves-effect waves-button waves-float'

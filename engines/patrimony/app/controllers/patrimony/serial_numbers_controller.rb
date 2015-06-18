@@ -56,7 +56,7 @@ module Patrimony
 
       # Only allow a trusted parameter "white list" through.
       def serial_number_params
-        params.require(:serial_number).permit(:name, :number, :patrimony_id)
+        params.require(:serial_number).permit(:name, :number, :good_id, :status)
       end
   end
 end

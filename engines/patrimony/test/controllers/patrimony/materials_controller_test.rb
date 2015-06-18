@@ -19,7 +19,7 @@ module Patrimony
 
     test "should create material" do
       assert_difference('Material.count') do
-        post :create, material: { description: @material.description, name: @material.name, type_material_id: @material.type_material_id }
+        post :create, material: { description: @material.description, name: @material.name, status: @material.status, type_material_id: @material.type_material_id }
       end
 
       assert_redirected_to material_path(assigns(:material))
@@ -36,7 +36,7 @@ module Patrimony
     end
 
     test "should update material" do
-      patch :update, id: @material, material: { description: @material.description, name: @material.name, type_material_id: @material.type_material_id }
+      patch :update, id: @material, material: { description: @material.description, name: @material.name, status: @material.status, type_material_id: @material.type_material_id }
       assert_redirected_to material_path(assigns(:material))
     end
 

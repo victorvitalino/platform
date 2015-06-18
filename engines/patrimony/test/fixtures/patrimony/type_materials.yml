@@ -5,9 +5,11 @@ one:
   description: MyString
   percentage: 1
   life_cycle: 1
+  status: false
 
 two:
   name: MyString
   description: MyString
   percentage: 1
   life_cycle: 1
+  status: false

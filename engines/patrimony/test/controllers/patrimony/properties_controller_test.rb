@@ -19,7 +19,7 @@ module Patrimony
 
     test "should create property" do
       assert_difference('Property.count') do
-        post :create, property: { description: @property.description, name: @property.name }
+        post :create, property: { description: @property.description, name: @property.name, status: @property.status }
       end
 
       assert_redirected_to property_path(assigns(:property))
@@ -36,7 +36,7 @@ module Patrimony
     end
 
     test "should update property" do
-      patch :update, id: @property, property: { description: @property.description, name: @property.name }
+      patch :update, id: @property, property: { description: @property.description, name: @property.name, status: @property.status }
       assert_redirected_to property_path(assigns(:property))
     end
 
