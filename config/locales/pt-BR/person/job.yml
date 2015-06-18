@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'person/job': Cargo
+    attributes:
+      'person/job':
+        name: "Nome"
+        code: "Sigla"

@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'person/system': Sistema
+    attributes:
+      'person/system':
+        name: "Nome"
+        code: "Código"

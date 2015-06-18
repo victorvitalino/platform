@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'person/system_permission': Ação do Sistema
+    attributes:
+      'person/system_permission':
+        action: "Ação"
+        code: "Código"
