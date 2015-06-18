@@ -7,9 +7,10 @@ Patrimony::Engine.routes.draw do
   resources :materials
   resources :type_materials
   resources :properties
-
+  resources :down_goods
   
   get '/relatorio/', to: 'reports#index'
-  get '/relatorio/propriedade', to: 'reports#codhab'
+  get '/relatorio/index_codhab', to: 'reports#index_codhab'
+  get '/relatorio/index_segeth', to: 'reports#index_segeth'
   
 end

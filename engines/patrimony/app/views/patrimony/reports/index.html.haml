@@ -8,6 +8,7 @@
         .mini-charts-item.bgm-bluegray
           .clearfix
             .chart.stats-bar
+              = link_to '', relatorio_index_codhab_path, class: 'md-description'
               %canvas{:height => "45", :style => "display: inline-block; width: 83px; height: 45px; vertical-align: top;", :width => "83"}
             .count
               %h6 Total de Patrimônios
@@ -16,14 +17,17 @@
         .mini-charts-item.bgm-orange
           .clearfix
             .chart.stats-bar
+              = link_to '', relatorio_index_codhab_path, class: 'md-description'
               %canvas{:height => "45", :style => "display: inline-block; width: 83px; height: 45px; vertical-align: top;", :width => "83"}
             .count
               %h6 Patrimônios da CODHAB
+              
               %h2= @goods_codhab
       .col-sm-6.col-md-4
-        .mini-charts-item.bgm-cyan
+        .mini-charts-item.bgm-lightgreen
           .clearfix
             .chart.stats-bar
+              = link_to '', relatorio_index_segeth_path, class: 'md-description'
               %canvas{:height => "45", :style => "display: inline-block; width: 83px; height: 45px; vertical-align: top;", :width => "83"}
             .count
               %h6 Patrimônios da SEGETH
@@ -42,15 +46,18 @@
               = f.association :sector, label: false
           .row
             .col-md-4
+              = f.label :type_material, class: 'fg-label'
+              = collection_select(:type_material_id, :type_material_id, @type_materials, :id, :name, {:prompt => ''},{:class=>'select optional form-control'})
+            .col-md-6
               = f.label :material, class: 'fg-label'
-              
-            .col-md-4
-              = f.label :material, class: 'fg-label'
-              = f.association :material, label: false
+              = collection_select(:material_id, :material_id, @materials, :id, :name, {:prompt => ''},{:class=>'select optional form-control'})
+          %br/  
+          %br/   
           .row
-            .col-md-4
-              = f.label :status, class: 'fg-label'
-              = check_box_tag :status
+            .col-md-6
+              .checkbox
+                %label
+                  = f.check_box :status
           %br/
           %br/     
           .row{:style => "margin-left: 2px"}

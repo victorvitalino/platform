@@ -1,0 +1,19 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Patrimônios cedidos pela SEGETH
+      = link_to '', new_good_path, remote: true, class: 'btn btn-warning md-print pull-right'
+      %small Listagem dos Patrimônios
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Patrimõnio
+          %th Data de Aquisição
+          %th Status
+          %th Setor
+          %th Material
+          %th Propriedade
+      %tbody
+        = render 'index_segeth'

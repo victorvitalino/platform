@@ -17,11 +17,8 @@
      = f.association :property, label: false
    .row
     .col-md-6
-     = f.label :type_material, class: 'fg-label'
-     = collection_select(:type_material_id, :type_material_id, @type_materials, :id, :name, {:prompt => ''},{:class=>'select optional form-control'})
-    .col-md-6
      = f.label :material, class: 'fg-label'
-     = collection_select(:material_id, :material_id, @materials, :id, :name, {:prompt => ''},{:class=>'select optional form-control'})
+     = f.association :material, label: false
    .row
     .col-md-12
      = f.label :status, class: 'fg-label'

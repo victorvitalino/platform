@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616121315) do
+ActiveRecord::Schema.define(version: 20150618172517) do
+
+  create_table "patrimony_down_goods", force: :cascade do |t|
+    t.string   "name"
+    t.string   "number_process"
+    t.string   "description"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "patrimony_drives", force: :cascade do |t|
     t.date     "date_drive"
@@ -35,10 +44,12 @@ ActiveRecord::Schema.define(version: 20150616121315) do
     t.integer  "user_id"
     t.integer  "material_id"
     t.integer  "property_id"
+    t.integer  "down_good_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
+  add_index "patrimony_goods", ["down_good_id"], name: "index_patrimony_goods_on_down_good_id"
   add_index "patrimony_goods", ["material_id"], name: "index_patrimony_goods_on_material_id"
   add_index "patrimony_goods", ["property_id"], name: "index_patrimony_goods_on_property_id"
   add_index "patrimony_goods", ["sector_id"], name: "index_patrimony_goods_on_sector_id"

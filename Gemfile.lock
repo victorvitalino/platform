@@ -265,6 +265,9 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    wicked_pdf (0.11.0)
+      rails
+    wkhtmltopdf-binary (0.9.9.3)
 
 PLATFORMS
   ruby
@@ -299,3 +302,8 @@ DEPENDENCIES
   validates_cpf_cnpj
   validates_timeliness
   web-console (~> 2.0)
+  wicked_pdf
+  wkhtmltopdf-binary
+
+BUNDLED WITH
+   1.10.3

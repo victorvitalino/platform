@@ -1,0 +1,22 @@
+.row
+ .col-md-12
+  = simple_form_for @down_good, remote: true do |f|
+   .row
+    .col-md-12
+     = f.label :name, class: 'fg-label'
+     = f.input :name, label: false, input_html: { placeholder: 'Digite a nome'}
+   .row
+    .col-md-12
+     = f.label :description, class: 'fg-label'
+     = f.input :description, label: false, input_html: { placeholder: 'Digite a descrição'}
+    .col-md-12
+     = f.label :number_process, class: 'fg-label'
+     = f.input :number_process, label: false, input_html: { placeholder: 'Digite o numero do processo'}
+   .row
+    .col-md-12
+     = f.label :status, class: 'fg-label'
+     = f.input :status, label: false, input_html: { class: 'options' }
+   .row
+    .col-md-12
+     = f.submit :submit, class: 'btn btn-success'
+   %br/

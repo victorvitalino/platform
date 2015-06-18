@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150616121315) do
-=======
-ActiveRecord::Schema.define(version: 20150615135427) do
->>>>>>> 191e40867118b47c4528fa820e21f64aa253bbf8
+ActiveRecord::Schema.define(version: 20150618172517) do
 
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "title"
@@ -130,11 +126,9 @@ ActiveRecord::Schema.define(version: 20150615135427) do
     t.integer  "state_id"
     t.string   "email"
     t.string   "password"
-    t.text     "parameters_fields"
-    t.boolean  "status"
-    t.integer  "status_project"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "concourse_candidates", ["city_id"], name: "index_concourse_candidates_on_city_id"
@@ -188,6 +182,15 @@ ActiveRecord::Schema.define(version: 20150615135427) do
 
   add_index "concourse_projects", ["project_category_id"], name: "index_concourse_projects_on_project_category_id"
 
+  create_table "patrimony_down_goods", force: :cascade do |t|
+    t.string   "name"
+    t.string   "number_process"
+    t.string   "description"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "patrimony_drives", force: :cascade do |t|
     t.date     "date_drive"
     t.integer  "sector_id"
@@ -210,10 +213,12 @@ ActiveRecord::Schema.define(version: 20150615135427) do
     t.integer  "user_id"
     t.integer  "material_id"
     t.integer  "property_id"
+    t.integer  "down_good_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
+  add_index "patrimony_goods", ["down_good_id"], name: "index_patrimony_goods_on_down_good_id"
   add_index "patrimony_goods", ["material_id"], name: "index_patrimony_goods_on_material_id"
   add_index "patrimony_goods", ["property_id"], name: "index_patrimony_goods_on_property_id"
   add_index "patrimony_goods", ["sector_id"], name: "index_patrimony_goods_on_sector_id"

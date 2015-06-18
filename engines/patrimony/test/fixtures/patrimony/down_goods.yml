@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  number_process: MyString
+  description: MyString
+  status: false
+  good_id: 
+
+two:
+  name: MyString
+  number_process: MyString
+  description: MyString
+  status: false
+  good_id: 

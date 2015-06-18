@@ -50,7 +50,7 @@ module Patrimony
 
       # Only allow a trusted parameter "white list" through.
       def good_params
-        params.require(:good).permit(:code_goods, :date_acquisition, :status, :sector_id, :user_id, :material_id, :property_id)
+        params.require(:good).permit(:code_goods, :date_acquisition, :status, :sector_id, :user_id, :material_id, :property_id, :down_good_id)
       end
   end
 end

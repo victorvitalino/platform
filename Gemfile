@@ -21,6 +21,9 @@ gem 'friendly_id'
 
 gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+
 
 
 group :development, :test do
