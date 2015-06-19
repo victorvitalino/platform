@@ -6,7 +6,7 @@
         .line.center
         .line.bottom
     %li.logo.hidden-xs
-      = link_to "codhab", dashboard.root_path
+      = link_to "Extranet <b>codhab</b>".html_safe, dashboard.root_path
     %li.pull-right
       %ul.top-menu
         %li#toggle-width
@@ -16,64 +16,12 @@
         %li#top-search
           %a.tm-search{:href => ""}
         %li.dropdown
-          %a.tm-message{"data-toggle" => "dropdown", :href => ""}
-            %i.tmn-counts 6
-          .dropdown-menu.dropdown-menu-lg.pull-right
-            .listview
-              .lv-header
-                Messages
-              .lv-body.c-overflow{:style => "overflow: hidden; outline: none;", :tabindex => "1"}
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                      %img.lv-img-sm{:alt => "", :src => "img/profile-pics/1.jpg"}
-                    .media-body
-                      .lv-title David Belle
-                      %small.lv-small Cum sociis natoque penatibus et magnis dis parturient montes
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                      %img.lv-img-sm{:alt => "", :src => "img/profile-pics/2.jpg"}
-                    .media-body
-                      .lv-title Jonathan Morris
-                      %small.lv-small Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                      %img.lv-img-sm{:alt => "", :src => "img/profile-pics/3.jpg"}
-                    .media-body
-                      .lv-title Fredric Mitchell Jr.
-                      %small.lv-small Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                      %img.lv-img-sm{:alt => "", :src => "img/profile-pics/4.jpg"}
-                    .media-body
-                      .lv-title Glenn Jecobs
-                      %small.lv-small Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                      %img.lv-img-sm{:alt => "", :src => "img/profile-pics/4.jpg"}
-                    .media-body
-                      .lv-title Bill Phillips
-                      %small.lv-small Proin laoreet commodo eros id faucibus. Donec ligula quam, imperdiet vel ante placerat
-              %a.lv-footer{:href => ""} View All
-            #ascrail2002.nicescroll-rails.nicescroll-rails-vr{:style => "width: 0px; z-index: 9; cursor: default; position: absolute; top: 0px; left: 298px; height: 275px; display: none;"}
-              .nicescroll-cursors{:style => "position: relative; top: 0px; float: right; width: 0px; height: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"}
-            #ascrail2002-hr.nicescroll-rails.nicescroll-rails-hr{:style => "height: 0px; z-index: 9; top: 275px; left: 0px; position: absolute; cursor: default; display: none;"}
-              .nicescroll-cursors{:style => "position: absolute; top: 0px; height: 0px; width: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"}
-        %li.dropdown
           %a.tm-notification{"data-toggle" => "dropdown", :href => ""}
             %i.tmn-counts 9
           .dropdown-menu.dropdown-menu-lg.pull-right
             #notifications.listview
               .lv-header
-                Notification
-                %ul.actions
-                  %li.dropdown
-                    %a{"data-clear" => "notification", :href => ""}
-                      %i.md.md-done-all
+                Notificações
               .lv-body.c-overflow{:style => "overflow: hidden; outline: none;", :tabindex => "2"}
                 %a.lv-item{:href => ""}
                   .media
@@ -82,39 +30,11 @@
                     .media-body
                       .lv-title David Belle
                       %small.lv-small Cum sociis natoque penatibus et magnis dis parturient montes
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                      %img.lv-img-sm{:alt => "", :src => "img/profile-pics/2.jpg"}
-                    .media-body
-                      .lv-title Jonathan Morris
-                      %small.lv-small Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                      %img.lv-img-sm{:alt => "", :src => "img/profile-pics/3.jpg"}
-                    .media-body
-                      .lv-title Fredric Mitchell Jr.
-                      %small.lv-small Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                      %img.lv-img-sm{:alt => "", :src => "img/profile-pics/4.jpg"}
-                    .media-body
-                      .lv-title Glenn Jecobs
-                      %small.lv-small Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                      %img.lv-img-sm{:alt => "", :src => "img/profile-pics/4.jpg"}
-                    .media-body
-                      .lv-title Bill Phillips
-                      %small.lv-small Proin laoreet commodo eros id faucibus. Donec ligula quam, imperdiet vel ante placerat
-              %a.lv-footer{:href => ""} View Previous
-            #ascrail2003.nicescroll-rails.nicescroll-rails-vr{:style => "width: 0px; z-index: 9; cursor: default; position: absolute; top: 0px; left: 298px; height: 275px; display: none;"}
-              .nicescroll-cursors{:style => "position: relative; top: 0px; float: right; width: 0px; height: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"}
-            #ascrail2003-hr.nicescroll-rails.nicescroll-rails-hr{:style => "height: 0px; z-index: 9; top: 275px; left: 0px; position: absolute; cursor: default; display: none;"}
-              .nicescroll-cursors{:style => "position: absolute; top: 0px; height: 0px; width: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"}
+   
+              %a.lv-footer{:href => ""} Ver todas
+        %li.toggle-switch
+          = link_to "Abrir chamado", "#", class: 'btn btn-danger'
+       
  
         %li#chat-trigger.hidden-xs{"data-trigger" => "#chat"}
           %a.tm-chat{:href => ""}

@@ -21,11 +21,11 @@ Rails.application.routes.draw do
     devise_for :users, path: '/'
 
     authenticate :user do
-      mount Dashboard::Engine => '/',              as: 'dashboard'
-      mount Intranet::Engine => '/intranet',       as: 'intranet'
-      mount Cms::Engine => "/cms",                 as: 'cms'
-      mount Person::Engine => "/pessoas",          as: 'person'
-      mount Patrimony::Engine => "/patrimonio",          as: 'patrimony'
+      mount Dashboard::Engine => '/',              as: 'dashboard', module: 'dashboard'
+      mount Intranet::Engine => '/intranet',       as: 'intranet', module: 'intranet'
+      mount Cms::Engine => "/cms",                 as: 'cms', module: 'cms'
+      mount Person::Engine => "/pessoas",          as: 'person', module: 'person'
+      mount Patrimony::Engine => "/patrimonio",          as: 'patrimony', module: 'patrimony'
     end
   end
 
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     mount Portal::Engine => '/',            as: 'portal'
   end
 
-  mount Concourse::Engine => "/concursos",  as: 'concourse'
+  mount Concourse::Engine => "/concursos",  as: 'concourse', module: 'concourse'
   mount Schedule::Engine => "/agendamento", as: 'schedule'
 
 end

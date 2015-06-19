@@ -10,7 +10,8 @@
               .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
                 = current_user.name[0]
           .profile-info
-            Usuário
+            %b
+              = current_user.name
             %i.md.md-arrow-drop-down
         %ul.main-menu
           %li
@@ -20,15 +21,15 @@
           %li
             = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
       %ul.main-menu
-        %li
-          = link_to "<i class='md  md-view-quilt'></i> Intranet".html_safe, intranet.root_path
-        %li
-          = link_to "<i class='md  md-view-quilt'></i> Dashboard".html_safe, dashboard.root_path
-        %li.sub-menu{class: ('toggled' if @module == "person")}
+        %li{class: ('active' if params[:module] == "intranet")}
+          = link_to "<i class='md   md-turned-in'></i> Intranet".html_safe, intranet.root_path
+        %li{class: ('active' if params[:module] == "dashboard")}
+          = link_to "<i class='md  md-dashboard'></i> Dashboard".html_safe, dashboard.root_path
+        %li.sub-menu{class: ('toggled active' if params[:module] == "person")}
           %a{:href => ""}
-            %i.md.md-assignment-ind
+            %i.md.md-account-child
             Gestão de Pessoas
-          %ul
+          %ul{style: ('display:block;' if params[:module] == "person")}
             %li
               = link_to "cargos", person.jobs_path
             %li
@@ -39,11 +40,11 @@
             %li
               = link_to "setores", person.sectors_path
           %ul{style: ('display:block;' if @module == "person")}
-        %li.sub-menu
+        %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
           %a{:href => ""}
-            %i.md.md-trending-up>
+            %i.md.md-assignment-turned-in>
             Gestão Concursos
-          %ul
+          %ul{style: ('display:block;' if params[:module] == "concourse")}
             %li
               = link_to "novo concurso", concourse.new_administrator_project_path
             %li
@@ -52,11 +53,11 @@
               = link_to "categorias de concurso", concourse.administrator_project_categories_path
             %li
               = link_to "relatórios", concourse.administrator_reports_path
-        %li.sub-menu
+        %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
           %a{:href => ""}
-            %i.md.md-trending-up>
+            %i.md.md-public>
             Gestão Site
-          %ul
+          %ul{style: ('display:block;' if params[:module] == "cms")}
             %li
               = link_to "postagens", cms.posts_path
             %li
@@ -66,13 +67,10 @@
               = link_to "categorias de post", cms.post_categories_path
             %li
               = link_to "categorias de página", cms.page_categories_path
-
-        %li.sub-menu
+        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
           %a{:href => ""}
-            %i.md.md-trending-up>
-            Juridico
-          %ul
+            %i.md.md-attach-money>
+            Financeiro
+          %ul{style: ('display:block;' if params[:module] == "finance")}
             %li
-              %a{:href => "flot-charts.html"} Flot Charts
-            %li
-              %a{:href => "other-charts.html"} Other Charts
+              = link_to "emissão de boletos"
