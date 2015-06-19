@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150618172517) do
 
   create_table "cms_nav_categories", force: :cascade do |t|
@@ -37,13 +36,11 @@ ActiveRecord::Schema.define(version: 20150618172517) do
 
   add_index "cms_navs", ["internal_link_id"], name: "index_cms_navs_on_internal_link_id"
   add_index "cms_navs", ["nav_category_id"], name: "index_cms_navs_on_nav_category_id"
-=======
-ActiveRecord::Schema.define(version: 20150611162627) do
->>>>>>> 106661196ed5d98d5139837cdfce6f302f9344ff
 
   create_table "cms_page_categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "title"
     t.boolean  "status"
+    t.string   "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,7 +48,9 @@ ActiveRecord::Schema.define(version: 20150611162627) do
   create_table "cms_pages", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
+    t.date     "date"
     t.boolean  "publish"
+    t.string   "thumb"
     t.integer  "page_category_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -60,21 +59,22 @@ ActiveRecord::Schema.define(version: 20150611162627) do
   add_index "cms_pages", ["page_category_id"], name: "index_cms_pages_on_page_category_id"
 
   create_table "cms_post_categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "title"
     t.boolean  "status"
+    t.string   "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "cms_posts", force: :cascade do |t|
     t.string   "title"
-    t.text     "content"
-    t.integer  "post_category_id"
-    t.boolean  "slider"
-    t.string   "thumb"
     t.text     "resume"
+    t.text     "content"
     t.date     "date"
     t.boolean  "publish"
+    t.boolean  "slider"
+    t.string   "thumb"
+    t.integer  "post_category_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -93,6 +93,28 @@ ActiveRecord::Schema.define(version: 20150611162627) do
   end
 
   add_index "concourse_candidate_fields", ["project_id"], name: "index_concourse_candidate_fields_on_project_id"
+
+  create_table "concourse_candidate_informations", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "field_type"
+    t.string   "field_name"
+    t.text     "field_value"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "concourse_candidate_informations", ["candidate_id"], name: "index_concourse_candidate_informations_on_candidate_id"
+
+  create_table "concourse_candidate_uploads", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "field_type"
+    t.string   "field_name"
+    t.string   "field_value"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "concourse_candidate_uploads", ["candidate_id"], name: "index_concourse_candidate_uploads_on_candidate_id"
 
   create_table "concourse_candidates", force: :cascade do |t|
     t.integer  "project_id"
@@ -150,7 +172,9 @@ ActiveRecord::Schema.define(version: 20150611162627) do
     t.date     "start"
     t.date     "end"
     t.time     "hour_end"
-    t.boolean  "status"
+    t.integer  "status"
+    t.boolean  "registration_fee"
+    t.float    "fee_value"
     t.integer  "project_category_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -165,24 +189,25 @@ ActiveRecord::Schema.define(version: 20150611162627) do
     t.boolean  "status"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "good_id"
   end
+
+  add_index "patrimony_down_goods", ["good_id"], name: "index_patrimony_down_goods_on_good_id"
 
   create_table "patrimony_drives", force: :cascade do |t|
     t.date     "date_drive"
-    t.integer  "sector_old"
-    t.integer  "user_old"
     t.integer  "sector_id"
     t.integer  "user_id"
-    t.integer  "patrimony_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "good_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "patrimony_drives", ["patrimony_id"], name: "index_patrimony_drives_on_patrimony_id"
+  add_index "patrimony_drives", ["good_id"], name: "index_patrimony_drives_on_good_id"
   add_index "patrimony_drives", ["sector_id"], name: "index_patrimony_drives_on_sector_id"
   add_index "patrimony_drives", ["user_id"], name: "index_patrimony_drives_on_user_id"
 
-<<<<<<< HEAD
   create_table "patrimony_goods", force: :cascade do |t|
     t.string   "code_goods"
     t.date     "date_acquisition"
@@ -191,47 +216,30 @@ ActiveRecord::Schema.define(version: 20150611162627) do
     t.integer  "user_id"
     t.integer  "material_id"
     t.integer  "property_id"
-    t.integer  "down_good_id"
-=======
-  create_table "patrimony_materials", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.integer  "type_material_id"
->>>>>>> 106661196ed5d98d5139837cdfce6f302f9344ff
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-<<<<<<< HEAD
-  add_index "patrimony_goods", ["down_good_id"], name: "index_patrimony_goods_on_down_good_id"
   add_index "patrimony_goods", ["material_id"], name: "index_patrimony_goods_on_material_id"
   add_index "patrimony_goods", ["property_id"], name: "index_patrimony_goods_on_property_id"
   add_index "patrimony_goods", ["sector_id"], name: "index_patrimony_goods_on_sector_id"
   add_index "patrimony_goods", ["user_id"], name: "index_patrimony_goods_on_user_id"
-=======
-  add_index "patrimony_materials", ["type_material_id"], name: "index_patrimony_materials_on_type_material_id"
->>>>>>> 106661196ed5d98d5139837cdfce6f302f9344ff
 
-  create_table "patrimony_patrimonies", force: :cascade do |t|
-    t.string   "code_patrimony"
-    t.date     "date_acquisition"
+  create_table "patrimony_materials", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "type_material_id"
     t.boolean  "status"
-    t.integer  "sector_id"
-    t.integer  "user_id"
-    t.integer  "material_id"
-    t.integer  "property_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "patrimony_patrimonies", ["material_id"], name: "index_patrimony_patrimonies_on_material_id"
-  add_index "patrimony_patrimonies", ["property_id"], name: "index_patrimony_patrimonies_on_property_id"
-  add_index "patrimony_patrimonies", ["sector_id"], name: "index_patrimony_patrimonies_on_sector_id"
-  add_index "patrimony_patrimonies", ["user_id"], name: "index_patrimony_patrimonies_on_user_id"
+  add_index "patrimony_materials", ["type_material_id"], name: "index_patrimony_materials_on_type_material_id"
 
   create_table "patrimony_properties", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
+    t.boolean  "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -239,18 +247,20 @@ ActiveRecord::Schema.define(version: 20150611162627) do
   create_table "patrimony_serial_numbers", force: :cascade do |t|
     t.string   "name"
     t.string   "number"
-    t.integer  "patrimony_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "good_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "patrimony_serial_numbers", ["patrimony_id"], name: "index_patrimony_serial_numbers_on_patrimony_id"
+  add_index "patrimony_serial_numbers", ["good_id"], name: "index_patrimony_serial_numbers_on_good_id"
 
   create_table "patrimony_type_materials", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "percentage"
     t.integer  "life_cycle"
+    t.boolean  "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -1,7 +1,7 @@
 Patrimony::Engine.routes.draw do
   resources :serial_numbers
   resources :goods do
-
+    resources :down_goods
   	resources :drives
   end
   resources :materials

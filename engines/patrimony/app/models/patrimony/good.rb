@@ -5,6 +5,8 @@ module Patrimony
     belongs_to :material
     belongs_to :property
 
+   	has_many :down_goods
+   	
     scope :property, -> (org) {where(property:org)}
   end
 end
