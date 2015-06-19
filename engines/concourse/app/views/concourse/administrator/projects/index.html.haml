@@ -1,12 +1,15 @@
 .block-header
+  %span.pull-right
+    = link_to "novo concurso", "#", class: 'btn btn-success'
   %h2 Concursos 
 .row
   - @projects.each do |p|
     .col-md-3
       .card
-        .card-header.ch-alt.m-b-20
+        .card-header.bgm-black.m-b-20
           %h2
-            = p.name
+            %b
+              = p.name
             %small 
               = p.description
           %ul.actions
@@ -15,9 +18,22 @@
                 %i.md.md-more-vert
               %ul.dropdown-menu.dropdown-menu-right
                 %li
-                  = link_to "editar", edit_administrator_project_path(p)
+                  = link_to "informações", edit_administrator_project_path(p)
+                  = link_to "menus", administrator_project_navs_path(p)
+                  = link_to "páginas", administrator_project_pages_path(p)
+                  = link_to "formulários", administrator_project_forms_path(p)
                 %li
                   = #link_to "inativar"
           = link_to "<i class='md md-add'></i>".html_safe, administrator_project_path(p), class: 'btn bgm-red btn-float waves-effect waves-effect waves-button waves-float'
         .card-body.card-padding
-          = image_tag(p.logo.url, width: '250', heigth: '250')
+          = p.status ? "<span class='label label-success'>concurso aberto</span>".html_safe : "<span class='label label-default'>concurso fechado</span>".html_safe
+          = p.subscribe ? "<span class='label label-info'>inscrições abertas</span>".html_safe : ""
+          = p.send_project ? "<span class='label label-danger'>envio de projeto aberto</span>".html_safe : ""
+          = p.registration_fee ? "<span class='label label-warning'>cobrado taxa</span>".html_safe : ""
+          
+          %hr/
+
+          - if p.logo?
+            = image_tag(p.logo.url, width: '250', heigth: '250')
+
+
