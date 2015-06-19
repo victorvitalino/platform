@@ -20,12 +20,7 @@
           .col-md-1
             = f.label :end, as: 'string', class: 'fg-label'
             = f.input :end, as: 'string', label: false, input_html:  { class: 'date', placeholder: '00/00/0000'}
-          .col-md-1
-            = f.label :hour_end,  class: 'fg-label'
-            = f.input :hour_end, as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
-          .col-md-3
-            = f.label :status,  class: 'fg-label'
-            = f.input :status, as: 'boolean', label: false, prompt: 'selecione...'
+        
         %br/
         .row
           .col-md-3
@@ -42,6 +37,27 @@
           .col-md-1
             = f.label :fee_value,  class: 'fg-label'
             = f.input :fee_value, label: false, prompt: 'selecione...'
+        %hr/
+        .row
+          .col-md-3
+            .checkbox.m-b-15
+              %label
+                = f.check_box :status
+                %i.input-helper
+                Concurso ativo para visualização do público
+          .col-md-3
+            .checkbox.m-b-15
+              %label
+                = f.check_box :subscribe
+                %i.input-helper
+                Concurso ativo para inscrições dos candidatos
+          .col-md-3
+            .checkbox.m-b-15
+              %label
+                = f.check_box :send_project
+                %i.input-helper
+                Concurso ativo para o envio do projeto dos candidatos
+            
         %hr/
         .row
           .col-md-12

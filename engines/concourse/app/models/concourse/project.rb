@@ -8,5 +8,6 @@ module Concourse
     mount_uploader :background, Concourse::BackgroundUploader
     mount_uploader :logo, Concourse::LogoUploader
 
+
   end
 end

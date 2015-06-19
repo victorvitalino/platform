@@ -3,12 +3,16 @@ class CreateConcourseProjects < ActiveRecord::Migration
     create_table :concourse_projects do |t|
       t.string :name
       t.text :description
+
       t.string :background
       t.string :logo
+
       t.date :start
       t.date :end
-      t.time :hour_end
-      t.integer :status
+      
+      t.boolean :status
+      t.boolean :subscribe
+      t.boolean :send_project
 
       t.boolean :registration_fee
       t.float   :fee_value

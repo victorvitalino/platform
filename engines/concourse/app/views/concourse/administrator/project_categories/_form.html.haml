@@ -9,7 +9,11 @@
         .row
           .col-md-6
             = f.label :status, class: 'fg-label'
-            = f.input :status, label: false, input_html: { placeholder: 'Digite um nome'}
+            .checkbox.m-b-15
+              %label
+                = f.check_box :status
+                %i.input-helper
+                Categoria ativa
         .row
           .col-md-12
             = f.button :button, class: 'btn btn-success' do
