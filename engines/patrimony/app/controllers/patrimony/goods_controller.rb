@@ -8,6 +8,7 @@ module Patrimony
     def index
     end
 
+
     # GET /goods/new
     def new
       @good = Good.new
@@ -15,6 +16,9 @@ module Patrimony
       @materials = Material.all
     end
 
+    def show
+      
+    end
 
     # GET /goods/1/edit
     def edit
