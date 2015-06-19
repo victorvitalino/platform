@@ -1,8 +1,8 @@
 class CreateCmsPosts < ActiveRecord::Migration
   def change
     create_table :cms_posts do |t|
-      
-      t.string   :title
+
+      t.string  :title
       t.text    :resume
       t.text    :content
       t.date    :date
