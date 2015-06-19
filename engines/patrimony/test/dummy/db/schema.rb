@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 20150618172517) do
     t.boolean  "status"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "good_id"
   end
+
+  add_index "patrimony_down_goods", ["good_id"], name: "index_patrimony_down_goods_on_good_id"
 
   create_table "patrimony_drives", force: :cascade do |t|
     t.date     "date_drive"
@@ -44,12 +47,10 @@ ActiveRecord::Schema.define(version: 20150618172517) do
     t.integer  "user_id"
     t.integer  "material_id"
     t.integer  "property_id"
-    t.integer  "down_good_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "patrimony_goods", ["down_good_id"], name: "index_patrimony_goods_on_down_good_id"
   add_index "patrimony_goods", ["material_id"], name: "index_patrimony_goods_on_material_id"
   add_index "patrimony_goods", ["property_id"], name: "index_patrimony_goods_on_property_id"
   add_index "patrimony_goods", ["sector_id"], name: "index_patrimony_goods_on_sector_id"

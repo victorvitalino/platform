@@ -2,16 +2,15 @@
   .card-header.ch-alt
     %h2
       Patrimônios
-      = link_to 'novo patrimõnio', new_good_path, remote: true, class: 'btn btn-success pull-right'
+      = link_to 'novo patrimõnio', new_good_path, remote: true,  class: 'btn btn-success pull-right'
       %small Listagem de Patrimônios
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table.table.table-hover.table-bordered
       %thead
         %tr
-          %th #
+          %th Status
           %th Patrimõnio
           %th Data de Aquisição
-          %th Status
           %th Setor
           %th Material
           %th Propriedade

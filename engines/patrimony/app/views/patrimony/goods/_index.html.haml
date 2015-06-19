@@ -1,13 +1,13 @@
 - @goods.each_with_index do |j, i|
  %tr
-  %td.col-md-1
-   = i + 1
+  
+  %td
+   = link_to "", new_good_down_good_path(j), remote: true, class: 'md-location-searching btn btn-success waves-effect waves-button waves-float' 
   %td
    = j.code_goods 
   %td
    = j.date_acquisition
-  %td
-   = j.status ? "Ativo" : "Inativo"
+  
   %td
    = j.sector.name
   %td

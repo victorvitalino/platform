@@ -1,10 +1,10 @@
 .row
  .col-md-12
-  = simple_form_for @down_good, remote: true do |f|
+  = simple_form_for [@good, @down_good], remote: true do |f|
    .row
     .col-md-12
      = f.label :name, class: 'fg-label'
-     = f.input :name, label: false, input_html: { placeholder: 'Digite a nome'}
+     = f.input :name, as:'select', collection: Patrimony::DownGood.names.keys.to_a, prompt: 'selecione...', label: false, input_html: { placeholder: 'Digite a descrição'}
    .row
     .col-md-12
      = f.label :description, class: 'fg-label'

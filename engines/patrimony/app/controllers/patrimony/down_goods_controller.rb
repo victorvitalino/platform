@@ -4,6 +4,7 @@ module Patrimony
   class DownGoodsController < ApplicationController
     before_action  :set_down_goods, only: [:index, :create, :destroy, :update]
     before_action :set_down_good, only: [:edit, :destroy, :update]
+    before_action :set_good, only: [:new, :create]
 
     
     def index
@@ -12,7 +13,7 @@ module Patrimony
 
     
     def new
-      @down_good = DownGood.new
+      @down_good = @good.down_goods.new
     end
 
     
@@ -21,7 +22,7 @@ module Patrimony
 
     
     def create
-      @down_good = DownGood.new(down_good_params)
+      @down_good = @good.down_goods.new(down_good_params)
       @down_good.save
     end
 
@@ -39,11 +40,15 @@ module Patrimony
 
     private
       def down_good_params
-        params.require(:down_good).permit(:name, :description, :status, :number_process)
+        params.require(:down_good).permit(:name, :description, :status, :number_process, :good_id)
       end
 
       def set_down_good
         @down_good = DownGood.find(params[:id])
+      end
+
+      def set_good
+        @good = Good.find(params[:good_id])
       end
 
       def set_down_goods
