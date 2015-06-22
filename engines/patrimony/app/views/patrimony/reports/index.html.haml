@@ -36,21 +36,11 @@
 
     .row{:style => "margin-left: 2px"}
       .col-md-12
-        = simple_form_for @report, remote: true do |f|
+        = simple_form_for @report, :url => url_for(:action => 'termo_propriedade', :controller => 'reports'), remote: true do |f|
           .row
             .col-md-4
-              = f.label :code_goods, class: 'fg-label'
-              = f.input :code_goods, label: false, input_html: { placeholder: 'Digite o número de patrimônio'}
-            .col-md-7
-              = f.label :sector, class: 'fg-label'
-              = f.association :sector, label: false
-          .row
-            .col-md-4
-              = f.label :type_material, class: 'fg-label'
-              = collection_select(:type_material_id, :type_material_id, @type_materials, :id, :name, {:prompt => ''},{:class=>'select optional form-control'})
-            .col-md-6
-              = f.label :material, class: 'fg-label'
-              = collection_select(:material_id, :material_id, @materials, :id, :name, {:prompt => ''},{:class=>'select optional form-control'})
+              = f.label :property, class: 'fg-label'
+              = f.association :property, label: false
           %br/  
           %br/   
           .row
@@ -65,4 +55,3 @@
             = f.button :button, class: 'btn btn-success' do
               Enviar
         %br/
-  

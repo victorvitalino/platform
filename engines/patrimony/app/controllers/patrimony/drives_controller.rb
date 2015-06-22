@@ -4,6 +4,7 @@ module Patrimony
   class DrivesController < ApplicationController
     before_action :set_drives, only: [:index, :create, :destroy, :update]
     before_action :set_drive, only: [:edit, :destroy, :update]
+    before_action :set_good, only: [:new, :create]
 
     # GET /drives
     def index
@@ -17,7 +18,6 @@ module Patrimony
     # GET /drives/new
     def new
       @drive = Drive.new
-      @good = Good.all
     end
 
     # GET /drives/1/edit
@@ -27,12 +27,13 @@ module Patrimony
     # POST /drives
     def create
       @drive = Drive.new(drive_params)
-      @drive.save  
+      @drive.good_id = (params[:good_id])
+      @drive.save
     end
 
     # PATCH/PUT /drives/1
     def update
-      @drive.update(drife_params)
+      @drive.update(drive_params)
     end
 
     # DELETE /drives/1
@@ -43,7 +44,7 @@ module Patrimony
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
+
       def set_drive
         @drive = Drive.find(params[:id])
       end
@@ -52,7 +53,15 @@ module Patrimony
         @drives = Drive.all
       end
 
-      # Only allow a trusted parameter "white list" through.
+      def set_good
+        @good = Good.find(params[:good_id])
+      end
+
+
+      def set_goods
+        @goods = Good.all
+      end
+      
       def drive_params
         params.require(:drive).permit(:date_drive, :sector_id, :user_id, :good_id, :status)
       end
