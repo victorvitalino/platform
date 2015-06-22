@@ -13,29 +13,29 @@
         = f.label :post_category, class: 'fg-label'
         = f.association :post_category, label: false, prompt: 'Selecione...'
     .row
-      .col-md-12
+      .col-md-4
         = f.label :thumb, as: 'file', class: 'fg-label'
         = f.input :thumb, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
-    .row
-      .col-md-12
-        = f.label :slider, class: 'fg-label'
-        = f.check_box :slider, class: 'checkbox'
-        %br/
+
+      .col-md-1
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label.ts-label{:for => "ts4"} Slider
+          = f.check_box :slider, id: 'ts4',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "ts4"}
+      .col-md-1
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label.ts-label{:for => "ts5"} Publicado
+          = f.check_box :publish, id: 'ts5',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "ts5"}
     .row
       .col-md-12
         = f.label :resume, class: 'fg-label'
         = f.input :resume, label: false, input_html: { class: 'redactor' }
     .row
       .col-md-12
-        = f.label :date, class: 'fg-label'
-        = f.input :date, label: false
+        = f.label :date, as: 'string', class: 'fg-label'
+        = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@post.date) ? localize(f.object.date) : nil}
     .row
       .col-md-12
-        = f.label :publish, class: 'fg-label'
-        = f.check_box :publish, class: 'checkbox'
-        %br/
-    .row
-      .col-md-12
-        = f.button :button, class: 'btn btn-success' do
-          Enviar
+        = f.button :submit, class: 'btn btn-success'
         = link_to 'Back', posts_path , class: 'btn btn-danger'
