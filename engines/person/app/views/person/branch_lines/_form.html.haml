@@ -10,11 +10,13 @@
      = f.label :telephone, class: 'fg-label'
      = f.input :telephone, label: false, input_html: { placeholder: 'Digite um ramal'}
     .col-md-4
-     = f.label :status, class: 'fg-label'
-     = f.check_box :status, class: 'toggle-switch'
+     .checkbox.m-b-15
+      %label
+       = f.check_box :status
+       %i.input-helper
+       = f.label :status, class: 'fg-label'
     .col-md-4
-     = f.button :button, class: 'btn btn-success' do
-      Gravar
+     = f.button :submit, class: 'btn btn-success'
    .row
     .col-md-12
      = render 'index'

@@ -15,6 +15,10 @@ module Person
 
 		end
 
+		def list
+		    @branch = BranchLine.where(:status => true)
+		end
+
 		def new
 			@branch_line = @sector.branch_lines.new
 		end
