@@ -19,10 +19,12 @@
      = f.association :responsible, label: false
    .row
     .col-md-12
-     = f.label :status, class: 'fg-label'
-     = f.check_box :status, class: 'toggle-switch'
+     .checkbox.m-b-15
+      %label
+       = f.check_box :status
+       %i.input-helper
+       = f.label :status, class: 'fg-label'
    .row
     .col-md-12
-     = f.button :button, class: 'btn btn-success' do
-      Gravar
+     = f.button :button, class: 'btn btn-success'
    %br/

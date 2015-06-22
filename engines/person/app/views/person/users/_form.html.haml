@@ -73,17 +73,25 @@
             = f.input :date_contract, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
         .row
           .col-md-2
-            = f.label :attendant, class: 'fg-label'
-            = f.check_box :attendant, class: 'toggle-switch'
+            .checkbox.m-b-15
+              %label
+                = f.check_box :attendant
+                %i.input-helper
+                = f.label :attendant, class: 'fg-label'
           .col-md-3
-            = f.label :wekeend, class: 'fg-label'
-            = f.check_box :wekeend, class: 'toggle-switch'
+            .checkbox.m-b-15
+              %label
+                = f.check_box :wekeend
+                %i.input-helper
+                = f.label :wekeend, class: 'fg-label'
           .col-md-2
-            = f.label :status, class: 'fg-label'
-            = f.check_box :status, class: 'toggle-switch'
+            .checkbox.m-b-15
+              %label
+                = f.check_box :status
+                %i.input-helper
+                = f.label :status, class: 'fg-label'
         .row
           .col-md-12
-            = f.button :button, class: 'btn btn-success' do
-              Gravar
+            = f.button :submit, class: 'btn btn-success'
             = link_to 'Back', users_path , class: 'btn btn-danger'
 
