@@ -316,7 +316,7 @@ ActiveRecord::Schema.define(version: 20150618172517) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "person_user_permissons", force: :cascade do |t|
+  create_table "person_user_permissions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "system_permission_id"
     t.boolean  "status"
@@ -324,8 +324,8 @@ ActiveRecord::Schema.define(version: 20150618172517) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "person_user_permissons", ["system_permission_id"], name: "index_person_user_permissons_on_system_permission_id"
-  add_index "person_user_permissons", ["user_id"], name: "index_person_user_permissons_on_user_id"
+  add_index "person_user_permissions", ["system_permission_id"], name: "index_person_user_permissions_on_system_permission_id"
+  add_index "person_user_permissions", ["user_id"], name: "index_person_user_permissions_on_user_id"
 
   create_table "redactor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
