@@ -12,8 +12,11 @@
           = f.label :page_action, class: 'fg-label'
           = f.input :page_action, as: 'select', collection: Concourse::Nav.page_actions.keys, label: false, prompt: 'selecione...'
         .col-md-2
-          = f.label :order, class: 'fg-label'
-          = f.input :order, label: false, input_html: { placeholder: 'Digite a ordem do menu'}
+          .checkbox.m-b-15
+            %label
+              = f.check_box :publish
+              %i.input-helper
+              Menu publicado para visualização
       .row
         .col-md-4
           = f.label :page, class: 'fg-label'
@@ -21,13 +24,8 @@
         .col-md-4
           = f.label :external_link, class: 'fg-label'
           = f.input :external_link, label: false, input_html: { placeholder: 'Digite a ordem do menu'}
-        .col-md-2
-          = f.label :publish, class: 'fg-label'
-          = f.input :publish, label: false, input_html: { placeholder: 'Digite um nome'}
       .row
         .col-md-12
           = f.button :submit, class: 'btn btn-success'
-          = link_to "voltar", concourse.administrator_project_pages_path(@project), class: 'btn btn-default'
+          = link_to "voltar", concourse.administrator_project_navs_path(@project), class: 'btn btn-default'
   
-
-

@@ -1,0 +1,10 @@
+.block-header
+  %h2 
+    %b 
+      = link_to "#{@project.name} ", administrator_projects_path
+    \/  MENUS
+.card
+  .card-header.ch-alt
+    %h2
+      Editar Menu
+  = render 'form'
