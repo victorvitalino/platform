@@ -21,13 +21,10 @@ module Person
 			@system_permission.save
 		end
 
-		def edit
-		end
-
-
 
 		def destroy
 			if @system_permission.destroy
+				redirect_to action: 'index'
 			end
 		end
 
