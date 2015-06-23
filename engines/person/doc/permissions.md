@@ -5,8 +5,10 @@
 ## Sector ##
 
 - prsc00: Full de setores
-- P01.1 : Visualizar gestão de setores
-- P01.2 : Criar e Editar setores
+- pprsc01: Criar
+- prsc02: Editar
+- prsc3: Excluir
+- prsc04: Consultar
 
 ## systems ##
 
