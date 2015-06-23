@@ -6,9 +6,5 @@ module Person
 
     scope :permissions_tree, -> {SystemPermission.joins(:system)}
 
-
-
-
-
   end
 end

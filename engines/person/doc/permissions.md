@@ -1,15 +1,27 @@
-# Permissões #
+#Person#
 
-- P00: Todas as permissões
+- pr: Abreviação
 
 ## Sector ##
 
-- P01: Realizar gestão de setores
-- P01.1 : Visualizar gestão de setores
-- P01.2 : Criar e Editar setores
+- prsc00: Full de setores
+- pprsc01: Criar
+- prsc02: Editar
+- prsc3: Excluir
+- prsc04: Consultar
 
-## Job ##
+## systems ##
 
-- P02: Realizar gestão de cargos
-- P02.1: Visualizar gestão de cargos
-- P02.2: Criar e Editar cargps
+- prst00: Full de systemas
+- prst01: Criar
+- prst02: Editar
+- prst03: Excluir
+- prst04: Consultar
+
+## systems_permission ##
+
+- prsp00: Full de systemas
+- prsp01: Criar
+- prsp02: Editar
+- prsp03: Excluir
+- prsp04: Consultar

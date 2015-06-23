@@ -15,16 +15,14 @@ module Person
 
 		end
 
-		def list
-		    @branch = BranchLine.where(:status => true)
-		end
+
 
 		def new
-			@branch_line = @sector.branch_lines.new
+			@branch_line = @sector.branch_line.new
 		end
 
 		def create
-			@branch_line = @sector.branch_lines.new(branch_line_params)
+			@branch_line = @sector.branch_line.new(branch_line_params)
 			@branch_line.save
 
 		end
