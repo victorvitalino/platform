@@ -6,7 +6,18 @@ module Concourse
 
     # GET /navs
     def index
-      @navs = Nav.all
+      @navs = @project.navs.all.order(:order)
+    end
+
+    def up
+      @nav = Nav.find(params[:nav_id])
+      if @nav.up_order
+        redirect_to action: 'index'
+      end
+    end
+
+    def down
+      @nav = Nav.find(params[:nav_id])
     end
 
     # GET /navs/1
@@ -15,7 +26,7 @@ module Concourse
 
     # GET /navs/new
     def new
-      @nav = Nav.new
+      @nav = @project.navs.new
     end
 
     # GET /navs/1/edit
@@ -24,7 +35,7 @@ module Concourse
 
     # POST /navs
     def create
-      @nav = Nav.new(nav_params)
+      @nav = @project.navs.new(nav_params)
 
       if @nav.save
         flash[:success] =  t :success
@@ -46,8 +57,10 @@ module Concourse
 
     # DELETE /navs/1
     def destroy
-      @nav.destroy
-      redirect_to navs_url, notice: 'Nav was successfully destroyed.'
+      if @nav.destroy
+        flash[:success] =  t :success
+        redirect_to action: 'index'
+      end
     end
 
     private
@@ -58,7 +71,7 @@ module Concourse
 
       # Only allow a trusted parameter "white list" through.
       def nav_params
-        params.require(:nav).permit(:link, :target, :order, :external_link, :page_id, :page_action, :publish)
+        params.require(:nav).permit(:link, :target, :order, :project_id, :external_link, :page_id, :page_action, :publish)
       end
 
       def set_project

@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20150618172517) do
     t.integer  "target"
     t.string   "external_link"
     t.integer  "page_id"
+    t.integer  "project_id"
     t.integer  "page_action"
     t.boolean  "publish"
     t.integer  "order"
@@ -148,14 +149,18 @@ ActiveRecord::Schema.define(version: 20150618172517) do
   end
 
   add_index "concourse_navs", ["page_id"], name: "index_concourse_navs_on_page_id"
+  add_index "concourse_navs", ["project_id"], name: "index_concourse_navs_on_project_id"
 
   create_table "concourse_pages", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.boolean  "publish"
+    t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "concourse_pages", ["project_id"], name: "index_concourse_pages_on_project_id"
 
   create_table "concourse_project_categories", force: :cascade do |t|
     t.string   "name"
@@ -171,8 +176,9 @@ ActiveRecord::Schema.define(version: 20150618172517) do
     t.string   "logo"
     t.date     "start"
     t.date     "end"
-    t.time     "hour_end"
-    t.integer  "status"
+    t.boolean  "status"
+    t.boolean  "subscribe"
+    t.boolean  "send_project"
     t.boolean  "registration_fee"
     t.float    "fee_value"
     t.integer  "project_category_id"
