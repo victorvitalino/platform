@@ -12,7 +12,5 @@ module Patrimony
     	@good = Good.find(@down_good_last.good_id)
     	@good.update(status: false)
     end
-
-
   end
 end

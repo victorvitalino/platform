@@ -6,11 +6,13 @@
         = f.input :title, label: false, input_html: { placeholder: 'Digite um nome'}
     .row
       .col-md-12
-        = f.label :status, class: 'fg-label'
-        = f.check_box :status, class: 'checkbox'
-        %br/
+        .checkbox
+          %label
+            = f.check_box :status
+            %i.input-helper
+            Ativar
+            %br/
     .row
       .col-md-12
-        = f.button :button, class: 'btn btn-success' do
-          Salvar
-        = link_to 'Voltar', post_categories_path , class: 'btn btn-danger'
+        = f.button :submit, class: 'btn btn-success'
+        = link_to 'Back', post_categories_path , class: 'btn btn-danger'

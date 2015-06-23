@@ -6,6 +6,7 @@ module Patrimony
     belongs_to :property
 
    	has_many :down_goods
+   	has_many :drives
    	
     scope :property, -> (org) {where(property:org)}
   end

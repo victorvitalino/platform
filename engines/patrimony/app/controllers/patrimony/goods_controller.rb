@@ -4,8 +4,10 @@ module Patrimony
     before_action :set_goods, only: [:index, :create, :destroy, :update]
     before_action :set_good, only: [:edit, :destroy, :update]
 
+    
     # GET /goods
     def index
+      @goods = Good.all
     end
 
 
@@ -16,8 +18,7 @@ module Patrimony
       @materials = Material.all
     end
 
-    def show
-      
+    def show 
     end
 
     # GET /goods/1/edit
@@ -27,7 +28,7 @@ module Patrimony
     # POST /goods
     def create
       @good = Good.new(good_params)
-      @good.save 
+      @good.save
     end
 
     # PATCH/PUT /goods/1

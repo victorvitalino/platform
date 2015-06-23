@@ -12,6 +12,7 @@
           %th Título
           %th Categoria da Postagem
           %th Publicado
+          %th data
           %th{:colspan => '3'} Action
 
       %tbody
@@ -21,6 +22,7 @@
             %td= post.title
             %td= post.post_category.title
             %td= post.publish
+            %td= post.date
             %td.col-md-2
               = link_to '', edit_post_path(post), class: 'md md-edit btn btn-primary'
               = link_to '', post, :method => :delete, class: 'md md-delete btn btn-danger', :data => { :confirm => 'Are you sure?' }
