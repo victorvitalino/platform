@@ -1,0 +1,24 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Menus
+      = link_to 'Novo Menu', new_nav_path, class: 'btn btn-success pull-right'
+      %small Listagem de menus
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+      %thead
+        %tr
+          %th #
+          %th Title
+          %th Publish
+          %th{:colspan => "3"} Actions
+
+      %tbody
+        - @navs.each_with_index do |nav, i|
+          %tr
+            %td= i + 1
+            %td= nav.name
+            %td= nav.publish
+            %td.col-md-2
+              = link_to '', edit_nav_path(nav), class: 'md md-edit btn btn-primary'
+              = link_to '', nav, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -1,0 +1,23 @@
+%h1 Listing nav_categories
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Status
+      %th
+      %th
+      %th
+
+  %tbody
+    - @nav_categories.each do |nav_category|
+      %tr
+        %td= nav_category.name
+        %td= nav_category.status
+        %td= link_to 'Show', nav_category
+        %td= link_to 'Edit', edit_nav_category_path(nav_category)
+        %td= link_to 'Destroy', nav_category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Nav category', new_nav_category_path

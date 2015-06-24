@@ -1,0 +1,1 @@
+rails g scaffold nav name target:integer order:integer link_external link_page:references link_post:references publish:boolean category
