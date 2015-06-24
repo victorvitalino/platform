@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150624135830) do
     t.integer  "target"
     t.integer  "order"
     t.string   "link_external"
+    t.integer  "type_nav"
     t.integer  "link_page_id"
     t.integer  "link_post_id"
     t.boolean  "publish"

@@ -56,7 +56,7 @@ module Cms
 
       # Only allow a trusted parameter "white list" through.
       def nav_params
-        params.require(:nav).permit(:name, :target, :order, :link_external, :link_page_id, :link_post_id, :publish, :category_id)
+        params.require(:nav).permit(:name, :target, :order, :link_external, :link_page_id, :link_post_id, :publish, :category_id, :type_nav)
       end
   end
 end

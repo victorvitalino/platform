@@ -5,6 +5,7 @@ class CreateCmsNavs < ActiveRecord::Migration
       t.integer :target
       t.integer :order
       t.string :link_external
+      t.integer :type_nav
       t.references :link_page, index: true, foreign_key: true
       t.references :link_post, index: true, foreign_key: true
       t.boolean :publish
