@@ -122,6 +122,3 @@ PLATFORMS
 DEPENDENCIES
   cms!
   sqlite3
-
-BUNDLED WITH
-   1.10.3

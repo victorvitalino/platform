@@ -1,7 +1,17 @@
-= render 'layouts/concourse/partials/nav_project'
+.block-header
+  %h2 
+    %b 
+      = link_to "#{@project.name} ", administrator_projects_path
+    \/  MENUS
 .card
-  .card-header
-    = link_to "novo menu", concourse.new_administrator_project_nav_path(@project), class: 'btn btn-success'
+  .card-header.ch-alt
+    %span.pull-right
+      = link_to "ir para páginas", concourse.administrator_project_pages_path(@project), class: 'btn btn-info'
+      = link_to "novo menu", concourse.new_administrator_project_nav_path(@project), class: 'btn btn-success'
+    %h2
+      Menus
+      %small
+        Listagem de menus do concurso
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "4"}
     %table.table.table-condensed
       %thead
@@ -21,11 +31,22 @@
             %td= p.order
             %td= p.link
             %td= p.target
-            %td= p.page_action
-            %td= p.publish
-            %td= p.page if p.page.present?
+            %td
+              %span.label.label-info
+                = p.page_action
+            %td
+              - if p.publish
+                %span.label.label-success
+                  publicado
+              - else
+                %span.label.label-default
+                  não publicado
+            %td= p.page.title if p.page.present?
             %td= p.external_link
             %td= p.created_at.strftime('%d/%m/%Y')
             %td
-              = link_to "editar", concourse.edit_administrator_project_page_path(project_id: @project, id: p)
-              = link_to "excluir"
+              = link_to "", concourse.administrator_project_nav_down_path(project_id: @project, nav_id: p), remote:true,class: 'md-expand-more btn bgm-indigo waves-effect waves-button waves-float' if i < @navs.count - 1
+              = link_to "", concourse.administrator_project_nav_up_path(project_id: @project, nav_id: p), remote:true, class: ' md-expand-less btn btn bgm-indigo waves-effect waves-button waves-float'  if i > 0
+              = link_to "", concourse.edit_administrator_project_nav_path(project_id: @project, id: p),class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
+              = link_to "", administrator_project_nav_path(project_id: @project, id: p), method: :delete, class: 'md md-clear btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}
+

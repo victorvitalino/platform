@@ -1,0 +1,41 @@
+= simple_form_for(@nav) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-12
+        = f.label :name, class: 'fg-label'
+        = f.input :name, label: false, input_html: { placeholder: 'Digite um título'}
+    .row
+      .col-md-4
+        = f.label "Página", class: 'fg-label'
+        = f.association :link_page, label: false, prompt: 'Selecione...'
+      .col-md-4
+        = f.label "Post", class: 'fg-label'
+        = f.association :link_post, label: false, prompt: 'Selecione...'
+      .col-md-4
+        = f.label "Categoria", class: 'fg-label'
+        = f.association :category, label: false, prompt: 'Selecione...'
+    .row
+      .col-md-3
+        = f.label :link_external, class: 'fg-label'
+        = f.input :link_external, label: false, input_html: { placeholder: 'Digite um título'}
+      .col-md-3
+        = f.label "Tipo de link ativo", class: 'fg-label'
+        = f.input :type_nav, as: 'select',collection:Cms::Nav.type_navs.keys.to_a, label: false, prompt: 'Selecione...'
+      .col-md-3
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label.ts-label{:for => "ts4"} Publicado
+          %br
+          %br
+          = f.check_box :publish, id: 'ts4',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "ts4"}
+      .col-md-3
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label.ts-label{:for => "ts1"} Abrir em nova aba
+          %br
+          %br
+          = f.check_box :target, id: 'ts1',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "ts1"}
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to 'Back', navs_path , class: 'btn btn-danger'

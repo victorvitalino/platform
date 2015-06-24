@@ -1,0 +1,12 @@
+.container.main
+  .content
+    .row
+      .col-md-12
+        = image_tag @project.background.url, height: 150
+    .row
+      .col-md-12
+        %h4
+          %b= @project.name  
+        %br/
+        = @project.description
+    %hr/

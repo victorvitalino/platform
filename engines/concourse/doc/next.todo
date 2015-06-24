@@ -1,0 +1,19 @@
+tasks:
+  ☐ inscrição do candidato (dados básicos)
+  ☐ realizar acesso via página de login/logout
+  ☐ alteração de dados (editar)
+  ☐ alteração de senha (editar passwords)
+  ☐ concursos em aberto (listagem por scope)
+  ☐ concursos em previstos (listagem por scope)
+  ☐ minhas inscrições (listagem de inscrições para visualização, edição e exclusão de inscrição)
+  ☐ página inicial com minhas inscrições e em que estado está 
+
+concurso:
+  ☐ listagem de menus guiando páginas
+  ☐ inscrições do concurso (separando a lógica)
+  ☐ inscrição do candidato ao concurso
+  ☐ listagem de inscrições por tipo e situação
+  ☐ atualização de situação
+  ☐ inserção de observações internas e para o candidato
+  ☐ formulários de envio de projeto do concurso
+

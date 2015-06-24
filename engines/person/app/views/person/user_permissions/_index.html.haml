@@ -24,9 +24,9 @@
                     %th Código
                     %th
                 %tbody
-                  - j.system_permissions.each do |m|
+                  - j.system_permission.each do |m|
                     %tr
-                      %td
+                      %td= i +1
                       %td= m.action
                       %td= m.code
                       %td{ class: "tr-#{m.id}"}

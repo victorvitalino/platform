@@ -3,7 +3,8 @@
     %h2
       =@user.name
       %small
-        = @user.job.present? ? @user.job.name : nil
+        - if @user.job.present?
+          = @user.job.name
     %ul.actions.m-t-20.hidden-xs
       %li.dropdown
         %a{"data-toggle" => "dropdown", :href => ""}
@@ -53,28 +54,6 @@
           .row
             %a.col-xs-2{:href => ""}
               %img.img-circle{:alt => "", :src => "img/profile-pics/1.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/2.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/3.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/4.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/5.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/6.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/7.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/8.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/1.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/2.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/3.jpg"}
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/4.jpg"}
     .pm-body.clearfix
       .pmb-block
         .pmbb-header
@@ -101,7 +80,7 @@
         .pmbb-header
           %h2
             %i.md.md-person.m-r-5
-            Basic Information
+            Informações Basicas
           %ul.actions
             %li.dropdown
               %a{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => ""}
@@ -131,7 +110,7 @@
         .pmbb-header
           %h2
             %i.md.md-phone.m-r-5
-            Contact Information
+            Informação de Contato
           %ul.actions
             %li.dropdown
               %a{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => ""}

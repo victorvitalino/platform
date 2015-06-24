@@ -7,9 +7,9 @@
   %td
    = j.acron
   %td
-   = j.father_id
+   = j.father.name if j.father.present?
   %td
-   = j.responsible
+   = j.responsible.name if j.responsible.present?
   %td.col-md-2
    = link_to "", new_sector_branch_line_path(j),title: 'Novo Ramal', 'data-toggle' => 'tooltip',  remote: true, class: 'md-arrow-forward btn btn-success waves-effect waves-button waves-float'
    = link_to "", edit_sector_path(j), title: 'Editar', 'data-toggle' => 'tooltip',  remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'

@@ -7,14 +7,17 @@ module Person
 		before_action :set_sector, only: [:edit, :destroy, :update]
 
 		def index
+			authorize @sectors
 		end
 
 		def new
 			@sector = Sector.new
+			authorize @sector
 		end
 
 		def create
 			@sector = Sector.new(sector_params)
+			authorize @sector
 			@sector.save
 		end
 
@@ -22,10 +25,12 @@ module Person
 		end
 
 		def update
+			authorize @sector
 			@sector.update(sector_params)
 		end
 
 		def destroy
+			authorize @sector
 			if @sector.destroy
 				redirect_to action: 'index'
 			end

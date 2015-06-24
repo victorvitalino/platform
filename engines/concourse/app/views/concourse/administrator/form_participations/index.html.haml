@@ -1,0 +1,24 @@
+.block-header
+  %h2 
+    %b 
+      = link_to "#{@project.name} ", administrator_projects_path
+    \/ FORMULÁRIO DE ENVIO DO PROJETO
+.row
+  .col-md-5
+    .card
+      .card-header.ch-alt
+        %h2
+          Campos Personalizados
+          %small
+            Listagem de campos personalizados
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table.table.table-hover.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Nome
+              %th Tipo
+              %th Obrigatório?
+              %th Único?
+          %tbody
+      

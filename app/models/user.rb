@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   belongs_to :job,                class_name: "Person::Job"
   belongs_to :branch_line,        class_name: "Person::BranchLine"
 
-  has_many :permissions,           class_name: 'Person::UserPermisson'
-
+  has_many :permissions,           class_name: 'Person::UserPermission'
+  has_many :system_permissions, through: :permissions, class_name: 'Person::SystemPermission'
  # validates_presence_of :name, :code, :email, :rg, :rg_org, :born, :date_contract, :sector_current, :job_id
   validates_uniqueness_of :code, :rg, :cpf
 

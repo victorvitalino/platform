@@ -9,8 +9,6 @@ module Patrimony
        @goods_codhab = Good.property(@codhab).count
        @goods_segeth = Good.property(@segeth).count
        @goods = Good.all.count
-       @type_materials = TypeMaterial.all
-       @materials = Material.all
     end
 
     def index_codhab
@@ -21,7 +19,6 @@ module Patrimony
         format.html
           format.pdf do
             render pdf: "index_codhab.pdf"
-
           end
       end
     end
@@ -31,5 +28,10 @@ module Patrimony
       @segeth = Property.find_by_name('SEGETH/DF')
       @goods_segeth = Good.property(@segeth)
     end
+
+    private
+      def report_params
+        params.require(:report).permit(:code_goods, :sector, :type_material, :material, :status)
+      end
   end
 end

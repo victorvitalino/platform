@@ -15,12 +15,14 @@ module Person
 
 		end
 
+
+
 		def new
-			@branch_line = @sector.branch_lines.new
+			@branch_line = @sector.branch_line.new
 		end
 
 		def create
-			@branch_line = @sector.branch_lines.new(branch_line_params)
+			@branch_line = @sector.branch_line.new(branch_line_params)
 			@branch_line.save
 
 		end
@@ -48,5 +50,6 @@ module Person
 		def set_branch_line
 			@branch_line = BranchLine.find(params[:id])
 		end
+
 	end
 end

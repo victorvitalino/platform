@@ -1,15 +1,48 @@
-# Permissões #
+#Person#
 
-- P00: Todas as permissões
+- 1: Prefixo da Engine Person
 
-## Sector ##
 
-- P01: Realizar gestão de setores
-- P01.1 : Visualizar gestão de setores
-- P01.2 : Criar e Editar setores
+## branch_lines ##
 
-## Job ##
+- 1101: Criar/Editar
+- 1102: Excluir
+- 1103: Visualizar
 
-- P02: Realizar gestão de cargos
-- P02.1: Visualizar gestão de cargos
-- P02.2: Criar e Editar cargps
+## jobs ##
+
+- 1201: Criar/Editar
+- 1202: Excluir
+- 1203: Visualizar
+
+## sector ##
+
+- 1301: Criar/Editar
+- 1302: Excluir
+- 1303: Visualizar
+
+## systems ##
+
+- 1401: Criar/Editar
+- 1402: Excluir
+- 1403: Visualizar
+
+## systems_permission ##
+
+- 1501: Criar/Editar
+- 1502: Excluir
+- 1503: Visualizar
+
+## users ##
+
+- 1601: Criar/Editar
+- 1602: Excluir
+- 1603: Visualizar
+
+## user_permissions ##
+
+- 1701: Criar/Editar
+- 1702: Excluir
+- 1703: Visualizar
+
+

@@ -13,7 +13,8 @@ gem 'carrierwave'
 gem 'simple_form'
 gem 'haml-rails'
 gem 'devise'
-gem 'pundit'
+#gem 'pundit', :git => 'https://github.com/elabs/pundit.git', :branch => 'namespaces'
+gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
 gem 'redactor-rails'
 gem 'mini_magick'
 
@@ -23,7 +24,7 @@ gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-
+gem "bcrypt-ruby", :require => "bcrypt"
 
 
 group :development, :test do

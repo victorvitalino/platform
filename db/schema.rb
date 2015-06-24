@@ -11,31 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618172517) do
+ActiveRecord::Schema.define(version: 20150624135830) do
 
   create_table "cms_nav_categories", force: :cascade do |t|
-    t.string   "title"
-    t.string   "code"
+    t.string   "name"
     t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "cms_navs", force: :cascade do |t|
-    t.string   "title"
-    t.string   "href"
+    t.string   "name"
     t.integer  "target"
-    t.integer  "internal_link_id"
-    t.string   "external_link"
-    t.integer  "nav_category_id"
     t.integer  "order"
-    t.boolean  "status"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "link_external"
+    t.integer  "type_nav"
+    t.integer  "link_page_id"
+    t.integer  "link_post_id"
+    t.boolean  "publish"
+    t.integer  "category_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "cms_navs", ["internal_link_id"], name: "index_cms_navs_on_internal_link_id"
-  add_index "cms_navs", ["nav_category_id"], name: "index_cms_navs_on_nav_category_id"
+  add_index "cms_navs", ["category_id"], name: "index_cms_navs_on_category_id"
+  add_index "cms_navs", ["link_page_id"], name: "index_cms_navs_on_link_page_id"
+  add_index "cms_navs", ["link_post_id"], name: "index_cms_navs_on_link_post_id"
 
   create_table "cms_page_categories", force: :cascade do |t|
     t.string   "title"
@@ -140,6 +141,7 @@ ActiveRecord::Schema.define(version: 20150618172517) do
     t.integer  "target"
     t.string   "external_link"
     t.integer  "page_id"
+    t.integer  "project_id"
     t.integer  "page_action"
     t.boolean  "publish"
     t.integer  "order"
@@ -148,14 +150,18 @@ ActiveRecord::Schema.define(version: 20150618172517) do
   end
 
   add_index "concourse_navs", ["page_id"], name: "index_concourse_navs_on_page_id"
+  add_index "concourse_navs", ["project_id"], name: "index_concourse_navs_on_project_id"
 
   create_table "concourse_pages", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.boolean  "publish"
+    t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "concourse_pages", ["project_id"], name: "index_concourse_pages_on_project_id"
 
   create_table "concourse_project_categories", force: :cascade do |t|
     t.string   "name"
@@ -300,7 +306,7 @@ ActiveRecord::Schema.define(version: 20150618172517) do
 
   create_table "person_system_permissions", force: :cascade do |t|
     t.string   "action"
-    t.string   "code"
+    t.integer  "code"
     t.boolean  "status"
     t.integer  "system_id"
     t.datetime "created_at", null: false
@@ -317,7 +323,7 @@ ActiveRecord::Schema.define(version: 20150618172517) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "person_user_permissons", force: :cascade do |t|
+  create_table "person_user_permissions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "system_permission_id"
     t.boolean  "status"
@@ -325,8 +331,8 @@ ActiveRecord::Schema.define(version: 20150618172517) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "person_user_permissons", ["system_permission_id"], name: "index_person_user_permissons_on_system_permission_id"
-  add_index "person_user_permissons", ["user_id"], name: "index_person_user_permissons_on_user_id"
+  add_index "person_user_permissions", ["system_permission_id"], name: "index_person_user_permissions_on_system_permission_id"
+  add_index "person_user_permissions", ["user_id"], name: "index_person_user_permissions_on_user_id"
 
   create_table "redactor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false

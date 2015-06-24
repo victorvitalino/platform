@@ -6,17 +6,20 @@ module Person
     before_action :set_user_status, only: [:enable, :disable]
 
 
+
     def index
+      authorize @users
     end
 
     def new
       @user = User.new
+      authorize @user
     end
 
 
     def create
       @user = User.new(user_params)
-
+      authorize @user
       if @user.save
         flash[:success] =  t :success
         redirect_to action: 'index'
@@ -29,6 +32,7 @@ module Person
     end
 
     def update
+      authorize @user
       if params[:password].blank?
         params.delete(:password)
         params.delete(:password_confirmation) if params[:password_confirmation].blank?
@@ -60,11 +64,11 @@ module Person
     private
 
     def user_params
-      params.require(:user).permit(:name,:cpf,:rg,:rg_org,:born,:blood_type,:curriculum,:password,:password_confirmation ,:end_hour,:start_hour,:wekeend,:attendant,:email,:date_contract,:code,:status,:avatar,:sector_current_id,:sector_origin_id, :jobs_id,:branch_lines_id)
+      params.require(:user).permit(:name,:cpf,:rg,:rg_org,:born,:blood_type,:curriculum,:password,:password_confirmation ,:end_hour,:start_hour,:wekeend,:attendant,:email,:date_contract,:code,:status,:avatar,:sector_current_id,:sector_origin_id, :job_id,:branch_line_id)
     end
 
     def user_update_params
-      params.require(:user).permit(:name,:cpf,:rg,:rg_org,:born,:blood_type,:curriculum, :end_hour,:start_hour,:wekeend,:attendant,:email,:date_contract,:code,:status,:avatar,:sector_current_id,:sector_origin_id, :jobs_id,:branch_lines_id)
+      params.require(:user).permit(:name,:cpf,:rg,:rg_org,:born,:blood_type,:curriculum, :end_hour,:start_hour,:wekeend,:attendant,:email,:date_contract,:code,:status,:avatar,:sector_current_id,:sector_origin_id, :job_id,:branch_line_id)
     end
 
     def set_users
@@ -75,7 +79,7 @@ module Person
       @user = User.find(params[:id])
     end
 
-     def set_user_status
+    def set_user_status
       @user = User.find(params[:user_id])
     end
   end

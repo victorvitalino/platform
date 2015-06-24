@@ -5,7 +5,7 @@ module Concourse
     before_action :set_project
     # GET /pages
     def index
-      @pages = Page.all
+      @pages = @project.pages.all
     end
 
     # GET /pages/1
@@ -14,7 +14,7 @@ module Concourse
 
     # GET /pages/new
     def new
-      @page = Page.new
+      @page = @project.pages.new
     end
 
     # GET /pages/1/edit
@@ -23,7 +23,7 @@ module Concourse
 
     # POST /pages
     def create
-      @page = Page.new(page_params)
+      @page = @project.pages.new(page_params)
 
       if @page.save
         flash[:success] = t :success
@@ -45,8 +45,10 @@ module Concourse
 
     # DELETE /pages/1
     def destroy
-      @page.destroy
-      redirect_to pages_url, notice: 'Page was successfully destroyed.'
+      if @page.destroy
+        flash[:success] = t :success
+        redirect_to action: 'index'
+      end
     end
 
     private
