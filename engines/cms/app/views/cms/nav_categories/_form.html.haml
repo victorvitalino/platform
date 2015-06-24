@@ -1,0 +1,19 @@
+= simple_form_for(@nav_category) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-12
+        = f.label :name, class: 'fg-label'
+        = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+    .row
+      .col-md-12
+        .checkbox
+          %label
+            = f.check_box :status
+            %i.input-helper
+            Ativar
+            %br/
+            %br/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to 'Back', post_categories_path , class: 'btn btn-danger'

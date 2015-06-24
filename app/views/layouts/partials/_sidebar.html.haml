@@ -72,6 +72,10 @@
               = link_to "categorias de post", cms.post_categories_path
             %li
               = link_to "categorias de página", cms.page_categories_path
+            %li
+              = link_to "menu", cms.navs_path
+            %li
+              = link_to "categorias de menu", cms.nav_categories_path
         %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
           %a{:href => ""}
             %i.md.md-attach-money>
@@ -142,4 +146,3 @@
             %ul{style: ('display:block;' if params[:module] == "finance")}
               %li
                 = link_to "cadastro"
-    
