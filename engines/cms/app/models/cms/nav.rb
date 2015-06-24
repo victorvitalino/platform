@@ -3,9 +3,8 @@ module Cms
     belongs_to :link_page, class_name: "Cms::Page"
     belongs_to :link_post, class_name: "Cms::Post"
     belongs_to :category,  class_name: "Cms::NavCategory"
-
+    validates_presence_of :name
     before_create :set_order
-
     private
 
       def set_order
