@@ -7,13 +7,16 @@ module Person
 		before_action :set_system, only: [:edit, :destroy, :update]
 
 		def index
+			
 		end
 
 		def new
 			@system = System.new
+			
 		end
 
 		def create
+			
 			@system = System.new(system_params)
 			@system.save
 		end
@@ -22,10 +25,12 @@ module Person
 		end
 
 		def update
+			
 			@system.update(system_params)
 		end
 
 		def destroy
+			
 			if @system.destroy
 				redirect_to action: 'index'
 			end

@@ -5,11 +5,13 @@ module Person
     before_action :set_user, only: [:enable, :disable, :index]
     before_action :set_permission, only: [:enable, :disable]
     def index
+      
     end
 
     def enable
       #insert
       @user_permission = UserPermission.new
+      
       @user_permission.user_id = @user.id
       @user_permission.system_permission_id = @permission.id
       @user_permission.status = true
@@ -18,6 +20,7 @@ module Person
 
     def disable
       @user_permission = @user.permissions.where(system_permission_id: @permission.id).last
+      
       @user_permission.update(status: false)
     end
 

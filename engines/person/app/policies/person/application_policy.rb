@@ -38,13 +38,15 @@ module Person
     def scope
       Pundit.policy_scope!(user, record.class)
     end
-  
-    private
-  
+
     def allow?(code)
-      user.user_permissions.find_by_code(code).present?
+      code = user.system_permissions.find_by_code(code)
+      if code.present?
+        user.permissions.where(system_permission_id: code.id, status: true).present? 
+      end
     end
   
+    private
     class Scope
       attr_reader :user, :scope
   

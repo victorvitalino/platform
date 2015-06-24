@@ -305,7 +305,7 @@ ActiveRecord::Schema.define(version: 20150618172517) do
 
   create_table "person_system_permissions", force: :cascade do |t|
     t.string   "action"
-    t.string   "code"
+    t.integer  "code"
     t.boolean  "status"
     t.integer  "system_id"
     t.datetime "created_at", null: false
