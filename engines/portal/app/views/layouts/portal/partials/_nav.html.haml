@@ -225,6 +225,8 @@
                       %ul.submenu-item
                         %li
                           = link_to "o que são", "#"
+                        %li
+                          = link_to "área do participante", new_portal_session_path
                         - Concourse::Project.all.each do |c|
                           %li
                             = link_to "#{c.name}", concourse.portal_project_path(c)                          

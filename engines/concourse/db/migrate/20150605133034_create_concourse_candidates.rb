@@ -1,7 +1,6 @@
 class CreateConcourseCandidates < ActiveRecord::Migration
   def change
     create_table :concourse_candidates do |t|
-      t.references :project, index: true, foreign_key: true
       t.string :name
       t.string :cpf
       t.string :telphone

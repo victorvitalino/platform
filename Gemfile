@@ -24,7 +24,7 @@ gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-
+gem "bcrypt-ruby", :require => "bcrypt"
 
 
 group :development, :test do
