@@ -6,18 +6,20 @@ module Person
     before_action :set_user_status, only: [:enable, :disable]
 
 
+
     def index
-      authorize :user
+      authorize @users
     end
 
     def new
       @user = User.new
+      authorize @user
     end
 
 
     def create
       @user = User.new(user_params)
-
+      authorize @user
       if @user.save
         flash[:success] =  t :success
         redirect_to action: 'index'
@@ -30,6 +32,7 @@ module Person
     end
 
     def update
+      authorize @user
       if params[:password].blank?
         params.delete(:password)
         params.delete(:password_confirmation) if params[:password_confirmation].blank?
@@ -76,7 +79,7 @@ module Person
       @user = User.find(params[:id])
     end
 
-     def set_user_status
+    def set_user_status
       @user = User.find(params[:user_id])
     end
   end

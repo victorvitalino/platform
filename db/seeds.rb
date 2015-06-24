@@ -9,5 +9,4 @@
 	code: 'dev001',
 	born: '01/01/1990'
 )
-
 @user.save!
