@@ -25,20 +25,25 @@
           = link_to "<i class='md   md-turned-in'></i> Intranet".html_safe, intranet.root_path
         %li{class: ('active' if params[:module] == "dashboard")}
           = link_to "<i class='md  md-dashboard'></i> Dashboard".html_safe, dashboard.root_path
-        %li.sub-menu{class: ('toggled active' if params[:module] == "person")}
-          %a{:href => ""}
-            %i.md.md-account-child
-            Gestão de Pessoas
-          %ul{style: ('display:block;' if params[:module] == "person")}
-            %li
-              = link_to "cargos", person.jobs_path
-            %li
-              = link_to "usuarios", person.users_path
-            %li
-              = link_to "sistemas", person.systems_path
-            %li.divider
-            %li
-              = link_to "setores", person.sectors_path
+        - if policy(:application, namespace: Person).index?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "person")}
+            %a{:href => ""}
+              %i.md.md-account-child
+              Gestão de Pessoas
+            %ul{style: ('display:block;' if params[:module] == "person")}
+              - if policy(:job, namespace: Person).index?
+                %li
+                  = link_to "cargos", person.jobs_path
+              - if policy(:user, namespace: Person).index?
+                %li
+                  = link_to "usuarios", person.users_path
+              - if policy(:system, namespace: Person).index?
+                %li
+                  = link_to "sistemas", person.systems_path
+              %li.divider
+              - if policy(:sector, namespace: Person).index?
+                %li
+                  = link_to "setores", person.sectors_path
           %ul{style: ('display:block;' if @module == "person")}
         %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
           %a{:href => ""}

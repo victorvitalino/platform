@@ -1,7 +1,7 @@
 GIT
-  remote: https://github.com/elabs/pundit.git
-  revision: 165c7f4e5c523e25d64f508da3a03cfd1c7f53db
-  branch: namespaces
+  remote: https://github.com/codhab/pundit.git
+  revision: 600b9af1ef10ce846feee878ba47c49c667ba9d5
+  branch: master
   specs:
     pundit (0.2.3)
       activesupport (>= 3.0.0)
@@ -315,3 +315,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   wicked_pdf
   wkhtmltopdf-binary
+
+BUNDLED WITH
+   1.10.3

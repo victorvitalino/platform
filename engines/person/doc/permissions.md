@@ -1,6 +1,6 @@
 #Person#
 
-- pr: Abreviação
+- 1: Prefixo
 
 ## branch_lines ##
 
@@ -48,16 +48,16 @@
 
 ## user_permissions ##
 
-- prup00: Permissão Total
-- prup01: Criar
-- prup02: Editar
-- prup03: Excluir
-- prup04: Consultar
+- 1028: Permissão Total
+- 1029: Criar
+- 1030: Editar
+- 1031: Excluir
+- 1032: Consultar
 
 ## users ##
 
-- prus00: Permissão Total
-- prus01: Criar
-- prus02: Editar
-- prus03: Excluir
-- prus04: Consultar
+- 1033: Permissão Total
+- 1034: Criar
+- 1035: Editar
+- 1036: Excluir
+- 1036: Consultar

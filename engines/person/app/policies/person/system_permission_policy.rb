@@ -1,5 +1,5 @@
 module Person
-	class UserPolicy < ApplicationPolicy
+	class SystemPermissionPolicy < ApplicationPolicy
 
 		def index?
 			false
