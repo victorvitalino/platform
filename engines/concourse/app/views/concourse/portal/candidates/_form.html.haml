@@ -1,0 +1,25 @@
+= simple_form_for [:portal, @candidate], remote: true do |f|
+  .row
+    .col-md-12
+      = f.input :name
+  .row
+    .col-md-4
+      = f.input :cpf
+    .col-md-8
+      = f.input :email
+  .row
+    .col-md-4
+      = f.input :telphone
+    .col-md-4
+      = f.input :celphone
+  %hr/
+  .row
+    .col-md-6
+      = f.input :password
+    .col-md-6
+      = f.input :password_confirmation
+
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'

@@ -1,0 +1,26 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Extranet
+    = stylesheet_link_tag 'portal', media: 'all'
+    = javascript_include_tag 'portal', media: 'all'
+    = csrf_meta_tags
+  %body
+    = render 'layouts/portal/partials/nav'
+    .container{'style': 'margin-top:40px;'}
+      .row
+        .col-md-12
+          %h2
+            %p
+              %b Concursos Codhab
+            %small
+              Área do Candidato
+
+      %hr/
+      .row
+        .col-md-3
+          = render 'layouts/concourse/partials/candidate_sidebar'
+        .col-md-9
+          = yield
+    
+    

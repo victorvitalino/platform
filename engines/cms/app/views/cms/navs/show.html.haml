@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @nav.name
+%p
+  %b Target:
+  = @nav.target
+%p
+  %b Order:
+  = @nav.order
+%p
+  %b Link external:
+  = @nav.link_external
+%p
+  %b Link page:
+  = @nav.link_page
+%p
+  %b Link post:
+  = @nav.link_post
+%p
+  %b Publish:
+  = @nav.publish
+%p
+  %b Category:
+  = @nav.category
+
+= link_to 'Edit', edit_nav_path(@nav)
+\|
+= link_to 'Back', navs_path
