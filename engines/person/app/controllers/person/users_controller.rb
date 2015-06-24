@@ -7,6 +7,7 @@ module Person
 
 
     def index
+      authorize :user
     end
 
     def new

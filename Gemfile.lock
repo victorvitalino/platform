@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/elabs/pundit.git
+  revision: 165c7f4e5c523e25d64f508da3a03cfd1c7f53db
+  branch: namespaces
+  specs:
+    pundit (0.2.3)
+      activesupport (>= 3.0.0)
+
 PATH
   remote: engines/cms
   specs:
@@ -194,8 +202,6 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pundit (1.0.0)
-      activesupport (>= 3.0.0)
     rack (1.6.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -297,7 +303,7 @@ DEPENDENCIES
   person!
   pg
   portal!
-  pundit
+  pundit!
   rails (= 4.2.1)
   redactor-rails
   schedule!

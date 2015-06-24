@@ -13,7 +13,7 @@ gem 'carrierwave'
 gem 'simple_form'
 gem 'haml-rails'
 gem 'devise'
-gem 'pundit'
+gem 'pundit', :git => 'https://github.com/elabs/pundit.git', :branch => 'namespaces'
 gem 'redactor-rails'
 gem 'mini_magick'
 
