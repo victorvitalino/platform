@@ -24,7 +24,7 @@ module Person
 
 		def destroy
 			if @system_permission.destroy
-				redirect_to action: 'index'
+			  redirect_to action: 'index'
 			end
 		end
 

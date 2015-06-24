@@ -14,3 +14,5 @@
 //= require material/js/functions
 //= require material/js/demo
 //= require redactor-rails
+
+

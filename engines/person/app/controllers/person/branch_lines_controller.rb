@@ -50,5 +50,6 @@ module Person
 		def set_branch_line
 			@branch_line = BranchLine.find(params[:id])
 		end
+
 	end
 end

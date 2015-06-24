@@ -4,6 +4,7 @@ class CreateConcoursePages < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.boolean :publish
+      t.references :project, index: true
 
       t.timestamps null: false
     end

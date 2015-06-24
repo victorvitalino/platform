@@ -9,7 +9,7 @@ module Person
 
     def enable
       #insert
-      @user_permission = UserPermisson.new
+      @user_permission = UserPermission.new
       @user_permission.user_id = @user.id
       @user_permission.system_permission_id = @permission.id
       @user_permission.status = true
