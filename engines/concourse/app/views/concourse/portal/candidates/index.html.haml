@@ -1,3 +1,21 @@
-.jumbotron
-  %h1 Bem-vindo!
-  %p Área do candidato
+.row
+  .jumbotron
+    %h3
+      %b
+        ="Olá, #{@candidate.name}"
+    %br/
+    %h4
+      %small Você está na área do candidato
+%br/
+.row
+  %h4
+    %b Meus concursos
+  %table.table
+    %thead
+      %tr
+        %th #
+        %th Concurso
+        %th Ínicio
+        %th Fim
+        %th Informações
+        %th Meu Cadastro

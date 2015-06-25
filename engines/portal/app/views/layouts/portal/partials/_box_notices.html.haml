@@ -1,16 +1,16 @@
 .container.main.homeLatest
   %h2 Últimas Notícias
-  - post_each('morarbem', 3, 'DESC') do |p|
+  - post_each(3, 'DESC') do |p|
     .five.columns.sidebar.bloco-noticia{:style => "height: 494px;"}
       .imgWrapper
         = image_tag p.thumb if p.thumb?
       .latestHeader
-        = link_to "##{p.post_category.name}", content_post_path(p), class: 'council'
-        .latestDate 
-          = p.created_at.strftime('%d/%m/%Y')
+        = link_to "##{p.post_category.title}", post_path(p), class: 'council'
+        .latestDate
+          = p.date.strftime('%d/%m/%Y')
       %h3
-        = link_to p.title, content_post_path(p)
+        = link_to p.title, post_path(p)
       %p
-        = p.content.html_safe
+        = p.resume.html_safe
       %p.bt-noticia
-        = link_to 'Leia Mais', content_post_path(p), class: 'sliderLink'
+        = link_to 'Leia Mais', post_path(p), class: 'sliderLink'

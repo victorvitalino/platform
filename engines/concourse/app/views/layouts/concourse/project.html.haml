@@ -9,15 +9,19 @@
     = render 'layouts/portal/partials/nav'
     .container{'style': 'margin-top:40px;'}
       .row
-        .col-md-12{'style':'text-align: center'}
-          %h1
-            %b Área do candidato
-            %br/
-            %small
-              Concursos Codhab
-        
+        .col-md-12
+          = image_tag @project.background.url, width: 450
+
       %hr/
-      = yield
-  #modal.modal.fade{"aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
-    .modal-dialog{:role => "document"}
-      .modal-content  
+      .row
+        .col-md-3
+          = render 'layouts/concourse/partials/project_sidebar'
+        .col-md-8 
+          = yield
+      %hr/
+      .row
+        .col-md-12
+          = image_tag('footer-concursos.png', width: '100%')
+
+    
+    

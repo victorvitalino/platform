@@ -14,9 +14,6 @@ class CreateConcourseProjects < ActiveRecord::Migration
       t.boolean :subscribe
       t.boolean :send_project
 
-      t.boolean :registration_fee
-      t.float   :fee_value
-      
       t.references :project_category, index: true, foreign_key: true
 
       t.timestamps null: false

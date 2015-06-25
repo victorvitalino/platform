@@ -1,23 +1,29 @@
-= simple_form_for [:portal, @candidate], remote: true do |f|
+= simple_form_for [:portal, @candidate], remote: @candidate.new_record? do |f|
   .row
     .col-md-12
       = f.input :name
   .row
     .col-md-4
-      = f.input :cpf
+      - if @candidate.new_record?
+        = f.input :cpf
+      - else
+        = f.input :cpf, input_html: {disabled: (!@candidate.new_record?) ? 'disabled' : ''}
     .col-md-8
       = f.input :email
   .row
     .col-md-4
       = f.input :telphone
     .col-md-4
+      = f.input :telphone_optional
+    .col-md-4
       = f.input :celphone
-  %hr/
-  .row
-    .col-md-6
-      = f.input :password
-    .col-md-6
-      = f.input :password_confirmation
+  - if @candidate.new_record?
+    %hr/
+    .row
+      .col-md-6
+        = f.input :password
+      .col-md-6
+        = f.input :password_confirmation
 
   %hr/
   .row

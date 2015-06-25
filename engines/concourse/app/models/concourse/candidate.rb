@@ -4,35 +4,23 @@ module Concourse
     belongs_to :city
     belongs_to :state
 
-    
     attr_accessor :password_confirmation
-    
-    before_save :encrypt_password
-    
 
-    validates_presence_of :name, :cpf, :telphone, :email, :password, :password_confirmation
-
-    validates :cpf,   :presence => true, :uniqueness => true
-    validates :email, :presence => true, :uniqueness => true
-    validates_length_of :password, :in => 6..20, :on => :create
-    validates_confirmation_of :password
-    validates_presence_of :password, :on => :create
-
+    validates_presence_of :name, :cpf, :email, :telphone
+    validates_numericality_of :telphone_optional, :celphone, allow_blank: true
+    validates_length_of :telphone_optional, :celphone, in: 8..15, allow_blank: true
+    validates :password, length: { minimum: 6, maximum: 40 }, presence: true, on: :create
+    validates :cpf, cpf: true, uniqueness: true
+    validates :email, email: true, uniqueness: true
+    validates :telphone, numericality: true,  length: { minimum: 8, maximum: 15 }
     
-    def self.authenticate(cpf, password)
-      candidate = find_by_cpf(cpf)
-      if candidate && candidate.password_hash == BCrypt::Engine.hash_secret(password, candidate.password_salt)
-        candidate
-      else
-        nil
-      end
+    validate :unique_password, on: :create
+    
+    private
+
+    def unique_password
+      errors.add(:password, "senhas não conferem") if self.password != password_confirmation
     end
-    
-    def encrypt_password
-      if password.present?
-        self.password_salt = BCrypt::Engine.generate_salt
-        self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-      end
-    end
+
   end
 end

@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/candidate': 'Candidato'
+    attributes:
+      'concourse/candidate':
+        name: "Nome"
+        cpf: "CPF"
+        telphone: "Telefone"
+        telphone_optional: "Telefone secundário"
+        celphone: "Celular"
+        city: "Cidade"
+        state: "Estado"
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação da Senha"

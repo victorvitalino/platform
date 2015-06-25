@@ -1,6 +1,6 @@
 module Concourse
   class Portal::PagesController < ApplicationController
-    layout 'layouts/portal/concourse'
+    layout 'layouts/concourse/project'
     before_action :set_project
 
     def show

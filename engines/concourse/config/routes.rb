@@ -20,10 +20,15 @@ Concourse::Engine.routes.draw do
 
   constraints DomainConstraint do 
     namespace :portal, path: '/' do 
-      resources :candidates,  path: 'candidato'
-      resources :sessions,     path: 'acesso'
-      resources :passwords,     path: 'senha'
+      resources :candidates,    path: 'candidato'
       
+      get 'editar_dados', to: 'candidates#edit'
+
+      resources :sessions,      path: 'acesso'
+      
+      get 'logout', to: 'sessions#destroy'
+
+      resources :passwords,     path: 'senha'
       resources :projects, path: '/' do 
         resources :pages
       end

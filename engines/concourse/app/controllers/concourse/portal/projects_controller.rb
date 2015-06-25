@@ -1,7 +1,7 @@
 module Concourse
   module Portal
     class ProjectsController < ApplicationController
-      layout 'layouts/portal/application'
+      layout 'layouts/concourse/project'
 
       def index
         @projects = Project.all
