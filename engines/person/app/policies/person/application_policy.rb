@@ -38,7 +38,7 @@ module Person
     def scope
       Pundit.policy_scope!(user, record.class)
     end
-
+    #busca o codigo de na tabela de permissões(system_permissions), e verifica se a permissão esta ativa e usuario possui a permissão
     def allow?(code)
       code = user.system_permissions.find_by_code(code)
       if code.present?
