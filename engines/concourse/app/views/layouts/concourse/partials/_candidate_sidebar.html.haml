@@ -1,6 +1,7 @@
 %ul.list-group
-  %li.list-group-item= link_to "Concursos em aberto", portal_projects_path(:q => 'open')
-  %li.list-group-item= link_to "Concursos em previstos", portal_projects_path(:q => 'waiting')
+  %li.list-group-item= link_to "Ínicio", portal_candidates_path
+  %li.divider
+  %li.list-group-item= link_to "Concursos", portal_projects_path(:q => 'open')
   %li.divider
   %li.list-group-item= link_to "Alterar meus dados", portal_editar_dados_path
   %li.list-group-item= link_to "Alterar minha senha", new_portal_password_path

@@ -1,33 +1,36 @@
 .row
-  .jumbotron
-    %h3
-      %b
+  .col-md-12
+    %h2
+      %strong
         ="Olá, #{@candidate.name}"
-    %br/
     %h4
       %small Você está na área do candidato
 %br/
 .row
-  %h4
-    %b Minhas inscrições
-  %br/
-  %table.table
-    %thead
-      %tr
-        %th #
-        %th Concurso
-        %th Ínicio
-        %th Fim
-        %th Status
-        %th Informações
-        %th Meu Cadastro
-    %tbody
-      - @candidate.enrollment_candidates.each_with_index do |c, i|
+  .col-md-12
+    %h4
+      %strong Minhas inscrições
+    %br/
+    %table.table.table-bordered.table-condesend
+      %thead
         %tr
-          %td= i + 1
-          %td= c.enrollment.project.name
-          %td= c.enrollment.project.start.strftime('%d/%m/%Y')
-          %td= c.enrollment.project.end.strftime('%d/%m/%Y')
-          %td
-          %td= link_to "detalhes",  "#", class: 'btn btn-success btn-sm'
-          %td= link_to "verificar", "#", class: 'btn btn-success btn-sm'
+          %th #
+          %th Concurso
+          %th Ínicio
+          %th Fim
+          %th Status
+          %th Informações
+          %th Meu Cadastro
+      %tbody
+        - @candidate.enrollment_candidates.each_with_index do |c, i|
+          %tr
+            %td= i + 1
+            %td= link_to c.enrollment.project.name, portal_project_path(c.enrollment.project)
+            %td= c.enrollment.project.start.strftime('%d/%m/%Y')
+            %td= c.enrollment.project.end.strftime('%d/%m/%Y')
+            %td
+            %td.col-md-1= link_to "Detalhes",  "#", class: 'btn btn-success btn-sm'
+            %td.col-md-3
+              = link_to "Meu Cadastro", "#", class: 'btn btn-success btn-sm'
+              = link_to "Enviar projeto", "#", class: 'btn btn-danger btn-sm'
+  
