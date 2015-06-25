@@ -40,9 +40,10 @@ module Person
     end
     #busca o codigo de na tabela de permissões(system_permissions), e verifica se a permissão esta ativa e usuario possui a permissão
     def allow?(code)
-      code = user.system_permissions.find_by_code(code)
-      if code.present?
-        user.permissions.where(system_permission_id: code.id, status: true).present? 
+      @permission = Person::SystemPermission.find_by_code(code)
+      
+      if @permission.present?
+        user.permissions.where(system_permission_id: @permission.id, status: true).present? 
       end
     end
   

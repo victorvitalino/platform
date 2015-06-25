@@ -5,7 +5,7 @@ module Person
     before_action :set_user, only: [:enable, :disable, :index]
     before_action :set_permission, only: [:enable, :disable]
     def index
-      authorize @systems
+      authorize @user_permissions
     end
 
     def enable
@@ -27,6 +27,7 @@ module Person
 
     def set_user_permissions
       @systems = System.all
+      @user_permissions = UserPermission.all
     end
 
     def set_permission
