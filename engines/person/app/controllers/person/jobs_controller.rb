@@ -7,14 +7,17 @@ module Person
 		before_action :set_job, only: [:edit, :destroy, :update]
 
 		def index
+			authorize @jobs
 		end
 
 		def new
 			@job = Job.new
+			authorize @job
 		end
 
 		def create
 			@job = Job.new(job_params)
+			authorize @job
 			@job.save
 		end
 
@@ -22,10 +25,12 @@ module Person
 		end
 
 		def update
+			authorize @job
 			@job.update(job_params)
 		end
 
 		def destroy
+			authorize @job
 			if @job.destroy
 				redirect_to action: 'index'
 			end
