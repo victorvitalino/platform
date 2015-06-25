@@ -1,0 +1,9 @@
+= simple_form_for [:portal, :project, :enrollment, @candidate] do |f|
+  .row
+    .col-md-6
+      = f.fields_for :properties, OpenStruct.new(@candidate.properties) do |builder|
+        .row
+          - @candidate.enrollment.enrollment_fields.each do |field|
+            = render "#{field.field_type}_field", field: field, f: builder
+  .row
+    = f.button :submit

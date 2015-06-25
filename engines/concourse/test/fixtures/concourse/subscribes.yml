@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  status: false
+  fee: false
+  value_fee: 9.99
+  project_id: 
+
+two:
+  title: MyString
+  description: MyText
+  status: false
+  fee: false
+  value_fee: 9.99
+  project_id: 
