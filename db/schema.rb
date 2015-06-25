@@ -52,9 +52,12 @@ ActiveRecord::Schema.define(version: 20150624135830) do
     t.date     "date"
     t.boolean  "publish"
     t.string   "thumb"
+    t.string   "photo_author"
+    t.string   "photo_description"
+    t.boolean  "active_photo"
     t.integer  "page_category_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "cms_pages", ["page_category_id"], name: "index_cms_pages_on_page_category_id"
@@ -75,9 +78,12 @@ ActiveRecord::Schema.define(version: 20150624135830) do
     t.boolean  "publish"
     t.boolean  "slider"
     t.string   "thumb"
+    t.string   "photo_author"
+    t.string   "photo_description"
+    t.boolean  "active_photo"
     t.integer  "post_category_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id"

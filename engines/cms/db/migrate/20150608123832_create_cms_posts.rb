@@ -9,7 +9,11 @@ class CreateCmsPosts < ActiveRecord::Migration
       t.boolean :publish
       t.boolean :slider
       t.string  :thumb
+      t.string  :photo_author
+      t.string  :photo_description
+      t.boolean :active_photo
       t.references :post_category, index: true
+
 
 
       t.timestamps null: false

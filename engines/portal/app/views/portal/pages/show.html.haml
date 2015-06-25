@@ -1,0 +1,27 @@
+.landingBkgd
+  .container.main{:role => "main"}
+    .content
+      .main-content.your-council
+        .internal
+          .post-meta
+            / sn_post_meta
+            .post-date
+              = @page.created_at.strftime('%d/%m/%Y')
+          / /sn_post_meta
+          .internal-content
+            %h1.post-header
+              = @page.title
+            %p.img-thumbpost
+              - if @page.active_photo?
+                = image_tag @page.thumb, height:'140px'
+                - if @page.photo_description?
+                  %br
+                  = @page.photo_description.html_safe
+                %br
+                %i
+                  - if @page.photo_author?
+                    Autor:
+                    = @page.photo_author.html_safe
+            = @page.content.html_safe
+            %a.back-to-top.launch.button{"aria-label" => "back to top", :href => "#"} Voltar ao Topo
+            %div{:style => "clear: both;"}
