@@ -30,6 +30,8 @@ Concourse::Engine.routes.draw do
       get 'editar_dados', to: 'candidates#edit'
       get 'logout',       to: 'sessions#destroy'
 
+      get 'meu_cadastro', to: 'enrollment_candidates#show'
+
       resources :projects,  path: '/' do 
         resources :pages,   path: 'paginas'
         resources :enrollments, path: 'inscricoes' do 

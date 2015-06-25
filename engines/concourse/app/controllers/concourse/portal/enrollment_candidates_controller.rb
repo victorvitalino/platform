@@ -1,8 +1,9 @@
 module Concourse
   class Portal::EnrollmentCandidatesController < ApplicationController
     layout 'layouts/concourse/project'
-    before_action :set_project
-    before_action :set_enrollment
+
+    before_action :set_project, except: [:show]
+    before_action :set_enrollment, except: [:show]
     def new
       @candidate = @enrollment.enrollment_candidates.new
     end
@@ -16,6 +17,12 @@ module Concourse
       else
         render action: 'new'
       end
+    end
+
+    def show
+      @candidate = EnrollmentCandidate.find_by_candidate_id(session[:candidate_id])
+      render layout: "layouts/concourse/candidate"
+
     end
 
     private

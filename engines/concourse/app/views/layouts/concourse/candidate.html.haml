@@ -11,7 +11,11 @@
       .row
         .col-md-12
           %h2
-            %strong Concursos Codhab
+            %strong
+              ="Olá, #{@candidate.name}"
+          %h4
+            %small Você está na área do candidato dos concursos codhab
+      %br/
       %hr/
       .row
         .col-md-12
@@ -19,6 +23,9 @@
             %div{:class => "alert alert-#{key}"}= value
       .row
         .col-md-3
+          %h3 
+            %strong Menu Principal
+            %br/
           = render 'layouts/concourse/partials/candidate_sidebar'
         .col-md-9
           = yield
