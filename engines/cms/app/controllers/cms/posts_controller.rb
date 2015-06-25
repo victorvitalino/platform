@@ -58,7 +58,7 @@ module Cms
 
       # Only allow a trusted parameter "white list" through.
       def post_params
-        params.require(:post).permit(:title, :content, :post_category_id, :slider, :thumb, :resume, :date, :publish, :photo_author, :photo_description, :active_photo)
+        params.require(:post).permit(:title, :content, :post_category_id, :slider, :thumb, :resume, :date, :publish, :photo_author, :photo_description, :active_photo, :author, :link)
       end
   end
 end

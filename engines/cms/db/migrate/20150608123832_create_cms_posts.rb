@@ -12,6 +12,8 @@ class CreateCmsPosts < ActiveRecord::Migration
       t.string  :photo_author
       t.string  :photo_description
       t.boolean :active_photo
+      t.string  :author
+      t.string  :link
       t.references :post_category, index: true
 
 

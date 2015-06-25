@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20150624135830) do
     t.string   "photo_author"
     t.string   "photo_description"
     t.boolean  "active_photo"
+    t.string   "author"
+    t.string   "link"
     t.integer  "page_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
@@ -81,6 +83,8 @@ ActiveRecord::Schema.define(version: 20150624135830) do
     t.string   "photo_author"
     t.string   "photo_description"
     t.boolean  "active_photo"
+    t.string   "author"
+    t.string   "link"
     t.integer  "post_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false

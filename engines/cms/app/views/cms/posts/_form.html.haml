@@ -14,7 +14,7 @@
         = f.association :post_category, label: false, prompt: 'Selecione...'
     .row
       .col-md-4
-        = f.label :thumb, as: 'file', class: 'fg-label'
+        = f.label "Imagem", as: 'file', class: 'fg-label'
         = f.input :thumb, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
 
       .col-md-1
@@ -32,6 +32,13 @@
           %label.ts-label{:for => "ts6"} Thumb
           = f.check_box :active_photo, id: 'ts6',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts6"}
+    .row
+      .col-md-6
+        = f.label :author, class: 'fg-label'
+        = f.input :author, label: false, input_html: { placeholder: 'Ex: CODHAB' }
+      .col-md-6
+        = f.label :link, class: 'fg-label'
+        = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
     .row
       .col-md-12
         = f.label :resume, class: 'fg-label'
