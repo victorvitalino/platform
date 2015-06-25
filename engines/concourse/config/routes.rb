@@ -3,10 +3,10 @@ Concourse::Engine.routes.draw do
   constraints SubdomainConstraint do 
     namespace :administrator, path: '/' do 
       resources :projects do 
-        resources :forms
-        resources :form_subscribes
-        resources :form_participations
-        resources :candidate_field
+        resources :enrollments do 
+          resources :enrollment_fields
+        end
+        resources :participations
         resources :pages
         resources :navs do 
           get 'up'
@@ -20,19 +20,24 @@ Concourse::Engine.routes.draw do
 
   constraints DomainConstraint do 
     namespace :portal, path: '/' do 
+      
+      root 'projects#index'
+      
       resources :candidates,    path: 'candidato'
+      resources :sessions,      path: 'acesso'
+      resources :passwords,     path: 'senha'
       
       get 'editar_dados', to: 'candidates#edit'
+      get 'logout',       to: 'sessions#destroy'
 
-      resources :sessions,      path: 'acesso'
-      
-      get 'logout', to: 'sessions#destroy'
+      get 'meu_cadastro', to: 'enrollment_candidates#show'
 
-      resources :passwords,     path: 'senha'
-      resources :projects, path: '/' do 
-        resources :pages
+      resources :projects,  path: '/' do 
+        resources :pages,   path: 'paginas'
+        resources :enrollments, path: 'inscricoes' do 
+          resources :enrollment_candidates, path: 'minha_inscricao'
+        end
       end
-      root 'projects#index'
     end
   end
 end

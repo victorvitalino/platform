@@ -1,7 +1,7 @@
 Person::Engine.routes.draw do
   resources :jobs, path: 'cargos'
   resources :systems, path: 'sistemas' do
-    resources :system_permissions, path:'acoes'
+    resources :system_permissions
   end
   resources :sectors, path: 'setores' do
     resources :branch_lines, path: 'ramais'

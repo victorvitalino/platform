@@ -3,7 +3,7 @@ module Concourse
     layout 'layouts/concourse/candidate', except: [:new, :create]
 
     before_action :set_candidate_session, only: [:edit, :update, :index]
-    before_action :set_candidate, only: [:edit, :update]
+    before_action :set_candidate, only: [:edit, :update, :index]
 
     def index
     end

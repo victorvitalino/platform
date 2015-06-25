@@ -41,7 +41,7 @@
 
 ## user_permissions ##
 
-- 1701: Criar/Editar
+- 1701: Ativar/Desativar
 - 1702: Excluir
 - 1703: Visualizar
 

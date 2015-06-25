@@ -1,7 +1,7 @@
 module Concourse
   class Portal::PasswordsController < ApplicationController
     layout 'layouts/concourse/candidate'
-
+    before_action :set_candidate
     def new
       @password = Password.new
     end
@@ -24,6 +24,10 @@ module Concourse
 
     def set_params
       params.require(:password).permit(:old_password, :new_password, :confirmation_password)
+    end
+
+    def set_candidate
+      @candidate = Candidate.find(session[:candidate_id])
     end
 
  end

@@ -1,9 +1,10 @@
 module Concourse
   class Project < ActiveRecord::Base
     belongs_to :project_category
-    has_many  :candidate_fields
+
     has_many :pages
     has_many :navs
+    has_many :enrollments
         
         
     validates_presence_of :name, :start, :end

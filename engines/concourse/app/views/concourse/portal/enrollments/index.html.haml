@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    %h3 Inscrições
+    
+    %hr/
+.row
+  .col-md-12
+    %table.table.table-bordered.table-condensed
+      %thead
+        %tr
+          %th #
+          %th Nome
+          %th Descrição
+          %th Início
+          %th Fim
+          %th Ação
+    
+      %tbody
+        - @enrollments.each_with_index do |e, i|
+          %tr
+            %td= i + 1
+            %td= e.title
+            %td= e.description
+            %td= e.start.strftime('%d/%m/%Y')
+            %td= e.end.strftime('%d/%m/%Y')
+            %td.col-md-2
+              = link_to "Participar", concourse.new_portal_project_enrollment_enrollment_candidate_path(enrollment_id: e.id), class: 'btn btn-success'
