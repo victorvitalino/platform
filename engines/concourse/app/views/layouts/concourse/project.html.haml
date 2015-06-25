@@ -10,21 +10,18 @@
     .container{'style': 'margin-top:40px;'}
       .row
         .col-md-12
-          %h2
-            %p
-              %b Concursos Codhab
-            %small
-              Área do Candidato
+          = image_tag @project.background.url, width: 450
 
       %hr/
       .row
-        .col-md-12
-          - flash.each do |key, value|
-            %div{:class => "alert alert-#{key}"}= value
-      .row
         .col-md-3
-          = render 'layouts/concourse/partials/candidate_sidebar'
-        .col-md-9
+          = render 'layouts/concourse/partials/project_sidebar'
+        .col-md-8 
           = yield
+      %hr/
+      .row
+        .col-md-12
+          = image_tag('footer-concursos.png', width: '100%')
+
     
     

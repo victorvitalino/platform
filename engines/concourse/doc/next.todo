@@ -1,8 +1,8 @@
 tasks:
-  ☐ inscrição do candidato (dados básicos)
-  ☐ realizar acesso via página de login/logout
-  ☐ alteração de dados (editar)
-  ☐ alteração de senha (editar passwords)
+  ✔ inscrição do candidato (dados básicos) @done (15-06-24 21:30)
+  ✔ realizar acesso via página de login/logout @done (15-06-24 22:06)
+  ✔ alteração de dados (editar) @done (15-06-24 21:30)
+  ✔ alteração de senha (editar passwords) @done (15-06-24 22:33)
   ☐ concursos em aberto (listagem por scope)
   ☐ concursos em previstos (listagem por scope)
   ☐ minhas inscrições (listagem de inscrições para visualização, edição e exclusão de inscrição)

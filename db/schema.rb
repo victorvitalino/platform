@@ -118,22 +118,21 @@ ActiveRecord::Schema.define(version: 20150624135830) do
   add_index "concourse_candidate_uploads", ["candidate_id"], name: "index_concourse_candidate_uploads_on_candidate_id"
 
   create_table "concourse_candidates", force: :cascade do |t|
-    t.integer  "project_id"
     t.string   "name"
     t.string   "cpf"
     t.string   "telphone"
+    t.string   "telphone_optional"
     t.string   "celphone"
     t.integer  "city_id"
     t.integer  "state_id"
     t.string   "email"
     t.string   "password"
-    t.integer  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "last_signed_in"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "concourse_candidates", ["city_id"], name: "index_concourse_candidates_on_city_id"
-  add_index "concourse_candidates", ["project_id"], name: "index_concourse_candidates_on_project_id"
   add_index "concourse_candidates", ["state_id"], name: "index_concourse_candidates_on_state_id"
 
   create_table "concourse_navs", force: :cascade do |t|
@@ -180,8 +179,6 @@ ActiveRecord::Schema.define(version: 20150624135830) do
     t.boolean  "status"
     t.boolean  "subscribe"
     t.boolean  "send_project"
-    t.boolean  "registration_fee"
-    t.float    "fee_value"
     t.integer  "project_category_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false

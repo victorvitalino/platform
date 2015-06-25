@@ -2,6 +2,9 @@
   %b
     Menu Geral
 %ul.list-group
+
+  %li.list-group-item
+    = link_to "Início", concourse.portal_project_path(@project)
   - @project.navs.order(order: :desc).each do |n|  
     %li.list-group-item
       - if n.link_interno?

@@ -2,12 +2,12 @@
   %li.list-group-item= link_to "Concursos em aberto", portal_projects_path(:q => 'open')
   %li.list-group-item= link_to "Concursos em previstos", portal_projects_path(:q => 'waiting')
   %li.divider
-  %li.list-group-item= link_to "Alterar meus dados", edit_portal_candidate_path(1)
-  %li.list-group-item= link_to "Alterar minha senha", edit_portal_password_path(1)
+  %li.list-group-item= link_to "Alterar meus dados", portal_editar_dados_path
+  %li.list-group-item= link_to "Alterar minha senha", new_portal_password_path
   %li.divider
   %li.list-group-item= link_to "Notificações"
   %li.list-group-item= link_to "Emitir segunda via de boleto"
   %li.list-group-item= link_to "Minhas inscrições"
   %li.divider
-  %li.list-group-item= link_to "Sair", portal_sessions_path, method: :delete
+  %li.list-group-item= link_to "Sair", portal_logout_path
   
