@@ -3,6 +3,6 @@ module Cms
 
   	def nav_each(category, limit)
   	end
-  	
+
   end
 end
