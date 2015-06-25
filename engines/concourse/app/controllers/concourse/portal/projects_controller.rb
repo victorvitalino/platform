@@ -1,14 +1,15 @@
 module Concourse
   module Portal
     class ProjectsController < ApplicationController
-      layout 'layouts/concourse/project'
 
       def index
         @projects = Project.all
+        render :layout => 'layouts/concourse/projects'
       end
 
       def show 
         @project = Project.find(params[:id])
+        render :layout => 'layouts/concourse/project'
       end
     end
   end

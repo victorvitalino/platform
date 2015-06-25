@@ -308,6 +308,36 @@ fieldset {
     margin-bottom: 20px
 }
 
+input[type="text"],input[type="password"],input[type="email"],textarea,select {
+    border: 1px
+    solid #ccc;
+    padding: 6px
+    4px;
+    outline: none;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    font: 13px "Roboto", "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #777;
+    margin: 0;
+    width: 210px;
+    display: block;
+    background: #fff
+}
+
+select {
+    padding: 0
+}
+
+input[type="text"]:focus,input[type="password"]:focus,input[type="email"]:focus,textarea:focus {
+    border: 1px
+    solid #aaa;
+    color: #444;
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
+    box-shadow: 0 0 3px rgba(0,0,0,.2)
+}
+
 textarea {
     min-height: 60px
 }
@@ -854,7 +884,7 @@ span {
 
     .topSlider .flex-caption
     .latestDate {
-        background: url(http://stage.acc.bl.ms/common/acc/images/clock-white.png) no-repeat 135px 8px!important
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/clock-white.png) no-repeat 135px 8px!important*/
     }
 
     .topSlider .custom-controls {
@@ -919,7 +949,7 @@ span {
 
     .topSlider .flex-caption
     .latestDate {
-        background: url(http://stage.acc.bl.ms/common/acc/images/clock-white.png) no-repeat 105px 8px !important
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/clock-white.png) no-repeat 105px 8px !important*/
     }
 
     .homeVideoWrapper
@@ -980,7 +1010,7 @@ span {
 
     .topSlider .flex-caption
     .latestDate {
-        background: url(http://stage.acc.bl.ms/common/acc/images/clock-white.png) no-repeat 125px 8px!important
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/clock-white.png) no-repeat 125px 8px!important*/
     }
 
     .flex-direction-nav
@@ -1009,7 +1039,7 @@ span {
 @media only screen and (max-width: 479px) {
     .topSlider .flex-caption
     .latestDate {
-        background:url(http://stage.acc.bl.ms/common/acc/images/clock-white.png) no-repeat 90px 8px !important
+        /*background:url(http://stage.acc.bl.ms/common/acc/images/clock-white.png) no-repeat 90px 8px !important*/
     }
 
     .topSlider .flex-caption
@@ -1535,7 +1565,7 @@ span {
     width: 19px;
     display: inline-block;
     background: red;
-    background-image: url('http://stage.acc.bl.ms/common/acc/images/navarrow.png');
+    /*background-image: url('http://stage.acc.bl.ms/common/acc/images/navarrow.png');*/
     background-repeat: no-repeat;
     background-position: 45% 50%
 }
@@ -1572,7 +1602,7 @@ input {
     height: 24px;
     font-size: 13px;
     font-family: 'Roboto',Arial;
-    background: url('http://stage.acc.bl.ms/common/acc/images/mag.png') 93% 48% no-repeat;
+    /*background: url('http://stage.acc.bl.ms/common/acc/images/mag.png') 93% 48% no-repeat;*/
     padding-left: 12px;
     padding-right: 32px;
     width: 160px;
@@ -1892,7 +1922,7 @@ color: #feaa15 !important
 .sidebar-menu li
 a {
     padding-left: 22px;
-    background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow.png') 3% 50% no-repeat;
+    /*background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow.png') 3% 50% no-repeat;*/
     background-color: #f6f7f7;
     line-height: 35px;
     border-bottom: 1px dotted #dfdede;
@@ -1903,27 +1933,27 @@ a {
 
 .sidebar-menu.habitacao li
 a {
-    background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_green.png') 1% 50% no-repeat
+    /*background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_green.png') 1% 50% no-repeat*/
 }
 
 .sidebar-menu.entidades li
 a {
-    background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_orange.png') 1% 50% no-repeat
+    /*background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_orange.png') 1% 50% no-repeat*/
 }
 
 .sidebar-menu.servicos li
 a {
-    background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_lightblue.png') 1% 50% no-repeat
+    /*background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_lightblue.png') 1% 50% no-repeat*/
 }
 
 .sidebar-menu.editais li
 a {
-    background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_purple.png') 1% 50% no-repeat
+    /*background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_purple.png') 1% 50% no-repeat*/
 }
 
 .sidebar-menu.concursos li
 a {
-    background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_grey.png') 1% 50% no-repeat
+    /*background: url('http://stage.acc.bl.ms/common/acc/images/sidebararrow_grey.png') 1% 50% no-repeat*/
 }
 
 .sidebar-menu li a:hover, .whats-on-sidebar li a:hover {
@@ -1958,7 +1988,7 @@ a {
 .post-date {
     line-height: 35px;
     text-transform: uppercase;
-    background: url('http://stage.acc.bl.ms/common/acc/images/clock.png') 90% 41% no-repeat;
+    /*background: url('http://stage.acc.bl.ms/common/acc/images/clock.png') 90% 41% no-repeat;*/
     font-size: 12px;
     padding: 0px
     35px 2px 0;
@@ -2058,7 +2088,7 @@ a {
 }
 
 .further-information .read-more {
-    background: url('http://stage.acc.bl.ms/common/acc/images/readmorearrow.png') no-repeat;
+    /*background: url('http://stage.acc.bl.ms/common/acc/images/readmorearrow.png') no-repeat;*/
     text-indent: -99999px;
     position: absolute;
     top: 10px;
@@ -2133,7 +2163,6 @@ h3 {
     30px 6px;
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 20px
 }
 
 .social
@@ -2228,7 +2257,7 @@ select {
     width: 96%;
     background-repeat: no-repeat;
     background-position: 99% 50%;
-    background-image: url('http://stage.acc.bl.ms/common/acc/images/selectarrow.png');
+    /*background-image: url('http://stage.acc.bl.ms/common/acc/images/selectarrow.png');*/
     height: 20px;
     padding: 10px
     0px 10px 10px;
@@ -2298,7 +2327,7 @@ select {
     15px;
     font-family: "Roboto",Helvetica,Arial,sans-serif;
     text-transform: uppercase;
-    background-image: url('http://stage.acc.bl.ms/common/acc/images/launch.png');
+    /*background-image: url('http://stage.acc.bl.ms/common/acc/images/launch.png');*/
     background-repeat: no-repeat;
     padding-right: 55px;
     background-position: 91% 48%
@@ -2499,7 +2528,7 @@ a {
 
 .homeFeature .four:first-child
 a {
-    background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow.png) no-repeat 25px 10px;
+    /*background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow.png) no-repeat 25px 10px;*/
     border-bottom: 1px dotted #CDCDCD;
     color: #000;
     display: block;
@@ -2533,7 +2562,7 @@ hr {
 }
 
 .homeNewsDate {
-    background: url(http://stage.acc.bl.ms/common/acc/images/clock.png) no-repeat 90px 8px;
+    /*background: url(http://stage.acc.bl.ms/common/acc/images/clock.png) no-repeat 90px 8px;*/
     border-top: 1px dotted #DDDEDE;
     color: #8397A3;
     display: inline-block;
@@ -2619,7 +2648,7 @@ img {
 }
 
 .latestDate {
-    background: url(http://stage.acc.bl.ms/common/acc/images/clock.png) no-repeat 90px 8px;
+    background: url('/portal/clock.png') no-repeat 90px 8px;
     color: #8397A3;
     float: right;
     font-size: 12px;
@@ -2648,7 +2677,7 @@ a {
     text-decoration: none;
     font-weight: 400;
     color: #222428;
-    background: url("http://stage.acc.bl.ms/common/acc/images/readmorearrow.png") no-repeat scroll 0px 10px rgba(0, 0, 0, 0);
+    /*background: url("http://stage.acc.bl.ms/common/acc/images/readmorearrow.png") no-repeat scroll 0px 10px rgba(0, 0, 0, 0);*/
     border-bottom: 1px dotted #CDCDCD;
     color: #000;
     display: block;
@@ -2769,7 +2798,7 @@ li {
 }
 
 .topSlider .flex-caption {
-    background: url(http://stage.acc.bl.ms/common/acc/images/slider-bkgd.png) repeat;
+    background: url(/portal/slider-bkgd.png) repeat;
     color: #FFF;
     font-size: 18px;
     left: 50%;
@@ -2884,7 +2913,7 @@ a {
 .latestDate {
     margin: -5px 0px 0 0;
     color: #fff;
-    background-image: url(http://stage.acc.bl.ms/common/acc/images/clock-white.png) !important;
+    background-image: url('/portal/clock-white.png') !important;
     background-repeat: no-repeat !important;
     background-position: 90px 8px !important;
     background-size: 19px 20px !important
@@ -3308,7 +3337,7 @@ a.searchName:hover {
 .largeLinksWrapper.editais ul li ,
 .largeLinksWrapper.concursos ul
 li {
-    background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_lightblue.png) no-repeat scroll 3% 50% rgba(0, 0, 0, 0);
+    /*background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_lightblue.png) no-repeat scroll 3% 50% rgba(0, 0, 0, 0);*/
     padding-left: 22px;
     display: block;
     margin: 0
@@ -3317,22 +3346,22 @@ li {
 
 .largeLinksWrapper.habitacao ul
 li {
-    background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_green.png) no-repeat scroll 3% 50% rgba(0, 0, 0, 0)
+    /*background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_green.png) no-repeat scroll 3% 50% rgba(0, 0, 0, 0)*/
 }
 
 .largeLinksWrapper.concursos ul
 li {
-    background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_grey.png) no-repeat scroll 3% 50% rgba(0, 0, 0, 0)
+    /*background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_grey.png) no-repeat scroll 3% 50% rgba(0, 0, 0, 0)*/
 }
 
 .largeLinksWrapper.entidades ul
 li {
-    background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_orange.png) no-repeat scroll 3% 50% rgba(0, 0, 0, 0)
+    /*background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_orange.png) no-repeat scroll 3% 50% rgba(0, 0, 0, 0)*/
 }
 
 .largeLinksWrapper.editais ul
 li {
-    background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_purple.png) no-repeat scroll 3% 50% rgba(0,0,0,0)
+    /*background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_purple.png) no-repeat scroll 3% 50% rgba(0,0,0,0)*/
 }
 
 .galleryLarge {
@@ -3431,7 +3460,7 @@ iframe {
     }
 
     .post-date {
-        background: url('http://stage.acc.bl.ms/common/acc/images/clock_large.png') 90% 41% no-repeat;
+        /*background: url('http://stage.acc.bl.ms/common/acc/images/clock_large.png') 90% 41% no-repeat;*/
         background-size: 19px 20px
     }
 
@@ -3440,7 +3469,7 @@ iframe {
         width: 100%;
         z-index: 100;
         top: 0px;
-        background: url("http://stage.acc.bl.ms/common/acc/images/mobile_top_menu_bg.png") repeat-x top
+        /*background: url("http://stage.acc.bl.ms/common/acc/images/mobile_top_menu_bg.png") repeat-x top*/
     }
 
     .homeLatest .five, .homeFeature
@@ -3565,23 +3594,23 @@ iframe {
     }
 
     #main-menu .main-link.habitacao>a {
-        background: url('http://stage.acc.bl.ms/common/acc/images/greencircle_large.png') no-repeat 7px center / 18px 18px
+        /*background: url('http://stage.acc.bl.ms/common/acc/images/greencircle_large.png') no-repeat 7px center / 18px 18px*/
     }
 
     #main-menu .main-link.entidades>a {
-        background: url('http://stage.acc.bl.ms/common/acc/images/orangecircle_large.png') no-repeat 7px center / 18px 18px
+        /*background: url('http://stage.acc.bl.ms/common/acc/images/orangecircle_large.png') no-repeat 7px center / 18px 18px*/
     }
 
     #main-menu .main-link.servicos>a {
-        background: url('http://stage.acc.bl.ms/common/acc/images/bluecircle_large.png') no-repeat 7px center / 18px 18px
+        /*background: url('http://stage.acc.bl.ms/common/acc/images/bluecircle_large.png') no-repeat 7px center / 18px 18px*/
     }
 
     #main-menu .main-link.editais>a {
-        background: url('http://stage.acc.bl.ms/common/acc/images/purplecircle_large.png') no-repeat 7px center / 18px 18px
+        /*background: url('http://stage.acc.bl.ms/common/acc/images/purplecircle_large.png') no-repeat 7px center / 18px 18px*/
     }
 
     #main-menu .main-link.concursos>a {
-        background: url('http://stage.acc.bl.ms/common/acc/images/graycircle_large.png') no-repeat 7px center / 18px 18px
+        /*background: url('http://stage.acc.bl.ms/common/acc/images/graycircle_large.png') no-repeat 7px center / 18px 18px*/
     }
 
     #main-menu > ul > li:hover .submenu, #main-menu > ul > li .submenu:hover {
@@ -3612,7 +3641,7 @@ iframe {
 
     .search
     input {
-        background: url('http://stage.acc.bl.ms/common/acc/images/mag_large.png') 95% 48% no-repeat #FFF;
+        /*background: url('http://stage.acc.bl.ms/common/acc/images/mag_large.png') 95% 48% no-repeat #FFF;*/
         background-size: 15px 15px
     }
 
@@ -3704,7 +3733,7 @@ iframe {
     .further-information .read-more {
         top: 5px;
         right: 35px;
-        background: url('http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png') no-repeat;
+        /*background: url('http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png') no-repeat;*/
         background-size: 18px 18px
     }
 
@@ -3729,82 +3758,82 @@ iframe {
     }
 
     .launch.button {
-        background-image: url('http://stage.acc.bl.ms/common/acc/images/launch_large.png');
+        /*background-image: url('http://stage.acc.bl.ms/common/acc/images/launch_large.png');*/
         background-size: 30px 20px
     }
 
     .container .landingSmall .five.columns
     h3.entidades {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-orange-mobile.jpg) no-repeat right 10px / 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-orange-mobile.jpg) no-repeat right 10px / 32px 32px;*/
         min-height: 32px
     }
 
     .container .landingSmall .five.columns
     h3.servicos {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-blue-mobile.jpg) no-repeat right 10px / 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-blue-mobile.jpg) no-repeat right 10px / 32px 32px;*/
         min-height: 32px
     }
 
     .container .landingSmall .five.columns
     h3.concursos {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-grey-mobile.jpg) no-repeat right 10px / 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-grey-mobile.jpg) no-repeat right 10px / 32px 32px;*/
         min-height: 32px
     }
 
     .container .landingSmall .five.columns
     h3.editais {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-purple-mobile.jpg) no-repeat right 10px / 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-purple-mobile.jpg) no-repeat right 10px / 32px 32px;*/
         min-height: 32px
     }
 
     .container .landingSmall .five.columns
     h3.habitacao {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-green-mobile.jpg) no-repeat right 10px / 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-green-mobile.jpg) no-repeat right 10px / 32px 32px;*/
         min-height: 32px
     }
 
     .largeLinksWrapper.entidades ul
     li {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-orange-mobile.jpg) no-repeat 0px -12px / 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-orange-mobile.jpg) no-repeat 0px -12px / 32px 32px;*/
         min-height: 32px
     }
 
     .largeLinksWrapper.servicos ul
     li {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-blue-mobile.jpg) no-repeat 0px -12px/ 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-blue-mobile.jpg) no-repeat 0px -12px/ 32px 32px;*/
         min-height: 32px
     }
 
     .largeLinksWrapper.concursos ul
     li {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-grey-mobile.jpg) no-repeat 0px -12px / 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-grey-mobile.jpg) no-repeat 0px -12px / 32px 32px;*/
         min-height: 32px
     }
 
     .largeLinksWrapper.editais ul
     li {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-purple-mobile.jpg) no-repeat 0px -12px / 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-purple-mobile.jpg) no-repeat 0px -12px / 32px 32px;*/
         min-height: 32px
     }
 
     .largeLinksWrapper.habitacao ul
     li {
-        background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-green-mobile.jpg) no-repeat 0px -12px / 32px 32px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-green-mobile.jpg) no-repeat 0px -12px / 32px 32px;*/
         min-height: 32px
     }
 
     .homeFeature .four
     a {
-        background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png) no-repeat scroll 0px 0px / 18px 18px rgba(0, 0, 0, 0)!important
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png) no-repeat scroll 0px 0px / 18px 18px rgba(0, 0, 0, 0)!important*/
     }
 
     .homeFeature .four:first-child
     a {
-        background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png) no-repeat scroll 15px 8px / 18px 18px rgba(0,0,0,0)!important
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png) no-repeat scroll 15px 8px / 18px 18px rgba(0,0,0,0)!important*/
     }
 
     .homeNewsDate,.latestDate {
-        background: url(http://stage.acc.bl.ms/common/acc/images/clock_large.png) no-repeat scroll 90px 41% / 19px 20px rgba(0, 0, 0, 0)
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/clock_large.png) no-repeat scroll 90px 41% / 19px 20px rgba(0, 0, 0, 0)*/
     }
 
     .flexslider .slides
@@ -3957,7 +3986,7 @@ a {
     right: 0px;
     top: 0px;
     content: " ";
-    background: transparent url('http://stage.acc.bl.ms/common/acc/images/icon-new-tab.png') no-repeat 7px 8px;
+    /*background: transparent url('http://stage.acc.bl.ms/common/acc/images/icon-new-tab.png') no-repeat 7px 8px;*/
     width: 15px;
     height: 15px;
     right: 0px;
@@ -4028,7 +4057,7 @@ a {
 
 #top-nav nav ul ul
 a {
-    border-bottom: 1px dotted #CCC !important;
+    border-bottom: 1px dotted #CCC;
     color: #303236 !important;
     display: inline-block;
     line-height: 1.4em;
@@ -4086,7 +4115,7 @@ td {
 }
 
 .sidebar-menu a.remote-link:after {
-    background: url("http://stage.acc.bl.ms/common/acc/images/icon-new-tab-dark.png") no-repeat scroll 100% 0 rgba(0, 0, 0, 0);
+    /*background: url("http://stage.acc.bl.ms/common/acc/images/icon-new-tab-dark.png") no-repeat scroll 100% 0 rgba(0, 0, 0, 0);*/
     display: inline-block;
     width: 15px;
     height: 15px;
@@ -4139,7 +4168,7 @@ a {
 
 .whats-on-sidebar li
 a {
-    background: url("http://stage.acc.bl.ms/common/acc/images/sidebararrow_grey.png") no-repeat scroll 1% 50% rgba(0, 0, 0, 0);
+    /*background: url("http://stage.acc.bl.ms/common/acc/images/sidebararrow_grey.png") no-repeat scroll 1% 50% rgba(0, 0, 0, 0);*/
     border-bottom: 1px dotted #DFDEDE;
     color: #000;
     display: block;
@@ -5552,7 +5581,7 @@ p {
 }
 
 .main-content h2.toggle-heading {
-    background: url(http://stage.acc.bl.ms/common/acc/images/accord-down.png) no-repeat right 6px;
+    /*background: url(accord-down.png) no-repeat right 6px;*/
     padding-right: 50px
 }
 
@@ -5561,7 +5590,7 @@ p {
 }
 
 .main-content h2.toggle-heading.is-open {
-    background: url(http://stage.acc.bl.ms/common/acc/images/accord-up.png) no-repeat right 6px;
+    /*background: url(http://stage.acc.bl.ms/common/acc/images/accord-up.png) no-repeat right 6px;*/
     padding-right: 50px
 }
 
@@ -5623,7 +5652,7 @@ span {
 }
 
 #btn-report-email {
-    background: #fff url('http://stage.acc.bl.ms/common/acc/images/bin.png') no-repeat 0px 5px;
+    /*background: #fff url('http://stage.acc.bl.ms/common/acc/images/bin.png') no-repeat 0px 5px;*/
     display: inline-block;
     width: 145px;
     height: 45px;
@@ -5885,7 +5914,7 @@ iframe {
 .xmas-2014 .bottom-footer a > .xmas-hat,
 .xmas-2014 .link-logo .xmas-hat {
     display: block;
-    background: transparent url('http://stage.acc.bl.ms/common/acc/images/santa-hat-2.png') no-repeat 50% 50%;
+    /*background: transparent url('http://stage.acc.bl.ms/common/acc/images/santa-hat-2.png') no-repeat 50% 50%;*/
     background-size: 85%;
     width: 42px;
     height: 33px;
@@ -6243,7 +6272,7 @@ span.label {
 
     .homeFeature .four:first-child
     a {
-        background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow.png) no-repeat 20px 8px;
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow.png) no-repeat 20px 8px;*/
         padding: 7px
         5% 8px 23%
     }
@@ -6514,7 +6543,7 @@ span.label {
 
     .homeFeature .four:first-child
     a {
-        background: url("http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png") no-repeat scroll 35px 8px / 18px 18px rgba(0, 0, 0, 0) !important
+        /*background: url("http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png") no-repeat scroll 35px 8px / 18px 18px rgba(0, 0, 0, 0) !important*/
     }
 
     .internal-content article
@@ -6559,7 +6588,7 @@ span.label {
     a {
         padding: 12px
         5% 12px 70px;
-        background: url("http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png") no-repeat scroll 35px 15px / 18px 18px rgba(0, 0, 0, 0) !important
+        /*background: url("http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png") no-repeat scroll 35px 15px / 18px 18px rgba(0, 0, 0, 0) !important*/
     }
 
     .homeFeature .four p,
@@ -6703,7 +6732,7 @@ span.label {
     }
 
     a.mobile.menubutton {
-        background-image: url("../img/menu-button.png");
+        background-image: url("/menu-button.png");
         background-size: 50px 100px;
         background-position: 0 0;
         background-repeat: no-repeat;
@@ -6719,7 +6748,7 @@ span.label {
     }
 
     a.mobile.menubutton:hover {
-        background: url("../img/menu-button.png") 0 -50px / 50px 100px no-repeat
+        background: url("/menu-button.png") 0 -50px / 50px 100px no-repeat
     }
 
     .social .follow-company {
@@ -7031,7 +7060,7 @@ body[data-nav-class="new-nav"] button[data-value="new-nav"] {
 
     .homeFeature .four:first-child
     a {
-        background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png) no-repeat scroll 35px 8px / 18px 18px rgba(0, 0, 0, 0)!important
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/readmorearrow_large.png) no-repeat scroll 35px 8px / 18px 18px rgba(0, 0, 0, 0)!important*/
     }
 
     .homeLatest .five,

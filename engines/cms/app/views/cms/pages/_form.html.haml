@@ -10,13 +10,25 @@
         = f.input :content, label: false, input_html: {class: 'redactor'}
     .row
       .col-md-6
+        = f.label :page_category, class: 'fg-label'
+        = f.association :page_category, label: false, prompt: 'Selecione...'    
+      .col-md-3
         .toggle-switch{"data-ts-color" => "blue"}
           %label.ts-label{:for => "ts4"} Publicado
           = f.check_box :publish, id: 'ts4',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts4"}
+      .col-md-3
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label.ts-label{:for => "ts5"} Thumb
+          = f.check_box :active_photo, id: 'ts5',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "ts5"}
+    .row
       .col-md-6
-        = f.label :page_category, class: 'fg-label'
-        = f.association :page_category, label: false, prompt: 'Selecione...'
+        = f.label :photo_description, class: 'fg-label'
+        = f.input :photo_description, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
+      .col-md-6
+        = f.label :photo_author, class: 'fg-label'
+        = f.input :photo_author, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'

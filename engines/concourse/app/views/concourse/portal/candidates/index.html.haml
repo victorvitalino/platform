@@ -9,7 +9,8 @@
 %br/
 .row
   %h4
-    %b Meus concursos
+    %b Minhas inscrições
+  %br/
   %table.table
     %thead
       %tr
@@ -17,5 +18,16 @@
         %th Concurso
         %th Ínicio
         %th Fim
+        %th Status
         %th Informações
         %th Meu Cadastro
+    %tbody
+      - @candidate.enrollment_candidates.each_with_index do |c, i|
+        %tr
+          %td= i + 1
+          %td= c.enrollment.project.name
+          %td= c.enrollment.project.start.strftime('%d/%m/%Y')
+          %td= c.enrollment.project.end.strftime('%d/%m/%Y')
+          %td
+          %td= link_to "detalhes",  "#", class: 'btn btn-success btn-sm'
+          %td= link_to "verificar", "#", class: 'btn btn-success btn-sm'

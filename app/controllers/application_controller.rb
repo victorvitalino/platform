@@ -7,4 +7,5 @@ class ApplicationController < ActionController::Base
 		  redirect_to('/404')
 		end
   protect_from_forgery with: :exception
+  include Pundit
 end

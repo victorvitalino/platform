@@ -9,7 +9,7 @@ tasks:
   ☐ página inicial com minhas inscrições e em que estado está 
 
 concurso:
-  ☐ listagem de menus guiando páginas
+  ✔ listagem de menus guiando páginas @done (15-06-25 09:11)
   ☐ inscrições do concurso (separando a lógica)
   ☐ inscrição do candidato ao concurso
   ☐ listagem de inscrições por tipo e situação

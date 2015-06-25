@@ -1,0 +1,15 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Extranet
+    = stylesheet_link_tag 'portal', media: 'all'
+    = javascript_include_tag 'portal', media: 'all'
+    = csrf_meta_tags
+  %body
+    = render 'layouts/portal/partials/nav'
+    .container{'style': 'margin-top:40px;'}
+      = yield
+      = image_tag('footer-concursos.png', width: '100%')
+
+    
+    

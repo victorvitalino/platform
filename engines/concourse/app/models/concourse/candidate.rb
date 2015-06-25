@@ -4,6 +4,8 @@ module Concourse
     belongs_to :city
     belongs_to :state
 
+    has_many :enrollment_candidates
+    
     attr_accessor :password_confirmation
 
     validates_presence_of :name, :cpf, :email, :telphone

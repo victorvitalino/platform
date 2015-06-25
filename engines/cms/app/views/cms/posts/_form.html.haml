@@ -27,14 +27,25 @@
           %label.ts-label{:for => "ts5"} Publicado
           = f.check_box :publish, id: 'ts5',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts5"}
+      .col-md-1
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label.ts-label{:for => "ts6"} Thumb
+          = f.check_box :active_photo, id: 'ts6',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "ts6"}
     .row
       .col-md-12
         = f.label :resume, class: 'fg-label'
         = f.input :resume, label: false, input_html: { class: 'redactor' }
     .row
-      .col-md-12
+      .col-md-4
         = f.label :date, as: 'string', class: 'fg-label'
         = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@post.date) ? localize(f.object.date) : nil}
+      .col-md-4
+        = f.label :photo_description, class: 'fg-label'
+        = f.input :photo_description, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
+      .col-md-4
+        = f.label :photo_author, class: 'fg-label'
+        = f.input :photo_author, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
