@@ -2,7 +2,7 @@
   .card-header.ch-alt
     %h2
       Usuários
-      = link_to 'novo usuário', new_user_path, class: 'btn btn-success pull-right' if policy(User, namespace: Person).create?
+      = link_to 'novo usuário', new_user_path, class: 'btn btn-success pull-right' if policy(:user, namespace: Person).create?
       %small Listagem de Usuários
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table.table.table-hover.table-bordered

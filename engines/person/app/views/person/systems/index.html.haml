@@ -2,7 +2,7 @@
   .card-header.ch-alt
     %h2
       Sistema
-      = link_to 'novo sistema', new_system_path, remote: true, class: 'btn btn-success pull-right'
+      = link_to 'novo sistema', new_system_path, remote: true, class: 'btn btn-success pull-right' if policy(:system, namespace: Person).create?
       %small Listagem de sistemas
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table.table.table-hover.table-bordered

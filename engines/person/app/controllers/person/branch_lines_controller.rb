@@ -8,7 +8,6 @@ module Person
 		before_action :set_branch_line, only: [:show,:edit, :destroy, :update]
 
 		def index
-
 		end
 
 		def show

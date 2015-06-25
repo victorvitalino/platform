@@ -1,5 +1,5 @@
-- if @property.errors.any?
+- if @job.errors.any?
 	$('#modal .modal-content').html("#{escape_javascript(render 'new')}")
 - else
 	$('#modal').modal('hide')
-	$('.index-property').html("#{escape_javascript(render 'index')}")
+	$('.index-job').html("#{escape_javascript(render 'index')}")

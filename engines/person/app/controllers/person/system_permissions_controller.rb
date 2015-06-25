@@ -8,25 +8,23 @@ module Person
 		before_action :set_system_permission, only: [:destroy, ]
 
 		def index
-			
+			authorize @system_permissions
 		end
-
-
 
 		def new
 			@system_permission = @system.system_permission.new
-			
+			authorize @system_permission
 		end
 
 		def create
-			
 			@system_permission = @system.system_permission.new(system_permission_params)
+			authorize @system_permission
 			@system_permission.save
 		end
 
 
 		def destroy
-			
+			authorize @system_permission
 			if @system_permission.destroy
 			  redirect_to action: 'index'
 			end
