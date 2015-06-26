@@ -1,19 +1,8 @@
 tasks:
-  ✔ inscrição do candidato (dados básicos) @done (15-06-24 21:30)
-  ✔ realizar acesso via página de login/logout @done (15-06-24 22:06)
-  ✔ alteração de dados (editar) @done (15-06-24 21:30)
-  ✔ alteração de senha (editar passwords) @done (15-06-24 22:33)
-  ☐ concursos em aberto (listagem por scope)
-  ☐ concursos em previstos (listagem por scope)
-  ☐ minhas inscrições (listagem de inscrições para visualização, edição e exclusão de inscrição)
-  ☐ página inicial com minhas inscrições e em que estado está 
-
-concurso:
-  ✔ listagem de menus guiando páginas @done (15-06-25 09:11)
-  ☐ inscrições do concurso (separando a lógica)
-  ☐ inscrição do candidato ao concurso
-  ☐ listagem de inscrições por tipo e situação
-  ☐ atualização de situação
-  ☐ inserção de observações internas e para o candidato
-  ☐ formulários de envio de projeto do concurso
-
+  ☐ usuário realiza a inscrição no concurso e receber em sua lista de participações dados sobre sua participação
+  ☐ usuário assim que homologado envia projeto baseado no formulários de projetos do concurso
+  ☐ usuário extranet gerencia candidatos participantes do concurso
+  ☐ usuário extranet homologa ou não candidato
+  ☐ usuário extranet inclui uma observação interna ou externa para candidato
+  ☐ candidato tem mensagens listadas em seu perfil
+  

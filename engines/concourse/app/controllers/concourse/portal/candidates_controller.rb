@@ -26,6 +26,7 @@ module Concourse
     def update
        if params[:password].blank?
             params.delete(:password)
+            params.delete(:cpf)
             params.delete(:password_confirmation) if params[:password_confirmation].blank?
        end
        
