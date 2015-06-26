@@ -5,7 +5,7 @@ module Person
 		layout 'layouts/material'
 		before_action :set_system
 		before_action :set_system_permissions, only: [:index, :new,:create, :destroy]
-		before_action :set_system_permission, only: [:destroy, ]
+		before_action :set_system_permission, only: [:destroy]
 
 		def index
 			authorize @system_permissions
@@ -19,15 +19,13 @@ module Person
 		def create
 			@system_permission = @system.system_permission.new(system_permission_params)
 			authorize @system_permission
-			@system_permission.save
+			@system_permission.save			
 		end
 
 
 		def destroy
 			authorize @system_permission
-			if @system_permission.destroy
-			  redirect_to action: 'index'
-			end
+			@system_permission.destroy
 		end
 
 		private

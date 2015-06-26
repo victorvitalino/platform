@@ -33,9 +33,9 @@ namespace :permissions do
 		])
 		#criação da permissões do controller system_permissions
 		@system_permission = Person::SystemPermission.create([
-		  { action: "Permissões de sistemas - criar/editar", 	 	code: 1501, status: true, system_id: @system.id },
-		  { action: "Permissões de sistemas - excluir", 				code: 1502, status: true, system_id: @system.id },
-		  { action: "Permissões de sistemas - visualizar",			code: 1503, status: true, system_id: @system.id }
+		  { action: "Permissões - criar/editar", 	 	code: 1501, status: true, system_id: @system.id },
+		  { action: "Permissões - excluir", 				code: 1502, status: true, system_id: @system.id },
+		  { action: "Permissões - visualizar",			code: 1503, status: true, system_id: @system.id }
 		])
 		#criação da permissão do controller users
 		@system_permission = Person::SystemPermission.create([
@@ -45,9 +45,9 @@ namespace :permissions do
 		])
 		#criação da permissões de controller user_permissions
 		@system_permission = Person::SystemPermission.create([
-		  { action: "Permissões de Usuários - criar/editar", 	 	code: 1701, status: true, system_id: @system.id },
-		  { action: "Permissões de Usuários - excluir", 				code: 1702, status: true, system_id: @system.id },
-		  { action: "Permissões de Usuários - visualizar",			code: 1703, status: true, system_id: @system.id }
+		  { action: "Permissões do Usuários - criar/editar", 	 	code: 1701, status: true, system_id: @system.id },
+		  { action: "Permissões do Usuários - excluir", 				code: 1702, status: true, system_id: @system.id },
+		  { action: "Permissões do Usuários - visualizar",			code: 1703, status: true, system_id: @system.id }
 		])
 
 
