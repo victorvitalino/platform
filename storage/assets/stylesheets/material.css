@@ -7,3 +7,6 @@
 *= require material/css/app.min.2
 *= require redactor-rails
 */
+.redactor-editor,
+.redactor-box,
+.redactor-box textarea{z-index: 5!important;}

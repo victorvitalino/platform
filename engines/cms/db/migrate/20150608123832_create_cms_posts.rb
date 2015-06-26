@@ -15,6 +15,7 @@ class CreateCmsPosts < ActiveRecord::Migration
       t.string  :author
       t.string  :link
       t.references :post_category, index: true
+      t.string  :thumbnail
 
 
 
