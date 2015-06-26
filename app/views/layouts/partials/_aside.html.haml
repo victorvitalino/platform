@@ -20,19 +20,19 @@
                   .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
                     = u.name[0]
               .media-body
-                .lv-title 
+                .lv-title
                   = u.name
-                %small.lv-small 
+                %small.lv-small
                   Último acesso
                   %br/
                   = u.last_sign_in_at.strftime('%d/%m/%Y %H:%M')
-       
+
     #online.tab-pane.fade{:role => "tabpanel"}
       .listview
         %a.lv-item{:href => ""}
           .media
             .pull-left.p-relative
-              %img.lv-img-sm{:alt => "", :src => "img/profile-pics/2.jpg"}/
+              / %img.lv-img-sm{:alt => "", :src => "img/profile-pics/2.jpg"}/
               %i.chat-status-busy
             .media-body
               .lv-title Jonathan Morris

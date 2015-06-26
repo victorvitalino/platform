@@ -52,9 +52,15 @@ ActiveRecord::Schema.define(version: 20150625123823) do
     t.date     "date"
     t.boolean  "publish"
     t.string   "thumb"
+    t.string   "photo_author"
+    t.string   "photo_description"
+    t.boolean  "active_photo"
+    t.string   "author"
+    t.string   "link"
+    t.string   "thumbnail"
     t.integer  "page_category_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "cms_pages", ["page_category_id"], name: "index_cms_pages_on_page_category_id"
@@ -75,47 +81,18 @@ ActiveRecord::Schema.define(version: 20150625123823) do
     t.boolean  "publish"
     t.boolean  "slider"
     t.string   "thumb"
+    t.string   "photo_author"
+    t.string   "photo_description"
+    t.boolean  "active_photo"
+    t.string   "author"
+    t.string   "link"
     t.integer  "post_category_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "thumbnail"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id"
-
-  create_table "concourse_candidate_fields", force: :cascade do |t|
-    t.integer  "project_id"
-    t.string   "name"
-    t.string   "field_type"
-    t.boolean  "required"
-    t.boolean  "unique"
-    t.string   "regular_expression"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  add_index "concourse_candidate_fields", ["project_id"], name: "index_concourse_candidate_fields_on_project_id"
-
-  create_table "concourse_candidate_informations", force: :cascade do |t|
-    t.integer  "candidate_id"
-    t.string   "field_type"
-    t.string   "field_name"
-    t.text     "field_value"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "concourse_candidate_informations", ["candidate_id"], name: "index_concourse_candidate_informations_on_candidate_id"
-
-  create_table "concourse_candidate_uploads", force: :cascade do |t|
-    t.integer  "candidate_id"
-    t.string   "field_type"
-    t.string   "field_name"
-    t.string   "field_value"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "concourse_candidate_uploads", ["candidate_id"], name: "index_concourse_candidate_uploads_on_candidate_id"
 
   create_table "concourse_candidates", force: :cascade do |t|
     t.string   "name"

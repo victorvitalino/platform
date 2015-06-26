@@ -10,8 +10,8 @@
         = f.input :content, label: false, input_html: {class: 'redactor'}
     .row
       .col-md-3
-        = f.label "Imagem", as: 'file', class: 'fg-label'
-        = f.input :thumb, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
+        = f.label "Imagem Interna", as: 'file', class: 'fg-label'
+        = f.input :thumbnail, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
       .col-md-3
         = f.label :page_category, class: 'fg-label'
         = f.association :page_category, label: false, prompt: 'Selecione...'
