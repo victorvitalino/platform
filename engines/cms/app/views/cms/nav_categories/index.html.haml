@@ -2,7 +2,7 @@
   .card-header.ch-alt
     %h2
       Menus
-      = link_to 'Nova Categoria', new_nav_category_path, class: 'btn btn-success pull-right'
+      = link_to 'Nova Categoria', new_nav_category_path, class: 'btn btn-success pull-right' if policy(:NavCategory, namespace: Cms).create?
       %small Listagem de páginas
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
@@ -20,5 +20,5 @@
             %td= nav.name
             %td= nav.status
             %td.col-md-2
-              = link_to '', edit_nav_category_path(nav), class: 'md md-edit btn btn-primary'
-              = link_to '', nav, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+              = link_to '', edit_nav_category_path(nav), class: 'md md-edit btn btn-primary' if policy(:NavCategory, namespace: Cms).update?
+              = link_to '', nav, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }if policy(:NavCategory, namespace: Cms).destroy?

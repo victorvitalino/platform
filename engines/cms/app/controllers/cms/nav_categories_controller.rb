@@ -7,6 +7,7 @@ module Cms
     # GET /nav_categories
     def index
       @nav_categories = NavCategory.all
+      authorize @nav_categories
     end
 
     # GET /nav_categories/1
@@ -16,6 +17,7 @@ module Cms
     # GET /nav_categories/new
     def new
       @nav_category = NavCategory.new
+      authorize @nav_category
     end
 
     # GET /nav_categories/1/edit
@@ -25,7 +27,7 @@ module Cms
     # POST /nav_categories
     def create
       @nav_category = NavCategory.new(nav_category_params)
-
+      authorize @nav_category
       if @nav_category.save
         redirect_to action: 'index'
       else
@@ -35,6 +37,7 @@ module Cms
 
     # PATCH/PUT /nav_categories/1
     def update
+      authorize @nav_category
       if @nav_category.update(nav_category_params)
         redirect_to action: 'index'
       else
@@ -44,6 +47,7 @@ module Cms
 
     # DELETE /nav_categories/1
     def destroy
+      authorize @nav_category
       @nav_category.destroy
       redirect_to nav_categories_url, notice: 'Nav category was successfully destroyed.'
     end

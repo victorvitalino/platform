@@ -7,6 +7,7 @@ module Cms
     # GET /page_categories
     def index
       @page_categories = PageCategory.all
+      authorize @page_categories
     end
 
     # GET /page_categories/1
@@ -16,6 +17,7 @@ module Cms
     # GET /page_categories/new
     def new
       @page_category = PageCategory.new
+      authorize @page_category
     end
 
     # GET /page_categories/1/edit
@@ -25,7 +27,7 @@ module Cms
     # POST /page_categories
     def create
       @page_category = PageCategory.new(page_category_params)
-
+      authorize @page_category
       if @page_category.save
         redirect_to action: 'index'
       else
@@ -35,6 +37,7 @@ module Cms
 
     # PATCH/PUT /page_categories/1
     def update
+      authorize @page_category
       if @page_category.update(page_category_params)
         redirect_to action: 'index'
       else
@@ -44,6 +47,7 @@ module Cms
 
     # DELETE /page_categories/1
     def destroy
+      authorize @page_category
       @page_category.destroy
       redirect_to page_categories_url, notice: 'Page category was successfully destroyed.'
     end
