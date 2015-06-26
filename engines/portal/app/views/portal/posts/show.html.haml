@@ -4,27 +4,30 @@
       .main-content.your-council
         .internal
           .post-meta
+            .post-author
+              - if @post.author?
+                = @post.author
+                - if @post.link?
+                  = link_to @post.label_link, @post.link, target: "_BLANK"
+                - else
+                  = @post.label_link
             .post-date
               = @post.date.strftime('%d/%m/%Y')
           / /sn_post_meta
           .internal-content
             %h1.post-header
-              = @post.title
+              Foto que tirei em um dia feliz :)
             %p.img-thumbpost
               - if @post.active_photo?
-                = image_tag @post.thumb, height:'140px'
-                %br
-                %i.autor-fots
-                  - if @post.photo_author?
+                - if @post.photo_author?
+                  %strong
                     Foto:
-                    = @post.photo_author.html_safe\
-                - if @post.photo_description?
-                  %br
-                  %i.desc-fots
-                    = @post.photo_description.html_safe
+                    = @post.photo_author.html_safe
+                  = image_tag @post.thumbnail, width:'500px', height:'300px'
+                  - if @post.photo_description?
+                    %br
+                    %i.desc-fots
+                      = @post.photo_description.html_safe
             = @post.content.html_safe
-            - if @post.author?
-              Fonte:
-              = link_to @post.author, @post.link, target: "_BLANK"
             %a.back-to-top.launch.button{"aria-label" => "back to top", :href => "#"} Voltar ao Topo
             %div{:style => "clear: both;"}

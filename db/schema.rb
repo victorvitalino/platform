@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150625123823) do
     t.string   "author"
     t.string   "link"
     t.string   "thumbnail"
+    t.string   "label_link"
     t.integer  "page_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150625123823) do
     t.string   "link"
     t.integer  "post_category_id"
     t.string   "thumbnail"
+    t.string   "label_link"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end

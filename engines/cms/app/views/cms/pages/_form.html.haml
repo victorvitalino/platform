@@ -26,10 +26,13 @@
           = f.check_box :active_photo, id: 'ts5',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts5"}
     .row
-      .col-md-6
+      .col-md-4
         = f.label :author, class: 'fg-label'
         = f.input :author, label: false, input_html: { placeholder: 'Ex: CODHAB' }
-      .col-md-6
+      .col-md-4
+        = f.label 'Titulo do link', class: 'fg-label'
+        = f.input :label_link, label: false, input_html: { placeholder: 'Digite o rótulo do link' }
+      .col-md-4
         = f.label :link, class: 'fg-label'
         = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
     .row

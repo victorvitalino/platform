@@ -47,10 +47,13 @@
           = f.check_box :active_photo, id: 'ts6',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts6"}
     .row
-      .col-md-6
+      .col-md-4
         = f.label :author, class: 'fg-label'
         = f.input :author, label: false, input_html: { placeholder: 'Ex: CODHAB' }
-      .col-md-6
+      .col-md-4
+        = f.label 'Titulo do link', class: 'fg-label'
+        = f.input :label_link, label: false, input_html: { placeholder: 'Digite o rótulo do link' }
+      .col-md-4
         = f.label :link, class: 'fg-label'
         = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
     .row
@@ -58,13 +61,13 @@
         = f.label :resume, class: 'fg-label'
         = f.input :resume, label: false, input_html: { class: 'redactor' }
     .row
-      .col-md-4
+      .col-md-3
         = f.label :date, as: 'string', class: 'fg-label'
         = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@post.date) ? localize(f.object.date) : nil}
-      .col-md-4
+      .col-md-3
         = f.label :photo_description, class: 'fg-label'
         = f.input :photo_description, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
-      .col-md-4
+      .col-md-3
         = f.label :photo_author, class: 'fg-label'
         = f.input :photo_author, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
     .row

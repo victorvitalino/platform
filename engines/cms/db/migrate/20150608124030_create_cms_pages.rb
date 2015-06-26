@@ -13,6 +13,7 @@ class CreateCmsPages < ActiveRecord::Migration
       t.string  :author
       t.string  :link
       t.string  :thumbnail
+      t.string  :label_link
 
     	t.references :page_category, index: true
       t.timestamps null: false
