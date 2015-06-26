@@ -9,9 +9,12 @@
         = f.label :content, class: 'fg-label'
         = f.input :content, label: false, input_html: {class: 'redactor'}
     .row
-      .col-md-6
+      .col-md-3
+        = f.label "Imagem", as: 'file', class: 'fg-label'
+        = f.input :thumb, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
+      .col-md-3
         = f.label :page_category, class: 'fg-label'
-        = f.association :page_category, label: false, prompt: 'Selecione...'    
+        = f.association :page_category, label: false, prompt: 'Selecione...'
       .col-md-3
         .toggle-switch{"data-ts-color" => "blue"}
           %label.ts-label{:for => "ts4"} Publicado
@@ -22,6 +25,13 @@
           %label.ts-label{:for => "ts5"} Thumb
           = f.check_box :active_photo, id: 'ts5',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts5"}
+    .row
+      .col-md-6
+        = f.label :author, class: 'fg-label'
+        = f.input :author, label: false, input_html: { placeholder: 'Ex: CODHAB' }
+      .col-md-6
+        = f.label :link, class: 'fg-label'
+        = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
     .row
       .col-md-6
         = f.label :photo_description, class: 'fg-label'

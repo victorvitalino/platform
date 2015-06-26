@@ -4,7 +4,6 @@
       .main-content.your-council
         .internal
           .post-meta
-            / sn_post_meta
             .post-date
               = @post.date.strftime('%d/%m/%Y')
           / /sn_post_meta
@@ -14,14 +13,18 @@
             %p.img-thumbpost
               - if @post.active_photo?
                 = image_tag @post.thumb, height:'140px'
+                %br
+                %i.autor-fots
+                  - if @post.photo_author?
+                    Foto:
+                    = @post.photo_author.html_safe\
                 - if @post.photo_description?
                   %br
-                  = @post.photo_description.html_safe
-                %br
-                %i
-                  - if @post.photo_author?
-                    Autor:
-                    = @post.photo_author.html_safe
+                  %i.desc-fots
+                    = @post.photo_description.html_safe
             = @post.content.html_safe
+            - if @post.author?
+              Fonte:
+              = link_to @post.author, @post.link, target: "_BLANK"
             %a.back-to-top.launch.button{"aria-label" => "back to top", :href => "#"} Voltar ao Topo
             %div{:style => "clear: both;"}
