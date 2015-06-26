@@ -8,6 +8,7 @@ module Person
 		before_action :set_branch_line, only: [:show,:edit, :destroy, :update]
 
 		def index
+			authorize @branch_lines
 		end
 
 		def show
@@ -18,15 +19,18 @@ module Person
 
 		def new
 			@branch_line = @sector.branch_line.new
+			authorize @branch_line
 		end
 
 		def create
 			@branch_line = @sector.branch_line.new(branch_line_params)
+			authorize @branch_line
 			@branch_line.save
 
 		end
 
 		def destroy
+			authorize @branch_line
 			if @branch_line.destroy
 
 			end
