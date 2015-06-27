@@ -41,9 +41,6 @@ Eu como candidato quero...
 - eu como candidato quero realizar acesso a área do candidato dos concursos
   - acesso com usuario e senha
 
-- eu como candidato quero ler mensagens sobre minha inscrição dentro do portal dos concursos
-  - ler e responder mensagens sobre sua inscrição ou participação
-
 - eu como candidato quero visualizar os concursos
   - visualização a a partir dos ativos
 

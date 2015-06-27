@@ -1,6 +1,7 @@
 module Concourse
   class Participation < ActiveRecord::Base
     belongs_to :project
+    has_many :participation_fields
 
     default_scope { where(status: true)}
         

@@ -207,11 +207,9 @@ ActiveRecord::Schema.define(version: 20150627142829) do
   create_table "concourse_participation_fields", force: :cascade do |t|
     t.integer  "participation_id"
     t.string   "name"
+    t.string   "code"
     t.integer  "field_type"
     t.boolean  "required"
-    t.boolean  "unique"
-    t.integer  "length"
-    t.string   "validate_regex"
     t.boolean  "status"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
