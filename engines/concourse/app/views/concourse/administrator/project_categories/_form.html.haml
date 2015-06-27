@@ -8,15 +8,14 @@
             = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
         .row
           .col-md-6
-            = f.label :status, class: 'fg-label'
             .checkbox.m-b-15
               %label
                 = f.check_box :status
                 %i.input-helper
                 Categoria ativa
+        %hr/
         .row
           .col-md-12
-            = f.button :button, class: 'btn btn-success' do
-              Salvar
+            = f.button :submit, class: 'btn btn-success'
             = link_to 'Voltar', concourse.administrator_project_categories_path , class: 'btn btn-default'
          

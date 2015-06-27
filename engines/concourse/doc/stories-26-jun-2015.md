@@ -17,7 +17,7 @@ Eu como usuário quero...
 - eu como usuário quero gerenciar inscrições do projeto
   - inscrições validas por data de inicio e data de fim
 
-- eu como usuário quero gerenciar os campos dos formulários de inscriçẽos do meu projeto
+- eu como usuário quero gerenciar os campos dos formulários de inscrições do meu projeto
   - campos validos com seu tipo e validações
   - campos com código unico e sem caracateres especiais
 

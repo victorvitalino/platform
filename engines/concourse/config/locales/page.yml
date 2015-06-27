@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/page': 'Página'
+    attributes:
+      'concourse/page':
+        title: "Título"
+        content: "Conteúdo"
+        status: 'Status'

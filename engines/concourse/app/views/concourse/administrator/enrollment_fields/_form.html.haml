@@ -8,22 +8,16 @@
       = f.label :field_type
       = f.input :field_type,  as: 'select', collection: Concourse::EnrollmentField.field_types.keys.to_a, label: false, prompt: 'selecione...'
     .col-md-6
-      = f.label :length
-      = f.input :length, label: false
+      = f.label :code
+      = f.input :code, label: false
   .row
-    .col-md-4
+    .col-md-6
       .checkbox.m-b-15
         %label
           = f.check_box :required
           %i.input-helper
             Obrigatório
-    .col-md-4
-      .checkbox.m-b-15
-        %label
-          = f.check_box :unique
-          %i.input-helper
-            Único
-    .col-md-4
+    .col-md-6
       .checkbox.m-b-15
         %label
           = f.check_box :status

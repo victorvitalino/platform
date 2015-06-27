@@ -1,6 +1,6 @@
 .block-header
   %span.pull-right
-    = link_to "novo concurso", "#", class: 'btn btn-success'
+    = link_to "novo concurso", new_administrator_project_path, class: 'btn btn-success'
   %h2 Concursos 
 .row
   - @projects.each do |p|

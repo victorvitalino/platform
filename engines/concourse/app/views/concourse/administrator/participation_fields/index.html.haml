@@ -1,0 +1,26 @@
+.block-header
+  %h2 
+    %b 
+      = link_to "#{@project.name} ", administrator_projects_path
+    \/  Tipos de Participação
+.card
+  .card-header.ch-alt
+    %span.pull-right
+      = link_to "ir para tipos de inscrição", concourse.administrator_project_enrollments_path(@project), class: 'btn btn-info'
+      = link_to "novo tipo de participação", concourse.new_administrator_project_participation_path(@project), class: 'btn btn-success'
+    %h2
+      Tipos
+      %small
+        Listagem de tipos de participação do concurso
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "4"}
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th #
+          %th Título
+          %th Descrição
+          %th Início/Fim
+          %th Status
+          %th Ações
+      %tbody
+       

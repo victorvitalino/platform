@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'concourse/enrollment':
+          attributes:
+            start:
+              before: "Data maior que data fim"
+    models:
+      'concourse/enrollment': 'Tipo de inscrição'
+    attributes:
+      'concourse/enrollment':
+        title: "Título"
+        description: "Descrição"
+        start: "Início"
+        end: "Fim"
+        status: "Publicado"
+        fee: "Taxa de inscrição"
+        value_fee: 'Valor da Taxa de inscrição'

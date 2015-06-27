@@ -136,14 +136,12 @@ ActiveRecord::Schema.define(version: 20150627142829) do
   create_table "concourse_enrollment_fields", force: :cascade do |t|
     t.integer  "enrollment_id"
     t.string   "name"
+    t.string   "code"
     t.integer  "field_type"
     t.boolean  "required"
-    t.boolean  "unique"
-    t.integer  "length"
-    t.string   "validate_regex"
     t.boolean  "status"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "concourse_enrollment_fields", ["enrollment_id"], name: "index_concourse_enrollment_fields_on_enrollment_id"
@@ -225,9 +223,14 @@ ActiveRecord::Schema.define(version: 20150627142829) do
     t.string   "title"
     t.string   "description"
     t.boolean  "status"
+    t.date     "start"
+    t.date     "end"
+    t.integer  "project_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "concourse_participations", ["project_id"], name: "index_concourse_participations_on_project_id"
 
   create_table "concourse_project_categories", force: :cascade do |t|
     t.string   "name"

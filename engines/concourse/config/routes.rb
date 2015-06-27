@@ -2,11 +2,15 @@ Concourse::Engine.routes.draw do
   
   constraints SubdomainConstraint do 
     namespace :administrator, path: '/' do 
-      resources :projects do 
-        resources :enrollments do 
-          resources :enrollment_fields
+      resources :projects, path: 'projetos' do 
+        resources :enrollments, path: "inscricoes" do 
+          resources :enrollment_fields, path: 'campos'
         end
-        resources :participations
+
+        resources :participations, path: 'participacoes' do 
+          resources :participation_fields, path: "campos"
+        end
+        
         resources :pages
         resources :navs do 
           get 'up'
@@ -27,15 +31,14 @@ Concourse::Engine.routes.draw do
       resources :sessions,      path: 'acesso'
       resources :passwords,     path: 'senha'
       
-      get 'logout',       to: 'sessions#destroy'
-
-      get 'meu_cadastro', to: 'enrollment_candidates#show'
 
       resources :projects,  path: '/' do 
         resources :pages,   path: 'paginas'
         resources :enrollments, path: 'inscricoes' do 
-          resources :enrollment_candidates, path: 'minha_inscricao'
+          resources :enrollment_candidates, path: 'inscricoes_efetuadas'
         end
+
+    
       end
     end
   end

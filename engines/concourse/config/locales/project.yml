@@ -5,7 +5,7 @@ pt-BR:
       'concourse/project':
        attributes:
         start:
-         before: "Data menor que data fim"
+         before: "Data maior que data fim"
          after: "Data menor que data atual"
 
     models:

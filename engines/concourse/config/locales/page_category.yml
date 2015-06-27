@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/page_category': 'Categoria de Página'
+    attributes:
+      'concourse/page_category':
+        name: "Nome"
+        status: 'Status'

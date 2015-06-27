@@ -7,7 +7,7 @@ module Concourse
     before_action :set_enrollment_fields
 
     def index
-      @enrollment_fields = @enrollment.enrollment_fields
+      @enrollment_fields = @enrollment.enrollment_fields.unscoped
     end
 
     def new
@@ -35,7 +35,7 @@ module Concourse
     private
 
     def set_enrollment_params
-      params.require(:enrollment_field).permit(:name, :field_type, :length, :required, :unique, :status)
+      params.require(:enrollment_field).permit(:name, :field_type, :code, :required, :status)
     end
 
     def set_project
@@ -47,11 +47,11 @@ module Concourse
     end
 
     def set_enrollment_field
-      @enrollment_field = @enrollment.enrollment_fields.find(params[:id])
+      @enrollment_field = @enrollment.enrollment_fields.unscoped.find(params[:id])
     end
 
     def set_enrollment_fields
-      @enrollment_fields = @enrollment.enrollment_fields
+      @enrollment_fields = @enrollment.enrollment_fields.unscoped
     end
   end
 end

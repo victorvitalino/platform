@@ -1,0 +1,37 @@
+.block-header
+  %h2 
+    %b 
+      = link_to "#{@project.name} ", administrator_projects_path
+    \/  Tipos de Participação
+.card
+  .card-header.ch-alt
+    %span.pull-right
+      = link_to "ir para tipos de inscrição", concourse.administrator_project_enrollments_path(@project), class: 'btn btn-info'
+      = link_to "novo tipo de participação", concourse.new_administrator_project_participation_path(@project), class: 'btn btn-success'
+    %h2
+      Tipos
+      %small
+        Listagem de tipos de participação do concurso
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "4"}
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th #
+          %th Título
+          %th Descrição
+          %th Início/Fim
+          %th Status
+          %th Ações
+      %tbody
+        - @participations.each_with_index do |p, i|
+          %tr
+            %td= i + 1
+            %td= p.title
+            %td= p.description
+            %td= "#{p.start.strftime('%d/%m/%Y')} - #{p.end.strftime('%d/%m/%Y')}" 
+            %td= p.status ? "ativo" : "inativo"
+            %td
+              = link_to "", concourse.administrator_project_participation_participation_fields_path(participation_id: p, project_id: @project),class: 'md-exit-to-app btn btn-warning waves-effect waves-button waves-float'
+              = link_to "", concourse.edit_administrator_project_participation_path(project_id: @project, id: p),class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
+              = link_to "", administrator_project_participation_path(project_id: @project, id: p), method: :delete, class: 'md md-clear btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"} 
+       

@@ -5,7 +5,7 @@ module Concourse
     before_action :set_enrollment, only: [:edit, :update, :destroy]
     
     def index
-      @enrollments = @project.enrollments
+      @enrollments = @project.enrollments.unscoped
     end 
 
     def new
@@ -36,6 +36,10 @@ module Concourse
     end
 
     def destroy
+      if @enrollment.destroy
+        flash[:success] = t :success
+        redirect_to action: 'index'
+      end
     end
 
     private
@@ -45,7 +49,7 @@ module Concourse
     end
 
     def set_enrollment
-      @enrollment = @project.enrollments.find(params[:id])
+      @enrollment = @project.enrollments.unscoped.find(params[:id])
     end
     
     def set_project

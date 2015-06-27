@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/nav': 'Menu'
+    attributes:
+      'concourse/nav':
+        name: "Nome"
+        target: "Ação ao clicar"
+        action: "Direcionar para"
+        father: "Menu pai"
+        page: "Página"
+        external_url: "URL externa"
+        status: 'Status'

@@ -6,7 +6,7 @@
 .card
   .card-header.ch-alt
     %span.pull-right
-      = link_to "ir para tipos de participação", concourse.administrator_project_pages_path(@project), class: 'btn btn-info'
+      = link_to "ir para tipos de participação", concourse.administrator_project_participations_path(@project), class: 'btn btn-info'
       = link_to "novo tipo de inscrição", concourse.new_administrator_project_enrollment_path(@project), class: 'btn btn-success'
     %h2
       Tipos
@@ -28,7 +28,7 @@
           %tr
             %td= i + 1
             %td= p.title
-            %td= p.description
+            %td= p.description.html_safe
             %td= "#{p.start.strftime('%d/%m/%Y')} - #{p.end.strftime('%d/%m/%Y')}"
             %td
               - if p.status
@@ -37,7 +37,11 @@
               - else
                 %span.label.label-default
                   não publicado
-            %td= number_to_currency(p.value_fee, unit: "R$", separator: ",", delimiter: "") if p.fee
+            %td
+              - if p.fee
+                = number_to_currency(p.value_fee, unit: "R$", separator: ",", delimiter: "")
+              - else
+                Não cobrado
             %td
               = link_to "", concourse.administrator_project_enrollment_enrollment_fields_path(enrollment_id: p, project_id: @project),class: 'md-exit-to-app btn btn-warning waves-effect waves-button waves-float'
               = link_to "", concourse.edit_administrator_project_enrollment_path(project_id: @project, id: p),class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'

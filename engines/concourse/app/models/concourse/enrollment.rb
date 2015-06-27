@@ -3,9 +3,12 @@ module Concourse
     belongs_to :project
     has_many :enrollment_fields
     has_many :enrollment_candidates
-    
+  
+    default_scope { where(status: true)}
+        
     validates_presence_of :title, :description, :start, :end
     validates :value_fee, numericality: {only_float: true}, presence: true, if: :fee?
+    validates_date :start, before: :end
 
     private
 

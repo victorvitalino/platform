@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/enrollment_field': 'Campos de formulário'
+    attributes:
+      'concourse/enrollment_field':
+        name: "Nome"
+        field_type: "Tipo"
+        code: 'Attributo'
+        status: 'Status'
+        required: 'Obrigatório'
