@@ -4,15 +4,14 @@ class CreateConcourseProjects < ActiveRecord::Migration
       t.string :name
       t.text :description
 
-      t.string :background
       t.string :logo
+      t.string :header
+      t.string :footer
 
       t.date :start
       t.date :end
       
-      t.boolean :status
-      t.boolean :subscribe
-      t.boolean :send_project
+      t.boolean :open
 
       t.references :project_category, index: true, foreign_key: true
 

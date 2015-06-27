@@ -1,3 +1,6 @@
+.form-group {
+  margin-top: 0 !important;
+}
 .sidebar-menu .submenu .submenu .submenu a {
   padding-left: 100px;
   background-position: 77px 50%;

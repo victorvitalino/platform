@@ -57,7 +57,7 @@ module Concourse
 
       # Only allow a trusted parameter "white list" through.
       def project_params
-        params.require(:project).permit(:name, :description,:registration_fee, :send_project, :subscribe, :background, :logo, :start, :end, :hour_end, :status, :project_category_id)
+        params.require(:project).permit(:name, :description,:header, :footer, :logo, :start, :end, :open, :project_category_id)
       end
   end
 end

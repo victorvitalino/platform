@@ -6,7 +6,7 @@ module Concourse
 
     # GET /navs
     def index
-      @navs = @project.navs.all.order(:order)
+      @navs = @project.navs.unscoped.all.order(:order)
     end
 
     def up
@@ -66,12 +66,12 @@ module Concourse
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_nav
-        @nav = Nav.find(params[:id])
+        @nav = @project.navs.unscoped.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def nav_params
-        params.require(:nav).permit(:link, :target, :order, :project_id, :external_link, :page_id, :page_action, :publish)
+        params.require(:nav).permit(:name, :target, :order, :project_id, :external_url, :page_id, :action, :publish, :father_id)
       end
 
       def set_project

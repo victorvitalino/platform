@@ -1,11 +1,11 @@
 module Concourse
   class Administrator::PagesController < ApplicationController
     layout 'layouts/material'
-    before_action :set_page, only: [:show, :edit, :update, :destroy]
     before_action :set_project
+    before_action :set_page, only: [:show, :edit, :update, :destroy]
     # GET /pages
     def index
-      @pages = @project.pages.all
+      @pages = @project.pages.unscoped.all.order(:created_at)
     end
 
     # GET /pages/1
@@ -54,7 +54,7 @@ module Concourse
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_page
-        @page = Page.find(params[:id])
+        @page = @project.pages.unscoped.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.

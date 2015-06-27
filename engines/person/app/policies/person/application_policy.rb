@@ -42,7 +42,7 @@ module Person
     def allow?(code)
       @permission = Person::SystemPermission.find_by_code(code)
       if @permission.present?
-        user.permissions.where(system_permission_id: @permission.id, status: true).present? 
+        user.account.permissions.where(system_permission_id: @permission.id, status: true).present? 
       end
     end
 

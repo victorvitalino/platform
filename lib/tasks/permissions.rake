@@ -51,7 +51,7 @@ namespace :permissions do
 		])
 
 
-		@user = User.find_by_email('dev@codhab.df.gov.br')
+		@user = Person::Staff.find(1)
 
 
 		@permission_user = Person::UserPermission.create([

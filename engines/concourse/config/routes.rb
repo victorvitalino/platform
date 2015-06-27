@@ -27,7 +27,6 @@ Concourse::Engine.routes.draw do
       resources :sessions,      path: 'acesso'
       resources :passwords,     path: 'senha'
       
-      get 'editar_dados', to: 'candidates#edit'
       get 'logout',       to: 'sessions#destroy'
 
       get 'meu_cadastro', to: 'enrollment_candidates#show'

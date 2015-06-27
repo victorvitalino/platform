@@ -17,7 +17,7 @@
       %thead
         %tr
           %th #
-          %th Link
+          %th Nome
           %th Ação
           %th Tipo
           %th Publicado?
@@ -29,11 +29,11 @@
         - @navs.each_with_index do |p, i|
           %tr
             %td= p.order
-            %td= p.link
+            %td= p.name
             %td= p.target
             %td
               %span.label.label-info
-                = p.page_action
+                = p.action
             %td
               - if p.publish
                 %span.label.label-success
@@ -42,7 +42,7 @@
                 %span.label.label-default
                   não publicado
             %td= p.page.title if p.page.present?
-            %td= p.external_link
+            %td= p.external_url
             %td= p.created_at.strftime('%d/%m/%Y')
             %td
               = link_to "", concourse.administrator_project_nav_down_path(project_id: @project, nav_id: p), remote:true,class: 'md-expand-more btn bgm-indigo waves-effect waves-button waves-float' if i < @navs.count - 1

@@ -8,9 +8,11 @@ module Concourse
         
         
     validates_presence_of :name, :start, :end
+    validates_date :start, before: :end
 
-    mount_uploader :background, Concourse::BackgroundUploader
-    mount_uploader :logo, Concourse::LogoUploader
+    mount_uploader :header, Concourse::ImageUploader
+    mount_uploader :footer, Concourse::ImageUploader
+    mount_uploader :logo, Concourse::ImageUploader
 
 
   end

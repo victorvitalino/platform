@@ -2,21 +2,23 @@ module Concourse
   class Portal::CandidatesController < ApplicationController
     layout 'layouts/concourse/candidate', except: [:new, :create]
 
-    before_action :set_candidate_session, only: [:edit, :update, :index]
-    before_action :set_candidate, only: [:edit, :update, :index]
-
+    before_action :authenticate_user!, only: [:index, :edit, :update, :destroy]
+    before_action :set_candidate, only: [:index, :edit, :destroy, :update]
     def index
     end
 
     def new
         @candidate = Candidate.new
+        @candidate.build_user
         render layout: "layouts/concourse/session"        
     end
 
     def create
         @candidate = Candidate.new(set_candidate_params)
         if @candidate.save
-            session[:candidate_id] = @candidate.id
+            redirect_to action: 'index'
+        else
+            render action: 'new', layout: "layouts/concourse/session"   
         end
     end
     
@@ -24,13 +26,13 @@ module Concourse
     end
 
     def update
-       if params[:password].blank?
-            params.delete(:password)
-            params.delete(:cpf)
-            params.delete(:password_confirmation) if params[:password_confirmation].blank?
-       end
-       
-       if @candidate.update(set_candidate_update_params)
+
+       params.delete(:cpf)
+       params.delete(:password)
+       params.delete(:password_confirmation)
+       params.delete(:username)
+
+       if @candidate.update(set_candidate_params)
             flash[:success] = t :success
             redirect_to portal_candidates_path
        else
@@ -42,26 +44,12 @@ module Concourse
     private
 
     def set_candidate_params
-        params.require(:candidate).permit(:name, :cpf, :email, :telphone, :telphone_optional,
-                                          :celphone, :password, :password_confirmation)
-    end
-
-    def set_candidate_update_params
-        params.require(:candidate).permit(:name, :email, :telphone, :telphone_optional,
-                                         :celphone, :password, :password_confirmation)
- 
+        params.require(:candidate).permit(:name, :cpf, :email, :sex, :telphone, :telphone_optional,
+                                          :celphone, user_attributes: [:username, :password, :password_confirmation])
     end
 
     def set_candidate
-        @candidate = Candidate.find(session[:candidate_id])
-    end
-
-    def set_candidate_session
-        if session[:candidate_id].present?  
-            @candidate = Candidate.find(session[:candidate_id])
-        else
-            redirect_to new_portal_session_path
-        end
+        @candidate = Candidate.find(current_user.account_id)
     end
 
   end

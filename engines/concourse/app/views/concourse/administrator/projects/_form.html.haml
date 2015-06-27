@@ -25,9 +25,13 @@
         %br/
         .row
           .col-md-3
-            = f.label :background, as: 'file', class: 'fg-label'
-            = f.input :background, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
-            = image_tag @project.background_url, width: '150' if @project.background?
+            = f.label :header, as: 'file', class: 'fg-label'
+            = f.input :header, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
+            = image_tag @project.header_url, width: '150' if @project.header?
+          .col-md-3
+            = f.label :footer, as: 'file', class: 'fg-label'
+            = f.input :footer, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
+            = image_tag @project.footer_url, width: '150' if @project.footer?
           .col-md-3
             = f.label :logo, as: 'file', class: 'fg-label'
             = f.input :logo, as: 'file', label: false, input_html: { placeholder: 'Digite um nome'}
@@ -38,21 +42,9 @@
           .col-md-3
             .checkbox.m-b-15
               %label
-                = f.check_box :status
+                = f.check_box :open
                 %i.input-helper
                 Concurso ativo para visualização do público
-          .col-md-3
-            .checkbox.m-b-15
-              %label
-                = f.check_box :subscribe
-                %i.input-helper
-                Concurso ativo para inscrições dos candidatos
-          .col-md-3
-            .checkbox.m-b-15
-              %label
-                = f.check_box :send_project
-                %i.input-helper
-                Concurso ativo para o envio do projeto dos candidatos
             
         %hr/
         .row

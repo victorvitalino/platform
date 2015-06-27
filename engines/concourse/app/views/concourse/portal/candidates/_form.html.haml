@@ -1,31 +1,36 @@
-= simple_form_for [:portal, @candidate], remote: @candidate.new_record? do |f|
+= simple_form_for [:portal, @candidate] do |f|
   .row
-    .col-md-12
+    .col-md-6
       = f.input :name
-  .row
-    .col-md-4
+    .col-md-3
       - if @candidate.new_record?
         = f.input :cpf
       - else
         = f.input :cpf, input_html: {disabled: (!@candidate.new_record?) ? 'disabled' : ''}
-    .col-md-8
+    .col-md-3
       = f.input :email
   .row
-    .col-md-4
+    .col-md-3
       = f.input :telphone
-    .col-md-4
+    .col-md-3
       = f.input :telphone_optional
-    .col-md-4
+    .col-md-3
       = f.input :celphone
+    .col-md-3
+      = f.input :sex, as: 'select', collection: Concourse::Candidate.sexes.keys.to_a, prompt: 'selecione...'
   - if @candidate.new_record?
     %hr/
     .row
-      .col-md-6
-        = f.input :password
-      .col-md-6
-        = f.input :password_confirmation
-
+      = f.simple_fields_for :user do |u|
+        .col-md-4
+          = u.input :username
+        .col-md-4
+          = u.input :password
+        .col-md-4
+          = u.input :password_confirmation
   %hr/
   .row
-    .col-md-12
+    .col-md-2
       = f.button :submit, class: 'btn btn-success'
+    .col-md-2
+      = link_to "voltar para concursos", portal_projects_path, class: 'btn btn-default'

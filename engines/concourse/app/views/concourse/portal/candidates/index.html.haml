@@ -14,7 +14,7 @@
           %th Informações
           %th Meu Cadastro
       %tbody
-        - @candidate.enrollment_candidates.each_with_index do |c, i|
+        - @candidate.erollments.each_with_index do |c, i|
           %tr
             %td= i + 1
             %td= link_to c.enrollment.project.name, portal_project_path(c.enrollment.project)

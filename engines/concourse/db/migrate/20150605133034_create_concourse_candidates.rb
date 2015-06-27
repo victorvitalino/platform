@@ -6,11 +6,13 @@ class CreateConcourseCandidates < ActiveRecord::Migration
       t.string :telphone
       t.string :telphone_optional
       t.string :celphone
+      t.string :cep
+      t.string :address
       t.references :city, index: true, foreign_key: true
       t.references :state, index: true, foreign_key: true
       t.string :email
-      t.string :password
-      t.datetime :last_signed_in
+      t.integer :sex
+      t.boolean :status
 
       t.timestamps null: false
     end

@@ -8,8 +8,11 @@
       .card
         .card-header.bgm-black.m-b-20
           %h2
-            %b
-              = p.name
+            %p
+              %b= p.name
+              
+          = p.open ? "<span class='label label-success'>concurso aberto</span>".html_safe : "<span class='label label-default'>concurso fechado</span>".html_safe
+         
           %ul.actions
             %li.dropdown
               %a{"data-toggle" => "dropdown", :href => ""}
@@ -25,12 +28,6 @@
                   = #link_to "inativar"
           = link_to "<i class='md md-add'></i>".html_safe, administrator_project_path(p), class: 'btn bgm-red btn-float waves-effect waves-effect waves-button waves-float'
         .card-body.card-padding
-          = p.status ? "<span class='label label-success'>concurso aberto</span>".html_safe : "<span class='label label-default'>concurso fechado</span>".html_safe
-          = p.subscribe ? "<span class='label label-info'>inscrições abertas</span>".html_safe : ""
-          = p.send_project ? "<span class='label label-danger'>envio de projeto aberto</span>".html_safe : ""
-          
-          %hr/
-
           - if p.logo?
             = image_tag(p.logo.url, width: '200')
 
