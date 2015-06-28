@@ -1,13 +1,14 @@
-= simple_form_for [:portal, @password] do |f|
-  .row
-    .col-md-3
-      = f.input :old_password
-  .row
-    .col-md-3
-      = f.input :new_password
-  .row
-    .col-md-3
-      = f.input :confirmation_password
-  .row
-    .col-md-3
-      = f.button :submit
+= simple_form_for [:portal, @candidate] do |f|
+  = simple_fields_for :user do |u|
+    .row
+      .col-md-3
+        = u.input :username
+    .row
+      .col-md-3
+        = u.input :password
+    .row
+      .col-md-3
+        = u.input :password_confirmation
+    .row
+      .col-md-3
+        = u.button :submit

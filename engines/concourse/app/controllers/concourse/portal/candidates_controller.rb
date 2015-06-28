@@ -3,7 +3,7 @@ module Concourse
     layout 'layouts/concourse/candidate', except: [:new, :create]
 
     before_action :authenticate_user!, only: [:index,:edit, :update, :destroy]
-    before_action :verification_user!, if: :authenticate_user!
+    #before_action :verification_user!, if: :authenticate_user!
     before_action :set_candidate, only: [:index, :edit, :destroy, :update]
 
     def index

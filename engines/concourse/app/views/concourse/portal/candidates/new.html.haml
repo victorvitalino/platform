@@ -1,10 +1,12 @@
 .row
   .col-md-8.col-md-offset-2
-    %h1
+    %h2
       %p
         %strong 1º Passo
       %small
-        Criar uma conta para acessar a área do candidato
+        Criar uma conta para acessar a área do candidato.
+        Ou se já possui uma conta
+        = link_to "clique aqui", concourse.portal_candidates_path
 .row
   .col-md-8.col-md-offset-2
     = render 'form'
