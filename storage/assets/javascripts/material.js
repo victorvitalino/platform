@@ -11,8 +11,11 @@
 //= require material/vendors/waves/waves.min
 //= require material/vendors/bootstrap-growl/bootstrap-growl.min
 //= require material/vendors/sweet-alert/sweet-alert.min
+//= require redactor-rails
+//= require material/vendors/sparklines/jquery.sparkline.min
+//= require material/js/charts
+//= require material/js/flot-charts/bar-chart
+//= require material/js/flot-charts/curved-line-chart
+//= require material/js/flot-charts/line-chart
 //= require material/js/functions
 //= require material/js/demo
-//= require redactor-rails
-
-
