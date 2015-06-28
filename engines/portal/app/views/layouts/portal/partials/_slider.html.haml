@@ -7,7 +7,7 @@
           - slider_each(4,'DESC') do |s|
             %li.clone{"aria-hidden" => "true"}
               .div-image{:style => "background-image: url(#{s.thumb})"}
-              .flex-caption{ :class => "asdf", "data-countdown-timer" => "", "data-countdown-timer-hour" => "", "data-countdown-timer-minutes" => ""}
+              .flex-caption{ :class => "asdf"}
                 %a.explore{:href => "#"}
                 = "##{s.post_category.title}"
                 .latestDate
