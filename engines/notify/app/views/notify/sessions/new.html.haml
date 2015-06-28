@@ -1,3 +1,10 @@
 .lc-block.toggled
-  %h4
-    Opa! Parece que você se encontra logado em
+  .row
+    %h2
+      %p= "Olá #{current_user.account.name}!"
+    Seu usuário está vínculado a
+    = "#{log_in_module(current_user.account_type)}"
+    %p Para você prosseguir com o acesso você precisa desconectar e conectar com um usuário compatível.
+  .row
+    = link_to "voltar", "#", class: 'btn btn-info pull-left'
+    = link_to "desconectar", main_app.destroy_user_session_path, method: :delete, class: 'btn btn-success pull-right'

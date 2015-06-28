@@ -7,6 +7,9 @@ module Notify
         'Área de concursos Codhab'
       when 'Person::Staff'
         'Extranet Codhab'
+      end
     end
+
+
   end
 end
