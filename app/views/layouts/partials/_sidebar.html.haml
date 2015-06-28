@@ -34,9 +34,9 @@
               - if policy(:job, namespace: Person).index?
                 %li
                   = link_to "cargos", person.jobs_path
-              - if policy(:user, namespace: Person).index?
+              - if policy(:staff, namespace: Person).index?
                 %li
-                  = link_to "usuarios", person.users_path
+                  = link_to "usuarios", person.staffs_path
               - if policy(:system, namespace: Person).index?
                 %li
                   = link_to "sistemas", person.systems_path

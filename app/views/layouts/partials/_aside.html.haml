@@ -25,7 +25,7 @@
                 %small.lv-small
                   Último acesso
                   %br/
-                  = u.user.last_sign_in_at.strftime('%d/%m/%Y %H:%M')
+                  = u.user.last_sign_in_at.strftime('%d/%m/%Y %H:%M') if u.user.present?
 
     #online.tab-pane.fade{:role => "tabpanel"}
       .listview

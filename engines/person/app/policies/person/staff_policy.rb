@@ -1,5 +1,5 @@
 module Person
-	class UserPolicy < ApplicationPolicy
+	class StaffPolicy < ApplicationPolicy
 
 		def index?
 			allow?(1603)
