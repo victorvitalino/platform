@@ -14,4 +14,14 @@ class User < ActiveRecord::Base
   def email_changed?
     false
   end
+
+  def staff?
+    (self.account_type == "Person::Staff")
+  end
+
+  def concourse_candidate?
+    (self.account_type == "Concourse::Candidate")
+  end
+
+
 end

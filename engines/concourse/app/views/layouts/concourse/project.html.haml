@@ -10,7 +10,7 @@
     .container{'style': 'margin-top:40px;'}
       .row
         .col-md-12
-          = image_tag @project.background.url, width: 450 if @project.background?
+          = image_tag @project.header.url, width: 450 if @project.header?
 
       %hr/
       .row

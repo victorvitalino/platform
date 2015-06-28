@@ -34,6 +34,7 @@ Concourse::Engine.routes.draw do
 
       resources :projects,  path: '/' do 
         resources :pages,   path: 'paginas'
+        resources :consultations,   path: 'consultas'
         resources :enrollments, path: 'inscricoes' do 
           resources :enrollment_candidates, path: 'inscricoes_efetuadas'
         end

@@ -39,6 +39,12 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/notify
+  specs:
+    notify (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/patrimony
   specs:
     patrimony (0.0.1)
@@ -319,6 +325,7 @@ DEPENDENCIES
   intranet!
   jquery-rails
   mini_magick
+  notify!
   patrimony!
   person!
   pg

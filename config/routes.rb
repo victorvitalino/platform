@@ -16,11 +16,10 @@ Rails.application.routes.draw do
 
   mount RedactorRails::Engine => '/redactor_rails'
 
-  devise_for :users, :path => '', :path_names => {:sign_in => 'acesso', :sign_out => 'sair'}
-  
-  constraints SubdomainConstraint do
+  devise_for :users, :path  => '',
+             :path_names    => {:sign_in  => 'acesso', :sign_out => 'sair'}
 
-   
+  constraints SubdomainConstraint do
     authenticate :user do
       mount Dashboard::Engine => '/',              as: 'dashboard', module: 'dashboard'
       mount Intranet::Engine => '/intranet',       as: 'intranet', module: 'intranet'
@@ -36,5 +35,6 @@ Rails.application.routes.draw do
 
   mount Concourse::Engine => "/concursos",  as: 'concourse', module: 'concourse'
   mount Schedule::Engine => "/agendamento", as: 'schedule'
+  mount Notify::Engine => "/notificacao", as: 'notify'
 
 end

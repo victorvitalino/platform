@@ -5,16 +5,19 @@
 
   %li.list-group-item
     = link_to "Início", concourse.portal_project_path(@project)
+  %li.divider
+  %li.list-group-item
+    = link_to "Inscrição", concourse.portal_project_enrollments_path(@project)
+  %li.list-group-item
+    = link_to "Envio de projeto", concourse.portal_project_path(@project)
+  %li.list-group-item
+    = link_to "Enviar Consulta", concourse.new_portal_project_consultation_path(@project)
+  %li.divider
   - @project.navs.order(order: :desc).each do |n|  
     %li.list-group-item
-      - if n.link_interno?
-        = link_to "#{n.link}", concourse.portal_project_page_path(project_id: @project, id: n.page.id) if n.page.present?
-      - elsif n.link_externo?
-        = link_to "#{n.link}", "http://#{n.external_link}"
-      - elsif n.envio_projeto?
-        = link_to "#{n.link}"
-      - elsif n.consulta?
-        = link_to "#{n.link}", concourse.new_portal_consultation_path
-      - elsif n.inscricao?
-        = link_to "#{n.link}", concourse.new_portal_project_subscribe_path(@project)
+      - if n.pagina?
+        = link_to "#{n.name}", concourse.portal_project_page_path(project_id: @project, id: n.page.id) if n.page.present?
+      - elsif n.url_externa?
+        = link_to "#{n.name}", "http://#{n.external_url}"
+    
 

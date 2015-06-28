@@ -2,8 +2,10 @@ module Concourse
   class Portal::CandidatesController < ApplicationController
     layout 'layouts/concourse/candidate', except: [:new, :create]
 
-    before_action :authenticate_user!, only: [:index, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:index,:edit, :update, :destroy]
+    before_action :verification_user!, if: :authenticate_user!
     before_action :set_candidate, only: [:index, :edit, :destroy, :update]
+
     def index
     end
 
@@ -46,6 +48,10 @@ module Concourse
     def set_candidate_params
         params.require(:candidate).permit(:name, :cpf, :email, :sex, :telphone, :telphone_optional,
                                           :celphone, user_attributes: [:username, :password, :password_confirmation])
+    end
+
+    def verification_user!
+      redirect_to notify.new_session_path unless current_user.concourse_candidate?
     end
 
     def set_candidate
