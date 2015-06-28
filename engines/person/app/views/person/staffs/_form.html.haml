@@ -1,4 +1,4 @@
-= simple_form_for @user do |f|
+= simple_form_for @staff do |f|
   .col-md-12
     .card
       .card-body.card-padding
@@ -6,11 +6,11 @@
           .col-md-6
             = f.label :avatar, as: 'file', class: 'fg-label'
             = f.input :avatar, as: 'file', label: false, input_html: { placeholder: 'Insira uma imagem'}
-            = image_tag @user.avatar_url, width: '150' if @user.avatar?
+            = image_tag @staff.avatar_url, width: '150' if @staff.avatar?
           .col-md-6
             = f.label :curriculum, as: 'file', class: 'fg-label'
             = f.input :curriculum, as: 'file', label: false, input_html: { placeholder: 'Insira um arquivo'}
-            = image_tag @user.curriculum_url, width: '150' if @user.curriculum?
+            = image_tag @staff.curriculum_url, width: '150' if @staff.curriculum?
         .row
           .col-md-6
             = f.label :name, class: 'fg-label'
@@ -38,27 +38,31 @@
             = f.input :email, label: false, input_html: { placeholder: 'Digite um email'}
           .col-md-3
             = f.label :born, as: 'string', class: 'fg-label'
-            = f.input :born, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@user.born) ? localize(f.object.born) : nil}
-        - if @user.new_record?
-          .row
-            .col-md-4
-              = f.label :password, class: 'fg-label'
-              = f.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
-            .col-md-4
-              = f.label :password_confirmation, class: 'fg-label'
-              = f.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
+            = f.input :born, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@staff.born) ? localize(f.object.born) : nil}
+        - if @staff.new_record?
+          = f.simple_fields_for :user do |u|
+            .row
+              .col-md-4
+                = u.label :username, class: 'fg-label'
+                = u.input :username, label: false, input_html: { placeholder: 'Digite um nome de usuário'}
+              .col-md-3
+                = u.label :password, class: 'fg-label'
+                = u.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
+              .col-md-3
+                = u.label :password_confirmation, class: 'fg-label'
+                = u.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
         .row
-          .col-md-5
+          .col-md-4
             = f.label :sector_origin, class: 'fg-label'
             = f.association :sector_origin, label: false, prompt: 'selecione...'
-          .col-md-5
+          .col-md-4
             = f.label :sector_current, class: 'fg-label'
             = f.association :sector_current, label: false, prompt: 'selecione...'
         .row
-          .col-md-5
+          .col-md-4
             = f.label :job, class: 'fg-label'
             = f.association :job, label: false, prompt: 'selecione...'
-          .col-md-5
+          .col-md-4
             = f.label :branch_line, class: 'fg-label'
             = f.association :branch_line, label: false, label_method: :telephone, prompt: 'selecione...'
         .row
@@ -90,8 +94,9 @@
                 = f.check_box :status
                 %i.input-helper
                 = f.label :status, class: 'fg-label'
+        %hr/
         .row
           .col-md-12
             = f.button :submit, class: 'btn btn-success'
-            = link_to 'Back', users_path , class: 'btn btn-danger'
+            = link_to 'Back', staffs_path , class: 'btn btn-danger'
 

@@ -1,9 +1,16 @@
 pt-BR:
   activerecord:
+    errors:
+      models:
+        'person/staff':
+          attributes:
+            born:
+              before: "Data inválida - menor de 18 anos"
+              invalid_date: "data inválida"
     models:
-      user: Usuário
+      'person/staff': Usuário
     attributes:
-      user:
+      'person/staff':
         name: "Nome"
         code: "Matrícula"
         blood_type: "Tipo Sanguineo"

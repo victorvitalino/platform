@@ -51,43 +51,43 @@ namespace :permissions do
 		])
 
 
-		@user = Person::Staff.find(1)
+		@user = Person::Staff.find_by_code('dev001')
 
 
-		@permission_user = Person::UserPermission.create([
-			{user_id: @user.id , system_permission_id: 1 , status: true},
-			{user_id: @user.id , system_permission_id: 2 , status: true},
-			{user_id: @user.id , system_permission_id: 3 , status: true}
+		@permission_user = Person::StaffPermission.create([
+			{staff_id: @user.id , system_permission_id: 1 , status: true},
+			{staff_id: @user.id , system_permission_id: 2 , status: true},
+			{staff_id: @user.id , system_permission_id: 3 , status: true}
 		])
-		@permission_user = Person::UserPermission.create([
-			{user_id: @user.id , system_permission_id: 4 , status: true},
-			{user_id: @user.id , system_permission_id: 5 , status: true},
-			{user_id: @user.id , system_permission_id: 6 , status: true}
+		@permission_user = Person::StaffPermission.create([
+			{staff_id: @user.id , system_permission_id: 4 , status: true},
+			{staff_id: @user.id , system_permission_id: 5 , status: true},
+			{staff_id: @user.id , system_permission_id: 6 , status: true}
 		])
-		@permission_user = Person::UserPermission.create([
-			{user_id: @user.id , system_permission_id: 7 , status: true},
-			{user_id: @user.id , system_permission_id: 8 , status: true},
-			{user_id: @user.id , system_permission_id: 9 , status: true}
+		@permission_user = Person::StaffPermission.create([
+			{staff_id: @user.id , system_permission_id: 7 , status: true},
+			{staff_id: @user.id , system_permission_id: 8 , status: true},
+			{staff_id: @user.id , system_permission_id: 9 , status: true}
 		])
-		@permission_user = Person::UserPermission.create([
-			{user_id: @user.id , system_permission_id: 10 , status: true},
-			{user_id: @user.id , system_permission_id: 11 , status: true},
-			{user_id: @user.id , system_permission_id: 12 , status: true}
+		@permission_user = Person::StaffPermission.create([
+			{staff_id: @user.id , system_permission_id: 10 , status: true},
+			{staff_id: @user.id , system_permission_id: 11 , status: true},
+			{staff_id: @user.id , system_permission_id: 12 , status: true}
 		])
-		@permission_user = Person::UserPermission.create([
-			{user_id: @user.id , system_permission_id: 13 , status: true},
-			{user_id: @user.id , system_permission_id: 14 , status: true},
-			{user_id: @user.id , system_permission_id: 15 , status: true}
+		@permission_user = Person::StaffPermission.create([
+			{staff_id: @user.id , system_permission_id: 13 , status: true},
+			{staff_id: @user.id , system_permission_id: 14 , status: true},
+			{staff_id: @user.id , system_permission_id: 15 , status: true}
 		])
-		@permission_user = Person::UserPermission.create([
-			{user_id: @user.id , system_permission_id: 16 , status: true},
-			{user_id: @user.id , system_permission_id: 17 , status: true},
-			{user_id: @user.id , system_permission_id: 18 , status: true}
+		@permission_user = Person::StaffPermission.create([
+			{staff_id: @user.id , system_permission_id: 16 , status: true},
+			{staff_id: @user.id , system_permission_id: 17 , status: true},
+			{staff_id: @user.id , system_permission_id: 18 , status: true}
 		])
-		@permission_user = Person::UserPermission.create([
-			{user_id: @user.id , system_permission_id: 19 , status: true},
-			{user_id: @user.id , system_permission_id: 20 , status: true},
-			{user_id: @user.id , system_permission_id: 21 , status: true}
+		@permission_user = Person::StaffPermission.create([
+			{staff_id: @user.id , system_permission_id: 19 , status: true},
+			{staff_id: @user.id , system_permission_id: 20 , status: true},
+			{staff_id: @user.id , system_permission_id: 21 , status: true}
 		])
 	end
 end
