@@ -3,7 +3,7 @@ module Person
     has_one :user, as: :account, dependent: :destroy
     accepts_nested_attributes_for :user
 
-    has_many :permissions, class_name: "Person::UserPermission", foreign_key: 'user_id'
+    has_many :permissions, class_name: "Person::StaffPermission"
     
     belongs_to :sector_origin,   class_name: "Person::Sector"
     belongs_to :sector_current, class_name: "Person::Sector"

@@ -6,7 +6,7 @@ module Person
     has_many :user
 
     belongs_to :father, class_name: "Sector"
-    belongs_to :responsible, class_name: "User"
+    belongs_to :responsible, class_name: "Staff"
 
     has_many :branch_line
 

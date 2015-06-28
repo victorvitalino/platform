@@ -1,2 +1,2 @@
-- if !@user_permission.errors.any?
-    $(".tr-#{@permission.id}").html("#{escape_javascript(link_permission_to(@user.id,@permission.id))}")
+- if !@staff_permission.errors.any?
+    $(".tr-#{@permission.id}").html("#{escape_javascript(link_permission_to(@staff.id,@permission.id))}")
