@@ -147,24 +147,24 @@ namespace :permissions do
 			{staff_id: @user.id , system_permission_id: 27 , status: true}
 		])
 		@permission_user = Person::StaffPermission.create([
-			{staff_id: @user.id , system_permission_id: 27 , status: true},
 			{staff_id: @user.id , system_permission_id: 28 , status: true},
-			{staff_id: @user.id , system_permission_id: 29 , status: true}
+			{staff_id: @user.id , system_permission_id: 29 , status: true},
+			{staff_id: @user.id , system_permission_id: 30 , status: true}
 		])
 		@permission_user = Person::StaffPermission.create([
-			{staff_id: @user.id , system_permission_id: 30 , status: true},
 			{staff_id: @user.id , system_permission_id: 31 , status: true},
-			{staff_id: @user.id , system_permission_id: 32 , status: true}
+			{staff_id: @user.id , system_permission_id: 32 , status: true},
+			{staff_id: @user.id , system_permission_id: 33 , status: true}
 		])
 		@permission_user = Person::StaffPermission.create([
-			{staff_id: @user.id , system_permission_id: 33 , status: true},
 			{staff_id: @user.id , system_permission_id: 34 , status: true},
-			{staff_id: @user.id , system_permission_id: 35 , status: true}
+			{staff_id: @user.id , system_permission_id: 35 , status: true},
+			{staff_id: @user.id , system_permission_id: 36 , status: true}
 		])
 		@permission_user = Person::StaffPermission.create([
-			{staff_id: @user.id , system_permission_id: 36 , status: true},
 			{staff_id: @user.id , system_permission_id: 37 , status: true},
-			{staff_id: @user.id , system_permission_id: 38 , status: true}
+			{staff_id: @user.id , system_permission_id: 38 , status: true},
+			{staff_id: @user.id , system_permission_id: 39 , status: true}
 		])
 	end
 end
