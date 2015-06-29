@@ -1,7 +1,7 @@
 module Concourse
   class Portal::EnrollmentCandidatesController < ApplicationController
     layout 'layouts/concourse/project'
-    before_action :candidate_session
+    before_action :authenticate_user!
     before_action :set_project, except: [:show]
     before_action :set_enrollment, except: [:show]
     def new
@@ -10,7 +10,8 @@ module Concourse
 
     def create
       @candidate = @enrollment.enrollment_candidates.new(set_params_enrollment)
-      @candidate.candidate_id = session[:candidate_id]
+      @candidate.candidate_id = current_user.account_id
+      @candidate.project_id = @project.id
       
       if @candidate.save
         redirect_to portal_candidates_path
@@ -19,8 +20,24 @@ module Concourse
       end
     end
 
+    def edit
+      @candidate = @enrollment.enrollment_candidates.find(params[:id])
+    end
+
+    def update
+      @candidate = @enrollment.enrollment_candidates.find(params[:id])
+    
+      if @candidate.update(set_params_enrollment)
+        flash[:success] = t :success
+        redirect_to action: 'show'
+      else
+        render action: 'new'
+      end
+    end
+
     def show
-      @candidate = EnrollmentCandidate.find_by_candidate_id(session[:candidate_id])
+      @enrollment_candidate = EnrollmentCandidate.find_by_candidate_id(current_user.account_id)
+      @candidate = Candidate.find(current_user.account_id)
       render layout: "layouts/concourse/candidate"
 
     end
@@ -41,8 +58,6 @@ module Concourse
       end
     end
 
-    def candidate_session
-      redirect_to portal_candidates_path unless session[:candidate_id].present?
-    end
+
   end
 end

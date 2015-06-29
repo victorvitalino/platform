@@ -3,6 +3,7 @@ Concourse::Engine.routes.draw do
   constraints SubdomainConstraint do 
     namespace :administrator, path: '/' do 
       resources :projects, path: 'projetos' do 
+        resources :enrollment_candidates, path: 'participantes'
         resources :enrollments, path: "inscricoes" do 
           resources :enrollment_fields, path: 'campos'
         end
@@ -31,6 +32,8 @@ Concourse::Engine.routes.draw do
       resources :sessions,      path: 'acesso'
       resources :passwords,     path: 'senha'
       
+      get 'minha_inscricao',  to: 'enrollment_candidates#show'
+      get 'editar_inscricao/:enrollment_id', to: 'enrollment_candidates#edit'
 
       resources :projects,  path: '/' do 
         resources :pages,   path: 'paginas'

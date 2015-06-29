@@ -20,8 +20,26 @@
           %a{"aria-controls" => "projects", "aria-expanded" => "true", "data-toggle" => "tab", :href => "#projects", :role => "tab3"} Projetos enviados
       .tab-content
         #subscribes.tab-pane.active{:role => "tab1"}
-          %p
-            Inscrito
+          %table.table.table-condensed
+            %thead
+              %tr
+                %th Nome
+                %th CPF
+                %th Taxa
+                %th Status
+                %th Ações
+            %tbody
+              - @enrollment_candidates.each do |e|
+                %tr
+                  %td= e.candidate.name
+                  %td= e.candidate.cpf
+                  %td
+                  %td= e.status
+                  %td.col-md-3
+                    = link_to "visualizar", concourse.administrator_project_enrollment_candidate_path(project_id: @project, id: e), remote: true, class: 'btn btn-success btn-sm'
+                    = link_to "mensagens", '#', class: 'btn btn-info btn-sm'
+              
+            
         #consults.tab-pane{:role => "tab2"}
           %p
             consultas

@@ -10,6 +10,7 @@ module Concourse
     # GET /projects/1
     def show
       @module = "candidates"
+      @enrollment_candidates = EnrollmentCandidate.where(project_id: @project.id)
     end
 
     # GET /projects/new
