@@ -2,7 +2,7 @@
   .card-header.ch-alt
     %h2
       Categorias de Posts
-      = link_to 'Nova Categoria', new_post_category_path, class: 'btn btn-success pull-right'
+      = link_to 'Nova Categoria', new_post_category_path, class: 'btn btn-success pull-right' if policy(:PostCategory, namespace: Cms).create?
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
       %thead
@@ -19,5 +19,5 @@
             %td= post_category.title
             %td= post_category.status
             %td.col-md-2
-              = link_to '', edit_post_category_path(post_category), class: 'md md-edit btn btn-primary'
-              = link_to '', post_category, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+              = link_to '', edit_post_category_path(post_category), class: 'md md-edit btn btn-primary' if policy(:PostCategory, namespace: Cms).update?
+              = link_to '', post_category, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' } if policy(:PostCategory, namespace: Cms).destroy?

@@ -39,9 +39,3 @@
 - 3601: Criar/Editar
 - 3602: Excluir
 - 3603: Visualizar
-
-## posts #
-
-- 3701: Criar/Editar
-- 3702: Excluir
-- 3703: Visualizar

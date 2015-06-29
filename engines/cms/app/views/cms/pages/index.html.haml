@@ -2,7 +2,7 @@
   .card-header.ch-alt
     %h2
       Páginas
-      = link_to 'New Page', new_page_path, class: 'btn btn-success pull-right'
+      = link_to 'New Page', new_page_path, class: 'btn btn-success pull-right' if policy(:page, namespace: Cms).create?
       %small Listagem de páginas
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
@@ -22,5 +22,5 @@
             %td= page.publish
             %td= page.page_category.title
             %td.col-md-2
-              = link_to '', edit_page_path(page), class: 'md md-edit btn btn-primary'
-              = link_to '', page, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+              = link_to '', edit_page_path(page), class: 'md md-edit btn btn-primary' if policy(:page, namespace: Cms).update?
+              = link_to '', page, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' } if policy(:page, namespace: Cms).destroy?

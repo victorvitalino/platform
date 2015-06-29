@@ -7,6 +7,7 @@ module Cms
     # GET /posts
     def index
       @posts = Post.all
+      authorize @posts
     end
 
     # GET /posts/1
@@ -17,6 +18,7 @@ module Cms
     # GET /posts/new
     def new
       @post = Post.new
+      authorize @post
     end
 
     # GET /posts/1/edit
@@ -27,7 +29,7 @@ module Cms
     # POST /posts
     def create
       @post = Post.new(post_params)
-
+      authorize @post
       if @post.save
         redirect_to action: 'index'
       else
@@ -37,6 +39,7 @@ module Cms
 
     # PATCH/PUT /posts/1
     def update
+      authorize @post
       if @post.update(post_params)
         redirect_to action: 'index'
       else
@@ -46,6 +49,7 @@ module Cms
 
     # DELETE /posts/1
     def destroy
+      authorize @post
       @post.destroy
       redirect_to posts_url, notice: 'Post was successfully destroyed.'
     end
