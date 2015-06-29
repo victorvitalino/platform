@@ -44,4 +44,6 @@
       %h5
         %strong
           %p= "#{p[0].humanize}:"
-        = p[1]
+        - if p[1].class == "String"
+          - File.open(p[1], 'w') do |f|
+            = debug f
