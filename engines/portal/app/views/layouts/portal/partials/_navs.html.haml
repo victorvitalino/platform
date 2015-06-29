@@ -1,0 +1,192 @@
+.mobile-wrap
+  .all-nav-wrap
+    #top-nav.nomobile{:tabindex => "0"}
+      .container
+        .sixteen.columns
+          %nav.servicos-bar-nav{"aria-label" => "top nav", :role => "navigation"}
+            %ul
+              %li
+                %a{:href => "http://www.df.gov.br", :target => "_Blank"} Portal Brasília
+              %li
+                %a{:href => "#"} CODHAB
+                %ul#nav-sub-1
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} A Companhia
+                    %ul
+                      %li
+                        = link_to 'História', 'geral'
+                      %li
+                        = link_to 'Missão', 'geral'
+                      %li
+                        = link_to 'Visão', 'geral'
+                      %li
+                        = link_to 'Valores', 'geral'
+                  %li
+                    %a{:href => "#", :class => "linkD"} Organização
+                    %ul#nav-sub-2
+                      %li.first
+                        = link_to 'Organograma', 'geral'
+                      %li
+                        = link_to 'Diretoria Executiva', 'geral'
+                      %li
+                        = link_to 'Assessorias', 'geral'
+                  %li
+                    %a{:href => "#", :class => "linkD"} Conselhos
+                    %ul#nav-sub-3
+                      %li.first
+                        = link_to 'Conselho Administrativo', 'geral'
+                      %li
+                        = link_to 'Conselho Fiscal', 'geral'
+                  %li
+                    %a{:href => "#", :class => "linkD"} Documentos
+                    %ul#nav-sub-4
+                      %li.first
+                        = link_to 'Estatuto Social', 'geral'
+                      %li
+                        = link_to 'Regimento Interno', 'geral'
+                      %li
+                        = link_to 'Resoluções', 'geral'
+              %li
+                %a{:href => "#"} Imprensa
+                %ul#nav-sub-5
+                  %li
+                    %ul
+                      %li.first
+                        = link_to 'Notícias', 'geral'
+                      %li
+                        = link_to 'Vídeos', 'geral'
+              %li
+                = link_to 'Dúvidas Frequentes', 'geral'
+              %li
+                = link_to 'Legislação', 'geral'
+              %li
+                %a{:href => "#"} Fale Conosco
+                %ul#nav-sub-7
+                  %li.first.menu-tel
+                    %a{:href => "#", :class => "link-tel", :class => "linkD linktamanho"} Telefone
+                    %ul
+                      %li
+                        %a{:href => "#", :class => "linkD borders"} 156 - A Central Telefônica tem profissionais preparados para ouvir e registrar as suas demandas. Ligação gratuita para telefone fixo.
+                  %li.first.menu-tel
+                    %a{:href => "#", :class => "linkD"} Postos de Atendimento
+                    %ul
+                      %li
+                        %a{:href => "#", :class => "linkD borders"} Setor Comercial Sul, Quadra 06, Lotes 13/14, Bloco A, 5º Andar - Edifício SEDHAB
+                  %li.first.menu-tel
+                    %a{:href => "#", :class => "linkD linktamanho"} Ouvidoria Geral
+                    %ul
+                      %li
+                        %a{:href => "http://www.ouvidoria.df.gov.br/", :target => '_BLANK'} Site
+                      %li{:class => "menu-bold borders linkD toplink"}
+                        Telefone
+                        %a{:href => "#", :class => "linkD borders"}162
+
+    #main-menu-bar{:role => "banner", :tabindex => "0"}
+      .container
+        .sixteen.columns
+          .logo.mobilewrap
+            %a.mobile.menubutton{:alt => "ACC menu button", :href => "#"}
+            %a.link-logo{:href => "#"}
+              = link_to image_tag('/portal/logo_codhab.png', width: '132', class: 'nomobile'), portal.root_path
+              = link_to image_tag('/portal/logo_codhab.png', width: '185', class: 'mobile'), portal.root_path
+          %nav#main-menu
+            %ul
+              %li.habitacao.main-link
+                %a{:href => "#"} Habitação
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Programa Morar Bem
+                    %ul.submenu-item
+                    - link_each ('Habitação / Programa Morar Bem') do |l|
+                      = link_to '#{l.title}'
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Relação de Habilitados
+                    %ul.submenu-item
+                      %li.first
+                        = link_to 'Diferença entre RII e RIE', 'habitacao'
+                      %li
+                        %a{:href => "http://www.morarbem.df.gov.br/Consultas/Habilitados?projeto=1", :target => "_BLANK"} Lista de Habilitados RII
+                      %li
+                        %a{:href => "http://www.morarbem.df.gov.br/Consultas/Habilitados?projeto=2", :target => "_BLANK"} Lista de Habilitados RIE
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Convocados Não Habilitados
+                    %ul.submenu-item
+                      %li.first
+                        = link_to 'O que são convocados não habilitados?', 'habitacao'
+                      %li
+                        %a{:href => "http://www.morarbem.df.gov.br/Consultas/NaoHabilitados", :target => "_BLANK"} Lista de Convocados não Habilitados
+              %li.regularizacao.main-link
+                %a{:href => "#"} Regularização
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Regularizou, é seu
+                    %ul.submenu-item
+                      %li
+                        = link_to 'Informações', 'regularizacao'
+                      %li
+                        = link_to 'Cadastro', 'regularizacao'
+                      %li
+                        = link_to 'Agendar / Reagendar atendimento', 'regularizacao'
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Cidades Consolidadas
+                    %ul.submenu-item
+                      %li
+                        = link_to 'Andamento de sua localidade', 'regularizacao'
+                      %li
+                        = link_to 'Critérios de Habilitação - Regularização em Cidades Consolidadas', 'regularizacao'
+                      %li
+                        = link_to 'Habilitação em Cidades Consolidadas', 'regularizacao'
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Parcelamentos Informais
+                    %ul.submenu-item
+                      %li
+                        = link_to 'Andamento de sua localidade', 'parcelamentos_informais'
+                      %li
+                        = link_to 'Critérios de Habilitação - Regularização em Parcelamento Informal Consolidado', 'parcelamentos_informais'
+                      %li
+                        = link_to 'Habilitação de Parcelamentos Informais Consolidados', 'parcelamentos_informais'
+              %li.entidades.main-link
+                %a{:href => "#"} Entidades
+
+              %li.servicos.main-link
+                %a{:href => "#"} Serviços
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#"} Responsabilidade Social
+                    %ul.submenu-item
+                      %li.first
+                        = link_to 'Programa de Assistência Técnica', 'Servicos'
+                  %li.first
+                    %a{:href => "#"} Consulta
+                    %ul.submenu-item
+                      %li.first
+                        = link_to 'Certidão Positiva', portal.root_path
+
+              %li.editais.main-link
+                %a{:href => "#"} Editais
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Entidades
+                    %ul.submenu-item
+                      %li
+                        = link_to 'Credenciamento', 'Editais'
+                      %li
+                        = link_to 'Chamamento', 'Editais'
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Pregões
+                    %ul.submenu-item
+                      %li
+                        = link_to 'Pregão Eletrônico', 'Editais'
+                      %li
+                        = link_to 'Pregão Presencial', 'Editais'
+
+                %li.concursos.main-link
+                  %a{:href => "#"} Concursos
+                  %ul.submenu
+                    %li.first
+                      %ul.submenu-item
+                        %li
+                          = link_to 'O que são?', 'Concursos'
+                        %li
+                        %li= link_to "Àrea do candidato", concourse.portal_candidates_path
+                        %li= link_to "Realizar minha inscrição", concourse.new_portal_candidate_path
