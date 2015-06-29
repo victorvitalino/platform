@@ -7,6 +7,7 @@ module Cms
     # GET /pages
     def index
       @pages = Page.all
+      authorize @pages
     end
 
     # GET /pages/1
@@ -16,6 +17,7 @@ module Cms
     # GET /pages/new
     def new
       @page = Page.new
+      authorize @page
     end
 
     # GET /pages/1/edit
@@ -25,6 +27,7 @@ module Cms
     # POST /pages
     def create
       @page = Page.new(page_params)
+      authorize @page
 
       if @page.save
         redirect_to action: 'index'
@@ -35,6 +38,7 @@ module Cms
 
     # PATCH/PUT /pages/1
     def update
+      authorize @page
       if @page.update(page_params)
         redirect_to action: 'index'
       else
@@ -44,6 +48,7 @@ module Cms
 
     # DELETE /pages/1
     def destroy
+      authorize @page
       @page.destroy
       redirect_to pages_url, notice: 'Page was successfully destroyed.'
     end
