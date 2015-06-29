@@ -1,6 +1,7 @@
 module Concourse
   class Candidate < ActiveRecord::Base
     has_one :user, as: :account, dependent: :destroy
+    has_many :enrollment_candidates
     accepts_nested_attributes_for :user
     
     belongs_to :project

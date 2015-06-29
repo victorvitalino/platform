@@ -5,18 +5,18 @@ module Concourse
     belongs_to :project
 
     serialize :properties, Hash
+    attr_accessor :attributes_values 
 
-    validate :validate_properties
+    validate :attributes_validate
 
     private
 
-    def validate_properties
+    def attributes_validate
       enrollment.enrollment_fields.each do |field|
-        if field.required && properties[field.name].blank?
-          #errors.add field.name, "must not be blank"
+        if field.required && attributes_values[field.name].blank?
+          errors.add field.name, "must not be blank"
         end
       end
     end
-
   end
 end

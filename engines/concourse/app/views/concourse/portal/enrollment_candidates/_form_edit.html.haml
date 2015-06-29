@@ -5,10 +5,9 @@
         .alert.alert-danger
           %h4
             %strong Verifique se todos os campos estão preenchidos
-
   .row
     .col-md-6
-      = f.fields_for :attributes_values, OpenStruct.new(@candidate.attributes_values) do |builder|
+      = f.fields_for :properties, OpenStruct.new(@candidate.properties) do |builder|
         .row
           .col-md-12
             - @candidate.enrollment.enrollment_fields.each do |field|

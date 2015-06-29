@@ -13,6 +13,16 @@ module Concourse
       @candidate.candidate_id = current_user.account_id
       @candidate.project_id = @project.id
       
+      @candidate.attributes_values.each_with_index do |attr, i|
+         if attr[1].class != String
+          uploader = Concourse::ImageUploader.new 
+          if uploader.store!(attr[1])
+           @candidate.attributes_values[attr[0]] = uploader.url
+          end
+         end
+      end
+      @candidate.properties = @candidate.attributes_values.to_hash
+      
       if @candidate.save
         redirect_to portal_candidates_path
       else
@@ -31,12 +41,12 @@ module Concourse
         flash[:success] = t :success
         redirect_to action: 'show'
       else
-        render action: 'new'
+        render action: 'edit'
       end
     end
 
     def show
-      @enrollment_candidate = EnrollmentCandidate.find_by_candidate_id(current_user.account_id)
+      @enrollment_candidate = EnrollmentCandidate.where(candidate_id: current_user.account_id, enrollment_id: params[:enrollment_id]).last
       @candidate = Candidate.find(current_user.account_id)
       render layout: "layouts/concourse/candidate"
 
@@ -53,8 +63,8 @@ module Concourse
     end
 
     def set_params_enrollment
-      params.require(:enrollment_candidate).permit(:properties).tap do |whitelisted|
-        whitelisted[:properties] = params[:enrollment_candidate][:properties]
+      params.require(:enrollment_candidate).permit(:properties, :attributes_values).tap do |whitelisted|
+        whitelisted[:attributes_values] = params[:enrollment_candidate][:attributes_values]
       end
     end
 
