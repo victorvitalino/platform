@@ -5,7 +5,7 @@ namespace :permissions do
   
 		#-------------------------------------------PERSON----------------------------------------------		
 		@system_person = Person::System.new(name: 'Gestão de Pessoas',code: 1, status: true)
-		@system.save
+		@system_person.save
 
 		#criação da permissões do controller branch_lines
 		@system_permission = Person::SystemPermission.create([
@@ -94,7 +94,7 @@ namespace :permissions do
 
 
 		@system_cms = Person::System.new(name: 'Gestão do Site',code: 3, status: true)
-		@system.save
+		@system_cms.save
 
 		#criação da permissões de controller nav_categories
 		@system_permission = Person::SystemPermission.create([
