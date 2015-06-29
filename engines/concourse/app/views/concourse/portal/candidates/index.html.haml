@@ -8,21 +8,17 @@
         %tr
           %th #
           %th Concurso
-          %th Ínicio
-          %th Fim
+          %th Data da inscrição
           %th Status
-          %th Informações
-          %th Meu Cadastro
+          %th Ações
       %tbody
         - @candidate.erollments.each_with_index do |c, i|
           %tr
             %td= i + 1
             %td= link_to c.enrollment.project.name, portal_project_path(c.enrollment.project)
-            %td= c.enrollment.project.start.strftime('%d/%m/%Y')
-            %td= c.enrollment.project.end.strftime('%d/%m/%Y')
+            %td= c.created_at.strftime('%d/%m/%Y às %H:%M')
             %td
-            %td.col-md-1= link_to "Detalhes", portal_project_path(c.enrollment.project), class: 'btn btn-success btn-sm'
             %td.col-md-3
-              = link_to "Meu Cadastro", portal_meu_cadastro_path, class: 'btn btn-success btn-sm'
-              = link_to "Enviar projeto", "#", class: 'btn btn-danger btn-sm'
+              = link_to "Minha inscrição", concourse.portal_project_enrollment_enrollment_candidate_path(project_id: c.enrollment.project.id, enrollment_id: c.enrollment.id, id: c), class: 'btn btn-success btn-xs'
+              = link_to "Enviar projeto", "#", class: 'btn btn-danger btn-xs' 
   

@@ -1,0 +1,51 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Visualização de inscrição
+.modal-body
+  .row
+    .col-md-4
+      %h5
+        %strong
+          %p Data da inscrição:
+      = @enrollment_candidate.created_at.strftime('%d/%m/%Y às %H:%M')
+    .col-md-4
+      %h5
+        %strong
+          %p Protocolo:
+      = "CODHAB#{@enrollment_candidate.id}2015"
+    .col-md-4
+      %h5
+        %strong
+          %p Status:
+      = @enrollment_candidate.status
+  %hr/
+  .row
+    .col-md-4
+      %h5
+        %strong 
+          %p Nome:
+      = @candidate.name
+    .col-md-4
+      %h5
+        %strong 
+          %p CPF:
+      = @candidate.cpf
+    .col-md-4
+      %h5
+        %strong 
+          %p Sexo:
+      = @candidate.sex
+  %hr/
+  - @enrollment_candidate.properties.each do |p|
+    .row
+      .col-md-4
+        %h5
+          %strong
+            %p= "#{p[0].humanize}:"
+        = p[1]
+  %hr/
+  .row
+    .col-md-12
+      = link_to "Homologar", "#", class: 'btn btn-success'
+      = link_to "Enviar uma mensagem", "#", class: 'btn btn-info'
