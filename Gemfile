@@ -26,8 +26,6 @@ gem 'email_validator'
 
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-gem "bcrypt-ruby", :require => "bcrypt"
-
 
 group :development, :test do
   gem 'sqlite3'

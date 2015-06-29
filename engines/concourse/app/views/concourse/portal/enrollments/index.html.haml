@@ -24,6 +24,9 @@
             %td= e.end.strftime('%d/%m/%Y')
             %td.col-md-2
               - if Date.today >= e.start && Date.today <= e.end
-                = link_to "Participar", concourse.new_portal_project_enrollment_enrollment_candidate_path(enrollment_id: e.id), class: 'btn btn-success btn-sm'
+                - if !current_user.account.enrollment_candidates.where(enrollment_id: e.id).present?
+                  = link_to "Participar", concourse.new_portal_project_enrollment_enrollment_candidate_path(enrollment_id: e.id), class: 'btn btn-success btn-sm' 
+                - else
+                  = link_to "Ver minha inscrição", concourse.portal_project_enrollment_enrollment_candidate_path(project_id: e.project.id, enrollment_id: e.id, id: current_user.account_id), class: 'btn btn-success btn-sm'
               - else
                 = "Inicia em #{e.start.strftime('%d/%m/%Y')}"  
