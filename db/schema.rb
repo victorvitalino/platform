@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20150627142829) do
     t.boolean  "payment"
     t.integer  "status"
     t.text     "observation_validated"
+    t.text     "dynamic_attributes"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end

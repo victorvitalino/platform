@@ -9,7 +9,8 @@ class CreateConcourseEnrollmentCandidates < ActiveRecord::Migration
       t.boolean :payment
       t.integer :status
       t.text :observation_validated
-
+      t.text :dynamic_attributes
+      
       t.timestamps null: false
     end
   end

@@ -29,20 +29,15 @@ Concourse::Engine.routes.draw do
       root 'projects#index'
       
       resources :candidates,    path: 'candidato'
-      resources :sessions,      path: 'acesso'
       resources :passwords,     path: 'senha'
       
-      get 'minha_inscricao',  to: 'enrollment_candidates#show'
-      get 'editar_inscricao/:enrollment_id', to: 'enrollment_candidates#edit'
-
-      resources :projects,  path: '/' do 
-        resources :pages,   path: 'paginas'
-        resources :consultations,   path: 'consultas'
-        resources :enrollments, path: 'inscricoes' do 
-          resources :enrollment_candidates, path: 'inscricoes_efetuadas'
-        end
-
-    
+      resources :enrollment_candidates,     path: 'inscricao'
+      resources :participation_candidates,  path: 'participacao'
+      
+      resources :projects, path: '/' do 
+        resources :enrollments,    path: 'inscricoes'
+        resources :pages,          path: 'pagina'
+        resources :consultations,  path: 'consultas'
       end
     end
   end
