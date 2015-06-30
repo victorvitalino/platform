@@ -25,7 +25,8 @@ Rails.application.routes.draw do
       mount Intranet::Engine => '/intranet',       as: 'intranet', module: 'intranet'
       mount Cms::Engine => "/cms",                 as: 'cms', module: 'cms'
       mount Person::Engine => "/pessoas",          as: 'person', module: 'person'
-      mount Patrimony::Engine => "/patrimonio",          as: 'patrimony', module: 'patrimony'
+      mount Patrimony::Engine => "/patrimonio",    as: 'patrimony', module: 'patrimony'
+      mount Helpdesk::Engine => "/helpdesk",       as: 'helpdesk', module: 'helpdesk'
     end
   end
 

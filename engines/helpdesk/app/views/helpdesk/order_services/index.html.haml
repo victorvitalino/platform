@@ -1,0 +1,13 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Chamados
+      = link_to 'novo chamado', new_order_service_path, remote: true, class: 'btn btn-success pull-right'
+      %small Listagem de Chamados
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          
+      %tbody.index-order-service
+        = render 'index'

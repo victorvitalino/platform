@@ -1,0 +1,16 @@
+.row
+ .col-md-12
+  = simple_form_for @order_service, remote: true do |f|
+   .row
+    .col-md-8
+     = f.submit :submit, class: 'btn btn-success'
+   .row
+    .col-md-8
+     = f.fields_for :monitor_service_order do |builder|
+      = render "monitor_service_order", :f => builder
+      %br/
+      .col-md-12
+       = f.submit :submit, class: 'btn btn-success'
+
+
+   
