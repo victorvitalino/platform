@@ -8,7 +8,6 @@
     %h2 
       = @project.name
       %small
-        = @project.description
   .card-body.card-padding
     %div{:role => "tabpanel"}
       %ul.tab-nav{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "1"}
@@ -42,7 +41,7 @@
             
         #consults.tab-pane{:role => "tab2"}
           %p
-            consultas
+            Consultas Enviadas: 0
         #projects.tab-pane{:role => "tab2"}
           %p
-            Projetos enviados
+            Projetos enviados: 0

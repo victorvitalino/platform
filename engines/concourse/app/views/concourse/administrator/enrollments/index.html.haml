@@ -43,7 +43,6 @@
               - else
                 Não cobrado
             %td
-              = link_to "", concourse.administrator_project_enrollment_enrollment_fields_path(enrollment_id: p, project_id: @project),class: 'md-exit-to-app btn btn-warning waves-effect waves-button waves-float'
               = link_to "", concourse.edit_administrator_project_enrollment_path(project_id: @project, id: p),class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
               = link_to "", administrator_project_enrollment_path(project_id: @project, id: p), method: :delete, class: 'md md-clear btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}
 
