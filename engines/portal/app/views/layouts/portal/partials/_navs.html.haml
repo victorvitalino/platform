@@ -97,8 +97,9 @@
                   %li.first
                     %a{:href => "#", :class => "linkD"} Programa Morar Bem
                     %ul.submenu-item
-                    - link_each ('Habitação / Programa Morar Bem') do |l|
-                      = link_to '#{l.title}'
+                      - link_each('Programa Morar Bem') do |l|
+                        %li
+                          = link_to_nav l
                   %li.first
                     %a{:href => "#", :class => "linkD"} Relação de Habilitados
                     %ul.submenu-item

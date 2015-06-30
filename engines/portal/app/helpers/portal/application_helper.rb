@@ -1,7 +1,17 @@
 module Portal
   module ApplicationHelper
     def link_each(category)
-      @nav = Cms::Nav.where(category: category, publish: true )
+      Cms::NavCategory.active_navs(category).each do |n|
+        yield n
+      end
+    end
+
+    def link_to_nav(nav)
+      if nav.pagina?
+        link_to nav.name, portal.page_path(nav.link_page), target: "#{(nav.target)}"
+      else
+        link_to nav.name, nav.link_external, target: "#{(nav.target)}"
+      end
     end
 
     def slider_each(limit = 10, order = 'ASC')
