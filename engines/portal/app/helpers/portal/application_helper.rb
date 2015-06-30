@@ -1,6 +1,7 @@
 module Portal
   module ApplicationHelper
-    def link_nav_to(title, category,*html)
+    def link_each(category)
+      @nav = Cms::Nav.where(category: category, publish: true )
     end
 
     def slider_each(limit = 10, order = 'ASC')

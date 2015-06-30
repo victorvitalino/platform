@@ -60,7 +60,7 @@ module Cms
 
       # Only allow a trusted parameter "white list" through.
       def page_category_params
-        params.require(:page_category).permit(:title, :status)
+        params.require(:page_category).permit(:title, :status, :description)
       end
   end
 end

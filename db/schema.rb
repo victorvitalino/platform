@@ -16,8 +16,9 @@ ActiveRecord::Schema.define(version: 20150630175952) do
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "cms_navs", force: :cascade do |t|
@@ -42,8 +43,9 @@ ActiveRecord::Schema.define(version: 20150630175952) do
     t.string   "title"
     t.boolean  "status"
     t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "cms_pages", force: :cascade do |t|
