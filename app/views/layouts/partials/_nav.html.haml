@@ -33,8 +33,7 @@
 
               %a.lv-footer{:href => ""} Ver todas
         %li.toggle-switch
-          = link_to "Abrir chamado", "#", class: 'btn btn-danger'
-
+          = link_to "Abrir chamado", helpdesk.new_order_service_path, remote: true, class: 'btn btn-danger'
 
         %li#chat-trigger.hidden-xs{"data-trigger" => "#chat"}
           %a.tm-chat{:href => ""}
