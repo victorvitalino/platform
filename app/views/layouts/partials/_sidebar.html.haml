@@ -64,7 +64,7 @@
               %i.md.md-public>
               Gestão Site
             %ul{style: ('display:block;' if params[:module] == "cms")}
-              - if policy(:post, namespace: Cms).index?  
+              - if policy(:post, namespace: Cms).index?
                 %li
                   = link_to "postagens", cms.posts_path
               - if policy(:page, namespace: Cms).index?
@@ -83,73 +83,3 @@
               - if policy(:NavCategory, namespace: Cms).index?
                 %li
                   = link_to "categorias de menu", cms.nav_categories_path
-        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-          %a{:href => ""}
-            %i.md.md-attach-money>
-            Financeiro
-          %ul{style: ('display:block;' if params[:module] == "finance")}
-            %li
-              = link_to "emissão de boletos"
-        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-          %a{:href => ""}
-            %i.md.md-assignment>
-            Atendimento
-          %ul{style: ('display:block;' if params[:module] == "finance")}
-            %li
-              = link_to "habitação"
-            %li
-              = link_to "regularização"
-            %li
-              = link_to "agendamentos"
-            %li
-              = link_to "controle de senha"
-            %li
-              = link_to "painel"
-        - if defined? Habitation
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-home>
-              Habitação
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Regularization
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-event-available>
-              Regularização
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Patrimony
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-turned-in>
-              Patrimônio
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Assesment
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-my-library-books>
-              Protocolo
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Wiki
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-search>
-              Wiki
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Helpdesk
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-live-help>
-              Helpdesk
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
