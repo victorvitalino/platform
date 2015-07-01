@@ -1,10 +1,9 @@
 require 'test_helper'
 
-module Helpdesk
+module Helpedesk
   class StatusesControllerTest < ActionController::TestCase
     setup do
-      @status = helpdesk_statuses(:one)
-      @routes = Engine.routes
+      @status = statuses(:one)
     end
 
     test "should get index" do

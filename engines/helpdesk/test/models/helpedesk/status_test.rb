@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module Helpdesk
+module Helpedesk
   class StatusTest < ActiveSupport::TestCase
     # test "the truth" do
     #   assert true

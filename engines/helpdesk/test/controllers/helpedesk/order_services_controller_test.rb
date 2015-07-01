@@ -1,10 +1,9 @@
 require 'test_helper'
 
-module Helpdesk
+module Helpedesk
   class OrderServicesControllerTest < ActionController::TestCase
     setup do
-      @order_service = helpdesk_order_services(:one)
-      @routes = Engine.routes
+      @order_service = order_services(:one)
     end
 
     test "should get index" do

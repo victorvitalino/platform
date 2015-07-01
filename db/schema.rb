@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630175952) do
+ActiveRecord::Schema.define(version: 20150630230826) do
 
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "name"
@@ -279,6 +279,8 @@ ActiveRecord::Schema.define(version: 20150630175952) do
   add_index "helpdesk_monitor_service_orders", ["order_service_id"], name: "index_helpdesk_monitor_service_orders_on_order_service_id"
 
   create_table "helpdesk_order_services", force: :cascade do |t|
+    t.string   "prefix"
+    t.integer  "number"
     t.string   "opened_by"
     t.string   "required_by"
     t.integer  "sector_id"
@@ -307,6 +309,54 @@ ActiveRecord::Schema.define(version: 20150630175952) do
   add_index "helpdesk_qualifications", ["order_service_id"], name: "index_helpdesk_qualifications_on_order_service_id"
 
   create_table "helpdesk_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "helpedesk_monitor_service_orders", force: :cascade do |t|
+    t.text     "appointment"
+    t.string   "attachment"
+    t.string   "name"
+    t.boolean  "status"
+    t.integer  "order_service_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "helpedesk_monitor_service_orders", ["order_service_id"], name: "index_helpedesk_monitor_service_orders_on_order_service_id"
+
+  create_table "helpedesk_order_services", force: :cascade do |t|
+    t.string   "prefix"
+    t.integer  "number"
+    t.string   "opened_by"
+    t.string   "required_by"
+    t.integer  "sector_id"
+    t.integer  "branch_line_id"
+    t.integer  "user_id"
+    t.integer  "good_id"
+    t.integer  "status_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "helpedesk_order_services", ["branch_line_id"], name: "index_helpedesk_order_services_on_branch_line_id"
+  add_index "helpedesk_order_services", ["good_id"], name: "index_helpedesk_order_services_on_good_id"
+  add_index "helpedesk_order_services", ["sector_id"], name: "index_helpedesk_order_services_on_sector_id"
+  add_index "helpedesk_order_services", ["status_id"], name: "index_helpedesk_order_services_on_status_id"
+  add_index "helpedesk_order_services", ["user_id"], name: "index_helpedesk_order_services_on_user_id"
+
+  create_table "helpedesk_qualifications", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.integer  "order_service_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "helpedesk_qualifications", ["order_service_id"], name: "index_helpedesk_qualifications_on_order_service_id"
+
+  create_table "helpedesk_statuses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

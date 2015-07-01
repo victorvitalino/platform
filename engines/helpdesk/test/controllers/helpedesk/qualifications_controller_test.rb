@@ -1,10 +1,9 @@
 require 'test_helper'
 
-module Helpdesk
+module Helpedesk
   class QualificationsControllerTest < ActionController::TestCase
     setup do
-      @qualification = helpdesk_qualifications(:one)
-      @routes = Engine.routes
+      @qualification = qualifications(:one)
     end
 
     test "should get index" do
