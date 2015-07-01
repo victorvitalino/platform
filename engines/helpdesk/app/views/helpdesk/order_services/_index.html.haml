@@ -1,15 +1,15 @@
 - @order_services.each_with_index do |j, i|
  %tr
   %td.col-md-1
-   = i + 1
+   = link_to "OS#{j.id}" , order_service_monitor_service_orders_path(j)
   %td
    = j.user
   %td
-   
+   = j.user
   %td
-   
+   = j.created_at.strftime("%d/%m/%Y - %H:%M")
   %td
-   
-  %td.col-md-2
+   = j.status.name
+  %td
    = link_to "", edit_order_service_path(j), remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
    = link_to "", order_service_path(j), method: :delete, class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}

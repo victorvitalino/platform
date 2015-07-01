@@ -1,18 +1,16 @@
 .card
   .card-header.ch-alt
     %h2
+      %h2
       Chamados
-      = link_to 'novo material', new_order_service_path, remote: true, class: 'btn btn-success pull-right'
-      %small Listagem de chamados
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table.table.table-hover.table-bordered
       %thead
         %tr
-          %th #
-          %th 
-          %th 
-          %th 
-          %th 
-          %th 
+          %th OS
+          %th Solicitado por
+          %th Setor
+          %th Data/Hora
+          %th Status
       %tbody.index-order-service
         = render 'index'

@@ -6,7 +6,7 @@ module Helpdesk
 
     # GET /monitor_service_orders
     def index
-      @monitor_service_orders = MonitorServiceOrder.all
+      @monitor_service_orders = MonitorServiceOrder.where(order_service_id: params[:order_service_id])
     end
 
     # GET /monitor_service_orders/1
@@ -56,7 +56,7 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def monitor_service_order_params
-        params.require(:monitor_service_orders).permit(:appointment, :attachment, :name, :status, :order_service_id)
+        params.require(:monitor_service_orders).permit(:appointment, :attachment, :user, :status, :order_service_id)
       end
   end
 end

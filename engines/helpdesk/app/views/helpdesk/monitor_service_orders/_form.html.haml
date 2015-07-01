@@ -2,9 +2,8 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :appointment
+    = f.input :appointment, label: false, input_html: {class: 'redactor'}
     = f.input :attachment
-    = f.input :name
     = f.input :status
     = f.association :order_service
 

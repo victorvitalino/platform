@@ -7,7 +7,7 @@ module Helpdesk
 
     # GET /order_services
     def index
-      
+     
     end
 
     # GET /order_services/1
@@ -17,7 +17,7 @@ module Helpdesk
     # GET /order_services/new
     def new
       @order_service = OrderService.new
-      @monitor_service_orders = @order_service.monitor_service_orders.build
+      @order_service.monitor_service_orders.build
     end
 
     # GET /order_services/1/edit
@@ -27,7 +27,6 @@ module Helpdesk
     # POST /order_services
     def create
       @order_service = OrderService.new(order_service_params)
-      @monitor_service_order = @order_service.monitor_service_orders.build
       @order_service.save
     end
 
@@ -50,11 +49,12 @@ module Helpdesk
 
       def set_order_services
         @order_services = OrderService.all
+        @total_opened = OrderService.where(status_id: 1).count
       end
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:prefix, :number, :opened_by, :required_by, :sector_id, :branch_line_id, :user_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment])
+        params.require(:order_service).permit(:prefix, :number, :opened_by, :required_by, :sector_id, :branch_line_id, :user_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment, :attachment, :user, :status, :order_service_id])
       end
   end
 end
