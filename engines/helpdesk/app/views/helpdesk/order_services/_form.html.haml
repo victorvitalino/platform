@@ -2,15 +2,21 @@
  .col-md-12
   = simple_form_for @order_service, remote: true do |f|
    .row
-    .col-md-8
-     = f.submit :submit, class: 'btn btn-success'
+    .col-md-12
+     = f.label :opened_by, class: 'fg-label'
+     = f.association :user, label: false
    .row
-    .col-md-8
-     = f.fields_for :monitor_service_order do |builder|
+    .col-md-6
+     = f.label :good, class: 'fg-label'
+     = f.association :good, label: false
+    .col-md-6
+     = f.label :branch_line, class: 'fg-label'
+     = f.association :branch_line, label: false
+   .row
+    .col-md-12
+     = f.fields_for :monitor_service_orders do |builder|
       = render "monitor_service_order", :f => builder
-      %br/
-      .col-md-12
-       = f.submit :submit, class: 'btn btn-success'
-
-
-   
+   .row
+    .col-md-12
+     = f.submit :submit, class: 'btn btn-success'
+   %br/

@@ -30,6 +30,7 @@ PATH
   remote: engines/helpdesk
   specs:
     helpdesk (0.0.1)
+      haml-rails
       rails (~> 4.2.1)
 
 PATH
@@ -341,3 +342,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   wicked_pdf
   wkhtmltopdf-binary
+
+BUNDLED WITH
+   1.10.5

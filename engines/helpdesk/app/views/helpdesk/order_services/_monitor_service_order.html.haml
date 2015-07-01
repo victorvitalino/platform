@@ -1,20 +1,6 @@
-.field
-  = f.label :appointment
-  %br/
-  = f.text_area :appointment
-.field
-  = f.label :attachment
-  %br/
-  = f.text_field :attachment
-.field
-  = f.label :name
-  %br/
-  = f.text_field :name
-.field
-  = f.label :status
-  %br/
-  = f.check_box :status
-.field
-  = f.label :order_service_id
-  %br/
-  = f.text_field :order_service_id
+.row
+ .col-md-12
+  = f.label :appointment, class: 'fg-label'
+  = f.input :appointment, label: false, input_html: { class: 'redactor' }
+  = f.label "Imagem", as: 'file', class: 'fg-label'
+  = f.input :attachment, as: 'file', label: false, input_html: { placeholder: 'Selecione' }

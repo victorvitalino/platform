@@ -1,6 +1,8 @@
 class CreateHelpdeskOrderServices < ActiveRecord::Migration
   def change
     create_table :helpdesk_order_services do |t|
+      t.string :prefix
+      t.integer :number
       t.string :opened_by
       t.string :required_by
       t.references :sector, index: true, foreign_key: true

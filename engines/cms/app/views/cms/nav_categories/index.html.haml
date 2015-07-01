@@ -1,9 +1,9 @@
 .card
   .card-header.ch-alt
     %h2
-      Menus
+      Categorias de Menu
       = link_to 'Nova Categoria', new_nav_category_path, class: 'btn btn-success pull-right' if policy(:NavCategory, namespace: Cms).create?
-      %small Listagem de páginas
+      %small Listagem de categorias
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
       %thead

@@ -3,7 +3,8 @@ require 'test_helper'
 module Helpdesk
   class OrderServicesControllerTest < ActionController::TestCase
     setup do
-      @order_service = order_services(:one)
+      @order_service = helpdesk_order_services(:one)
+      @routes = Engine.routes
     end
 
     test "should get index" do
@@ -19,7 +20,7 @@ module Helpdesk
 
     test "should create order_service" do
       assert_difference('OrderService.count') do
-        post :create, order_service: { branch_line_id: @order_service.branch_line_id, good_id: @order_service.good_id, opened_by: @order_service.opened_by, required_by: @order_service.required_by, sector_id: @order_service.sector_id, status_id: @order_service.status_id, user_id: @order_service.user_id }
+        post :create, order_service: { branch_line_id: @order_service.branch_line_id, good_id: @order_service.good_id, number: @order_service.number, opened_by: @order_service.opened_by, prefix: @order_service.prefix, required_by: @order_service.required_by, sector_id: @order_service.sector_id, status_id: @order_service.status_id, user_id: @order_service.user_id }
       end
 
       assert_redirected_to order_service_path(assigns(:order_service))
@@ -36,7 +37,7 @@ module Helpdesk
     end
 
     test "should update order_service" do
-      patch :update, id: @order_service, order_service: { branch_line_id: @order_service.branch_line_id, good_id: @order_service.good_id, opened_by: @order_service.opened_by, required_by: @order_service.required_by, sector_id: @order_service.sector_id, status_id: @order_service.status_id, user_id: @order_service.user_id }
+      patch :update, id: @order_service, order_service: { branch_line_id: @order_service.branch_line_id, good_id: @order_service.good_id, number: @order_service.number, opened_by: @order_service.opened_by, prefix: @order_service.prefix, required_by: @order_service.required_by, sector_id: @order_service.sector_id, status_id: @order_service.status_id, user_id: @order_service.user_id }
       assert_redirected_to order_service_path(assigns(:order_service))
     end
 

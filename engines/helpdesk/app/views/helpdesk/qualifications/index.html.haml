@@ -1,0 +1,25 @@
+%h1 Listing qualifications
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Status
+      %th Order service
+      %th
+      %th
+      %th
+
+  %tbody
+    - @qualifications.each do |qualification|
+      %tr
+        %td= qualification.name
+        %td= qualification.status
+        %td= qualification.order_service
+        %td= link_to 'Show', qualification
+        %td= link_to 'Edit', edit_qualification_path(qualification)
+        %td= link_to 'Destroy', qualification, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Qualification', new_qualification_path

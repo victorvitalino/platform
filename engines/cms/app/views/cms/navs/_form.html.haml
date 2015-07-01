@@ -5,13 +5,10 @@
         = f.label :name, class: 'fg-label'
         = f.input :name, label: false, input_html: { placeholder: 'Digite um título'}
     .row
-      .col-md-4
+      .col-md-6
         = f.label "Página", class: 'fg-label'
         = f.association :link_page, label: false, prompt: 'Selecione...'
-      .col-md-4
-        = f.label "Post", class: 'fg-label'
-        = f.association :link_post, label: false, prompt: 'Selecione...'
-      .col-md-4
+      .col-md-6
         = f.label "Categoria", class: 'fg-label'
         = f.association :category, label: false, prompt: 'Selecione...'
     .row

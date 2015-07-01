@@ -3,7 +3,8 @@ require 'test_helper'
 module Helpdesk
   class MonitorServiceOrdersControllerTest < ActionController::TestCase
     setup do
-      @monitor_service_order = monitor_service_orders(:one)
+      @monitor_service_order = helpdesk_monitor_service_orders(:one)
+      @routes = Engine.routes
     end
 
     test "should get index" do

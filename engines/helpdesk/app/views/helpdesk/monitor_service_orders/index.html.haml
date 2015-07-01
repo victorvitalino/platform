@@ -1,0 +1,27 @@
+%h1 Listing monitor_service_orders
+
+%table
+  %thead
+    %tr
+      %th Appointment
+      %th Attachment
+      %th Name
+      %th Status
+      %th Order service
+      %th
+      %th
+      %th
+
+  %tbody
+    - @monitor_service_orders.each do |monitor_service_order|
+      %tr
+        %td= monitor_service_order.appointment
+        %td= monitor_service_order.attachment
+        %td= monitor_service_order.name
+        %td= monitor_service_order.status
+        %td= monitor_service_order.order_service
+        %td= link_to 'Show', monitor_service_order
+        %td= link_to 'Edit', edit_monitor_service_order_path(monitor_service_order)
+        %td= link_to 'Destroy', monitor_service_order, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
