@@ -7,7 +7,7 @@ module Helpdesk
     belongs_to :status
 
     has_many :monitor_service_orders, :dependent => :destroy
-    accepts_nested_attributes_for :monitor_service_orders, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
+    accepts_nested_attributes_for :monitor_service_orders, :reject_if => lambda { |a| a[:appointment].blank? }, :allow_destroy => true
 
 
   end

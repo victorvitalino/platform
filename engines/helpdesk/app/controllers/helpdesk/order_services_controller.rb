@@ -17,7 +17,7 @@ module Helpdesk
     # GET /order_services/new
     def new
       @order_service = OrderService.new
-      @monitor_service_order = @order_service.monitor_service_orders.build
+      @monitor_service_orders = @order_service.monitor_service_orders.build
     end
 
     # GET /order_services/1/edit
@@ -54,7 +54,7 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:prefix, :number, :opened_by, :required_by, :sector_id, :branch_line_id, :user_id, :good_id, :status_id)
+        params.require(:order_service).permit(:prefix, :number, :opened_by, :required_by, :sector_id, :branch_line_id, :user_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment])
       end
   end
 end
