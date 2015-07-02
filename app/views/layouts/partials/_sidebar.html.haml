@@ -44,29 +44,28 @@
               - if policy(:sector, namespace: Person).index?
                 %li
                   = link_to "setores", person.sectors_path
-          %ul{style: ('display:block;' if @module == "person")}
-        %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
-          - if policy(:application, namespace: Cms).index?
-            %a{:href => ""}
-              %i.md.md-public>
-              Gestão Site
-            %ul{style: ('display:block;' if params[:module] == "cms")}
-              - if policy(:post, namespace: Cms).index?
-                %li
-                  = link_to "postagens", cms.posts_path
-              - if policy(:page, namespace: Cms).index?
-                %li
-                  = link_to "páginas", cms.pages_path
-              - if policy(:PostCategory, namespace: Cms).index?
-                %li.divider
-                %li
-                  = link_to "categorias de post", cms.post_categories_path
-              - if policy(:PageCategory, namespace: Cms).index?
-                %li
-                  = link_to "categorias de página", cms.page_categories_path
-              - if policy(:nav, namespace: Cms).index?
-                %li
-                  = link_to "menu", cms.navs_path
-              - if policy(:NavCategory, namespace: Cms).index?
-                %li
-                  = link_to "categorias de menu", cms.nav_categories_path
+            %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
+              - if policy(:application, namespace: Cms).index?
+                %a{:href => ""}
+                  %i.md.md-public>
+                  Gestão Site
+                %ul{style: ('display:block;' if params[:module] == "cms")}
+                  - if policy(:post, namespace: Cms).index?
+                    %li
+                      = link_to "postagens", cms.posts_path
+                  - if policy(:page, namespace: Cms).index?
+                    %li
+                      = link_to "páginas", cms.pages_path
+                  - if policy(:PostCategory, namespace: Cms).index?
+                    %li.divider
+                    %li
+                      = link_to "categorias de post", cms.post_categories_path
+                  - if policy(:PageCategory, namespace: Cms).index?
+                    %li
+                      = link_to "categorias de página", cms.page_categories_path
+                  - if policy(:nav, namespace: Cms).index?
+                    %li
+                      = link_to "menu", cms.navs_path
+                  - if policy(:NavCategory, namespace: Cms).index?
+                    %li
+                      = link_to "categorias de menu", cms.nav_categories_path
