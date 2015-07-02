@@ -16,7 +16,7 @@
           / /sn_post_meta
           .internal-content
             %h1.post-header
-              Foto que tirei em um dia feliz :)
+              = @page.title
             %p.img-thumbpost
               - if @page.active_photo?
                 - if @page.photo_author?

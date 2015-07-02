@@ -6,7 +6,7 @@ module Cms
 
     # GET /nav_categories
     def index
-      @nav_categories = NavCategory.all
+      @nav_categories = NavCategory.unscoped.all
       authorize @nav_categories
     end
 
@@ -55,12 +55,12 @@ module Cms
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_nav_category
-        @nav_category = NavCategory.find(params[:id])
+        @nav_category = NavCategory.unscoped.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def nav_category_params
-        params.require(:nav_category).permit(:name, :status)
+        params.require(:nav_category).permit(:name, :status, :description)
       end
   end
 end

@@ -1,16 +1,29 @@
 module Concourse
   class ApplicationController < ActionController::Base
-    helper ::Portal::ApplicationHelper
+    helper Portal::ApplicationHelper
 
+    before_filter :set_url
 
-    include Pundit
+    def connect(page)
+      Net::HTTP.get_response(URI.parse(page)).body
+    end
 
-    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    def parse(body)
+      begin
+        JSON.parse(body)
+      rescue JSON::ParserError => e
+        false
+      end
+    end
+
 
     private
 
-    def user_not_authorized(exception)
-      redirect_to('/404')
-    end 
+    def set_url
+      @url = "http://concursos.localhost.df.gov.br:3000"
+    end
+
+
+    
   end
 end

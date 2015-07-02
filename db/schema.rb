@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150627142829) do
+ActiveRecord::Schema.define(version: 20150630230826) do
 
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "cms_navs", force: :cascade do |t|
@@ -42,8 +43,9 @@ ActiveRecord::Schema.define(version: 20150627142829) do
     t.string   "title"
     t.boolean  "status"
     t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "cms_pages", force: :cascade do |t|
@@ -96,173 +98,53 @@ ActiveRecord::Schema.define(version: 20150627142829) do
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id"
 
-  create_table "concourse_candidates", force: :cascade do |t|
-    t.string   "name"
-    t.string   "cpf"
-    t.string   "telphone"
-    t.string   "telphone_optional"
-    t.string   "celphone"
-    t.string   "cep"
-    t.string   "address"
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.string   "email"
-    t.integer  "sex"
+  create_table "helpdesk_monitor_service_orders", force: :cascade do |t|
+    t.text     "appointment"
+    t.string   "attachment"
+    t.string   "user"
     t.boolean  "status"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "concourse_candidates", ["city_id"], name: "index_concourse_candidates_on_city_id"
-  add_index "concourse_candidates", ["state_id"], name: "index_concourse_candidates_on_state_id"
-
-  create_table "concourse_enrollment_candidates", force: :cascade do |t|
-    t.integer  "enrollment_id"
-    t.integer  "candidate_id"
-    t.integer  "project_id"
-    t.text     "properties"
-    t.boolean  "validated"
-    t.boolean  "payment"
-    t.integer  "status"
-    t.text     "observation_validated"
-    t.text     "dynamic_attributes"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "concourse_enrollment_candidates", ["candidate_id"], name: "index_concourse_enrollment_candidates_on_candidate_id"
-  add_index "concourse_enrollment_candidates", ["enrollment_id"], name: "index_concourse_enrollment_candidates_on_enrollment_id"
-  add_index "concourse_enrollment_candidates", ["project_id"], name: "index_concourse_enrollment_candidates_on_project_id"
-
-  create_table "concourse_enrollment_fields", force: :cascade do |t|
-    t.integer  "enrollment_id"
-    t.string   "name"
-    t.string   "code"
-    t.integer  "field_type"
-    t.boolean  "required"
-    t.boolean  "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "concourse_enrollment_fields", ["enrollment_id"], name: "index_concourse_enrollment_fields_on_enrollment_id"
-
-  create_table "concourse_enrollments", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.date     "start"
-    t.date     "end"
-    t.boolean  "status"
-    t.boolean  "fee"
-    t.decimal  "value_fee"
-    t.integer  "project_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "concourse_enrollments", ["project_id"], name: "index_concourse_enrollments_on_project_id"
-
-  create_table "concourse_navs", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "page_id"
-    t.integer  "project_id"
-    t.string   "external_url"
-    t.integer  "target"
-    t.integer  "action"
-    t.integer  "father_id"
-    t.boolean  "publish"
-    t.integer  "order"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "concourse_navs", ["father_id"], name: "index_concourse_navs_on_father_id"
-  add_index "concourse_navs", ["page_id"], name: "index_concourse_navs_on_page_id"
-  add_index "concourse_navs", ["project_id"], name: "index_concourse_navs_on_project_id"
-
-  create_table "concourse_pages", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.boolean  "publish"
-    t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "concourse_pages", ["project_id"], name: "index_concourse_pages_on_project_id"
-
-  create_table "concourse_participation_candidates", force: :cascade do |t|
-    t.integer  "participation_id"
-    t.integer  "candidate_id"
-    t.integer  "project_id"
-    t.text     "candidate_attributes"
-    t.integer  "status"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "concourse_participation_candidates", ["candidate_id"], name: "index_concourse_participation_candidates_on_candidate_id"
-  add_index "concourse_participation_candidates", ["participation_id"], name: "index_concourse_participation_candidates_on_participation_id"
-  add_index "concourse_participation_candidates", ["project_id"], name: "index_concourse_participation_candidates_on_project_id"
-
-  create_table "concourse_participation_fields", force: :cascade do |t|
-    t.integer  "participation_id"
-    t.string   "name"
-    t.string   "code"
-    t.integer  "field_type"
-    t.boolean  "required"
-    t.boolean  "status"
+    t.integer  "order_service_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "concourse_participation_fields", ["participation_id"], name: "index_concourse_participation_fields_on_participation_id"
+  add_index "helpdesk_monitor_service_orders", ["order_service_id"], name: "index_helpdesk_monitor_service_orders_on_order_service_id"
 
-  create_table "concourse_participations", force: :cascade do |t|
-    t.string   "title"
-    t.string   "description"
-    t.boolean  "status"
-    t.date     "start"
-    t.date     "end"
-    t.integer  "project_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "helpdesk_order_services", force: :cascade do |t|
+    t.integer  "number"
+    t.integer  "number_increment"
+    t.string   "opened_by"
+    t.string   "required_by"
+    t.string   "priority"
+    t.integer  "sector_id"
+    t.integer  "branch_line_id"
+    t.integer  "user_id"
+    t.integer  "good_id"
+    t.integer  "status_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  add_index "concourse_participations", ["project_id"], name: "index_concourse_participations_on_project_id"
+  add_index "helpdesk_order_services", ["branch_line_id"], name: "index_helpdesk_order_services_on_branch_line_id"
+  add_index "helpdesk_order_services", ["good_id"], name: "index_helpdesk_order_services_on_good_id"
+  add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id"
+  add_index "helpdesk_order_services", ["status_id"], name: "index_helpdesk_order_services_on_status_id"
+  add_index "helpdesk_order_services", ["user_id"], name: "index_helpdesk_order_services_on_user_id"
 
-  create_table "concourse_project_categories", force: :cascade do |t|
-    t.string   "name"
+  create_table "helpdesk_qualifications", force: :cascade do |t|
     t.boolean  "status"
+    t.integer  "order_service_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "helpdesk_qualifications", ["order_service_id"], name: "index_helpdesk_qualifications_on_order_service_id"
+
+  create_table "helpdesk_statuses", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "concourse_projects", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "logo"
-    t.string   "header"
-    t.string   "footer"
-    t.date     "start"
-    t.date     "end"
-    t.boolean  "open"
-    t.integer  "project_category_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  add_index "concourse_projects", ["project_category_id"], name: "index_concourse_projects_on_project_category_id"
-
-  create_table "concourse_subscribe_actions", force: :cascade do |t|
-    t.integer  "enrollment_candidate_id"
-    t.text     "content"
-    t.boolean  "status"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "concourse_subscribe_actions", ["enrollment_candidate_id"], name: "index_concourse_subscribe_actions_on_enrollment_candidate_id"
 
   create_table "patrimony_down_goods", force: :cascade do |t|
     t.string   "name"

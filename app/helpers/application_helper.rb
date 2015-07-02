@@ -1,4 +1,4 @@
 module ApplicationHelper
-  def link_nav_to(title, category,*html) 
+  def link_to_nav(param, param2)
   end
 end

@@ -1,0 +1,10 @@
+%ul.list-group
+  %li.list-group-item= link_to 'Acessar área do candidato'
+  %li.list-group-item= link_to 'Realizar inscrição'
+  %li.divider
+  %li.list-group-item= link_to 'Início', concourse.project_path(@project['project']['id'])
+  - @project['navs'].each do |nav|
+    - if nav['nav_type'] == "pagina"
+      %li.list-group-item= link_to nav['name'], concourse.project_page_path(project_id: @project['project']['id'], id: nav['page_id']), { target: nav['target']} 
+    - else
+      %li.list-group-item= link_to nav['name'], nav['url'], { target: nav['target']}

@@ -1,0 +1,21 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Extranet
+    = stylesheet_link_tag 'portal', media: 'all'
+    = javascript_include_tag 'portal', media: 'all'
+    = csrf_meta_tags
+  %body
+    = render 'layouts/portal/partials/navs'
+    .container{'style': 'margin-top:40px !important'}
+      .row
+        .col-md-2
+          %h1
+            %strong= image_tag "#{@url}#{@project['project']['header']['url']}" if !@project['project']['header'].nil?
+      %hr/
+      .row
+        .col-md-3
+          = render 'layouts/concourse/partials/sidebar'
+        .col-md-9
+          = yield
+    

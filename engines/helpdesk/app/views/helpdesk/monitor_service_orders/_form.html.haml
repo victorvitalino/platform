@@ -1,0 +1,11 @@
+= simple_form_for(@monitor_service_order) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :appointment, label: false, input_html: {class: 'redactor'}
+    = f.input :attachment
+    = f.input :status
+    = f.association :order_service
+
+  .form-actions
+    = f.button :submit

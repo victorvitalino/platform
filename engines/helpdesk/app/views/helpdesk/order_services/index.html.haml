@@ -1,0 +1,19 @@
+.card
+  .card-header.ch-alt
+    %h2
+      %h2
+      Chamados
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th OS
+          %th Abertura
+          %th Solicitado por
+          %th Setor
+          %th Responsável
+          %th Status
+          %th Prioridade
+          %th Ações
+      %tbody.index-order-service
+        = render 'index'

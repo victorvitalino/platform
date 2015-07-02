@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @qualification.name
+%p
+  %b Status:
+  = @qualification.status
+%p
+  %b Order service:
+  = @qualification.order_service
+
+= link_to 'Edit', edit_qualification_path(@qualification)
+\|
+= link_to 'Back', qualifications_path

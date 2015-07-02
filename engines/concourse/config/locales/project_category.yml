@@ -1,8 +1,0 @@
-pt-BR:
-  activerecord:
-    models:
-      'concourse/project_category': 'Categoria de Concurso'
-    attributes:
-      'concourse/project_category':
-        name: "Nome"
-        status: 'Status'

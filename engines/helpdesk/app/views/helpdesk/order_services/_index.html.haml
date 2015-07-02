@@ -1,0 +1,19 @@
+- @order_services.each_with_index do |j, i|
+ %tr
+  %td.col-md-1
+   = link_to j.number , order_service_monitor_service_orders_path(j)
+  %td
+   = j.created_at.strftime("%d/%m/%Y - %H:%M")
+  %td
+   = j.user.name
+  %td
+   = j.user.sector_current.name
+  %td
+   = j.user.name
+  %td
+   = j.status.name
+  %td
+   = j.priority
+  %td
+   = link_to "", edit_order_service_path(j), remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
+   = link_to "", order_service_path(j), method: :delete, class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}
