@@ -9,12 +9,8 @@ module Helpdesk
     has_many :monitor_service_orders, :dependent => :destroy
     accepts_nested_attributes_for :monitor_service_orders
 
-
-    auto_increment :number_increment
-    
-
     after_create :update_os
-  	
+
   	private
     def update_os
     	@hostname = Socket.gethostname
