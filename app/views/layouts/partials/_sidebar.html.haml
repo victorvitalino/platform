@@ -45,9 +45,7 @@
                 %li
                   = link_to "setores", person.sectors_path
           %ul{style: ('display:block;' if @module == "person")}
-        %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
-          %a{:href => ""}
-            
+        %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}  
         %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
           - if policy(:application, namespace: Cms).index?
             %a{:href => ""}
