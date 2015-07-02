@@ -9,9 +9,14 @@ module Helpdesk
     has_many :monitor_service_orders, :dependent => :destroy
     accepts_nested_attributes_for :monitor_service_orders
 
+<<<<<<< HEAD
     after_create  :update_os
     before_create :auto_increment
   	
+=======
+    after_create :update_os
+
+>>>>>>> ddd45730304d2c9536d4476ae9de06558dc895ed
   	private
 
     def auto_increment
