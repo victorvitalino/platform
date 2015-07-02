@@ -1,40 +1,86 @@
-= simple_form_for(@order_service) do |f|
-  .card-body.card-padding
-    .row
-      .col-md-6
-        = f.label "Solicitante", class: 'fg-label'
-        = @order_service.user.name
-    .row
-      .col-md-12
-        = f.label "Setor", class: 'fg-label'
-        = @order_service.user.sector_current.name
-    .row
-      .col-md-3
-        = f.label "Status", class: 'fg-label'
-        = @order_service.status.name
-      .col-md-3
-        
-      .col-md-3
-    
-    .row
-      .col-md-4
-        = f.label "Ramal", class: 'fg-label'
-        = @order_service.branch_line.telephone
-      .col-md-4
-        
-      .col-md-4    
-    .row
-      .col-md-4
-        = f.label "Patrimônio", class: 'fg-label'
-        = @order_service.good.code_goods
-      .col-md-4
-        
-      .col-md-4
-    .row
-      .col-md-4
-        = f.label "Apontamento", class: 'fg-label'
-        = @monitor_service_order.appointment  
-    .row
-      .col-md-12
-        = f.button :submit, class: 'btn btn-success'
+.card
+  .card-header.ch-alt
+    %h2
+      Ordem de serviço #
+      = @order_service.number
+    %ul.actions
+      %li
+        %a{:href => "", :alt => "Cancelar"}
+          %i.md.md-local-hotel
+      %li
+        %a{:href => ""}
+          %i.md.md-people
+      %li
+        %a{:href => ""}
+          %i.md.md-favorite-outline
+      %li
+        %a{:href => ""}
+          %i.md.md-print
+  = simple_form_for(@order_service) do |f|
+    .card-body.card-padding
+      .row
+        .col-md-8
+          = f.label "Solicitante", class: 'fg-label'
+          = @order_service.user.name
+          %br
+          = f.label "Setor", class: 'fg-label'
+          = @order_service.user.sector_current.name
+          %br
+          = f.label "Status", class: 'fg-label'
+          = @order_service.status.name
+          %br
+          = f.label "Ramal", class: 'fg-label'
+          = @order_service.branch_line.telephone
+          %br
+          = f.label "Apontamento", class: 'fg-label'
+          = @monitor_service_order.appointment
+        .col-md-4
+          .card
+            .card-header
+              %h6
+              = f.label "Solicitante", class: 'fg-label'
 
+      .row
+        .col-md-12
+          .card
+            .card-header.ch-alt
+              %h5
+                Apontamentos
+              %ul.actions
+                %li
+                  %a{:href => "", :alt => "Cancelar"}
+                    %i.md.md-add-circle
+            .card-body.card-padding
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+                  %thead
+                    %tr
+                      %th #
+                      %th Apontamento
+                      %th Imagem
+
+                  %tbody
+                    %tr
+                      %td
+                        1
+                      %td
+                        Exemplo
+                      %td
+                        = image_tag @monitor_service_order.attachment, height: '50'
+                    %tr
+                      %td
+                        1
+                      %td
+                        Exemplo
+                      %td
+                        = image_tag @monitor_service_order.attachment, height: '50'
+                    %tr
+                      %td
+                        1
+                      %td
+                        Exemplo
+                      %td
+                        = image_tag @monitor_service_order.attachment, height: '50'
+      .row
+        .col-md-12
+          = f.button :submit, class: 'btn btn-success'
