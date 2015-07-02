@@ -1,5 +1,5 @@
 .card
-  .card-header.ch-alt
+  .card-header.bgm-red
     %h2
       Ordem de serviço #
       = @order_service.number
@@ -32,13 +32,20 @@
           = f.label "Ramal", class: 'fg-label'
           = @order_service.branch_line.telephone
           %br
-          = f.label "Apontamento", class: 'fg-label'
+          = f.label "Responsável", class: 'fg-label'
           = @monitor_service_order.appointment
         .col-md-4
           .card
             .card-header
               %h6
-              = f.label "Solicitante", class: 'fg-label'
+                Etiqueta:
+                = @order_service.good.code_goods
+              %h6
+                Material : Monitor
+                = @order_service.good.material
+              %h6
+                Nº de Serie : 3255sdse8
+                = @order_service.good.material    
 
       .row
         .col-md-12
@@ -56,31 +63,27 @@
                   %thead
                     %tr
                       %th #
-                      %th Apontamento
                       %th Imagem
+                      %th Apontamento
+                      
 
                   %tbody
                     %tr
                       %td
-                        1
+                        2
                       %td
-                        Exemplo
+                        %a{:href => "", :alt => "Cancelar"}
+                          %i.md.md-attachment
                       %td
-                        = image_tag @monitor_service_order.attachment, height: '50'
+                        Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.
                     %tr
                       %td
                         1
                       %td
-                        Exemplo
+                        %a{:href => "", :alt => "Cancelar"}
+                          %i.md.md-attachment
                       %td
-                        = image_tag @monitor_service_order.attachment, height: '50'
-                    %tr
-                      %td
-                        1
-                      %td
-                        Exemplo
-                      %td
-                        = image_tag @monitor_service_order.attachment, height: '50'
+                        Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.  
       .row
         .col-md-12
-          = f.button :submit, class: 'btn btn-success'
+          
