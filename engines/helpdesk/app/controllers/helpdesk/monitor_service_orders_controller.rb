@@ -26,7 +26,7 @@ module Helpdesk
     # POST /monitor_service_orders
     def create
       @monitor_service_order = MonitorServiceOrder.new(monitor_service_order_params)
-
+      
       if @monitor_service_order.save
         redirect_to @monitor_service_order, notice: 'Monitor service order was successfully created.'
       else

@@ -18,16 +18,22 @@
     
     .row
       .col-md-4
-        
+        = f.label "Ramal", class: 'fg-label'
+        = @order_service.branch_line.telephone
       .col-md-4
         
       .col-md-4    
     .row
       .col-md-4
+        = f.label "Patrimônio", class: 'fg-label'
+        = @order_service.good.code_goods
+      .col-md-4
         
       .col-md-4
-       
+    .row
       .col-md-4
+        = f.label "Apontamento", class: 'fg-label'
+        = @monitor_service_order.appointment  
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'

@@ -17,6 +17,7 @@ module Helpdesk
     # GET /order_services/new
     def new
       @order_service = OrderService.new
+      @goods = Patrimony::Good.where(sector_id: current_user.account.sector_current_id)
       @order_service.monitor_service_orders.build
     end
 
@@ -27,6 +28,7 @@ module Helpdesk
     # POST /order_services
     def create
       @order_service = OrderService.new(order_service_params)
+      @order_service.sector_id = current_user.account.sector_current_id
       @order_service.save
     end
 
@@ -50,7 +52,6 @@ module Helpdesk
 
       def set_order_services
         @order_services = OrderService.all
-        @total_opened = OrderService.where(status_id: 1).count
       end
 
       # Only allow a trusted parameter "white list" through.
