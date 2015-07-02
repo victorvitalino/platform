@@ -9,7 +9,13 @@
     = render 'layouts/portal/partials/navs'
     .container{'style': 'margin-top:40px !important'}
       .row
-        .col-md-12
+        .col-md-2
+          %h1
+            %strong= image_tag "#{@url}#{@project['project']['header']['url']}" if !@project['project']['header'].nil?
+      %hr/
+      .row
+        .col-md-3
+          = render 'layouts/concourse/partials/sidebar'
+        .col-md-9
           = yield
-    
     
