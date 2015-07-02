@@ -6,7 +6,8 @@ module Helpdesk
 
     # GET /monitor_service_orders
     def index
-      @monitor_service_orders = MonitorServiceOrder.where(order_service_id: params[:order_service_id])
+      @monitor_service_order = MonitorServiceOrder.find(params[:order_service_id])
+      @order_service = OrderService.find(params[:order_service_id])
     end
 
     # GET /monitor_service_orders/1

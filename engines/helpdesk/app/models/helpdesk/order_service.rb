@@ -9,12 +9,21 @@ module Helpdesk
     has_many :monitor_service_orders, :dependent => :destroy
     accepts_nested_attributes_for :monitor_service_orders
 
+
+
+
+    auto_increment :number_increment
+
+
+
+
     after_create :update_os
   	
   	private
     def update_os
     	@os = OrderService.last
-    	@os.update(number: @os.id, prefix: @os.created_at.year, status_id: 1)
+      @number_os = @os.created_at.year.to_s + @os.created_at.month.to_s + @os.number_increment.to_s
+    	@os.update(number: @number_os.to_i, status_id: 1)
     end
 
 

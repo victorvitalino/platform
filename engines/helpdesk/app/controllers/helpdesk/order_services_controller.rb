@@ -38,6 +38,7 @@ module Helpdesk
     # DELETE /order_services/1
     def destroy
       if @order_service.destroy
+        redirect_to action: 'index'
       end
     end
 
@@ -54,7 +55,7 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:prefix, :number, :opened_by, :required_by, :sector_id, :branch_line_id, :user_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment, :attachment, :user, :status, :order_service_id])
+        params.require(:order_service).permit(:priority, :number, :number_increment, :opened_by, :required_by, :sector_id, :branch_line_id, :user_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment, :attachment, :user, :status, :order_service_id])
       end
   end
 end

@@ -279,17 +279,18 @@ ActiveRecord::Schema.define(version: 20150630230826) do
   add_index "helpdesk_monitor_service_orders", ["order_service_id"], name: "index_helpdesk_monitor_service_orders_on_order_service_id"
 
   create_table "helpdesk_order_services", force: :cascade do |t|
-    t.string   "prefix"
     t.integer  "number"
+    t.integer  "number_increment"
     t.string   "opened_by"
     t.string   "required_by"
+    t.string   "priority"
     t.integer  "sector_id"
     t.integer  "branch_line_id"
     t.integer  "user_id"
     t.integer  "good_id"
     t.integer  "status_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "helpdesk_order_services", ["branch_line_id"], name: "index_helpdesk_order_services_on_branch_line_id"
