@@ -47,17 +47,7 @@
           %ul{style: ('display:block;' if @module == "person")}
         %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
           %a{:href => ""}
-            %i.md.md-assignment-turned-in>
-            Gestão Concursos
-          %ul{style: ('display:block;' if params[:module] == "concourse")}
-            %li
-              = link_to "novo concurso", concourse.new_administrator_project_path
-            %li
-              = link_to "concursos", concourse.administrator_projects_path
-            %li
-              = link_to "categorias de concurso", concourse.administrator_project_categories_path
-            %li
-              = link_to "relatórios", concourse.administrator_reports_path
+            
         %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
           - if policy(:application, namespace: Cms).index?
             %a{:href => ""}
