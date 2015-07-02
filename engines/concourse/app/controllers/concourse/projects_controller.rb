@@ -26,9 +26,6 @@ module Concourse
       redirect_to "http://concursos.localhost.df.gov.br/" if ENV['RAILS_ENV'] == 'development'
       redirect_to "http://concursos.codhab.df.gov.br/candidato/sign_up" if ENV['RAILS_ENV'] == 'production'
     end
-    
-
-    private
-
+   
   end
 end
