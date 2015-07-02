@@ -1,7 +1,9 @@
 module Portal
   module ApplicationHelper
     def link_each(category)
-      Cms::NavCategory.active_navs(category).each do |n|
+      @navs = Cms::NavCategory.active_navs(category)
+      @navs = @navs.navs if @navs.present? 
+      @navs.each do |n|
         yield n
       end
     end

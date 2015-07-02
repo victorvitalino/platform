@@ -4,7 +4,7 @@ module Cms
 
     default_scope { where(status: true ) }
 
-    scope :active_navs, -> (category) { find_by_name(category).navs }
+    scope :active_navs, -> (category) { find_by_name(category) }
 
     validates_presence_of :name, :description
   end
