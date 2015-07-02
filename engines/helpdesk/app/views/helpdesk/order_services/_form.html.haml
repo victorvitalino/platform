@@ -8,10 +8,11 @@
    .row
     .col-md-6
      = f.label :good, class: 'fg-label'
-     = f.association :good, label: false
+     = f.input :good_id, collection: @goods, label_method: :code_goods, value_method: :id, label: false
     .col-md-6
      = f.label :branch_line, class: 'fg-label'
-     = f.association :branch_line, label: false
+     = f.input :branch_line_id, collection: current_user.account.sector_current.branch_line, label_method: :telephone, value_method: :id, label: false
+
    .row
     .col-md-12
      = f.fields_for :monitor_service_orders do |builder|
