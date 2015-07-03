@@ -20,32 +20,32 @@
     .card-body.card-padding
       .row
         .col-md-8
-          = f.label "Solicitante", class: 'fg-label'
+          = f.label "Solicitante:", class: 'fg-label'
           = @order_service.user.name
           %br
-          = f.label "Setor", class: 'fg-label'
+          = f.label "Setor:", class: 'fg-label'
           = @order_service.user.sector_current.name
           %br
-          = f.label "Status", class: 'fg-label'
+          = f.label "Status:", class: 'fg-label'
           = @order_service.status.name
           %br
-          = f.label "Ramal", class: 'fg-label'
+          = f.label "Ramal:", class: 'fg-label'
           = @order_service.branch_line.telephone
           %br
-          = f.label "Responsável", class: 'fg-label'
+          = f.label "Responsável:", class: 'fg-label'
           = @monitor_service_order.appointment
         .col-md-4
           .card
             .card-header
               %h6
-                Etiqueta:
+                = f.label "Etiqueta", class: 'fg-label'
                 = @order_service.good.code_goods
               %h6
-                Material : Monitor
-                = @order_service.good.material
+                = f.label "Material:", class: 'fg-label'
+                = @order_service.good.material.name 
               %h6
-                Nº de Serie : 3255sdse8
-                = @order_service.good.material    
+                = f.label "Nº de Seriel: 851984", class: 'fg-label'
+                 
 
       .row
         .col-md-12
@@ -55,8 +55,7 @@
                 Apontamentos
               %ul.actions
                 %li
-                  %a{:href => "", :alt => "Cancelar"}
-                    %i.md.md-add-circle
+                  = link_to '<i class="md md-add-circle"></i>'.html_safe, new_order_service_monitor_service_order_path, remote: true, class: ' pull-right'
             .card-body.card-padding
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
                 %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
@@ -68,22 +67,24 @@
                       
 
                   %tbody
+                  - @monitor_service_orders.each_with_index do |j, i|
                     %tr
                       %td
-                        2
+                        = j.id
                       %td
-                        %a{:href => "", :alt => "Cancelar"}
-                          %i.md.md-attachment
+                      
+                        %image_tag 
+
+                        = link_to '<i class="md md-attachment"></i>'.html_safe, new_order_service_monitor_service_order_path, remote: true
+                        
+
                       %td
-                        Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.
-                    %tr
-                      %td
-                        1
-                      %td
-                        %a{:href => "", :alt => "Cancelar"}
-                          %i.md.md-attachment
-                      %td
-                        Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.  
-      .row
-        .col-md-12
-          
+                        = j.appointment
+                        %ul.actions.pull-right
+                          %li
+                          %br
+                            = f.label "Autor:", class: 'fg-label'  
+                            = f.label "Bruno Max - ", class: 'fg-label'
+                            = f.label "Data/Hora:", class: 'fg-label'  
+                            = j.created_at.strftime("%d/%m/%Y - %H:%M") 
+

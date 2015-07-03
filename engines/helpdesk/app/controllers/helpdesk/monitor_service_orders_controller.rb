@@ -2,12 +2,11 @@ require_dependency "helpdesk/application_controller"
 
 module Helpdesk
   class MonitorServiceOrdersController < ApplicationController
-    before_action :set_monitor_service_order, only: [:show, :edit, :update, :destroy]
+    before_action :set_monitor_service_order, only: [:index, :new, :show, :edit, :update, :destroy]
 
     # GET /monitor_service_orders
     def index
-      @monitor_service_order = MonitorServiceOrder.find(params[:order_service_id])
-      @order_service = OrderService.find(params[:order_service_id])
+      
     end
 
     # GET /monitor_service_orders/1
@@ -16,7 +15,7 @@ module Helpdesk
 
     # GET /monitor_service_orders/new
     def new
-      @monitor_service_order = MonitorServiceOrder.new
+      @monitor_service_order = @order_service.monitor_service_orders.new
     end
 
     # GET /monitor_service_orders/1/edit
@@ -25,7 +24,7 @@ module Helpdesk
 
     # POST /monitor_service_orders
     def create
-      @monitor_service_order = MonitorServiceOrder.new(monitor_service_order_params)
+      @monitor_service_order = @order_service.monitor_service_order.new(monitor_service_order_params)
       
       if @monitor_service_order.save
         redirect_to @monitor_service_order, notice: 'Monitor service order was successfully created.'
@@ -52,7 +51,9 @@ module Helpdesk
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_monitor_service_order
-        @monitor_service_order = MonitorServiceOrder.find(params[:id])
+        @monitor_service_order = MonitorServiceOrder.find(params[:order_service_id])
+        @order_service = OrderService.find(params[:order_service_id])
+        @monitor_service_orders = MonitorServiceOrder.where(params[:order_service_id]).order('id DESC')
       end
 
       # Only allow a trusted parameter "white list" through.

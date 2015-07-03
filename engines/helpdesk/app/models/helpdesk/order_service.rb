@@ -6,7 +6,7 @@ module Helpdesk
     belongs_to :good, class_name: "Patrimony::Good"
     belongs_to :status
 
-    has_many :monitor_service_orders, :dependent => :destroy
+    has_many :monitor_service_orders
     accepts_nested_attributes_for :monitor_service_orders
 
 
