@@ -4,7 +4,7 @@ module Person
     validates :telephone, :description, uniqueness: true
 
     belongs_to :sector
-    has_many :users
+    has_many :staffs
 
   end
 end

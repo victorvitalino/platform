@@ -73,7 +73,7 @@
                         = j.id
                       %td
                       
-                        %image_tag 
+                        %image_tag
 
                         = link_to '<i class="md md-attachment"></i>'.html_safe, new_order_service_monitor_service_order_path, remote: true
                         
@@ -84,7 +84,7 @@
                           %li
                           %br
                             = f.label "Autor:", class: 'fg-label'  
-                            = f.label "Bruno Max - ", class: 'fg-label'
+                            = j.user 
                             = f.label "Data/Hora:", class: 'fg-label'  
                             = j.created_at.strftime("%d/%m/%Y - %H:%M") 
 

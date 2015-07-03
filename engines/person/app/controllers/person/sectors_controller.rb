@@ -45,7 +45,7 @@ module Person
 
 		def set_sectors
 			@sectors = Sector.all
-			@person = User.all
+			@person = Staff.all
 		end
 
 		def set_sector

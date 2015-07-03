@@ -2,7 +2,7 @@ require_dependency "helpdesk/application_controller"
 
 module Helpdesk
   class MonitorServiceOrdersController < ApplicationController
-    before_action :set_monitor_service_order, only: [:index, :new, :show, :edit, :update, :destroy]
+    before_action :set_monitor_service_order, only: [:index, :new, :create,  :show, :edit, :update, :destroy]
 
     # GET /monitor_service_orders
     def index
@@ -24,13 +24,11 @@ module Helpdesk
 
     # POST /monitor_service_orders
     def create
-      @monitor_service_order = @order_service.monitor_service_order.new(monitor_service_order_params)
-      
-      if @monitor_service_order.save
-        redirect_to @monitor_service_order, notice: 'Monitor service order was successfully created.'
-      else
-        render :new
-      end
+      @monitor_service_order = @order_service.monitor_service_orders.new(monitor_service_order_params)
+      @monitor_service_order.user = current_user.account.name
+      @monitor_service_order.status = true
+      @monitor_service_order.save
+       
     end
 
     # PATCH/PUT /monitor_service_orders/1
@@ -58,7 +56,7 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def monitor_service_order_params
-        params.require(:monitor_service_orders).permit(:appointment, :attachment, :user, :status, :order_service_id)
+        params.require(:monitor_service_order).permit(:appointment, :attachment, :user, :status, :order_service_id)
       end
   end
 end
