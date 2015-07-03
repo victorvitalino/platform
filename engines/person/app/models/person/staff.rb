@@ -5,6 +5,8 @@ module Person
 
     has_many :permissions, class_name: "Person::StaffPermission"
     
+
+
     belongs_to :sector_origin,   class_name: "Person::Sector"
     belongs_to :sector_current, class_name: "Person::Sector"
 

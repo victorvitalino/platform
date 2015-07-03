@@ -3,8 +3,8 @@
   = simple_form_for @order_service, remote: true do |f|
    .row
     .col-md-12
-     = f.label :required_by, class: 'fg-label'
-     = f.association :user, label: false
+     = f.label :staff, class: 'fg-label'
+     = f.input :staff_id, collection: current_user.account.sector_current.staffs, label_method: :name, value_method: :id, label: false
    .row
     .col-md-6
      = f.label :good, class: 'fg-label'

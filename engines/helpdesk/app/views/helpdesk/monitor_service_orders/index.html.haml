@@ -21,10 +21,10 @@
       .row
         .col-md-8
           = f.label "Solicitante:", class: 'fg-label'
-          = @order_service.user.name
+          = @order_service.required_by_id
           %br
           = f.label "Setor:", class: 'fg-label'
-          = @order_service.user.sector_current.name
+          = @order_service.sector_id
           %br
           = f.label "Status:", class: 'fg-label'
           = @order_service.status.name
@@ -33,7 +33,7 @@
           = @order_service.branch_line.telephone
           %br
           = f.label "Responsável:", class: 'fg-label'
-          = @monitor_service_order.appointment
+          
         .col-md-4
           .card
             .card-header

@@ -1,8 +1,7 @@
 module Helpdesk
   class OrderService < ActiveRecord::Base
-    belongs_to :sector
     belongs_to :branch_line, class_name: "Person::BranchLine"
-    belongs_to :user, class_name: "Person::Staff"
+    belongs_to :staff, class_name: "Person::Staff"
     belongs_to :good, class_name: "Patrimony::Good"
     belongs_to :status
 
