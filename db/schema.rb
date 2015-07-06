@@ -101,21 +101,22 @@ ActiveRecord::Schema.define(version: 20150630230826) do
   create_table "helpdesk_monitor_service_orders", force: :cascade do |t|
     t.text     "appointment"
     t.string   "attachment"
-    t.string   "user"
     t.boolean  "status"
     t.integer  "order_service_id"
+    t.integer  "staff_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
   add_index "helpdesk_monitor_service_orders", ["order_service_id"], name: "index_helpdesk_monitor_service_orders_on_order_service_id"
+  add_index "helpdesk_monitor_service_orders", ["staff_id"], name: "index_helpdesk_monitor_service_orders_on_staff_id"
 
   create_table "helpdesk_order_services", force: :cascade do |t|
     t.integer  "number"
     t.integer  "number_increment"
     t.string   "opened_by"
-    t.string   "sector_staff"
     t.string   "priority"
+    t.integer  "sector_id"
     t.integer  "branch_line_id"
     t.integer  "staff_id"
     t.integer  "good_id"
@@ -126,6 +127,7 @@ ActiveRecord::Schema.define(version: 20150630230826) do
 
   add_index "helpdesk_order_services", ["branch_line_id"], name: "index_helpdesk_order_services_on_branch_line_id"
   add_index "helpdesk_order_services", ["good_id"], name: "index_helpdesk_order_services_on_good_id"
+  add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id"
   add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id"
   add_index "helpdesk_order_services", ["status_id"], name: "index_helpdesk_order_services_on_status_id"
 

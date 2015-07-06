@@ -25,10 +25,9 @@ module Helpdesk
     # POST /monitor_service_orders
     def create
       @monitor_service_order = @order_service.monitor_service_orders.new(monitor_service_order_params)
-      @monitor_service_order.user = current_user.account.name
+      @monitor_service_order.staff_id = current_user.account.id
       @monitor_service_order.status = true
       @monitor_service_order.save
-       
     end
 
     # PATCH/PUT /monitor_service_orders/1
@@ -56,7 +55,7 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def monitor_service_order_params
-        params.require(:monitor_service_order).permit(:appointment, :attachment, :user, :status, :order_service_id)
+        params.require(:monitor_service_order).permit(:appointment, :attachment, :staff_id, :status, :order_service_id)
       end
   end
 end

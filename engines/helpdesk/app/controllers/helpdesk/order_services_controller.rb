@@ -28,7 +28,7 @@ module Helpdesk
     # POST /order_services
     def create
       @order_service = OrderService.new(order_service_params)
-      @order_service.sector_staff = current_user.account.sector_current_id
+      @order_service.sector_id = current_user.account.sector_current_id
       @order_service.opened_by = current_user.account.name
       @order_service.save
     end
@@ -57,7 +57,7 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:priority, :number, :number_increment, :opened_by, :staff_id, :sector_id, :branch_line_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment, :attachment, :user, :status, :order_service_id])
+        params.require(:order_service).permit(:priority, :number, :number_increment, :opened_by, :staff_id, :sector_id, :branch_line_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment, :attachment, :staff_id, :status, :order_service_id])
       end
   end
 end
