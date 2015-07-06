@@ -1,14 +1,19 @@
 module Helpdesk
   class OrderService < ActiveRecord::Base
+
+
     belongs_to :branch_line, class_name: "Person::BranchLine"
     belongs_to :sector, class_name: "Person::Sector"
     belongs_to :staff, class_name: "Person::Staff"
+    belongs_to :opened_by, class_name: "Person::Staff"
+    belongs_to :responsible, class_name: "Person::Staff"
     belongs_to :good, class_name: "Patrimony::Good"
     belongs_to :status
-
     has_many :monitor_service_orders
+
     accepts_nested_attributes_for :monitor_service_orders
 
+    validates_presence_of :branch_line_id, :staff_id, :good_id 
 
     after_create  :update_os, :update_monitor_service
     before_create :auto_increment

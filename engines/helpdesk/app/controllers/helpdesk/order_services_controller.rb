@@ -17,19 +17,22 @@ module Helpdesk
     # GET /order_services/new
     def new
       @order_service = OrderService.new
-      @goods = Patrimony::Good.where(sector_id: current_user.account.sector_current_id)
       @order_service.monitor_service_orders.build
+      @goods = Patrimony::Good.where(sector_id: current_user.account.sector_current_id)
     end
 
     # GET /order_services/1/edit
     def edit
     end
 
+  
+
+
     # POST /order_services
     def create
       @order_service = OrderService.new(order_service_params)
       @order_service.sector_id = current_user.account.sector_current_id
-      @order_service.opened_by = current_user.account.name
+      @order_service.opened_by_id = current_user.account.id
       @order_service.save
     end
 
@@ -57,7 +60,7 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:priority, :number, :number_increment, :opened_by, :staff_id, :sector_id, :branch_line_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment, :attachment, :staff_id, :status, :order_service_id])
+        params.require(:order_service).permit(:priority, :number, :number_increment, :opened_by_id, :responsible_id, :staff_id, :sector_id, :branch_line_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment, :attachment])
       end
   end
 end
