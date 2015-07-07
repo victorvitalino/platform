@@ -1,0 +1,6 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Anexo
+.modal-body
+  = image_tag @monitor_service_order.attachment_url, width: '550' if @monitor_service_order.attachment?

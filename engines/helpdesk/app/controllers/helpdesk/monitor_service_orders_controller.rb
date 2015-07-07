@@ -2,8 +2,8 @@ require_dependency "helpdesk/application_controller"
 
 module Helpdesk
   class MonitorServiceOrdersController < ApplicationController
-    before_action :set_monitor_service_orders
-    before_action :set_monitor_service_order, only:[:index, :new, :create,  :show, :edit, :update, :destroy, :assume]
+    before_action :set_monitor_service_orders, only: [:index, :create, :new,:destroy, :update,:assume, :close_order_service]
+    before_action :set_monitor_service_order, only: [:edit, :destroy, :update, :index,:assume, :close_order_service]
     # GET /monitor_service_orders
     def index
       
@@ -23,8 +23,22 @@ module Helpdesk
 
     end
     
+    def get_image
+      @monitor_service_order = MonitorServiceOrder.find(params[:image])
+    end
+
     def assume
      @order_service.update(responsible_id: current_user.account.id)
+     respond_to do |format|
+        format.js { flash[:notice] = "Ordem de serviço assumida com sucesso!" }
+     end
+    end
+
+    def close_order_service
+      @order_service.update(status_id: 2)
+      respond_to do |format|
+        format.js { flash[:notice] = "Ordem de serviço fechado com sucesso!" }
+      end
     end
 
     # POST /monitor_service_orders

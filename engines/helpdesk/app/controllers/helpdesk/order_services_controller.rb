@@ -33,7 +33,10 @@ module Helpdesk
       @order_service = OrderService.new(order_service_params)
       @order_service.sector_id = current_user.account.sector_current_id
       @order_service.opened_by_id = current_user.account.id
-      @order_service.save
+      @order_service.status_id = 1
+      if @order_service.save
+        redirect_to action: 'index'
+      end
     end
 
     # PATCH/PUT /order_services/1
@@ -60,7 +63,10 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:priority, :number, :number_increment, :opened_by_id, :responsible_id, :staff_id, :sector_id, :branch_line_id, :good_id, :status_id, monitor_service_orders_attributes: [:appointment, :attachment])
+        params.require(:order_service).permit(:priority, :number, :number_increment, 
+                                              :opened_by_id, :responsible_id, :staff_id, 
+                                              :sector_id, :branch_line_id, :good_id, :status_id, 
+                                              monitor_service_orders_attributes: [:appointment, :attachment])
       end
   end
 end

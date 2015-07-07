@@ -19,3 +19,8 @@
 //= require material/js/flot-charts/line-chart
 //= require material/js/functions
 //= require material/js/demo
+
+
+('document').ready(function(){
+  ('#img').magnifier();
+});

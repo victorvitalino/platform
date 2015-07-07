@@ -6,7 +6,7 @@
      Apontamentos Inclusos
      %ul.actions
       %li
-       = link_to '<i class="md md-add-circle"></i>'.html_safe, new_order_service_monitor_service_order_path, remote: true, class: ' pull-right'
+       = link_to '<i class="md md-question-answer c-black" alt="Smiley face"></i>'.html_safe, new_order_service_monitor_service_order_path, remote: true, class: ' pull-right', title: "Incluir Apontamento"
   .card-body.card-padding
    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
@@ -21,7 +21,8 @@
        %td
         = j.id
        %td
-        = link_to '<i class="md md-attach-file"></i>'.html_safe, j.attachment_url
+        /= link_to '<i class="md md-attach-file"></i>'.html_safe, get_image_path(j), remote: true
+        %img#img.magnify{"data-magnifyby" => "5", :src => "img src", :style => "width:200px; height:150px"}/
        %td
         = j.appointment if j.present? 
         %ul.actions.pull-right

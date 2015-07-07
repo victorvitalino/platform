@@ -1,12 +1,17 @@
 = simple_form_for(@order_service) do |f|
+ - if flash[:notice]
+  .card
+   .notice.alert.alert-success.text-center= flash[:notice]
  .card
-  .card-header.bgm-red
+  .card-header{class: (@order_service.status.name == "Fechado") ? 'bgm-green' : 'bgm-red'} 
    %h2
     Ordem de serviço #
     = @order_service.number
    %ul.actions
     %li
-     = link_to '<i class="md md-thumb-up c-white"></i>'.html_safe, order_service_monitor_service_order_assume_path(@order_service.id, @monitor_service_order.id), remote: true, class: ' pull-right'
+     = link_to '<i class="md md-check c-white waves-effect"></i>'.html_safe,order_service_monitor_service_order_assume_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Assumir"
+    %li
+     = link_to '<i class="md md-close c-white"></i>'.html_safe, order_service_monitor_service_order_close_order_service_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Fechar"
   .card-body.card-padding
    .row
     .col-md-8
@@ -40,5 +45,5 @@
         = f.label "Nº de Seriel: 851984", class: 'fg-label'
    
 
-  
-    
+   
+   
