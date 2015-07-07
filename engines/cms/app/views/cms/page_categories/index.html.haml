@@ -18,7 +18,7 @@
           %tr
             %td= i+1
             %td= page_category.title
-            %td= page_category.status
+            %td= status_helper (page_category.status)
             %td.col-md-2
               = link_to '', edit_page_category_path(page_category), class: 'md md-edit btn btn-primary'if policy(:PageCategory, namespace: Cms).update?
               = link_to '', page_category, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }if policy(:PageCategory, namespace: Cms).destroy?

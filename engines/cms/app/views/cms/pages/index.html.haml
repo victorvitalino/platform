@@ -19,7 +19,7 @@
           %tr
             %td= i + 1
             %td= page.title
-            %td= page.publish
+            %td= status_helper (page.publish)
             %td= page.page_category.title
             %td.col-md-2
               = link_to '', edit_page_path(page), class: 'md md-edit btn btn-primary' if policy(:page, namespace: Cms).update?
