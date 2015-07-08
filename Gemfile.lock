@@ -64,6 +64,12 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/protocol
+  specs:
+    protocol (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/schedule
   specs:
     schedule (0.0.1)
@@ -329,6 +335,7 @@ DEPENDENCIES
   person!
   pg
   portal!
+  protocol!
   pundit!
   rails (= 4.2.1)
   redactor-rails
