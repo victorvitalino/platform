@@ -6,10 +6,10 @@
     = f.label :appointment, class: 'fg-label'
     = f.input :appointment, label: false, input_html: {class: 'redactor'}
     .col-md-12
-    = f.label "Imagem", as: 'file', class: 'fg-label'
+    = f.label :attachment, as: 'file', class: 'fg-label'
     = f.input :attachment, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
    .row
     .col-md-12
-     = f.submit :submit, class: 'btn btn-success'
+    = f.button :submit, class: 'btn btn-success'
    %br/
    

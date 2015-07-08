@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'helpdesk/monitor_service_order': Acompanhamento de Chamado
+    attributes:
+      'helpdesk/monitor_service_order':
+        appointment: "Apontamento"
+        attachment: "Anexo"
+        status: "Status"
+

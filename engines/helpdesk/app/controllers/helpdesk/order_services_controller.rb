@@ -18,7 +18,7 @@ module Helpdesk
     def new
       @order_service = OrderService.new
       @order_service.monitor_service_orders.build
-      @goods = Patrimony::Good.where(sector_id: current_user.account.sector_current_id)
+      #@goods = Patrimony::Good.where(sector_id: current_user.account.sector_current_id)
     end
 
     # GET /order_services/1/edit
