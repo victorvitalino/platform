@@ -28,9 +28,15 @@ module Helpdesk
     end
 
     def assume
-     @order_service.update(responsible_id: current_user.account.id)
-     respond_to do |format|
-        format.js { flash[:notice] = "Ordem de serviço assumida com sucesso!" }
+     if @order_service.priority == nil
+      respond_to do |format|
+         format.js { flash[:notice] = "Favor Definir a Prioridade!" }
+      end
+     else
+      @order_service.update(responsible_id: current_user.account.id)
+      respond_to do |format|
+         format.js { flash[:notice] = "Ordem de serviço assumida com sucesso!" }
+      end
      end
     end
 
@@ -46,7 +52,9 @@ module Helpdesk
       @monitor_service_order = @order_service.monitor_service_orders.new(monitor_service_order_params)
       @monitor_service_order.staff_id = current_user.account.id
       @monitor_service_order.status = true
-      @monitor_service_order.save
+      if @monitor_service_order.save
+        redirect_to action: 'index'
+      end
     end
 
     # PATCH/PUT /monitor_service_orders/1
