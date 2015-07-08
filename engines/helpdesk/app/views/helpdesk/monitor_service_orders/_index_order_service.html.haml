@@ -32,9 +32,6 @@
      %br
      = f.label "Responsável:", class: 'label_order_service'
      = @order_service.responsible.name if @order_service.responsible.present?
-     %br/
-     = f.label "Prioridade:", class: 'label_order_service'
-     = f.input :priority, as:'select', collection: Helpdesk::MonitorServiceOrder.names.keys.to_a, prompt: 'selecione...', label: false, input_html: { placeholder: '...'}
     .col-md-3.pull-right
      .card
       .card-header

@@ -34,6 +34,7 @@ module Helpdesk
       @order_service.sector_id = current_user.account.sector_current_id
       @order_service.opened_by_id = current_user.account.id
       @order_service.status_id = 1
+      
       if @order_service.save
         redirect_to action: 'index'
       end

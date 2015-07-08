@@ -28,16 +28,10 @@ module Helpdesk
     end
 
     def assume
-     if @order_service.priority == nil
-      respond_to do |format|
-         format.js { flash[:notice] = "Favor Definir a Prioridade!" }
-      end
-     else
       @order_service.update(responsible_id: current_user.account.id)
       respond_to do |format|
-         format.js { flash[:notice] = "Ordem de serviço assumida com sucesso!" }
+        format.js { flash[:notice] = "Ordem de serviço assumido com sucesso!" }
       end
-     end
     end
 
     def close_order_service
