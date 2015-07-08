@@ -198,6 +198,7 @@ GEM
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.9)
+    magnifier-rails (0.0.3)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -321,6 +322,7 @@ DEPENDENCIES
   helpdesk!
   intranet!
   jquery-rails
+  magnifier-rails
   mini_magick
   notify!
   patrimony!

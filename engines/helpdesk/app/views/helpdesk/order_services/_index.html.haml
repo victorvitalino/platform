@@ -5,15 +5,15 @@
   %td
    = j.created_at.strftime("%d/%m/%Y - %H:%M")
   %td
-   = j.user.name
+   = j.staff.name if j.staff.present?
   %td
-   = j.user.sector_current.name
+   = j.sector.name if j.sector.present?
   %td
-   = j.user.name
+   = j.responsible.name if j.responsible.present?
   %td
-   = j.status.name
+   = j.status.name if j.status.present?
   %td
-   = j.priority
+   = j.priority if j.priority.present?
   %td
    = link_to "", edit_order_service_path(j), remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
    = link_to "", order_service_path(j), method: :delete, class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}

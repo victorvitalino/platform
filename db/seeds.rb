@@ -15,3 +15,4 @@
 @staff.user.password_confirmation = "123456789"
 
 @staff.save!
+

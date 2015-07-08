@@ -19,6 +19,7 @@ gem 'redactor-rails'
 gem 'mini_magick'
 
 gem 'friendly_id'
+gem 'magnifier-rails'
 #gem "auto_increment"
 
 gem 'validates_cpf_cnpj'

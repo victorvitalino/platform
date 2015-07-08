@@ -10,3 +10,10 @@
 .redactor-editor,
 .redactor-box,
 .redactor-box textarea{z-index: 5!important;}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #dff0d8;
+  color: #4caf50;
+  font-weight: bold;
+}
