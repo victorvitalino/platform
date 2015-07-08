@@ -8,7 +8,11 @@
    .row
     .col-md-12
      = f.label :acron, class: 'fg-label'
-     = f.input :acron, label: false, input_html: { placeholder: 'Digite um código identificador'}
+     = f.input :acron, label: false, input_html: { placeholder: 'Digite uma sigla'}
+   .row
+    .col-md-12
+     = f.label :prefex, class: 'fg-label'
+     = f.input :prefex, label: false, input_html: { placeholder: 'Digite um  prefixo'}
    .row
     .col-md-12
      = f.label :father, class: 'fg-label'

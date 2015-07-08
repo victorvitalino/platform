@@ -18,7 +18,7 @@ class CreateProtocolAssessments < ActiveRecord::Migration
       t.references :document_type, index: true, foreign_key: true
       t.references :subject, index: true, foreign_key: true
       t.references :staaff, index: true, foreign_key: true
-      t.references :setor, index: true, foreign_key: true
+      t.references :sector, index: true, foreign_key: true
 
       t.timestamps null: false
     end

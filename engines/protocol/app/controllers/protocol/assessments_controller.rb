@@ -11,8 +11,8 @@ module Protocol
 
         end
         def create
-            @assessment = Assessment.new(set_params)
-
+            @assessment = Assessment.new(set_assessment_params)
+            @assessment .set_data  current_user.account_id
             if @assessment.save
                 redirect_to action: 'show'
             else
@@ -29,7 +29,7 @@ module Protocol
         end
 
         def update
-            if @assessment.update(set_params)
+            if @assessment.update(set_assessment_params)
                 render action: 'index'
             else
                 render action: 'edit'
@@ -48,7 +48,7 @@ module Protocol
          end
 
 
-        def set_params
+        def set_assessment_params
                 params.require(:assessment).permit(:document_number, :document_type_id, :subject_id,:description_subject,:requesting_unit,:external_agency,:recipient,:address,:cpf,:cnpj ,:sign_by ,:observation)
         end
 

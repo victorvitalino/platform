@@ -4,6 +4,7 @@ class CreateProtocolDocumentTypes < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.boolean :status
+      t.integer :prefex
 
       t.timestamps null: false
     end
