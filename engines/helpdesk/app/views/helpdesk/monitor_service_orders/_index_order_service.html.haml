@@ -9,9 +9,9 @@
     = @order_service.number
    %ul.actions
     %li
-     = link_to '<i class="md md-check c-white waves-effect"></i>'.html_safe,order_service_monitor_service_order_assume_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Assumir"
+     = link_to '<i class="md md-check c-white waves-effect"></i>'.html_safe,order_service_monitor_service_order_assume_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Assumir" if policy(:MonitorServiceOrder, namespace: Helpdesk).assume?
     %li
-     = link_to '<i class="md md-close c-white"></i>'.html_safe, order_service_monitor_service_order_close_order_service_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Fechar"
+     = link_to '<i class="md md-close c-white"></i>'.html_safe, order_service_monitor_service_order_close_order_service_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Fechar" if policy(:MonitorServiceOrder, namespace: Helpdesk).close_order_service?
   .card-body.card-padding
    .row
     .col-md-4 
