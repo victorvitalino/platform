@@ -7,7 +7,17 @@ module Helpdesk
 
     # GET /order_services
     def index
-     
+     authorize @order_services
+    end
+
+    def order_service_user
+      @order_services = OrderService.where(staff_id: current_user.account_id)
+      authorize @order_services
+    end
+
+    def order_service_technical
+      @order_services = OrderService.where(responsible_id: current_user.account_id)
+      authorize @order_services
     end
 
     # GET /order_services/1
@@ -17,6 +27,7 @@ module Helpdesk
     # GET /order_services/new
     def new
       @order_service = OrderService.new
+      authorize @order_service
       @order_service.monitor_service_orders.build
       #@goods = Patrimony::Good.where(sector_id: current_user.account.sector_current_id)
     end
@@ -31,6 +42,7 @@ module Helpdesk
     # POST /order_services
     def create
       @order_service = OrderService.new(order_service_params)
+      authorize @order_service
       @order_service.sector_id = current_user.account.sector_current_id
       @order_service.opened_by_id = current_user.account.id
       @order_service.status_id = 1
@@ -42,11 +54,13 @@ module Helpdesk
 
     # PATCH/PUT /order_services/1
     def update
+      authorize @order_service
       @order_service.update(order_service_params)
     end
 
     # DELETE /order_services/1
     def destroy
+      authorize @order_service
       if @order_service.destroy
         redirect_to action: 'index'
       end

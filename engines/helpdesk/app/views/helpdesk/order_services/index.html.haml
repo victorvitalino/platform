@@ -3,7 +3,8 @@
     %h2
       %h2
       Chamados
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      = link_to 'meus chamados', order_service_technical_path, class: 'btn btn-success pull-right'
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "2"}
     %table.table.table-hover.table-bordered
       %thead
         %tr
@@ -13,6 +14,5 @@
           %th Setor
           %th Responsável
           %th Status
-          %th Ações
       %tbody.index-order-service
         = render 'index'
