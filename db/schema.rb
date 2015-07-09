@@ -256,6 +256,7 @@ ActiveRecord::Schema.define(version: 20150708173753) do
   create_table "person_sectors", force: :cascade do |t|
     t.string   "name"
     t.string   "acron"
+    t.string   "prefex"
     t.integer  "father_id"
     t.integer  "responsible_id"
     t.boolean  "status"
@@ -331,18 +332,22 @@ ActiveRecord::Schema.define(version: 20150708173753) do
   create_table "protocol_allotments", force: :cascade do |t|
     t.text     "description"
     t.boolean  "status"
-    t.integer  "user_id"
+    t.integer  "staff_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "protocol_allotments", ["user_id"], name: "index_protocol_allotments_on_user_id"
+  add_index "protocol_allotments", ["staff_id"], name: "index_protocol_allotments_on_staff_id"
 
   create_table "protocol_assessments", force: :cascade do |t|
+    t.integer  "number"
+    t.integer  "year"
+    t.integer  "prefex"
     t.string   "document_number"
     t.string   "external_number"
+    t.string   "requesting_unit"
     t.string   "external_agency"
-    t.string   "recipient_agency"
+    t.string   "recipient"
     t.string   "address"
     t.string   "cpf"
     t.string   "cnpj"
@@ -351,16 +356,16 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.text     "description_subject"
     t.integer  "document_type_id"
     t.integer  "subject_id"
-    t.integer  "user_id"
-    t.integer  "setor_id"
+    t.integer  "staaff_id"
+    t.integer  "sector_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
 
   add_index "protocol_assessments", ["document_type_id"], name: "index_protocol_assessments_on_document_type_id"
-  add_index "protocol_assessments", ["setor_id"], name: "index_protocol_assessments_on_setor_id"
+  add_index "protocol_assessments", ["sector_id"], name: "index_protocol_assessments_on_sector_id"
+  add_index "protocol_assessments", ["staaff_id"], name: "index_protocol_assessments_on_staaff_id"
   add_index "protocol_assessments", ["subject_id"], name: "index_protocol_assessments_on_subject_id"
-  add_index "protocol_assessments", ["user_id"], name: "index_protocol_assessments_on_user_id"
 
   create_table "protocol_conduct_types", force: :cascade do |t|
     t.string   "name"
@@ -393,18 +398,19 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.integer  "page_number"
     t.string   "doc_path"
     t.integer  "assessment_id"
-    t.integer  "user_id"
+    t.integer  "staff_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "protocol_digital_documents", ["assessment_id"], name: "index_protocol_digital_documents_on_assessment_id"
-  add_index "protocol_digital_documents", ["user_id"], name: "index_protocol_digital_documents_on_user_id"
+  add_index "protocol_digital_documents", ["staff_id"], name: "index_protocol_digital_documents_on_staff_id"
 
   create_table "protocol_document_types", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.boolean  "status"
+    t.integer  "prefex"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -415,13 +421,13 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.string   "box"
     t.text     "obsevation"
     t.integer  "assessment_id"
-    t.integer  "user_id"
+    t.integer  "staff_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id"
-  add_index "protocol_locations", ["user_id"], name: "index_protocol_locations_on_user_id"
+  add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id"
 
   create_table "protocol_subjects", force: :cascade do |t|
     t.string   "name"
