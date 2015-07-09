@@ -10,19 +10,23 @@
         = f.input :content, label: false, input_html: {class: 'redactor'}
     .row
       .col-md-3
-        = f.label "Imagem Interna", as: 'file', class: 'fg-label'
+        = f.label :thumbnail, as: 'file', class: 'fg-label'
         = f.input :thumbnail, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
       .col-md-3
         = f.label :page_category, class: 'fg-label'
         = f.association :page_category, label: false, prompt: 'Selecione...'
       .col-md-3
         .toggle-switch{"data-ts-color" => "blue"}
-          %label.ts-label{:for => "ts4"} Publicado
+          %label
+            .ts-label{:for => "ts4"}
+              = f.label :publish
           = f.check_box :publish, id: 'ts4',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts4"}
       .col-md-3
         .toggle-switch{"data-ts-color" => "blue"}
-          %label.ts-label{:for => "ts5"} Thumb
+          %label
+            .ts-label{:for => "ts5"}
+              = f.label :active_photo
           = f.check_box :active_photo, id: 'ts5',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts5"}
     .row
@@ -48,4 +52,4 @@
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
-        = link_to 'Back', pages_path , class: 'btn btn-danger'
+        = link_to 'Voltar',pages_path , class: 'btn btn-danger'
