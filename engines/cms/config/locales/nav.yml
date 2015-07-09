@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      'cms/nav': Menu
+    attributes:
+      'cms/nav':
+        name: "Nome"
+        link_page: "Página"
+        category: "Categoria"
+        link_external: "Link Externo"
+        type_nav: "Tipo de Link"
+        slider: "Ativar Slider"
+        publish: "Publicar"
+        target: "Abrir em nova página"
