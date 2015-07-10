@@ -192,7 +192,6 @@ GEM
       ruby_parser (~> 3.5)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
-    image_zoomer (0.0.2)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -260,6 +259,7 @@ GEM
       devise
       mime-types
       orm_adapter
+    remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     ruby_parser (3.6.6)
@@ -326,7 +326,6 @@ DEPENDENCIES
   guard-rails
   haml-rails
   helpdesk!
-  image_zoomer
   intranet!
   jquery-rails
   mini_magick
@@ -339,6 +338,7 @@ DEPENDENCIES
   pundit!
   rails (= 4.2.1)
   redactor-rails
+  remotipart (~> 1.2)
   schedule!
   simple_form
   sqlite3

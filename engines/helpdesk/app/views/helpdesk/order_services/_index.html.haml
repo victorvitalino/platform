@@ -9,6 +9,7 @@
   %td
    = j.sector.name if j.sector.present?
   %td
-   = j.responsible.name if j.responsible.present?
+   = j.responsible ? j.responsible.name : "Untec"
   %td
-   = j.status.name if j.status.present?
+   = j.status ? "Aberto" : "Fechado" if j.status.present?
+

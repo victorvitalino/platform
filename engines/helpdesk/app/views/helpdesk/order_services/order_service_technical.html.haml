@@ -1,8 +1,8 @@
 .card
   .card-header.ch-alt
     %h2
-      %h2
-      Chamados
+
+      Meus Chamados
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "2"}
     %table.table.table-hover.table-bordered
       %thead
@@ -20,5 +20,10 @@
           %td= j.created_at.strftime("%d/%m/%Y - %H:%M")
           %td= j.staff.name if j.staff.present?
           %td= j.sector.name if j.sector.present?
+<<<<<<< HEAD
           %td= j.responsible.name if j.responsible.present?
           %td= j.status.name if j.status.present?
+=======
+          %td= j.responsible ? j.responsible.name : "Untec"
+          %td= j.status ? "Aberto" : "Fechado" if j.status.present?
+>>>>>>> maxbruno-master
