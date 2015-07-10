@@ -19,4 +19,4 @@
 //= require material/js/flot-charts/line-chart
 //= require material/js/functions
 //= require material/js/demo
-//= require image_zoomer_main
+//= require jquery.remotipart

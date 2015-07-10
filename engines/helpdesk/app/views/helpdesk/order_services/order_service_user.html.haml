@@ -1,0 +1,31 @@
+.card
+  .card-header.ch-alt.bgm-cyan
+    %h2
+      %h2
+      Meus Chamados
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "2"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th OS
+          %th Aberto
+          %th Setor
+          %th Responsável
+          %th Qualificação
+          %th Status
+          %th Fechado
+
+      %tbody
+        - @order_services.each_with_index do |j, i|
+          %tr
+          %td= link_to j.number , order_service_monitor_service_orders_path(j)
+          %td= j.created_at.strftime("%d/%m/%Y - %H:%M")
+          %td= j.sector.name if j.sector.present?   
+          %td= j.responsible ? j.responsible.name : "Untec"
+          %td= j.qualification ? j.qualification :  (link_to 'Qualificar Chamado',  new_order_service_qualification_path(order_service_id: j), remote: true, class: 'btn btn-warning btn-xs')
+          %td
+            %span{class: (j.status == false) ? 'label.label-danger' : 'label.label-primary'}
+              
+
+          %td= j.updated_at.strftime("%d/%m/%Y - %H:%M")
+     

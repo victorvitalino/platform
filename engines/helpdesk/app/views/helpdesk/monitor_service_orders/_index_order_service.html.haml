@@ -3,18 +3,21 @@
   .card
    .notice.alert.alert-success.text-center= flash[:notice]
  .card
-  .card-header{class: (@order_service.status.name == "Fechado") ? 'bgm-green' : 'bgm-red'} 
+  .card-header{class: (@order_service.status == false) ? 'bgm-green' : 'bgm-red'} 
    %h2
     Ordem de serviço #
     = @order_service.number
    %ul.actions
     %li
-     = link_to '<i class="md md-check c-white waves-effect"></i>'.html_safe,order_service_monitor_service_order_assume_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Assumir"
+     = link_to '<i class="md md-check c-white waves-effect"></i>'.html_safe,order_service_monitor_service_order_assume_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Assumir" if policy(:MonitorServiceOrder, namespace: Helpdesk).assume?
     %li
-     = link_to '<i class="md md-close c-white"></i>'.html_safe, order_service_monitor_service_order_close_order_service_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Fechar"
+     = link_to '<i class="md md-close c-white"></i>'.html_safe, order_service_monitor_service_order_close_order_service_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Fechar" if policy(:MonitorServiceOrder, namespace: Helpdesk).close_order_service?
   .card-body.card-padding
    .row
-    .col-md-4 
+    .col-md-4
+     = f.label "Assunto:", class: 'label_order_service'
+     = @order_service.subject
+     %br
      = f.label "Aperto por:", class: 'label_order_service'
      = @order_service.opened_by.name
      %br
@@ -25,7 +28,7 @@
      = @order_service.sector.name
      %br
      = f.label "Status:", class: 'label_order_service'
-     = @order_service.status.name
+     = @order_service.status ? "Aberto" : "Fechado"
      %br
      = f.label "Ramal:", class: 'label_order_service'
      = @order_service.branch_line.telephone

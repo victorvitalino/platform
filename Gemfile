@@ -19,7 +19,7 @@ gem 'redactor-rails'
 gem 'mini_magick'
 
 gem 'friendly_id'
-gem 'image_zoomer'
+gem 'remotipart', '~> 1.2'
 
 gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'

@@ -1,0 +1,24 @@
+.card
+  .card-header.ch-alt
+    %h2
+      %h2
+      Meus Chamados
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "2"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th OS
+          %th Abertura
+          %th Solicitado por
+          %th Setor
+          %th Responsável
+          %th Status
+      %tbody
+        - @order_services.each_with_index do |j, i|
+          %tr
+          %td= link_to j.number , order_service_monitor_service_orders_path(j)
+          %td= j.created_at.strftime("%d/%m/%Y - %H:%M")
+          %td= j.staff.name if j.staff.present?
+          %td= j.sector.name if j.sector.present?
+          %td= j.responsible ? j.responsible.name : "Untec"
+          %td= j.status ? "Aberto" : "Fechado" if j.status.present?

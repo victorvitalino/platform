@@ -115,6 +115,9 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.integer  "number"
     t.integer  "number_increment"
     t.string   "priority"
+    t.boolean  "status"
+    t.integer  "qualification"
+    t.string   "subject"
     t.integer  "sector_id"
     t.integer  "branch_line_id"
     t.integer  "staff_id"
@@ -133,23 +136,6 @@ ActiveRecord::Schema.define(version: 20150708173753) do
   add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id"
   add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id"
   add_index "helpdesk_order_services", ["status_id"], name: "index_helpdesk_order_services_on_status_id"
-
-  create_table "helpdesk_qualifications", force: :cascade do |t|
-    t.string   "name"
-    t.text     "observation"
-    t.boolean  "status"
-    t.integer  "order_service_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "helpdesk_qualifications", ["order_service_id"], name: "index_helpdesk_qualifications_on_order_service_id"
-
-  create_table "helpdesk_statuses", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "patrimony_down_goods", force: :cascade do |t|
     t.string   "name"

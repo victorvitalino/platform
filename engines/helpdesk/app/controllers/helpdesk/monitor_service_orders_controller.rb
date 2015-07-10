@@ -6,7 +6,7 @@ module Helpdesk
     before_action :set_monitor_service_order, only: [:edit, :destroy, :update, :index,:assume, :close_order_service]
     # GET /monitor_service_orders
     def index
-      
+      authorize @monitor_service_orders
     end
 
     # GET /monitor_service_orders/1
@@ -16,6 +16,7 @@ module Helpdesk
     # GET /monitor_service_orders/new
     def new
       @monitor_service_order = @order_service.monitor_service_orders.new
+      authorize @monitor_service_order
     end
 
     # GET /monitor_service_orders/1/edit
@@ -25,17 +26,21 @@ module Helpdesk
     
     def get_image
       @monitor_service_order = MonitorServiceOrder.find(params[:image])
+      authorize @monitor_service_order
     end
 
     def assume
       @order_service.update(responsible_id: current_user.account.id)
+      authorize @order_service
       respond_to do |format|
         format.js { flash[:notice] = "Ordem de serviço assumido com sucesso!" }
       end
     end
 
     def close_order_service
-      @order_service.update(status_id: 2)
+      @order_service.update(status: false)
+      authorize @order_service
+
       respond_to do |format|
         format.js { flash[:notice] = "Ordem de serviço fechado com sucesso!" }
       end
@@ -44,11 +49,10 @@ module Helpdesk
     # POST /monitor_service_orders
     def create
       @monitor_service_order = @order_service.monitor_service_orders.new(monitor_service_order_params)
+      authorize @monitor_service_order
       @monitor_service_order.staff_id = current_user.account.id
       @monitor_service_order.status = true
-      if @monitor_service_order.save
-        redirect_to action: 'index'
-      end
+      @monitor_service_order.save
     end
 
     # PATCH/PUT /monitor_service_orders/1

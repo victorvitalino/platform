@@ -8,12 +8,15 @@ module Helpdesk
     belongs_to :opened_by, class_name: "Person::Staff"
     belongs_to :responsible, class_name: "Person::Staff"
     belongs_to :good, class_name: "Patrimony::Good"
-    belongs_to :status
-    has_many :monitor_service_orders
+    has_many   :monitor_service_orders
+
+
 
     accepts_nested_attributes_for :monitor_service_orders
 
     validates_presence_of :branch_line_id, :staff_id, :good_id 
+
+    enum :name => [:naoseioque, :seiquela]
 
     after_create  :update_os, :update_monitor_service
     before_create :auto_increment
@@ -28,7 +31,7 @@ module Helpdesk
     def update_os
     	os = OrderService.last
       number_os = os.created_at.year.to_s + os.created_at.month.to_s + os.number_increment.to_s
-    	os.update(number: number_os.to_i, status_id: 1)
+    	os.update(number: number_os.to_i)
     end
 
     def update_monitor_service

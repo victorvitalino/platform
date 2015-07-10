@@ -50,6 +50,8 @@ namespace :permissions do
 		  { action: "Permissões do Usuários - visualizar",			code: 1703, status: true, system_id: @system_person.id }
 		])
 
+
+
 		@user = Person::Staff.find_by_code('dev001')
 
 
@@ -166,5 +168,36 @@ namespace :permissions do
 			{staff_id: @user.id , system_permission_id: 38 , status: true},
 			{staff_id: @user.id , system_permission_id: 39 , status: true}
 		])
+
+		#-------------------------------------------HELPDESK------------------------------------------------------
+		@system_helpdesk = Person::System.new(name: 'Helpdesk',code: 2, status: true)
+		@system_helpdesk.save
+
+		#criação da permissões de controller order_service
+		@system_permission = Person::SystemPermission.create([
+		  { action: "Ordem de Serviço - criar/editar", 	    code: 2101, status: true, system_id: @system_helpdesk.id },
+		  { action: "Ordem de Serviço - excluir", 					code: 2102, status: true, system_id: @system_helpdesk.id },
+		  { action: "Ordem de Serviço - visualizar",				code: 2103, status: true, system_id: @system_helpdesk.id }
+		])
+		#criação da permissões de controller monitor_service_order
+		@system_permission = Person::SystemPermission.create([
+		  { action: "Acompanhamento de Chamado - criar/editar", 	  code: 2201, status: true, system_id: @system_helpdesk.id },
+		  { action: "Acompanhamento de Chamado - excluir", 					code: 2202, status: true, system_id: @system_helpdesk.id },
+		  { action: "Acompanhamento de Chamado - visualizar",				code: 2203, status: true, system_id: @system_helpdesk.id }
+		])
+
+		@user = Person::Staff.find_by_code('dev001')
+
+		@permission_user = Person::StaffPermission.create([
+			{staff_id: @user.id , system_permission_id: 40 , status: true},
+			{staff_id: @user.id , system_permission_id: 41 , status: true},
+			{staff_id: @user.id , system_permission_id: 42 , status: true}
+		])
+		@permission_user = Person::StaffPermission.create([
+			{staff_id: @user.id , system_permission_id: 43 , status: true},
+			{staff_id: @user.id , system_permission_id: 44 , status: true},
+			{staff_id: @user.id , system_permission_id: 45 , status: true}
+		])
+
 	end
 end
