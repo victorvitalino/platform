@@ -38,7 +38,7 @@ module Helpdesk
     end
 
     def close_order_service
-      @order_service.update(status_id: 2)
+      @order_service.update(status: false)
       authorize @order_service
 
       respond_to do |format|
@@ -52,9 +52,7 @@ module Helpdesk
       authorize @monitor_service_order
       @monitor_service_order.staff_id = current_user.account.id
       @monitor_service_order.status = true
-      if @monitor_service_order.save
-        redirect_to action: 'index'
-      end
+      @monitor_service_order.save
     end
 
     # PATCH/PUT /monitor_service_orders/1

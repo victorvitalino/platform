@@ -2,6 +2,10 @@
  .col-md-12
   = simple_form_for @order_service, remote: true do |f|
    .row
+    .col-md-6
+     = f.label :subject, class: 'fg-label'
+     = f.input :subject, as:'select', collection: Helpdesk::OrderService.names.keys.to_a, prompt: 'selecione...', label: false
+   .row
     .col-md-12
      = f.label :staff_id, class: 'fg-label'
      = f.input :staff_id, collection: current_user.account.sector_current.staffs, label_method: :name, value_method: :id, label: false ,selected: current_user.account.id
