@@ -81,7 +81,7 @@
                 %ul{style: ('display:block;' if params[:module] == "helpdesk")}
                   - if policy(:OrderService, namespace: Helpdesk).index?
                     %li
-                      = link_to "Todos os Chamados", helpdesk.order_services_path
+                      = link_to "chamados abertos", helpdesk.order_services_path
                   - if policy(:OrderService, namespace: Helpdesk).order_service_user?
                     %li
                       = link_to "meus chamados", helpdesk.order_service_user_path

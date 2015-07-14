@@ -177,13 +177,17 @@ namespace :permissions do
 		@system_permission = Person::SystemPermission.create([
 		  { action: "Ordem de Serviço - criar/editar", 	    code: 2101, status: true, system_id: @system_helpdesk.id },
 		  { action: "Ordem de Serviço - excluir", 					code: 2102, status: true, system_id: @system_helpdesk.id },
-		  { action: "Ordem de Serviço - visualizar",				code: 2103, status: true, system_id: @system_helpdesk.id }
+		  { action: "Ordem de Serviço - visualizar",				code: 2103, status: true, system_id: @system_helpdesk.id },
+		  { action: "Usuário",															code: 2104, status: true, system_id: @system_helpdesk.id },
+		  { action: "Técnico",															code: 2105, status: true, system_id: @system_helpdesk.id }
 		])
 		#criação da permissões de controller monitor_service_order
 		@system_permission = Person::SystemPermission.create([
 		  { action: "Acompanhamento de Chamado - criar/editar", 	  code: 2201, status: true, system_id: @system_helpdesk.id },
 		  { action: "Acompanhamento de Chamado - excluir", 					code: 2202, status: true, system_id: @system_helpdesk.id },
-		  { action: "Acompanhamento de Chamado - visualizar",				code: 2203, status: true, system_id: @system_helpdesk.id }
+		  { action: "Acompanhamento de Chamado - visualizar",				code: 2203, status: true, system_id: @system_helpdesk.id },
+		  { action: "Assumir   Chamado - visualizar",								code: 2204, status: true, system_id: @system_helpdesk.id },
+		  { action: "Finalizar Chamado - visualizar",								code: 2205, status: true, system_id: @system_helpdesk.id }
 		])
 
 		@user = Person::Staff.find_by_code('dev001')
@@ -191,12 +195,16 @@ namespace :permissions do
 		@permission_user = Person::StaffPermission.create([
 			{staff_id: @user.id , system_permission_id: 40 , status: true},
 			{staff_id: @user.id , system_permission_id: 41 , status: true},
-			{staff_id: @user.id , system_permission_id: 42 , status: true}
+			{staff_id: @user.id , system_permission_id: 42 , status: true},
+			{staff_id: @user.id , system_permission_id: 43 , status: true},
+			{staff_id: @user.id , system_permission_id: 44 , status: true}
 		])
 		@permission_user = Person::StaffPermission.create([
-			{staff_id: @user.id , system_permission_id: 43 , status: true},
-			{staff_id: @user.id , system_permission_id: 44 , status: true},
-			{staff_id: @user.id , system_permission_id: 45 , status: true}
+			{staff_id: @user.id , system_permission_id: 45 , status: true},
+			{staff_id: @user.id , system_permission_id: 46 , status: true},
+			{staff_id: @user.id , system_permission_id: 47 , status: true},
+			{staff_id: @user.id , system_permission_id: 48 , status: true},
+			{staff_id: @user.id , system_permission_id: 49 , status: true}
 		])
 
 	end

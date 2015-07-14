@@ -6,7 +6,7 @@ module Helpdesk
 		end
 
 		def update
-			 redirect_to :controller => 'order_service', :action => 'order_service_user'
+			 @order_service.update(set_params_qualification)
 		end
 
 		private

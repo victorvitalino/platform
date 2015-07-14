@@ -11,12 +11,12 @@ module Helpdesk
     end
 
     def order_service_user
-      @order_services = OrderService.where(staff_id: current_user.account_id)
+      @order_services = OrderService.where(staff_id: current_user.account_id).order('id DESC')
       authorize @order_services
     end
 
     def order_service_technical
-      @order_services = OrderService.where(responsible_id: current_user.account_id , status: true)
+      @order_services = OrderService.where(responsible_id: current_user.account_id).order('id DESC')
       authorize @order_services
     end
 
