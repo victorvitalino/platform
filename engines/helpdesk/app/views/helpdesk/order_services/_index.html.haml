@@ -11,5 +11,15 @@
   %td
    = j.responsible ? j.responsible.name : "Untec"
   %td
+<<<<<<< HEAD
    = j.status ? "Aberto" : "Fechado" if j.status.present?
 
+=======
+   -if j.status
+    %span.badge.bgm-green
+     Aberto
+   -else
+    %span.badge.bgm-red
+     Fechado
+   
+>>>>>>> maxbruno-master

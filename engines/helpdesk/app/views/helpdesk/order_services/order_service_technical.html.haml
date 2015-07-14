@@ -1,23 +1,28 @@
 .card
-  .card-header.ch-alt
+  .card-header.ch-alt.bgm-cyan
     %h2
+<<<<<<< HEAD
 
+=======
+>>>>>>> maxbruno-master
       Meus Chamados
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "2"}
     %table.table.table-hover.table-bordered
       %thead
         %tr
           %th OS
-          %th Abertura
-          %th Solicitado por
+          %th Aberto
           %th Setor
           %th Responsável
+          %th Qualificação
           %th Status
+          %th Fechado
       %tbody
         - @order_services.each_with_index do |j, i|
           %tr
           %td= link_to j.number , order_service_monitor_service_orders_path(j)
           %td= j.created_at.strftime("%d/%m/%Y - %H:%M")
+<<<<<<< HEAD
           %td= j.staff.name if j.staff.present?
           %td= j.sector.name if j.sector.present?
 <<<<<<< HEAD
@@ -26,4 +31,24 @@
 =======
           %td= j.responsible ? j.responsible.name : "Untec"
           %td= j.status ? "Aberto" : "Fechado" if j.status.present?
+>>>>>>> maxbruno-master
+=======
+          %td= j.sector.name if j.sector.present?   
+          %td= j.responsible ? j.responsible.name : "Untec"
+          %td
+            -if j.qualification
+              %span.badge
+                =j.qualification
+            -else
+              %span.badge
+                Ainda não qualificado
+          %td
+            -if j.status
+              %span.badge.bgm-green
+                Aberto
+            -else
+              %span.badge.bgm-red
+                Fechado
+          %td= j.updated_at.strftime("%d/%m/%Y - %H:%M")
+     
 >>>>>>> maxbruno-master
