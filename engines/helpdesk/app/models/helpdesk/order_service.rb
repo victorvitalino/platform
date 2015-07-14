@@ -18,7 +18,7 @@ module Helpdesk
 
     enum :name => [:naoseioque, :seiquela]
 
-    after_create  :update_os, :update_monitor_service
+    after_create  :update_os, :set_user_monitor_service
     before_create :auto_increment
 
   	private
@@ -34,7 +34,7 @@ module Helpdesk
     	os.update(number: number_os.to_i)
     end
 
-    def update_monitor_service
+    def set_user_monitor_service
       os = OrderService.last
       mso = MonitorServiceOrder.last
       mso.update(staff_id: os.staff_id )

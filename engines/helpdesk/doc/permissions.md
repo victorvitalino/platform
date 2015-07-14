@@ -8,6 +8,8 @@
 - 2101: Criar/Editar
 - 2102: Excluir
 - 2103: Visualizar
+- 2104: Usuário
+- 2105: Técnico
 
 
 ## monitor_service_order ##
