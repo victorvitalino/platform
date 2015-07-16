@@ -14,12 +14,6 @@ PATH
       rails (~> 4.2.1)
 
 PATH
-  remote: engines/concourse
-  specs:
-    concourse (0.0.1)
-      rails (~> 4.2.1)
-
-PATH
   remote: engines/dashboard
   specs:
     dashboard (0.0.1)
@@ -154,6 +148,8 @@ GEM
     eventmachine (1.0.7)
     execjs (2.5.2)
     ffi (1.9.8)
+    figaro (1.1.1)
+      thor (~> 0.14)
     formatador (0.2.5)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
@@ -316,10 +312,10 @@ DEPENDENCIES
   byebug
   carrierwave
   cms!
-  concourse!
   dashboard!
   devise
   email_validator
+  figaro
   friendly_id
   guard
   guard-livereload

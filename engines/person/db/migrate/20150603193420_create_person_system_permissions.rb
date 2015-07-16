@@ -4,7 +4,7 @@ class CreatePersonSystemPermissions < ActiveRecord::Migration
       t.string :action
       t.integer :code, unique: true
       t.boolean :status
-      t.references :system, index: true, foreign_key: true
+      t.references :system, index: true#, foreign_key: true
 
       t.timestamps null: false
     end

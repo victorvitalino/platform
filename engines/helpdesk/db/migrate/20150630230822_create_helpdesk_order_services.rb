@@ -5,14 +5,14 @@ class CreateHelpdeskOrderServices < ActiveRecord::Migration
       t.integer :number_increment
       t.integer :qualification
       t.string  :subject
-      t.references :sector, index: true, foreign_key: true
-      t.references :branch_line, index: true, foreign_key: true
-      t.references :staff, index: true, foreign_key: true
-      t.references :opened_by, index: true, foreign_key: true
-      t.references :responsible, index: true, foreign_key: true
-      t.references :good, index: true, foreign_key: true
-      t.references :category, index: true, foreign_key: true
-      t.references :status, index: true, foreign_key: true
+      t.references :sector, index: true#, foreign_key: true
+      t.references :branch_line, index: true#, foreign_key: true
+      t.references :staff, index: true#, foreign_key: true
+      t.references :opened_by, index: true#, foreign_key: true
+      t.references :responsible, index: true#, foreign_key: true
+      t.references :good, index: true#, foreign_key: true
+      t.references :category, index: true#, foreign_key: true
+      t.references :status, index: true#, foreign_key: true
       
 
       t.timestamps null: false
