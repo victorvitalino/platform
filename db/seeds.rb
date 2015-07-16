@@ -5,7 +5,8 @@
 	rg: '0000001',
 	rg_org: 'ssp df',
 	code: 'dev001',
-	born: '01/01/1990'
+	born: '01/01/1990',
+	administrator: true
 )
 
 @staff.build_user

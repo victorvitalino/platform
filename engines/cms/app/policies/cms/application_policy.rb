@@ -40,6 +40,7 @@ module Cms
     end
     #busca o codigo de na tabela de permissões(system_permissions), e verifica se a permissão esta ativa e usuario possui a permissão
     def allow?(code)
+      return true if user.account.administrator
       @permission = Person::SystemPermission.find_by_code(code)
       if @permission.present?
         user.account.permissions.where(system_permission_id: @permission.id, status: true).present? 
