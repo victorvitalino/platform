@@ -1,18 +1,20 @@
-
 .card
   .card-header.ch-alt.bgm-cyan
     %h2
-      Chamados Abertos
+      Meus Chamados
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "2"}
     %table.table.table-hover.table-bordered
       %thead
         %tr
           %th OS
           %th Assunto
-          %th Abertura
-          %th Solicitado por
           %th Setor
           %th Responsável
+          %th Qualificação
           %th Status
-      %tbody.index-order-service
+          %th Aberto
+          %th Fechado
+
+      %tbody.order-service-user
         = render 'index'
+       

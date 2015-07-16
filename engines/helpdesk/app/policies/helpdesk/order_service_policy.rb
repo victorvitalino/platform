@@ -16,14 +16,6 @@ module Helpdesk
 			allow?(2102)
 		end
 
-		def order_service_user?
-			allow?(2104)
-		end
-
-		def order_service_technical?
-			allow?(2105)
-		end
-
 		def assume?
 			allow?(2204)
 		end

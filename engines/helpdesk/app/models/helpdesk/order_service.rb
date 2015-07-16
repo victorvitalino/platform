@@ -14,12 +14,16 @@ module Helpdesk
 
     accepts_nested_attributes_for :monitor_service_orders
 
-    validates_presence_of :branch_line_id, :staff_id, :good_id 
+    validates_presence_of :branch_line_id, :staff_id, :good_id, :subject, :type, :status
 
-    enum :name => [:naoseioque, :seiquela]
+    enum :types => [:systems, :infrastructure]
+    enum :status => [:open, :in_progress, :solved, :closed, :reopened]
+
 
     after_create  :update_os, :set_user_monitor_service
     before_create :auto_increment
+
+
 
   	private
 

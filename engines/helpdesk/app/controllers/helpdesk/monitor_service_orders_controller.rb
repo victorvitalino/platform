@@ -2,8 +2,9 @@ require_dependency "helpdesk/application_controller"
 
 module Helpdesk
   class MonitorServiceOrdersController < ApplicationController
-    before_action :set_monitor_service_orders, only: [:index, :create, :new,:destroy, :update,:assume, :close_order_service]
-    before_action :set_monitor_service_order, only: [:edit, :destroy, :update, :index,:assume, :close_order_service]
+    before_action :set_monitor_service_orders, only: [:index, :create, :new,:destroy, :update,:assume, :close_order_service, :open_again]
+    before_action :set_monitor_service_order, only: [:edit, :destroy, :update, :index,:assume, :close_order_service, :open_again]
+
     # GET /monitor_service_orders
     def index
       authorize @monitor_service_orders
@@ -31,16 +32,25 @@ module Helpdesk
 
     def assume
       @order_service.update(responsible_id: current_user.account.id)
+      MonitorServiceOrder.create(appointment: "chamado assumido por:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize @order_service
       respond_to do |format|
         format.js { flash[:notice] = "Ordem de serviço assumido com sucesso!" }
       end
     end
 
+
+    def open_again
+      @order_service.update(status: true)
+      @order_service.update(responsible_id: nil)
+      MonitorServiceOrder.create(appointment: "chamado reaberto por:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+      authorize :monitor_service_orders
+    end
+
     def close_order_service
       @order_service.update(status: false)
+      MonitorServiceOrder.create(appointment: "chamado fechado por:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize @order_service
-
       respond_to do |format|
         format.js { flash[:notice] = "Ordem de serviço fechado com sucesso!" }
       end

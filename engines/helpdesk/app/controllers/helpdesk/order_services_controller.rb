@@ -2,22 +2,12 @@ require_dependency "helpdesk/application_controller"
 
 module Helpdesk
   class OrderServicesController < ApplicationController
-    before_action :set_order_services, only: [:index, :create, :destroy, :update]
+    before_action :set_order_services, only: [:index, :destroy, :update, :create]
     before_action :set_order_service, only: [:edit, :destroy, :update]
 
     # GET /order_services
     def index
      authorize @order_services
-    end
-
-    def order_service_user
-      @order_services = OrderService.where(staff_id: current_user.account_id).order('id DESC')
-      authorize @order_services
-    end
-
-    def order_service_technical
-      @order_services = OrderService.where(responsible_id: current_user.account_id).order('id DESC')
-      authorize @order_services
     end
 
     # GET /order_services/1
@@ -66,12 +56,12 @@ module Helpdesk
       end
 
       def set_order_services
-        @order_services = OrderService.where(status: true)
+        @order_services = OrderService.where(status: true).order('id DESC')
       end
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:priority,:subject,:number, :status, :number_increment, 
+        params.require(:order_service).permit(:subject, :type, :number, :status, :number_increment, 
                                               :opened_by_id, :responsible_id, :staff_id, 
                                               :sector_id, :branch_line_id, :good_id, 
                                                monitor_service_orders_attributes: [:appointment, :attachment])

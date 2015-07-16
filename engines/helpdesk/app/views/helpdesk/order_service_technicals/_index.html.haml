@@ -1,0 +1,22 @@
+- @order_services.each_with_index do |j, i|
+  %tr
+  %td= link_to j.number , order_service_monitor_service_orders_path(j)
+  %td= j.subject
+  %td= j.sector.name if j.sector.present?   
+  %td= j.responsible ? j.responsible.name : "Untec"
+  %td
+    -if j.qualification
+      %span.badge
+        =j.qualification
+    -else
+      %span.badge
+        Ainda não qualificado
+  %td
+    -if j.status
+      %span.badge.bgm-green
+        Aberto
+    -else
+      %span.badge.bgm-red
+        Fechado
+  %td= j.created_at.strftime("%d/%m/%Y - %H:%M")
+  %td= j.updated_at.strftime("%d/%m/%Y - %H:%M")
