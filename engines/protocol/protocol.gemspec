@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Protocol::VERSION
   s.authors     = ["Igor Marques"]
   s.email       = ["igormarjes@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Protocol."
-  s.description = "TODO: Description of Protocol."
+  s.homepage    = ""
+  s.summary     = "Summary of Protocol."
+  s.description = "Description of Protocol."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
