@@ -2,6 +2,8 @@ module Concourse
   class ApplicationController < ActionController::Base
     helper Portal::ApplicationHelper
 
+    helper ::ApplicationHelper
+    
     before_filter :set_url
 
     def connect(page)
@@ -24,6 +26,6 @@ module Concourse
     end
 
 
-    
+
   end
 end

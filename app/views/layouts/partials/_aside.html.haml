@@ -5,12 +5,33 @@
     %li{:role => "presentation"}
       %a{"aria-controls" => "online", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#online", :role => "tab"} Meu Setor
   .chat-search
-    .fg-line
-      %input.form-control{:placeholder => "Pesquisar...", :type => "text"}/
+    #buscador.fg-line
+      %form.filterform{:action => "#"}
+        %input.filterinput.form-control{:placeholder => "Pesquisar...", :type => "text"}/
   .tab-content
     #friends.tab-pane.fade.active.in{:role => "tabpanel"}
       .listview
-        - Person::Staff.all.order(:name).each do |u|
+        - users_list do |u|
+          %a.lv-item{:href => "#{person.profile_url(u)}"}
+            .media
+              .pull-left.p-relative
+                - if u.avatar?
+                  .lv-avatar
+                    = image_tag(u.avatar.url, width:35)
+                - else
+                  .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
+                    = u.name[0]
+              .media-body
+                .lv-title
+                  = u.name
+                %small.lv-small
+                  Último acesso
+                  %br/
+                  = u.user.last_sign_in_at.strftime('%d/%m/%Y %H:%M') if u.user.present? && u.user.last_sign_in_at.present?
+
+    #online.tab-pane.fade{:role => "tabpanel"}
+      .listview
+        - local_users_list do |u|
           %a.lv-item{:href => ""}
             .media
               .pull-left.p-relative
@@ -26,14 +47,3 @@
                   Último acesso
                   %br/
                   = u.user.last_sign_in_at.strftime('%d/%m/%Y %H:%M') if u.user.present? && u.user.last_sign_in_at.present?
-
-    #online.tab-pane.fade{:role => "tabpanel"}
-      .listview
-        %a.lv-item{:href => ""}
-          .media
-            .pull-left.p-relative
-              / %img.lv-img-sm{:alt => "", :src => "img/profile-pics/2.jpg"}/
-              %i.chat-status-busy
-            .media-body
-              .lv-title Jonathan Morris
-              %small.lv-small Available
