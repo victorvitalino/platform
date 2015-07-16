@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      'cms/page': Página
+    attributes:
+      'cms/page':
+        title: "Título"
+        content: "Conteúdo"
+        page_category: "Categoria"
+        thumbnail: "Imagem Interna"
+        slider: "Ativar Slider"
+        publish: "Publicar"
+        active_photo: "Ativar Foto Interna"
+        author: "Autor"
+        label_link: "Título do link"
+        link: "Link"
+        resume: "Resumo"
+        date: "Data da Publicação"
+        photo_description: "Descrição da Foto"
+        photo_author: "Autor da Foto"
+        submit: "Postar"

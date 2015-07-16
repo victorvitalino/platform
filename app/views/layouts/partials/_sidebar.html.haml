@@ -45,7 +45,7 @@
                 %li
                   = link_to "setores", person.sectors_path
           %ul{style: ('display:block;' if @module == "person")}
-        %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}  
+        %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
         %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
           - if policy(:application, namespace: Cms).index?
             %a{:href => ""}
@@ -71,7 +71,6 @@
               - if policy(:NavCategory, namespace: Cms).index?
                 %li
                   = link_to "categorias de menu", cms.nav_categories_path
-
             %li.sub-menu{class: ('toggled active' if params[:module] == "helpdesk")}
               - if policy(:application, namespace: Helpdesk).index?
                 %a{:href => ""}
@@ -87,4 +86,3 @@
                   - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
                     %li
                       = link_to "meus chamados", helpdesk.order_service_technicals_path
-               

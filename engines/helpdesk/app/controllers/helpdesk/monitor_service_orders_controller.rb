@@ -48,6 +48,7 @@ module Helpdesk
     end
 
     def close_order_service
+
       @order_service.update(status: false)
       MonitorServiceOrder.create(appointment: "chamado fechado por:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize @order_service

@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'cms/post_category': Categoria
+    attributes:
+      'cms/post_category':
+        title: "Nome"
+        description: "Descrição"

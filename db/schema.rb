@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630230826) do
+ActiveRecord::Schema.define(version: 20150708173753) do
 
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "name"
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 20150630230826) do
   create_table "person_sectors", force: :cascade do |t|
     t.string   "name"
     t.string   "acron"
+    t.string   "prefex"
     t.integer  "father_id"
     t.integer  "responsible_id"
     t.boolean  "status"
@@ -310,6 +311,114 @@ ActiveRecord::Schema.define(version: 20150630230826) do
     t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "protocol_allotments", force: :cascade do |t|
+    t.text     "description"
+    t.boolean  "status"
+    t.integer  "staff_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "protocol_allotments", ["staff_id"], name: "index_protocol_allotments_on_staff_id"
+
+  create_table "protocol_assessments", force: :cascade do |t|
+    t.integer  "number"
+    t.integer  "year"
+    t.integer  "prefex"
+    t.string   "document_number"
+    t.string   "external_number"
+    t.string   "requesting_unit"
+    t.string   "external_agency"
+    t.string   "recipient"
+    t.string   "address"
+    t.string   "cpf"
+    t.string   "cnpj"
+    t.string   "sign_by"
+    t.text     "observation"
+    t.text     "description_subject"
+    t.integer  "document_type_id"
+    t.integer  "subject_id"
+    t.integer  "staaff_id"
+    t.integer  "sector_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "protocol_assessments", ["document_type_id"], name: "index_protocol_assessments_on_document_type_id"
+  add_index "protocol_assessments", ["sector_id"], name: "index_protocol_assessments_on_sector_id"
+  add_index "protocol_assessments", ["staaff_id"], name: "index_protocol_assessments_on_staaff_id"
+  add_index "protocol_assessments", ["subject_id"], name: "index_protocol_assessments_on_subject_id"
+
+  create_table "protocol_conduct_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "protocol_conducts", force: :cascade do |t|
+    t.date     "receipt_date"
+    t.date     "term_response_date"
+    t.integer  "assessment_id"
+    t.integer  "sector_send_id"
+    t.integer  "user_send_id"
+    t.integer  "sector_receptor_id"
+    t.string   "user_receptor"
+    t.integer  "allotment_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "protocol_conducts", ["allotment_id"], name: "index_protocol_conducts_on_allotment_id"
+  add_index "protocol_conducts", ["assessment_id"], name: "index_protocol_conducts_on_assessment_id"
+  add_index "protocol_conducts", ["sector_receptor_id"], name: "index_protocol_conducts_on_sector_receptor_id"
+  add_index "protocol_conducts", ["sector_send_id"], name: "index_protocol_conducts_on_sector_send_id"
+  add_index "protocol_conducts", ["user_send_id"], name: "index_protocol_conducts_on_user_send_id"
+
+  create_table "protocol_digital_documents", force: :cascade do |t|
+    t.integer  "page_number"
+    t.string   "doc_path"
+    t.integer  "assessment_id"
+    t.integer  "staff_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "protocol_digital_documents", ["assessment_id"], name: "index_protocol_digital_documents_on_assessment_id"
+  add_index "protocol_digital_documents", ["staff_id"], name: "index_protocol_digital_documents_on_staff_id"
+
+  create_table "protocol_document_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status"
+    t.integer  "prefex"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "protocol_locations", force: :cascade do |t|
+    t.string   "shelf"
+    t.string   "pile"
+    t.string   "box"
+    t.text     "obsevation"
+    t.integer  "assessment_id"
+    t.integer  "staff_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id"
+  add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id"
+
+  create_table "protocol_subjects", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "redactor_assets", force: :cascade do |t|
