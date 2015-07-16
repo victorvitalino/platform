@@ -17,6 +17,8 @@ class CreatePersonStaffs < ActiveRecord::Migration
       t.boolean :attendant
       t.boolean :wekeend
       t.boolean :status, default: true
+      t.boolean :administrator, default: true
+      t.integer :gender
       
       
       t.references :branch_line, index: true, foreign_key: true
