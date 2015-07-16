@@ -12,7 +12,7 @@ module Protocol
         end
         def create
             @assessment = Assessment.new(set_assessment_params)
-            @assessment .set_data  current_user.account_id
+            @assessment.set_staff(current_user.account_id)
             if @assessment.save
                 redirect_to action: 'show'
             else

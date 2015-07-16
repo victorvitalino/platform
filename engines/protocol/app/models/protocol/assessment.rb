@@ -5,40 +5,47 @@ module Protocol
     belongs_to :staff
     belongs_to :sector
 
+    before_validation :set_number
+
     validates_presence_of :document_type, :subject, :requesting_unit, :external_agency
-
-    DOCUMENT_REGEX = /(\d{3})\.?(\d{3})\.?(\d{3})-?(\d{4})/
-
-    scope :last_document, -> (sector, type, year) { where(:sector_id => sector, :document_type_id => type, :create_at.year => year)}
+    validates :document_number, uniqueness: true, presence: true
 
 
-    before_create :generate_number
-
-    def set_data(staff)
-        @staff = Person::Staff.find(user)
-        self.staff_id =  @staff.id
-        self.sector_id = @staff.sector_current.id if @staff.sector_current.present?
-        self.sector_prefex = @staff.sector_current.prefex if @staff.sector_current.present?
+    def set_staff(staff_id)
+        self.staff_id = staff_id
     end
 
     private
 
-    def generate_number
+    def set_number
+        current_user = User.find_by_account_id(self.staff_id)
+        if  current_user.account.sector_current.present?
 
-        @document_type = Protocol::DocumentType.find_by_id(self.document_type_id)
+           self.staff_id      =   current_user.account_id
+           self.sector_id   =   current_user.account.sector_current.id
 
-        self.prefex = (@document_type.present?) ? @document_type.prefex  : self.sector_prefex
-        self.year = Time.now.year
+           document_type = Protocol::DocumentType.find(self.document_type_id)
 
-        self.number = (last_document(self.sector_id, tipo, self.year).number.present?) ? "%06d" % Assessment.last_document(user.sector.id, tipo, self.year).number + 1 : "%06d" % 1
-        @next_number = 1
+           self.prefex = (!document_type.prefex.nil?) ? document_type.prefex  : current_user.account.sector_current.prefex
+           self.year = Time.now.year
 
-        @number = "%06d" % @next_number
-        @number = "#{self.prefex.to_s}" + "#{@number}" + "#{self.year.to_s}"
-        @number =~ DOCUMENT_REGEX
-        @number = "#{$1}-#{$2}.#{$3}/#{$4}"
+           documents = Assessment.where(sector_id: self.sector_id, document_type_id:  self.document_type_id, year: self.year).last
 
-        self.document_number = @number
+           self.number = (documents.present?) ? documents.number + 1 :  1
+
+           format_document_number
+        else
+            errors.add(:document_number, "Setor não encontrado")
+        end
+    end
+
+
+    def format_document_number
+        number = "#{self.prefex}#{'%06d' % self.number}#{self.year}"
+        number =~ /(\d{3})\.?(\d{3})\.?(\d{3})-?(\d{4})/
+        number = "#{$1}-#{$2}.#{$3}/#{$4}"
+
+        self.document_number = number
     end
 
 

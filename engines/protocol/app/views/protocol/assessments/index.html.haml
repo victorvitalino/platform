@@ -4,14 +4,14 @@
       Documentos
       = link_to 'novo documento', new_assessment_path, class: 'btn btn-success pull-right'
       %small Listagem de Documentos
-
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table.table.table-hover.table-bordered
-      %thead
-        %tr
-          %th Número
-          %th Tipo de Documento
-          %th Setor
-          %th Ações
-      %tbody
-        = render 'index'
+  .card-body.card-padding
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table.table.table-hover.table-bordered
+        %thead
+          %tr
+            %th Número
+            %th Tipo de Documento
+            %th Setor
+            %th Ações
+        %tbody
+          = render 'index'
