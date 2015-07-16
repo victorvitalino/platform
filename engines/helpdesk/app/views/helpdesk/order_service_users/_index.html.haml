@@ -1,0 +1,25 @@
+- @order_services.each_with_index do |j, i|
+  %tr
+  %td= link_to j.number , order_service_monitor_service_orders_path(j)
+  %td= j.subject
+  %td= j.sector.name if j.sector.present?   
+  %td= j.responsible ? j.responsible.name : "Untec"
+  %td
+    -if j.qualification
+      %span.badge
+        =j.qualification
+    -else
+      =(link_to 'Qualificar Chamado',  new_order_service_qualification_path(order_service_id: j), remote: true, class: 'btn btn-warning btn-xs')
+  %td
+    -if j.status
+      %span.badge.bgm-green
+        Aberto
+    -else
+      %span.badge.bgm-red
+        Fechado
+  %td= j.created_at.strftime("%d/%m/%Y - %H:%M")
+  %td
+    -if j.updated_at.strftime("%d/%m/%Y - %H:%M") == j.created_at.strftime("%d/%m/%Y - %H:%M")
+      
+    -else
+      = j.updated_at.strftime("%d/%m/%Y - %H:%M")

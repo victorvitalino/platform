@@ -80,9 +80,9 @@
                   - if policy(:OrderService, namespace: Helpdesk).index?
                     %li
                       = link_to "chamados abertos", helpdesk.order_services_path
-                  - if policy(:OrderService, namespace: Helpdesk).order_service_user?
+                  - if policy(:OrderServiceUser, namespace: Helpdesk).index?
                     %li
-                      = link_to "meus chamados", helpdesk.order_service_user_path
-                  - if policy(:OrderService, namespace: Helpdesk).order_service_technical?
+                      = link_to "meus chamados", helpdesk.order_service_users_path
+                  - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
                     %li
-                      = link_to "meus chamados", helpdesk.order_service_technical_path
+                      = link_to "meus chamados", helpdesk.order_service_technicals_path

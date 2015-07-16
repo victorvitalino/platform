@@ -20,6 +20,10 @@ module Helpdesk
 			allow?(2205)
 		end
 
+		def open_again?
+			allow?(2104)
+		end
+
 		def update?
 			allow?(2201)
 		end
