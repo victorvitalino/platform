@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708173753) do
+ActiveRecord::Schema.define(version: 20150716140339) do
 
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "name"
@@ -98,6 +98,13 @@ ActiveRecord::Schema.define(version: 20150708173753) do
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id"
 
+  create_table "helpdesk_categories", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "helpdesk_monitor_service_orders", force: :cascade do |t|
     t.text     "appointment"
     t.string   "attachment"
@@ -114,26 +121,34 @@ ActiveRecord::Schema.define(version: 20150708173753) do
   create_table "helpdesk_order_services", force: :cascade do |t|
     t.integer  "number"
     t.integer  "number_increment"
-    t.string   "status"
     t.integer  "qualification"
     t.string   "subject"
-    t.string   "type"
     t.integer  "sector_id"
     t.integer  "branch_line_id"
     t.integer  "staff_id"
     t.integer  "opened_by_id"
     t.integer  "responsible_id"
     t.integer  "good_id"
+    t.integer  "category_id"
+    t.integer  "status_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
   add_index "helpdesk_order_services", ["branch_line_id"], name: "index_helpdesk_order_services_on_branch_line_id"
+  add_index "helpdesk_order_services", ["category_id"], name: "index_helpdesk_order_services_on_category_id"
   add_index "helpdesk_order_services", ["good_id"], name: "index_helpdesk_order_services_on_good_id"
   add_index "helpdesk_order_services", ["opened_by_id"], name: "index_helpdesk_order_services_on_opened_by_id"
   add_index "helpdesk_order_services", ["responsible_id"], name: "index_helpdesk_order_services_on_responsible_id"
   add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id"
   add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id"
+  add_index "helpdesk_order_services", ["status_id"], name: "index_helpdesk_order_services_on_status_id"
+
+  create_table "helpdesk_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "patrimony_down_goods", force: :cascade do |t|
     t.string   "name"
@@ -279,6 +294,8 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.boolean  "attendant"
     t.boolean  "wekeend"
     t.boolean  "status",              default: true
+    t.boolean  "administrator",       default: true
+    t.integer  "gender"
     t.integer  "branch_line_id"
     t.integer  "job_id"
     t.integer  "sector_origin_id"

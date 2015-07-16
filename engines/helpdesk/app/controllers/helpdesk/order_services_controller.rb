@@ -61,7 +61,7 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:subject, :type, :number, :status, :number_increment, 
+        params.require(:order_service).permit(:subject, :category, :number, :status, :number_increment, 
                                               :opened_by_id, :responsible_id, :staff_id, 
                                               :sector_id, :branch_line_id, :good_id, 
                                                monitor_service_orders_attributes: [:appointment, :attachment])
