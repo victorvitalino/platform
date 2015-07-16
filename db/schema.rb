@@ -279,6 +279,8 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.boolean  "attendant"
     t.boolean  "wekeend"
     t.boolean  "status",              default: true
+    t.boolean  "administrator",       default: true
+    t.integer  "gender"
     t.integer  "branch_line_id"
     t.integer  "job_id"
     t.integer  "sector_origin_id"

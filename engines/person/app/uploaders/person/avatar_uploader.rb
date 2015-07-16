@@ -1,14 +1,12 @@
-# encoding: utf-8
-class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
-  include RedactorRails::Backend::CarrierWave
+class Person::AvatarUploader < CarrierWave::Uploader::Base
 
-  # Include RMagick or ImageScience support:
+  # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
-  # include CarrierWave::ImageScience
+  # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
+  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -18,6 +16,9 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
+  #   # For Rails 3.1+ asset pipeline compatibility:
+  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+  #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
@@ -28,21 +29,15 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  process :read_dimensions
-
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fill => [118, 100]
-  end
-
-  version :content do
-    process :resize_to_limit => [800, 800]
-  end
+  # version :thumb do
+  #   process :resize_to_fit => [50, 50]
+  # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    RedactorRails.image_file_types
+     %w(jpg jpeg gif png)
   end
 
   # Override the filename of the uploaded files:
@@ -50,4 +45,5 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
 end
