@@ -7,8 +7,8 @@
      = f.input :subject, label: false
    .row
     .col-md-6
-     = f.label :type, class: 'fg-label'
-     = f.input :type, as:'select', collection: Helpdesk::OrderService.types.keys.to_a, prompt: 'selecione...', label: false 
+     = f.label :category, class: 'fg-label'
+     = f.association :category, label: false, prompt: 'selecione...'
    .row
     .col-md-12
      = f.label :staff_id, class: 'fg-label'

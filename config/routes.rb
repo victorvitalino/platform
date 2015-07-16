@@ -35,7 +35,6 @@ Rails.application.routes.draw do
     mount Portal::Engine => '/',            as: 'portal'
   end
 
-  mount Concourse::Engine => "/concursos",  as: 'concourse', module: 'concourse'
   mount Schedule::Engine => "/agendamento", as: 'schedule'
   mount Notify::Engine => "/notificacao", as: 'notify'
 

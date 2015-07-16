@@ -2,7 +2,6 @@ module Person
   class Sector < ActiveRecord::Base
 
     has_many :subordinates, class_name: "Sector",foreign_key: "father_id"
-
     has_many :staffs, foreign_key: "sector_current_id"
 
     belongs_to :father, class_name: "Sector"

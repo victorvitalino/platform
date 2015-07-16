@@ -5,8 +5,8 @@ class CreateProtocolLocations < ActiveRecord::Migration
       t.string :pile
       t.string :box
       t.text :obsevation
-      t.references :assessment, index: true, foreign_key: true
-      t.references :staff, index: true, foreign_key: true
+      t.references :assessment, index: true#, foreign_key: true
+      t.references :staff, index: true#, foreign_key: true
 
       t.timestamps null: false
     end

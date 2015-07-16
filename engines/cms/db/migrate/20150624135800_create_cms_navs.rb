@@ -6,10 +6,10 @@ class CreateCmsNavs < ActiveRecord::Migration
       t.integer :order
       t.string :link_external
       t.integer :type_nav
-      t.references :link_page, index: true, foreign_key: true
-      t.references :link_post, index: true, foreign_key: true
+      t.references :link_page, index: true#, foreign_key: true
+      t.references :link_post, index: true#, foreign_key: true
       t.boolean :publish
-      t.references :category, index: true, foreign_key: true
+      t.references :category, index: true#, foreign_key: true
 
       t.timestamps null: false
     end

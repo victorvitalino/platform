@@ -36,7 +36,7 @@ group :development, :test do
   gem 'guard-rails'
   gem 'guard-livereload'
   gem 'thin'
-
+  gem 'figaro'
 end
 
 group :production do
@@ -44,7 +44,6 @@ group :production do
 end
 
 
-gem 'concourse',      path: 'engines/concourse'
 gem 'schedule',       path: 'engines/schedule'
 gem 'person',         path: 'engines/person'
 gem 'cms',            path: 'engines/cms'
