@@ -3,5 +3,6 @@ module Protocol
 
      include Pundit
 
+     helper ::ApplicationHelper
   end
 end

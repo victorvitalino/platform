@@ -1,0 +1,14 @@
+production:
+  db_user: "postgres"
+  db_pass: "123456789"
+  db_host: "host"
+
+development:
+  db_user: "postgres"
+  db_pass: "123456789"
+  db_host: "localhost"
+
+test:
+  db_user: "postgres"
+  db_pass: "123456789"
+  db_host: "localhost"

@@ -15,10 +15,10 @@ class CreateProtocolAssessments < ActiveRecord::Migration
       t.string :sign_by
       t.text :observation
       t.text :description_subject
-      t.references :document_type, index: true, foreign_key: true
-      t.references :subject, index: true, foreign_key: true
-      t.references :staaff, index: true, foreign_key: true
-      t.references :sector, index: true, foreign_key: true
+      t.references :document_type, index: true#, foreign_key: true
+      t.references :subject, index: true#, foreign_key: true
+      t.references :staaff, index: true#, foreign_key: true
+      t.references :sector, index: true#, foreign_key: true
 
       t.timestamps null: false
     end

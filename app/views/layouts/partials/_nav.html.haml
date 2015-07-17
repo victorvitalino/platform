@@ -13,25 +13,6 @@
           .toggle-switch
             %input#tw-switch{:hidden => "hidden", :type => "checkbox"}
               %label.ts-helper{:for => "tw-switch"}
-        %li#top-search
-          %a.tm-search{:href => ""}
-        %li.dropdown
-          %a.tm-notification{"data-toggle" => "dropdown", :href => ""}
-            %i.tmn-counts 9
-          .dropdown-menu.dropdown-menu-lg.pull-right
-            #notifications.listview
-              .lv-header
-                Notificações
-              .lv-body.c-overflow{:style => "overflow: hidden; outline: none;", :tabindex => "2"}
-                %a.lv-item{:href => ""}
-                  .media
-                    .pull-left
-                    /  %img.lv-img-sm{:alt => "", :src => "img/profile-pics/1.jpg"}
-                    .media-body
-                      .lv-title David Belle
-                      %small.lv-small Cum sociis natoque penatibus et magnis dis parturient montes
-
-              %a.lv-footer{:href => ""} Ver todas
         %li.toggle-switch
           = link_to "Abrir chamado", helpdesk.new_order_service_path, remote: true, class: 'btn btn-danger'
 
