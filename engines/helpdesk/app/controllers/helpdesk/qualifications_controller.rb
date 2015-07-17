@@ -8,6 +8,7 @@ module Helpdesk
 
 		def update
 			@order_service.update(set_params_qualification)
+			@order_service.update(status: 4)
 		end
 
 		private

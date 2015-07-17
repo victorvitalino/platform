@@ -150,6 +150,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     email_validator (1.6.0)
       activemodel
+    enum_help (0.0.14)
     erubis (2.7.0)
     eventmachine (1.0.7)
     execjs (2.5.2)
@@ -320,6 +321,7 @@ DEPENDENCIES
   dashboard!
   devise
   email_validator
+  enum_help
   friendly_id
   guard
   guard-livereload
@@ -350,3 +352,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   wicked_pdf
   wkhtmltopdf-binary
+
+BUNDLED WITH
+   1.10.3
