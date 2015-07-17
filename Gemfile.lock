@@ -316,11 +316,8 @@ DEPENDENCIES
   dashboard!
   devise
   email_validator
-<<<<<<< HEAD
   enum_help
-=======
   figaro
->>>>>>> 607d66cf207cc0d6f3df30a0abe8285e0d223ebc
   friendly_id
   guard
   guard-livereload

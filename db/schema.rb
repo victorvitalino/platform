@@ -127,18 +127,12 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.integer  "opened_by_id"
     t.integer  "responsible_id"
     t.integer  "good_id"
+    t.integer  "category_id"
+    t.integer  "status_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-<<<<<<< HEAD
-  add_index "helpdesk_order_services", ["branch_line_id"], name: "index_helpdesk_order_services_on_branch_line_id"
-  add_index "helpdesk_order_services", ["good_id"], name: "index_helpdesk_order_services_on_good_id"
-  add_index "helpdesk_order_services", ["opened_by_id"], name: "index_helpdesk_order_services_on_opened_by_id"
-  add_index "helpdesk_order_services", ["responsible_id"], name: "index_helpdesk_order_services_on_responsible_id"
-  add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id"
-  add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id"
-=======
   add_index "helpdesk_order_services", ["branch_line_id"], name: "index_helpdesk_order_services_on_branch_line_id", using: :btree
   add_index "helpdesk_order_services", ["category_id"], name: "index_helpdesk_order_services_on_category_id", using: :btree
   add_index "helpdesk_order_services", ["good_id"], name: "index_helpdesk_order_services_on_good_id", using: :btree
@@ -147,13 +141,6 @@ ActiveRecord::Schema.define(version: 20150708173753) do
   add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id", using: :btree
   add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id", using: :btree
   add_index "helpdesk_order_services", ["status_id"], name: "index_helpdesk_order_services_on_status_id", using: :btree
-
-  create_table "helpdesk_statuses", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
->>>>>>> 607d66cf207cc0d6f3df30a0abe8285e0d223ebc
 
   create_table "patrimony_down_goods", force: :cascade do |t|
     t.string   "name"
