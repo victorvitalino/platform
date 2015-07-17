@@ -72,7 +72,7 @@
             %li.sub-menu{class: ('toggled active' if params[:module] == "helpdesk")}
               - if policy(:application, namespace: Helpdesk).index?
                 %a{:href => ""}
-                  %i.md.md-public>
+                  %i.md.md-face-unlock>
                   Helpdesk
                 %ul{style: ('display:block;' if params[:module] == "helpdesk")}
                   - if policy(:OrderService, namespace: Helpdesk).index?
