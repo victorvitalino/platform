@@ -8,20 +8,21 @@ module Helpdesk
     belongs_to :opened_by, class_name: "Person::Staff"
     belongs_to :responsible, class_name: "Person::Staff"
     belongs_to :good, class_name: "Patrimony::Good"
-    belongs_to :category
-    belongs_to :status
     has_many   :monitor_service_orders
 
-
+    enum category: {"system" => 0, "infrastructure" => 0}
+    enum status: [:open, :reopened, :inprogress, :solved, :closed]
 
     accepts_nested_attributes_for :monitor_service_orders
 
-    validates_presence_of :branch_line_id, :staff_id, :good_id, :subject, :type, :status
-
-    after_create  :update_os, :set_user_monitor_service
+    validates_presence_of :branch_line_id, :staff_id, :good_id, :subject, :category
+    
+    after_create  :update_os, :set_user_monitor_service 
     before_create :auto_increment
 
-
+    def self.restricted_categories
+      categories.except :failed, :destroyed
+    end
 
   	private
 

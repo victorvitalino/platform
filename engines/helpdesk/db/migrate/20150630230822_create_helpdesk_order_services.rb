@@ -5,6 +5,9 @@ class CreateHelpdeskOrderServices < ActiveRecord::Migration
       t.integer :number_increment
       t.integer :qualification
       t.string  :subject
+      t.integer :category
+      t.integer :status
+
       t.references :sector, index: true#, foreign_key: true
       t.references :branch_line, index: true#, foreign_key: true
       t.references :staff, index: true#, foreign_key: true
@@ -14,6 +17,7 @@ class CreateHelpdeskOrderServices < ActiveRecord::Migration
       t.references :category, index: true#, foreign_key: true
       t.references :status, index: true#, foreign_key: true
       
+
 
       t.timestamps null: false
     end

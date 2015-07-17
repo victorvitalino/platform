@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716140339) do
+ActiveRecord::Schema.define(version: 20150708173753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,13 +101,6 @@ ActiveRecord::Schema.define(version: 20150716140339) do
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
 
-  create_table "helpdesk_categories", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "helpdesk_monitor_service_orders", force: :cascade do |t|
     t.text     "appointment"
     t.string   "attachment"
@@ -126,6 +119,8 @@ ActiveRecord::Schema.define(version: 20150716140339) do
     t.integer  "number_increment"
     t.integer  "qualification"
     t.string   "subject"
+    t.integer  "category"
+    t.integer  "status"
     t.integer  "sector_id"
     t.integer  "branch_line_id"
     t.integer  "staff_id"
@@ -146,12 +141,6 @@ ActiveRecord::Schema.define(version: 20150716140339) do
   add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id", using: :btree
   add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id", using: :btree
   add_index "helpdesk_order_services", ["status_id"], name: "index_helpdesk_order_services_on_status_id", using: :btree
-
-  create_table "helpdesk_statuses", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "patrimony_down_goods", force: :cascade do |t|
     t.string   "name"

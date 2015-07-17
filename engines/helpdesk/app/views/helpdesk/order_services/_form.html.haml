@@ -2,25 +2,37 @@
  .col-md-12
   = simple_form_for @order_service, remote: true do |f|
    .row
+    - Helpdesk::OrderService.categories_i18n.each do |key, value|
+     .col-md-3
+      %label.radio.radio-inline.m-r-50
+       %input{:name => "order_service[category]", :type => "radio", value: "#{key}"}/
+       %i.input-helper
+        %strong= "#{value}"
+   %br/
+   %br/
+   .row
     .col-md-12
      = f.label :subject, class: 'fg-label'
      = f.input :subject, label: false
-   .row
-    .col-md-6
-     = f.label :category, class: 'fg-label'
-     = f.association :category, label: false, prompt: 'selecione...'
-   .row
     .col-md-12
      = f.label :staff_id, class: 'fg-label'
-     = f.input :staff_id, collection: current_user.account.sector_current.staffs, label_method: :name, value_method: :id, label: false ,selected: current_user.account.id
+     - if current_user.account.sector_current.present?
+      = f.input :staff_id, collection: current_user.account.sector_current.staffs, label_method: :name, value_method: :id, label: false ,selected: current_user.account.id
+     - else
+      ok 
    .row
     .col-md-6
      = f.label :good_id, class: 'fg-label'
-     = f.input :good_id, collection: Patrimony::Good.where(sector_id: current_user.account.sector_current_id), label_method: :code_goods, value_method: :id, label: false, prompt: "Selecione"
+     - if current_user.account.sector_current_id.present?
+      = f.input :good_id, collection: Patrimony::Good.where(sector_id: current_user.account.sector_current_id), label_method: :code_goods, value_method: :id, label: false, prompt: "Selecione"
+     - else
+      ok
     .col-md-6
      = f.label :branch_line_id, class: 'fg-label'
-     = f.input :branch_line_id, collection: current_user.account.sector_current.branch_line, label_method: :telephone, value_method: :id, label: false, prompt: "Selecione"
-
+     - if current_user.account.sector_current.branch_line.present?
+      = f.input :branch_line_id, collection: current_user.account.sector_current.branch_line, label_method: :telephone, value_method: :id, label: false, prompt: "Selecione"
+     - else
+      ok
    .row
     .col-md-12
      = f.fields_for :monitor_service_orders do |builder|

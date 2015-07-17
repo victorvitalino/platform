@@ -1,7 +1,0 @@
-pt-BR:
-  activerecord:
-    models:
-      'helpdesk/category': Categoria
-    attributes:
-      'helpdesk/category':
-        name: 'nome'

@@ -21,7 +21,10 @@
      = f.label "Assunto:", class: 'label_order_service'
      = @order_service.subject
      %br
-     = f.label "Aperto por:", class: 'label_order_service'
+     = f.label "Categoria:", class: 'label_order_service'
+     = @order_service.category
+     %br
+     = f.label "Aberto por:", class: 'label_order_service'
      = @order_service.opened_by.name
      %br
      = f.label "Solicitante:", class: 'label_order_service'
@@ -34,10 +37,10 @@
      = @order_service.branch_line.telephone
      %br
      = f.label "Status:", class: 'label_order_service'
-     = @order_service.status ? "Aberto" : "Fechado"
+     = @order_service.status
      %br
      = f.label "Responsável:", class: 'label_order_service'
-     = @order_service.responsible.name if @order_service.responsible.present?
+     = @order_service.responsible ? @order_service.responsible.name : "Untec"
     .col-md-3.pull-right
      .card
       .card-header
