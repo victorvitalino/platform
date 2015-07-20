@@ -279,6 +279,8 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.boolean  "attendant"
     t.boolean  "wekeend"
     t.boolean  "status",              default: true
+    t.boolean  "administrator",       default: true
+    t.integer  "gender"
     t.integer  "branch_line_id"
     t.integer  "job_id"
     t.integer  "sector_origin_id"
@@ -315,12 +317,14 @@ ActiveRecord::Schema.define(version: 20150708173753) do
 
   create_table "protocol_allotments", force: :cascade do |t|
     t.text     "description"
-    t.boolean  "status"
+    t.integer  "priority"
     t.integer  "staff_id"
+    t.integer  "sector_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
+  add_index "protocol_allotments", ["sector_id"], name: "index_protocol_allotments_on_sector_id"
   add_index "protocol_allotments", ["staff_id"], name: "index_protocol_allotments_on_staff_id"
 
   create_table "protocol_assessments", force: :cascade do |t|
@@ -340,7 +344,7 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.text     "description_subject"
     t.integer  "document_type_id"
     t.integer  "subject_id"
-    t.integer  "staaff_id"
+    t.integer  "staff_id"
     t.integer  "sector_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -348,35 +352,26 @@ ActiveRecord::Schema.define(version: 20150708173753) do
 
   add_index "protocol_assessments", ["document_type_id"], name: "index_protocol_assessments_on_document_type_id"
   add_index "protocol_assessments", ["sector_id"], name: "index_protocol_assessments_on_sector_id"
-  add_index "protocol_assessments", ["staaff_id"], name: "index_protocol_assessments_on_staaff_id"
+  add_index "protocol_assessments", ["staff_id"], name: "index_protocol_assessments_on_staff_id"
   add_index "protocol_assessments", ["subject_id"], name: "index_protocol_assessments_on_subject_id"
 
-  create_table "protocol_conduct_types", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.boolean  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "protocol_conducts", force: :cascade do |t|
-    t.date     "receipt_date"
-    t.date     "term_response_date"
+    t.date     "replay_date"
+    t.date     "description"
+    t.integer  "conduct_type_id"
     t.integer  "assessment_id"
-    t.integer  "sector_send_id"
-    t.integer  "user_send_id"
-    t.integer  "sector_receptor_id"
-    t.string   "user_receptor"
+    t.integer  "sector_id"
+    t.integer  "staff_id"
     t.integer  "allotment_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "protocol_conducts", ["allotment_id"], name: "index_protocol_conducts_on_allotment_id"
   add_index "protocol_conducts", ["assessment_id"], name: "index_protocol_conducts_on_assessment_id"
-  add_index "protocol_conducts", ["sector_receptor_id"], name: "index_protocol_conducts_on_sector_receptor_id"
-  add_index "protocol_conducts", ["sector_send_id"], name: "index_protocol_conducts_on_sector_send_id"
-  add_index "protocol_conducts", ["user_send_id"], name: "index_protocol_conducts_on_user_send_id"
+  add_index "protocol_conducts", ["conduct_type_id"], name: "index_protocol_conducts_on_conduct_type_id"
+  add_index "protocol_conducts", ["sector_id"], name: "index_protocol_conducts_on_sector_id"
+  add_index "protocol_conducts", ["staff_id"], name: "index_protocol_conducts_on_staff_id"
 
   create_table "protocol_digital_documents", force: :cascade do |t|
     t.integer  "page_number"

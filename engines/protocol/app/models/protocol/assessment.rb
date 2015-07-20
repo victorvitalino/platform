@@ -5,6 +5,8 @@ module Protocol
     belongs_to :staff
     belongs_to :sector
 
+    has_many :conduct
+
     before_validation :set_number
 
     validates_presence_of :document_type, :subject, :requesting_unit, :external_agency

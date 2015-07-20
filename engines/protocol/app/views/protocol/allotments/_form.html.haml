@@ -1,0 +1,15 @@
+.row
+ .col-md-12
+  = simple_form_for @allotment, remote: true do |f|
+   .row
+    .col-md-12
+     = f.label :description, class: 'fg-label'
+     = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
+   .row
+    .col-md-12
+     = f.label :priority, class: 'fg-label'
+     = f.input :priority, as: 'radio_buttons',collection:Protocol::Allotment.priorities.keys.to_a, label: false, prompt: 'Selecione...'
+   .row
+    .col-md-12
+     = f.button :submit, class: 'btn btn-success'
+   %br/

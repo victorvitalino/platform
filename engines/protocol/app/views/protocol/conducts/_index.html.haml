@@ -1,0 +1,22 @@
+.table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+  %table.table.table-hover.table-bordered
+    %thead
+      %tr
+        %th Número
+        %th Setor de Origem
+        %th Setor de Destino
+        %th Prazo de Resposta
+        %th Status
+    %tbody
+      - @conduct.each_with_index do |j, i|
+        %tr
+          %td.col-md-1
+            = i + 1
+          %td
+            = j.sector_send.name if j.sector_send.present?
+          %td
+            = j.sector_receptor.name if j.sector_receptor.present?
+          %td
+            = j.term_response_date
+          %td
+            = j.conduct_type.name if j.conduct_type.present?

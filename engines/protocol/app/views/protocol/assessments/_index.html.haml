@@ -16,6 +16,6 @@
           %li
             = link_to 'Visualizar', assessment_path(a)
           %li
-            = link_to 'Tramitar', assessments_path(a)
+            = link_to 'Tramitar', new_assessment_conduct_path(a), remote: true
           %li
             = link_to 'Deletar', assessment_path(a), method: :delete, data: { confirm: 'Are you sure?' }

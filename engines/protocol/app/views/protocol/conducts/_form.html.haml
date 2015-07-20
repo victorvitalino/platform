@@ -1,0 +1,21 @@
+.card.m-b-0
+ .ms-menu
+  .ms-block
+   .ms-user
+    Pesquisa Documento
+   .listview.lv-user.m-t-20
+    = simple_form_for  new_allotment_conduct_path, :method => 'get' do |f|
+     .lv-item.media
+      .col-md-3
+       = f.label :document, class: 'fg-label'
+       = f.input :document, label: false, input_html: { name: 'document', value: params[:document]}
+     .lv-item.media
+      .col-md-3
+       = f.label :document_type, class: 'fg-label'
+       = f.input :document_type, as: 'select', collection: %w(1 2 3), label: false, input_html: { name: 'document_type'}
+     .lv-item.media
+      %br/
+      = f.submit 'Pesquisar', class:  'btn btn-success', input_html: { name: nil}
+ .ms-body
+  .listview.lv-message
+   teste

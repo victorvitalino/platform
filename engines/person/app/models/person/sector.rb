@@ -10,6 +10,7 @@ module Person
 
     has_many :branch_line
 
+
     validates_presence_of :name, :acron,:prefex
 
 

@@ -8,11 +8,15 @@
     .col-md-4
     .col-md-4
      = f.label :document_number, class: 'fg-label'
-     = f.input :document_number, disabled: true, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Gerado pelo sistema', disable: 'disable'}
+     = f.input :document_number, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Gerado pelo sistema', readonly: true}
    .row
     .col-md-8
      = f.label :requesting_unit, class: 'fg-label'
      = f.input :requesting_unit, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Preencha'}
+   .row
+    .col-md-8
+     = f.label :external_agency, class: 'fg-label'
+     = f.input :external_agency, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Preencha'}
    .row
     .col-md-8
      = f.label :recipient, class: 'fg-label'
