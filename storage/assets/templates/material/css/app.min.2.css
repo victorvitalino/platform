@@ -501,12 +501,12 @@ body.login-content:after {
 }
 
 body.login-content:before {
-  height: 50%;
+  height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  background: #00bcd4;
+  background: #333;
   content: "";
   z-index: 0;
 }
