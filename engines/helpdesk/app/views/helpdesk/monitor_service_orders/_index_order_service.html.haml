@@ -1,7 +1,7 @@
 = simple_form_for(@order_service) do |f|
- - if flash[:notice]
+ - if flash_messages
   .card
-   .notice.alert.alert-success.text-center= flash[:notice]
+   = flash_messages
  .card
   .card-header{class: (@order_service.status == false) ? 'bgm-green' : 'bgm-red'} 
    %h2
@@ -22,7 +22,7 @@
      = @order_service.subject
      %br
      = f.label "Categoria:", class: 'label_order_service'
-     = @order_service.category
+     = @order_service.category_i18n
      %br
      = f.label "Aberto por:", class: 'label_order_service'
      = @order_service.opened_by.name
@@ -37,7 +37,7 @@
      = @order_service.branch_line.telephone
      %br
      = f.label "Status:", class: 'label_order_service'
-     = @order_service.status
+     = @order_service.status_i18n
      %br
      = f.label "Responsável:", class: 'label_order_service'
      = @order_service.responsible ? @order_service.responsible.name : "Untec"
