@@ -14,6 +14,7 @@ module Person
       authorize @staff_permission
       @staff_permission.staff_id = @staff.id
       @staff_permission.system_permission_id = @permission.id
+      @staff_permission.system_id = @permission.system_id
       @staff_permission.status = true
       @staff_permission.save
     end

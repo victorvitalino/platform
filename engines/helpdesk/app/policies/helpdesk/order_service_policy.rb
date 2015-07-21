@@ -15,17 +15,5 @@ module Helpdesk
 		def destroy?
 			allow?(2102)
 		end
-
-		def assume?
-			allow?(2204)
-		end
-
-		def get_image?
-			allow?(2203)
-		end
-
-		def close_order_service?
-			allow?(2205)
-		end
 	end
 end
