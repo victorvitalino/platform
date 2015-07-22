@@ -28,3 +28,11 @@
 .select{
 	width: 200px!important;
 }
+.custom-avatar{
+  font-size: 100px;
+  text-align: center;
+  color: #fff;
+}
+.profile-main-custom{
+  min-height: 800px!important;
+}
