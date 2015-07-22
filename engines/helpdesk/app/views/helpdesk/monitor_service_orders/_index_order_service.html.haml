@@ -1,7 +1,6 @@
 = simple_form_for(@order_service) do |f|
- - if flash_messages
-  .card
-   = flash_messages
+ .card
+  = flash_messages
  .card
   .card-header{class: (@order_service.status == "solved") ? 'bgm-green' : 'bgm-red'} 
    %h2
