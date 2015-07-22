@@ -44,43 +44,47 @@
                   = link_to "setores", person.sectors_path
           %ul{style: ('display:block;' if @module == "person")}
         %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
-        %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
           - if policy(:application, namespace: Cms).index?
+            %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
+              %a{:href => ""}
+                %i.md.md-public>
+                Gestão Site
+              %ul{style: ('display:block;' if params[:module] == "cms")}
+                - if policy(:post, namespace: Cms).index?
+                  %li
+                    = link_to "postagens", cms.posts_path
+                - if policy(:page, namespace: Cms).index?
+                  %li
+                    = link_to "páginas", cms.pages_path
+                - if policy(:PostCategory, namespace: Cms).index?
+                  %li.divider
+                  %li
+                    = link_to "categorias de post", cms.post_categories_path
+                - if policy(:PageCategory, namespace: Cms).index?
+                  %li
+                    = link_to "categorias de página", cms.page_categories_path
+                - if policy(:nav, namespace: Cms).index?
+                  %li
+                    = link_to "menu", cms.navs_path
+                - if policy(:NavCategory, namespace: Cms).index?
+                  %li
+                    = link_to "categorias de menu", cms.nav_categories_path
+        %li.sub-menu{class: ('toggled active' if params[:module] == "helpdesk")}
+          - if policy(:application, namespace: Helpdesk).index?
             %a{:href => ""}
-              %i.md.md-public>
-              Gestão Site
-            %ul{style: ('display:block;' if params[:module] == "cms")}
-              - if policy(:post, namespace: Cms).index?
+              %i.md.md-face-unlock>
+              Helpdesk
+            %ul{style: ('display:block;' if params[:module] == "helpdesk")}
+              - if policy(:OrderService, namespace: Helpdesk).index?
                 %li
-                  = link_to "postagens", cms.posts_path
-              - if policy(:page, namespace: Cms).index?
+                  = link_to "chamados abertos", helpdesk.order_services_path
+              - if policy(:OrderServiceUser, namespace: Helpdesk).index?
                 %li
-                  = link_to "páginas", cms.pages_path
-              - if policy(:PostCategory, namespace: Cms).index?
-                %li.divider
+                  - if current_user.account.administrator?
+                    
+                  - else
+                    = link_to "meus chamados", helpdesk.order_service_users_path
+              - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
                 %li
-                  = link_to "categorias de post", cms.post_categories_path
-              - if policy(:PageCategory, namespace: Cms).index?
-                %li
-                  = link_to "categorias de página", cms.page_categories_path
-              - if policy(:nav, namespace: Cms).index?
-                %li
-                  = link_to "menu", cms.navs_path
-              - if policy(:NavCategory, namespace: Cms).index?
-                %li
-                  = link_to "categorias de menu", cms.nav_categories_path
-            %li.sub-menu{class: ('toggled active' if params[:module] == "helpdesk")}
-              - if policy(:application, namespace: Helpdesk).index?
-                %a{:href => ""}
-                  %i.md.md-face-unlock>
-                  Helpdesk
-                %ul{style: ('display:block;' if params[:module] == "helpdesk")}
-                  - if policy(:OrderService, namespace: Helpdesk).index?
-                    %li
-                      = link_to "chamados abertos", helpdesk.order_services_path
-                  - if policy(:OrderServiceUser, namespace: Helpdesk).index?
-                    %li
-                      = link_to "meus chamados", helpdesk.order_service_users_path
-                  - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
-                    %li
-                      = link_to "meus chamados", helpdesk.order_service_technicals_path
+                  = link_to "meus chamados", helpdesk.order_service_technicals_path  
+
