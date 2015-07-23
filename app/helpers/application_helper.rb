@@ -10,9 +10,9 @@ module ApplicationHelper
   end
 
   def local_users_list
-    @user = current_user.account
-    if @user.sector_current.present?
-      @user.sector_current.staffs.each do |u|
+    @user_current = current_user.account
+    if @user_current.sector_current.present?
+      @user_current.sector_current.staffs.each do |u|
         yield u
       end
     end

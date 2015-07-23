@@ -27,32 +27,32 @@ module Helpdesk
     
     def get_image
       @monitor_service_order = MonitorServiceOrder.find(params[:image])
-      authorize @monitor_service_order
+      authorize :monitor_service_orders
     end
 
     def assume
       @order_service.update(responsible_id: current_user.account.id, status: 2)
-      MonitorServiceOrder.create(appointment: "chamado assumido por:", order_service_id: @order_service.id, staff_id: current_user.account.id)
-      authorize @order_service
+      MonitorServiceOrder.create(appointment: "chamado assumido:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+      authorize :monitor_service_orders
       respond_to do |format|
-        format.js { flash[:success]  = "Ordem de serviço assumido com sucesso!" }
+        format.js { flash[:success]  = "Ordem de serviço assumida com sucesso!" }
       end
     end
 
 
     def open_again
       @order_service.update(status: 1)
-      MonitorServiceOrder.create(appointment: "chamado reaberto por:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+      MonitorServiceOrder.create(appointment: "chamado reaberto:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize :monitor_service_orders
     end
 
     def close_order_service
 
       @order_service.update(status: 3)
-      MonitorServiceOrder.create(appointment: "chamado fechado por:", order_service_id: @order_service.id, staff_id: current_user.account.id)
-      authorize @order_service
+      MonitorServiceOrder.create(appointment: "chamado fechado:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+      authorize :monitor_service_orders
       respond_to do |format|
-        format.js { flash[:success] = "Ordem de serviço fechado com sucesso!" }
+        format.js { flash[:success] = "Ordem de serviço fechada com sucesso!" }
       end
     end
 

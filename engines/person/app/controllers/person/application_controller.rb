@@ -1,6 +1,6 @@
 module Person
   class ApplicationController < ActionController::Base
-    layout 'layouts/material'
+    layout 'material'
 
     helper ::ApplicationHelper
 

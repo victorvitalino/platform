@@ -7,7 +7,7 @@ module Helpdesk
 
     # GET /order_services
     def index
-     authorize @order_services
+     authorize :order_service
     end
 
     # GET /order_services/1
@@ -52,10 +52,16 @@ module Helpdesk
       # Use callbacks to share common setup or constraints between actions.
       def set_order_service
         @order_service = OrderService.find(params[:id])
+
+
       end
 
       def set_order_services
-        @order_services = OrderService.where('status <> 4')
+        @order_services_open = OrderService.where('status = 0')
+        @order_services_reopened = OrderService.where('status = 1')
+        @order_services_inprogress = OrderService.where('status = 2')
+        @order_services_solved = OrderService.where('status = 3')
+        @order_services_closed = OrderService.where('status = 4').limit(100)
       end
 
       # Only allow a trusted parameter "white list" through.

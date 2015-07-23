@@ -10,7 +10,7 @@ module Helpdesk
     belongs_to :good, class_name: "Patrimony::Good"
     has_many   :monitor_service_orders
 
-    enum category: {"system" => 0, "infrastructure" => 0}
+    enum category: {"infrastructure" => 0, "system" => 1}
     enum status: [:open, :reopened, :inprogress, :solved, :closed]
 
     accepts_nested_attributes_for :monitor_service_orders

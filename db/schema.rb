@@ -261,12 +261,14 @@ ActiveRecord::Schema.define(version: 20150708173753) do
   create_table "person_staff_permissions", force: :cascade do |t|
     t.integer  "staff_id"
     t.integer  "system_permission_id"
+    t.integer  "system_id"
     t.boolean  "status"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   add_index "person_staff_permissions", ["staff_id"], name: "index_person_staff_permissions_on_staff_id", using: :btree
+  add_index "person_staff_permissions", ["system_id"], name: "index_person_staff_permissions_on_system_id", using: :btree
   add_index "person_staff_permissions", ["system_permission_id"], name: "index_person_staff_permissions_on_system_permission_id", using: :btree
 
   create_table "person_staffs", force: :cascade do |t|

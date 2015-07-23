@@ -1,9 +1,8 @@
 = simple_form_for(@order_service) do |f|
- - if flash_messages
-  .card
-   = flash_messages
  .card
-  .card-header{class: (@order_service.status == false) ? 'bgm-green' : 'bgm-red'} 
+  = flash_messages
+ .card
+  .card-header{class: (@order_service.status == "solved") ? 'bgm-green' : 'bgm-red'} 
    %h2
     Ordem de serviço #
     = @order_service.number
@@ -11,9 +10,11 @@
     %li
      = link_to '<i class="md  md-thumb-up c-white waves-effect"></i>'.html_safe,order_service_monitor_service_order_assume_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Assumir" if policy(:MonitorServiceOrder, namespace: Helpdesk).assume?
     %li
-     = link_to '<i class="md md-done-all c-white"></i>'.html_safe, order_service_monitor_service_order_close_order_service_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Finalizar" if policy(:MonitorServiceOrder, namespace: Helpdesk).close_order_service?
+     = link_to '<i class="md md-done-all c-white"></i>'.html_safe,order_service_monitor_service_order_close_order_service_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Finalizar" if policy(:MonitorServiceOrder, namespace: Helpdesk).close_order_service?
     %li
-     = link_to '<i class="md md-trending-up c-white"></i>'.html_safe, order_service_monitor_service_order_open_again_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Reabrir Chamado" if policy(:MonitorServiceOrder, namespace: Helpdesk).open_again?
+     -if @order_service.status == "closed" && @order_service.staff_id == current_user.account.id
+      = link_to '<i class="md md-trending-up c-white"></i>'.html_safe,order_service_monitor_service_order_open_again_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Reabrir Chamado" if policy(:MonitorServiceOrder, namespace: Helpdesk).open_again?
+     -else
 
   .card-body.card-padding
    .row

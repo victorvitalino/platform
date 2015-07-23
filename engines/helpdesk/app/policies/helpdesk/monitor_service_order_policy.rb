@@ -9,7 +9,7 @@ module Helpdesk
 		end
 
 		def assume?
-			allow?(2204)
+			allow?(2105)
 		end
 
 		def get_image?
@@ -17,7 +17,7 @@ module Helpdesk
 		end
 
 		def close_order_service?
-			allow?(2205)
+			allow?(2105)
 		end
 
 		def open_again?
