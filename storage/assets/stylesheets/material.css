@@ -5,6 +5,7 @@
 *= require material/vendors/socicon/socicon.min
 *= require material/css/app.min.1
 *= require material/css/app.min.2
+*= require material/css/mod
 *= require redactor-rails
 */
 .redactor-editor,

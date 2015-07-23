@@ -4,9 +4,10 @@
       = a.document_number
     %td
       = a.document_type.name
-    %td teste
+    %td
+      = a.sector.name
     %td.col-md-2
-      .btn-group
+      .btn-group.dropup
         %button.btn.btn-info.dropdown-toggle.waves-effect{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
           Ações
           %span.caret
@@ -15,7 +16,5 @@
             = link_to 'Editar', edit_assessment_path(a)
           %li
             = link_to 'Visualizar', assessment_path(a)
-          %li
-            = link_to 'Tramitar', new_assessment_conduct_path(a), remote: true
           %li
             = link_to 'Deletar', assessment_path(a), method: :delete, data: { confirm: 'Are you sure?' }

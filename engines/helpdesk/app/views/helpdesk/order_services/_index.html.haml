@@ -5,6 +5,8 @@
   %td
    = j.subject
   %td
+   = j.category_i18n
+  %td
    = j.created_at.strftime("%d/%m/%Y - %H:%M")
   %td
    = j.staff.name if j.staff.present?
@@ -13,15 +15,19 @@
   %td
    = j.responsible ? j.responsible.name : "Untec"
   %td
-<<<<<<< HEAD
-   = j.status ? "Aberto" : "Fechado" if j.status.present?
-
-=======
-   -if j.status
+   - if j.status == "open"
     %span.badge.bgm-green
-     Aberto
-   -else
+     = j.status_i18n
+   - if j.status == "reopened"
+    %span.badge.bgm-bluegray
+     = j.status_i18n
+   - if j.status == "inprogress"
+    %span.badge.bgm-orange
+     = j.status_i18n
+   - if j.status == "solved"
+    %span.badge.bgm-cyan
+     = j.status_i18n
+   - if j.status == "closed"
     %span.badge.bgm-red
-     Fechado
-   
->>>>>>> maxbruno-master
+     = j.status_i18n
+

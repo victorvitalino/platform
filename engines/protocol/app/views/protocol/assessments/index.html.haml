@@ -2,8 +2,16 @@
   .card-header
     %h2
       Documentos
-      = link_to 'novo documento', new_assessment_path, class: 'btn btn-success pull-right'
-      %small Listagem de Documentos
+    %ul.lv-actions.actions
+      %li.dropdown
+        %a{"aria-expanded" => "true", "data-toggle" => "dropdown", :href => ""}
+          %i.md.md-more-vert
+        %ul.dropdown-menu.dropdown-menu-right
+          %li
+            = link_to 'Novo Documento', new_assessment_path
+          %li
+            = link_to 'Nova Remessa', allotments_path
+    %small Listagem de Documentos
   .card-body.card-padding
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
       %table.table.table-hover.table-bordered

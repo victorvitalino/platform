@@ -5,7 +5,7 @@ class CreatePersonBranchLines < ActiveRecord::Migration
       t.string :description
       t.boolean :status
 
-      t.references :sector, index: true, foreign_key: true
+      t.references :sector, index: true#, foreign_key: true
 
       t.timestamps null: false
     end

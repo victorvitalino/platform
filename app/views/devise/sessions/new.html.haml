@@ -1,9 +1,14 @@
 %html.login-content
   %head
     = stylesheet_link_tag  'material', media: 'all'
+
   %body.login-content
-    / Login
+
+
     #l-login.lc-block.toggled
+      .codhab-logo
+        Intranet
+        %b CODHAB
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .input-group.m-b-20
           %span.input-group-addon
@@ -12,19 +17,18 @@
             = f.input :username, required: false, label: false, autofocus: true , input_html: {placeholder: 'Credencial'}
         .input-group.m-b-20
           %span.input-group-addon
-            %i.md.md-accessibility
+            %i.md.md-lock
           .fg-line
             = f.input :password, required: false, label: false, autofocus: true , input_html: {placeholder: 'Senha'}
         .clearfix
         .checkbox
           %label
-            = f.input :remember_me,  as: :boolean if devise_mapping.rememberable?
+            = f.check_box :remember_me,  as: :boolean if devise_mapping.rememberable?
             %i.input-helper
+            Lembrar-me
+            %br/
         = f.button :button,  class: "btn btn-login btn-danger btn-float waves-effect waves-button waves-float" do
           %i.md.md-arrow-forward
-        %ul.login-navigation
-          %li.bgm-red{"data-block" => "#l-register"} Register
-          %li.bgm-orange{"data-block" => "#l-forget-password"} Forgot Password?
     / Forgot Password
     #l-forget-password.lc-block
       %p.text-left Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.

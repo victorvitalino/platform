@@ -10,20 +10,19 @@ module Helpdesk
     belongs_to :good, class_name: "Patrimony::Good"
     has_many   :monitor_service_orders
 
-
+    enum category: {"system" => 0, "infrastructure" => 0}
+    enum status: [:open, :reopened, :inprogress, :solved, :closed]
 
     accepts_nested_attributes_for :monitor_service_orders
 
-    validates_presence_of :branch_line_id, :staff_id, :good_id, :subject, :type, :status
-
-    enum :types => [:systems, :infrastructure]
-    enum :status => [:open, :in_progress, :solved, :closed, :reopened]
-
-
-    after_create  :update_os, :set_user_monitor_service
+    validates_presence_of :branch_line_id, :staff_id, :good_id, :subject, :category
+    
+    after_create  :update_os, :set_user_monitor_service 
     before_create :auto_increment
 
-
+    def self.restricted_categories
+      categories.except :failed, :destroyed
+    end
 
   	private
 

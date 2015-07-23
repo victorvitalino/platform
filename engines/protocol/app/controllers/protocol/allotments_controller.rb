@@ -15,6 +15,8 @@ module Protocol
 
         def create
             @allotment = Allotment.new(allotment_params)
+            @allotment.staff_id = current_user.account_id
+            @allotment.sector_id = current_user.account.sector_current.id
 
             #authorize @document_type
             @allotment.save
@@ -38,11 +40,11 @@ module Protocol
         private
 
         def allotment_params
-            params.require(:allotment).permit(:description, :sector_id,:staff_id,:priority)
+            params.require(:allotment).permit(:description,:replay_date, :sector_id,:staff_id,:priority)
         end
 
         def set_allotments
-            @allotments = Allotment.all
+            @allotments = Allotment.where(:sector_id => current_user.account.sector_current.id)
         end
 
         def set_allotment

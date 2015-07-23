@@ -1,4 +1,15 @@
 pt-BR:
+  enums:
+    'helpdesk/order_service': 
+       status:
+         open: "aberto"
+         reopened: "re-aberto"
+         inprogress: "Em andamento"
+         solved: "solucionado"
+         closed: "fechado"
+       category:
+          system: "Sistemas"
+          infrastructure: "Suporte"
   activerecord:
     models:
       'helpdesk/order_service': Ordem de Serviço
@@ -10,5 +21,7 @@ pt-BR:
         good_id: "Patrimônio"
         responsible: "Responsável"
         subject: "Assunto"
-        type: "Tipo"
+        category: "Categoria"
         
+
+

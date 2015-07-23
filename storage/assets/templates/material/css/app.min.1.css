@@ -5,7 +5,7 @@
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 html {
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;!important;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -1403,7 +1403,7 @@ html {
 }
 
 body {
-  font-family: roboto;
+  font-family: 'Open Sans', sans-serif;!important;
   font-size: 13px;
   line-height: 1.42857143;
   color: #5e5e5e;
@@ -7624,7 +7624,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: roboto;
+font-family: 'Open Sans', sans-serif;!important;
   font-size: 12px;
   font-weight: normal;
   line-height: 1.4;
@@ -7747,7 +7747,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: roboto;
+font-family: 'Open Sans', sans-serif;!important;
   font-size: 13px;
   font-weight: normal;
   line-height: 1.42857143;
@@ -8623,7 +8623,7 @@ button.close {
  * Scale 3d
  */
 
-/* 
+/*
  * Load Font
  */
 
@@ -10177,11 +10177,11 @@ button.close {
 
 /*!
  * Waves v0.7.1
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
- * https://github.com/fians/Waves/blob/master/LICENSE 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
+ * https://github.com/fians/Waves/blob/master/LICENSE
  */
 
 .waves-effect {
@@ -10332,7 +10332,7 @@ a.waves-effect .waves-ripple {
 */
 
 /*
- * Load Website related LESS files 
+ * Load Website related LESS files
  */
 
 /*
@@ -10693,7 +10693,7 @@ a.waves-effect .waves-ripple {
   display: inline-block !important;
 }
 
-/* 
+/*
  * Material Background Colors
  */
 
@@ -11510,7 +11510,7 @@ body #content {
   }
 }
 
-/* 
+/*
  * For Stupid IE9
  */
 
@@ -11840,7 +11840,7 @@ input:focus {
   transition: background-color;
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
-  font-family: roboto;
+  font-family: 'Open Sans', sans-serif;;
 }
 
 .dropdown-menu.dropdown-menu-lg {
@@ -15498,7 +15498,7 @@ a.thumbnail.active {
 }
 
 /*
- * Lightbox  
+ * Lightbox
  */
 
 .lightbox .lightbox-item {

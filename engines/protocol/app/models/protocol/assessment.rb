@@ -2,8 +2,8 @@ module Protocol
   class Assessment < ActiveRecord::Base
     belongs_to :document_type
     belongs_to :subject
-    belongs_to :staff
-    belongs_to :sector
+    belongs_to :staff, class_name: "Person::Staff"
+    belongs_to :sector, class_name: "Person::Sector"
 
     has_many :conduct
 
@@ -12,6 +12,17 @@ module Protocol
     validates_presence_of :document_type, :subject, :requesting_unit, :external_agency
     validates :document_number, uniqueness: true, presence: true
 
+    after_create :set_conduct
+
+    def set_conduct
+        current_user = User.find_by_account_id(self.staff_id)
+        @conduct  = Protocol::Conduct.new
+        @conduct.conduct_type = 4
+        @conduct.assessment_id = self.id
+        @conduct.staff_id = current_user.account_id
+        @conduct.sector_id = current_user.account.sector_current.id
+        @conduct.save
+    end
 
     def set_staff(staff_id)
         self.staff_id = staff_id

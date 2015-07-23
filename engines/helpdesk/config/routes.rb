@@ -1,4 +1,6 @@
 Helpdesk::Engine.routes.draw do
+  resources :categories
+  resources :statuses
     resources :statuses
   get 'image/:image', as:'get_image',                to: 'monitor_service_orders#get_image'
   

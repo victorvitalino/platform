@@ -1,21 +1,60 @@
-.card.m-b-0
- .ms-menu
-  .ms-block
-   .ms-user
-    Pesquisa Documento
-   .listview.lv-user.m-t-20
+#messages-main.card.m-b-0
+  .ms-menu
+    .ms-block
+      .ms-user
+        Pesquisar Documento
+    .ms-block
+    .listview.lv-user.m-t-20
     = simple_form_for  new_allotment_conduct_path, :method => 'get' do |f|
-     .lv-item.media
-      .col-md-3
-       = f.label :document, class: 'fg-label'
-       = f.input :document, label: false, input_html: { name: 'document', value: params[:document]}
-     .lv-item.media
-      .col-md-3
-       = f.label :document_type, class: 'fg-label'
-       = f.input :document_type, as: 'select', collection: %w(1 2 3), label: false, input_html: { name: 'document_type'}
-     .lv-item.media
-      %br/
-      = f.submit 'Pesquisar', class:  'btn btn-success', input_html: { name: nil}
- .ms-body
-  .listview.lv-message
-   teste
+      .lv-item.media
+        .media-body
+          .lv-title
+            = f.label :document, class: 'fg-label'
+          .lv-small
+            = f.input :document, label: false, input_html: { name: 'document', value: params[:document]}
+      .lv-item.media
+        .media-body
+          .lv-title
+            = f.label :document_type, class: 'fg-label'
+          .lv-small
+            = f.input :document_type, as: 'select', collection: Protocol::DocumentType.all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
+      .lv-item.media
+        .media-body
+          .lv-small
+            = f.submit 'Pesquisar', class:  'btn btn-success', input_html: { name: nil}
+  .ms-body
+    .listview.lv-message
+      .lv-header-alt.bgm-white
+        #ms-menu-trigger
+          .line-wrap
+            .line.top
+            .line.center
+            .line.bottom
+        .lvh-label.hidden-xs
+          %span.c-black Remessa
+        %ul.lv-actions.actions
+          %li.dropdown
+            %a{"aria-expanded" => "true", "data-toggle" => "dropdown", :href => ""}
+              %i.md.md-more-vert
+            %ul.dropdown-menu.dropdown-menu-right
+              %li
+                %a{:href => ""} Refresh
+              %li
+                %a{:href => ""} Message Settings
+      .lv-body{:style => "min-height: 270px"}
+        .lv-item.media
+          .media-body
+            = render 'index_search'
+        .lv-item.media
+          .media-body
+            - if @conducts.present?
+              = render 'index_result'
+              %br
+              = link_to 'Enviar Remessa', allotment_send_path(@conduct.allotment.id), remote: true, class:  'btn btn-primary waves-effect'
+
+
+
+
+
+
+

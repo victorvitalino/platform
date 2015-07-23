@@ -20,6 +20,7 @@ gem 'mini_magick'
 
 gem 'friendly_id'
 gem 'remotipart', '~> 1.2'
+gem 'enum_help'
 
 gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
@@ -36,7 +37,7 @@ group :development, :test do
   gem 'guard-rails'
   gem 'guard-livereload'
   gem 'thin'
-
+  gem 'figaro'
 end
 
 group :production do
@@ -44,7 +45,6 @@ group :production do
 end
 
 
-gem 'concourse',      path: 'engines/concourse'
 gem 'schedule',       path: 'engines/schedule'
 gem 'person',         path: 'engines/person'
 gem 'cms',            path: 'engines/cms'

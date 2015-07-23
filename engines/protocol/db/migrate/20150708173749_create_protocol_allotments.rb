@@ -3,9 +3,9 @@ class CreateProtocolAllotments < ActiveRecord::Migration
     create_table :protocol_allotments do |t|
       t.text :description
       t.integer :priority
-      t.references :staff, index: true, foreign_key: true
-      t.references :sector, index: true, foreign_key: true
-
+      t.date :replay_date
+      t.references :sector, index: true #, foreign_key: true
+      t.references :staff, index: true#, foreign_key: true
       t.timestamps null: false
     end
   end

@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150708173753) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status"
@@ -35,9 +38,9 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "cms_navs", ["category_id"], name: "index_cms_navs_on_category_id"
-  add_index "cms_navs", ["link_page_id"], name: "index_cms_navs_on_link_page_id"
-  add_index "cms_navs", ["link_post_id"], name: "index_cms_navs_on_link_post_id"
+  add_index "cms_navs", ["category_id"], name: "index_cms_navs_on_category_id", using: :btree
+  add_index "cms_navs", ["link_page_id"], name: "index_cms_navs_on_link_page_id", using: :btree
+  add_index "cms_navs", ["link_post_id"], name: "index_cms_navs_on_link_post_id", using: :btree
 
   create_table "cms_page_categories", force: :cascade do |t|
     t.string   "title"
@@ -66,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "cms_pages", ["page_category_id"], name: "index_cms_pages_on_page_category_id"
+  add_index "cms_pages", ["page_category_id"], name: "index_cms_pages_on_page_category_id", using: :btree
 
   create_table "cms_post_categories", force: :cascade do |t|
     t.string   "title"
@@ -96,7 +99,7 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id"
+  add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
 
   create_table "helpdesk_monitor_service_orders", force: :cascade do |t|
     t.text     "appointment"
@@ -108,32 +111,36 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "helpdesk_monitor_service_orders", ["order_service_id"], name: "index_helpdesk_monitor_service_orders_on_order_service_id"
-  add_index "helpdesk_monitor_service_orders", ["staff_id"], name: "index_helpdesk_monitor_service_orders_on_staff_id"
+  add_index "helpdesk_monitor_service_orders", ["order_service_id"], name: "index_helpdesk_monitor_service_orders_on_order_service_id", using: :btree
+  add_index "helpdesk_monitor_service_orders", ["staff_id"], name: "index_helpdesk_monitor_service_orders_on_staff_id", using: :btree
 
   create_table "helpdesk_order_services", force: :cascade do |t|
     t.integer  "number"
     t.integer  "number_increment"
-    t.string   "status"
     t.integer  "qualification"
     t.string   "subject"
-    t.string   "type"
+    t.integer  "category"
+    t.integer  "status"
     t.integer  "sector_id"
     t.integer  "branch_line_id"
     t.integer  "staff_id"
     t.integer  "opened_by_id"
     t.integer  "responsible_id"
     t.integer  "good_id"
+    t.integer  "category_id"
+    t.integer  "status_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "helpdesk_order_services", ["branch_line_id"], name: "index_helpdesk_order_services_on_branch_line_id"
-  add_index "helpdesk_order_services", ["good_id"], name: "index_helpdesk_order_services_on_good_id"
-  add_index "helpdesk_order_services", ["opened_by_id"], name: "index_helpdesk_order_services_on_opened_by_id"
-  add_index "helpdesk_order_services", ["responsible_id"], name: "index_helpdesk_order_services_on_responsible_id"
-  add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id"
-  add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id"
+  add_index "helpdesk_order_services", ["branch_line_id"], name: "index_helpdesk_order_services_on_branch_line_id", using: :btree
+  add_index "helpdesk_order_services", ["category_id"], name: "index_helpdesk_order_services_on_category_id", using: :btree
+  add_index "helpdesk_order_services", ["good_id"], name: "index_helpdesk_order_services_on_good_id", using: :btree
+  add_index "helpdesk_order_services", ["opened_by_id"], name: "index_helpdesk_order_services_on_opened_by_id", using: :btree
+  add_index "helpdesk_order_services", ["responsible_id"], name: "index_helpdesk_order_services_on_responsible_id", using: :btree
+  add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id", using: :btree
+  add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id", using: :btree
+  add_index "helpdesk_order_services", ["status_id"], name: "index_helpdesk_order_services_on_status_id", using: :btree
 
   create_table "patrimony_down_goods", force: :cascade do |t|
     t.string   "name"
@@ -145,7 +152,7 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.integer  "good_id"
   end
 
-  add_index "patrimony_down_goods", ["good_id"], name: "index_patrimony_down_goods_on_good_id"
+  add_index "patrimony_down_goods", ["good_id"], name: "index_patrimony_down_goods_on_good_id", using: :btree
 
   create_table "patrimony_drives", force: :cascade do |t|
     t.date     "date_drive"
@@ -157,9 +164,9 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "patrimony_drives", ["good_id"], name: "index_patrimony_drives_on_good_id"
-  add_index "patrimony_drives", ["sector_id"], name: "index_patrimony_drives_on_sector_id"
-  add_index "patrimony_drives", ["user_id"], name: "index_patrimony_drives_on_user_id"
+  add_index "patrimony_drives", ["good_id"], name: "index_patrimony_drives_on_good_id", using: :btree
+  add_index "patrimony_drives", ["sector_id"], name: "index_patrimony_drives_on_sector_id", using: :btree
+  add_index "patrimony_drives", ["user_id"], name: "index_patrimony_drives_on_user_id", using: :btree
 
   create_table "patrimony_goods", force: :cascade do |t|
     t.string   "code_goods"
@@ -173,10 +180,10 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "patrimony_goods", ["material_id"], name: "index_patrimony_goods_on_material_id"
-  add_index "patrimony_goods", ["property_id"], name: "index_patrimony_goods_on_property_id"
-  add_index "patrimony_goods", ["sector_id"], name: "index_patrimony_goods_on_sector_id"
-  add_index "patrimony_goods", ["user_id"], name: "index_patrimony_goods_on_user_id"
+  add_index "patrimony_goods", ["material_id"], name: "index_patrimony_goods_on_material_id", using: :btree
+  add_index "patrimony_goods", ["property_id"], name: "index_patrimony_goods_on_property_id", using: :btree
+  add_index "patrimony_goods", ["sector_id"], name: "index_patrimony_goods_on_sector_id", using: :btree
+  add_index "patrimony_goods", ["user_id"], name: "index_patrimony_goods_on_user_id", using: :btree
 
   create_table "patrimony_materials", force: :cascade do |t|
     t.string   "name"
@@ -187,7 +194,7 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "patrimony_materials", ["type_material_id"], name: "index_patrimony_materials_on_type_material_id"
+  add_index "patrimony_materials", ["type_material_id"], name: "index_patrimony_materials_on_type_material_id", using: :btree
 
   create_table "patrimony_properties", force: :cascade do |t|
     t.string   "name"
@@ -206,7 +213,7 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "patrimony_serial_numbers", ["good_id"], name: "index_patrimony_serial_numbers_on_good_id"
+  add_index "patrimony_serial_numbers", ["good_id"], name: "index_patrimony_serial_numbers_on_good_id", using: :btree
 
   create_table "patrimony_type_materials", force: :cascade do |t|
     t.string   "name"
@@ -227,7 +234,7 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "person_branch_lines", ["sector_id"], name: "index_person_branch_lines_on_sector_id"
+  add_index "person_branch_lines", ["sector_id"], name: "index_person_branch_lines_on_sector_id", using: :btree
 
   create_table "person_jobs", force: :cascade do |t|
     t.string   "name"
@@ -248,8 +255,8 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "person_sectors", ["father_id"], name: "index_person_sectors_on_father_id"
-  add_index "person_sectors", ["responsible_id"], name: "index_person_sectors_on_responsible_id"
+  add_index "person_sectors", ["father_id"], name: "index_person_sectors_on_father_id", using: :btree
+  add_index "person_sectors", ["responsible_id"], name: "index_person_sectors_on_responsible_id", using: :btree
 
   create_table "person_staff_permissions", force: :cascade do |t|
     t.integer  "staff_id"
@@ -259,8 +266,8 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "person_staff_permissions", ["staff_id"], name: "index_person_staff_permissions_on_staff_id"
-  add_index "person_staff_permissions", ["system_permission_id"], name: "index_person_staff_permissions_on_system_permission_id"
+  add_index "person_staff_permissions", ["staff_id"], name: "index_person_staff_permissions_on_staff_id", using: :btree
+  add_index "person_staff_permissions", ["system_permission_id"], name: "index_person_staff_permissions_on_system_permission_id", using: :btree
 
   create_table "person_staffs", force: :cascade do |t|
     t.string   "name"
@@ -290,11 +297,11 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",                         null: false
   end
 
-  add_index "person_staffs", ["branch_line_id"], name: "index_person_staffs_on_branch_line_id"
-  add_index "person_staffs", ["job_id"], name: "index_person_staffs_on_job_id"
-  add_index "person_staffs", ["sector_current_id"], name: "index_person_staffs_on_sector_current_id"
-  add_index "person_staffs", ["sector_origin_id"], name: "index_person_staffs_on_sector_origin_id"
-  add_index "person_staffs", ["user_responsible_id"], name: "index_person_staffs_on_user_responsible_id"
+  add_index "person_staffs", ["branch_line_id"], name: "index_person_staffs_on_branch_line_id", using: :btree
+  add_index "person_staffs", ["job_id"], name: "index_person_staffs_on_job_id", using: :btree
+  add_index "person_staffs", ["sector_current_id"], name: "index_person_staffs_on_sector_current_id", using: :btree
+  add_index "person_staffs", ["sector_origin_id"], name: "index_person_staffs_on_sector_origin_id", using: :btree
+  add_index "person_staffs", ["user_responsible_id"], name: "index_person_staffs_on_user_responsible_id", using: :btree
 
   create_table "person_system_permissions", force: :cascade do |t|
     t.string   "action"
@@ -305,7 +312,7 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "person_system_permissions", ["system_id"], name: "index_person_system_permissions_on_system_id"
+  add_index "person_system_permissions", ["system_id"], name: "index_person_system_permissions_on_system_id", using: :btree
 
   create_table "person_systems", force: :cascade do |t|
     t.string   "name"
@@ -318,14 +325,15 @@ ActiveRecord::Schema.define(version: 20150708173753) do
   create_table "protocol_allotments", force: :cascade do |t|
     t.text     "description"
     t.integer  "priority"
-    t.integer  "staff_id"
+    t.date     "replay_date"
     t.integer  "sector_id"
+    t.integer  "staff_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "protocol_allotments", ["sector_id"], name: "index_protocol_allotments_on_sector_id"
-  add_index "protocol_allotments", ["staff_id"], name: "index_protocol_allotments_on_staff_id"
+  add_index "protocol_allotments", ["sector_id"], name: "index_protocol_allotments_on_sector_id", using: :btree
+  add_index "protocol_allotments", ["staff_id"], name: "index_protocol_allotments_on_staff_id", using: :btree
 
   create_table "protocol_assessments", force: :cascade do |t|
     t.integer  "number"
@@ -350,28 +358,26 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",          null: false
   end
 
-  add_index "protocol_assessments", ["document_type_id"], name: "index_protocol_assessments_on_document_type_id"
-  add_index "protocol_assessments", ["sector_id"], name: "index_protocol_assessments_on_sector_id"
-  add_index "protocol_assessments", ["staff_id"], name: "index_protocol_assessments_on_staff_id"
-  add_index "protocol_assessments", ["subject_id"], name: "index_protocol_assessments_on_subject_id"
+  add_index "protocol_assessments", ["document_type_id"], name: "index_protocol_assessments_on_document_type_id", using: :btree
+  add_index "protocol_assessments", ["sector_id"], name: "index_protocol_assessments_on_sector_id", using: :btree
+  add_index "protocol_assessments", ["staff_id"], name: "index_protocol_assessments_on_staff_id", using: :btree
+  add_index "protocol_assessments", ["subject_id"], name: "index_protocol_assessments_on_subject_id", using: :btree
 
   create_table "protocol_conducts", force: :cascade do |t|
-    t.date     "replay_date"
-    t.date     "description"
-    t.integer  "conduct_type_id"
+    t.text     "description"
+    t.integer  "conduct_type"
     t.integer  "assessment_id"
-    t.integer  "sector_id"
     t.integer  "staff_id"
+    t.integer  "sector_id"
     t.integer  "allotment_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "protocol_conducts", ["allotment_id"], name: "index_protocol_conducts_on_allotment_id"
-  add_index "protocol_conducts", ["assessment_id"], name: "index_protocol_conducts_on_assessment_id"
-  add_index "protocol_conducts", ["conduct_type_id"], name: "index_protocol_conducts_on_conduct_type_id"
-  add_index "protocol_conducts", ["sector_id"], name: "index_protocol_conducts_on_sector_id"
-  add_index "protocol_conducts", ["staff_id"], name: "index_protocol_conducts_on_staff_id"
+  add_index "protocol_conducts", ["allotment_id"], name: "index_protocol_conducts_on_allotment_id", using: :btree
+  add_index "protocol_conducts", ["assessment_id"], name: "index_protocol_conducts_on_assessment_id", using: :btree
+  add_index "protocol_conducts", ["sector_id"], name: "index_protocol_conducts_on_sector_id", using: :btree
+  add_index "protocol_conducts", ["staff_id"], name: "index_protocol_conducts_on_staff_id", using: :btree
 
   create_table "protocol_digital_documents", force: :cascade do |t|
     t.integer  "page_number"
@@ -382,8 +388,8 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "protocol_digital_documents", ["assessment_id"], name: "index_protocol_digital_documents_on_assessment_id"
-  add_index "protocol_digital_documents", ["staff_id"], name: "index_protocol_digital_documents_on_staff_id"
+  add_index "protocol_digital_documents", ["assessment_id"], name: "index_protocol_digital_documents_on_assessment_id", using: :btree
+  add_index "protocol_digital_documents", ["staff_id"], name: "index_protocol_digital_documents_on_staff_id", using: :btree
 
   create_table "protocol_document_types", force: :cascade do |t|
     t.string   "name"
@@ -405,8 +411,8 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id"
-  add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id"
+  add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id", using: :btree
+  add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id", using: :btree
 
   create_table "protocol_subjects", force: :cascade do |t|
     t.string   "name"
@@ -429,8 +435,8 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at"
   end
 
-  add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable"
-  add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type"
+  add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
+  add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "", null: false
@@ -449,8 +455,8 @@ ActiveRecord::Schema.define(version: 20150708173753) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
