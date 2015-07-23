@@ -6,6 +6,8 @@
      Apontamentos Inclusos
      %ul.actions
       %li
+      -if @order_service.status == "closed"
+      -else
        = link_to '<i class="md md-forum c-white" alt="Smiley face"></i>'.html_safe, new_order_service_monitor_service_order_path, remote: true, class: ' pull-right', title: "Incluir Apontamento" if policy(:MonitorServiceOrder, namespace: Helpdesk).create?
 
    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}

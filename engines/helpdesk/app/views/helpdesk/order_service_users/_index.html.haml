@@ -2,7 +2,7 @@
  .card-header
   %h2
    Meus chamados
-   %small elton otario
+   %small 
  .card-body.card-padding
   %div{:role => "tabpanel"}
    %ul.tab-nav{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "1"}
@@ -171,7 +171,9 @@
           %th Solicitado por
           %th Setor
           %th Responsável
+          %th Qualificação
           %th Status
+
         - @order_services_solved.each do |j, i|
          %tbody
           %tr
@@ -189,6 +191,8 @@
             = j.sector.name if j.sector.present?
            %td
             = j.responsible ? j.responsible.name : "Untec"
+           %td
+            = link_to "qualificar chamado", new_order_service_qualification_path(j), remote: true, class: 'btn btn-warning btn-xs waves-effect'
            %td
             - if j.status == "open"
              %span.badge.bgm-green
@@ -218,6 +222,8 @@
           %th Solicitado por
           %th Setor
           %th Responsável
+          %th Qualificação
+          %th Fechado
           %th Status
         - @order_services_closed.each do |j, i|
          %tbody
@@ -236,6 +242,11 @@
             = j.sector.name if j.sector.present?
            %td
             = j.responsible ? j.responsible.name : "Untec"
+           %td
+            %span.badge
+             =j.qualification
+           %td
+            = j.updated_at.strftime("%d/%m/%Y - %H:%M")
            %td
             - if j.status == "open"
              %span.badge.bgm-green

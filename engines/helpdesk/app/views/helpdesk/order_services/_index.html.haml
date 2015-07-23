@@ -2,7 +2,7 @@
  .card-header
   %h2
    Todos chamados
-   %small elton otario
+   %small
  .card-body.card-padding
   %div{:role => "tabpanel"}
    %ul.tab-nav{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "1"}
@@ -48,6 +48,7 @@
             = j.sector.name if j.sector.present?
            %td
             = j.responsible ? j.responsible.name : "Untec"
+           
            %td
             - if j.status == "open"
              %span.badge.bgm-green
@@ -218,6 +219,8 @@
           %th Solicitado por
           %th Setor
           %th Responsável
+          %th Qualificação
+          %th Fechado
           %th Status
         - @order_services_closed.each do |j, i|
          %tbody
@@ -236,6 +239,11 @@
             = j.sector.name if j.sector.present?
            %td
             = j.responsible ? j.responsible.name : "Untec"
+           %td
+            %span.badge
+             =j.qualification
+           %td
+            = j.updated_at.strftime("%d/%m/%Y - %H:%M")
            %td
             - if j.status == "open"
              %span.badge.bgm-green

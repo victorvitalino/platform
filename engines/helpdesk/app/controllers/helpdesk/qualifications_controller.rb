@@ -18,7 +18,11 @@ module Helpdesk
 		end
 
     def set_order_services_user
-      @order_services = OrderService.where(staff_id: current_user.account_id).order('id DESC')
+      @order_services_open = OrderService.where(staff_id: current_user.account_id, status: 0).order('id DESC')
+      @order_services_reopened = OrderService.where(staff_id: current_user.account_id, status: 1).order('id DESC')
+      @order_services_inprogress = OrderService.where(staff_id: current_user.account_id, status: 2).order('id DESC')
+      @order_services_solved = OrderService.where(staff_id: current_user.account_id, status: 3).order('id DESC')
+      @order_services_closed = OrderService.where(staff_id: current_user.account_id, status: 4).order('id DESC').limit(100)
     end
 		
 		def set_params_qualification
