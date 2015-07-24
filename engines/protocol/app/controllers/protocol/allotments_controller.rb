@@ -5,12 +5,12 @@ module Protocol
         before_action :set_allotment, only: [:edit, :destroy, :update]
 
         def index
-           # authorize @document_type
+           authorize @document_type
         end
 
         def new
             @allotment = Allotment.new
-           # authorize @document_type
+            authorize @document_type
         end
 
         def create
@@ -18,7 +18,7 @@ module Protocol
             @allotment.staff_id = current_user.account_id
             @allotment.sector_id = current_user.account.sector_current.id
 
-            #authorize @document_type
+            authorize @document_type
             @allotment.save
         end
 
@@ -26,12 +26,12 @@ module Protocol
         end
 
         def update
-            #authorize @document_type
+            authorize @document_type
             @allotment.update(allotment_params)
         end
 
         def destroy
-           # authorize @document_type
+            authorize @document_type
             if @allotment.destroy
                 redirect_to action: 'index'
             end

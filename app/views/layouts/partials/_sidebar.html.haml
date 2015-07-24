@@ -86,5 +86,17 @@
                     = link_to "meus chamados", helpdesk.order_service_users_path
               - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
                 %li
-                  = link_to "meus chamados", helpdesk.order_service_technicals_path  
+                  = link_to "meus chamados", helpdesk.order_service_technicals_path
+        %li.sub-menu{class: ('toggled active' if params[:module] == "protocol")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-description>
+              Protocolo
+            %ul{style: ('display:block;' if params[:module] == "protocolo")}
+              - if policy(:Assessment, namespace: Protocol).index?
+                %li
+                  = link_to "autuações", protocol.assessments_path
+              - if policy(:Subject, namespace: Protocol).index?
+                %li
+                  = link_to "assuntos", protocol.subjects_path   
 
