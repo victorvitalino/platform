@@ -7,9 +7,12 @@
     .col-md-12
       = simple_form_for [:allotment, @conduct], remote: true do |f|
         .row
-          .col-md-12
+          .col-md-6
             = f.label :sector, class: 'fg-label'
             = f.association :sector, label: false, prompt: 'selecione...'
+          .col-md-6
+            = f.label :staff, class: 'fg-label'
+            = f.association :staff, label: false, prompt: 'selecione...'
         .row
           .col-md-4
             = f.button :submit, class: 'btn btn-success'

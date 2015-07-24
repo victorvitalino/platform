@@ -1,9 +1,9 @@
 .card
   .card-header
-    %h2 Protocolo - #{@assessment.document_number}
+    %h2 Documento - #{@assessment.document_number}
   .card-body.card-padding
     .row
-      .col-md-8
+      .col-md-12
         .row
           .col-md-4
             %label Tipo de Documento:
@@ -48,7 +48,14 @@
             = @assessment.observation
         .row
           .col-md-12
+            %br
+        .row
+          .col-md-12
             = render 'protocol/conducts/index'
+        .row
+          .col-md-12
+            = render 'protocol/digital_documents/index'
+
         %br
         %br
         .row

@@ -1,0 +1,16 @@
+.card
+  .card-header
+    %h2
+      Novo Documento
+      %small formulário de inserção de novo documento
+    %ul.lv-actions.actions
+      %li.dropdown
+        %a{"aria-expanded" => "true", "data-toggle" => "dropdown", :href => ""}
+          %i.md.md-more-vert
+        %ul.dropdown-menu.dropdown-menu-right
+          %li
+            = link_to 'Documentos', assessments_path
+          %li
+            = link_to 'Remessas', allotments_path
+  .card-body.card-padding
+    = render 'form'

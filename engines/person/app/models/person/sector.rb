@@ -11,6 +11,8 @@ module Person
 
     has_many :assessment, class_name: "Protocol::Assessment"
 
+    has_many :conduct, class_name: "Protocol::Conduct"
+
 
     validates_presence_of :name, :acron,:prefex
 

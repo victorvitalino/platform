@@ -1,0 +1,22 @@
+.row
+ .col-md-12
+  = simple_form_for @location do |f|
+   .row
+    .col-md-6
+     = f.label :shelf, class: 'fg-label'
+     = f.input :shelf, label: false, input_html: { placeholder: 'Digite um Prateleira'}
+    .col-md-6
+     = f.label :pile, class: 'fg-label'
+     = f.input :pile, label: false, input_html: { placeholder: 'Digite uma Pilha'}
+   .row
+    .col-md-6
+     = f.label :box, class: 'fg-label'
+     = f.input :box, label: false, input_html: { placeholder: 'Digite um Caixa'}
+    .col-md-6
+     = f.label :obsevation, class: 'fg-label'
+     = f.input :obsevation, label: false, input_html: { placeholder: 'Digite uma observação'}
+   .row
+    .col-md-12
+     = f.button :submit, class: 'btn btn-success'
+   %br/
+   = render 'index'

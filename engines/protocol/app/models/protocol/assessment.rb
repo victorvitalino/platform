@@ -5,7 +5,8 @@ module Protocol
     belongs_to :staff, class_name: "Person::Staff"
     belongs_to :sector, class_name: "Person::Sector"
 
-    has_many :conduct
+    has_many :conducts
+    has_many :digital_documents
 
     before_validation :set_number
 

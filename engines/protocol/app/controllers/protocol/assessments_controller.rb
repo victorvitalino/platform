@@ -21,7 +21,9 @@ module Protocol
         end
 
         def show
-           @conduct = Conduct.where(:assessment_id => params[:id] , :conduct_type_id => 4)
+           @conduct = Conduct.where(:assessment_id => params[:id] )
+           @digital_documents = DigitalDocument.where(:assessment_id => params[:id] )
+           @locations = Location.where(:assessment_id => params[:id] )
         end
 
         def edit
