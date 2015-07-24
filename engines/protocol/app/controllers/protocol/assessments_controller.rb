@@ -4,14 +4,17 @@ module Protocol
       before_action :set_assessment, only: [:show, :edit, :update, :destroy]
         def index
             @assessments = Assessment.all
+            authorize @assessments
         end
 
         def new
             @assessment = Assessment.new
-
+            authorize @assessment
         end
         def create
+            authorize @assessment
             @assessment = Assessment.new(set_assessment_params)
+            
             @assessment.set_staff(current_user.account_id)
             if @assessment.save!
                 redirect_to action: 'index'
@@ -31,6 +34,7 @@ module Protocol
         end
 
         def update
+            authorize @assessment
             if @assessment.update(set_assessment_params)
                 render action: 'index'
             else
@@ -39,6 +43,7 @@ module Protocol
         end
 
         def destroy
+            authorize @assessment
             @assessment.destroy
             redirect_to action: 'index'
         end

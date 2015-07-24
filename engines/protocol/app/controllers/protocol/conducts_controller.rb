@@ -7,16 +7,18 @@ module Protocol
 
 
         def index
-
+            authorize @conducts
         end
 
         def new
             @conduct = @allotment.conducts.new
+            authorize @conduct
             @conduct_result = Protocol::Assessment.where(document_number: params[:document], document_type_id: params[:document_type])
         end
 
         def add
-             sector = current_user.account.sector_current.id
+            authorize @conduct
+            sector = current_user.account.sector_current.id
 
             @allotment = Protocol::Allotment.find(params[:id])
             @conduct = @allotment.conducts.new
@@ -32,13 +34,15 @@ module Protocol
         end
 
         def send_conduct
+           authorize @conduct
            @allotment = Protocol::Allotment.find(params[:allotment_id])
-            @conduct = @allotment.conducts.new
+           @conduct = @allotment.conducts.new
         end
 
         def create
+            
             @allotment = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.account.sector_current.id)
-
+            authorize @conduct
              @allotment.each do |lote|
                 @conduct = Protocol::Conduct.new
                 @conduct.allotment_id = params[:allotment_id]
@@ -57,6 +61,7 @@ module Protocol
 
 
         def destroy
+            authorize @conduct
             if @conduct.destroy
                 redirect_to action: 'new'
             end

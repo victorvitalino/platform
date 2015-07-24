@@ -5,17 +5,17 @@ module Protocol
         before_action :set_subject, only: [:edit, :destroy, :update]
 
         def index
-           # authorize @subject
+           authorize @subjects
         end
 
         def new
             @subject = Subject.new
-           # authorize @subject
+            authorize @subject
         end
 
         def create
             @subject = Subject.new(subject_params)
-            #authorize @subject
+            authorize @subject
             @subject.save
         end
 
@@ -23,12 +23,12 @@ module Protocol
         end
 
         def update
-            #authorize @subject
+            authorize @subject
             @subject.update(subject_params)
         end
 
         def destroy
-           # authorize @subject
+            authorize @subject
             if @subject.destroy
                 redirect_to action: 'index'
             end

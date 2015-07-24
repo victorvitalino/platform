@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/subject': Assunto
+    attributes:
+      'protocol/subject':
+        name: "Nome"
+        description: "Descrição"
+        Status: "Status"
+        
