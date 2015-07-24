@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/conduct': Tramitação
+    attributes:
+      'protocol/conduct':
+        document: "Documento"
+        document_type: "Tipo de Documento"

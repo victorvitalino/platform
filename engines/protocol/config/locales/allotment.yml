@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/allotment': Remessa
+    attributes:
+      'protocol/allotment':
+        description: "Descrição"
+        priority: "Prioridade"
+        replay_date: "Data de Resposta"

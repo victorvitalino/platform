@@ -96,6 +96,12 @@
               - if policy(:Assessment, namespace: Protocol).index?
                 %li
                   = link_to "autuações", protocol.assessments_path
+              - if policy(:Allotment, namespace: Protocol).index?
+                %li
+                  = link_to "remessas", protocol.allotments_path
+              - if policy(:DocumentType, namespace: Protocol).index?
+                %li
+                  = link_to "tipo de documentos", protocol.document_types_path
               - if policy(:Subject, namespace: Protocol).index?
                 %li
                   = link_to "assuntos", protocol.subjects_path   

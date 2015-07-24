@@ -36,7 +36,7 @@ module Protocol
         def send_conduct
            authorize @conduct
            @allotment = Protocol::Allotment.find(params[:allotment_id])
-            @conduct = @allotment.conducts.new
+           @conduct = @allotment.conducts.new
         end
 
         def create

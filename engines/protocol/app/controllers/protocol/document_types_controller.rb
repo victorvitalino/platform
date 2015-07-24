@@ -5,7 +5,7 @@ module Protocol
         before_action :set_document_type, only: [:edit, :destroy, :update]
 
         def index
-           authorize @document_type
+           authorize @document_types
         end
 
         def new
