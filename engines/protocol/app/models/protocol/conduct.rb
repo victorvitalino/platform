@@ -9,7 +9,13 @@ module Protocol
 
     validates :conduct_type, uniqueness: { scope: [:assessment_id, :allotment_id] }
 
-    # scope :search_doc, => {where()}
+    scope :find_last, -> { where(created_at: Conduct.select("MAX(created_at)").group(:assessment_id))}
+
+    scope :find_sector, -> (sector) { where(created_at: Conduct.select("MAX(created_at)").where(sector_id: sector).group(:assessment_id))}
+
+    scope :find_allotment, -> (allotment) { where(created_at: Conduct.select("MAX(created_at)").where(allotment_id: allotment).group(:assessment_id))}
+
+    scope :find_type_sector, -> (type,sector) { where(created_at: Conduct.select("MAX(created_at)").where(conduct_type: type, sector_id: sector).group(:assessment_id))}
 
 
     def set_data(user, assessment)

@@ -1,7 +1,7 @@
 module Protocol
     class ConductsController < ApplicationController
      layout 'layouts/material'
-      before_action :set_allotment, except: [:add,:send_conduct,:staffies]
+      before_action :set_allotment, except: [:add,:send_conduct,:staffies,:receive]
       before_action :set_conduct, only:[:destroy,:show]
       before_action :set_conducts, only: [:index, :new,:add,:destroy, :send_conduct]
 
@@ -33,6 +33,11 @@ module Protocol
             end
         end
 
+          def receive
+            @conduct_receive = Protocol::Conduct.find_sector(current_user.account.sector_current.id).where(conduct_type: 1)
+        end
+
+
         def staffies
          @sector = Person::Sector.find(params[:sector_id])
           render json: @sector.staffs
@@ -49,11 +54,12 @@ module Protocol
             @allotment = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.account.sector_current.id)
             #authorize @conduct
              @allotment.each do |lote|
-                @conduct = Protocol::Conduct.new
+                @conduct = Protocol::Conduct.new(set_conduct_params)
                 @conduct.allotment_id = params[:allotment_id]
                 @conduct.conduct_type = 1
                 @conduct.assessment_id = lote.assessment_id
-                @conduct.sector_id = params[:sector_id]
+                @conduct.sector_id = params[:conduct][:sector_id]
+                @conduct.staff_id = params[:conduct][:staff_id]
                 @conduct .save
              end
 
@@ -76,7 +82,7 @@ module Protocol
 
 
         def set_conducts
-            @conducts = Conduct.where(:allotment_id => params[:allotment_id], conduct_type: 0)
+            @conducts = Conduct.find_allotment(params[:allotment_id]).where(conduct_type: 0)
         end
 
         def set_conduct

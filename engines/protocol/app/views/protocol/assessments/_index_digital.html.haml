@@ -18,4 +18,4 @@
             %td
               = j.page_number
             %td
-              %a{:href => j.doc_path, :target => "_blank"} Visualizar
+              = link_to "Visualizar", j.doc_path_url, target: '_blank'
