@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/digital_document': Documento Digital
+    attributes:
+      'protocol/digital_document':
+        name: "Nome"
+        description: "Descrição"
+        status: "Status"

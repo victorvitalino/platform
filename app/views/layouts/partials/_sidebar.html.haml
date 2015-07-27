@@ -104,5 +104,8 @@
                   = link_to "tipo de documentos", protocol.document_types_path
               - if policy(:Subject, namespace: Protocol).index?
                 %li
-                  = link_to "assuntos", protocol.subjects_path   
+                  = link_to "assuntos", protocol.subjects_path
+              - if policy(:Location, namespace: Protocol).index?
+                %li
+                  = link_to "Localizações", protocol.new_location_path   
 
