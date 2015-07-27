@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/location': Localização
+    attributes:
+      'protocol/location':
+        shelf: "Prateleira"
+        pile: "Pilha"
+        box: "Caixa"
+        obsevation: "Observação"
