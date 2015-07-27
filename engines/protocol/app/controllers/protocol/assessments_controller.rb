@@ -14,7 +14,7 @@ module Protocol
         def create
             authorize @assessment
             @assessment = Assessment.new(set_assessment_params)
-            
+
             @assessment.set_staff(current_user.account_id)
             if @assessment.save!
                 redirect_to action: 'index'
@@ -24,9 +24,9 @@ module Protocol
         end
 
         def show
-           @conduct = Conduct.where(:assessment_id => params[:id] )
-           @digital_documents = DigitalDocument.where(:assessment_id => params[:id] )
-           @locations = Location.where(:assessment_id => params[:id] )
+           @conduct = @assessment.conducts.all
+           @digital_docs= @assessment.digital_documents.all
+           @locations = @assessment.locations.all
         end
 
         def edit

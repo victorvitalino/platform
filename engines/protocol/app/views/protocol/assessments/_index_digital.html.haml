@@ -1,0 +1,21 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Digitalizações
+      %small Lista de Documentos
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Página
+          %th Documento
+      %tbody.index-docs
+        - @digital_docs.each_with_index do |j, i|
+          %tr
+            %td.col-md-1
+              = i + 1
+            %td
+              = j.page_number
+            %td
+              %a{:href => j.doc_path, :target => "_blank"} Visualizar

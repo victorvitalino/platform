@@ -5,10 +5,10 @@ production:
 
 development:
   db_user: "postgres"
-  db_pass: "123456789"
+  db_pass: "mila#1324"
   db_host: "localhost"
 
 test:
   db_user: "postgres"
-  db_pass: "123456789"
+  db_pass: "mila#1324"
   db_host: "localhost"

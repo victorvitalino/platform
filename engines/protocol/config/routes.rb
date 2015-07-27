@@ -13,6 +13,8 @@ resources :locations, path: 'localizacoes'
 
 get 'add_conduct/:assessment_id/alloment/:id', to: 'conducts#add', as: 'add'
 
+get '/staffies/:sector_id', to: 'conducts#staffies', as: 'staffies'
+
 resources :allotments, path: 'remessas' do
   get 'send_conduct' , to: 'conducts#send_conduct', as: 'send'
   resources :conducts, path: 'movimentacoes'
