@@ -5,7 +5,7 @@
 .modal-body
   .row
     .col-md-12
-      = simple_form_for [:allotment, @conduct], remote: true do |f|
+      = simple_form_for [:allotment, @conduct] do |f|
         .row
           .col-md-6
             = f.label :sector, class: 'fg-label'

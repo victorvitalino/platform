@@ -12,8 +12,14 @@ module Protocol
 
         def new
             @conduct = @allotment.conducts.new
+            sector = current_user.account.sector_current.id
             #authorize @conduct
-            @conduct_result = Protocol::Assessment.where(document_number: params[:document], document_type_id: params[:document_type])
+            #parametro 4 documento recebido pelo setor
+            @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector)
+            if !@conduct_result.present?
+                 flash[:warning] = "Documento não existe ou não está no seu setor!"
+            end
+
         end
 
         def add
@@ -63,7 +69,7 @@ module Protocol
                 @conduct .save
              end
 
-             redirect_to  '/protocolo/remessas'
+             redirect_to allotments_path
 
         end
 

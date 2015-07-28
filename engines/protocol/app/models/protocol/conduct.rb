@@ -15,7 +15,18 @@ module Protocol
 
     scope :find_allotment, -> (allotment) { where(created_at: Conduct.select("MAX(created_at)").where(allotment_id: allotment).group(:assessment_id))}
 
-    scope :find_type_sector, -> (type,sector) { where(created_at: Conduct.select("MAX(created_at)").where(conduct_type: type, sector_id: sector).group(:assessment_id))}
+
+    # QUERY DO
+    scope :find_document, -> (document_number, document_type, type, sector_id){
+    where(created_at: Protocol::Conduct
+              .joins(:assessment)
+              .select("MAX(protocol_conducts.created_at)")
+              .where("protocol_assessments.document_number = ?
+                           AND protocol_assessments.document_type_id = ?
+                           AND protocol_conducts.sector_id = ?",
+                          document_number, document_type, sector_id)
+              .group(:assessment_id), conduct_type: type)}
+
 
 
     def set_data(user, assessment)
