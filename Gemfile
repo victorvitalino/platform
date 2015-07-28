@@ -29,6 +29,8 @@ gem 'email_validator'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
+gem 'codhab_payment', git: 'https://github.com/codhab/codhab_payment.git'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
