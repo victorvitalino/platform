@@ -43,7 +43,7 @@ module Protocol
         end
 
         def set_allotments
-            @allotments = Allotment.where(:sector_id => current_user.account.sector_current.id)
+            @allotments =  Protocol::Conduct.find_sector(current_user.account.sector_current.id)
         end
 
         def set_allotment

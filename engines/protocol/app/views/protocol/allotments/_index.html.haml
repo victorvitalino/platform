@@ -3,12 +3,12 @@
   %td.col-md-1
    = i + 1
   %td
-   = j.description
+   = j.allotment.description
   %td
-   = j.priority
+   = j.allotment.priority
   %td
-   = j.replay_date
+   = j.allotment.replay_date
   %td.col-md-2
-   = link_to "", new_allotment_conduct_path(j),title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'md-arrow-forward btn btn-success waves-effect waves-button waves-float'
-   = link_to "", edit_allotment_path(j), remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
-   = link_to "", allotment_path(j), method: :delete, class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}
+   = link_to "", new_allotment_conduct_path(j.allotment.id),title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'md-arrow-forward btn btn-success waves-effect waves-button waves-float'
+   = link_to "", edit_allotment_path(j.allotment.id), remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
+   = link_to "", allotment_path(j.allotment.id), method: :delete, class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}
