@@ -5,14 +5,27 @@
 .modal-body
   .row
     .col-md-12
-      = simple_form_for [:allotment, @conduct], remote: true do |f|
+      = simple_form_for [:allotment, @conduct] do |f|
         .row
           .col-md-6
             = f.label :sector, class: 'fg-label'
             = f.association :sector, label: false, prompt: 'selecione...'
           .col-md-6
             = f.label :staff, class: 'fg-label'
-            = f.association :staff, label: false, prompt: 'selecione...'
+            = f.input :staff_id, as: :select,  label: false, collection: (@conduct.sector_id.present?) ? Person::Sector.find(@conduct.sector_id.present).staffies : {}, prompt: 'selecione um usuário...'
         .row
           .col-md-4
             = f.button :submit, class: 'btn btn-success'
+  :javascript
+    $(document).ready(function(){
+      $("#conduct_sector_id").on('change', function() {
+        $.getJSON( "/protocolo/staffies/"+ $(this).val(), function(data) {
+          html = ""
+          for(var x = 0; x < data.length; x++) {
+            html += "<option value='"+ data[x].id+"'>"+data[x].name+"</option>"
+          }
+          $("#conduct_staff_id").html(html)
+        })
+      });
+
+    });

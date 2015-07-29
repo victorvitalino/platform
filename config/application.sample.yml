@@ -2,7 +2,7 @@ production:
   db_user: "user"
   db_pass: "pass"
   db_host: "host"
-  
+
 development:
   db_user: "user"
   db_pass: "pass"

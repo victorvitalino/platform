@@ -7,6 +7,7 @@ module Protocol
 
     has_many :conducts
     has_many :digital_documents
+    has_many :locations
 
     before_validation :set_number
 

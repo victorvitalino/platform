@@ -9,9 +9,9 @@ module Person
 
     has_many :branch_line
 
-    has_many :assessment, class_name: "Protocol::Assessment"
+    has_many :assessments, class_name: "Protocol::Assessment"
 
-    has_many :conduct, class_name: "Protocol::Conduct"
+    has_many :conducts, class_name: "Protocol::Conduct"
 
 
     validates_presence_of :name, :acron,:prefex

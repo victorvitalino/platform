@@ -3,19 +3,19 @@ module Protocol
         layout 'layouts/material'
         before_action :set_locations, only: [:create, :destroy, :update]
         before_action :set_location, only: [:edit, :destroy, :update]
-        before_action :set_assessment, only: [:index,:new]
+        before_action :set_assessment, only: [:index,:new,:edit]
         def index
-           authorize @locations
+           #authorize @locations
 
         end
 
         def new
             @location = Location.new
-            authorize @location
+            #authorize @location
         end
 
         def create
-            authorize @location
+            #authorize @location
             @assessment = Protocol::Assessment.find(params[:assessment_ids])
                 @assessment.each do |a|
                     @location = Location.new(location_params)
@@ -23,19 +23,19 @@ module Protocol
                     @location.staff_id = current_user.account.id
                     @location.save
                 end
-            redirect_to action: 'protocol/assessment/index'
+            redirect_to '/protocol/assessment/index'
         end
 
         def edit
         end
 
         def update
-            authorize @location
+          #  authorize @location
             @location.update(location_params)
         end
 
         def destroy
-            authorize @location
+            #authorize @location
             if @location.destroy
                 redirect_to action: 'index'
             end

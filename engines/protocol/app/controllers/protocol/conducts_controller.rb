@@ -1,23 +1,29 @@
 module Protocol
     class ConductsController < ApplicationController
      layout 'layouts/material'
-      before_action :set_allotment, except: [:add,:send_conduct]
+      before_action :set_allotment, except: [:add,:send_conduct,:staffies,:receive]
       before_action :set_conduct, only:[:destroy,:show]
       before_action :set_conducts, only: [:index, :new,:add,:destroy, :send_conduct]
 
 
         def index
-            authorize @conducts
+            #authorize @conducts
         end
 
         def new
             @conduct = @allotment.conducts.new
-            authorize @conduct
-            @conduct_result = Protocol::Assessment.where(document_number: params[:document], document_type_id: params[:document_type])
+            sector = current_user.account.sector_current.id
+            #authorize @conduct
+            #parametro 4 documento recebido pelo setor
+            @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector)
+            if !@conduct_result.present?
+                 flash[:warning] = "Documento não existe ou não está no seu setor!"
+            end
+
         end
 
         def add
-            authorize @conduct
+            #authorize @conduct
             sector = current_user.account.sector_current.id
 
             @allotment = Protocol::Allotment.find(params[:id])
@@ -33,26 +39,37 @@ module Protocol
             end
         end
 
+          def receive
+            @conduct_receive = Protocol::Conduct.find_sector(current_user.account.sector_current.id).where(conduct_type: 1)
+        end
+
+
+        def staffies
+         @sector = Person::Sector.find(params[:sector_id])
+          render json: @sector.staffs
+        end
+
         def send_conduct
-           authorize @conduct
+          # authorize @conduct
            @allotment = Protocol::Allotment.find(params[:allotment_id])
            @conduct = @allotment.conducts.new
         end
 
         def create
-            
+
             @allotment = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.account.sector_current.id)
-            authorize @conduct
+            #authorize @conduct
              @allotment.each do |lote|
-                @conduct = Protocol::Conduct.new
+                @conduct = Protocol::Conduct.new(set_conduct_params)
                 @conduct.allotment_id = params[:allotment_id]
                 @conduct.conduct_type = 1
                 @conduct.assessment_id = lote.assessment_id
-                @conduct.sector_id = params[:sector_id]
+                @conduct.sector_id = params[:conduct][:sector_id]
+                @conduct.staff_id = params[:conduct][:staff_id]
                 @conduct .save
              end
 
-             redirect_to action: 'allotments/index'
+             redirect_to allotments_path
 
         end
 
@@ -61,7 +78,7 @@ module Protocol
 
 
         def destroy
-            authorize @conduct
+            #authorize @conduct
             if @conduct.destroy
                 redirect_to action: 'new'
             end
@@ -71,7 +88,7 @@ module Protocol
 
 
         def set_conducts
-            @conducts = Conduct.where(:allotment_id => params[:allotment_id], conduct_type: 0)
+            @conducts = Conduct.find_allotment(params[:allotment_id]).where(conduct_type: 0)
         end
 
         def set_conduct
