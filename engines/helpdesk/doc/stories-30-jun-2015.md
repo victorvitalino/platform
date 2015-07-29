@@ -7,8 +7,8 @@ Eu como usuário quero...
   - usuários poderão filtrar chamados por data, status, CÓDIGO DA MÁQUINA
   - usuários serão avisados toda vez que o status do chamado alterar
   - usuários poderão acompanhar os apontamentos dos técnicos
-  - USUÁRIOS PODERÃO QUALIFICAR O ATENDIMENTO PRESTADO (COM CONDIÇÃO DE SÓ SER POSSIVEL A ABERTURA DE OUTRO CHAMADO APÓS A QUALIFICAÇÃO DO CHAMADO ANTERIOR)
-  - (LINK PARA RETORNAR O CÓDIGO DA MÁQUINA NA HORA DE REGISTRAR O CHAMADO)
+  - USUÁRIOS PODERÃO QUALIFICAR O ATENDIMENTO PRESTADO
+
 
 - eu como usuário quero adicionar, anexos dos erros aos chamados
   - os anexos terão limite de 2MB

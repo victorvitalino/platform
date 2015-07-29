@@ -27,7 +27,8 @@ Rails.application.routes.draw do
       mount Person::Engine => "/pessoas",          as: 'person', module: 'person'
       mount Patrimony::Engine => "/patrimonio",    as: 'patrimony', module: 'patrimony'
       mount Helpdesk::Engine => "/helpdesk",       as: 'helpdesk', module: 'helpdesk'
-      mount Protocol::Engine => "/protocolo",       as: 'protocol', module: 'protocol'
+      mount Protocol::Engine => "/protocolo",      as: 'protocol', module: 'protocol'
+      mount Juridical::Engine => "/juridico",      as: 'juridical', module: 'juridical'
     end
   end
 
