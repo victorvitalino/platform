@@ -43,6 +43,12 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/juridical
+  specs:
+    juridical (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/notify
   specs:
     notify (0.0.1)
@@ -71,6 +77,12 @@ PATH
   remote: engines/protocol
   specs:
     protocol (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/regularization
+  specs:
+    regularization (0.0.1)
       rails (~> 4.2.1)
 
 PATH
@@ -341,6 +353,7 @@ DEPENDENCIES
   helpdesk!
   intranet!
   jquery-rails
+  juridical!
   mini_magick
   notify!
   patrimony!
@@ -351,6 +364,7 @@ DEPENDENCIES
   pundit!
   rails (= 4.2.1)
   redactor-rails
+  regularization!
   remotipart (~> 1.2)
   schedule!
   simple_form
