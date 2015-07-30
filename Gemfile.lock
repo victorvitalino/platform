@@ -17,6 +17,12 @@ GIT
       activesupport (>= 3.0.0)
 
 PATH
+  remote: engines/address
+  specs:
+    address (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/cms
   specs:
     cms (0.0.1)
@@ -336,6 +342,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  address!
   byebug
   carrierwave
   cms!
