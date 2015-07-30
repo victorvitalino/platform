@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  situation: 1
+  status: false
+  unit_id: 
+
+two:
+  situation: 1
+  status: false
+  unit_id: 

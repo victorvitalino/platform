@@ -17,6 +17,12 @@ GIT
       activesupport (>= 3.0.0)
 
 PATH
+  remote: engines/address
+  specs:
+    address (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/cms
   specs:
     cms (0.0.1)
@@ -77,6 +83,12 @@ PATH
   remote: engines/protocol
   specs:
     protocol (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/regularization
+  specs:
+    regularization (0.0.1)
       rails (~> 4.2.1)
 
 PATH
@@ -330,6 +342,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  address!
   byebug
   carrierwave
   cms!
@@ -358,6 +371,7 @@ DEPENDENCIES
   pundit!
   rails (= 4.2.1)
   redactor-rails
+  regularization!
   remotipart (~> 1.2)
   schedule!
   simple_form
