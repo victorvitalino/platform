@@ -31,13 +31,17 @@ module Helpdesk
       @order_service.sector_id = current_user.account.sector_current_id
       @order_service.opened_by_id = current_user.account.id
       @order_service.status = 0
+      @order_service.deadline = Date.today
       @order_service.save
     end
 
     # PATCH/PUT /order_services/1
     def update
       authorize @order_service
-      @order_service.update(order_service_params)
+      if @order_service.update(order_service_params)
+        @order_service.update(status: 5)
+        redirect_to params[:redirect_to] ||  order_service_monitor_service_orders_path(@order_service.id)
+      end
     end
 
     # DELETE /order_services/1
@@ -62,11 +66,12 @@ module Helpdesk
         @order_services_inprogress = OrderService.where('status = 2')
         @order_services_solved = OrderService.where('status = 3')
         @order_services_closed = OrderService.where('status = 4').limit(100)
+        @order_services_analysis = OrderService.where('status = 5')
       end
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:subject, :category, :number, :qualification, :status, :number_increment, 
+        params.require(:order_service).permit(:deadline,  :subject, :category, :number, :qualification, :status, :number_increment, 
                                               :opened_by_id, :responsible_id, :staff_id, 
                                               :sector_id, :branch_line_id, :good_id, 
                                                monitor_service_orders_attributes: [:appointment, :attachment])
