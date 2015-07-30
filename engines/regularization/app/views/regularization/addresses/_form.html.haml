@@ -1,0 +1,99 @@
+= simple_form_for @address do |f|
+  .row
+    .col-md-3
+      = f.input :city, as: :select, collection: Address::City.federal_district, prompt: 'selecione a cidade...'
+    .col-md-2
+      = f.input :block, as: :select, collection: (@address.city.present?) ? Address::Unit.select(:block).where(city_id: @address.city).distinct : {}, label_method: :block, value_method: :block, prompt: 'selecione a cidade...', input_html: { value: @address.city}
+    .col-md-2
+      = f.input :group, as: :select, collection: (@address.city.present? &&  @address.block.present? ) ? Address::Unit.select(:group).where(city_id: @address.city, block: @address.block).distinct : {}, label_method: :group, value_method: :group, prompt: 'selecione a cidade...', input_html: { value: @address.block}
+    .col-md-2
+      = f.input :unit, as: :select, collection: (@address.city.present? &&  @address.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @address.city,block: @address.block, group: @address.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a cidade...', input_html: { value: @address.unit}
+    .col-md-2
+      = f.input :id, as: :hidden
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit
+
+:javascript
+
+  $("#address_city").on('change', function(){
+
+    $.getJSON("#{address.blocks_path}?city_id=" + $(this).val(), function(data) {
+      
+      html = "<option value>selecione...</option>"
+      if(data.length > 0) {
+        console.log(data)
+        for(var i = 0; i < data.length; i++) {
+          html += "<option value='"+data[i].block+"'>"+data[i].block+"</option>"
+        }
+      
+      } else {
+        html = "<option value>Não foram encontradas quadras</option>"
+      }
+      
+      $("#address_unit").html("<option value>selecione...</option>")
+      $("#address_group").html("<option value>selecione...</option>")
+      $("#address_block").html(html)
+      
+    });
+  });
+
+
+  $("#address_block").on('change', function(){
+    $.getJSON("#{address.groups_path}?block=" 
+              + $(this).val() +"&city_id="
+              + $("#address_city").val(), function(data) {
+      
+      html = "<option value>selecione...</option>"
+      if(data.length > 0) {
+      
+        for(var i = 0; i < data.length; i++) {
+          html += "<option value='"+data[i].group+"'>"+data[i].group+"</option>"
+        }
+      
+      } else {
+        html = "<option value>Não foram encontrados conjuntos</option>"
+      }
+      
+      $("#address_group").html(html)
+      
+    });
+  });
+
+
+  $("#address_group").on('change', function(){
+    $.getJSON("#{address.units_path}?"
+              + "block=" + $("#address_block").val() 
+              + "&city_id=" + $("#address_city").val()
+              + "&group=" + $(this).val(),function(data) {
+      
+      html = "<option value>selecione...</option>"
+      if(data.length > 0) {
+      
+        for(var i = 0; i < data.length; i++) {
+          html += "<option value='"+data[i].unit+"'>"+data[i].unit+"</option>"
+        }
+      
+      } else {
+        html = "<option value>Não foram encontrados conjuntos</option>"
+      }
+      
+      $("#address_unit").html(html)
+      
+    });
+  });
+
+
+
+  $("#address_unit").on('change', function(){
+    
+    $.getJSON("#{address.show_unit_path}?"
+              + "block=" + $("#address_block").val() 
+              + "&city_id=" + $("#address_city").val()
+              + "&group=" + $("#address_group").val()
+              + "&unit=" + $(this).val(),function(data) {
+                  $("#address_id").val(data.id)
+    });
+  });
+

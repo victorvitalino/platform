@@ -11,10 +11,103 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708173753) do
+ActiveRecord::Schema.define(version: 20150730164045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "address_cities", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "capital",    default: true
+    t.integer  "state_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "address_cities", ["state_id"], name: "index_address_cities_on_state_id", using: :btree
+
+  create_table "address_notary_offices", force: :cascade do |t|
+    t.string   "unit_code"
+    t.string   "office"
+    t.date     "date_code"
+    t.date     "date_contract"
+    t.string   "code_contract"
+    t.date     "office_contract"
+    t.date     "date_petition"
+    t.date     "date_signature"
+    t.date     "date_anoreg"
+    t.date     "date_devolution"
+    t.string   "requeriment"
+    t.date     "date_requeriment"
+    t.string   "declaratory_act_number"
+    t.string   "rejection_number"
+    t.integer  "unit_id"
+    t.date     "date_act_declaratory"
+    t.date     "date_act_rejection"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "address_notary_offices", ["unit_id"], name: "index_address_notary_offices_on_unit_id", using: :btree
+
+  create_table "address_registry_units", force: :cascade do |t|
+    t.integer  "situation"
+    t.boolean  "status"
+    t.integer  "unit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "address_registry_units", ["unit_id"], name: "index_address_registry_units_on_unit_id", using: :btree
+
+  create_table "address_situation_units", force: :cascade do |t|
+    t.string   "description"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "address_states", force: :cascade do |t|
+    t.string   "name"
+    t.string   "acronym"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "address_type_use_units", force: :cascade do |t|
+    t.string   "description"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "address_units", force: :cascade do |t|
+    t.string   "acron_block"
+    t.string   "block"
+    t.string   "acron_group"
+    t.string   "group"
+    t.string   "unit"
+    t.string   "cep_unit"
+    t.string   "area"
+    t.string   "complete_address"
+    t.string   "burgh"
+    t.boolean  "sefaz"
+    t.boolean  "donate"
+    t.date     "date_donate"
+    t.date     "date_iptu"
+    t.date     "registration_iptu"
+    t.string   "certificate"
+    t.integer  "situation_unit_id"
+    t.integer  "type_use_unit_id"
+    t.integer  "city_id"
+    t.integer  "program"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
+  add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
+  add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
 
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "name"
@@ -439,6 +532,26 @@ ActiveRecord::Schema.define(version: 20150708173753) do
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
+
+  create_table "regularization_requeriments", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "rg"
+    t.date     "born"
+    t.string   "telephone"
+    t.string   "celphone"
+    t.string   "complete_address"
+    t.float    "income"
+    t.string   "spouse_name"
+    t.string   "spouse_cpf"
+    t.boolean  "owner",            default: false
+    t.boolean  "dont_owner",       default: false
+    t.integer  "unit_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "regularization_requeriments", ["unit_id"], name: "index_regularization_requeriments_on_unit_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "", null: false
