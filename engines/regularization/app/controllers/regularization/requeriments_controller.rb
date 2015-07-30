@@ -11,6 +11,13 @@ module Regularization
     end
 
     def create
+      @requeriment = Requeriment.new(set_params)
+      if @requeriment.save
+        flash[:success] = t :success
+        redirect_to @requeriment
+      else
+        render :new
+      end
     end
 
 
@@ -23,6 +30,13 @@ module Regularization
         flash[:info] = t :info 
         redirect_to regularization.new_address_path
       end
+    end
+
+
+    def set_params
+      params.require(:requeriment).permit(:name, :cpf, :rg, :email, :nacionality, :martial_status,
+                                          :gender, :born, :telephone, :celphone, :complete_address,
+                                          :income, :income, :spouse_name, :spouse_cpf, :owner)
     end
 
   end

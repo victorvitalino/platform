@@ -214,8 +214,6 @@ ActiveRecord::Schema.define(version: 20150730164045) do
     t.string   "subject"
     t.integer  "category"
     t.integer  "status"
-    t.date     "deadline"
-    t.datetime "finalized_in"
     t.integer  "sector_id"
     t.integer  "branch_line_id"
     t.integer  "staff_id"
@@ -223,6 +221,7 @@ ActiveRecord::Schema.define(version: 20150730164045) do
     t.integer  "responsible_id"
     t.integer  "good_id"
     t.integer  "category_id"
+    t.integer  "status_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -234,6 +233,7 @@ ActiveRecord::Schema.define(version: 20150730164045) do
   add_index "helpdesk_order_services", ["responsible_id"], name: "index_helpdesk_order_services_on_responsible_id", using: :btree
   add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id", using: :btree
   add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id", using: :btree
+  add_index "helpdesk_order_services", ["status_id"], name: "index_helpdesk_order_services_on_status_id", using: :btree
 
   create_table "patrimony_down_goods", force: :cascade do |t|
     t.string   "name"
@@ -537,6 +537,10 @@ ActiveRecord::Schema.define(version: 20150730164045) do
     t.string   "name"
     t.string   "cpf"
     t.string   "rg"
+    t.string   "email"
+    t.string   "nationality"
+    t.string   "marital_status"
+    t.string   "gender"
     t.date     "born"
     t.string   "telephone"
     t.string   "celphone"
@@ -545,7 +549,6 @@ ActiveRecord::Schema.define(version: 20150730164045) do
     t.string   "spouse_name"
     t.string   "spouse_cpf"
     t.boolean  "owner",            default: false
-    t.boolean  "dont_owner",       default: false
     t.integer  "unit_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false

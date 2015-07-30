@@ -4,6 +4,10 @@ class CreateRegularizationRequeriments < ActiveRecord::Migration
       t.string  :name
       t.string  :cpf
       t.string  :rg
+      t.string  :email
+      t.string  :nationality
+      t.string  :marital_status
+      t.string  :gender
       t.date    :born
       t.string  :telephone
       t.string  :celphone
@@ -12,7 +16,6 @@ class CreateRegularizationRequeriments < ActiveRecord::Migration
       t.string  :spouse_name
       t.string  :spouse_cpf
       t.boolean :owner, default: false
-      t.boolean :dont_owner, default: false
       
       t.references :unit, index: true
       t.timestamps null: false

@@ -6,5 +6,6 @@ module Regularization
 
 
     validates_presence_of :city, :block, :group, :unit, :id
+
   end
 end
