@@ -7,6 +7,8 @@ class CreateHelpdeskOrderServices < ActiveRecord::Migration
       t.string  :subject
       t.integer :category
       t.integer :status
+      t.date    :deadline
+      t.timestamp    :finalized_in
 
       t.references :sector, index: true#, foreign_key: true
       t.references :branch_line, index: true#, foreign_key: true
@@ -15,7 +17,6 @@ class CreateHelpdeskOrderServices < ActiveRecord::Migration
       t.references :responsible, index: true#, foreign_key: true
       t.references :good, index: true#, foreign_key: true
       t.references :category, index: true#, foreign_key: true
-      t.references :status, index: true#, foreign_key: true
       
 
 

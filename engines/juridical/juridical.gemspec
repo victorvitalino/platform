@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Juridical::VERSION
   s.authors     = ["maxbruno"]
   s.email       = ["brunomax18@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Juridical."
-  s.description = "TODO: Description of Juridical."
+  s.homepage    = ""
+  s.summary     = "Summary of Juridical."
+  s.description = "Description of Juridical."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

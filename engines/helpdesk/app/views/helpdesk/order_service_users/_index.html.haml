@@ -1,8 +1,8 @@
 .card
  .card-header
   %h2
-   Meus chamados
-   %small 
+   Chamados
+   %small Lista de Chamados
  .card-body.card-padding
   %div{:role => "tabpanel"}
    %ul.tab-nav{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "1"}
@@ -10,6 +10,8 @@
      %a{"aria-controls" => "open", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#open", :role => "tab"} aguardando atendimento
     %li
      %a{"aria-controls" => "reopened", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#reopened", :role => "tab"} re-abertos
+    %li
+     %a{"aria-controls" => "analysis", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#analysis", :role => "tab"} chamados em análise 
     %li
      %a{"aria-controls" => "inprogress", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#inprogress", :role => "tab"} em atendimento
     %li
@@ -48,6 +50,7 @@
             = j.sector.name if j.sector.present?
            %td
             = j.responsible ? j.responsible.name : "Untec"
+           
            %td
             - if j.status == "open"
              %span.badge.bgm-green
@@ -63,6 +66,9 @@
               = j.status_i18n
             - if j.status == "closed"
              %span.badge.bgm-red
+              = j.status_i18n
+            - if j.status == "analysis"
+             %span.badge.bgm-warning
               = j.status_i18n
     #reopened.tab-pane{:role => "tabpanel"}
      .card
@@ -111,6 +117,63 @@
             - if j.status == "closed"
              %span.badge.bgm-red
               = j.status_i18n
+            - if j.status == "analysis"
+             %span.badge.bgm-warning
+              = j.status_i18n
+    #analysis.tab-pane{:role => "tabpanel"}
+     .card
+      .table-responsive
+       %table.table.table-bordered.table
+        %thead
+         %tr.info
+          %th OS
+          %th Assunto
+          %th Categoria
+          %th Abertura
+          %th Solicitado por
+          %th Setor
+          %th Responsável
+          %th Prazo Final
+          %th Status
+        - @order_services_analysis.each do |j, i|
+         %tbody
+          %tr
+           %td.col-md-1
+            = link_to j.number , order_service_monitor_service_orders_path(j)
+           %td
+            = j.subject
+           %td
+            = j.category_i18n
+           %td
+            = j.created_at.strftime("%d/%m/%Y - %H:%M")
+           %td
+            = j.staff.name if j.staff.present?
+           %td
+            = j.sector.name if j.sector.present?
+           %td
+            = j.responsible ? j.responsible.name : "Untec"
+           %td
+            = j.deadline.strftime("%d/%m/%Y")
+           %td
+            - if j.status == "open"
+             %span.badge.bgm-green
+              = j.status_i18n
+            - if j.status == "reopened"
+             %span.badge.bgm-bluegray
+              = j.status_i18n
+            - if j.status == "inprogress"
+             %span.badge.bgm-orange
+              = j.status_i18n
+            - if j.status == "solved"
+             %span.badge.bgm-cyan
+              = j.status_i18n
+            - if j.status == "closed"
+             %span.badge.bgm-red
+              = j.status_i18n
+            - if j.status == "analysis"
+             %span.badge.bgm-warning
+              = j.status_i18n
+
     #inprogress.tab-pane{:role => "tabpanel"}
      .card
       .table-responsive
@@ -157,7 +220,10 @@
               = j.status_i18n
             - if j.status == "closed"
              %span.badge.bgm-red
-              = j.status_i18n          
+              = j.status_i18n   
+            - if j.status == "analysis"
+             %span.badge.bgm-warning
+              = j.status_i18n       
     #solved.tab-pane{:role => "tabpanel"}
      .card
       .table-responsive
@@ -173,7 +239,6 @@
           %th Responsável
           %th Qualificação
           %th Status
-
         - @order_services_solved.each do |j, i|
          %tbody
           %tr
@@ -192,7 +257,11 @@
            %td
             = j.responsible ? j.responsible.name : "Untec"
            %td
-            = link_to "qualificar chamado", new_order_service_qualification_path(j), remote: true, class: 'btn btn-warning btn-xs waves-effect'
+            -if j.qualification
+             %span.badge
+              =j.qualification
+            -else
+             =(link_to 'Qualificar Chamado',  new_order_service_qualification_path(order_service_id: j), remote: true, class: 'btn btn-warning btn-xs')
            %td
             - if j.status == "open"
              %span.badge.bgm-green
@@ -208,6 +277,9 @@
               = j.status_i18n
             - if j.status == "closed"
              %span.badge.bgm-red
+              = j.status_i18n
+            - if j.status == "analysis"
+             %span.badge.bgm-warning
               = j.status_i18n
     #closed.tab-pane{:role => "tabpanel"}
      .card
@@ -262,4 +334,7 @@
               = j.status_i18n
             - if j.status == "closed"
              %span.badge.bgm-red
+              = j.status_i18n
+            - if j.status == "analysis"
+             %span.badge.bgm-warning
               = j.status_i18n

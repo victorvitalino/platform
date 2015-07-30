@@ -11,18 +11,15 @@ module Helpdesk
     has_many   :monitor_service_orders
 
     enum category: {"infrastructure" => 0, "system" => 1}
-    enum status: [:open, :reopened, :inprogress, :solved, :closed]
+    enum status: [:open, :reopened, :inprogress, :solved, :closed, :analysis]
 
     accepts_nested_attributes_for :monitor_service_orders
 
-    validates_presence_of :branch_line_id, :staff_id, :good_id, :subject, :category
+    validates_presence_of :branch_line_id, :staff_id, :good_id, :subject, :category, :deadline
     
     after_create  :update_os, :set_user_monitor_service 
     before_create :auto_increment
 
-    def self.restricted_categories
-      categories.except :failed, :destroyed
-    end
 
   	private
 

@@ -43,6 +43,12 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/juridical
+  specs:
+    juridical (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/notify
   specs:
     notify (0.0.1)
@@ -341,6 +347,7 @@ DEPENDENCIES
   helpdesk!
   intranet!
   jquery-rails
+  juridical!
   mini_magick
   notify!
   patrimony!
@@ -363,3 +370,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   wicked_pdf
   wkhtmltopdf-binary
+
+BUNDLED WITH
+   1.10.6
