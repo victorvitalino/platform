@@ -15,6 +15,9 @@ get 'add_conduct/:assessment_id/alloment/:id', to: 'conducts#add', as: 'add'
 
 get '/staffies/:sector_id', to: 'conducts#staffies', as: 'staffies'
 get '/receive', to: 'conducts#receive', as: 'receive'
+get '/return', to: 'conducts#return', as: 'return'
+
+get '/update_docs/:type', to: 'conducts#update_docs', as: 'update_docs'
 
 resources :allotments, path: 'remessas' do
   get 'send_conduct' , to: 'conducts#send_conduct', as: 'send'

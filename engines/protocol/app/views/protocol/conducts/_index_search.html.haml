@@ -13,10 +13,10 @@
         - @conduct_result.each do |a|
           %tr
             %td
-              = a.document_number
+              = a.assessment.document_number
             %td
-              = a.document_type.name
+              = a.assessment.document_type.name
             %td
               = a.sector.name
             %td
-              = link_to "", add_path(assessment_id: a.id, id: @conduct.allotment.id), title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'md-check btn btn-info waves-effect waves-button waves-float'
+              = link_to "", add_path(assessment_id: a.assessment.id, id: @conduct.allotment.id), title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'md-check btn btn-info waves-effect waves-button waves-float'

@@ -39,11 +39,11 @@ module Protocol
         private
 
         def allotment_params
-            params.require(:allotment).permit(:description,:replay_date, :sector_id,:staff_id,:priority)
+            params.require(:allotment).permit(:description,:replay_date, :status,:amount_docs,:sector_id,:staff_id,:priority)
         end
 
         def set_allotments
-            @allotments =  Protocol::Conduct.find_sector(current_user.account.sector_current.id)
+            @allotments =   Allotment.where(:sector_id => current_user.account.sector_current.id, status: false)
         end
 
         def set_allotment
