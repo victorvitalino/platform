@@ -14,6 +14,7 @@ class CreatePersonStaffs < ActiveRecord::Migration
       t.time :start_hour
       t.time :end_hour
       t.date :date_contract
+      t.date :date_shutdown
       t.boolean :attendant
       t.boolean :wekeend
       t.boolean :status, default: true

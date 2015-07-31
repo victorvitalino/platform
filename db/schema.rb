@@ -378,6 +378,7 @@ ActiveRecord::Schema.define(version: 20150730164045) do
     t.time     "start_hour"
     t.time     "end_hour"
     t.date     "date_contract"
+    t.date     "date_shutdown"
     t.boolean  "attendant"
     t.boolean  "wekeend"
     t.boolean  "status",              default: true
