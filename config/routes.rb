@@ -39,5 +39,6 @@ Rails.application.routes.draw do
   mount Schedule::Engine        => "/agendamento",    as: 'schedule'
   mount Notify::Engine          => "/notificacao",    as: 'notify'
   mount Regularization::Engine  => "/regularizacao",  as: 'regularization'
+  mount Address::Engine         => "/endereco",       as: 'address'
 
 end

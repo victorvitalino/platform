@@ -2,8 +2,8 @@ require_dependency "helpdesk/application_controller"
 
 module Helpdesk
   class MonitorServiceOrdersController < ApplicationController
-    before_action :set_monitor_service_orders, only: [:index, :create, :new,:destroy, :update,:assume, :close_order_service, :open_again]
-    before_action :set_monitor_service_order, only: [:edit, :destroy, :update, :index,:assume, :close_order_service, :open_again]
+    before_action :set_monitor_service_orders, only: [:index, :create, :new,:destroy, :show, :update,:assume, :close_order_service, :open_again]
+    
 
     # GET /monitor_service_orders
     def index
@@ -31,7 +31,7 @@ module Helpdesk
     end
 
     def assume
-      @order_service.update(responsible_id: current_user.account.id, status: 2)
+      @order_service.update(responsible_id: current_user.account.id, status: 2)    
       MonitorServiceOrder.create(appointment: "chamado assumido:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize :monitor_service_orders
       respond_to do |format|
@@ -47,8 +47,8 @@ module Helpdesk
     end
 
     def close_order_service
-
       @order_service.update(status: 3)
+      @order_service.update(finalized_in: DateTime.now)
       MonitorServiceOrder.create(appointment: "chamado fechado:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize :monitor_service_orders
       respond_to do |format|
@@ -85,12 +85,10 @@ module Helpdesk
       def set_monitor_service_orders
         @order_service = OrderService.find(params[:order_service_id])
         @monitor_service_orders = MonitorServiceOrder.where(order_service_id: params[:order_service_id]).order('id DESC')
+        @monitor_service_order = MonitorServiceOrder.where(order_service_id: params[:order_service_id]).last
       end
 
-      def set_monitor_service_order
-        @monitor_service_order = MonitorServiceOrder.where(order_service_id: params[:order_service_id]).last
-        @order_service = OrderService.find(params[:order_service_id])
-      end
+     
 
      
 
@@ -98,5 +96,7 @@ module Helpdesk
       def monitor_service_order_params
         params.require(:monitor_service_order).permit(:appointment, :attachment, :staff_id, :status, :order_service_id)
       end
+
+
   end
 end

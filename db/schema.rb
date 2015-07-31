@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730134435) do
+ActiveRecord::Schema.define(version: 20150731195644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "address_cities", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "capital",    default: true
+    t.integer  "state_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "address_cities", ["state_id"], name: "index_address_cities_on_state_id", using: :btree
 
   create_table "address_notary_offices", force: :cascade do |t|
     t.string   "unit_code"
@@ -57,6 +67,13 @@ ActiveRecord::Schema.define(version: 20150730134435) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "address_states", force: :cascade do |t|
+    t.string   "name"
+    t.string   "acronym"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "address_type_use_units", force: :cascade do |t|
     t.string   "description"
     t.boolean  "status",      default: true
@@ -82,11 +99,13 @@ ActiveRecord::Schema.define(version: 20150730134435) do
     t.string   "certificate"
     t.integer  "situation_unit_id"
     t.integer  "type_use_unit_id"
+    t.integer  "city_id"
     t.integer  "program"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
 
+  add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
   add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
   add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
 
@@ -195,6 +214,8 @@ ActiveRecord::Schema.define(version: 20150730134435) do
     t.string   "subject"
     t.integer  "category"
     t.integer  "status"
+    t.date     "deadline"
+    t.datetime "finalized_in"
     t.integer  "sector_id"
     t.integer  "branch_line_id"
     t.integer  "staff_id"
@@ -202,7 +223,6 @@ ActiveRecord::Schema.define(version: 20150730134435) do
     t.integer  "responsible_id"
     t.integer  "good_id"
     t.integer  "category_id"
-    t.integer  "status_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -214,7 +234,6 @@ ActiveRecord::Schema.define(version: 20150730134435) do
   add_index "helpdesk_order_services", ["responsible_id"], name: "index_helpdesk_order_services_on_responsible_id", using: :btree
   add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id", using: :btree
   add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id", using: :btree
-  add_index "helpdesk_order_services", ["status_id"], name: "index_helpdesk_order_services_on_status_id", using: :btree
 
   create_table "patrimony_down_goods", force: :cascade do |t|
     t.string   "name"
@@ -442,6 +461,22 @@ ActiveRecord::Schema.define(version: 20150730134435) do
   add_index "protocol_assessments", ["staff_id"], name: "index_protocol_assessments_on_staff_id", using: :btree
   add_index "protocol_assessments", ["subject_id"], name: "index_protocol_assessments_on_subject_id", using: :btree
 
+  create_table "protocol_attach_documents", force: :cascade do |t|
+    t.integer  "document_father_id"
+    t.integer  "document_child_id"
+    t.integer  "attach_type_id"
+    t.integer  "sector_id"
+    t.integer  "staff_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "protocol_attach_documents", ["attach_type_id"], name: "index_protocol_attach_documents_on_attach_type_id", using: :btree
+  add_index "protocol_attach_documents", ["document_child_id"], name: "index_protocol_attach_documents_on_document_child_id", using: :btree
+  add_index "protocol_attach_documents", ["document_father_id"], name: "index_protocol_attach_documents_on_document_father_id", using: :btree
+  add_index "protocol_attach_documents", ["sector_id"], name: "index_protocol_attach_documents_on_sector_id", using: :btree
+  add_index "protocol_attach_documents", ["staff_id"], name: "index_protocol_attach_documents_on_staff_id", using: :btree
+
   create_table "protocol_conducts", force: :cascade do |t|
     t.text     "description"
     t.integer  "conduct_type"
@@ -516,6 +551,29 @@ ActiveRecord::Schema.define(version: 20150730134435) do
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
+
+  create_table "regularization_requeriments", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "rg"
+    t.string   "email"
+    t.string   "nationality"
+    t.string   "marital_status"
+    t.string   "gender"
+    t.date     "born"
+    t.string   "telephone"
+    t.string   "celphone"
+    t.string   "complete_address"
+    t.float    "income"
+    t.string   "spouse_name"
+    t.string   "spouse_cpf"
+    t.boolean  "owner",            default: false
+    t.integer  "unit_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "regularization_requeriments", ["unit_id"], name: "index_regularization_requeriments_on_unit_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "", null: false

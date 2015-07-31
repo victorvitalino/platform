@@ -4,9 +4,10 @@ pt-BR:
        status:
          open: "aberto"
          reopened: "re-aberto"
-         inprogress: "Em andamento"
+         inprogress: "em andamento"
          solved: "solucionado"
          closed: "fechado"
+         analysis: "em análise"
        category:
           system: "Sistemas"
           infrastructure: "Suporte"
@@ -22,6 +23,8 @@ pt-BR:
         responsible: "Responsável"
         subject: "Assunto"
         category: "Categoria"
+        deadline: "Prazo final"
+        finalized_in: "Finalizado em"
         
 
 

@@ -18,6 +18,7 @@ class CreateAddressUnits < ActiveRecord::Migration
       t.string :certificate
       t.references :situation_unit, index: true#, foreign_key: true
       t.references :type_use_unit, index: true#, foreign_key: true
+      t.references :city, index: true
       t.integer :program
 
       t.timestamps null: false

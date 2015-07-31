@@ -25,6 +25,9 @@
   font-size: 14px;
   display: inline-block;
 }
+.input_date{
+    background-color: #FFF!important;
+}
 .select{
 	width: 200px!important;
 }
