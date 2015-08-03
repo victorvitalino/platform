@@ -14,13 +14,14 @@ class CreatePersonStaffs < ActiveRecord::Migration
       t.time :start_hour
       t.time :end_hour
       t.date :date_contract
+      t.date :date_shutdown
       t.boolean :attendant
       t.boolean :wekeend
       t.boolean :status, default: true
       t.boolean :administrator, default: true
       t.integer :gender
-      
-      
+      t.date :date_shutdown
+
       t.references :branch_line, index: true#, foreign_key: true
       t.references :job, index: true#, foreign_key: true
       t.references :sector_origin, index: true#, foreign_key: true

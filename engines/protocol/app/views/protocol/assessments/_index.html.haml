@@ -20,3 +20,5 @@
             = link_to 'Documento Digital',  new_assessment_digital_document_path(a)
           %li
             = link_to 'Deletar', assessment_path(a), method: :delete, data: { confirm: 'Are you sure?' }
+          %li
+            = link_to 'Anexar/Apensar Documento', new_assessment_attach_document_path(a)
