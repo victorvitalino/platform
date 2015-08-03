@@ -29,13 +29,8 @@ gem 'email_validator'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
-<<<<<<< HEAD
 
-gem 'codhab_payment', git: 'https://github.com/codhab/codhab_payment.git'
-=======
 gem 'codhab_barcode', git: 'https://github.com/codhab/codhab_barcode.git'
->>>>>>> bc41cf751b0cad8232981cc1bbffa9e411cbe51d
-
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
@@ -51,10 +46,6 @@ group :production do
   gem 'pg'
 end
 
-<<<<<<< HEAD
-=======
-
->>>>>>> bc41cf751b0cad8232981cc1bbffa9e411cbe51d
 gem 'schedule',         path: 'engines/schedule'
 gem 'person',           path: 'engines/person'
 gem 'cms',              path: 'engines/cms'
@@ -65,6 +56,6 @@ gem 'patrimony',        path: 'engines/patrimony'
 gem 'helpdesk',         path: 'engines/helpdesk'
 gem 'notify',           path: 'engines/notify'
 gem 'protocol',         path: 'engines/protocol'
-gem 'juridical',        path: 'engines/juridical' 
-gem 'regularization',   path: 'engines/regularization' 
-gem 'address',          path: 'engines/address' 
+gem 'juridical',        path: 'engines/juridical'
+gem 'regularization',   path: 'engines/regularization'
+gem 'address',          path: 'engines/address'
