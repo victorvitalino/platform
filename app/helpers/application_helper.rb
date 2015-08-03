@@ -10,11 +10,21 @@ module ApplicationHelper
   end
 
   def local_users_list
-    @user_current = current_user.account
-    if @user_current.sector_current.present?
-      @user_current.sector_current.staffs.each do |u|
-        yield u
+   @user_current = current_user.account
+   if @user_current.sector_current.present?
+     @user_current.sector_current.staffs.each do |ul|
+        yield ul
       end
     end
   end
+
+  def profile_users(id_sector)
+    @query_avatar = Person::Staff.where(sector_current_id:id_sector)
+
+    @query_avatar.each do |qa|
+
+      yield qa
+    end
+  end
+
 end

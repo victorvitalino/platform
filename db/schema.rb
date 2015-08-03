@@ -384,7 +384,6 @@ ActiveRecord::Schema.define(version: 20150731195644) do
     t.boolean  "status",              default: true
     t.boolean  "administrator",       default: true
     t.integer  "gender"
-    t.date     "date_shutdown"
     t.integer  "branch_line_id"
     t.integer  "job_id"
     t.integer  "sector_origin_id"
