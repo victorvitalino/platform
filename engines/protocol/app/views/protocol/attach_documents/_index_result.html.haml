@@ -1,0 +1,23 @@
+%br
+.table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+  %table.table.table-hover.table-bordered
+    %thead
+      %tr
+        %th Número
+        %th Tipo de Documento
+        %th Setor
+        %th Tipo
+        %th Excluir
+    %tbody
+      - @attach_documents.each do |a|
+        %tr
+          %td
+            = a.document_child.document_number if a.document_child.present?
+          %td
+            = a.document_child.document_type.name if a.document_child.present?
+          %td
+            = a.sector.name if a.sector.present?
+          %td
+            = a.attach_type
+          %td
+            = link_to "", assessment_attach_document_path(a.document_child.id,a.id), method: :delete, remote:true, class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}

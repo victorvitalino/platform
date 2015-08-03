@@ -13,4 +13,9 @@ Helpdesk::Engine.routes.draw do
       get 'open_again'
   	end
   end
+  resources :report_attendants, path: 'relatorio_por_atendente'
+  resources :report_sectors,    path: 'relatorio_por_setor'
+  resources :report_employees,  path: 'relatorio_por_funcionario'
+  resources :report_requests,   path: 'relatorio_por_tipo'
+  resources :report_machines,   path: 'relatorio_por_maquina'
 end

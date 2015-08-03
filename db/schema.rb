@@ -464,14 +464,13 @@ ActiveRecord::Schema.define(version: 20150731195644) do
   create_table "protocol_attach_documents", force: :cascade do |t|
     t.integer  "document_father_id"
     t.integer  "document_child_id"
-    t.integer  "attach_type_id"
+    t.integer  "attach_type"
     t.integer  "sector_id"
     t.integer  "staff_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
-  add_index "protocol_attach_documents", ["attach_type_id"], name: "index_protocol_attach_documents_on_attach_type_id", using: :btree
   add_index "protocol_attach_documents", ["document_child_id"], name: "index_protocol_attach_documents_on_document_child_id", using: :btree
   add_index "protocol_attach_documents", ["document_father_id"], name: "index_protocol_attach_documents_on_document_father_id", using: :btree
   add_index "protocol_attach_documents", ["sector_id"], name: "index_protocol_attach_documents_on_sector_id", using: :btree

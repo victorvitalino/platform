@@ -1,0 +1,27 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Documentos Anexos/Apensos
+      %small Lista de Documentos
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table.table.table-hover.table-bordered
+        %thead
+          %tr
+            %th Número Documento
+            %th Tipo de Documento
+            %th
+            %th Data
+            %th Descrição
+        %tbody
+          - @attach_document.each_with_index do |j, i|
+            %tr
+              %td.col-md-1
+                = i + 1
+              %td
+                = j.document_child.document_number if j.document_child.present?
+              %td
+                = j.document_child.document_type.name if j.document_child.present?
+              %td
+                = j.attach_type
+              %td
+                = j.created_at.strftime('%d/%m/%Y - %H:%M')
