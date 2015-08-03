@@ -9,6 +9,9 @@ module Protocol
     has_many :digital_documents
     has_many :locations
 
+    has_many :attach_documents, foreign_key: "document_father_id"
+
+
     before_validation :set_number
 
     validates_presence_of :document_type, :subject, :requesting_unit, :external_agency
@@ -25,6 +28,8 @@ module Protocol
         @conduct.sector_id = current_user.account.sector_current.id
         @conduct.save
     end
+
+
 
     def set_staff(staff_id)
         self.staff_id = staff_id

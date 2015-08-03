@@ -28,6 +28,7 @@ module Protocol
            @conduct = @assessment.conducts.all
            @digital_docs= @assessment.digital_documents.all
            @locations = @assessment.locations.all
+           @attach_document = @assessment.attach_documents.all
         end
 
         def edit
