@@ -33,19 +33,22 @@
 
     #online.tab-pane.fade{:role => "tabpanel"}
       .listview
-        - local_users_list do |u|
+        - local_users_list do |ul|
           %a.lv-item{:href => ""}
             .media
               .pull-left.p-relative
-                - if u.avatar?
-                  = image_tag(u.avatar.url,:class => "lv-avatar bgm-blue")
+                - if ul.avatar?
+                  .lv-avatar
+                    = image_tag(ul.avatar.url, width:35)
                 - else
                   .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
-                    = u.name[0]
+                    = ul.name[0]
               .media-body
                 .lv-title
-                  = u.name
+                  = ul.name
                 %small.lv-small
-                  Último acesso
+                  Setor:
+                  = ul.sector_current.present? ? ul.sector_current.name : '-'
                   %br/
-                  = u.user.last_sign_in_at.strftime('%d/%m/%Y %H:%M') if u.user.present? && u.user.last_sign_in_at.present?
+                  Telefone:
+                  = ul.branch_line.present? ? ul.branch_line.telephone : '-'
