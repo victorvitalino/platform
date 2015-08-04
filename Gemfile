@@ -29,10 +29,7 @@ gem 'email_validator'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
-<<<<<<< HEAD
 gem 'jquery-datatables-rails', '~> 3.3.0'
-=======
->>>>>>> 7b0a456581587ebf80956019df9ea284fed38c0c
 
 gem 'codhab_barcode', git: 'https://github.com/codhab/codhab_barcode.git'
 
@@ -49,7 +46,7 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg' 
+  gem 'pg'
 end
 
 
