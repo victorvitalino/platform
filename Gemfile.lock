@@ -26,6 +26,12 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/concourse
+  specs:
+    concourse (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/dashboard
   specs:
     dashboard (0.0.1)
@@ -351,6 +357,7 @@ DEPENDENCIES
   carrierwave
   cms!
   codhab_barcode!
+  concourse!
   dashboard!
   devise
   email_validator
