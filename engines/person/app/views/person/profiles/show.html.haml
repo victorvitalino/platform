@@ -37,13 +37,13 @@
         %h2 Pessoas do Setor
         .pmob-body
           .row
-            - local_users_list do |u|
-              %a.col-xs-2{:href => "#{person.profile_url(u)}"}
-                - if u.avatar?
-                  = image_tag(u.avatar.url,:class => "lv-avatar bgm-blue")
+            - profile_users(@user.sector_current) do |qa|
+              %a.col-xs-2{:href => "#{person.profile_url(qa)}"}
+                - if qa.avatar?
+                  = image_tag(qa.avatar.url,:class => "lv-avatar bgm-blue")
                 - else
                   .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
-                    = u.name[0]
+                    = qa.name[0]
     .pm-body.clearfix
       .pmb-block
         .pmbb-header

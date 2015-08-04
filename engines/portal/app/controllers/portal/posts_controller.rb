@@ -1,5 +1,5 @@
 module Portal
-  class  PostsController < ApplicationController
+  class PostsController < ApplicationController
 
     # GET /posts
     def index
