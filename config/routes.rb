@@ -34,11 +34,11 @@ Rails.application.routes.draw do
 
   constraints DomainConstraint do
     mount Portal::Engine => '/',            as: 'portal'
+    mount Regularization::Engine  => "/regularizacao",  as: 'regularization'
   end
 
   mount Schedule::Engine        => "/agendamento",    as: 'schedule'
   mount Notify::Engine          => "/notificacao",    as: 'notify'
-  mount Regularization::Engine  => "/regularizacao",  as: 'regularization'
   mount Address::Engine         => "/endereco",       as: 'address'
 
 end
