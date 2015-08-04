@@ -29,6 +29,8 @@ gem 'email_validator'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
+gem 'jquery-datatables-rails', '~> 3.3.0'
+
 gem 'codhab_barcode', git: 'https://github.com/codhab/codhab_barcode.git'
 
 group :development, :test do

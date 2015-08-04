@@ -3,6 +3,7 @@ module Person
     has_one :user, as: :account, dependent: :destroy
     accepts_nested_attributes_for :user
 
+    default_scope { where(status: true)}
     has_many :permissions, class_name: "Person::StaffPermission"
 
     has_many :conducts, class_name: "Protocol::Conduct"
@@ -13,10 +14,10 @@ module Person
     belongs_to :job
     belongs_to :branch_line
 
-    validates_uniqueness_of :code, :rg, :cpf
+#    validates_uniqueness_of :code, :rg, :cpf
 
-    validates :cpf, cpf: true
-    validates_date :born, :before => lambda {18.years.ago}
+#    validates :cpf, cpf: true
+ #   validates_date :born, :before => lambda {18.years.ago}
 
     mount_uploader :avatar, Person::AvatarUploader
     mount_uploader :curriculum, Person::CurriculumUploader
