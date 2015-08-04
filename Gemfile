@@ -13,6 +13,7 @@ gem 'carrierwave'
 gem 'simple_form'
 gem 'haml-rails'
 gem 'devise'
+gem 'devise_security_extension'
 #gem 'pundit', :git => 'https://github.com/elabs/pundit.git', :branch => 'namespaces'
 gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
 gem 'redactor-rails'
@@ -36,13 +37,8 @@ gem 'codhab_barcode', git: 'https://github.com/codhab/codhab_barcode.git'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
-  gem 'guard'
-  gem 'guard-rails'
-  gem 'guard-livereload'
-  gem 'thin'
-  gem 'figaro'
+  
+    gem 'figaro'
 end
 
 group :production do

@@ -31,7 +31,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
       t.integer :account_id
       t.string :account_type
-
+      t.text :unique_session_id, :limit => 1
+      
       t.timestamps
     end
 

@@ -587,6 +587,7 @@ ActiveRecord::Schema.define(version: 20150731195644) do
     t.string   "last_sign_in_ip"
     t.integer  "account_id"
     t.string   "account_type"
+    t.text     "unique_session_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
