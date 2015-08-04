@@ -1,0 +1,34 @@
+- if @result.present?
+  %span.c-black Total de Chamados #
+  = @result.count
+  %br
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr.info
+          %th OS
+          %th Categoria
+          %th Assunto
+          %th Setor
+          %th Data Abertura
+          %th Data Fechamento
+          %th Tempo de Atendimento
+      %tbody
+        - @result.each do |a|
+          %tr
+            %td
+              = link_to a.number , order_service_monitor_service_orders_path(a)
+            %td
+              = a.category_i18n
+            %td
+              = a.subject
+            %td
+              = a.sector.name
+            %td
+              = a.created_at.strftime("%d/%m/%Y - %H:%M")
+            %td
+              = a.finalized_in ? a.finalized_in.strftime("%d/%m/%Y - %H:%M") : 'ainda não finalizado' 
+            %td
+              = distance_of_time_in_words(a.created_at.to_i, a.finalized_in.to_i)
+
+        

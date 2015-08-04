@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  document_father_id: 
+  document_child_id: 
+  attach_type_id: 
+  sector_id: 
+  staff_id: 
+
+two:
+  document_father_id: 
+  document_child_id: 
+  attach_type_id: 
+  sector_id: 
+  staff_id: 

@@ -1,10 +1,10 @@
 module Protocol
     class ConductsController < ApplicationController
      layout 'layouts/material'
-      before_action :set_allotment, except: [:add,:send_conduct,:staffies,:receive]
+      before_action :set_allotment, except: [:add,:send_conduct,:staffies,:receive,:update_docs]
       before_action :set_conduct, only:[:destroy,:show]
       before_action :set_conducts, only: [:index, :new,:add,:destroy, :send_conduct]
-
+      after_action :update_allotment, only: [:create]
 
         def index
             #authorize @conducts
@@ -16,9 +16,6 @@ module Protocol
             #authorize @conduct
             #parametro 4 documento recebido pelo setor
             @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector)
-            if !@conduct_result.present?
-                 flash[:warning] = "Documento não existe ou não está no seu setor!"
-            end
 
         end
 
@@ -39,8 +36,30 @@ module Protocol
             end
         end
 
-          def receive
-            @conduct_receive = Protocol::Conduct.find_sector(current_user.account.sector_current.id).where(conduct_type: 1)
+        def receive
+            @conduct = Protocol::Conduct.new
+            @conduct_receive = Protocol::Conduct.find_sector(current_user.account.sector_current.id,1)
+        end
+
+        def return
+            @conduct = Protocol::Conduct.new
+            @conduct_receive = Protocol::Conduct.find_sector(current_user.account.sector_current.id,1)
+        end
+
+         def update_docs
+            #authorize @location
+            @assessment = Protocol::Assessment.find(params[:assessment_ids])
+                @assessment.each do |a|
+                    @conduct = Protocol::Conduct.new
+                    allotment = Protocol::Conduct.where(assessment_id: a.id).last
+                    @conduct.allotment_id = allotment.allotment_id
+                    @conduct.conduct_type = params[:type].to_i
+                    @conduct.assessment_id = a.id
+                    @conduct.sector_id = current_user.account.sector_current.id
+                    @conduct.staff_id = current_user.account.id
+                    @conduct .save
+                end
+            redirect_to allotments_path
         end
 
 
@@ -55,11 +74,15 @@ module Protocol
            @conduct = @allotment.conducts.new
         end
 
+        def update_allotment
+            @allotment.update(amount_docs:@allotment_conduct.count, status: true)
+       end
+
         def create
 
-            @allotment = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.account.sector_current.id)
+            @allotment_conduct = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.account.sector_current.id)
             #authorize @conduct
-             @allotment.each do |lote|
+             @allotment_conduct.each do |lote|
                 @conduct = Protocol::Conduct.new(set_conduct_params)
                 @conduct.allotment_id = params[:allotment_id]
                 @conduct.conduct_type = 1
@@ -88,7 +111,7 @@ module Protocol
 
 
         def set_conducts
-            @conducts = Conduct.find_allotment(params[:allotment_id]).where(conduct_type: 0)
+            @conducts = Conduct.find_allotment(params[:allotment_id])
         end
 
         def set_conduct
@@ -98,6 +121,8 @@ module Protocol
         def set_allotment
             @allotment = Allotment.find(params[:allotment_id])
         end
+
+
 
         def set_conduct_params
                 params.require(:conduct).permit(:description, :conduct_type,:assessment_id,:sector_id,:allotment_id)

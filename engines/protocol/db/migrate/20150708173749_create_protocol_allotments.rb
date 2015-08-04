@@ -4,6 +4,8 @@ class CreateProtocolAllotments < ActiveRecord::Migration
       t.text :description
       t.integer :priority
       t.date :replay_date
+      t.integer :amount_docs
+      t.boolean :status, default: :false
       t.references :sector, index: true #, foreign_key: true
       t.references :staff, index: true#, foreign_key: true
       t.timestamps null: false

@@ -1,9 +1,21 @@
 .card
-  .card-header.ch-alt
+  .card-header
     %h2
       Remessas
-      = link_to 'nova remessa', new_allotment_path, remote: true, class: 'btn btn-success pull-right'
-      %small Listagem de remessas
+    %ul.lv-actions.actions
+      %li.dropdown
+        %a{"aria-expanded" => "true", "data-toggle" => "dropdown", :href => ""}
+          %i.md.md-more-vert
+        %ul.dropdown-menu.dropdown-menu-right
+          %li
+            = link_to 'Receber remessa', receive_path
+          %li
+            = link_to 'Devolver remessa', return_path
+    %small Listagem de remessas
+    %br
+    %br
+    = link_to 'Novo Remessa', new_allotment_path, remote: true, class: 'btn btn-success pull-right'
+  .card-body.card-padding
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
       %table.table.table-hover.table-bordered
         %thead
@@ -12,6 +24,7 @@
             %th Descrição
             %th Prioridade
             %th Data de Resposta
+            %th Quantidade de Documentos
             %th Ações
         %tbody.index-allotment
           = render 'index'

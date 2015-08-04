@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730164045) do
+ActiveRecord::Schema.define(version: 20150731195644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -422,10 +422,12 @@ ActiveRecord::Schema.define(version: 20150730164045) do
     t.text     "description"
     t.integer  "priority"
     t.date     "replay_date"
+    t.integer  "amount_docs"
+    t.boolean  "status",      default: false
     t.integer  "sector_id"
     t.integer  "staff_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "protocol_allotments", ["sector_id"], name: "index_protocol_allotments_on_sector_id", using: :btree
@@ -458,6 +460,21 @@ ActiveRecord::Schema.define(version: 20150730164045) do
   add_index "protocol_assessments", ["sector_id"], name: "index_protocol_assessments_on_sector_id", using: :btree
   add_index "protocol_assessments", ["staff_id"], name: "index_protocol_assessments_on_staff_id", using: :btree
   add_index "protocol_assessments", ["subject_id"], name: "index_protocol_assessments_on_subject_id", using: :btree
+
+  create_table "protocol_attach_documents", force: :cascade do |t|
+    t.integer  "document_father_id"
+    t.integer  "document_child_id"
+    t.integer  "attach_type"
+    t.integer  "sector_id"
+    t.integer  "staff_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "protocol_attach_documents", ["document_child_id"], name: "index_protocol_attach_documents_on_document_child_id", using: :btree
+  add_index "protocol_attach_documents", ["document_father_id"], name: "index_protocol_attach_documents_on_document_father_id", using: :btree
+  add_index "protocol_attach_documents", ["sector_id"], name: "index_protocol_attach_documents_on_sector_id", using: :btree
+  add_index "protocol_attach_documents", ["staff_id"], name: "index_protocol_attach_documents_on_staff_id", using: :btree
 
   create_table "protocol_conducts", force: :cascade do |t|
     t.text     "description"

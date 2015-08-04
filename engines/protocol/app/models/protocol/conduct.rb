@@ -11,9 +11,9 @@ module Protocol
 
     scope :find_last, -> { where(created_at: Conduct.select("MAX(created_at)").group(:assessment_id))}
 
-    scope :find_sector, -> (sector) { where(created_at: Conduct.select("MAX(created_at)").where(sector_id: sector).group(:assessment_id))}
+    scope :find_sector, -> (sector,type) { where(created_at: Conduct.select("MAX(created_at)").where(sector_id: sector).group(:assessment_id), conduct_type: type)}
 
-    scope :find_allotment, -> (allotment) { where(created_at: Conduct.select("MAX(created_at)").where(allotment_id: allotment).group(:assessment_id))}
+    scope :find_allotment, -> (allotment) { where(created_at: Conduct.select("MAX(created_at)").where(allotment_id: allotment).group(:assessment_id), conduct_type: 0)}
 
 
     # QUERY DO
