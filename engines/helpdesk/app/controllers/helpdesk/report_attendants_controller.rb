@@ -11,12 +11,6 @@ module Helpdesk
     	sector = Person::Sector.find_by_prefex(100)
       @sector_users = Person::Staff.where(sector_current_id: sector.id)
       @result = Helpdesk::OrderService.where(responsible_id: @user, status: "4")
-
-      
-      
-      if !@result.present?
-        flash[:warning] = "Usuário não possui neunhum atendimento!"
-      end
     end
 
     private
