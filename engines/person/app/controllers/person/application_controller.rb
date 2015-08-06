@@ -1,3 +1,5 @@
+require_dependency 'engines/person/app/helpers/person/application_helper'
+
 module Person
   class ApplicationController < ActionController::Base
     layout 'material'

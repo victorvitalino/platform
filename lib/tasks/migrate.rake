@@ -6,45 +6,56 @@ namespace :migrate do
   task :staff => :environment do
     @index = 0
     @error = Array.new
-    CSV.foreach("lib/files/migrate/#{ENV['DATA_MIGRATE']}/person_staff.csv", :col_sep => ";") do |row|
+    CSV.foreach("lib/files/migrate/#{ENV['DATE_MIGRATE']}/person_staff.csv", :col_sep => ";") do |row|
+
+      begin
       @staff = Person::Staff.new
       @staff.name             = row[0].to_s.strip.downcase
       @staff.code             = row[1].to_s.strip.downcase
-      @staff.email            = row[3].to_s.strip.downcase
-      @staff.status           = row[4]
+      @staff.email            = row[4].to_s.strip.downcase
+      @staff.status           = row[5]
       
-      @staff.start_hour       = Time.parse("#{row[5]}:00")
-      @staff.end_hour         = Time.parse("#{row[6]}:00")
+      @staff.created_at       = row[3]
+      puts row[6]
+      @staff.start_hour       = Time.parse("#{row[6]}:00")
+      @staff.end_hour         = Time.parse("#{row[7]}:00")
      
-      @staff.wekeend          = row[7]
-      @staff.born             = row[8]
-      @staff.job_id           = row[9]
-      @staff.rg               = row[10]
-      @staff.rg_org           = row[11]
-      @staff.cpf              = row[12]
-      @staff.date_contract    = row[13]
-      @staff.date_contract    = row[13]
-      @staff.date_shudown     = row[14]
-      @staff.blood_type       = row[15]
-      @staff.sector_current   = row[16]
-      @staff.sector_origin    = row[17]
+      @staff.wekeend          = false
+      @staff.born             = row[9]
+      @staff.job_id           = row[10]
+      @staff.rg               = row[11]
+      @staff.rg_org           = row[12]
+      @staff.cpf              = row[13].to_s.gsub('.', '').gsub('-','')
+      @staff.date_contract    = row[14]
+      @staff.date_shutdown    = row[15]
+      @staff.blood_type       = row[16]
+      @staff.sector_current_id   = row[17]
+      @staff.sector_origin_id    = row[18]
 
-      @staff.build_user(username: @staff.code, password: row[2], password_confirmation: row[2])
+      @staff.build_user(username: @staff.code, password: '12345678', password_confirmation: '12345678')
 
-      if @staff.save!
-        @index = @index + 1
-        puts "SSAÊ MERMAO | #{@index}"
-      else
-        puts "CULPA DO COTA"
+      rescue Exception => e
+      
+        puts "È CULPA DO COTA - #{e} - CARLINHO É UM VIADO"
       end
-    
+      
+      begin
+        if @staff.save!
+          @index = @index + 1
+          puts "SSAÊ MERMAO | #{@index}"
+        else
+          puts "CULPA DO COTA"
+        end
+      rescue
+        puts "DEU ERRO FILHA DA MÃE, DEU ERRO, ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+      end
     end
   end
 
   task :sector => :environment do
     @index = 0
     @error = Array.new
-    CSV.foreach("lib/files/migrate/#{ENV['DATA_MIGRATE']}/person_sector.csv", :col_sep => ";") do |row|
+    CSV.foreach("lib/files/migrate/#{ENV['DATE_MIGRATE']}/person_sector.csv", :col_sep => ";") do |row|
       @sector = Person::Sector.new
       
       @sector.name    = row[0].to_s.strip.downcase
@@ -69,7 +80,7 @@ namespace :migrate do
   task :job => :environment do
     @index = 0
     @error = Array.new
-    CSV.foreach("lib/files/migrate/#{ENV['DATA_MIGRATE']}/person_job.csv", :col_sep => ";") do |row|
+    CSV.foreach("lib/files/migrate/#{ENV['DATE_MIGRATE']}/person_job.csv", :col_sep => ";") do |row|
       @job = Person::Job.new
       
       @job.name    = row[0].to_s.strip.downcase
