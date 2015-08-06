@@ -11,10 +11,6 @@ module Helpdesk
       @sector_all = Person::Sector.where(status: true)
       
       @result = Helpdesk::OrderService.where(sector_id: @sector, status: "4")
-      
-      if !@result.present?
-        flash[:warning] = "Setor não possui nehum chamado!"
-      end
     end
 
 

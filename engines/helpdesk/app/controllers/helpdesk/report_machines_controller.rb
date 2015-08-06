@@ -10,12 +10,6 @@ module Helpdesk
     def new
       @goods =  Patrimony::Good.all
       @result = Helpdesk::OrderService.where(good_id: @machine, status: "4")
-
-      
-      
-      if !@result.present?
-        flash[:warning] = "Usuário não possui neunhum atendimento!"
-      end
     end
 
     private
