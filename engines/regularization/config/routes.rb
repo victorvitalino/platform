@@ -1,5 +1,14 @@
 Regularization::Engine.routes.draw do
-  resources :requeriments
-  resources :addresses
-  resources :bank_slips
+
+  constraints DomainConstraint do 
+    resources :requeriments
+    resources :addresses
+    resources :bank_slips
+  end
+
+  constraints SubdomainConstraint do 
+    resources :addresses
+    resources :bank_slips
+    resources :requeriments
+  end
 end
