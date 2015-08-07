@@ -12,6 +12,7 @@ module ApplicationHelper
   def local_users_list
 
    @user_current = current_user.account
+   byebug
    if @user_current.sector_current.present?
      @user_current.sector_current.staffs.each do |ul|
         yield ul

@@ -13,9 +13,9 @@ development:
 production:
   <<: *default
   database: codhab_production
-  username: <%= ENV['db_user'] %>
-  password: <%= ENV['db_pass'] %>
-  host: <%= ENV['db_host'] %>
+  username: postgres
+  password: codhab072771472
+  host: 10.233.38.16
 
 test:
   <<: *default

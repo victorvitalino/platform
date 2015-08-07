@@ -37,8 +37,8 @@ gem 'codhab_barcode', git: 'https://github.com/codhab/codhab_barcode.git'
 
 group :development, :test do
   gem 'sqlite3'
-  
-    gem 'figaro'
+  gem 'byebug'
+  gem 'figaro'
 end
 
 group :production do
