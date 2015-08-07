@@ -17,4 +17,4 @@
 /tmp
 /public/uploads/*
 /config/application.yml
-/lib/files/migrate
+/lib/files/migrate/current
