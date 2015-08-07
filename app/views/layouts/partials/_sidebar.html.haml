@@ -124,4 +124,17 @@
               - if policy(:Location, namespace: Protocol).index?
                 %li
                   = link_to "localizações", protocol.new_location_path   
+            
+        %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-description>
+              Regularização
+            %ul{style: ('display:block;' if params[:module] == "regularization")}
+              %li= link_to "atendimento", regularization_treatment.treatments_path
+              %li= link_to "atendentes", regularization_treatment.attendants_path
+              %li= link_to "consulta requerimento"
+              %li= link_to "consulta candidato"
+              %li= link_to "consulta endereço"
+              %li= link_to "relatórios"
 

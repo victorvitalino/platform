@@ -14,8 +14,8 @@ class CreateAddressUnits < ActiveRecord::Migration
       t.boolean :donate
       t.date :date_donate
       t.date :date_iptu
-      t.date :registration_iptu
-      t.string :certificate
+      t.string :registration_iptu
+      t.boolean :certificate
       t.references :situation_unit, index: true#, foreign_key: true
       t.references :type_use_unit, index: true#, foreign_key: true
       t.references :city, index: true

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  staff_id: 
+  service_station_id: 
+  counter: 1
+  privilege: 
+
+two:
+  staff_id: 
+  service_station_id: 
+  counter: 1
+  privilege: 
