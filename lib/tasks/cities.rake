@@ -6,7 +6,7 @@ require 'csv'
 module BRPopulate
   def self.states
     http = Net::HTTP.new('raw.githubusercontent.com', 443); http.use_ssl = true
-    JSON.parse http.get('/codhab/plataform/master/lib/files/cities.json').body
+    JSON.parse http.get('/codhab/plataform/master/lib/files/base/address_cities.json').body
   end
 
   def self.capital?(city, state)

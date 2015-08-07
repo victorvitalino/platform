@@ -5,8 +5,8 @@ require 'json'
 
 module BRPopulate
   def self.states
-    http = Net::HTTP.new('raw.githubusercontent.com', 443); http.use_ssl = true
-    JSON.parse http.get('lib/files/migrate/current/cities.json').body
+    http = Net::HTTP.new('raw.githubusercontent.com', 443 ); http.use_ssl = true
+    JSON.parse http.get('/codhab/plataform/master/lib/files/migrate/base/address_cities.json').body
   end
 
   def self.capital?(city, state)
