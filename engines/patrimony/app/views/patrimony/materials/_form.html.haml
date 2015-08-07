@@ -12,12 +12,15 @@
    .row
     .col-md-12
      = f.label :type_material, class: 'fg-label'
-     = f.association :type_material, label: false
-   .row 
-    .col-md-12
-     = f.label :status, class: 'fg-label'
-     = f.input :status, label: false, input_html: { class: 'options' }
+     = f.association :type_material, label: false, prompt: 'selecione...'
    .row
     .col-md-12
-     = f.submit :submit, class: 'btn btn-success'
+     .checkbox.m-b-15
+      %label
+       = f.check_box :status
+       %i.input-helper
+       = f.label :status, class: 'fg-label'
+   .row
+    .col-md-12
+     = f.button :submit, class: 'btn btn-success'
    %br/

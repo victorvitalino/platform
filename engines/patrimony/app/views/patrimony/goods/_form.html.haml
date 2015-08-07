@@ -2,31 +2,34 @@
  .col-md-12
   = simple_form_for @good, remote: true do |f|
    .row
-    .col-md-8
+    .col-md-6
      = f.label :code_goods, class: 'fg-label'
      = f.input :code_goods, label: false, input_html: { placeholder: 'Digite número de patrimônio'}
-    .col-md-3
-     = f.label :date_acquisition, class: 'fg-label'
-     = f.input :date_acquisition, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@good.date_acquisition) ? localize(f.object.date_acquisition) : nil}
+    .col-md-5
+     = f.label :date_acquisition, as: 'string', class: 'fg-label'
+     = f.input :date_acquisition, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@good.date_acquisition) ? localize(f.object.date_acquisition) : nil} 
    .row
     .col-md-6
      = f.label :sector, class: 'fg-label'
-     = f.association :sector, label: false
+     = f.association :sector, label: false, prompt: 'selecione...'
     .col-md-6
      = f.label :property, class: 'fg-label'
-     = f.association :property, label: false
+     = f.association :property, label: false,prompt: 'selecione...'
    .row
     .col-md-6
      = f.label :material, class: 'fg-label'
-     = f.association :material, label: false
+     = f.association :material, label: false,prompt: 'selecione...'
    .row
     .col-md-12
-     = f.label :status, class: 'fg-label'
-     = f.check_box :status, class: "checkbox"
+     .checkbox.m-b-15
+      %label
+       = f.check_box :status
+       %i.input-helper
+       = f.label :status, class: 'fg-label'
    %br/  
    .row
     .col-md-12
-     = f.submit :submit, class: 'btn btn-success'
+     = f.button :submit, class: 'btn btn-success'
    %br/
 
 
