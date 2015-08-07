@@ -8,15 +8,16 @@ module Helpdesk
     end
 
     def new
-    	sector = Person::Sector.find_by_prefex(100)
-      @sector_users = Person::Staff.where(sector_current_id: sector.id)
-      @result = Helpdesk::OrderService.where(responsible_id: @user, status: "4")
-
+    	
+      sector = Person::Sector.find_by_prefex(100)
       
-      
-      if !@result.present?
-        flash[:warning] = "Usuário não possui neunhum atendimento!"
+      if sector.present?
+        @sector_users = Person::Staff.where(sector_current_id: sector.id)
       end
+      
+      @result = Helpdesk::OrderService.where(responsible_id: @user, status: "4")
+      
+        
     end
 
     private

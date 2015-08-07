@@ -87,8 +87,8 @@
           .logo.mobilewrap
             %a.mobile.menubutton{:alt => "ACC menu button", :href => "#"}
             %a.link-logo{:href => "#"}
-              = link_to image_tag('/portal/logo_codhab.png', width: '132', class: 'nomobile'), portal.root_path
-              = link_to image_tag('/portal/logo_codhab.png', width: '185', class: 'mobile'), portal.root_path
+              = link_to image_tag('/images/logo_codhab.png', width: '132', class: 'nomobile'), portal.root_path
+              = link_to image_tag('/images/logo_codhab.png', width: '185', class: 'mobile'), portal.root_path
           %nav#main-menu
             %ul
               %li.habitacao.main-link
@@ -129,9 +129,9 @@
                       %li
                         = link_to 'Meu Cadastro', regularization.requeriments_path
                       %li
-                        = link_to '2º Via de Boleto', regularization.requeriments_path
+                        = link_to '2º Via de Boleto', regularization.bank_slips_path
                       %li
-                        = link_to 'Agendar / Reagendar atendimento', 'regularizacao'
+                        = link_to 'Agendar / Reagendar atendimento', '#'
                   %li.first
                     %a{:href => "#", :class => "linkD"} Cidades Consolidadas
                     %ul.submenu-item

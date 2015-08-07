@@ -10,12 +10,6 @@ module Helpdesk
     def new
       @users = Person::Staff.all
       @result = Helpdesk::OrderService.where(staff_id: @user, status: "4")
-
-      
-      
-      if !@result.present?
-        flash[:warning] = "Usuário não possui neunhum atendimento!"
-      end
     end
 
     private

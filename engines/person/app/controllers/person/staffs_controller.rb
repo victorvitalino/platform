@@ -73,11 +73,11 @@ module Person
     end
 
     def set_staffs
-      @staffs = Staff.all
+      @staffs = Staff.includes(:sector_current).unscoped.all
     end
 
     def set_staff
-      @staff = Staff.find(params[:id])
+      @staff = Staff.unscoped.find(params[:id])
     end
 
     def set_staff_status

@@ -15,7 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
-/storage/files/uploads
-/public/uploads/files
-/public/uploads/images
+/public/uploads/*
 /config/application.yml
+/lib/files/migrate/current

@@ -6,7 +6,7 @@ require 'csv'
 module BRPopulate
   def self.states
     http = Net::HTTP.new('raw.githubusercontent.com', 443); http.use_ssl = true
-    JSON.parse http.get('/codhab/plataform/master/lib/files/cities.json').body
+    JSON.parse http.get('/codhab/plataform/master/lib/files/base/address_cities.json').body
   end
 
   def self.capital?(city, state)
@@ -36,17 +36,4 @@ namespace :cities do
     BRPopulate.populate
   end
 
-  desc 'migração de endereços parcial'
-  task :migrate_address => :environment do 
-    CSV.foreach("lib/files/endereco_parcial.csv", :col_sep => ";") do |row|
-      @unit = Address::Unit.new
-      @unit.city_id = row[0]
-      @unit.block   = row[2] 
-      @unit.group   = row[4]
-      @unit.unit    = row[5]
-      @unit.program = row[16]
-      @unit.complete_address = row[9]
-      @unit.save
-    end
-  end
 end

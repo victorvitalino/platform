@@ -23,6 +23,7 @@ module Helpdesk
 
     # GET /order_services/1/edit
     def edit
+      
     end
     # POST /order_services
     def create
@@ -56,17 +57,27 @@ module Helpdesk
       # Use callbacks to share common setup or constraints between actions.
       def set_order_service
         @order_service = OrderService.find(params[:id])
-
-
       end
 
       def set_order_services
-        @order_services_open = OrderService.where('status = 0')
-        @order_services_reopened = OrderService.where('status = 1')
-        @order_services_inprogress = OrderService.where('status = 2')
-        @order_services_solved = OrderService.where('status = 3')
-        @order_services_closed = OrderService.where('status = 4').limit(100)
-        @order_services_analysis = OrderService.where('status = 5')
+        @attendant = Attendant.find_by_staff_id(current_user.account.id)
+        if @attendant.present?
+         if @attendant.type_attendant == 'system'
+           @order_services_open = OrderService.where(status:  0, category: 'system')
+           @order_services_reopened = OrderService.where(status:  1, category: 'system')
+           @order_services_inprogress = OrderService.where(status:  2, category: 'system')
+           @order_services_solved = OrderService.where(status:  3, category: 'system')
+           @order_services_closed = OrderService.where(status:  4, category: 'system').limit(100)
+           @order_services_analysis = OrderService.where(status:  5, category: 'system')
+         else
+           @order_services_open = OrderService.where(status:  0, category: 'infrastructure')
+           @order_services_reopened = OrderService.where(status:  1, category: 'infrastructure')
+           @order_services_inprogress = OrderService.where(status:  2, category: 'infrastructure')
+           @order_services_solved = OrderService.where(status:  3, category: 'infrastructure')
+           @order_services_closed = OrderService.where(status:  4, category: 'infrastructure').limit(100)
+           @order_services_analysis = OrderService.where(status:  5, category: 'infrastructure')
+         end
+        end
       end
 
       # Only allow a trusted parameter "white list" through.

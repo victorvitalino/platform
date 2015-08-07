@@ -77,11 +77,14 @@
             %ul{style: ('display:block;' if params[:module] == "helpdesk")}
               - if policy(:OrderService, namespace: Helpdesk).index?
                 %li
-                  = link_to "todos os chamados", helpdesk.order_services_path
+                  - if current_user.account.administrator?
+                    = link_to "todos os chamados", helpdesk.order_services_path
+                  - else
+                    
               - if policy(:OrderServiceUser, namespace: Helpdesk).index?
                 %li
                   - if current_user.account.administrator?
-                    
+                  
                   - else
                     = link_to "meus chamados", helpdesk.order_service_users_path
               - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
@@ -121,4 +124,17 @@
               - if policy(:Location, namespace: Protocol).index?
                 %li
                   = link_to "localizações", protocol.new_location_path   
+            
+        %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-description>
+              Regularização
+            %ul{style: ('display:block;' if params[:module] == "regularization")}
+              %li= link_to "atendimento", regularization_treatment.treatments_path
+              %li= link_to "atendentes", regularization_treatment.attendants_path
+              %li= link_to "consulta requerimento"
+              %li= link_to "consulta candidato"
+              %li= link_to "consulta endereço"
+              %li= link_to "relatórios"
 

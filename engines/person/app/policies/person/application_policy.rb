@@ -8,9 +8,10 @@ module Person
     end
 
     def index?
-      return true if user.account.administrator
-      @system = Person::System.find_by_code('1')#CÓDIGO SISTEMA GESTÃO DE PESSOAS
-      return true if user.account.permissions.where(system_id: @system.id, status: true).present?
+      true
+      #return true if user.account.administrator
+      #@system = Person::System.find_by_code('1')#CÓDIGO SISTEMA GESTÃO DE PESSOAS
+      #return true if user.account.permissions.where(system_id: @system.id, status: true).present?
     end
 
     def show?

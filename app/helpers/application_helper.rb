@@ -3,14 +3,16 @@ module ApplicationHelper
   end
 
   def users_list
-    @query = Person::Staff.all.order(:name)
+    @query = Person::Staff.includes(:sector_current).all.order(:name)
     @query.each do |u|
       yield u
     end
   end
 
   def local_users_list
+
    @user_current = current_user.account
+   byebug
    if @user_current.sector_current.present?
      @user_current.sector_current.staffs.each do |ul|
         yield ul

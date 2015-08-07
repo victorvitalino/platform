@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  city_id: 
+  observation: MyString
+  service_station_type: 1
+  convocation_id: 
+
+two:
+  name: MyString
+  city_id: 
+  observation: MyString
+  service_station_type: 1
+  convocation_id: 
