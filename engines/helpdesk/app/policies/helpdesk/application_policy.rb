@@ -8,9 +8,10 @@ module Helpdesk
     end
 
     def index?
-      return true if user.account.administrator
-      @system = Person::System.find_by_code('2')#CÓDIGO SISTEMA HELP DESK
-      return true if user.account.permissions.where(system_id: @system.id, status: true).present?
+      true
+      #return true if user.account.administrator
+      #@system = Person::System.find_by_code('2')#CÓDIGO SISTEMA HELP DESK
+      #return true if user.account.permissions.where(system_id: @system.id, status: true).present?
     end
 
     def show?

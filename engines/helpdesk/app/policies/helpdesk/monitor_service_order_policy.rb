@@ -6,7 +6,8 @@ module Helpdesk
 		end
 
 		def create?
-			allow?(2201)
+			#allow?(2201)
+			true
 		end
 
 		def assume?
@@ -22,15 +23,18 @@ module Helpdesk
 		end
 
 		def open_again?
-			allow?(2104)
+			#allow?(2104)
+			true
 		end
 
 		def update?
-			allow?(2201)
+			#allow?(2201)
+			true
 		end
 
 		def destroy?
-			allow?(2202)
+			#allow?(2202)
+			true
 		end
 	end
 end

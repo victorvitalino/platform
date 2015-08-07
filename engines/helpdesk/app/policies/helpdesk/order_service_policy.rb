@@ -1,11 +1,13 @@
 module Helpdesk
 	class OrderServicePolicy < ApplicationPolicy
 		def index?
-			allow?(2103)
+			#allow?(2103)
+			true
 		end
 
 		def create?
-			allow?(2101)
+			#allow?(2101)
+			true
 		end
 
 		def update?

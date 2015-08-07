@@ -34,9 +34,6 @@ module Helpdesk
       @order_service.update(responsible_id: current_user.account.id, status: 2)    
       MonitorServiceOrder.create(appointment: "chamado assumido:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize :monitor_service_orders
-      respond_to do |format|
-        format.js { flash[:success]  = "Ordem de serviço assumida com sucesso!" }
-      end
     end
 
 
@@ -51,9 +48,6 @@ module Helpdesk
       @order_service.update(finalized_in: DateTime.now)
       MonitorServiceOrder.create(appointment: "chamado fechado:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize :monitor_service_orders
-      respond_to do |format|
-        format.js { flash[:success] = "Ordem de serviço fechada com sucesso!" }
-      end
     end
 
     # POST /monitor_service_orders

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  type_attendant: MyString
+  staff_id: 
+
+two:
+  code: MyString
+  type_attendant: MyString
+  staff_id: 
