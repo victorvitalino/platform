@@ -7,6 +7,8 @@ module Patrimony
 
    	has_many :down_goods
    	has_many :drives
+
+    validates_presence_of :code_goods, :date_acquisition, :sector, :property, :material
    	
     scope :property, -> (org) {where(property:org)}
   end

@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      'patrimony/good': Patrimonio
+    attributes:
+      'patrimony/good':
+        code_goods: "Patrimonio"
+        date_acquisition: "Date de Aquisiçao"
+        sector: "Setor"
+        property: "Propriedade"
+        material: "Material"
+        status: "Status"
+

@@ -11,9 +11,12 @@
      = f.input :description, label: false, input_html: { placeholder: 'Digite a descrição'}
    .row
     .col-md-12
-     = f.label :status, class: 'fg-label'
-     = f.input :status, label: false, input_html: { class: 'options' }
+     .checkbox.m-b-15
+      %label
+       = f.check_box :status
+       %i.input-helper
+       = f.label :status, class: 'fg-label'
    .row
     .col-md-12
-     = f.submit :submit, class: 'btn btn-success'
+     = f.button :submit, class: 'btn btn-success'
    %br/

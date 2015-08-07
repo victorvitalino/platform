@@ -1,6 +1,6 @@
 .row
  .col-md-12
-  = simple_form_for @order_service, remote: true do |f|
+  = simple_form_for (@order_service), remote: true do |f|
    .row
     - Helpdesk::OrderService.categories_i18n.each do |key, value|
      .col-md-3

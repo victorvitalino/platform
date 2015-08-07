@@ -32,6 +32,7 @@
       .lv-body{:style => "min-height: 270px"}
         .lv-item.media
           .media-body
+            = flash_message.html_safe
             = render 'index_search'
 
             

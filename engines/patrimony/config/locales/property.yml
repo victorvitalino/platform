@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'patrimony/property': Propriedade
+    attributes:
+      'patrimony/property':
+        name: "Nome"
+        description: "Descriçao"

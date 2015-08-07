@@ -1,6 +1,6 @@
-= simple_form_for @order_service, url:  order_service_path(@order_service.id, @monitor_service_order.id)  do |f|
+= simple_form_for @order_service, url:  order_service_path(@order_service.id, @monitor_service_order.id) do |f|
  .card
-  = flash_messages
+ 
  .card
   .card-header{class: (@order_service.status == "solved") ? 'bgm-green' : 'bgm-red'} 
    %h2
@@ -15,13 +15,13 @@
      -if @order_service.status == "closed" && @order_service.staff_id == current_user.account.id
       = link_to '<i class="md md-trending-up c-white"></i>'.html_safe,order_service_monitor_service_order_open_again_path(@order_service.id, @monitor_service_order.id), remote: true, class: 'pull-right', title: "Reabrir Chamado" if policy(:MonitorServiceOrder, namespace: Helpdesk).open_again?
      -else
-
   .card-body.card-padding
    .row
     .col-md-4
      = f.label "Assunto:", class: 'label_order_service'
      = @order_service.subject
      %br
+     
      = f.label "Categoria:", class: 'label_order_service'
      = @order_service.category_i18n
      %br

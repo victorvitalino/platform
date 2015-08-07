@@ -1,5 +1,3 @@
-- if @monitor_service_order.errors.any?
-	$('#modal .modal-content').html("#{escape_javascript(render 'new')}")
-- else
-	$('#modal').modal('hide')
-	$('.index-appointment').html("#{escape_javascript(render 'index_appointment')}")
+- if !@monitor_service_order.errors.any?
+    $('.index-order-service').html("#{escape_javascript(render 'index_order_service')}")
+    $('.index-appointment').html("#{escape_javascript(render 'index_appointment')}")
