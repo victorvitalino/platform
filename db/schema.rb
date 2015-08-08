@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150806135420) do
-=======
-ActiveRecord::Schema.define(version: 20150806171816) do
->>>>>>> 8177909b3f72b692ae4f8f74a924abf8e04aed49
+ActiveRecord::Schema.define(version: 20150808145303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150806171816) do
 
   create_table "address_situation_units", force: :cascade do |t|
     t.string   "description"
+    t.string   "code"
     t.boolean  "status",      default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -93,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150806171816) do
     t.date     "date_donate"
     t.date     "date_iptu"
     t.string   "registration_iptu"
-    t.boolean  "certificate"
+    t.string   "certificate"
     t.integer  "situation_unit_id"
     t.integer  "type_use_unit_id"
     t.integer  "city_id"
@@ -105,6 +102,73 @@ ActiveRecord::Schema.define(version: 20150806171816) do
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
   add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
   add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
+
+  create_table "candidate_adjuct_cadastres", force: :cascade do |t|
+    t.string   "name"
+    t.string   "telephone"
+    t.string   "telephone_optional"
+    t.string   "celphone"
+    t.string   "email"
+    t.integer  "special_condition_id"
+    t.boolean  "flag_special_condition", default: false
+    t.string   "cep"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.string   "address"
+    t.string   "adjunt_address"
+    t.string   "number_address"
+    t.float    "income"
+    t.string   "work"
+    t.string   "cep_work"
+    t.integer  "city_work_id"
+    t.integer  "state_work_id"
+    t.string   "address_work"
+    t.string   "adjunt_address_work"
+    t.string   "number_address_work"
+    t.string   "nis"
+    t.string   "cid"
+    t.integer  "cadastre_id"
+    t.integer  "civil_state_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "candidate_adjuct_cadastres", ["cadastre_id"], name: "index_candidate_adjuct_cadastres_on_cadastre_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["city_id"], name: "index_candidate_adjuct_cadastres_on_city_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["city_work_id"], name: "index_candidate_adjuct_cadastres_on_city_work_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["civil_state_id"], name: "index_candidate_adjuct_cadastres_on_civil_state_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["special_condition_id"], name: "index_candidate_adjuct_cadastres_on_special_condition_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["state_id"], name: "index_candidate_adjuct_cadastres_on_state_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["state_work_id"], name: "index_candidate_adjuct_cadastres_on_state_work_id", using: :btree
+
+  create_table "candidate_cadastres", force: :cascade do |t|
+    t.string   "cpf"
+    t.integer  "gender",      default: 0
+    t.date     "born"
+    t.string   "born_uf"
+    t.string   "rg"
+    t.string   "rg_org"
+    t.string   "place_birth"
+    t.date     "arrival_df"
+    t.string   "seqcad"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "candidate_civil_states", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "candidate_special_conditions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "name"
@@ -564,8 +628,8 @@ ActiveRecord::Schema.define(version: 20150806171816) do
     t.string   "rg"
     t.string   "email"
     t.string   "nationality"
-    t.string   "marital_status"
-    t.string   "gender"
+    t.integer  "marital_status"
+    t.integer  "gender"
     t.date     "born"
     t.string   "telephone"
     t.string   "celphone"
@@ -606,6 +670,28 @@ ActiveRecord::Schema.define(version: 20150806171816) do
   add_index "regularization_treatment_service_stations", ["city_id"], name: "index_regularization_treatment_service_stations_on_city_id", using: :btree
   add_index "regularization_treatment_service_stations", ["conv_id"], name: "index_regularization_treatment_service_stations_on_conv_id", using: :btree
 
+  create_table "user_candidates", force: :cascade do |t|
+    t.string   "username",               default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "account_id"
+    t.string   "account_type"
+    t.text     "unique_session_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "user_candidates", ["account_id", "account_type"], name: "index_user_candidates_on_account_id_and_account_type", using: :btree
+  add_index "user_candidates", ["reset_password_token"], name: "index_user_candidates_on_reset_password_token", unique: true, using: :btree
+  add_index "user_candidates", ["username"], name: "index_user_candidates_on_username", unique: true, using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -620,8 +706,8 @@ ActiveRecord::Schema.define(version: 20150806171816) do
     t.integer  "account_id"
     t.string   "account_type"
     t.text     "unique_session_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree

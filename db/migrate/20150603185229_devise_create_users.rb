@@ -20,7 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :last_sign_in_ip
 
       ## Confirmable
-      # t.string   :confirmation_token
+      # t.string   :confirmation_tokenb
       # t.datetime :confirmed_at
       # t.datetime :confirmation_sent_at
       # t.string   :unconfirmed_email # Only if using reconfirmable
@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :account_type
       t.text :unique_session_id, :limit => 1
       
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :users, :username,  unique: true

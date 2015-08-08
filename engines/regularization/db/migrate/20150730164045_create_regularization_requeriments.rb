@@ -6,8 +6,8 @@ class CreateRegularizationRequeriments < ActiveRecord::Migration
       t.string  :rg
       t.string  :email
       t.string  :nationality
-      t.string  :marital_status
-      t.string  :gender
+      t.integer  :marital_status
+      t.integer  :gender
       t.date    :born
       t.string  :telephone
       t.string  :celphone

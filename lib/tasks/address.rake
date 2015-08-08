@@ -5,8 +5,7 @@ require 'json'
 
 module BRPopulate
   def self.states
-    http = Net::HTTP.new('raw.githubusercontent.com', 443 ); http.use_ssl = true
-    JSON.parse http.get('/codhab/plataform/master/lib/files/migrate/base/address_cities.json').body
+    JSON.parse File.read('lib/files/migrate/current/address_cities.json')
   end
 
   def self.capital?(city, state)
@@ -16,14 +15,14 @@ module BRPopulate
   def self.populate
     states.each do |state|
       state_obj = Address::State.new(:acronym => state["acronym"], :name => state["name"])
-      state_obj.save
+      state_obj.save!
       
       state["cities"].each do |city|
         c = Address::City.new
         c.name = city
         c.state = state_obj
         c.capital = capital?(city, state)
-        c.save
+        c.save!
       end
     end
   end
@@ -32,7 +31,7 @@ end
 namespace :address do
 
   desc "Migração de cidades"
-  task :migrate => :environment do
+  task :cities => :environment do
     BRPopulate.populate
   end
 
@@ -42,7 +41,7 @@ namespace :address do
   task :units => :environment do
     @index = 0
    
-    CSV.foreach("lib/files/migrate/current/address_units.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/migrate/current/address_units.csv") do |row|
 
       begin
         @unit = Address::Unit.create({
@@ -51,17 +50,17 @@ namespace :address do
           block:              row[3].to_s.upcase.strip,
           acron_group:        row[4].to_s.upcase.strip,
           group:              row[5].to_s.upcase.strip,
-          unit:               row[7].to_s.upcase.strip,
-          cep_unit:           row[8],
-          area:               row[10].to_s.upcase.strip,
-          complete_address:   row[11].to_s.upcase.strip,
-          sefaz:              row[12],
-          donate:             row[13],
-          date_iptu:          row[14],
-          registration_iptu:  row[15],
-          certificate:        row[16],
-          situation_unit_id:  row[17],
-          program:            row[18]
+          unit:               row[6].to_s.upcase.strip,
+          cep_unit:           row[7],
+          area:               row[9].to_s.upcase.strip,
+          complete_address:   row[10].to_s.upcase.strip,
+          sefaz:              row[11],
+          donate:             row[12],
+          date_iptu:          row[13],
+          registration_iptu:  row[14],
+          certificate:        row[15],
+          situation_unit_id:  row[16],
+          program:            row[17]
 
         })
         
@@ -81,15 +80,15 @@ namespace :address do
 
   desc "Migração de registros"
 
-  task :unit_registers => :environment do
+  task :registry_units => :environment do
     @index = 0
    
-    CSV.foreach("lib/files/migrate/current/address_unit_registers.csv", :col_sep => ";") do |row|
+    CSV.foreach("lib/files/migrate/current/address_registry_units.csv", :col_sep => "#") do |row|
 
       begin
         @unit = Address::RegistryUnit.create({
-          situation:  row[0],
-          unit_id:    row[1],
+          situation:  row[1],
+          unit_id:    row[0],
           status:     true
         })
         
@@ -112,21 +111,30 @@ namespace :address do
     
     @situation = Address::SituationUnit.create([
       {description: "imóvel vago", status: true},
+      {description: "emitir tcu", status: true},
+      {description: "imóvel distribuido", status: true},
+      {description: "regularização TERRACAP", status: true},
+      {description: "imóvel interditado", status: true},
       {description: "imóvel reservado", status: true},
-      {description: "imóvel distribuido", status: true}
+      {description: "imóvel retomado (em processo)", status: true},
+      {description: "fixação SHB Q 02 - SOBRADINHO II", status: true},
+      {description: "imóvel invadido", status: true},
+      {description: "imóvel sub judice", status: true},
+      {description: "lei 2.731/01 - Decreto 23.592/03 (COMREG)", status: true},
+      {description: "cadastramento em depuração", status: true}
     ])
-  
+
   end
 
 
   desc "Migração de Catorios"
 
   task :notary_offices => :environment do
-    
-    CSV.foreach("lib/files/migrate/current/address_notary_offices.csv", :col_sep => ";") do |row|
+    @index = 0
+    CSV.foreach("lib/files/migrate/current/address_notary_offices.csv", :col_sep => "#") do |row|
 
       begin
-       @situation = Address::RegistryUnit.create({
+       @situation = Address::NotaryOffice.create({
          unit_code:        row[1],
          office:           row[2],
          date_code:        row[3],

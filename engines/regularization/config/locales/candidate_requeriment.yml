@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'regularization/candidate': Requerimento
+    attributes:
+      'regularization/candidate':
+        cpf: "CPF"
+        born: "Data de nascimento"

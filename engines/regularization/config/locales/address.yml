@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      'regularization/requeriment': Requerimento
+    attributes:
+      'regularization/requeriment':
+        description: "Descrição"
+        priority: "Prioridade"
+        replay_date: "Data de Resposta"
+        spouse_name: "Nome conjugê"
+        spouse_cpf:   "CPF conjugê"
+        martial_status: "Estado civil"
+        gender: "Sexo"
+        nationality: "Nacionalidade"

@@ -6,7 +6,7 @@ namespace :person do
   task :staffs => :environment do
     @index = 0
     @error = Array.new
-    CSV.foreach("lib/files/migrate/#{ENV['MIGRATE']}/person_staffs.csv", :col_sep => ";") do |row|
+    CSV.foreach("lib/files/migrate/current/person_staffs.csv", :col_sep => ",") do |row|
 
       begin
       @staff = Person::Staff.new
@@ -16,7 +16,6 @@ namespace :person do
       @staff.status           = row[5]
       
       @staff.created_at       = row[3]
-      puts row[6]
       @staff.start_hour       = Time.parse("#{row[6]}:00")
       @staff.end_hour         = Time.parse("#{row[7]}:00")
      
@@ -33,7 +32,11 @@ namespace :person do
       @staff.sector_origin_id    = row[18]
 
       @staff.build_user(username: @staff.code, password: '12345678', password_confirmation: '12345678')
-      @staff.save!
+      
+      if @staff.save!
+        @index = @index + 1 
+        puts @index
+      end
 
       rescue Exception => e
         puts "ERROR- #{e}"
@@ -41,9 +44,9 @@ namespace :person do
     end
   end
 
-  task :sector => :environment do
+  task :sectors => :environment do
     @index = 0
-    CSV.foreach("lib/files/migrate/#{ENV['MIGRATE']}/person_sectors.csv", :col_sep => ";") do |row|
+    CSV.foreach("lib/files/migrate/current/person_sectors.csv", :col_sep => ";") do |row|
       @sector = Person::Sector.new
       
       @sector.name    = row[0].to_s.strip.downcase
@@ -63,10 +66,10 @@ namespace :person do
 
   end
 
-  task :job => :environment do
+  task :jobs => :environment do
 
     @index = 0
-    CSV.foreach("lib/files/migrate/#{ENV['MIGRATE']}/person_jobs.csv", :col_sep => ";") do |row|
+    CSV.foreach("lib/files/migrate/current/person_jobs.csv", :col_sep => ";") do |row|
       @job = Person::Job.new
       
       @job.name    = row[0].to_s.strip.downcase
