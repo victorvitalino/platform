@@ -14,7 +14,9 @@ module Helpdesk
 
     def create
       @attendant = Attendant.new(attendant_params)
-      @attendant.save
+      if @attendant.save
+        flash[:success] = t :success
+      end
     end
 
     def edit
@@ -22,12 +24,15 @@ module Helpdesk
     end
 
     def update
-      @attendant.update(attendant_params)
+      if @attendant.update(attendant_params)
+        flash[:success] = t :success
+      end
     end
 
     def destroy
       if @attendant.destroy
         redirect_to action: 'new'
+        flash[:success] = t :success
       end 
     end
     private

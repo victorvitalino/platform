@@ -4,6 +4,8 @@ module Helpdesk
 
 
     enum type_attendant: {"infrastructure" => 0, "system" => 1}
+    validates :staff_id, uniqueness: true
+
 
 
   end

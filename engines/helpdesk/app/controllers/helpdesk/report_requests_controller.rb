@@ -9,7 +9,7 @@ module Helpdesk
 
      def new
       @requests = Helpdesk::OrderService.select("subject")
-      @result =   Helpdesk::OrderService.where(subject: params[:subject], status: "4")
+      @result =   Helpdesk::OrderService.where(subject: params[:subject])
       @request =  Helpdesk::OrderService.find_by_subject(params[:subject])
     end
   end

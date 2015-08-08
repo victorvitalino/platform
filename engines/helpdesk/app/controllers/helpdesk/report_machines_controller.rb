@@ -9,7 +9,7 @@ module Helpdesk
 
     def new
       @goods =  Patrimony::Good.all
-      @result = Helpdesk::OrderService.where(good_id: @machine, status: "4")
+      @result = Helpdesk::OrderService.where(good_id: @machine)
     end
 
     private

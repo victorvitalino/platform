@@ -31,23 +31,36 @@ module Helpdesk
     end
 
     def assume
-      @order_service.update(responsible_id: current_user.account.id, status: 2)    
-      MonitorServiceOrder.create(appointment: "chamado assumido:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize :monitor_service_orders
+      if @order_service.update(responsible_id: current_user.account.id, status: 2)
+        MonitorServiceOrder.create(appointment: "chamado assumido:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+        flash[:success] = t :success
+      else
+        flash[:danger] = t :error
+      end
     end
 
 
     def open_again
-      @order_service.update(status: 1)
-      MonitorServiceOrder.create(appointment: "chamado reaberto:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize :monitor_service_orders
+      if @order_service.update(status: 1)
+        MonitorServiceOrder.create(appointment: "chamado reaberto:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+       flash[:success] = t :success
+      else
+        flash[:danger] = t :error
+      end
     end
 
     def close_order_service
-      @order_service.update(status: 3)
-      @order_service.update(finalized_in: DateTime.now)
-      MonitorServiceOrder.create(appointment: "chamado fechado:", order_service_id: @order_service.id, staff_id: current_user.account.id)
       authorize :monitor_service_orders
+      if @order_service.update(status: 3)
+       @order_service.update(finalized_in: DateTime.now)
+       MonitorServiceOrder.create(appointment: "chamado fechado:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+       flash[:success] = t :success
+      else
+       flash[:danger] = t :error
+      end
+
     end
 
     # POST /monitor_service_orders

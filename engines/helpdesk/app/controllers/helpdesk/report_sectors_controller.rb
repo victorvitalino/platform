@@ -9,8 +9,8 @@ module Helpdesk
 
     def new
       @sector_all = Person::Sector.where(status: true)
-      
-      @result = Helpdesk::OrderService.where(sector_id: @sector, status: "4")
+      result = Helpdesk::OrderService.where(sector_id: @sector)
+      @result = Helpdesk::OrderService.where(sector_id: @sector)
     end
 
 

@@ -1,5 +1,6 @@
 module Helpdesk
   module ApplicationHelper
+    
     def flash_message
       messages = ""
       [:notice, :info, :warning, :error].each {|type|
@@ -10,5 +11,6 @@ module Helpdesk
 
       messages
    end
+   
   end
 end

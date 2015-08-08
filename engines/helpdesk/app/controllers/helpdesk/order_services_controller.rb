@@ -63,19 +63,19 @@ module Helpdesk
         @attendant = Attendant.find_by_staff_id(current_user.account.id)
         if @attendant.present?
          if @attendant.type_attendant == 'system'
-           @order_services_open = OrderService.where(status:  0, category: 'system')
-           @order_services_reopened = OrderService.where(status:  1, category: 'system')
-           @order_services_inprogress = OrderService.where(status:  2, category: 'system')
-           @order_services_solved = OrderService.where(status:  3, category: 'system')
-           @order_services_closed = OrderService.where(status:  4, category: 'system').limit(100)
-           @order_services_analysis = OrderService.where(status:  5, category: 'system')
+           @order_services_open = OrderService.where(status:  0, category: 1)
+           @order_services_reopened = OrderService.where(status:  1, category: 1)
+           @order_services_inprogress = OrderService.where(status:  2, category: 1)
+           @order_services_solved = OrderService.where(status:  3, category: 1)
+           @order_services_closed = OrderService.where(status:  4, category: 1).limit(100)
+           @order_services_analysis = OrderService.where(status:  5, category: 1)
          else
-           @order_services_open = OrderService.where(status:  0, category: 'infrastructure')
-           @order_services_reopened = OrderService.where(status:  1, category: 'infrastructure')
-           @order_services_inprogress = OrderService.where(status:  2, category: 'infrastructure')
-           @order_services_solved = OrderService.where(status:  3, category: 'infrastructure')
-           @order_services_closed = OrderService.where(status:  4, category: 'infrastructure').limit(100)
-           @order_services_analysis = OrderService.where(status:  5, category: 'infrastructure')
+           @order_services_open = OrderService.where(status:  0, category: 0)
+           @order_services_reopened = OrderService.where(status:  1, category: 0)
+           @order_services_inprogress = OrderService.where(status:  2, category: 0)
+           @order_services_solved = OrderService.where(status:  3, category: 0)
+           @order_services_closed = OrderService.where(status:  4, category: 0).limit(100)
+           @order_services_analysis = OrderService.where(status:  5, category: 0)
          end
         end
       end
