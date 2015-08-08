@@ -1,9 +1,9 @@
-class DeviseCreateUsers < ActiveRecord::Migration
+class DeviseCreateUserCandidates < ActiveRecord::Migration
   def change
-    create_table(:users) do |t|
+    create_table(:user_candidates) do |t|
       ## Database authenticatable
-      t.string :username,             null: false, default: ""
-      t.string :encrypted_password,   null: false, default: ""
+      t.string :username,              null: false, default: ""
+      t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -20,7 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :last_sign_in_ip
 
       ## Confirmable
-      # t.string   :confirmation_tokenb
+      # t.string   :confirmation_token
       # t.datetime :confirmed_at
       # t.datetime :confirmation_sent_at
       # t.string   :unconfirmed_email # Only if using reconfirmable
@@ -29,17 +29,20 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
+
       t.integer :account_id
-      t.string :account_type
-      t.text :unique_session_id, :limit => 1
+      t.string  :account_type
+      t.text    :unique_session_id, :limit => 1
       
+
       t.timestamps null: false
     end
 
-    add_index :users, :username,  unique: true
-    add_index :users, :reset_password_token, unique: true
-    add_index :users, [:account_id, :account_type]
-    # add_index :users, :confirmation_token,   unique: true
-    # add_index :users, :unlock_token,         unique: true
+    add_index :user_candidates, :username,  unique: true
+    add_index :user_candidates, :reset_password_token, unique: true
+    add_index :user_candidates, [:account_id, :account_type]
+   
+    # add_index :candidates, :confirmation_token,   unique: true
+    # add_index :candidates, :unlock_token,         unique: true
   end
 end

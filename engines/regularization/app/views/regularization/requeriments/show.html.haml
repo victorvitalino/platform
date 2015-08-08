@@ -1,15 +1,22 @@
 .row
-  .col-md-12
+  .col-md-10
     %h1.title Requerimento de regularização
+    %h4
+      = link_to "Imprimir Boleto", requeriment_bank_slip_path(@requeriment), class: 'btn btn-success btn-sm'
+      = link_to "Voltar", regularization.requeriment_candidates_path, class: 'btn btn-default btn-sm'
 %hr/
 .row
   .col-md-6
     %h4.title Endereço a ser regularizado
     %h5= "#{@address.city.name} - #{@address.complete_address}"
-  .col-md-6
+  .col-md-4
     %h4.title  Data de criação do requerimento
     %h5
       %p= @requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
+.row
+  .col-md-3
+    %h4.title Protocolo
+    %h5= "CODHAB#{@requeriment.id}#{@requeriment.created_at.strftime('%Y')}"
 %br/
 .row
   .col-md-12

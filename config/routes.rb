@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   mount RedactorRails::Engine => '/redactor_rails'
 
+  devise_for :user_candidates
   devise_for :users, :path  => '',
              :path_names    => {:sign_in  => 'acesso', :sign_out => 'sair'}
 
@@ -41,5 +42,5 @@ Rails.application.routes.draw do
   mount Schedule::Engine        => "/agendamento",    as: 'schedule'
   mount Notify::Engine          => "/notificacao",    as: 'notify'
   mount Address::Engine         => "/endereco",       as: 'address'
-
+  mount Candidate::Engine       => "/candidatos",     as: 'candidate'
 end

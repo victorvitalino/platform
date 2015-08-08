@@ -5,11 +5,11 @@ module Regularization
     end
 
     def new
-      @candidate = Candidate.new
+      @candidate = Regularization::Candidate.new
     end
 
     def create
-      @candidate = Candidate.new
+      @candidate = Regularization::Candidate.new
 
       if @candidate.valid?
         session[:candidate_id] = @candidate.id

@@ -1,11 +1,11 @@
-class User < ActiveRecord::Base
+class UserCandidate < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthableasd
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable,
          :rememberable, :trackable, :validatable, :session_limitable
-
-  belongs_to :account, polymorphic: true 
-
+  
+  belongs_to :account, polymorphic: true
+  
   validates :username, presence: true
 
   def email_required?
@@ -16,13 +16,9 @@ class User < ActiveRecord::Base
     false
   end
 
-  def staff?
-    (self.account_type == "Person::Staff")
+  def candidate?
+    (self.account_type == "Candidate::Cadastre")
   end
-
-  def concourse_candidate?
-    (self.account_type == "Concourse::Candidate")
-  end
-
 
 end
+

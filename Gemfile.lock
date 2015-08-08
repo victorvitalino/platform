@@ -19,6 +19,12 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/candidate
+  specs:
+    candidate (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/cms
   specs:
     cms (0.0.1)
@@ -301,6 +307,7 @@ PLATFORMS
 DEPENDENCIES
   address!
   byebug
+  candidate!
   carrierwave
   cms!
   codhab_barcode!

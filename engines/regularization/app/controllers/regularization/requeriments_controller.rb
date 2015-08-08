@@ -20,6 +20,8 @@ module Regularization
       end
     end
 
+    def bank_slip
+    end
 
     def show
       @requeriment = Requeriment.find(params[:id])
