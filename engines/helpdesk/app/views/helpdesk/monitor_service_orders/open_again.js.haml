@@ -1,4 +1,5 @@
 - if !@monitor_service_order.errors.any?
-    $('.index-order-service').html("#{escape_javascript(render 'index_order_service')}")
-    $('.index-appointment').html("#{escape_javascript(render 'index_appointment')}")
-    $('.notice').html("#{flash[:notice]}")
+  $('.index-order-service').html("#{escape_javascript(render 'index_order_service')}")
+  $('.index-appointment').html("#{escape_javascript(render 'index_appointment')}")
+  $(".container").prepend("<div class='alert alert-success'>#{escape_javascript(flash[:success])}</div>")
+  $(".container").show()

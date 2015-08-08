@@ -79,8 +79,7 @@
                 %li
                   - if current_user.account.administrator?
                     = link_to "todos os chamados", helpdesk.order_services_path
-                  - else
-                    
+                  - else                    
               - if policy(:OrderServiceUser, namespace: Helpdesk).index?
                 %li
                   - if current_user.account.administrator?
@@ -90,6 +89,8 @@
               - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
                 %li
                   = link_to "meus chamados", helpdesk.order_service_technicals_path
+                %li
+                  = link_to "atendentes", helpdesk.new_attendant_path  
                   %hr/
                 %li
                   = link_to "relatório por atendente", helpdesk.new_report_attendant_path

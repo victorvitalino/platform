@@ -20,7 +20,7 @@
             %td
               = link_to a.number , order_service_monitor_service_orders_path(a)
             %td
-              = a.responsible.name
+              = a.responsible.present? ? a.responsible.name : 'não assumido'
             %td
               = a.category_i18n
             %td
