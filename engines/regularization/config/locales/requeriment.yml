@@ -1,0 +1,20 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'regularization/requeriment':
+          attributes:
+            born:
+              before: 'Necessário ser maior de 18 anos'
+    models:
+      'regularization/requeriment': Requerimento
+    attributes:
+      'regularization/requeriment':
+        name: "Nome"
+        cpf: "CPF"
+        rg: "RG"
+        born: "Data de nascimento"
+        telephone: "Telefone"
+        celphone: "Celular"
+        income: "Renda"
+        owner: "Possui ou já possuio imóvel em seu nome?"

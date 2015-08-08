@@ -12,15 +12,23 @@
   .row
     .col-md-2
       = f.input :born, as: :string, input_html: { class: 'date'}
+     .col-md-2
+      = f.input :marital_status, as: :select, collection: Regularization::Requeriment.marital_statuses.map {|k,v| [k.humanize,k]} , prompt: 'selecione...'
     .col-md-2
-      = f.input :income
+      = f.input :nationality
+    .col-md-2
+      = f.input :gender, prompt: 'selecione...'
   .row
+    .col-md-4
+      = f.input :email
     .col-md-2
       = f.input :telephone
     .col-md-2
       = f.input :celphone
-  %hr/
-  .spouse_form
+      = @requeriment.marital_status
+
+  .spouse_form{"style": "#{(@requeriment.marital_status == 'solteiro') ? 'display: none' : 'display:block'}"}
+    %hr/
     .row
       .col-md-12
         %h5.title Dados do côjunge
@@ -32,8 +40,19 @@
   %hr/
   .row
     .col-md-4
+      = f.label :owner
       = f.input :owner, label: false, as: :radio_buttons
   %hr/
   .row
     .col-md-12
       = f.button :submit
+
+:javascript
+
+  $("#requeriment_marital_status").on('change', function() {
+    if($(this).val() == "união_estável") {
+      $(".spouse_form").show()
+    } else {
+      $(".spouse_form").hide()
+    }
+  })

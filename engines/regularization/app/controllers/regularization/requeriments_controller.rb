@@ -16,10 +16,14 @@ module Regularization
         flash[:success] = t :success
         redirect_to @requeriment
       else
-        render :new
+        render action: 'new'
       end
     end
 
+
+    def show
+      @requeriment = Requeriment.find(params[:id])
+    end
 
     private
 
@@ -36,7 +40,8 @@ module Regularization
     def set_params
       params.require(:requeriment).permit(:name, :cpf, :rg, :email, :nacionality, :martial_status,
                                           :gender, :born, :telephone, :celphone, :complete_address,
-                                          :income, :income, :spouse_name, :spouse_cpf, :owner)
+                                          :income, :income, :spouse_name, :spouse_cpf, :owner, 
+                                          :marital_status, :nationality)
     end
 
   end
