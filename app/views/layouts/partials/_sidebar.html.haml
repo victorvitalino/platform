@@ -4,14 +4,14 @@
       .profile-menu
         %a{:href => ""}
           .profile-pic
-            - if current_user.avatar?
-              = image_tag current_user.avatar_url
+            - if current_user.account.avatar?
+              = image_tag current_user.account.avatar_url
             - else
               .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
-                = current_user.name[0]
+                = current_user.account.name[0]
           .profile-info
             %b
-              = current_user.name
+              = current_user.account.name
             %i.md.md-arrow-drop-down
         %ul.main-menu
           %li
@@ -21,8 +21,6 @@
           %li
             = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
       %ul.main-menu
-        %li{class: ('active' if params[:module] == "intranet")}
-          = link_to "<i class='md   md-turned-in'></i> Intranet".html_safe, intranet.root_path
         %li{class: ('active' if params[:module] == "dashboard")}
           = link_to "<i class='md  md-dashboard'></i> Dashboard".html_safe, dashboard.root_path
         - if policy(:application, namespace: Person).index?
@@ -34,9 +32,9 @@
               - if policy(:job, namespace: Person).index?
                 %li
                   = link_to "cargos", person.jobs_path
-              - if policy(:user, namespace: Person).index?
+              - if policy(:staff, namespace: Person).index?
                 %li
-                  = link_to "usuarios", person.users_path
+                  = link_to "usuarios", person.staffs_path
               - if policy(:system, namespace: Person).index?
                 %li
                   = link_to "sistemas", person.systems_path
@@ -46,103 +44,97 @@
                   = link_to "setores", person.sectors_path
           %ul{style: ('display:block;' if @module == "person")}
         %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
-          %a{:href => ""}
-            %i.md.md-assignment-turned-in>
-            Gestão Concursos
-          %ul{style: ('display:block;' if params[:module] == "concourse")}
-            %li
-              = link_to "novo concurso", concourse.new_administrator_project_path
-            %li
-              = link_to "concursos", concourse.administrator_projects_path
-            %li
-              = link_to "categorias de concurso", concourse.administrator_project_categories_path
-            %li
-              = link_to "relatórios", concourse.administrator_reports_path
-        %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
-          %a{:href => ""}
-            %i.md.md-public>
-            Gestão Site
-          %ul{style: ('display:block;' if params[:module] == "cms")}
-            %li
-              = link_to "postagens", cms.posts_path
-            %li
-              = link_to "páginas", cms.pages_path
-            %li.divider
-            %li
-              = link_to "categorias de post", cms.post_categories_path
-            %li
-              = link_to "categorias de página", cms.page_categories_path
-            %li
-              = link_to "menu", cms.navs_path
-            %li
-              = link_to "categorias de menu", cms.nav_categories_path
-        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-          %a{:href => ""}
-            %i.md.md-attach-money>
-            Financeiro
-          %ul{style: ('display:block;' if params[:module] == "finance")}
-            %li
-              = link_to "emissão de boletos"
-        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-          %a{:href => ""}
-            %i.md.md-assignment>
-            Atendimento
-          %ul{style: ('display:block;' if params[:module] == "finance")}
-            %li
-              = link_to "habitação"
-            %li
-              = link_to "regularização"
-            %li
-              = link_to "agendamentos"
-            %li
-              = link_to "controle de senha"
-            %li
-              = link_to "painel"
-        - if defined? Habitation
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
+          - if policy(:application, namespace: Cms).index?
+            %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
+              %a{:href => ""}
+                %i.md.md-public>
+                Gestão Site
+              %ul{style: ('display:block;' if params[:module] == "cms")}
+                - if policy(:post, namespace: Cms).index?
+                  %li
+                    = link_to "postagens", cms.posts_path
+                - if policy(:page, namespace: Cms).index?
+                  %li
+                    = link_to "páginas", cms.pages_path
+                - if policy(:PostCategory, namespace: Cms).index?
+                  %li.divider
+                  %li
+                    = link_to "categorias de post", cms.post_categories_path
+                - if policy(:PageCategory, namespace: Cms).index?
+                  %li
+                    = link_to "categorias de página", cms.page_categories_path
+                - if policy(:nav, namespace: Cms).index?
+                  %li
+                    = link_to "menu", cms.navs_path
+                - if policy(:NavCategory, namespace: Cms).index?
+                  %li
+                    = link_to "categorias de menu", cms.nav_categories_path
+        %li.sub-menu{class: ('toggled active' if params[:module] == "helpdesk")}
+          - if policy(:application, namespace: Helpdesk).index?
             %a{:href => ""}
-              %i.md.md-home>
-              Habitação
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Regularization
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-event-available>
-              Regularização
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Patrimony
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-turned-in>
-              Patrimônio
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Assesment
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-my-library-books>
-              Protocolo
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Wiki
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-search>
-              Wiki
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
-        - if defined? Helpdesk
-          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-            %a{:href => ""}
-              %i.md.md-live-help>
+              %i.md.md-face-unlock>
               Helpdesk
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li
-                = link_to "cadastro"
+            %ul{style: ('display:block;' if params[:module] == "helpdesk")}
+              - if policy(:OrderService, namespace: Helpdesk).index?
+                %li
+                  - if current_user.account.administrator?
+                    = link_to "todos os chamados", helpdesk.order_services_path
+                  - else
+                    
+              - if policy(:OrderServiceUser, namespace: Helpdesk).index?
+                %li
+                  - if current_user.account.administrator?
+                  
+                  - else
+                    = link_to "meus chamados", helpdesk.order_service_users_path
+              - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
+                %li
+                  = link_to "meus chamados", helpdesk.order_service_technicals_path
+                  %hr/
+                %li
+                  = link_to "relatório por atendente", helpdesk.new_report_attendant_path
+                %li
+                  = link_to "relatório por setor", helpdesk.new_report_sector_path
+                %li
+                  = link_to "relatório por funcionário", helpdesk.new_report_employee_path
+                %li
+                  = link_to "relatório por tipo de solicitação", helpdesk.new_report_request_path
+                %li
+                  = link_to "relatório por máquina", helpdesk.new_report_machine_path
+                  
+                  
+        %li.sub-menu{class: ('toggled active' if params[:module] == "protocolo")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-description>
+              Protocolo
+            %ul{style: ('display:block;' if params[:module] == "protocolo")}
+              - if policy(:Assessment, namespace: Protocol).index?
+                %li
+                  = link_to "autuações", protocol.assessments_path
+              - if policy(:Allotment, namespace: Protocol).index?
+                %li
+                  = link_to "remessas", protocol.allotments_path
+              - if policy(:DocumentType, namespace: Protocol).index?
+                %li
+                  = link_to "tipo de documentos", protocol.document_types_path
+              - if policy(:Subject, namespace: Protocol).index?
+                %li
+                  = link_to "assuntos", protocol.subjects_path
+              - if policy(:Location, namespace: Protocol).index?
+                %li
+                  = link_to "localizações", protocol.new_location_path   
+            
+        %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-description>
+              Regularização
+            %ul{style: ('display:block;' if params[:module] == "regularization")}
+              %li= link_to "atendimento", regularization_treatment.treatments_path
+              %li= link_to "atendentes", regularization_treatment.attendants_path
+              %li= link_to "consulta requerimento"
+              %li= link_to "consulta candidato"
+              %li= link_to "consulta endereço"
+              %li= link_to "relatórios"
+

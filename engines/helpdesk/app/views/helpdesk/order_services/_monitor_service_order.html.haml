@@ -1,0 +1,6 @@
+.row
+ .col-md-12
+  = f.label :appointment, class: 'fg-label'
+  = f.input :appointment, label: false, input_html: {class: 'redactor', placeholder: 'informe o seu  problema'}
+  = f.label :attachment, as: 'file', class: 'fg-label'
+  = f.input :attachment, as: 'file', label: false, input_html: { placeholder: 'Selecione' }

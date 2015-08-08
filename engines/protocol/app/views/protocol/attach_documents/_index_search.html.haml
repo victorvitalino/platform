@@ -1,0 +1,23 @@
+- if @attach_result.present?
+  %span.c-black Documento Pesquisado
+  %br
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th Número
+          %th Tipo de Documento
+          %th Setor
+          %th Incluir na Remessa
+      %tbody
+        - @attach_result.each do |a|
+          %tr
+            %td
+              = a.assessment.document_number
+            %td
+              = a.assessment.document_type.name
+            %td
+              = a.sector.name
+            %td
+              = link_to "Anexar", add_attach_path(assessment_id: a.assessment.id, id: @attach_document.document_father.id), title: 'Anexar', 'data-toggle' => 'tooltip',  class: 'btn btn-primary waves-effect'
+              = link_to "Apensar", add_append_path(assessment_id: a.assessment.id, id: @attach_document.document_father.id), title: 'Apensar', 'data-toggle' => 'tooltip',  class: 'btn btn-success waves-effect'

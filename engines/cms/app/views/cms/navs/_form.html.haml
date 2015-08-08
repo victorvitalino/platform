@@ -5,32 +5,33 @@
         = f.label :name, class: 'fg-label'
         = f.input :name, label: false, input_html: { placeholder: 'Digite um título'}
     .row
-      .col-md-4
-        = f.label "Página", class: 'fg-label'
+      .col-md-6
+        = f.label :link_page, class: 'fg-label'
         = f.association :link_page, label: false, prompt: 'Selecione...'
-      .col-md-4
-        = f.label "Post", class: 'fg-label'
-        = f.association :link_post, label: false, prompt: 'Selecione...'
-      .col-md-4
-        = f.label "Categoria", class: 'fg-label'
+      .col-md-6
+        = f.label :category, class: 'fg-label'
         = f.association :category, label: false, prompt: 'Selecione...'
     .row
       .col-md-3
         = f.label :link_external, class: 'fg-label'
         = f.input :link_external, label: false, input_html: { placeholder: 'Digite um título'}
       .col-md-3
-        = f.label "Tipo de link ativo", class: 'fg-label'
+        = f.label :type_nav, class: 'fg-label'
         = f.input :type_nav, as: 'select',collection:Cms::Nav.type_navs.keys.to_a, label: false, prompt: 'Selecione...'
       .col-md-3
         .toggle-switch{"data-ts-color" => "blue"}
-          %label.ts-label{:for => "ts4"} Publicado
+          %label
+            .ts-label{:for => "ts4"}
+              = f.label :publish
           %br
           %br
           = f.check_box :publish, id: 'ts4',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts4"}
       .col-md-3
         .toggle-switch{"data-ts-color" => "blue"}
-          %label.ts-label{:for => "ts1"} Abrir em nova aba
+          %label
+            .ts-label{:for => "ts1"}
+              = f.label :target
           %br
           %br
           = f.check_box :target, id: 'ts1',hidden: 'hidden', type: 'checkbox'
@@ -38,4 +39,4 @@
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
-        = link_to 'Back', navs_path , class: 'btn btn-danger'
+        = link_to 'Voltar',navs_path , class: 'btn btn-danger'

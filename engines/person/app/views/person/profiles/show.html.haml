@@ -1,137 +1,93 @@
 .container
   .block-header
     %h2
-      =@user.name
       %small
         - if @user.job.present?
           = @user.job.name
-    %ul.actions.m-t-20.hidden-xs
-      %li.dropdown
-        %a{"data-toggle" => "dropdown", :href => ""}
-          %i.md.md-more-vert
-        %ul.dropdown-menu.dropdown-menu-right
-          %li
-            %a{:href => ""} Privacy Settings
-          %li
-            %a{:href => ""} Account Settings
-          %li
-            %a{:href => ""} Other Settings
-  #profile-main.card
+  #profile-main.card.profile-main-custom
     .pm-overview.c-overflow{:style => "overflow: hidden; outline: none;", :tabindex => "4"}
       .pmo-pic
         .p-relative
           %a{:href => ""}
-            %img.img-responsive{:alt => "", :src => @user.avatar}
-          .dropdown.pmop-message
-            %a.btn.bgm-white.btn-float.z-depth-1.waves-effect.waves-button.waves-float{"data-toggle" => "dropdown", :href => ""}
-              %i.md.md-message
-            .dropdown-menu
-              %textarea{:placeholder => "Write something..."}
-              %button.btn.bgm-green.btn-icon.waves-effect.waves-button.waves-float
-                %i.md.md-send
-          %a.pmop-edit{:href => ""}
-            %i.md.md-camera-alt
-            %span.hidden-xs Update Profile Picture
+          - if @user.avatar?
+            = image_tag @user.avatar_url
+          - else
+            .custom-avatar.bgm-blue
+              = @user.name[0].upcase
         .pmo-stat
-          %h2.m-0.c-white 1562
-          Total Connections
+          %h2.m-0.c-white
+            = @user.name
       .pmo-block.pmo-contact.hidden-xs
-        %h2 Contact
+        %h2 Contato
         %ul
           %li
             %i.md.md-phone
-            /=@user.sector_current.branch_lines.telephone.present?
+            = @user.branch_line.present? ? @user.branch_line.telephone : 'Não Informado'
           %li
             %i.md.md-email
-            =@user.email
+            -if @user.email?
+              = mail_to @user.email
+            -else
+              Não Informado
           %li
             %i.md.md-location-on
             %address.m-b-0
-              = @user.sector_current.present? ? @user.sector_current.name : nil
+              = @user.sector_current.present? ? @user.sector_current.name : 'Não Informado'
       .pmo-block.pmo-items.hidden-xs
-        %h2 Connections
+        %h2 Pessoas do Setor
         .pmob-body
           .row
-            %a.col-xs-2{:href => ""}
-              %img.img-circle{:alt => "", :src => "img/profile-pics/1.jpg"}
+            - profile_users(@user.sector_current) do |qa|
+              %a.col-xs-2{:href => "#{person.profile_url(qa)}"}
+                - if qa.avatar?
+                  = image_tag(qa.avatar.url,:class => "lv-avatar bgm-blue")
+                - else
+                  .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
+                    = qa.name[0]
     .pm-body.clearfix
-      .pmb-block
-        .pmbb-header
-          %h2
-            %i.md.md-equalizer.m-r-5
-            Summary
-          %ul.actions
-            %li.dropdown
-              %a{"data-toggle" => "dropdown", :href => ""}
-                %i.md.md-more-vert
-              %ul.dropdown-menu.dropdown-menu-right
-                %li
-                  %a{"data-pmb-action" => "edit", :href => ""} Edit
-        .pmbb-body.p-l-30
-          .pmbb-view
-            Sed eu est vulputate, fringilla ligula ac, maximus arcu. Donec sed felis vel magna mattis ornare ut non turpis. Sed id arcu elit. Sed nec sagittis tortor. Mauris ante urna, ornare sit amet mollis eu, aliquet ac ligula. Nullam dolor metus, suscipit ac imperdiet nec, consectetur sed ex. Sed cursus porttitor leo.
-          .pmbb-edit
-            .fg-line
-              %textarea.form-control{:placeholder => "Summary...", :rows => "5"} Sed eu est vulputate, fringilla ligula ac, maximus arcu. Donec sed felis vel magna mattis ornare ut non turpis. Sed id arcu elit. Sed nec sagittis tortor. Mauris ante urna, ornare sit amet mollis eu, aliquet ac ligula. Nullam dolor metus, suscipit ac imperdiet nec, consectetur sed ex. Sed cursus porttitor leo.
-            .m-t-10
-              %button.btn.btn-primary.btn-sm.waves-effect.waves-button.waves-float Save
-              %button.btn.btn-link.btn-sm.waves-effect.waves-button.waves-float{"data-pmb-action" => "reset"} Cancel
       .pmb-block
         .pmbb-header
           %h2
             %i.md.md-person.m-r-5
             Informações Basicas
-          %ul.actions
-            %li.dropdown
-              %a{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => ""}
-                %i.md.md-more-vert
-              %ul.dropdown-menu.dropdown-menu-right
-                %li
-                  %a{"data-pmb-action" => "edit", :href => ""} Edit
         .pmbb-body.p-l-30
           .pmbb-view
             %dl.dl-horizontal
               %dt Nome Completo
               %dd
-                =@user.name
+                =@user.name.present? ? @user.name : 'Não Informado'
             %dl.dl-horizontal
               %dt Matrícula
               %dd
-                =@user.code
+                =@user.code.present? ? @user.code : 'Não Informado'
             %dl.dl-horizontal
               %dt Aniversário
               %dd
-                =@user.born
+                =@user.born.strftime('%d/%m/%Y')
             %dl.dl-horizontal
               %dt Tipo Sanguineo
               %dd
-                =@user.blood_type
+                =@user.blood_type.upcase.present? ? @user.blood_type : 'Não Informado'
       .pmb-block
         .pmbb-header
           %h2
             %i.md.md-phone.m-r-5
             Informação de Contato
-          %ul.actions
-            %li.dropdown
-              %a{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => ""}
-                %i.md.md-more-vert
-              %ul.dropdown-menu.dropdown-menu-right
-                %li
-                  %a{"data-pmb-action" => "edit", :href => ""} Edit
         .pmbb-body.p-l-30
           .pmbb-view
             %dl.dl-horizontal
-              %dt Mobile Phone
-              %dd 00971 12345678 9
-            %dl.dl-horizontal
-              %dt Email Address
+              %dt Telefone do Setor
               %dd
-                =@user.email
+                = @user.branch_line.present? ? @user.branch_line.telephone : 'Não Informado'
+            %dl.dl-horizontal
+              %dt Email
+              %dd
+                =@user.email.present? ? @user.email : 'Não Informado'
             %dl.dl-horizontal
               %dt Setor de Origem
               %dd
-                = @user.sector_origin.present? ? @user.sector_origin.name : nil
+                = @user.sector_origin.present? ? @user.sector_origin.name : 'Não Informado'
             %dl.dl-horizontal
               %dt Setor Corrente
               %dd
-                = @user.sector_current.present? ? @user.sector_current.name : nil
+                = @user.sector_current.present? ? @user.sector_current.name : 'Não Informado'

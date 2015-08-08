@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/document_type': Tipo de Documento
+    attributes:
+      'protocol/document_type':
+        name: "Nome"
+        description: "Descrição"
+        prefex: "Prefixo"
+        status: "Status"

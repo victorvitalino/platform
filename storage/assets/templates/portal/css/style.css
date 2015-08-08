@@ -308,6 +308,7 @@ fieldset {
     margin-bottom: 20px
 }
 
+/*
 input[type="text"],input[type="password"],input[type="email"],textarea,select {
     border: 1px
     solid #ccc;
@@ -356,6 +357,7 @@ input[type="checkbox"] {
     display: inline
 }
 
+*/
 label span,
 legend
 span {
@@ -2771,10 +2773,10 @@ h3 {
     color: #012942
 }
 
-.topSlider {
+/*.topSlider {
     margin: 0
     0 -0px 0
-}
+}*/
 
 .topSlider
 .flexslider {
@@ -2808,7 +2810,7 @@ li {
     padding: 40px
     50px;
     margin-left: -17px;
-    height: 400px
+    height: 440px
 }
 
 .topSlider .flex-caption.regularizacao {

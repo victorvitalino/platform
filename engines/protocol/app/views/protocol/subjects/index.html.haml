@@ -1,0 +1,17 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Assunto
+      = link_to 'novo assunto', new_subject_path, remote: true, class: 'btn btn-success pull-right'
+      %small Listagem de Assuntos
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Nome
+          %th Código
+          %th Status
+          %th Ações
+      %tbody.index-subject
+        = render 'index'

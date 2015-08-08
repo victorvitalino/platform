@@ -4,6 +4,13 @@
       .main-content.your-council
         .internal
           .post-meta
+            .post-author
+              - if @page.author?
+                = @page.author
+                - if @page.link?
+                  = link_to @page.label_link, @page.link, target: "_BLANK"
+                - else
+                  = @page.label_link
             .post-date
               = @page.created_at.strftime('%d/%m/%Y')
           / /sn_post_meta
@@ -12,20 +19,15 @@
               = @page.title
             %p.img-thumbpost
               - if @page.active_photo?
-                - if @page.thumb?
-                  = image_tag @page.thumb, height:'140px'
-                  %br
-                  %i.autor-fots
-                    - if @page.photo_author?
-                      Foto:
-                      = @page.photo_author.html_safe\
+                - if @page.photo_author?
+                  %strong
+                    Foto:
+                    = @page.photo_author.html_safe
+                  = image_tag @page.thumbnail, width:'500px', height:'300px'
                   - if @page.photo_description?
                     %br
                     %i.desc-fots
                       = @page.photo_description.html_safe
             = @page.content.html_safe
-            - if @page.author?
-              Fonte:
-              = link_to @page.author, @page.link, target: "_BLANK"
             %a.back-to-top.launch.button{"aria-label" => "back to top", :href => "#"} Voltar ao Topo
             %div{:style => "clear: both;"}

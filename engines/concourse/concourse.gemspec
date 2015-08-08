@@ -7,8 +7,8 @@ require "concourse/version"
 Gem::Specification.new do |s|
   s.name        = "concourse"
   s.version     = Concourse::VERSION
-  s.authors     = ["elton.silva@codhab.df.gov.br"]
-  s.email       = ["elton.silva@codhab.df.gov.br"]
+  s.authors     = ["Elton Silva"]
+  s.email       = ["elton.chrls@gmail.com"]
   s.homepage    = ""
   s.summary     = "Summary of Concourse."
   s.description = "Description of Concourse."
@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency "rails", "~> 4.2.1"
-  s.add_dependency "haml-rails"
 
   s.add_development_dependency "sqlite3"
 end

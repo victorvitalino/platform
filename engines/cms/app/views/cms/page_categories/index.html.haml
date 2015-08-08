@@ -2,23 +2,23 @@
   .card-header.ch-alt
     %h2
       Categoria de Páginas
-      = link_to 'Nova Categoria', new_page_category_path, class: 'btn btn-success pull-right'
+      = link_to 'Nova Categoria', new_page_category_path, class: 'btn btn-success pull-right' if policy(:PageCategory, namespace: Cms).create?
       %small Listagem de categorias
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
       %thead
         %tr
           %th #
-          %th Name
-          %th Status
-          %th{:colspan => "3"} Actions
+          %th Nome
+          %th Publicado
+          %th{:colspan => "3"} Ações
 
       %tbody
         - @page_categories.each_with_index do |page_category, i|
           %tr
             %td= i+1
             %td= page_category.title
-            %td= page_category.status
+            %td= status_helper (page_category.status)
             %td.col-md-2
-              = link_to '', edit_page_category_path(page_category), class: 'md md-edit btn btn-primary'
-              = link_to '', page_category, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+              = link_to '', edit_page_category_path(page_category), class: 'md md-edit btn btn-primary'if policy(:PageCategory, namespace: Cms).update?
+              = link_to '', page_category, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }if policy(:PageCategory, namespace: Cms).destroy?

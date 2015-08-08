@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Appointment:
+  = @monitor_service_order.appointment
+%p
+  %b Attachment:
+  = @monitor_service_order.attachment
+%p
+  %b Name:
+  = @monitor_service_order.name
+%p
+  %b Status:
+  = @monitor_service_order.status
+%p
+  %b Order service:
+  = @monitor_service_order.order_service
+
+= link_to 'Edit', edit_monitor_service_order_path(@monitor_service_order)
+\|
+= link_to 'Back', monitor_service_orders_path

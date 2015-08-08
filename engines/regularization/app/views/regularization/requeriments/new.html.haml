@@ -1,0 +1,17 @@
+.row
+  .col-md-12
+    %h1.title Requerimento de regularização
+    %h3 2º Passo, Preencha seus dados
+%hr/
+.row
+  .col-md-12
+    %h4.title Endereço selecionado para requerimento de regularização
+.row
+  .col-md-12
+    %h5= "#{@address.city.name.upcase} - #{@address.complete_address}"
+.row
+  .col-md-12
+    %h5
+      = link_to "alterar endereço", regularization.new_address_path
+%hr/
+= render 'form'

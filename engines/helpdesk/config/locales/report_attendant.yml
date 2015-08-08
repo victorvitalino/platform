@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'helpdesk/report_attendant': Relatório de po Atendente
+    attributes:
+      'helpdesk/report_attendant':
+        staff: "Atendente"
+
+

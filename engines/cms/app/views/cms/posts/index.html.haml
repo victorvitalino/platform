@@ -2,7 +2,7 @@
   .card-header.ch-alt
     %h2
       Postagens
-      = link_to 'Novo Post', new_post_path, class: 'btn btn-success pull-right'
+      = link_to 'Novo Post', new_post_path, class: 'btn btn-success pull-right' if policy(:post, namespace: Cms).create?
       %small Listagem de posts
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
@@ -12,8 +12,8 @@
           %th Título
           %th Categoria da Postagem
           %th Publicado
-          %th data
-          %th{:colspan => '3'} Action
+          %th Data
+          %th{:colspan => '3'} Ações
 
       %tbody
         - @posts.each_with_index do |post, i|
@@ -21,8 +21,8 @@
             %td= i+1
             %td= post.title
             %td= post.post_category.title
-            %td= post.publish
-            %td= post.date
+            %td= status_helper (post.publish)
+            %td= post.date.strftime('%d-%m-%Y')
             %td.col-md-2
-              = link_to '', edit_post_path(post), class: 'md md-edit btn btn-primary'
-              = link_to '', post, :method => :delete, class: 'md md-delete btn btn-danger', :data => { :confirm => 'Are you sure?' }
+              = link_to '', edit_post_path(post), class: 'md md-edit btn btn-primary' if policy(:post, namespace: Cms).update?
+              = link_to '', post, :method => :delete, class: 'md md-delete btn btn-danger', :data => { :confirm => 'Are you sure?' } if policy(:post, namespace: Cms).destroy?

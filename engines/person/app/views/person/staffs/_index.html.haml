@@ -1,0 +1,12 @@
+- @staffs.each_with_index do |j, i|
+ %tr
+  %td.col-md-1= i + 1
+  %td= j.name
+  %td= j.code
+  %td= j.sector_current.name if j.sector_current.present?
+  %td= j.branch_line.telephone if j.branch_line.present?
+  %td.col-md-2
+   = link_to "", edit_staff_path(j),  title: 'Editar', 'data-toggle' => 'tooltip', class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float' if policy(:staff, namespace: Person).update?
+   = link_to "", staff_staff_permissions_path(j),  title: 'Permissões', 'data-toggle' => 'tooltip', class: 'md-done-all btn bgm-amber waves-effect waves-button waves-float' if policy(:StaffPermission, namespace: Person).index?
+   %span{class: "tr-#{j.id}"}
+    = link_status_to j.id, j.status

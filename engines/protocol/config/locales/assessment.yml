@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/assessment': Autuação
+    attributes:
+      'protocol/assessment':
+        number: "Número"
+        document_type: "Tipo de Documento"
+        subject: "Assunto"
+        year: "Ano"
+        prefex: "Prefixo"
+        document_number: "Número do Documento"
+        external_number: "Número Externo"
+        requesting_unit: "Unidade Solicitante"
+        external_agency: "Orgão Externo"
+        recipient: "Benefiário"
+        address: "Endereço"
+        cpf: "Cpf"
+        cnpj: "Cnpj"
+        sign_by: "Assinado por"
+        observation: "Observação"
+        description_subject: "Descrição do Assunto"

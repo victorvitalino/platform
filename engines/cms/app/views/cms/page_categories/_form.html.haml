@@ -1,9 +1,12 @@
 = simple_form_for(@page_category) do |f|
   .card-body.card-padding
     .row
-      .col-md-12
+      .col-md-6
         = f.label :title, class: 'fg-label'
         = f.input :title, label: false, input_html: { placeholder: 'Digite um nome'}
+      .col-md-6
+        = f.label :description, class: 'fg-label'
+        = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
     .row
       .col-md-12
         .checkbox
@@ -15,4 +18,4 @@
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
-        = link_to 'Back', page_categories_path , class: 'btn btn-danger'
+        = link_to 'Voltar',page_categories_path , class: 'btn btn-danger'

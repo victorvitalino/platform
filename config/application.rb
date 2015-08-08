@@ -30,7 +30,7 @@ module Plataform
     config.assets.paths << File.join(Rails.root, 'storage', 'assets', 'javascripts')
     config.assets.paths << File.join(Rails.root, 'storage', 'assets', 'images')
     config.assets.paths << File.join(Rails.root, 'storage', 'assets', 'fonts')
-    config.railties_order = [:main_app, Dashboard::Engine, Portal::Engine, :all]
+    config.railties_order = [:main_app, Portal::Engine, Dashboard::Engine, :all]
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*','**','***', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :'pt-BR'

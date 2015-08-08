@@ -1,3 +1,6 @@
+.form-group {
+  margin-top: 0 !important;
+}
 .sidebar-menu .submenu .submenu .submenu a {
   padding-left: 100px;
   background-position: 77px 50%;
@@ -5,7 +8,7 @@
 
 .topSlider {
   height: 440px;
-  margin-bottom: 46px;
+  margin-bottom: 91px;
   padding-bottom: 46px;
 }
 .topSlider .flexslider {
@@ -105,7 +108,16 @@ border-bottom: 0 !important;border: none!important; color: #303236 !important;}
 .rogue{display:block}
 .rogue1{display:block}
 #footer{margin-top:0px!important;}
-.img-thumbpost{text-align: center;}
-.autor-fots{font-style: italic;font-size: 10px;}
-.desc-fots{font-size: 12px; font-weight: bold;padding-bottom: 30px; display: block;}
+.img-thumbpost{width: 500px; margin: 0 auto;display: block;}
+.img-thumbpost img{margin-top: -2px!important;}
+.img-thumbpost strong{text-align: right;display: block;font-size: 10px;font-style: italic;color:#999}
+.desc-fots{font-size: 12px; font-weight: bold;padding-bottom: 30px; display: block;text-align: center;}
 .redactor-editor,.redactor-box,.redactor-box textarea{z-index: 5!important}
+.post-author{  line-height: 35px;
+  text-transform: uppercase;
+  font-size: 12px;
+  float: left;
+  padding-left: 40px;
+  font-weight: 600;
+  display: inline-block;
+  color: #8397a3;}

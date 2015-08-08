@@ -1,6 +1,7 @@
 module Cms
   class Engine < ::Rails::Engine
     isolate_namespace Cms
+
     config.generators do |g|
       g.template_engine :haml
       g.templates.unshift File::expand_path('../../templates', __FILE__)

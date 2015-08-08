@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      'patrimony/type_material': Tipo de Material
+    attributes:
+      'patrimony/type_material':
+        name: "Nome"
+        description: "Descriçao"
+        percentage: "Porcentegem"
+        life_cycle: "Vida Util"
+        status: "Status"
+

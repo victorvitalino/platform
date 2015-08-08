@@ -1,0 +1,30 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'person/staff':
+          attributes:
+            born:
+              before: "Data inválida - menor de 18 anos"
+              invalid_date: "data inválida"
+    models:
+      'person/staff': Usuário
+    attributes:
+      'person/staff':
+        name: "Nome"
+        code: "Matrícula"
+        blood_type: "Tipo Sanguineo"
+        rg_org: "Orgão Emissor"
+        born: "Data de Nascimento"
+        sector_origin: "Setor de Origem"
+        sector_current: "Setor Atual"
+        job: "Cargo"
+        branch_line: "Ramal"
+        start_hour: "Hora de Início"
+        end_hour: "Hora de Saída"
+        date_contract: "Data da Contratação"
+        attendant: "Atendente?"
+        wekeend: "Trabalha Fim de Semana"
+        avatar: "Foto"
+        curriculum: "Currículo"
+

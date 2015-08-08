@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      'patrimony/down_good': Baixa de Patrimonio
+    attributes:
+      'patrimony/down_good':
+        name: "Nome"
+        description: 'Descriçao'
+        number_process: 'Numero de Processo'
+        
+

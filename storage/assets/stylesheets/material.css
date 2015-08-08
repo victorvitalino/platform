@@ -5,8 +5,38 @@
 *= require material/vendors/socicon/socicon.min
 *= require material/css/app.min.1
 *= require material/css/app.min.2
+*= require material/css/mod
 *= require redactor-rails
+*= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 */
 .redactor-editor,
 .redactor-box,
 .redactor-box textarea{z-index: 5!important;}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #dff0d8;
+  color: #4caf50;
+  font-weight: bold;
+}
+.label_order_service {
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  display: inline-block;
+}
+.input_date{
+    background-color: #FFF!important;
+}
+.select{
+	width: 200px!important;
+}
+.custom-avatar{
+  font-size: 100px;
+  text-align: center;
+  color: #fff;
+}
+.profile-main-custom{
+  min-height: 800px!important;
+}

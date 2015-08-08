@@ -16,6 +16,7 @@ class CreateCmsPosts < ActiveRecord::Migration
       t.string  :link
       t.references :post_category, index: true
       t.string  :thumbnail
+      t.string  :label_link
 
 
 

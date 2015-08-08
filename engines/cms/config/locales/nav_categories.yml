@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'cms/nav_category': Categoria
+    attributes:
+      'cms/nav_category':
+        name: "Nome"
+        description: "Descrição"

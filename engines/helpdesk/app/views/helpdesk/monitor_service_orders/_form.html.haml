@@ -1,0 +1,15 @@
+.row
+ .col-md-12
+  = simple_form_for [@order_service, @monitor_service_order], remote: true do |f|
+   .row
+    .col-md-12
+    = f.label :appointment, class: 'fg-label'
+    = f.input :appointment, label: false, input_html: {class: 'redactor'}
+    .col-md-12
+    = f.label :attachment, as: 'file', class: 'fg-label'
+    = f.input :attachment, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
+   .row
+    .col-md-12
+    = f.button :submit, class: 'btn btn-success'
+   %br/
+   

@@ -7,6 +7,7 @@ module Cms
     # GET /post_categories
     def index
       @post_categories = PostCategory.all
+      authorize @post_categories
     end
 
     # GET /post_categories/1
@@ -16,6 +17,7 @@ module Cms
     # GET /post_categories/new
     def new
       @post_category = PostCategory.new
+      authorize @post_category
     end
 
     # GET /post_categories/1/edit
@@ -25,7 +27,7 @@ module Cms
     # POST /post_categories
     def create
       @post_category = PostCategory.new(post_category_params)
-
+      authorize @post_category
       if @post_category.save
         redirect_to action: 'index'
       else
@@ -35,6 +37,7 @@ module Cms
 
     # PATCH/PUT /post_categories/1
     def update
+      authorize @post_category
       if @post_category.update(post_category_params)
         redirect_to action: 'index'
       else
@@ -44,6 +47,7 @@ module Cms
 
     # DELETE /post_categories/1
     def destroy
+      authorize @post_category
       @post_category.destroy
       redirect_to post_categories_url, notice: 'Post category was successfully destroyed.'
     end

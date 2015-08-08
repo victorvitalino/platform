@@ -9,6 +9,9 @@ module Person
 
     def index?
       true
+      #return true if user.account.administrator
+      #@system = Person::System.find_by_code('1')#CÓDIGO SISTEMA GESTÃO DE PESSOAS
+      #return true if user.account.permissions.where(system_id: @system.id, status: true).present?
     end
 
     def show?
@@ -38,11 +41,12 @@ module Person
     def scope
       Pundit.policy_scope!(user, record.class)
     end
-    #busca o codigo de na tabela de permissões(system_permissions), e verifica se a permissão esta ativa e usuario possui a permissão
+    #VERIFICA SE O USUÁRIO POSSUIO O CÓDIGO DA PERMISSÃO
     def allow?(code)
+      return true if user.account.administrator
       @permission = Person::SystemPermission.find_by_code(code)
       if @permission.present?
-        user.permissions.where(system_permission_id: @permission.id, status: true).present? 
+        user.account.permissions.where(system_permission_id: @permission.id, status: true).present? 
       end
     end
 

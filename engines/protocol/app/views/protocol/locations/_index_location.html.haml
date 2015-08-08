@@ -1,0 +1,20 @@
+- @assessments.each_with_index do |j, i|
+ %tr
+  %td.col-md-1
+   = check_box_tag "assessment_ids[]", j.id
+  %td
+   = j.document_number
+  %td
+   = j.document_type.name
+
+
+
+
+
+
+
+
+
+
+
+

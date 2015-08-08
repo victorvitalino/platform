@@ -11,6 +11,6 @@
   %td
    = j.responsible.name if j.responsible.present?
   %td.col-md-2
-   = link_to "", new_sector_branch_line_path(j),title: 'Novo Ramal', 'data-toggle' => 'tooltip',  remote: true, class: 'md-arrow-forward btn btn-success waves-effect waves-button waves-float' if policy(:sector, namespace: Person).create?
+   = link_to "", new_sector_branch_line_path(j),title: 'Novo Ramal', 'data-toggle' => 'tooltip',  remote: true, class: 'md-arrow-forward btn btn-success waves-effect waves-button waves-float' if policy(:BranchLine, namespace: Person).create?
    = link_to "", edit_sector_path(j), title: 'Editar', 'data-toggle' => 'tooltip',  remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'if policy(:sector, namespace: Person).update?
    = link_to "", sector_path(j), method: :delete, class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"}if policy(:sector, namespace: Person).destroy?

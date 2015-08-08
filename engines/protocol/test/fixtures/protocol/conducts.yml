@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  receipt_date: 2015-07-08
+  term_response_date: 2015-07-08
+  assessment_id: 
+  sector_send_id: 
+  user_send_id: 
+  sector_receptor_id: 
+  user_receptor: MyString
+  allotment_id: 
+
+two:
+  receipt_date: 2015-07-08
+  term_response_date: 2015-07-08
+  assessment_id: 
+  sector_send_id: 
+  user_send_id: 
+  sector_receptor_id: 
+  user_receptor: MyString
+  allotment_id: 

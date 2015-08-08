@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  document_number: MyString
+  external_number: MyString
+  external_agency: MyString
+  recipient_agency: MyString
+  address: MyString
+  cpf: MyString
+  cnpj: MyString
+  sign_by: MyString
+  observation: MyText
+  description_subject: MyText
+  document_type_id: 
+  subject_id: 
+  user_id: 
+  setor_id: 
+
+two:
+  document_number: MyString
+  external_number: MyString
+  external_agency: MyString
+  recipient_agency: MyString
+  address: MyString
+  cpf: MyString
+  cnpj: MyString
+  sign_by: MyString
+  observation: MyText
+  description_subject: MyText
+  document_type_id: 
+  subject_id: 
+  user_id: 
+  setor_id: 

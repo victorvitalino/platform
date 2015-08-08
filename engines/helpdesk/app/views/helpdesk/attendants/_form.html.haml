@@ -1,0 +1,23 @@
+.row
+ .col-md-12
+  = simple_form_for @attendant, remote: true  do |f|
+   .row
+    .col-md-4
+     = f.label :staff_id, class: 'fg-label'
+     = f.input :staff_id, collection: current_user.account.sector_current.staffs, label_method: :name, value_method: :id, label: false
+     %strong Gerência
+     %br/
+     %br/
+   .row
+    - Helpdesk::Attendant.type_attendants_i18n.each do |key, value|
+     .col-md-1
+      %label.radio.radio-inline
+       %input{:name => "attendant[type_attendant]", :type => "radio", value: "#{key}"}/
+       %i.input-helper
+        %strong= "#{value}"
+      %br/
+      %br/
+      %br/
+   .row
+    .col-md-8
+     = f.submit 'salvar' , class: 'btn btn-success waves-effect waves-button waves-float'

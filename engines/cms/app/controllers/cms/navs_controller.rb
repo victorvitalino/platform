@@ -7,6 +7,7 @@ module Cms
     # GET /navs
     def index
       @navs = Nav.all
+      authorize @navs
     end
 
     # GET /navs/1
@@ -16,15 +17,18 @@ module Cms
     # GET /navs/new
     def new
       @nav = Nav.new
+      authorize @nav
     end
 
     # GET /navs/1/edit
     def edit
+      authorize @nav
     end
 
     # POST /navs
     def create
       @nav = Nav.new(nav_params)
+      authorize @nav
 
       if @nav.save
         redirect_to action: 'index'
@@ -35,6 +39,7 @@ module Cms
 
     # PATCH/PUT /navs/1
     def update
+      authorize @nav
       if @nav.update(nav_params)
         redirect_to action: 'index'
       else
@@ -44,6 +49,7 @@ module Cms
 
     # DELETE /navs/1
     def destroy
+      authorize @nav
       @nav.destroy
       redirect_to navs_url, notice: 'Nav was successfully destroyed.'
     end

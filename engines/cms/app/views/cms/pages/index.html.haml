@@ -2,25 +2,25 @@
   .card-header.ch-alt
     %h2
       Páginas
-      = link_to 'New Page', new_page_path, class: 'btn btn-success pull-right'
+      = link_to 'New Page', new_page_path, class: 'btn btn-success pull-right' if policy(:page, namespace: Cms).create?
       %small Listagem de páginas
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
       %thead
         %tr
           %th #
-          %th Title
-          %th Publish
-          %th Page category
-          %th{:colspan => "3"} Actions
+          %th Título
+          %th Publicado
+          %th Categoria
+          %th{:colspan => "3"} Ações
 
       %tbody
         - @pages.each_with_index do |page, i|
           %tr
             %td= i + 1
             %td= page.title
-            %td= page.publish
+            %td= status_helper (page.publish)
             %td= page.page_category.title
             %td.col-md-2
-              = link_to '', edit_page_path(page), class: 'md md-edit btn btn-primary'
-              = link_to '', page, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+              = link_to '', edit_page_path(page), class: 'md md-edit btn btn-primary' if policy(:page, namespace: Cms).update?
+              = link_to '', page, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' } if policy(:page, namespace: Cms).destroy?

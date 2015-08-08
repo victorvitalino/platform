@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'cms/page_category': Categoria
+    attributes:
+      'cms/page_category':
+        title: "Nome"
+        description: "Descrição"

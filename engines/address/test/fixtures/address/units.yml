@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  acron_block: MyString
+  block: MyString
+  acron_group: MyString
+  group: MyString
+  unit: MyString
+  cep_unit: MyString
+  area: MyString
+  complete_address: MyString
+  burgh: MyString
+  sefaz: false
+  donate: false
+  date_donate: 2015-07-30
+  date_iptu: 2015-07-30
+  registration_iptu: 2015-07-30
+  certificate: MyString
+  situation_unit_id: 
+  type_use_unit_id: 
+  program: 1
+
+two:
+  acron_block: MyString
+  block: MyString
+  acron_group: MyString
+  group: MyString
+  unit: MyString
+  cep_unit: MyString
+  area: MyString
+  complete_address: MyString
+  burgh: MyString
+  sefaz: false
+  donate: false
+  date_donate: 2015-07-30
+  date_iptu: 2015-07-30
+  registration_iptu: 2015-07-30
+  certificate: MyString
+  situation_unit_id: 
+  type_use_unit_id: 
+  program: 1
