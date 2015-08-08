@@ -3,7 +3,7 @@ module Protocol
      layout 'layouts/material'
       before_action :set_assessment, only: [:show, :edit, :update, :destroy]
         def index
-            @assessments = Assessment.all
+            @assessments = Conduct.find_sector(current_user.account.sector_current.id, 4)
             #authorize @assessments
         end
 
