@@ -588,14 +588,16 @@ ActiveRecord::Schema.define(version: 20150808145303) do
     t.string   "shelf"
     t.string   "pile"
     t.string   "box"
-    t.text     "obsevation"
+    t.text     "observation"
     t.integer  "assessment_id"
+    t.integer  "sector_id"
     t.integer  "staff_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id", using: :btree
+  add_index "protocol_locations", ["sector_id"], name: "index_protocol_locations_on_sector_id", using: :btree
   add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id", using: :btree
 
   create_table "protocol_subjects", force: :cascade do |t|

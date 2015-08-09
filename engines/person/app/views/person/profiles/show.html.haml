@@ -67,7 +67,7 @@
             %dl.dl-horizontal
               %dt Tipo Sanguineo
               %dd
-                =@user.blood_type.upcase.present? ? @user.blood_type : 'Não Informado'
+                =@user.blood_type.to_s.upcase.present? ? @user.blood_type : 'Não Informado'
       .pmb-block
         .pmbb-header
           %h2
