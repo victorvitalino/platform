@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150808145303) do
     t.date     "date_donate"
     t.date     "date_iptu"
     t.string   "registration_iptu"
-    t.string   "certificate"
+    t.boolean  "certificate"
     t.integer  "situation_unit_id"
     t.integer  "type_use_unit_id"
     t.integer  "city_id"
@@ -628,8 +628,8 @@ ActiveRecord::Schema.define(version: 20150808145303) do
     t.string   "rg"
     t.string   "email"
     t.string   "nationality"
-    t.integer  "marital_status"
-    t.integer  "gender"
+    t.string   "marital_status"
+    t.string   "gender"
     t.date     "born"
     t.string   "telephone"
     t.string   "celphone"
@@ -706,8 +706,8 @@ ActiveRecord::Schema.define(version: 20150808145303) do
     t.integer  "account_id"
     t.string   "account_type"
     t.text     "unique_session_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree
