@@ -21,8 +21,8 @@
    .tab-content
     #open.tab-pane.active{:role => "tabpanel"}
      .card
-      .table-responsive
-       %table.table.table-bordered.table
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+       %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
         %thead
          %tr.info
           %th OS
@@ -73,9 +73,8 @@
                = j.status_i18n
     #reopened.tab-pane{:role => "tabpanel"}
      .card
-      .table-responsive
-       %table.table.table-bordered.table
-        %thead
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+       %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
          %tr.info
           %th OS
           %th Assunto
@@ -124,8 +123,8 @@
                = j.status_i18n
     #analysis.tab-pane{:role => "tabpanel"}
      .card
-      .table-responsive
-       %table.table.table-bordered.table
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+       %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
         %thead
          %tr.info
           %th OS
@@ -179,8 +178,8 @@
 
     #inprogress.tab-pane{:role => "tabpanel"}
      .card
-      .table-responsive
-       %table.table.table-bordered.table
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+       %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
         %thead
          %tr.info
           %th OS
@@ -230,8 +229,8 @@
                = j.status_i18n       
     #solved.tab-pane{:role => "tabpanel"}
      .card
-      .table-responsive
-       %table.table.table-bordered.table
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+       %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
         %thead
          %tr.info
           %th OS
@@ -281,8 +280,8 @@
                = j.status_i18n
     #closed.tab-pane{:role => "tabpanel"}
      .card
-      .table-responsive
-       %table.table.table-bordered.table
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+       %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
         %thead
          %tr.info
           %th OS
