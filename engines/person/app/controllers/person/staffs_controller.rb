@@ -1,3 +1,5 @@
+require_dependency 'person/application_controller'
+
 module Person
   class StaffsController < ApplicationController
     layout 'layouts/material'
@@ -73,7 +75,7 @@ module Person
     end
 
     def set_staffs
-      @staffs = Staff.includes(:sector_current).unscoped.all
+      @staffs = Staff.includes(:sector_current).unscoped.all.order(:name)
     end
 
     def set_staff

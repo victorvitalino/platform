@@ -1,14 +1,15 @@
 pt-BR:
-  activerecord:
+  helpers:
+    submit:
+      'regularization/address':
+        create: 'Validar'
+  activemodel:
     models:
-      'regularization/requeriment': Requerimento
+      'regularization/address': Endereço
     attributes:
-      'regularization/requeriment':
-        description: "Descrição"
-        priority: "Prioridade"
-        replay_date: "Data de Resposta"
-        spouse_name: "Nome conjugê"
-        spouse_cpf:   "CPF conjugê"
-        martial_status: "Estado civil"
-        gender: "Sexo"
-        nationality: "Nacionalidade"
+      'regularization/address':
+        city: "Cidade"
+        block: "Quadra"
+        group: "Conjunto"
+        unit: "Lote/Unidade"
+        submit: "Ok"

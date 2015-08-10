@@ -7,8 +7,8 @@ end
 
 class DomainConstraint
   def self.matches?(request)
-    permitted = 'extranet'
-    !request.subdomain.include? permitted
+    unpermitted = 'extranet'
+    !request.subdomain.include? unpermitted
   end
 end
 
@@ -17,10 +17,9 @@ Rails.application.routes.draw do
   mount RedactorRails::Engine => '/redactor_rails'
 
   devise_for :user_candidates
-  devise_for :users, :path  => '',
-             :path_names    => {:sign_in  => 'acesso', :sign_out => 'sair'}
 
   constraints SubdomainConstraint do
+    devise_for :users, :path  => '', :path_names    => {:sign_in  => 'acesso', :sign_out => 'sair'}
     authenticate :user do
       mount Dashboard::Engine => '/',                                             as: 'dashboard',                module: 'dashboard'
       mount Intranet::Engine => '/intranet',                                      as: 'intranet',                 module: 'intranet'
@@ -39,8 +38,9 @@ Rails.application.routes.draw do
   end
 
   mount Regularization::Engine  => "/regularizacao",  as: 'regularization'
-  mount Schedule::Engine        => "/agendamento",    as: 'schedule'
-  mount Notify::Engine          => "/notificacao",    as: 'notify'
   mount Address::Engine         => "/endereco",       as: 'address'
   mount Candidate::Engine       => "/candidatos",     as: 'candidate'
+  
+  mount Schedule::Engine        => "/agendamento",    as: 'schedule'
+  mount Notify::Engine          => "/notificacao",    as: 'notify'
 end

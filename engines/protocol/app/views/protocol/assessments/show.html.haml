@@ -7,7 +7,7 @@
         .row
           .col-md-4
             %label Tipo de Documento:
-            = @assessment.document_type.name
+            = @assessment.document_type.name if @assessment.document_type.present?
           .col-md-4
             %label Número do Documento:
             = @assessment.document_number
@@ -33,7 +33,7 @@
         .row
           .col-md-8
             %label Assunto:
-            = @assessment.subject.name
+            = @assessment.subject.name if @assessment.subject.present?
         .row
           .col-md-8
             %label Descrição Assunto:

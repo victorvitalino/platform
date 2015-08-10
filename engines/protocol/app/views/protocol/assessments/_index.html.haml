@@ -3,9 +3,9 @@
     %td
       = a.document_number
     %td
-      = a.document_type.name
+      = a.document_type.name if a.document_type.present?
     %td
-      = a.sector.name
+      = a.sector.acron if a.sector.present?
     %td.col-md-2
       .btn-group.dropup
         %button.btn.btn-info.dropdown-toggle.waves-effect{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}

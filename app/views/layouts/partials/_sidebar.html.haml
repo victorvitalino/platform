@@ -17,7 +17,7 @@
           %li
             = link_to "<i class='md md-person'></i> Meu perfil".html_safe, person.profile_path(current_user)
           %li
-            = link_to "<i class='md md-settings-input-antenna'></i> Configurações".html_safe, person.profile_path(current_user)
+            = link_to "<i class='md md-settings-input-antenna'></i> Minha Conta".html_safe, person.profile_path(current_user)
           %li
             = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
       %ul.main-menu
@@ -138,4 +138,13 @@
               %li= link_to "consulta candidato"
               %li= link_to "consulta endereço"
               %li= link_to "relatórios"
-
+            
+        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-description>
+              Financeiro
+            %ul{style: ('display:block;' if params[:module] == "finance")}
+              %li= link_to "emitir boleto", regularization_treatment.treatments_path
+              %li= link_to "gestão de boletos", regularization_treatment.attendants_path
+              

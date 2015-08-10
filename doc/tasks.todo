@@ -1,3 +1,4 @@
+ ☐ filtros nas porra das pagina
  ☐ padronização de listagem (css de tables, css de botões, paginação kaminari e datatables)
  ☐ padronizar os campos dos formulários (distribuir melhor dentro da tela)
  ☐ inventar qualquer porra pra dashbatata
@@ -18,7 +19,11 @@
  ☐ migraçãos
  ☐ DNS dos sub-domínios
  ☐ AS PERMIçauM do buninHo
-
+ ☐ listagem de autuações protocolo
+ ☐ listagem de movimentações protocolo
+ ☐ listagem de localização protocolo
+ ☐ crud de boletos financeiro com 'code' 
+ ☐ crud de arquivo de retorno financeiro com 'code'
 
 
  TAREFAS BOTE PÀ TORAR
