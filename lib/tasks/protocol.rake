@@ -1,5 +1,55 @@
 namespace :protocol do
 
+  desc "Migração de assuntos"
+  task :subjects => :environment do
+    @index = 0
+   
+    CSV.foreach("lib/files/migrate/current/protocol_subjects.csv", encoding: "ISO-8859-9", col_sep: ";") do |row|
+
+      begin
+        @unit = Protocol::Subject.create({
+          name: row[1].to_s.downcase.strip,
+          description: row[2].to_s.downcase.strip,
+          status: true
+        })
+        
+
+        puts @index
+        @index = @index + 1
+
+      rescue Exception => e
+        puts "ERROR - #{e}"
+      end
+      
+    end
+  end
+
+
+  desc "Migração de tipos"
+  task :document_types => :environment do
+    @index = 0
+   
+    CSV.foreach("lib/files/migrate/current/protocol_document_types.csv", encoding: "ISO-8859-9", col_sep: ";") do |row|
+
+      begin
+        @unit = Protocol::DocumentType.create({
+          name: row[1].to_s.downcase.strip,
+          description: row[2].to_s.downcase.strip,
+          status:  true
+        })
+        
+
+        puts @index
+        @index = @index + 1
+
+      rescue Exception => e
+        puts "ERROR - #{e}"
+      end
+      
+    end
+  end
+
+
   desc "Migração de conduct"
   task :conducts => :environment do
     @index = 0
@@ -71,7 +121,7 @@ namespace :protocol do
   end
 
 
-  desc "Migração de lote"
+  desc "Migração de localizações"
   task :locations => :environment do
     @index = 0
    
