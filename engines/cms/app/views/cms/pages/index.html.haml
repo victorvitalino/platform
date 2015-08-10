@@ -5,14 +5,14 @@
       = link_to 'New Page', new_page_path, class: 'btn btn-success pull-right' if policy(:page, namespace: Cms).create?
       %small Listagem de páginas
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
       %thead
         %tr
           %th #
           %th Título
           %th Publicado
           %th Categoria
-          %th{:colspan => "3"} Ações
+          %th Ações
 
       %tbody
         - @pages.each_with_index do |page, i|

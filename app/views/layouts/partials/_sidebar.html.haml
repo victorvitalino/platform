@@ -133,10 +133,13 @@
               %i.md.md-business>
             %ul{style: ('display:block;' if params[:module] == "regularization")}
               %li= link_to "atendimento", regularization_treatment.treatments_path
-              %li= link_to "atendentes", regularization_treatment.attendants_path
               %li= link_to "consulta requerimento"
               %li= link_to "consulta candidato"
               %li= link_to "consulta endereço"
+              %li
+                %hr/
+              %li= link_to "atendentes", regularization_treatment.attendants_path
+              %li= link_to "postos de atendimento", regularization_treatment.service_stations_path
               %li= link_to "relatórios"
 
         %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
