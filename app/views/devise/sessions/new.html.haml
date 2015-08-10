@@ -3,9 +3,9 @@
     = stylesheet_link_tag  'material', media: 'all'
 
   %body.login-content
-
-
     #l-login.lc-block.toggled
+      - flash.each do |key, value|
+        = content_tag(:div, value, :class => "alert alert-warning")
       .codhab-logo
         %b CODHAB
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
