@@ -60,6 +60,7 @@ PATH
   remote: engines/juridical
   specs:
     juridical (0.0.1)
+      haml-rails
       rails (~> 4.2.1)
 
 PATH
@@ -347,3 +348,6 @@ DEPENDENCIES
   validates_timeliness
   wicked_pdf
   wkhtmltopdf-binary
+
+BUNDLED WITH
+   1.10.6

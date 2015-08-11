@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @instance.name
+%p
+  %b Description:
+  = @instance.description
+
+= link_to 'Edit', edit_instance_path(@instance)
+\|
+= link_to 'Back', instances_path

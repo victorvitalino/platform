@@ -1,0 +1,43 @@
+%h1 Listing activities
+
+%table
+  %thead
+    %tr
+      %th Document type
+      %th Action type
+      %th Local instance
+      %th Date distribution
+      %th Deadline
+      %th Days
+      %th End date
+      %th Complemet
+      %th User
+      %th Status
+      %th Monitoring type
+      %th Attachment
+      %th
+      %th
+      %th
+
+  %tbody
+    - @activities.each do |activity|
+      %tr
+        %td= activity.document_type
+        %td= activity.action_type
+        %td= activity.local_instance
+        %td= activity.date_distribution
+        %td= activity.deadline
+        %td= activity.days
+        %td= activity.end_date
+        %td= activity.complemet
+        %td= activity.user
+        %td= activity.status
+        %td= activity.monitoring_type
+        %td= activity.attachment
+        %td= link_to 'Show', activity
+        %td= link_to 'Edit', edit_activity_path(activity)
+        %td= link_to 'Destroy', activity, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Activity', new_activity_path

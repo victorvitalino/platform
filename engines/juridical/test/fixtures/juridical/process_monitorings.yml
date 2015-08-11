@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number_lawsuit: MyString
+  number_administrative_process: MyString
+  organ: MyString
+  action_type_id: 
+  value_cause: MyString
+  local_instance_id: 
+  part: MyString
+  lawyer_responsible_id: 
+  complemet: MyText
+  status: false
+  initial_date: 2015-08-11
+  end_date: 2015-08-11
+  process_type: 1
+
+two:
+  number_lawsuit: MyString
+  number_administrative_process: MyString
+  organ: MyString
+  action_type_id: 
+  value_cause: MyString
+  local_instance_id: 
+  part: MyString
+  lawyer_responsible_id: 
+  complemet: MyText
+  status: false
+  initial_date: 2015-08-11
+  end_date: 2015-08-11
+  process_type: 1

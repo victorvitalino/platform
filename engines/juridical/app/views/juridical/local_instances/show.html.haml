@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @local_instance.name
+%p
+  %b Description:
+  = @local_instance.description
+%p
+  %b Instance:
+  = @local_instance.instance
+
+= link_to 'Edit', edit_local_instance_path(@local_instance)
+\|
+= link_to 'Back', local_instances_path

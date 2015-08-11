@@ -1,0 +1,19 @@
+= simple_form_for(@activity) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :document_type
+    = f.association :action_type
+    = f.association :local_instance
+    = f.input :date_distribution
+    = f.input :deadline
+    = f.input :days
+    = f.input :end_date
+    = f.input :complemet
+    = f.association :user
+    = f.input :status
+    = f.input :monitoring_type
+    = f.input :attachment
+
+  .form-actions
+    = f.button :submit

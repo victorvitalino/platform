@@ -75,15 +75,15 @@
      .card
       .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
        %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
-         %tr.info
-          %th OS
-          %th Assunto
-          %th Categoria
-          %th Abertura
-          %th Solicitado por
-          %th Setor
-          %th Responsável
-          %th Status
+        %tr.info
+         %th OS
+         %th Assunto
+         %th Categoria
+         %th Abertura
+         %th Solicitado por
+         %th Setor
+         %th Responsável
+         %th Status
         - if @order_services_reopened.present?
          - @order_services_reopened.each do |j, i|
           %tbody
