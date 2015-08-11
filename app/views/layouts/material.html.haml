@@ -5,7 +5,6 @@
     %title Extranet
     = stylesheet_link_tag  'material', media: 'all'
     = stylesheet_link_tag  'print', media: 'print'
-    = javascript_include_tag 'material'
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,300", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
   %body.toggled.sw-toggled
@@ -22,3 +21,4 @@
     #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
       .modal-dialog
         .modal-content
+    = javascript_include_tag 'material'

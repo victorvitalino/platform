@@ -30,7 +30,7 @@
     background-color: #FFF!important;
 }
 .select{
-	width: 200px!important;
+  width: 200px!important;
 }
 .custom-avatar{
   font-size: 100px;
@@ -39,4 +39,8 @@
 }
 .profile-main-custom{
   min-height: 800px!important;
+}
+
+table th {
+  font-weight: bold !important;
 }

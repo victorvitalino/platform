@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808145303) do
+ActiveRecord::Schema.define(version: 20150810173521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150808145303) do
     t.date     "date_donate"
     t.date     "date_iptu"
     t.string   "registration_iptu"
-    t.boolean  "certificate"
+    t.string   "certificate"
     t.integer  "situation_unit_id"
     t.integer  "type_use_unit_id"
     t.integer  "city_id"
@@ -630,8 +630,8 @@ ActiveRecord::Schema.define(version: 20150808145303) do
     t.string   "rg"
     t.string   "email"
     t.string   "nationality"
-    t.string   "marital_status"
-    t.string   "gender"
+    t.integer  "marital_status"
+    t.integer  "gender"
     t.date     "born"
     t.string   "telephone"
     t.string   "celphone"
@@ -658,6 +658,17 @@ ActiveRecord::Schema.define(version: 20150808145303) do
 
   add_index "regularization_treatment_attendants", ["service_station_id"], name: "index_regularization_treatment_attendants_on_service_station_id", using: :btree
   add_index "regularization_treatment_attendants", ["staff_id"], name: "index_regularization_treatment_attendants_on_staff_id", using: :btree
+
+  create_table "regularization_treatment_counters", force: :cascade do |t|
+    t.integer  "service_station_id"
+    t.integer  "number"
+    t.string   "subject"
+    t.boolean  "preferences"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "regularization_treatment_counters", ["service_station_id"], name: "index_regularization_treatment_counters_on_service_station_id", using: :btree
 
   create_table "regularization_treatment_service_stations", force: :cascade do |t|
     t.string   "name"
@@ -708,8 +719,8 @@ ActiveRecord::Schema.define(version: 20150808145303) do
     t.integer  "account_id"
     t.string   "account_type"
     t.text     "unique_session_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree
