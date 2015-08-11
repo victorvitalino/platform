@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810173521) do
+ActiveRecord::Schema.define(version: 20150811122324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,82 @@ ActiveRecord::Schema.define(version: 20150810173521) do
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
   add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
   add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
+
+  create_table "attendance_attendants", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.integer  "sector_id"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "attendance_attendants", ["sector_id"], name: "index_attendance_attendants_on_sector_id", using: :btree
+  add_index "attendance_attendants", ["staff_id"], name: "index_attendance_attendants_on_staff_id", using: :btree
+
+  create_table "attendance_codes", force: :cascade do |t|
+    t.integer  "number"
+    t.boolean  "preference"
+    t.integer  "station_id"
+    t.integer  "counter_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "attendant_id"
+    t.integer  "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "attendance_codes", ["attendant_id"], name: "index_attendance_codes_on_attendant_id", using: :btree
+  add_index "attendance_codes", ["counter_id"], name: "index_attendance_codes_on_counter_id", using: :btree
+  add_index "attendance_codes", ["station_id"], name: "index_attendance_codes_on_station_id", using: :btree
+
+  create_table "attendance_counters", force: :cascade do |t|
+    t.integer  "station_id"
+    t.integer  "subject_id"
+    t.boolean  "preference"
+    t.boolean  "status"
+    t.integer  "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attendance_counters", ["station_id"], name: "index_attendance_counters_on_station_id", using: :btree
+  add_index "attendance_counters", ["subject_id"], name: "index_attendance_counters_on_subject_id", using: :btree
+
+  create_table "attendance_station_attendants", force: :cascade do |t|
+    t.integer  "attendant_id"
+    t.integer  "station_id"
+    t.boolean  "status"
+    t.boolean  "supervisor"
+    t.integer  "counter_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "attendance_station_attendants", ["attendant_id"], name: "index_attendance_station_attendants_on_attendant_id", using: :btree
+  add_index "attendance_station_attendants", ["counter_id"], name: "index_attendance_station_attendants_on_counter_id", using: :btree
+  add_index "attendance_station_attendants", ["station_id"], name: "index_attendance_station_attendants_on_station_id", using: :btree
+
+  create_table "attendance_stations", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "city_id"
+    t.integer  "station_type"
+    t.integer  "convocation_id"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "attendance_stations", ["city_id"], name: "index_attendance_stations_on_city_id", using: :btree
+  add_index "attendance_stations", ["convocation_id"], name: "index_attendance_stations_on_convocation_id", using: :btree
+
+  create_table "attendance_subjects", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "candidate_adjuct_cadastres", force: :cascade do |t|
     t.string   "name"

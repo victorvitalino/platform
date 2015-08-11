@@ -126,28 +126,14 @@
                 %li
                   = link_to "localizações", protocol.new_location_path   
             
-        %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
+        %li.sub-menu{class: ('toggled active' if params[:module] == "attendance")}
           - if policy(:application, namespace: Protocol).index?
             %a{:href => ""}
               %i.md.md-description>
-              Regularização
-            %ul{style: ('display:block;' if params[:module] == "regularization")}
-              %li= link_to "atendimento", regularization_treatment.treatments_path
-              %li= link_to "consulta requerimento"
-              %li= link_to "consulta candidato"
-              %li= link_to "consulta endereço"
-              %li
-                %hr/
-              %li= link_to "atendentes", regularization_treatment.attendants_path
-              %li= link_to "postos de atendimento", regularization_treatment.service_stations_path
+              Gestão de Atendimento
+            %ul{style: ('display:block;' if params[:module] == "attendance")}
+              %li= link_to "postos de atendimento", attendance.stations_path
+              %li= link_to "atendentes", attendance.attendants_path
+              %li= link_to "assuntos de guichê", attendance.subjects_path
+              %li= link_to "gestão de senhas"
               %li= link_to "relatórios"
-            
-        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-          - if policy(:application, namespace: Protocol).index?
-            %a{:href => ""}
-              %i.md.md-description>
-              Financeiro
-            %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li= link_to "emitir boleto", regularization_treatment.treatments_path
-              %li= link_to "gestão de boletos", regularization_treatment.attendants_path
-              

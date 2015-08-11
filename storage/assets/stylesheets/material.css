@@ -9,6 +9,11 @@
 *= require redactor-rails
 *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 */
+
+li a.btn {
+  font-weight: bold !important;
+}
+
 .redactor-editor,
 .redactor-box,
 .redactor-box textarea{z-index: 5!important;}

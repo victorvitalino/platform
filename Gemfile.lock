@@ -22,6 +22,7 @@ PATH
   remote: engines/attendance
   specs:
     attendance (0.0.1)
+      haml-rails
       rails (~> 4.2.1)
 
 PATH

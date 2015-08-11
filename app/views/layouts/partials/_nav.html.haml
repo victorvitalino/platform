@@ -7,12 +7,16 @@
         .line.bottom
     %li.logo.hidden-xs
       = link_to "Extranet <b>codhab</b>".html_safe, dashboard.root_path
+    %li.logo.hidden-xs
+      = link_to "<b>Posto</b> regularização estrutural |  <b>Guichê</b> 01".html_safe
     %li.pull-right
       %ul.top-menu
         %li#toggle-width
           .toggle-switch
             %input#tw-switch{:hidden => "hidden", :type => "checkbox"}
               %label.ts-helper{:for => "tw-switch"}
+        %li.toggle-switch
+          = link_to "Gestão de Atendimento", "#", class: 'btn btn-primary'
         %li.toggle-switch
           = link_to "Abrir chamado", helpdesk.new_order_service_path, remote: true, class: 'btn btn-danger'
 
