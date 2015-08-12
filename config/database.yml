@@ -22,8 +22,4 @@ test:
   database: codhab_test
   username: <%= ENV['db_user'] %>
   password: "<%= ENV['db_pass'] %>"
-<<<<<<< HEAD
   host: <%= ENV['db_host'] %>
-=======
-  host: <%= ENV['db_host'] %>
->>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
