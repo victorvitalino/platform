@@ -1,6 +1,6 @@
 pt-BR:
   enums:
-    'helpdesk/order_service': 
+    'helpdesk/order_service':
        status:
          open: "aberto"
          reopened: "re-aberto"
@@ -25,5 +25,4 @@ pt-BR:
         category: "Categoria"
         deadline: "Prazo final"
         finalized_in: "Finalizado em"
-
-
+        attachment: "Anexo"

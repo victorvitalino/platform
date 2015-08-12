@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20150811200130) do
 
   create_table "address_situation_units", force: :cascade do |t|
     t.string   "description"
-    t.string   "code"
     t.boolean  "status",      default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -73,6 +72,13 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "acronym"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "address_type_use_units", force: :cascade do |t|
+    t.string   "description"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "address_units", force: :cascade do |t|
@@ -89,7 +95,7 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.boolean  "donate"
     t.date     "date_donate"
     t.date     "date_iptu"
-    t.string   "registration_iptu"
+    t.date     "registration_iptu"
     t.string   "certificate"
     t.integer  "situation_unit_id"
     t.integer  "type_use_unit_id"
@@ -624,13 +630,14 @@ ActiveRecord::Schema.define(version: 20150811200130) do
   create_table "protocol_attach_documents", force: :cascade do |t|
     t.integer  "document_father_id"
     t.integer  "document_child_id"
-    t.integer  "attach_type"
+    t.integer  "attach_type_id"
     t.integer  "sector_id"
     t.integer  "staff_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
+  add_index "protocol_attach_documents", ["attach_type_id"], name: "index_protocol_attach_documents_on_attach_type_id", using: :btree
   add_index "protocol_attach_documents", ["document_child_id"], name: "index_protocol_attach_documents_on_document_child_id", using: :btree
   add_index "protocol_attach_documents", ["document_father_id"], name: "index_protocol_attach_documents_on_document_father_id", using: :btree
   add_index "protocol_attach_documents", ["sector_id"], name: "index_protocol_attach_documents_on_sector_id", using: :btree
@@ -677,16 +684,14 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "shelf"
     t.string   "pile"
     t.string   "box"
-    t.text     "observation"
+    t.text     "obsevation"
     t.integer  "assessment_id"
-    t.integer  "sector_id"
     t.integer  "staff_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id", using: :btree
-  add_index "protocol_locations", ["sector_id"], name: "index_protocol_locations_on_sector_id", using: :btree
   add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id", using: :btree
 
   create_table "protocol_subjects", force: :cascade do |t|
@@ -719,8 +724,8 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "rg"
     t.string   "email"
     t.string   "nationality"
-    t.integer  "marital_status"
-    t.integer  "gender"
+    t.string   "marital_status"
+    t.string   "gender"
     t.date     "born"
     t.string   "telephone"
     t.string   "celphone"
@@ -796,9 +801,8 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "last_sign_in_ip"
     t.integer  "account_id"
     t.string   "account_type"
-    t.text     "unique_session_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree

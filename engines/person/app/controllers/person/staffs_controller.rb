@@ -41,6 +41,7 @@ module Person
 
       if @staff.update(staff_update_params)
         flash[:success] =  t :success
+        expire_fragment("lista_ramais")
         redirect_to action: 'index'
       else
         render :edit
