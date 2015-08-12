@@ -1,7 +1,3 @@
 pt-BR:
  success: "Operação realizada com sucesso!"
-<<<<<<< HEAD
  confirm_delete: "Deseja realmente excluir?"
-=======
- confirm_delete: "Deseja realmente excluir"
->>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
