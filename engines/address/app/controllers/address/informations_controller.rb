@@ -27,7 +27,7 @@ module Address
       @units = Address::Unit.joins(:registry_units)
                             .where("address_units.city_id = ? AND address_units.block = ? AND address_units.group = ? AND address_units.program = 1", params[:city_id], params[:block], params[:group])
                             .where("address_registry_units.situation <> ?", 2)
-                            .order(:unit)
+                            .order(:id)
 
       render json: @units
     end

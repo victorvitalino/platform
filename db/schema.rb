@@ -723,42 +723,6 @@ ActiveRecord::Schema.define(version: 20150811122324) do
 
   add_index "regularization_requeriments", ["unit_id"], name: "index_regularization_requeriments_on_unit_id", using: :btree
 
-  create_table "regularization_treatment_attendants", force: :cascade do |t|
-    t.integer  "staff_id"
-    t.integer  "service_station_id"
-    t.integer  "counter"
-    t.integer  "privilege",          default: 0
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  add_index "regularization_treatment_attendants", ["service_station_id"], name: "index_regularization_treatment_attendants_on_service_station_id", using: :btree
-  add_index "regularization_treatment_attendants", ["staff_id"], name: "index_regularization_treatment_attendants_on_staff_id", using: :btree
-
-  create_table "regularization_treatment_counters", force: :cascade do |t|
-    t.integer  "service_station_id"
-    t.integer  "number"
-    t.string   "subject"
-    t.boolean  "preferences"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  add_index "regularization_treatment_counters", ["service_station_id"], name: "index_regularization_treatment_counters_on_service_station_id", using: :btree
-
-  create_table "regularization_treatment_service_stations", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "city_id"
-    t.string   "observation"
-    t.integer  "station_type", default: 0
-    t.integer  "conv_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "regularization_treatment_service_stations", ["city_id"], name: "index_regularization_treatment_service_stations_on_city_id", using: :btree
-  add_index "regularization_treatment_service_stations", ["conv_id"], name: "index_regularization_treatment_service_stations_on_conv_id", using: :btree
-
   create_table "user_candidates", force: :cascade do |t|
     t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
