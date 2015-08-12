@@ -5,7 +5,7 @@
       = link_to 'novo assunto', new_subject_path, remote: true, class: 'btn btn-success pull-right'
       %small Listagem de Assuntos
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table.table.table-hover.table-bordered
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
       %thead
         %tr
           %th #

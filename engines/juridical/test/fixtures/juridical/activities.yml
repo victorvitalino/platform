@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  document_type_id: 
+  action_type_id: 
+  local_instance_id: 
+  date_distribution: 2015-08-11
+  deadline: 2015-08-11
+  days: MyString
+  end_date: 2015-08-11
+  complemet: MyText
+  user_id: 
+  status: false
+  monitoring_type: MyString
+  attachment: MyString
+
+two:
+  document_type_id: 
+  action_type_id: 
+  local_instance_id: 
+  date_distribution: 2015-08-11
+  deadline: 2015-08-11
+  days: MyString
+  end_date: 2015-08-11
+  complemet: MyText
+  user_id: 
+  status: false
+  monitoring_type: MyString
+  attachment: MyString

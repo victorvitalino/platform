@@ -6570,6 +6570,12 @@ a.thumbnail.active {
   color: #4caf50;
 }
 
+.alert-notice {
+  background-color: #dff0d8;
+  border-color: #dff0d8;
+  color: #4caf50;
+}
+
 .alert-success hr {
   border-top-color: #d0e9c6;
 }

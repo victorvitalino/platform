@@ -5,13 +5,13 @@
       = link_to 'Novo Menu', new_nav_path, class: 'btn btn-success pull-right' if policy(:nav, namespace: Cms).create?
       %small Listagem de menus
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
       %thead
         %tr
           %th #
           %th Título
           %th Publicado
-          %th{:colspan => "3"} Ações
+          %th Ações
 
       %tbody
         - @navs.each_with_index do |nav, i|

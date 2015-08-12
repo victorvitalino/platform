@@ -1,0 +1,25 @@
+%h1 Listing local_instances
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Instance
+      %th
+      %th
+      %th
+
+  %tbody
+    - @local_instances.each do |local_instance|
+      %tr
+        %td= local_instance.name
+        %td= local_instance.description
+        %td= local_instance.instance
+        %td= link_to 'Show', local_instance
+        %td= link_to 'Edit', edit_local_instance_path(local_instance)
+        %td= link_to 'Destroy', local_instance, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Local instance', new_local_instance_path
