@@ -21,3 +21,5 @@ pt-BR:
         marital_status: "Estado civil"
         gender: "Sexo"
         nationality: "Nacionalidade"
+        spouse_name: "Nome cônjuge"
+        spouse_cpf: "CPF cônjuge"

@@ -1,5 +1,11 @@
 pt-BR:
-  activerecord:
+  activemodel:
+    errors:
+      models:
+        'regularization/candidate':
+          attributes:
+            born:
+              invalid_date: "data inválida"
     models:
       'regularization/candidate': Requerimento
     attributes:

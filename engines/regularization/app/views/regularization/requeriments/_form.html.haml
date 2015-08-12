@@ -44,7 +44,8 @@
   %hr/
   .row
     .col-md-12
-      = f.button :submit
+      = f.submit "Salvar Requerimento"
+      = link_to "Voltar/Alterar endereço", regularization.new_address_path, class: 'btn btn-default'
 
 :javascript
 
