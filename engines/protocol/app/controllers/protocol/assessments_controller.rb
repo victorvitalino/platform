@@ -10,15 +10,15 @@ module Protocol
             else
                 @assessments = nil
             end
-            #authorize @assessments
+            authorize @assessments
         end
 
         def new
-            @assessment = Assessment.new
-          #  authorize @assessment
+           @assessment = Assessment.new
+           authorize @assessment
         end
         def create
-         #   authorize @assessment
+            authorize @assessment
             @assessment = Assessment.new(set_assessment_params)
 
             @assessment.set_staff(current_user.account_id)
@@ -42,7 +42,7 @@ module Protocol
         end
 
         def update
-            #authorize @assessmentfind_sector()
+            authorize @assessment
             if @assessment.update(set_assessment_params)
                 render action: 'index'
             else
@@ -51,7 +51,7 @@ module Protocol
         end
 
         def destroy
-            #authorize @assessment
+            authorize @assessment
             @assessment.destroy
             redirect_to action: 'index'
         end

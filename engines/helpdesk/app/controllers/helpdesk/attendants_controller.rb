@@ -5,11 +5,12 @@ module Helpdesk
      before_action :set_attendants, only: [:new, :create, :update]
      before_action :set_attendant, only: [:edit, :destroy, :update]
     def index
-
+       authorize @attendants
     end
 
     def new
       @attendant = Attendant.new
+      authorize @attendant
     end
 
     def create
@@ -24,12 +25,14 @@ module Helpdesk
     end
 
     def update
+      authorize @attendant
       if @attendant.update(attendant_params)
         flash[:success] = t :success
       end
     end
 
     def destroy
+       authorize @attendant
       if @attendant.destroy
         redirect_to action: 'new'
         flash[:success] = t :success

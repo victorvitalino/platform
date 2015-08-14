@@ -1,16 +1,16 @@
 module Protocol
 	class DocumentTypePolicy < ApplicationPolicy
 		def index?
-			true
+			allow?(4403)
 		end
 		def create?
-			true
+			allow?(4401)
 		end
 		def update?
-			true
+			allow?(4401)
 		end
 		def destroy?
-			true
+			allow?(4402)
 		end
 	end
 end

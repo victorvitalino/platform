@@ -7,20 +7,22 @@ module Protocol
       after_action :update_allotment, only: [:create]
 
         def index
-            #authorize @conducts
+            authorize @conducts
         end
 
         def new
+            
             @conduct = @allotment.conducts.new
+            authorize :conduct, :index?
             sector = current_user.account.sector_current.id
-            #authorize @conduct
+            
             #parametro 4 documento recebido pelo setor
             @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector)
 
         end
 
         def add
-            #authorize @conduct
+            authorize @conduct
             sector = current_user.account.sector_current.id
 
             @allotment = Protocol::Allotment.find(params[:id])
@@ -47,7 +49,7 @@ module Protocol
         end
 
          def update_docs
-            #authorize @location
+            authorize @location
             @assessment = Protocol::Assessment.find(params[:assessment_ids])
                 @assessment.each do |a|
                     @conduct = Protocol::Conduct.new
@@ -69,7 +71,7 @@ module Protocol
         end
 
         def send_conduct
-          # authorize @conduct
+           authorize @conduct
            @allotment = Protocol::Allotment.find(params[:allotment_id])
            @conduct = @allotment.conducts.new
         end
@@ -81,7 +83,7 @@ module Protocol
         def create
 
             @allotment_conduct = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.account.sector_current.id)
-            #authorize @conduct
+            authorize @conduct
              @allotment_conduct.each do |lote|
                 @conduct = Protocol::Conduct.new(set_conduct_params)
                 @conduct.allotment_id = params[:allotment_id]

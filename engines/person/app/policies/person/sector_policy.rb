@@ -1,23 +1,23 @@
 module Person
 	class SectorPolicy < ApplicationPolicy
 		def index?
-			#allow?(1303)
-			true
+			allow?(1303)
+
 		end
 
 		def create?
-			#allow?(1301)
-			true
+			allow?(1301)
+
 		end
 
 		def update?
-			#allow?(1301)
-			true
+			allow?(1301)
+
 		end
 
 		def destroy?
-			#llow?(1302)
-			true
+			allow?(1302)
+
 		end
 	end
 end

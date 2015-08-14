@@ -1,16 +1,16 @@
 module Protocol
 	class AllotmentPolicy < ApplicationPolicy
 		def index?
-			true
+			allow?(4203)
 		end
 		def create?
-			true
+			allow?(4201)
 		end
 		def update?
-			true
+			allow?(4201)
 		end
 		def destroy?
-			true
+			allow?(4202)
 		end
 	end
 end

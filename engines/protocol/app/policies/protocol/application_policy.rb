@@ -8,10 +8,9 @@ module Protocol
     end
 
     def index?
-      true
-      #return true if user.account.administrator
-      #@system = Person::System.find_by_code('5')#CÓDIGO SISTEMA PROTOCOLO
-      #return true if user.account.permissions.where(system_id: @system.id, status: true).present?
+      return true if user.account.administrator
+      @system = Person::System.find_by_code('4')#CÓDIGO SISTEMA PROTOCOLO
+      return true if user.account.permissions.where(system_id: @system.id, status: true).present?
     end
 
     def show?

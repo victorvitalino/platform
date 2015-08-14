@@ -1,16 +1,16 @@
 module Protocol
 	class DigitalDocumentPolicy < ApplicationPolicy
 		def index?
-			true
+			allow?(4703)
 		end
 		def create?
-			true
+			allow?(4701)
 		end
 		def update?
-			true
+			allow?(4701)
 		end
 		def destroy?
-			true
+			allow?(4702)
 		end
 	end
 end
