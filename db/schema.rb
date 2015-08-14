@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150811122324) do
+=======
 ActiveRecord::Schema.define(version: 20150811200130) do
+>>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +66,6 @@ ActiveRecord::Schema.define(version: 20150811200130) do
 
   create_table "address_situation_units", force: :cascade do |t|
     t.string   "description"
-    t.string   "code"
     t.boolean  "status",      default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -73,6 +76,13 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "acronym"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "address_type_use_units", force: :cascade do |t|
+    t.string   "description"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "address_units", force: :cascade do |t|
@@ -89,7 +99,11 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.boolean  "donate"
     t.date     "date_donate"
     t.date     "date_iptu"
+<<<<<<< HEAD
     t.string   "registration_iptu"
+=======
+    t.date     "registration_iptu"
+>>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
     t.string   "certificate"
     t.integer  "situation_unit_id"
     t.integer  "type_use_unit_id"
@@ -102,6 +116,82 @@ ActiveRecord::Schema.define(version: 20150811200130) do
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
   add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
   add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
+
+  create_table "attendance_attendants", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.integer  "sector_id"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "attendance_attendants", ["sector_id"], name: "index_attendance_attendants_on_sector_id", using: :btree
+  add_index "attendance_attendants", ["staff_id"], name: "index_attendance_attendants_on_staff_id", using: :btree
+
+  create_table "attendance_codes", force: :cascade do |t|
+    t.integer  "number"
+    t.boolean  "preference"
+    t.integer  "station_id"
+    t.integer  "counter_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "attendant_id"
+    t.integer  "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "attendance_codes", ["attendant_id"], name: "index_attendance_codes_on_attendant_id", using: :btree
+  add_index "attendance_codes", ["counter_id"], name: "index_attendance_codes_on_counter_id", using: :btree
+  add_index "attendance_codes", ["station_id"], name: "index_attendance_codes_on_station_id", using: :btree
+
+  create_table "attendance_counters", force: :cascade do |t|
+    t.integer  "station_id"
+    t.integer  "subject_id"
+    t.boolean  "preference"
+    t.boolean  "status"
+    t.integer  "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attendance_counters", ["station_id"], name: "index_attendance_counters_on_station_id", using: :btree
+  add_index "attendance_counters", ["subject_id"], name: "index_attendance_counters_on_subject_id", using: :btree
+
+  create_table "attendance_station_attendants", force: :cascade do |t|
+    t.integer  "attendant_id"
+    t.integer  "station_id"
+    t.boolean  "status"
+    t.boolean  "supervisor"
+    t.integer  "counter_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "attendance_station_attendants", ["attendant_id"], name: "index_attendance_station_attendants_on_attendant_id", using: :btree
+  add_index "attendance_station_attendants", ["counter_id"], name: "index_attendance_station_attendants_on_counter_id", using: :btree
+  add_index "attendance_station_attendants", ["station_id"], name: "index_attendance_station_attendants_on_station_id", using: :btree
+
+  create_table "attendance_stations", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "city_id"
+    t.integer  "station_type"
+    t.integer  "convocation_id"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "attendance_stations", ["city_id"], name: "index_attendance_stations_on_city_id", using: :btree
+  add_index "attendance_stations", ["convocation_id"], name: "index_attendance_stations_on_convocation_id", using: :btree
+
+  create_table "attendance_subjects", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "candidate_adjuct_cadastres", force: :cascade do |t|
     t.string   "name"
@@ -624,13 +714,14 @@ ActiveRecord::Schema.define(version: 20150811200130) do
   create_table "protocol_attach_documents", force: :cascade do |t|
     t.integer  "document_father_id"
     t.integer  "document_child_id"
-    t.integer  "attach_type"
+    t.integer  "attach_type_id"
     t.integer  "sector_id"
     t.integer  "staff_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
+  add_index "protocol_attach_documents", ["attach_type_id"], name: "index_protocol_attach_documents_on_attach_type_id", using: :btree
   add_index "protocol_attach_documents", ["document_child_id"], name: "index_protocol_attach_documents_on_document_child_id", using: :btree
   add_index "protocol_attach_documents", ["document_father_id"], name: "index_protocol_attach_documents_on_document_father_id", using: :btree
   add_index "protocol_attach_documents", ["sector_id"], name: "index_protocol_attach_documents_on_sector_id", using: :btree
@@ -677,16 +768,14 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "shelf"
     t.string   "pile"
     t.string   "box"
-    t.text     "observation"
+    t.text     "obsevation"
     t.integer  "assessment_id"
-    t.integer  "sector_id"
     t.integer  "staff_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id", using: :btree
-  add_index "protocol_locations", ["sector_id"], name: "index_protocol_locations_on_sector_id", using: :btree
   add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id", using: :btree
 
   create_table "protocol_subjects", force: :cascade do |t|
@@ -736,31 +825,6 @@ ActiveRecord::Schema.define(version: 20150811200130) do
 
   add_index "regularization_requeriments", ["unit_id"], name: "index_regularization_requeriments_on_unit_id", using: :btree
 
-  create_table "regularization_treatment_attendants", force: :cascade do |t|
-    t.integer  "staff_id"
-    t.integer  "service_station_id"
-    t.integer  "counter"
-    t.integer  "privilege",          default: 0
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  add_index "regularization_treatment_attendants", ["service_station_id"], name: "index_regularization_treatment_attendants_on_service_station_id", using: :btree
-  add_index "regularization_treatment_attendants", ["staff_id"], name: "index_regularization_treatment_attendants_on_staff_id", using: :btree
-
-  create_table "regularization_treatment_service_stations", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "city_id"
-    t.string   "observation"
-    t.integer  "station_type", default: 0
-    t.integer  "conv_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "regularization_treatment_service_stations", ["city_id"], name: "index_regularization_treatment_service_stations_on_city_id", using: :btree
-  add_index "regularization_treatment_service_stations", ["conv_id"], name: "index_regularization_treatment_service_stations_on_conv_id", using: :btree
-
   create_table "user_candidates", force: :cascade do |t|
     t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -796,9 +860,14 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "last_sign_in_ip"
     t.integer  "account_id"
     t.string   "account_type"
+<<<<<<< HEAD
     t.text     "unique_session_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+=======
+    t.datetime "created_at"
+    t.datetime "updated_at"
+>>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree

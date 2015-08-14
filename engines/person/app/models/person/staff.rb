@@ -3,6 +3,7 @@ module Person
     has_one :user, as: :account, dependent: :destroy
     accepts_nested_attributes_for :user
 
+    
     default_scope { where(status: true)}
     has_many :permissions, class_name: "Person::StaffPermission"
 

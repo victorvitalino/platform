@@ -12,6 +12,7 @@ module Regularization
 
     def create
       @requeriment = Requeriment.new(set_params)
+      @requeriment.unit_id = session[:address_id]
       if @requeriment.save
         flash[:success] = t :success
         redirect_to @requeriment
@@ -31,7 +32,7 @@ module Regularization
 
     def set_address
       if session[:address_id].present?
-        @address = ::Address::Unit.find(session[:address_id])
+          @address = ::Address::Unit.find(session[:address_id])
       else
         flash[:info] = t :info 
         redirect_to regularization.new_address_path

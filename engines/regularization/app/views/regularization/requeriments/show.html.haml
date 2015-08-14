@@ -3,12 +3,15 @@
     %h1.title Requerimento de regularização
     %h4
       = link_to "Imprimir Boleto", requeriment_bank_slip_path(@requeriment), class: 'btn btn-success btn-sm'
-      = link_to "Voltar", regularization.requeriment_candidates_path, class: 'btn btn-default btn-sm'
+%br/
+.row
+  .col-md-12
+    %h3.title Requerimento
 %hr/
 .row
   .col-md-6
     %h4.title Endereço a ser regularizado
-    %h5= "#{@address.city.name} - #{@address.complete_address}"
+    %h5= "#{@requeriment.unit.city.name} - #{@requeriment.unit.complete_address}"
   .col-md-4
     %h4.title  Data de criação do requerimento
     %h5

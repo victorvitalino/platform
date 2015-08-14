@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      'attendance/station': Posto de atendimento
+    attributes:
+      'attendance/station':
+        name: "Nome"
+        city: "Cidade"
+        station_type: "Tipo"
+        status: "Status"
+        status: "Ativo"
+        convocation: "Convocação"

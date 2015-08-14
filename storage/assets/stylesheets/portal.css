@@ -6,3 +6,4 @@
 
 .main {margin-top: 45px;}
 .main .title { font-weight: bold;}
+.table>thead>tr>th { font-weight: bold !important;}

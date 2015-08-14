@@ -15,4 +15,5 @@
           %th Ramal
           %th Ações
       %tbody.index-user
-        = render 'index'
+        - cache ('lista_usuarios') do
+          = render 'index'

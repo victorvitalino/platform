@@ -1,0 +1,9 @@
+- @attendants.each_with_index do |attendant, index|
+  %tr
+    %td= index + 1
+    %td= attendant.staff.name if attendant.staff.present?
+    %td= attendant.staff.sector_current.acron if attendant.staff.present? && attendant.staff.sector_current.present?
+    %td= attendant.status ? 'ativo' : 'inativo'
+    %td.col-md-2
+      = link_to '', edit_attendant_path(attendant), remote: true, class: 'md md-edit btn btn-primary'
+      = link_to '', attendant, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete)}

@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'attendance/subject': Assunto de atendimento
+    attributes:
+      'attendance/subject':
+        name: "Nome"
+        status: "Ativo"

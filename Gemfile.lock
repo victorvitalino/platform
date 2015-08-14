@@ -19,6 +19,13 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/attendance
+  specs:
+    attendance (0.0.1)
+      haml-rails
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/candidate
   specs:
     candidate (0.0.1)
@@ -98,13 +105,6 @@ PATH
   remote: engines/regularization
   specs:
     regularization (0.0.1)
-      rails (~> 4.2.1)
-
-PATH
-  remote: engines/regularization_treatment
-  specs:
-    regularization_treatment (0.0.1)
-      haml-rails
       rails (~> 4.2.1)
 
 PATH
@@ -307,6 +307,7 @@ PLATFORMS
 
 DEPENDENCIES
   address!
+  attendance!
   byebug
   candidate!
   carrierwave
@@ -337,7 +338,6 @@ DEPENDENCIES
   rails (= 4.2.1)
   redactor-rails
   regularization!
-  regularization_treatment!
   remotipart (~> 1.2)
   schedule!
   simple_form
@@ -348,6 +348,3 @@ DEPENDENCIES
   validates_timeliness
   wicked_pdf
   wkhtmltopdf-binary
-
-BUNDLED WITH
-   1.10.6
