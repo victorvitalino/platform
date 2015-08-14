@@ -1,16 +1,16 @@
 module Protocol
 	class AssessmentPolicy < ApplicationPolicy
-		def index?
-			true
+			def index?
+			allow?(4103)
 		end
 		def create?
-			true
+			allow?(4101)
 		end
 		def update?
-			true
+			allow?(4101)
 		end
 		def destroy?
-			true
+			allow?(4102)
 		end
 	end
 end

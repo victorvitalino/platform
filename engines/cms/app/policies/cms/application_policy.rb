@@ -8,10 +8,9 @@ module Cms
     end
 
     def index?
-      true
-      #return true if user.account.administrator
-      #@system = Person::System.find_by_code('3')#CÓDIGO DO SISTEMA CMS
-      #return true if user.account.permissions.where(system_id: @system.id, status: true).present?
+      return true if user.account.administrator
+      @system = Person::System.find_by_code('3')#CÓDIGO DO SISTEMA CMS
+      return true if user.account.permissions.where(system_id: @system.id, status: true).present?
     end
 
     def show?

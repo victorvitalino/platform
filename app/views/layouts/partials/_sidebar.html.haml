@@ -89,17 +89,23 @@
               - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
                 %li
                   = link_to "meus chamados", helpdesk.order_service_technicals_path
+              - if policy(:Attendant, namespace: Helpdesk).index?  
                 %li
                   = link_to "atendentes", helpdesk.new_attendant_path
                   %hr/
+              - if policy(:Attendant, namespace: Helpdesk).report?    
                 %li
                   = link_to "relatório por atendente", helpdesk.new_report_attendant_path
+              - if policy(:Attendant, namespace: Helpdesk).report?   
                 %li
                   = link_to "relatório por setor", helpdesk.new_report_sector_path
+              - if policy(:Attendant, namespace: Helpdesk).report?     
                 %li
                   = link_to "relatório por funcionário", helpdesk.new_report_employee_path
+              - if policy(:Attendant, namespace: Helpdesk).report?     
                 %li
                   = link_to "relatório por tipo de solicitação", helpdesk.new_report_request_path
+              - if policy(:Attendant, namespace: Helpdesk).report?     
                 %li
                   = link_to "relatório por máquina", helpdesk.new_report_machine_path
 

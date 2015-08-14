@@ -5,7 +5,7 @@ module Helpdesk
     before_action :set_order_services
     
     def index
-     authorize :order_service_technicals 
+     authorize :attendant, :index 
      @order_services
     end
 

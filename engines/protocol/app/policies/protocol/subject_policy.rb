@@ -1,16 +1,16 @@
 module Protocol
 	class SubjectPolicy < ApplicationPolicy
 		def index?
-			true
+			allow?(4503)
 		end
 		def create?
-			true
+			allow?(4501)
 		end
 		def update?
-			true
+			allow?(4501)
 		end
 		def destroy?
-			true
+			allow?(4502)
 		end
 	end
 end

@@ -8,13 +8,14 @@
           %i.md.md-more-vert
         %ul.dropdown-menu.dropdown-menu-right
           %li
-            = link_to 'Novo Documento', new_assessment_path
+            = link_to 'Novo Documento', new_assessment_path if policy(:Assessment, namespace: Protocol).create?
           %li
-            = link_to 'Remessa', allotments_path
+            = link_to 'Remessa', allotments_path if policy(:Allotment, namespace: Protocol).create?
           %li
-            = link_to 'Nova Localização', new_location_path
+            = link_to 'Nova Localização', new_location_path if policy(:Location, namespace: Protocol).create?
           %li
-            = link_to 'Receber Tramitação', receive_path
+            = link_to 'Receber Tramitação', receive_path if policy(:Conduct, namespace: Protocol).create?
+
 
 
     %small Listagem de Documentos

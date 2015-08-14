@@ -3,9 +3,9 @@
     %h2
       Remessas
     %small Listagem de remessas
-    = link_to 'Nova Remessa', new_allotment_path, remote: true, class: 'btn btn-success pull-right mgl'
-    = link_to 'Receber remessa', receive_path, class: 'btn btn-info pull-right mgl'
-    = link_to 'Devolver remessa', return_path, class: 'btn btn-danger pull-right mgl'   
+    = link_to 'Nova Remessa', new_allotment_path, remote: true, class: 'btn btn-success pull-right mgl' if policy(:Allotment, namespace: Protocol).create?
+    = link_to 'Receber remessa', receive_path, class: 'btn btn-info pull-right mgl' if policy(:Conduct, namespace: Protocol).receive?
+    = link_to 'Devolver remessa', return_path, class: 'btn btn-danger pull-right mgl' if policy(:Conduct, namespace: Protocol).return?
   .card-body
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
       %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
