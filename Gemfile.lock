@@ -328,6 +328,3 @@ DEPENDENCIES
   validates_timeliness
   wicked_pdf
   wkhtmltopdf-binary
-
-BUNDLED WITH
-   1.10.6
