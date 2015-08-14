@@ -12,20 +12,27 @@ module Regularization
 
     def create
       @requeriment = Requeriment.new(set_params)
+      @requeriment.unit_id = session[:address_id]
       if @requeriment.save
         flash[:success] = t :success
         redirect_to @requeriment
       else
-        render :new
+        render action: 'new'
       end
     end
 
+    def bank_slip
+    end
+
+    def show
+      @requeriment = Requeriment.find(params[:id])
+    end
 
     private
 
     def set_address
       if session[:address_id].present?
-        @address = ::Address::Unit.find(session[:address_id])
+          @address = ::Address::Unit.find(session[:address_id])
       else
         flash[:info] = t :info 
         redirect_to regularization.new_address_path
@@ -36,7 +43,8 @@ module Regularization
     def set_params
       params.require(:requeriment).permit(:name, :cpf, :rg, :email, :nacionality, :martial_status,
                                           :gender, :born, :telephone, :celphone, :complete_address,
-                                          :income, :income, :spouse_name, :spouse_cpf, :owner)
+                                          :income, :income, :spouse_name, :spouse_cpf, :owner, 
+                                          :marital_status, :nationality)
     end
 
   end

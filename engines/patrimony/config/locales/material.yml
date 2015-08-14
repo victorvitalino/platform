@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      'patrimony/material': Material
+    attributes:
+      'patrimony/material':
+        name: "Nome"
+        description: "Descriçao"
+        type_material: "Tipo de Material"
+        
+

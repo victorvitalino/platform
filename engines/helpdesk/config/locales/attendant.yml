@@ -1,0 +1,14 @@
+pt-BR:
+  enums:
+    'helpdesk/attendant': 
+       type_attendant:
+          system: "Sistemas"
+          infrastructure: "Suporte"
+  activerecord:
+    models:
+      'helpdesk/attendant': Ordem de Serviço
+    attributes:
+      'helpdesk/attendant':
+        staff_id: "Atendente"
+        code: "Código"
+        type_attendant: "Tipo"

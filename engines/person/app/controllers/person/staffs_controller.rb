@@ -1,3 +1,5 @@
+require_dependency 'person/application_controller'
+
 module Person
   class StaffsController < ApplicationController
     layout 'layouts/material'
@@ -39,6 +41,8 @@ module Person
 
       if @staff.update(staff_update_params)
         flash[:success] =  t :success
+        expire_fragment("lista_ramais")
+        expire_fragment("lista_usuarios")
         redirect_to action: 'index'
       else
         render :edit
@@ -73,7 +77,7 @@ module Person
     end
 
     def set_staffs
-      @staffs = Staff.includes(:sector_current).unscoped.all
+      @staffs = Staff.includes(:sector_current).unscoped.all.order(:name)
     end
 
     def set_staff

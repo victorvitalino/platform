@@ -1,8 +1,7 @@
 module Helpdesk
 	class MonitorServiceOrderPolicy < ApplicationPolicy
 		def index?
-			#allow?(2203)
-			true
+			allow?(2203)
 		end
 
 		def create?

@@ -1,16 +1,16 @@
 module Protocol
 	class LocationPolicy < ApplicationPolicy
 		def index?
-			true
+			allow?(4603)
 		end
 		def create?
-			true
+			allow?(4601)
 		end
 		def update?
-			true
+			allow?(4601)
 		end
 		def destroy?
-			true
+			allow?(4602)
 		end
 	end
 end

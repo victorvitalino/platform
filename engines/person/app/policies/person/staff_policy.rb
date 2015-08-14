@@ -3,6 +3,7 @@ module Person
 
 		def index?
 			allow?(1603)
+
 		end
 
 		def create?

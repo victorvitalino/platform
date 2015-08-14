@@ -2025,8 +2025,8 @@ pre code {
 }
 
 .row {
-  margin-left: -12px;
-  margin-right: -12px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .col-xs-1,
@@ -6565,6 +6565,12 @@ a.thumbnail.active {
 }
 
 .alert-success {
+  background-color: #dff0d8;
+  border-color: #dff0d8;
+  color: #4caf50;
+}
+
+.alert-notice {
   background-color: #dff0d8;
   border-color: #dff0d8;
   color: #4caf50;

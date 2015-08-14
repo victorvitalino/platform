@@ -14,9 +14,11 @@
       = render "layouts/partials/sidebar"
       %section#content
         %div.container
+          - flash.each do |key, value|
+            = content_tag(:div, value, :class => "alert alert-#{key}")
           = yield
-    = javascript_include_tag 'material'
 
     #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
       .modal-dialog
         .modal-content
+    = javascript_include_tag 'material'

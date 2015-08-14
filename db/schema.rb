@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731195644) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150811122324) do
+=======
+ActiveRecord::Schema.define(version: 20150811200130) do
+>>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,7 +99,11 @@ ActiveRecord::Schema.define(version: 20150731195644) do
     t.boolean  "donate"
     t.date     "date_donate"
     t.date     "date_iptu"
+<<<<<<< HEAD
+    t.string   "registration_iptu"
+=======
     t.date     "registration_iptu"
+>>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
     t.string   "certificate"
     t.integer  "situation_unit_id"
     t.integer  "type_use_unit_id"
@@ -108,6 +116,149 @@ ActiveRecord::Schema.define(version: 20150731195644) do
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
   add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
   add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
+
+  create_table "attendance_attendants", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.integer  "sector_id"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "attendance_attendants", ["sector_id"], name: "index_attendance_attendants_on_sector_id", using: :btree
+  add_index "attendance_attendants", ["staff_id"], name: "index_attendance_attendants_on_staff_id", using: :btree
+
+  create_table "attendance_codes", force: :cascade do |t|
+    t.integer  "number"
+    t.boolean  "preference"
+    t.integer  "station_id"
+    t.integer  "counter_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "attendant_id"
+    t.integer  "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "attendance_codes", ["attendant_id"], name: "index_attendance_codes_on_attendant_id", using: :btree
+  add_index "attendance_codes", ["counter_id"], name: "index_attendance_codes_on_counter_id", using: :btree
+  add_index "attendance_codes", ["station_id"], name: "index_attendance_codes_on_station_id", using: :btree
+
+  create_table "attendance_counters", force: :cascade do |t|
+    t.integer  "station_id"
+    t.integer  "subject_id"
+    t.boolean  "preference"
+    t.boolean  "status"
+    t.integer  "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attendance_counters", ["station_id"], name: "index_attendance_counters_on_station_id", using: :btree
+  add_index "attendance_counters", ["subject_id"], name: "index_attendance_counters_on_subject_id", using: :btree
+
+  create_table "attendance_station_attendants", force: :cascade do |t|
+    t.integer  "attendant_id"
+    t.integer  "station_id"
+    t.boolean  "status"
+    t.boolean  "supervisor"
+    t.integer  "counter_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "attendance_station_attendants", ["attendant_id"], name: "index_attendance_station_attendants_on_attendant_id", using: :btree
+  add_index "attendance_station_attendants", ["counter_id"], name: "index_attendance_station_attendants_on_counter_id", using: :btree
+  add_index "attendance_station_attendants", ["station_id"], name: "index_attendance_station_attendants_on_station_id", using: :btree
+
+  create_table "attendance_stations", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "city_id"
+    t.integer  "station_type"
+    t.integer  "convocation_id"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "attendance_stations", ["city_id"], name: "index_attendance_stations_on_city_id", using: :btree
+  add_index "attendance_stations", ["convocation_id"], name: "index_attendance_stations_on_convocation_id", using: :btree
+
+  create_table "attendance_subjects", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "candidate_adjuct_cadastres", force: :cascade do |t|
+    t.string   "name"
+    t.string   "telephone"
+    t.string   "telephone_optional"
+    t.string   "celphone"
+    t.string   "email"
+    t.integer  "special_condition_id"
+    t.boolean  "flag_special_condition", default: false
+    t.string   "cep"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.string   "address"
+    t.string   "adjunt_address"
+    t.string   "number_address"
+    t.float    "income"
+    t.string   "work"
+    t.string   "cep_work"
+    t.integer  "city_work_id"
+    t.integer  "state_work_id"
+    t.string   "address_work"
+    t.string   "adjunt_address_work"
+    t.string   "number_address_work"
+    t.string   "nis"
+    t.string   "cid"
+    t.integer  "cadastre_id"
+    t.integer  "civil_state_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "candidate_adjuct_cadastres", ["cadastre_id"], name: "index_candidate_adjuct_cadastres_on_cadastre_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["city_id"], name: "index_candidate_adjuct_cadastres_on_city_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["city_work_id"], name: "index_candidate_adjuct_cadastres_on_city_work_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["civil_state_id"], name: "index_candidate_adjuct_cadastres_on_civil_state_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["special_condition_id"], name: "index_candidate_adjuct_cadastres_on_special_condition_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["state_id"], name: "index_candidate_adjuct_cadastres_on_state_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["state_work_id"], name: "index_candidate_adjuct_cadastres_on_state_work_id", using: :btree
+
+  create_table "candidate_cadastres", force: :cascade do |t|
+    t.string   "cpf"
+    t.integer  "gender",      default: 0
+    t.date     "born"
+    t.string   "born_uf"
+    t.string   "rg"
+    t.string   "rg_org"
+    t.string   "place_birth"
+    t.date     "arrival_df"
+    t.string   "seqcad"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "candidate_civil_states", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "candidate_special_conditions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "cms_nav_categories", force: :cascade do |t|
     t.string   "name"
@@ -194,6 +345,16 @@ ActiveRecord::Schema.define(version: 20150731195644) do
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
 
+  create_table "helpdesk_attendants", force: :cascade do |t|
+    t.string   "code"
+    t.integer  "type_attendant"
+    t.integer  "staff_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "helpdesk_attendants", ["staff_id"], name: "index_helpdesk_attendants_on_staff_id", using: :btree
+
   create_table "helpdesk_monitor_service_orders", force: :cascade do |t|
     t.text     "appointment"
     t.string   "attachment"
@@ -234,6 +395,95 @@ ActiveRecord::Schema.define(version: 20150731195644) do
   add_index "helpdesk_order_services", ["responsible_id"], name: "index_helpdesk_order_services_on_responsible_id", using: :btree
   add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id", using: :btree
   add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id", using: :btree
+
+  create_table "juridical_action_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "juridical_activities", force: :cascade do |t|
+    t.integer  "document_type_id"
+    t.integer  "action_type_id"
+    t.integer  "local_instance_id"
+    t.date     "date_distribution"
+    t.date     "deadline"
+    t.string   "days"
+    t.date     "end_date"
+    t.text     "complemet"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.string   "monitoring_type"
+    t.string   "attachment"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "juridical_activities", ["action_type_id"], name: "index_juridical_activities_on_action_type_id", using: :btree
+  add_index "juridical_activities", ["document_type_id"], name: "index_juridical_activities_on_document_type_id", using: :btree
+  add_index "juridical_activities", ["local_instance_id"], name: "index_juridical_activities_on_local_instance_id", using: :btree
+  add_index "juridical_activities", ["user_id"], name: "index_juridical_activities_on_user_id", using: :btree
+
+  create_table "juridical_atividades", force: :cascade do |t|
+    t.integer  "document_type_id"
+    t.integer  "action_type_id"
+    t.integer  "local_instance_id"
+    t.date     "date_distribution"
+    t.date     "deadline"
+    t.string   "days"
+    t.date     "end_date"
+    t.text     "complemet"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.string   "monitoring_type"
+    t.string   "attachment"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "juridical_atividades", ["action_type_id"], name: "index_juridical_atividades_on_action_type_id", using: :btree
+  add_index "juridical_atividades", ["document_type_id"], name: "index_juridical_atividades_on_document_type_id", using: :btree
+  add_index "juridical_atividades", ["user_id"], name: "index_juridical_atividades_on_user_id", using: :btree
+
+  create_table "juridical_instances", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "juridical_local_instances", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "instance_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "juridical_local_instances", ["instance_id"], name: "index_juridical_local_instances_on_instance_id", using: :btree
+
+  create_table "juridical_process_monitorings", force: :cascade do |t|
+    t.string   "number_lawsuit"
+    t.string   "number_administrative_process"
+    t.string   "organ"
+    t.integer  "action_type_id"
+    t.string   "value_cause"
+    t.integer  "local_instance_id"
+    t.string   "part"
+    t.integer  "lawyer_responsible_id"
+    t.text     "complemet"
+    t.boolean  "status"
+    t.date     "initial_date"
+    t.date     "end_date"
+    t.integer  "process_type"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "juridical_process_monitorings", ["action_type_id"], name: "index_juridical_process_monitorings_on_action_type_id", using: :btree
+  add_index "juridical_process_monitorings", ["lawyer_responsible_id"], name: "index_juridical_process_monitorings_on_lawyer_responsible_id", using: :btree
+  add_index "juridical_process_monitorings", ["local_instance_id"], name: "index_juridical_process_monitorings_on_local_instance_id", using: :btree
 
   create_table "patrimony_down_goods", force: :cascade do |t|
     t.string   "name"
@@ -464,13 +714,14 @@ ActiveRecord::Schema.define(version: 20150731195644) do
   create_table "protocol_attach_documents", force: :cascade do |t|
     t.integer  "document_father_id"
     t.integer  "document_child_id"
-    t.integer  "attach_type"
+    t.integer  "attach_type_id"
     t.integer  "sector_id"
     t.integer  "staff_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
+  add_index "protocol_attach_documents", ["attach_type_id"], name: "index_protocol_attach_documents_on_attach_type_id", using: :btree
   add_index "protocol_attach_documents", ["document_child_id"], name: "index_protocol_attach_documents_on_document_child_id", using: :btree
   add_index "protocol_attach_documents", ["document_father_id"], name: "index_protocol_attach_documents_on_document_father_id", using: :btree
   add_index "protocol_attach_documents", ["sector_id"], name: "index_protocol_attach_documents_on_sector_id", using: :btree
@@ -557,8 +808,8 @@ ActiveRecord::Schema.define(version: 20150731195644) do
     t.string   "rg"
     t.string   "email"
     t.string   "nationality"
-    t.string   "marital_status"
-    t.string   "gender"
+    t.integer  "marital_status"
+    t.integer  "gender"
     t.date     "born"
     t.string   "telephone"
     t.string   "celphone"
@@ -574,7 +825,7 @@ ActiveRecord::Schema.define(version: 20150731195644) do
 
   add_index "regularization_requeriments", ["unit_id"], name: "index_regularization_requeriments_on_unit_id", using: :btree
 
-  create_table "users", force: :cascade do |t|
+  create_table "user_candidates", force: :cascade do |t|
     t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -588,8 +839,35 @@ ActiveRecord::Schema.define(version: 20150731195644) do
     t.integer  "account_id"
     t.string   "account_type"
     t.text     "unique_session_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "user_candidates", ["account_id", "account_type"], name: "index_user_candidates_on_account_id_and_account_type", using: :btree
+  add_index "user_candidates", ["reset_password_token"], name: "index_user_candidates_on_reset_password_token", unique: true, using: :btree
+  add_index "user_candidates", ["username"], name: "index_user_candidates_on_username", unique: true, using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username",               default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "account_id"
+    t.string   "account_type"
+<<<<<<< HEAD
+    t.text     "unique_session_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+=======
     t.datetime "created_at"
     t.datetime "updated_at"
+>>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree

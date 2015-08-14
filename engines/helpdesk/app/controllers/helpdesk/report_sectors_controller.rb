@@ -4,13 +4,14 @@ module Helpdesk
   class ReportSectorsController < ApplicationController
     before_action :set_sector
     def index
-      
+      authorize :attendant, :report
     end
 
     def new
+      authorize :attendant, :report
       @sector_all = Person::Sector.where(status: true)
-      
-      @result = Helpdesk::OrderService.where(sector_id: @sector, status: "4")
+      result = Helpdesk::OrderService.where(sector_id: @sector)
+      @result = Helpdesk::OrderService.where(sector_id: @sector)
     end
 
 

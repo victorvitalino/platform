@@ -17,7 +17,7 @@
           %li
             = link_to "<i class='md md-person'></i> Meu perfil".html_safe, person.profile_path(current_user)
           %li
-            = link_to "<i class='md md-settings-input-antenna'></i> Configurações".html_safe, person.profile_path(current_user)
+            = link_to "<i class='md md-settings-input-antenna'></i> Minha Conta".html_safe, person.profile_path(current_user)
           %li
             = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
       %ul.main-menu
@@ -77,29 +77,39 @@
             %ul{style: ('display:block;' if params[:module] == "helpdesk")}
               - if policy(:OrderService, namespace: Helpdesk).index?
                 %li
-                  = link_to "todos os chamados", helpdesk.order_services_path
+                  - if current_user.account.administrator?
+                    = link_to "todos os chamados", helpdesk.order_services_path
+                  - else
               - if policy(:OrderServiceUser, namespace: Helpdesk).index?
                 %li
                   - if current_user.account.administrator?
-                    
+
                   - else
                     = link_to "meus chamados", helpdesk.order_service_users_path
               - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
                 %li
                   = link_to "meus chamados", helpdesk.order_service_technicals_path
+              - if policy(:Attendant, namespace: Helpdesk).index?  
+                %li
+                  = link_to "atendentes", helpdesk.new_attendant_path
                   %hr/
+              - if policy(:Attendant, namespace: Helpdesk).report?    
                 %li
                   = link_to "relatório por atendente", helpdesk.new_report_attendant_path
+              - if policy(:Attendant, namespace: Helpdesk).report?   
                 %li
                   = link_to "relatório por setor", helpdesk.new_report_sector_path
+              - if policy(:Attendant, namespace: Helpdesk).report?     
                 %li
                   = link_to "relatório por funcionário", helpdesk.new_report_employee_path
+              - if policy(:Attendant, namespace: Helpdesk).report?     
                 %li
                   = link_to "relatório por tipo de solicitação", helpdesk.new_report_request_path
+              - if policy(:Attendant, namespace: Helpdesk).report?     
                 %li
                   = link_to "relatório por máquina", helpdesk.new_report_machine_path
-                  
-                  
+
+
         %li.sub-menu{class: ('toggled active' if params[:module] == "protocolo")}
           - if policy(:application, namespace: Protocol).index?
             %a{:href => ""}
@@ -121,4 +131,39 @@
               - if policy(:Location, namespace: Protocol).index?
                 %li
                   = link_to "localizações", protocol.new_location_path   
+            
+        %li.sub-menu{class: ('toggled active' if params[:module] == "attendance")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-description>
+              Gestão de Atendimento
+            %ul{style: ('display:block;' if params[:module] == "attendance")}
+              %li= link_to "postos de atendimento", attendance.stations_path
+              %li= link_to "atendentes", attendance.attendants_path
+              %li= link_to "assuntos de guichê", attendance.subjects_path
+              %li= link_to "gestão de senhas"
+              %li= link_to "relatórios"
+        %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              Regularização
+              %i.md.md-business>
+            %ul{style: ('display:block;' if params[:module] == "regularization")}
+              %li= link_to "atendimento", regularization_treatment.treatments_path
+              %li= link_to "consulta requerimento"
+              %li= link_to "consulta candidato"
+              %li= link_to "consulta endereço"
+              %li
+                %hr/
+              %li= link_to "atendentes", regularization_treatment.attendants_path
+              %li= link_to "postos de atendimento", regularization_treatment.service_stations_path
+              %li= link_to "relatórios"
 
+        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-attach-money>
+              Financeiro
+            %ul{style: ('display:block;' if params[:module] == "finance")}
+              %li= link_to "emitir boleto", regularization_treatment.treatments_path
+              %li= link_to "gestão de boletos", regularization_treatment.attendants_path

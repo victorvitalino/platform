@@ -1,9 +1,9 @@
 - @staffs.each_with_index do |j, i|
  %tr
   %td.col-md-1= i + 1
-  %td= j.name
+  %td= j.name.to_s.upcase
   %td= j.code
-  %td= j.sector_current.name if j.sector_current.present?
+  %td= j.sector_current.acron if j.sector_current.present?
   %td= j.branch_line.telephone if j.branch_line.present?
   %td.col-md-2
    = link_to "", edit_staff_path(j),  title: 'Editar', 'data-toggle' => 'tooltip', class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float' if policy(:staff, namespace: Person).update?

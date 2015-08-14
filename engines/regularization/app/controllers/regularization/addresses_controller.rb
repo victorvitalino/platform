@@ -5,7 +5,7 @@ module Regularization
     
     def new
       session[:address_id] = nil
-       @address = Regularization::Address.new
+      @address = Regularization::Address.new
     end
 
     def create

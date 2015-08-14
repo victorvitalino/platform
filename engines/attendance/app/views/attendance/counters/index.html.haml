@@ -1,0 +1,29 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Postos de Atendimento / Guichês
+      %span.pull-right
+        = link_to 'Voltar', attendance.stations_path, class: 'btn btn-inverse'
+        = link_to 'Novo Guichê', attendance.new_station_counter_path(@station), class: 'btn btn-success'
+      %small Listagem de guichês
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-striped.datatable
+      %thead
+        %tr
+          %th #
+          %th Número
+          %th Posto
+          %th Assuntos
+          %th Preferêncial
+          %th Status
+          %th{:colspan => "3"} Ações
+      %tbody
+        - @counters.each_with_index do |station, index|
+          %tr
+            %td= index + 1
+            %td= station.name
+            %td
+            %td.col-md-2
+              = link_to '', station_counters_path(station), class: 'md md-edit btn btn-success'
+              = link_to '', edit_station_counter_path(station), class: 'md md-edit btn btn-primary'
+              = link_to '', station, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }

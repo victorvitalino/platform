@@ -1,0 +1,5 @@
+- if !@attendant.errors.any?
+  $('.index-attendant').html("#{escape_javascript(render 'index')}")
+  $(".container").prepend("<div class='alert alert-success'>#{escape_javascript(flash[:success])}</div>")
+  $(".container").show()
+

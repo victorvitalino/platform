@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'patrimony/drive': Material
+    attributes:
+      'patrimony/drive':
+        sector: "Setor"
+        
+

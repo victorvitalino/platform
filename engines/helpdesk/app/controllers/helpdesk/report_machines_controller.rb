@@ -4,12 +4,13 @@ module Helpdesk
   class ReportMachinesController < ApplicationController
     before_action :set_machine
     def index
-      
+      authorize :attendant, :report
     end
 
     def new
+      authorize :attendant, :report
       @goods =  Patrimony::Good.all
-      @result = Helpdesk::OrderService.where(good_id: @machine, status: "4")
+      @result = Helpdesk::OrderService.where(good_id: @machine)
     end
 
     private

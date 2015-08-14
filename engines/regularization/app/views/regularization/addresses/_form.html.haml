@@ -13,11 +13,12 @@
   %hr/
   .row
     .col-md-12
-      %h6 Mensagem sobre endereço não encontrado
+      %h6 
+        %strong Mensagem sobre endereços em regularização
   %hr/
   .row
     .col-md-12
-      = f.button :submit
+      = f.submit "Inciar preenchimento de formulário"
 
 :javascript
   
@@ -78,7 +79,7 @@
         if(data.length > 0) {
         
           for(var i = 0; i < data.length; i++) {
-            html += "<option value='"+data[i].unit+"'>"+data[i].unit+"</option>"
+            html += "<option value='"+data[i].id+"'>"+data[i].unit+"</option>"
           }
         
         } else {
@@ -93,13 +94,8 @@
 
 
     $("#address_unit").on('change', function(){
-      
-      $.getJSON("#{address.show_unit_path}?"
-                + "block=" + $("#address_block").val() 
-                + "&city_id=" + $("#address_city").val()
-                + "&group=" + $("#address_group").val()
-                + "&unit=" + $(this).val(),function(data) {
-                    $("#address_id").val(data.id)
+      $.getJSON("#{address.show_unit_path}?unit=" + $(this).val(),function(data) {
+          $("#address_id").val(data.id)
       });
     });
   });

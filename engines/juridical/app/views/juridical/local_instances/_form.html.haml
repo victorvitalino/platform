@@ -1,0 +1,10 @@
+= simple_form_for(@local_instance) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    = f.association :instance
+
+  .form-actions
+    = f.button :submit

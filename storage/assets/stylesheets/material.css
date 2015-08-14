@@ -9,6 +9,11 @@
 *= require redactor-rails
 *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 */
+
+li a.btn {
+  font-weight: bold !important;
+}
+
 .redactor-editor,
 .redactor-box,
 .redactor-box textarea{z-index: 5!important;}
@@ -30,7 +35,7 @@
     background-color: #FFF!important;
 }
 .select{
-	width: 200px!important;
+  width: 200px!important;
 }
 .custom-avatar{
   font-size: 100px;
@@ -39,4 +44,8 @@
 }
 .profile-main-custom{
   min-height: 800px!important;
+}
+
+table th {
+  font-weight: bold !important;
 }

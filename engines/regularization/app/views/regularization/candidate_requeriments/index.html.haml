@@ -1,0 +1,31 @@
+.row
+  .col-md-10
+    %h1.title Requerimentos de regularização
+    = link_to "Finalizar Sessão", sign_out_candidate_requeriments_path, class: 'btn btn-success'
+%br/
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th Protocolo
+          %th CPF
+          %th Data de criação
+          %th Cidade
+          %th Endereço
+          %th Ações
+      %tbody
+        - @requeriments.each_with_index do |requeriment, index|
+          %tr
+            %td= index + 1
+            %td= requeriment.protocol
+            %td= requeriment.cpf
+            %td= requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td= requeriment.unit.city.name if requeriment.unit.present? && requeriment.unit.city.present?
+            %td= requeriment.unit.complete_address if requeriment.unit.present?
+            %td
+              = link_to "visualizar", candidate_requeriment_path(requeriment), class: 'btn btn-primary'
+              = link_to "emitir boleto", requeriment_bank_slip_path(requeriment), class: 'btn btn-warning'
+
+

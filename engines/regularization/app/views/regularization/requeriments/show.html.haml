@@ -1,0 +1,71 @@
+.row
+  .col-md-10
+    %h1.title Requerimento de regularização
+    %h4
+      = link_to "Imprimir Boleto", requeriment_bank_slip_path(@requeriment), class: 'btn btn-success btn-sm'
+%br/
+.row
+  .col-md-12
+    %h3.title Requerimento
+%hr/
+.row
+  .col-md-6
+    %h4.title Endereço a ser regularizado
+    %h5= "#{@requeriment.unit.city.name} - #{@requeriment.unit.complete_address}"
+  .col-md-4
+    %h4.title  Data de criação do requerimento
+    %h5
+      %p= @requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
+.row
+  .col-md-3
+    %h4.title Protocolo
+    %h5= "CODHAB#{@requeriment.id}#{@requeriment.created_at.strftime('%Y')}"
+%br/
+.row
+  .col-md-12
+    %h3.title Dados Pessoais
+%hr/
+.row
+  .col-md-6
+    %h4.title Nome
+    %h5
+      %p= @requeriment.name.upcase
+  .col-md-2
+    %h4.title CPF
+    %h5
+      %p= @requeriment.cpf
+  .col-md-2
+    %h4
+      %strong RG
+      %p= @requeriment.rg
+.row
+  .col-md-6
+    %h4.title Data de Nascimento
+    %h5
+      %p= @requeriment.born.strftime('%d/%m/%Y')
+  .col-md-2
+    %h4.title Estado civil
+    %h5
+      %p= @requeriment.marital_status.humanize
+  .col-md-2
+    %h4.title Nacionalidade
+    %h5
+      %p= @requeriment.nationality
+  .col-md-2
+    %h4.title Sexo
+    %h5 
+      %p= @requeriment.gender
+.row
+  .col-md-6
+    %h4.title E-mail
+    %h5
+      %p= @requeriment.email
+  .col-md-2
+    %h4.title Telefone
+    %h5
+      %p= @requeriment.telephone
+  .col-md-2
+    %h4.title Celular
+    %h5 
+      %p= @requeriment.celphone
+%hr/

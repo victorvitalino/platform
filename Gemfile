@@ -37,8 +37,8 @@ gem 'codhab_barcode', git: 'https://github.com/codhab/codhab_barcode.git'
 
 group :development, :test do
   gem 'sqlite3'
-  
-    gem 'figaro'
+  gem 'byebug'
+  gem 'figaro'
 end
 
 group :production do
@@ -46,17 +46,19 @@ group :production do
 end
 
 
-gem 'schedule',         path: 'engines/schedule'
-gem 'person',           path: 'engines/person'
-gem 'cms',              path: 'engines/cms'
-gem 'portal',           path: 'engines/portal'
-gem 'dashboard',        path: 'engines/dashboard'
-gem 'intranet',         path: 'engines/intranet'
-gem 'patrimony',        path: 'engines/patrimony'
-gem 'helpdesk',         path: 'engines/helpdesk'
-gem 'notify',           path: 'engines/notify'
-gem 'protocol',         path: 'engines/protocol'
-gem 'juridical',        path: 'engines/juridical'
-gem 'regularization',   path: 'engines/regularization'
-gem 'address',          path: 'engines/address'
-gem 'concourse',        path: 'engines/concourse'
+gem 'schedule',                         path: 'engines/schedule'
+gem 'person',                           path: 'engines/person'
+gem 'cms',                              path: 'engines/cms'
+gem 'portal',                           path: 'engines/portal'
+gem 'dashboard',                        path: 'engines/dashboard'
+gem 'intranet',                         path: 'engines/intranet'
+gem 'patrimony',                        path: 'engines/patrimony'
+gem 'helpdesk',                         path: 'engines/helpdesk'
+gem 'notify',                           path: 'engines/notify'
+gem 'protocol',                         path: 'engines/protocol'
+gem 'juridical',                        path: 'engines/juridical'
+gem 'regularization',                   path: 'engines/regularization'
+gem 'address',                          path: 'engines/address'
+gem 'concourse',                        path: 'engines/concourse'
+gem 'candidate',                        path: 'engines/candidate'
+gem 'attendance',                       path: 'engines/attendance'

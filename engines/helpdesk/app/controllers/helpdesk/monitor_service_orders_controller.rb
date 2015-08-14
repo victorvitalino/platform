@@ -31,29 +31,36 @@ module Helpdesk
     end
 
     def assume
-      @order_service.update(responsible_id: current_user.account.id, status: 2)    
-      MonitorServiceOrder.create(appointment: "chamado assumido:", order_service_id: @order_service.id, staff_id: current_user.account.id)
-      authorize :monitor_service_orders
-      respond_to do |format|
-        format.js { flash[:success]  = "Ordem de serviço assumida com sucesso!" }
+      authorize :attendant, :create
+      if @order_service.update(responsible_id: current_user.account.id, status: 2)
+        MonitorServiceOrder.create(appointment: "chamado assumido:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+        flash[:success] = t :success
+      else
+        flash[:danger] = t :error
       end
     end
 
 
     def open_again
-      @order_service.update(status: 1)
-      MonitorServiceOrder.create(appointment: "chamado reaberto:", order_service_id: @order_service.id, staff_id: current_user.account.id)
-      authorize :monitor_service_orders
+      authorize @order_service
+      if @order_service.update(status: 1)
+        MonitorServiceOrder.create(appointment: "chamado reaberto:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+       flash[:success] = t :success
+      else
+        flash[:danger] = t :error
+      end
     end
 
     def close_order_service
-      @order_service.update(status: 3)
-      @order_service.update(finalized_in: DateTime.now)
-      MonitorServiceOrder.create(appointment: "chamado fechado:", order_service_id: @order_service.id, staff_id: current_user.account.id)
-      authorize :monitor_service_orders
-      respond_to do |format|
-        format.js { flash[:success] = "Ordem de serviço fechada com sucesso!" }
+      authorize :attendant, :create
+      if @order_service.update(status: 3)
+       @order_service.update(finalized_in: DateTime.now)
+       MonitorServiceOrder.create(appointment: "chamado fechado:", order_service_id: @order_service.id, staff_id: current_user.account.id)
+       flash[:success] = t :success
+      else
+       flash[:danger] = t :error
       end
+
     end
 
     # POST /monitor_service_orders
@@ -67,6 +74,7 @@ module Helpdesk
 
     # PATCH/PUT /monitor_service_orders/1
     def update
+      @monitor_service_order
       if @monitor_service_order.update(monitor_service_order_params)
         redirect_to @monitor_service_order, notice: 'Monitor service order was successfully updated.'
       else

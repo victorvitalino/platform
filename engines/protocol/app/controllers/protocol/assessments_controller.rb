@@ -3,16 +3,22 @@ module Protocol
      layout 'layouts/material'
       before_action :set_assessment, only: [:show, :edit, :update, :destroy]
         def index
-            @assessments = Assessment.all
-            #authorize @assessments
+            #TA ERRADO
+            #@assessments = Conduct.find_sector(current_user.account.sector_current.id, 4).asse
+            if current_user.account.sector_current.present?
+                @assessments = Assessment.where(sector_id: current_user.account.sector_current.id)
+            else
+                @assessments = nil
+            end
+            authorize @assessments
         end
 
         def new
-            @assessment = Assessment.new
-          #  authorize @assessment
+           @assessment = Assessment.new
+           authorize @assessment
         end
         def create
-         #   authorize @assessment
+            authorize @assessment
             @assessment = Assessment.new(set_assessment_params)
 
             @assessment.set_staff(current_user.account_id)
@@ -36,7 +42,7 @@ module Protocol
         end
 
         def update
-            #authorize @assessmentfind_sector()
+            authorize @assessment
             if @assessment.update(set_assessment_params)
                 render action: 'index'
             else
@@ -45,7 +51,7 @@ module Protocol
         end
 
         def destroy
-            #authorize @assessment
+            authorize @assessment
             @assessment.destroy
             redirect_to action: 'index'
         end

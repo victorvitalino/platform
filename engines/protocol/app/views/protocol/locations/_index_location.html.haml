@@ -5,7 +5,7 @@
   %td
    = j.document_number
   %td
-   = j.document_type.name
+   = j.document_type.name if j.document_type.present?
 
 
 
