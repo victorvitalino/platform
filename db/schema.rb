@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150811122324) do
-=======
 ActiveRecord::Schema.define(version: 20150811200130) do
->>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,11 +95,7 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.boolean  "donate"
     t.date     "date_donate"
     t.date     "date_iptu"
-<<<<<<< HEAD
-    t.string   "registration_iptu"
-=======
     t.date     "registration_iptu"
->>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
     t.string   "certificate"
     t.integer  "situation_unit_id"
     t.integer  "type_use_unit_id"
@@ -714,14 +706,13 @@ ActiveRecord::Schema.define(version: 20150811200130) do
   create_table "protocol_attach_documents", force: :cascade do |t|
     t.integer  "document_father_id"
     t.integer  "document_child_id"
-    t.integer  "attach_type_id"
+    t.integer  "attach_type"
     t.integer  "sector_id"
     t.integer  "staff_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
-  add_index "protocol_attach_documents", ["attach_type_id"], name: "index_protocol_attach_documents_on_attach_type_id", using: :btree
   add_index "protocol_attach_documents", ["document_child_id"], name: "index_protocol_attach_documents_on_document_child_id", using: :btree
   add_index "protocol_attach_documents", ["document_father_id"], name: "index_protocol_attach_documents_on_document_father_id", using: :btree
   add_index "protocol_attach_documents", ["sector_id"], name: "index_protocol_attach_documents_on_sector_id", using: :btree
@@ -808,8 +799,8 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "rg"
     t.string   "email"
     t.string   "nationality"
-    t.integer  "marital_status"
-    t.integer  "gender"
+    t.string   "marital_status"
+    t.string   "gender"
     t.date     "born"
     t.string   "telephone"
     t.string   "celphone"
@@ -860,14 +851,8 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "last_sign_in_ip"
     t.integer  "account_id"
     t.string   "account_type"
-<<<<<<< HEAD
-    t.text     "unique_session_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-=======
     t.datetime "created_at"
     t.datetime "updated_at"
->>>>>>> 441259405eb12919d90d0ba06da97bda3f731f98
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree
