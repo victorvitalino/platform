@@ -1,0 +1,14 @@
+.block-header
+  %h2 ATENDIMENTO DE REGULARIZAÇÃO
+.row
+  .col-md-12
+    .btn-group.btn-group-justified{"aria-label" => "...", :role => "group"}
+      .btn-group{:role => "group"}
+        = link_to "1. Seleção de Endereço", new_address_path, class: "btn waves-effect waves-button waves-float #{ (@step == 'address') ? 'btn-default' : 'btn-inverse'}"  
+      .btn-group{:role => "group"}
+        = link_to "2. Cadastro do Candidato", new_cadastre_path, class: "btn waves-effect waves-button waves-float #{ (@step == 'cadastre') ? 'btn-default' : 'btn-inverse'}"  
+      .btn-group{:role => "group"}
+        = link_to "3. CHECKLIST", new_checklist_path, class: "btn waves-effect waves-button waves-float #{ (@step == 'checklist') ? 'btn-default' : 'btn-inverse'}"  
+      .btn-group{:role => "group"}
+        = link_to "4. Finalização", "#", class: "btn waves-effect waves-button waves-float #{ (@step == 'address') ? 'btn-default' : 'btn-inverse'}"  
+      

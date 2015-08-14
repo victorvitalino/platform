@@ -1,0 +1,30 @@
+= simple_form_for @cadastre do |f|
+  .row
+    .col-md-12
+      %h5
+        %b Dados Pessoais
+  %hr/
+  .row
+    .col-md-2
+      = f.label :cpf, class: 'fg-label'
+      = f.input :cpf, label: false
+    .col-md-2
+      = f.label :rg, class: 'fg-label'
+      = f.input :rg, label: false
+    .col-md-1
+      = f.label :place_birth, class: 'fg-label'
+      = f.input :place_birth, label: false, input_html: { class: 'date'}
+    .col-md-1
+      = label_tag :born
+      = f.input :born, label: false, as: :string, input_html: { class: 'date'} 
+    .col-md-1
+      = label_tag :arrival_df
+      = f.input :arrival_df, label: false, as: :string, input_html: { class: 'date'}
+  .row
+    .col-md-12
+      %h5
+        %b Dependentes
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Prosseguir", class: 'btn btn-primary pull-right'
