@@ -10,7 +10,7 @@ module Protocol
             else
                 @assessments = nil
             end
-            authorize @assessments
+            authorize :assessment,  :index?
         end
 
         def new

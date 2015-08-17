@@ -1,7 +1,7 @@
 module Protocol
     class ConductsController < ApplicationController
      layout 'layouts/material'
-      before_action :set_allotment, except: [:add,:send_conduct,:staffies,:receive,:update_docs]
+      before_action :set_allotment, except: [:add,:send_conduct,:staffies,:receive,:update_docs,:return]
       before_action :set_conduct, only:[:destroy,:show]
       before_action :set_conducts, only: [:index, :new,:add,:destroy, :send_conduct]
       after_action :update_allotment, only: [:create]
@@ -11,11 +11,11 @@ module Protocol
         end
 
         def new
-            
+
             @conduct = @allotment.conducts.new
             authorize :conduct, :index?
             sector = current_user.account.sector_current.id
-            
+
             #parametro 4 documento recebido pelo setor
             @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector)
 

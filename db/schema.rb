@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811200130) do
+ActiveRecord::Schema.define(version: 20150813134312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150811200130) do
 
   create_table "address_situation_units", force: :cascade do |t|
     t.string   "description"
+    t.string   "code"
     t.boolean  "status",      default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -72,13 +73,6 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "acronym"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "address_type_use_units", force: :cascade do |t|
-    t.string   "description"
-    t.boolean  "status",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
   end
 
   create_table "address_units", force: :cascade do |t|
@@ -95,7 +89,7 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.boolean  "donate"
     t.date     "date_donate"
     t.date     "date_iptu"
-    t.date     "registration_iptu"
+    t.string   "registration_iptu"
     t.string   "certificate"
     t.integer  "situation_unit_id"
     t.integer  "type_use_unit_id"
@@ -223,6 +217,26 @@ ActiveRecord::Schema.define(version: 20150811200130) do
   add_index "candidate_adjuct_cadastres", ["state_id"], name: "index_candidate_adjuct_cadastres_on_state_id", using: :btree
   add_index "candidate_adjuct_cadastres", ["state_work_id"], name: "index_candidate_adjuct_cadastres_on_state_work_id", using: :btree
 
+  create_table "candidate_attendance_cadastres", force: :cascade do |t|
+    t.integer  "adjuct_cadastre_id"
+    t.integer  "convocation_id"
+    t.integer  "attendance_status_id"
+    t.boolean  "status",               default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "candidate_attendance_cadastres", ["adjuct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjuct_cadastre_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["attendance_status_id"], name: "index_candidate_attendance_cadastres_on_attendance_status_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["convocation_id"], name: "index_candidate_attendance_cadastres_on_convocation_id", using: :btree
+
+  create_table "candidate_attendance_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "candidate_cadastres", force: :cascade do |t|
     t.string   "cpf"
     t.integer  "gender",      default: 0
@@ -243,6 +257,21 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "candidate_convocations", force: :cascade do |t|
+    t.text     "description"
+    t.date     "start"
+    t.date     "end"
+    t.integer  "quantity"
+    t.text     "discretion"
+    t.boolean  "stauts",            default: true
+    t.string   "legacy_pontuation"
+    t.integer  "pontuation_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "candidate_convocations", ["pontuation_id"], name: "index_candidate_convocations_on_pontuation_id", using: :btree
 
   create_table "candidate_special_conditions", force: :cascade do |t|
     t.string   "name"
@@ -759,14 +788,16 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "shelf"
     t.string   "pile"
     t.string   "box"
-    t.text     "obsevation"
+    t.text     "observation"
     t.integer  "assessment_id"
+    t.integer  "sector_id"
     t.integer  "staff_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id", using: :btree
+  add_index "protocol_locations", ["sector_id"], name: "index_protocol_locations_on_sector_id", using: :btree
   add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id", using: :btree
 
   create_table "protocol_subjects", force: :cascade do |t|
@@ -799,8 +830,8 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "rg"
     t.string   "email"
     t.string   "nationality"
-    t.string   "marital_status"
-    t.string   "gender"
+    t.integer  "marital_status"
+    t.integer  "gender"
     t.date     "born"
     t.string   "telephone"
     t.string   "celphone"
@@ -851,8 +882,9 @@ ActiveRecord::Schema.define(version: 20150811200130) do
     t.string   "last_sign_in_ip"
     t.integer  "account_id"
     t.string   "account_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text     "unique_session_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree

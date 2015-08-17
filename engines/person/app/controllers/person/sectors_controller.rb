@@ -39,12 +39,12 @@ module Person
 		private
 
 		def sector_params
-			params.require(:sector).permit(:name,:acron,:father_id, :responsible_id,:status,:prefex)
+			params.require(:sector).permit(:name,:acron,:id, :father_id, :responsible_id,:status,:prefex)
 		end
 
 
 		def set_sectors
-			@sectors = Sector.all
+			@sectors = Sector.includes(:responsible).all
 			@person = Staff.all
 		end
 

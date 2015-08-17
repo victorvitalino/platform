@@ -19,6 +19,8 @@ module Protocol
             @digital_document.staff_id = current_user.account_id
             authorize @digital_document
             @digital_document.save
+
+            redirect_to action: 'index_docs'
         end
 
         def destroy

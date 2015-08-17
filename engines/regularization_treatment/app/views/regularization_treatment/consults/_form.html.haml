@@ -1,0 +1,9 @@
+= simple_form_for @consult do |f|
+  .card-body.card-padding
+    .row
+      .col-md-2
+        = f.label :cpf, class: 'fg-label'
+        = f.input :cpf, label:false
+    .row
+      .col-md-2
+        = f.submit "Realizar Pesquisar", class: 'btn btn-success'

@@ -108,6 +108,12 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/regularization_treatment
+  specs:
+    regularization_treatment (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/schedule
   specs:
     schedule (0.0.1)
@@ -338,6 +344,7 @@ DEPENDENCIES
   rails (= 4.2.1)
   redactor-rails
   regularization!
+  regularization_treatment!
   remotipart (~> 1.2)
   schedule!
   simple_form

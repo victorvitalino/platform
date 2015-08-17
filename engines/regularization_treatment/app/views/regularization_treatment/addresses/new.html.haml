@@ -1,0 +1,24 @@
+= render 'layouts/regularization_treatment/steps'
+.row
+  .col-md-12
+    .card
+      .card-body.card-padding
+        .row
+          .col-md-12
+            %h3 
+              %b Endereço Selecionado
+            %h4
+              = @requeriment.unit.city.name if @requeriment.unit.present? && @requeriment.unit.city.present?
+              = @requeriment.unit.complete_address if @requeriment.unit.present?
+        %hr/
+        .row
+          .col-md-12
+            %h4 Desejo trocar este endereço
+            = render 'form'
+        %hr/
+        .row
+          .col-md-12
+        %hr/
+        .row
+          .col-md-12
+            = link_to "Prosseguir", new_cadastre_path, class: 'btn btn-primary pull-right'
