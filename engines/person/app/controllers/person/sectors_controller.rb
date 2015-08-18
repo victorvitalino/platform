@@ -44,7 +44,7 @@ module Person
 
 
 		def set_sectors
-			@sectors = Sector.includes(:responsible).all
+			@sectors = Sector.includes(:responsible).unscoped.all
 			@person = Staff.all
 		end
 

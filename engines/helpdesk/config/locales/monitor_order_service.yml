@@ -5,6 +5,6 @@ pt-BR:
     attributes:
       'helpdesk/monitor_service_order':
         appointment: "Apontamento"
-        attachment: "Anexo"
+        attachment: "Anexo Apontamento"
         status: "Status"
 

@@ -1,6 +1,9 @@
 module Person
   class Sector < ActiveRecord::Base
 
+    default_scope { where(status: true) }
+    default_scope { order ('name ASC') }
+
     has_many :subordinates, class_name: "Sector",foreign_key: "father_id"
     has_many :staffs, foreign_key: "sector_current_id"
 
