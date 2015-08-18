@@ -14,4 +14,5 @@
             %th Setor
             %th Ações
         %tbody
-          = render 'index'
+          - if @assessments.present?
+            = render 'index'

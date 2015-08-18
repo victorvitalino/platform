@@ -4,8 +4,11 @@
       Novo Atendente
       %small formulário de inserção do novo atendente
   .card-body.card-padding.edit
-    = render 'form'
-
+    - if  current_user.account.sector_current.present?
+      = render 'form'
+    - else
+      = flash[:danger] = "Usuário não está alocado em um setor."
+      - controller.redirect_to "/"
 .card
   .card-header
     %h2
@@ -21,4 +24,4 @@
             %th Ações
         %tbody.index-attendant
           = render 'index'
-    		
+
