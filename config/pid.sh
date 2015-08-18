@@ -10,4 +10,4 @@ PROCESSO=$(cat < tmp/pids/unicorn.pid)
 
 echo "matando processo e restartando servidor..."
 kill $PROCESSO
-RAILS_ENV=production unicorn_rails -c unicorn.rb -D
+RAILS_ENV=production unicorn_rails -c config/unicorn.rb -D
