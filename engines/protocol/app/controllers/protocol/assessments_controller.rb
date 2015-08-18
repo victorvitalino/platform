@@ -2,6 +2,7 @@ module Protocol
     class AssessmentsController < ApplicationController
      layout 'layouts/material'
       before_action :set_assessment, only: [:show, :edit, :update, :destroy]
+
         def index
             #TA ERRADO
             #@assessments = Conduct.find_sector(current_user.account.sector_current.id, 4).asse
@@ -15,13 +16,13 @@ module Protocol
 
         def new
            @assessment = Assessment.new
-           authorize @assessment
+             authorize @assessment
         end
         def create
             authorize @assessment
             @assessment = Assessment.new(set_assessment_params)
-
             @assessment.set_staff(current_user.account_id)
+
             if @assessment.save!
                 redirect_to action: 'index'
             else
@@ -66,6 +67,7 @@ module Protocol
         def set_assessment_params
                 params.require(:assessment).permit(:document_number, :document_type_id, :subject_id,:description_subject,:requesting_unit,:external_agency,:recipient,:address,:cpf,:cnpj ,:sign_by ,:observation,:staff_id,:sector_id)
         end
+
 
 
     end

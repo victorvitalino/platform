@@ -79,6 +79,13 @@
                 = f.check_box :attendant
                 %i.input-helper
                 = f.label :attendant, class: 'fg-label'
+        .row
+          .col-md-4
+            .checkbox.m-b-15
+              %label
+                = f.check_box :administrator
+                %i.input-helper
+                = f.label :administrator, class: 'fg-label'
           .col-md-4
             .checkbox.m-b-15
               %label
@@ -95,4 +102,4 @@
         .row
           .col-md-12
             = f.button :submit, class: 'btn btn-success'
-            = link_to 'Voltar', staffs_path , class: 'btn btn-danger'
+            = link_to 'Voltar', staffs_path , class: 'btn btn-inverse'

@@ -12,12 +12,12 @@ module Protocol
     has_many :attach_documents, foreign_key: "document_father_id"
 
 
-    #before_validation :set_number
+    before_validation :set_number
 
-    #validates_presence_of :document_type, :subject, :requesting_unit, :external_agency
-    #validates :document_number, uniqueness: true, presence: true
+    validates_presence_of :document_type, :subject, :requesting_unit, :external_agency
+    validates :document_number, uniqueness: true, presence: true
 
-    #after_create :set_conduct
+    after_create :set_conduct
 
     def set_conduct
         current_user = User.find_by_account_id(self.staff_id)

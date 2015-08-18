@@ -3,7 +3,7 @@ require_dependency "helpdesk/application_controller"
 module Helpdesk
   class MonitorServiceOrdersController < ApplicationController
     before_action :set_monitor_service_orders, only: [:index, :create, :new,:destroy, :show, :update,:assume, :close_order_service, :open_again]
-    
+
 
     # GET /monitor_service_orders
     def index
@@ -24,14 +24,14 @@ module Helpdesk
     def edit
 
     end
-    
+
     def get_image
       @monitor_service_order = MonitorServiceOrder.find(params[:image])
       authorize :monitor_service_orders
     end
 
     def assume
-      authorize :attendant, :create
+      authorize :attendant, :create?
       if @order_service.update(responsible_id: current_user.account.id, status: 2)
         MonitorServiceOrder.create(appointment: "chamado assumido:", order_service_id: @order_service.id, staff_id: current_user.account.id)
         flash[:success] = t :success
@@ -52,7 +52,7 @@ module Helpdesk
     end
 
     def close_order_service
-      authorize :attendant, :create
+      authorize :attendant, :create?
       if @order_service.update(status: 3)
        @order_service.update(finalized_in: DateTime.now)
        MonitorServiceOrder.create(appointment: "chamado fechado:", order_service_id: @order_service.id, staff_id: current_user.account.id)
@@ -96,9 +96,9 @@ module Helpdesk
         @monitor_service_order = MonitorServiceOrder.where(order_service_id: params[:order_service_id]).last
       end
 
-     
 
-     
+
+
 
       # Only allow a trusted parameter "white list" through.
       def monitor_service_order_params

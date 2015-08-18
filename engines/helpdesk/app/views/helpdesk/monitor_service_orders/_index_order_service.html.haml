@@ -1,8 +1,8 @@
 = simple_form_for @order_service, url:  order_service_path(@order_service.id, @monitor_service_order.id) do |f|
  .card
- 
+
  .card
-  .card-header{class: (@order_service.status == "solved") ? 'bgm-green' : 'bgm-red'} 
+  .card-header{class: (@order_service.status == "solved") ? 'bgm-green' : 'bgm-red'}
    %h2
     Ordem de serviço #
     = @order_service.number
@@ -21,7 +21,7 @@
      = f.label "Assunto:", class: 'label_order_service'
      = @order_service.subject
      %br
-     
+
      = f.label "Categoria:", class: 'label_order_service'
      = @order_service.category_i18n
      %br
@@ -49,17 +49,16 @@
      - else
       = f.label "Prazo Final:", class: 'label_order_service'
       = @order_service.deadline.strftime("%d/%m/%Y")
-     %br/  
+     %br/
      = f.button :submit, class: 'btn btn-success' if policy(:MonitorServiceOrder, namespace: Helpdesk).assume?
     .col-md-3.pull-right
      .card
       .card-header
        %h6
         = f.label "Etiqueta", class: 'label_order_service'
-        = @order_service.good.code_goods
+        = @order_service.good.code_goods if @order_service.good.present?
        %h6
         = f.label "Material:", class: 'label_order_service'
-        = @order_service.good.material.name 
+        = @order_service.good.material.name if @order_service.good.present?
        %h6
         = f.label "Nº de Seriel: 851984", class: 'label_order_service'
-   

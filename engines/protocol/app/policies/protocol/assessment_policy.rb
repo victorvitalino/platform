@@ -1,6 +1,6 @@
 module Protocol
 	class AssessmentPolicy < ApplicationPolicy
-			def index?
+		def index?
 			allow?(4103)
 		end
 		def create?

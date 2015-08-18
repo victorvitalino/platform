@@ -3,9 +3,9 @@ require_dependency "helpdesk/application_controller"
 module Helpdesk
   class OrderServiceTechnicalsController < ApplicationController
     before_action :set_order_services
-    
+
     def index
-     authorize :attendant, :index 
+     authorize :attendant, :index?
      @order_services
     end
 
