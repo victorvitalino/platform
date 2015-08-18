@@ -33,16 +33,17 @@ Rails.application.routes.draw do
       mount Juridical::Engine                => "/juridico",       as: 'juridical',                 module: 'juridical'
       mount Attendance::Engine               => "/atendimento",    as: 'attendance',                module: 'attendance'
       mount RegularizationTreatment::Engine  => "/regularizacao",  as: 'regularization_treatment',  module: 'regularization_treatment'
+      mount Concourse::Engine                => "/concurso",       as: 'concourse',                 module: 'concourse'
     end
   end
 
   constraints DomainConstraint do
-    mount Portal::Engine => '/',            as: 'portal'
+    mount Portal::Engine                => '/',                 as: 'portal'
+    mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',                 module: 'concourse_portal'
+    mount Regularization::Engine        => "/regularizacao",    as: 'regularization'
   end
 
-  mount Concourse::Engine       => "/concurso",       as: 'concourse',                 module: 'concourse'
   
-  mount Regularization::Engine  => "/regularizacao",  as: 'regularization'
   mount Address::Engine         => "/endereco",       as: 'address'
  
   mount Candidate::Engine       => "/candidatos",     as: 'candidate'

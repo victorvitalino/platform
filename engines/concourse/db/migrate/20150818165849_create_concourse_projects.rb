@@ -14,6 +14,7 @@ class CreateConcourseProjects < ActiveRecord::Migration
       t.string :image_slider
       t.boolean :slider
       t.boolean :consultation
+      t.string  :slug, unique: true
 
       t.timestamps null: false
     end

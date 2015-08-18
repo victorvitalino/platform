@@ -6,7 +6,7 @@ module Concourse
 
     # GET /projects
     def index
-      @projects = Project.all
+      @projects = Project.unscoped.all
     end
 
     # GET /projects/1
@@ -27,7 +27,8 @@ module Concourse
       @project = Project.new(project_params)
 
       if @project.save
-        redirect_to @project, notice: 'Project was successfully created.'
+        flash[:success] = t :success
+        redirect_to action:'index'
       else
         render :new
       end
@@ -36,7 +37,8 @@ module Concourse
     # PATCH/PUT /projects/1
     def update
       if @project.update(project_params)
-        redirect_to @project, notice: 'Project was successfully updated.'
+        flash[:success] = t :success
+        redirect_to action:'index'
       else
         render :edit
       end
@@ -44,14 +46,16 @@ module Concourse
 
     # DELETE /projects/1
     def destroy
-      @project.destroy
-      redirect_to projects_url, notice: 'Project was successfully destroyed.'
+      if @project.destroy
+        flash[:success] = t :success
+        redirect_to action:'index'
+      end
     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_project
-        @project = Project.find(params[:id])
+        @project = Project.unscoped.friendly.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
