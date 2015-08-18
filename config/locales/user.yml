@@ -7,3 +7,4 @@ pt-BR:
         username: "Credencial"
         password: "Senha"
         password_confirmation: "Confirmação da Senha"
+        current_password: "Senha Atual"
