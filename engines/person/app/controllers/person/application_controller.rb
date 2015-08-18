@@ -1,4 +1,4 @@
-require_dependency 'engines/person/app/helpers/person/application_helper'
+require_dependency 'person/application_helper'
 
 module Person
   class ApplicationController < ActionController::Base
