@@ -42,6 +42,16 @@ PATH
   remote: engines/concourse
   specs:
     concourse (0.0.1)
+      carrierwave
+      friendly_id
+      haml-rails
+      rails (~> 4.2.1)
+      simple_form
+
+PATH
+  remote: engines/concourse_portal
+  specs:
+    concourse_portal (0.0.1)
       rails (~> 4.2.1)
 
 PATH
@@ -326,6 +336,7 @@ DEPENDENCIES
   cms!
   codhab_barcode!
   concourse!
+  concourse_portal!
   dashboard!
   devise
   devise_security_extension

@@ -1,0 +1,33 @@
+.row
+  .col-md-12
+    %h3
+      %strong Concursos Codhab
+%hr/
+.row
+  - @projects.each_with_index do |project, index| 
+    .col-md-3
+      .row
+        .col-md-6
+          = link_to image_tag(project.image_logo.url, width: 130, height: 190), concourse_portal.project_path(project) if project.image_logo?
+        .col-md-6
+          .row
+            .col-md-12
+              %h5
+                %strong= project.title
+          .row
+            .col-md-12
+              %strong Período
+              %br/
+              #{project.start.strftime('%d/%m/%Y')}
+              %br/
+              #{project.end.strftime('%d/%m/%Y')} 
+          .row
+            .col-md-12
+              %strong Inscrições Abertas
+  
+%br/
+.row
+  .col-md-12
+    %h3
+      %strong Concursos Finalizados
+%hr/

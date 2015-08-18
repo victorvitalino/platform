@@ -1,0 +1,29 @@
+.card
+  .card-header.ch-alt
+    %h2 Concursos
+    = link_to "Novo concurso", new_project_path, class: 'btn btn-success pull-right'
+    %small Listagem de concursos
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.datatable
+      %thead
+        %tr
+          %th Titulo
+          %th Ìnício
+          %th Fim
+          %th Publicado?
+          %th Status
+          %th Consulta?
+          %th Ações
+      %tbody
+        - @projects.each_with_index do |project, index|
+          %tr
+            %td= project.title
+            %td= project.start.strftime('%d/%m/%Y')
+            %td= project.end.strftime('%d/%m/%Y')
+            %td= project.publish ? 'publicado' : 'não publicado'
+            %td= project.status ? 'ativo' : 'inativo'
+            %td= project.consultation ? 'aberto' : 'fechado'
+            %td
+              = link_to "", edit_project_path(project),class: 'md md-edit btn btn-primary'
+              = link_to "", project_path(project), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) } 
+               
