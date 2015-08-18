@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = RegularizationTreatment::VERSION
   s.authors     = ["Elton Silva"]
   s.email       = ["elton.chrls@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of RegularizationTreatment."
-  s.description = "TODO: Description of RegularizationTreatment."
+  s.homepage    = ""
+  s.summary     = "Summary of RegularizationTreatment."
+  s.description = "Description of RegularizationTreatment."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
