@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   devise_for :user_candidates
 
   constraints SubdomainConstraint do
-    devise_for :users, :path  => '', :path_names    => {:sign_in  => 'acesso', :sign_out => 'sair'}
+    devise_for :users, :path  => '', controllers: { registrations: 'registrations'}
 
     authenticate :user do
       mount Dashboard::Engine                => '/',               as: 'dashboard',                 module: 'dashboard'

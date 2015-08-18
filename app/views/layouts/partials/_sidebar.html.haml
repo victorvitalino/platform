@@ -17,7 +17,7 @@
           %li
             = link_to "<i class='md md-person'></i> Meu perfil".html_safe, person.profile_path(current_user)
           %li
-            = link_to "<i class='md md-settings-input-antenna'></i> Minha Conta".html_safe, person.profile_path(current_user)
+            = link_to "<i class='md md-settings-input-antenna'></i> Minha Conta".html_safe, main_app.edit_user_registration_path
           %li
             = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
       %ul.main-menu
@@ -161,4 +161,13 @@
               %i.md.md-attach-money>
               Financeiro
             %ul{style: ('display:block;' if params[:module] == "finance")}
+
+        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-attach-money>
+              Concursos
+            %ul{style: ('display:block;' if params[:module] == "finance")}
+              %li= link_to "concursos", concourse.projects_path
+              %li= link_to "relatórios", concourse.projects_path
 
