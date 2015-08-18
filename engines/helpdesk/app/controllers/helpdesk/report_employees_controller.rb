@@ -4,11 +4,11 @@ module Helpdesk
   class ReportEmployeesController < ApplicationController
     before_action :set_user
     def index
-      authorize :attendant, :report
+      authorize :attendant, :report?
     end
 
     def new
-      authorize :attendant, :report
+      authorize :attendant, :report?
       @users = Person::Staff.all
       result = Helpdesk::OrderService.where(staff_id: @user)
       result.each do |a|

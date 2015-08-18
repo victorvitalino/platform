@@ -12,4 +12,5 @@
             %th Código
             %th Ações
         %tbody.index-attendant
-          = render 'index'
+          - if @attendants.present?
+            = render 'index'

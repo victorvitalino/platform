@@ -15,9 +15,9 @@ module Helpdesk
 
     accepts_nested_attributes_for :monitor_service_orders
 
-    validates_presence_of :branch_line_id, :staff_id, :good_id, :subject, :category, :deadline
-    
-    after_create  :update_os, :set_user_monitor_service 
+    validates_presence_of :branch_line_id, :staff_id, :subject, :category, :deadline #, :good_id
+
+    after_create  :update_os, :set_user_monitor_service
     before_create :auto_increment
 
 

@@ -6,10 +6,11 @@ module Protocol
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     helper ::ApplicationHelper
-    
+
     private
-    def user_not_authorized(exception)
-      redirect_to('/404')
+    def user_not_authorized
+       flash[:error] = "Você não tem permissão para acessar esta área"
+        redirect_to (request.referrer || root_path)
     end
   end
 end
