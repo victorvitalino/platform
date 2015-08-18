@@ -1,40 +1,142 @@
-%p#notice= notice
-%p
-  %b Title:
-  = @project.title
-%p
-  %b Mini description:
-  = @project.mini_description
-%p
-  %b Apresentation:
-  = @project.apresentation
-%p
-  %b Start:
-  = @project.start
-%p
-  %b End:
-  = @project.end
-%p
-  %b Publish:
-  = @project.publish
-%p
-  %b Status:
-  = @project.status
-%p
-  %b Image header:
-  = @project.image_header
-%p
-  %b Image logo:
-  = @project.image_logo
-%p
-  %b Image footer:
-  = @project.image_footer
-%p
-  %b Image slider:
-  = @project.image_slider
-%p
-  %b Slider:
-  = @project.slider
-%p
-  %b Consultation:
-  = @project.consultation
+.card
+  .card
+    .card-header
+      .pull-right
+        = link_to "", edit_project_path(@project), class: 'md md-edit btn btn-primary'
+        = link_to "voltar", projects_path, class: 'btn btn-inverse'
+      %h2
+        #{@project.title}
+        %small= @project.mini_description.html_safe
+    .card-body.card-padding
+      %div{:role => "tabpanel"}
+        %ul.tab-nav{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "1"}
+          %li.active
+            %a{"aria-controls" => "pages", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#pages", :role => "tab"} Páginas
+          %li
+            %a{"aria-controls" => "navs", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#navs", :role => "tab"} Menus
+          %li
+            %a{"aria-controls" => "subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#subscribes", :role => "tab"} Tipo de inscrições
+          %li
+            %a{"aria-controls" => "participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#participations", :role => "tab"} Tipo de participações
+          %li
+            %a{"aria-controls" => "consults", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#consults", :role => "tab"} Consultas
+          %li
+            %a{"aria-controls" => "candidate_subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_subscribes", :role => "tab"} Inscrições
+          %li
+            %a{"aria-controls" => "candidate_participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_participations", :role => "tab"} Participações
+          %li
+            %a{"aria-controls" => "winners", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#winners", :role => "tab"} Vencedores
+        .tab-content
+          #pages.tab-pane.active{:role => "tabpanel"}
+            .card
+              .row
+                .col-md-12
+                  = link_to "Nova página", new_project_page_path(@project), class: 'btn btn-success btn-sm', remote: true
+              %br/
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table.table.table-striped.table-hover.datatable
+                  %thead
+                    %tr.info
+                      %th.col-md-1 #
+                      %th Título
+                      %th Publicada?
+                      %th Ações
+          #navs.tab-pane{:role => "tabpanel"}
+            .card
+              .row
+                .col-md-12
+                  = link_to "Novo Menu", new_project_page_path(@project), class: 'btn btn-success btn-sm', remote: true
+              %br/
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table.table.table-striped.table-hover.datatable
+                  %thead
+                    %tr.info
+                      %th.col-md-1 #
+                      %th Título
+                      %th Tipo
+                      %th Página
+                      %th URL
+                      %th Target
+                      %th Publicado?
+                      %th Ações
+          #subscribes.tab-pane{:role => "tabpanel"}
+            .card
+              .row
+                .col-md-12
+                  = link_to "Novo Tipo", new_project_page_path(@project), class: 'btn btn-success btn-sm', remote: true
+              %br/
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table.table.table-striped.table-hover.datatable
+                  %thead
+                    %tr.info
+                      %th.col-md-1 #
+                      %th Título
+                      %th Taxa de inscrição
+                      %th Início
+                      %th Fim
+                      %th Publicada?
+                      %th Ações
+          #participations.tab-pane{:role => "tabpanel"}
+            .card
+              .row
+                .col-md-12
+                  = link_to "Novo Tipo", new_project_page_path(@project), class: 'btn btn-success btn-sm', remote: true
+              %br/
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table.table.table-striped.table-hover.datatable
+                  %thead
+                    %tr.info
+                      %th.col-md-1 #
+                      %th Título
+                      %th Início
+                      %th Fim
+                      %th Publicado?
+                      %th Ação
+          #consults.tab-pane{:role => "tabpanel"}
+            .card
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table.table.table-striped.table-hover.datatable
+                  %thead
+                    %tr.info
+                      %th.col-md-1 #
+                      %th Questão
+                      %th Status
+                      %th Ação
+          #candidate_subscribes.tab-pane{:role => "tabpanel"}
+            .card
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table.table.table-striped.table-hover.datatable
+                  %thead
+                    %tr.info
+                      %th.col-md-1 #
+                      %th Tipo de inscrição
+                      %th Protocolo
+                      %th CPF
+                      %th Taxa de inscrição
+                      %th Data de inscrição
+                      %th Status
+                      %th Ação
+          #candidate_participations.tab-pane{:role => "tabpanel"}
+            .card
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table.table.table-striped.table-hover.datatable
+                  %thead
+                    %tr.info
+                      %th.col-md-1 #
+                      %th Protocolo 
+                      %th Status
+                      %th Ações
+          #winners.tab-pane{:role => "tabpanel"}
+            .card
+              .row
+                .col-md-12
+                  = link_to "Adicionar Vencedor", new_project_page_path(@project), class: 'btn btn-success btn-sm', remote: true
+              %br/
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table.table.table-striped.table-hover.datatable
+                  %thead
+                    %tr.info
+                      %th.col-md-1 #
+                      %th Protocolo de participação
+                      %th Colocação
+                      %th Ações

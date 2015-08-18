@@ -24,6 +24,7 @@
             %td= project.status ? 'ativo' : 'inativo'
             %td= project.consultation ? 'aberto' : 'fechado'
             %td
+              = link_to "", project_path(project),class: 'md md-edit btn btn-success'
               = link_to "", edit_project_path(project),class: 'md md-edit btn btn-primary'
               = link_to "", project_path(project), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) } 
                
