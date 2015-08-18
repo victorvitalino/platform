@@ -43,7 +43,13 @@ module Protocol
         end
 
         def set_allotments
-            @allotments =   Allotment.where(:sector_id => current_user.account.sector_current.id, status: false) 
+            if  current_user.account.sector_current.present?
+              @allotments =   Allotment.where(:sector_id => current_user.account.sector_current.id, status: false)
+            else
+                flash[:danger] = "Usuário não está alocado em um setor."
+                redirect_to '/'
+            end
+
         end
 
         def set_allotment

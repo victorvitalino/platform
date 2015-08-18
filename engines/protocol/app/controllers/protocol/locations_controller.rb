@@ -52,7 +52,12 @@ module Protocol
         end
 
          def set_assessment
-            @assessments = Protocol::Assessment.where(sector_id: current_user.account.sector_current.id)
+            if  current_user.account.sector_current.present?
+             @assessments = Protocol::Assessment.where(sector_id: current_user.account.sector_current.id)
+            else
+                flash[:danger] = "Usuário não está alocado em um setor."
+                redirect_to '/'
+            end
         end
 
 
