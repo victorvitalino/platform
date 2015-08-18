@@ -40,10 +40,12 @@ Rails.application.routes.draw do
     mount Portal::Engine => '/',            as: 'portal'
   end
 
+  mount Concourse::Engine       => "/concurso",       as: 'concourse',                 module: 'concourse'
+  
   mount Regularization::Engine  => "/regularizacao",  as: 'regularization'
   mount Address::Engine         => "/endereco",       as: 'address'
+ 
   mount Candidate::Engine       => "/candidatos",     as: 'candidate'
 
   mount Schedule::Engine        => "/agendamento",    as: 'schedule'
-  mount Notify::Engine          => "/notificacao",    as: 'notify'
 end

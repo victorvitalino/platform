@@ -42,7 +42,9 @@ PATH
   remote: engines/concourse
   specs:
     concourse (0.0.1)
+      haml-rails
       rails (~> 4.2.1)
+      simple_form
 
 PATH
   remote: engines/dashboard

@@ -1,0 +1,40 @@
+.card
+  .card-header.ch-alt
+    %h2 projects
+    = link_to "Novo", new_project_path, class: 'btn btn-success pull-right'
+    %small Listagem de projects
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.datatable
+      %thead
+        %tr
+          %th Title
+          %th Mini description
+          %th Apresentation
+          %th Start
+          %th End
+          %th Publish
+          %th Status
+          %th Image header
+          %th Image logo
+          %th Image footer
+          %th Image slider
+          %th Slider
+          %th Consultation
+      %tbody
+        - @projects.each_with_index do |project, index|
+          %tr
+            %td= project.title
+            %td= project.mini_description
+            %td= project.apresentation
+            %td= project.start
+            %td= project.end
+            %td= project.publish
+            %td= project.status
+            %td= project.image_header
+            %td= project.image_logo
+            %td= project.image_footer
+            %td= project.image_slider
+            %td= project.slider
+            %td= project.consultation
+
+     
