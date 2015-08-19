@@ -1,0 +1,35 @@
+= simple_form_for([@project, @nav]) do |f| 
+  .card-body.card-padding
+    .row
+      .col-md-6
+        = f.label :label, class: 'fg-label'
+        = f.input :label, label: false, prompt: 'selecione...'
+      .col-md-3
+        = f.label :page, class: 'fg-label'
+        = f.association :page, as: :select, label: false, prompt: 'selecione...'
+    .row
+      .col-md-4
+        = f.label :url, class: 'fg-label'
+        = f.input :url, label: false, prompt: 'selecione...'
+      .col-md-2
+        = f.label :target, class: 'fg-label'
+        = f.input :target, as: :select, collection: Concourse::Nav.targets.keys.to_a,label: false, prompt: 'selecione...'
+      .col-md-2
+        = f.label :action, class: 'fg-label'
+        = f.input :action, as: :select, collection: Concourse::Nav.actions.keys.to_a, label: false, prompt: 'selecione...'
+    .row
+      .col-md-12
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "publish"}
+              = f.label :publish
+          %br
+          %br
+          = f.check_box :publish, id: 'publish',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "publish"}
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar", project_path(id: @project, q: 'menus'),class: 'btn btn-inverse' 
+

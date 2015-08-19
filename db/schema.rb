@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818165849) do
+ActiveRecord::Schema.define(version: 20150819171725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -365,6 +365,34 @@ ActiveRecord::Schema.define(version: 20150818165849) do
   end
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
+
+  create_table "concourse_navs", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "page_id"
+    t.string   "label"
+    t.string   "url"
+    t.integer  "target"
+    t.integer  "action"
+    t.boolean  "publish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "concourse_navs", ["page_id"], name: "index_concourse_navs_on_page_id", using: :btree
+  add_index "concourse_navs", ["project_id"], name: "index_concourse_navs_on_project_id", using: :btree
+
+  create_table "concourse_pages", force: :cascade do |t|
+    t.integer  "project_id"
+    t.string   "title"
+    t.text     "content"
+    t.boolean  "publish"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "concourse_pages", ["project_id"], name: "index_concourse_pages_on_project_id", using: :btree
+  add_index "concourse_pages", ["slug"], name: "index_concourse_pages_on_slug", unique: true, using: :btree
 
   create_table "concourse_projects", force: :cascade do |t|
     t.string   "title"

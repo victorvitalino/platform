@@ -6,6 +6,9 @@ module Concourse
     friendly_id :title, use: :slugged
     
     default_scope { where(publish: true) }
+    
+    has_many :pages
+    has_many :navs
       
     validates_presence_of :title, :mini_description, :apresentation, :image_logo
     validates_date :start, before: :end, presence: true
