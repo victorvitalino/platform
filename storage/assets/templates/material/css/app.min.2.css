@@ -1627,45 +1627,45 @@ body.login-content:before {
 }
 
 .mejs-container .mejs-controls .mejs-play button {
-  background-image: url("../images/icons/play.png");
+  background-image: url("/images/icons/play.png");
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .mejs-container .mejs-controls .mejs-play button {
-    background-image: url("../images/icons/play@2x.png");
+    background-image: url("/images/icons/play@2x.png");
     background-size: 15px 15px;
   }
 }
 
 .mejs-container .mejs-controls .mejs-pause button {
-  background-image: url("../images/icons/pause.png");
+  background-image: url("/images/icons/pause.png");
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .mejs-container .mejs-controls .mejs-pause button {
-    background-image: url("../images/icons/pause@2x.png");
+    background-image: url("/images/icons/pause@2x.png");
     background-size: 15px 15px;
   }
 }
 
 .mejs-container .mejs-controls .mejs-mute button {
-  background-image: url("../images/icons/speaker.png");
+  background-image: url("/images/icons/speaker.png");
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .mejs-container .mejs-controls .mejs-mute button {
-    background-image: url("../images/icons/speaker@2x.png");
+    background-image: url("/images/icons/speaker@2x.png");
     background-size: 15px 15px;
   }
 }
 
 .mejs-container .mejs-controls .mejs-unmute button {
-  background-image: url("../images/icons/speaker-2.png");
+  background-image: url("/images/icons/speaker-2.png");
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .mejs-container .mejs-controls .mejs-unmute button {
-    background-image: url("../images/icons/speaker-2@2x.png");
+    background-image: url("/images/icons/speaker-2@2x.png");
     background-size: 15px 15px;
   }
 }
@@ -1676,12 +1676,12 @@ body.login-content:before {
 }
 
 .mejs-container .mejs-controls .mejs-fullscreen-button button {
-  background-image: url("../images/icons/fullscreen.png");
+  background-image: url("/images/icons/fullscreen.png");
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .mejs-container .mejs-controls .mejs-fullscreen-button button {
-    background-image: url("../images/icons/fullscreen@2x.png");
+    background-image: url("/images/icons/fullscreen@2x.png");
     background-size: 15px 15px;
   }
 }
@@ -2045,14 +2045,14 @@ div.fc-row {
   background-color: #FFF;
   background-position: right calc(100% - 7px);
   background-repeat: no-repeat;
-  background-image: url("../images/select.png");
+  background-image: url("/images/select.png");
   pointer-events: none;
   z-index: 5;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .bootstrap-select > .selectpicker:before {
-    background-image: url("../images/select@2x.png");
+    background-image: url("/images/select@2x.png");
     background-size: 12px 12px;
   }
 }
@@ -2308,7 +2308,7 @@ div.fc-row {
   width: 13px;
   right: 0;
   z-index: 1;
-  background-image: url("../images/select.png");
+  background-image: url("/images/select.png");
   background-position: right;
   background-repeat: no-repeat;
   content: "";
@@ -2316,7 +2316,7 @@ div.fc-row {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .chosen-container-single:before {
-    background-image: url("../images/select@2x.png");
+    background-image: url("/images/select@2x.png");
     background-size: 12px 12px;
   }
 }
