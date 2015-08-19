@@ -1,0 +1,32 @@
+.card
+  .card-header.ch-alt
+    %h2 subscribes
+    = link_to "Novo", new_subscribe_path, class: 'btn btn-success pull-right'
+    %small Listagem de subscribes
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.datatable
+      %thead
+        %tr
+          %th Project
+          %th Title
+          %th Fee
+          %th Fee value
+          %th Bank slip
+          %th Start
+          %th End
+          %th Publish
+          %th Observation
+      %tbody
+        - @subscribes.each_with_index do |subscribe, index|
+          %tr
+            %td= subscribe.project
+            %td= subscribe.title
+            %td= subscribe.fee
+            %td= subscribe.fee_value
+            %td= subscribe.bank_slip
+            %td= subscribe.start
+            %td= subscribe.end
+            %td= subscribe.publish
+            %td= subscribe.observation
+
+     

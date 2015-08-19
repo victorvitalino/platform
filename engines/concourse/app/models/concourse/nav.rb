@@ -6,7 +6,7 @@ module Concourse
     enum :target  => [:_blank, :_self]
     enum :action => ['url', 'página']
 
-    validates_presence_of :label, :target
+    validates_presence_of :label, :target, :action
 
     validates :url,   presence: true, if: :is_url?
     validates :page,  presence: true, if: :is_page?

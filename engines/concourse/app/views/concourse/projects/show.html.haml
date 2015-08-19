@@ -10,11 +10,11 @@
     .card-body.card-padding
       %div{:role => "tabpanel"}
         %ul.tab-nav{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "1"}
-          %li{:class => (params[:q] == 'paginas') ? 'active' : ''}
+          %li{:class => (params[:q] == 'paginas'|| params[:q].nil?) ? 'active' : ''}
             %a{"aria-controls" => "pages", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#pages", :role => "tab"} Páginas
           %li{:class => (params[:q] == 'menus') ? 'active' : ''}
             %a{"aria-controls" => "navs", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#navs", :role => "tab"} Menus
-          %li{:class => (params[:q] == 'insctipos') ? 'active' : ''}
+          %li{:class => (params[:q] == 'tipo_inscricoes') ? 'active' : ''}
             %a{"aria-controls" => "subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#subscribes", :role => "tab"} Tipo de inscrições
           %li{:class => (params[:q] == 'partictipos') ? 'active' : ''}
             %a{"aria-controls" => "participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#participations", :role => "tab"} Tipo de participações
@@ -27,7 +27,7 @@
           %li{:class => (params[:q] == 'vencedores') ? 'active' : ''}
             %a{"aria-controls" => "winners", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#winners", :role => "tab"} Vencedores
         .tab-content
-          #pages.tab-pane{:class => (params[:q] == 'paginas') ? 'active' : '', :role => "tabpanel"}
+          #pages.tab-pane{:class => (params[:q] == 'paginas' || params[:q].nil?) ? 'active' : '', :role => "tabpanel"}
             .card
               .row
                 .col-md-12
@@ -83,11 +83,11 @@
                           = link_to "", edit_project_nav_path(project_id: @project, id: nav),class: 'md md-edit btn btn-primary'
                           = link_to "", project_nav_path(project_id: @project, id: nav), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) } 
 
-          #subscribes.tab-pane{:role => "tabpanel"}
+          #subscribes.tab-pane{:class => (params[:q] == 'tipo_inscricoes') ? 'active' : '', :role => "tabpanel"}
             .card
               .row
                 .col-md-12
-                  = link_to "Novo Tipo", new_project_page_path(@project), class: 'btn btn-success btn-sm', remote: true
+                  = link_to "Novo Tipo", new_project_subscribe_path(@project), class: 'btn btn-success btn-sm'
               %br/
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
                 %table.table.table-striped.table-hover.datatable

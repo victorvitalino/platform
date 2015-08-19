@@ -9,6 +9,8 @@ module Concourse
     
     has_many :pages
     has_many :navs
+    has_many :subscribes
+    has_many :participations
       
     validates_presence_of :title, :mini_description, :apresentation, :image_logo
     validates_date :start, before: :end, presence: true
