@@ -1,4 +1,4 @@
-= simple_form_for([@project, @subscribe]) do |f| 
+= simple_form_for([@project, @subscribe],{'data-no-turbolink':false}) do |f| 
   .card-body.card-padding
     .row
       .col-md-12
@@ -7,16 +7,18 @@
     .row
       .col-md-1
         = f.label 'Início', class: 'fg-label'
-        = f.input :start,as: :string, label: false, input_html: { class: 'date'}
+        = f.input :start,as: :string, label: false, input_html: { class: 'date',value: (@subscribe.start) ? localize(f.object.start) : nil }
       .col-md-1
         = f.label 'Fim', class: 'fg-label'
-        = f.input :end, as: :string, label: false, input_html: { class: 'date'}
-      .col-md-1
+        = f.input :end, as: :string, label: false, input_html: { class: 'date',value: (@subscribe.end) ? localize(f.object.end) : nil }
+      .col-md-3
+        = f.label :type_slip, class: 'fg-label'
+        = f.association :type_slip, label_method: :name_value, label: false, prompt: "selecione a cobrança..."
+      .col-md-2
         .toggle-switch{"data-ts-color" => "blue"}
           %label
             .ts-label{:for => "fee"}
               = f.label :fee
-          %br
           %br
           = f.check_box :fee, id: 'fee',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "fee"}
@@ -25,7 +27,6 @@
           %label
             .ts-label{:for => "publish"}
               = f.label :publish
-          %br
           %br
           = f.check_box :publish, id: 'publish',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "publish"}

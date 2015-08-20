@@ -449,8 +449,7 @@ ActiveRecord::Schema.define(version: 20150820125012) do
     t.integer  "project_id"
     t.string   "title"
     t.boolean  "fee"
-    t.float    "fee_value"
-    t.integer  "bank_slip_id"
+    t.integer  "type_slip_id"
     t.date     "start"
     t.date     "end"
     t.boolean  "publish"
@@ -459,8 +458,8 @@ ActiveRecord::Schema.define(version: 20150820125012) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "concourse_subscribes", ["bank_slip_id"], name: "index_concourse_subscribes_on_bank_slip_id", using: :btree
   add_index "concourse_subscribes", ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree
+  add_index "concourse_subscribes", ["type_slip_id"], name: "index_concourse_subscribes_on_type_slip_id", using: :btree
 
   create_table "finance_bank_slips", force: :cascade do |t|
     t.integer  "type_slip_id"

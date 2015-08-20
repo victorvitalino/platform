@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var datatable = 
   $('.datatable').DataTable({
     'oLanguage': {
         "sEmptyTable": "Nenhum registro encontrado",
@@ -23,5 +23,8 @@ $(document).ready(function() {
             "sSortDescending": ": Ordenar colunas de forma descendente"
         }
     }
-  })
 })
+
+$(document).ready(datatable);
+
+$(document).on('ready page:change', datatable);

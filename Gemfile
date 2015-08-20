@@ -9,6 +9,8 @@ gem 'turbolinks'
 gem 'devise'
 gem 'carrierwave'
 
+gem 'turbolinks'
+
 gem 'simple_form'
 gem 'haml-rails'
 
