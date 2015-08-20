@@ -3,12 +3,16 @@ require_dependency 'person/application_controller'
 module Person
   class StaffsController < ApplicationController
     layout 'layouts/material'
-    before_action :set_staffs,       only: [:index, :create, :destroy, :update]
+    before_action :set_staffs,       only: [:create, :destroy, :update]
     before_action :set_staff,        only: [:edit, :destroy, :update]
     before_action :set_staff_status, only: [:enable, :disable]
 
     def index
-      authorize @staffs
+      if params[:status].present? || params[:sector].present?
+        @staffs = Staff.search(params)
+      else
+        @staffs = Staff.where(status: true).order(:name)
+      end
     end
 
     def new

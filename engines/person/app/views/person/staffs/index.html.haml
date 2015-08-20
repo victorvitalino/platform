@@ -4,11 +4,30 @@
       Usuários
       = link_to 'novo usuário', new_staff_path, class: 'btn btn-success pull-right' if policy(:staff, namespace: Person).create?
       %small Listagem de Usuários
+  %hr/
+  = form_tag staffs_path, method: :get do 
+    .row
+      .col-md-2
+        = label_tag "Setor"
+        .fg-line
+          .select
+            = select_tag :sector, options_for_select(Person::Sector.unscoped.all.collect { |p| [p.acron.upcase, p.id]}, params[:sector]), {class: 'form-control',prompt: "Todos"}
+       
+      .col-md-2 
+        = label_tag "status"
+        .fg-line
+          .select
+            = select_tag :status, options_for_select(['ativo','inativo'], params[:status]), {class: 'form-control', prompt: "Todos"}
+    
+      .col-md-2 
+        %br/
+        .fg-line
+          = submit_tag "filtrar", name: nil, class: 'btn btn-primary'
+  %hr/
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table.table.table-hover.table-bordered.datatable
       %thead
         %tr
-          %th #
           %th Nome
           %th Matrícula
           %th Setor Atual

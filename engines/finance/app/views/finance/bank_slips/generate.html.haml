@@ -1,0 +1,224 @@
+:css
+  .bordaFina,.bordaFina td{
+    border:1px solid #000;
+  }
+
+%h2
+  %b GUIA DE RECOLHIMENTO - CODHAB
+%div{:style => "width: 750px;"}
+  %br
+    %table.bordaFina{:cellpadding => "0", :cellspacing => "0", :width => "750px"}
+      %tr
+        %td{:colspan => "7"}
+          %span{:style => "font-size: 11px;"} Local de pagamento
+          %br
+            %span{:style => "font-size: 12px;"}
+              %b PAGUE SOMENTE NAS AGÊNCIAS DO BRB - BANCO DE BRASÍLIA S/A
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Plano/Sistema
+          %br
+            %span{:style => "font-size: 12px;"}
+              %b= @bank_slip.type_slip.title if @bank_slip.type_slip.present?
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Vencimento
+          %br
+            %span{:style => "font-size: 12px;"}
+              %b= @bank_slip.deadline.strftime('%d/%m/%Y')
+            %br
+      %tr
+        %td{:colspan => "7"}
+          %span{:style => "font-size: 11px;"} Cedente
+          %br
+            %span{:style => "font-size: 12px;"} COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF CNPJ: 09.335.575.0001/30
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Tipo de Operção
+          %br
+            %span{:style => "font-size: 12px;"}
+              %b 
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} (=)Valor a pagar
+          %br
+            %span{:style => "font-size: 12px;"}
+              %b= number_to_currency @bank_slip.value
+            %br
+      %tr
+        %td
+          %span{:style => "font-size: 11px;"} D/C
+          %br
+            %span{:style => "font-size: 12px;"} 0
+            %br
+        %td{:colspan => ""}
+          %span{:style => "font-size: 11px;"} CJTO
+          %br
+            %span{:style => "font-size: 12px;"} 0000
+            %br
+        %td
+          %span{:style => "font-size: 11px;"} N. Contrato
+          %br
+            %span{:style => "font-size: 12px;"}  &nbsp;
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Outros recebimentos
+          %br
+            %span{:style => "font-size: 12px;"}  &nbsp;
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Outros abatimentos
+          %br
+            %span{:style => "font-size: 12px;"} &nbsp;
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Encargos do mês
+          %br
+            %span{:style => "font-size: 12px;"}= number_to_currency @bank_slip.value
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Tipo de reajuste
+          %br
+            %span{:style => "font-size: 12px;"} &nbsp;
+            %br
+      %tr
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Código Agência
+          %br
+            %span{:style => "font-size: 12px;"} 0000
+            %br
+        %td{:colspan => ""}
+          %span{:style => "font-size: 11px;"} Dig.
+          %br
+            %span{:style => "font-size: 12px;"} &nbsp;
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Nosso Número/Cad
+          %br
+            %span{:style => "font-size: 12px;"}= @barcode.block_four
+            %br
+        %td
+          %span{:style => "font-size: 11px;"} Conta/Contrato
+          %br
+            %span{:style => "font-size: 12px;"} 000000-0
+            %br
+        %td
+          %span{:style => "font-size: 11px;"} Data EmissÃ£o
+          %br
+            %span{:style => "font-size: 12px;"}= Time.now.strftime('%d/%m/%Y')
+            %br
+        %td{:colspan => "2"}
+          %span{:style => "font-size: 11px;"} Isento de mora até
+          %br
+            %span{:style => "font-size: 12px;"}= Time.now.strftime('%d/%m/%Y')
+            %br
+        %td{:colspan => "2", :td => ""}
+          %span{:style => "font-size: 11px;"} Espécie de moeda
+          %br
+            %span{:style => "font-size: 12px;"} R$
+            %br
+      %tr
+        %td{:colspan => "11"}
+          %span{:style => "font-size: 11px;"}= "Sacado: #{@bank_slip.name} / CPF: #{@bank_slip.cpf} "
+          %br
+          %br
+      %tr
+        %td{:colspan => "11"}
+          %table{:border => "0", :cellpadding => "1", :cellspacing => "1", :width => "100%"}
+            %tr
+              %td{:align => "center", :style => "border:0px"}
+                %span{:style => "font-size: 11px;"}
+                  %b INFORMAÇÔES
+      %tr
+        %td{:colspan => "11"}
+          %table{:border => "0", :cellpadding => "1", :cellspacing => "1", :width => "100%"}
+            %tr
+              %td{:style => "border:0px; border-bottom: 2px solid #c9c9c9;"}
+                %span{:style => "font-size: 12px;"}
+                  %b
+            %tr
+              %td{:style => "border:0px;height:90px;"}
+                %span{:style => "font-size: 13px;"} GUIA COBRANÇA CODHAB/GDF
+                %br/
+                %span{:style => "font-size: 13px;"}= "#{@bank_slip.type_slip.title}"
+                %br/
+    %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "750px"}
+      %tr
+        %td{:colspan => "11", :style => "border: 0px; border-bottom:1px dotted black;"}
+          \&nbsp;
+  %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "750px"}
+    %tr
+      %td{:align => "right", :colspan => "11"}
+        %b
+          %span{:style => "font-size: 14px;margin-left:4px;"}= @barcode.block_formated_full
+  %table{:cellpadding => "0", :cellspacing => "0", :style => "border: 2px solid black; padding-left: 10px;", :width => "750px"}
+    %tr
+      %td{:colspan => "11"}
+        %span{:style => "font-size: 14px; text -align: center"}
+          %b COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DISTRITO FEDERAL
+        %br
+    %tr
+      %td{:colspan => "12"}
+        %hr/
+    %tr
+      %td{:colspan => "11"}
+        %span{:style => "font-size: 12px;"}
+          %b NOME:
+          %br/
+          = @bank_slip.name
+        %br/
+        %span{:style => "font-size: 12px;"}
+          %b CPF:
+          %br/
+          = @bank_slip.cpf
+        %br/    
+        %span{:style => "font-size: 12px;"}
+          %b REFERÊNCIA:
+          %br/
+          = @bank_slip.observation
+        %br/
+        %span{:style => "font-size: 12px;"}
+          %b PROTOCOLO:
+          %br/
+          = @bank_slip.protocol
+        %br/
+      %td{:colspan => "2"}
+        %span{:style => "font-size: 12px;"}
+          = image_tag "/bank_slips/#{@qr_code}.png"
+    %tr
+      %td{:colspan => "11"}
+        \&nbsp;
+    %tr
+      %td{:colspan => "11"}
+        %span{:style => "font-size: 12px;"}
+          %b
+    %tr
+      %td{:colspan => "11"}
+        \&nbsp;
+    %tr
+      %td{:aling => "right", :colspan => "12", :style => "padding-right: 10px;"}
+        %table.bordaFina{:align => "right", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "60%"}
+          %tr
+            %td
+              %span{:style => "font-size: 10px;"} N. Documento
+            %td
+              %span{:style => "font-size: 10px;"} Protocolo
+            %td
+              %span{:style => "font-size: 10px;"} Vencimento
+            %td
+              %span{:style => "font-size: 10px;"} Total do Pagamento
+          %tr
+            %td{:align => "left"}
+              %span{:style => "font-size: 10px;"}= @barcode.block_four
+            %td{:align => "left"}
+              %span{:style => "font-size: 10px;"}= @bank_slip.protocol
+            %td{:align => "left"}
+              %span{:style => "font-size: 10px;"}= @bank_slip.deadline.strftime('%d/%m/%Y')
+            %td{:align => "left"}
+              %span{:style => "font-size: 10px;"}
+                %b= number_to_currency @bank_slip.value
+    %tr
+      %td{:colspan => "11"}
+        \&nbsp;
+  %p
+    = image_tag "/bank_slips/#{@bar_code}.png", width: 406

@@ -17,6 +17,7 @@ module Concourse
     # GET /subscribes/new
     def new
       @subscribe = @project.subscribes.new
+      @subscribe.fields.build
     end
 
     # GET /subscribes/1/edit
@@ -64,7 +65,8 @@ module Concourse
       end
       # Only allow a trusted parameter "white list" through.
       def subscribe_params
-        params.require(:subscribe).permit(:project_id, :title, :fee, :fee_value, :bank_slip_id, :start, :end, :publish, :observation)
+        params.require(:subscribe).permit(:project_id, :title, :fee, :fee_value, :bank_slip_id, :start, :end, :publish, :observation,
+                                          fields_attributes: [:id, :_destroy, :label, :field_type, :max_size, :file_white_list, :required, :unique, :only_number])
       end
   end
 end

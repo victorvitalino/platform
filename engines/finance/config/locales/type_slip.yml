@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'finance/type_slip': "Tipo de cobrança"
+    attributes:
+      'finance/type_slip':
+        title: "Título"
+        value: "Valor"
+        code: "Código"
+        publish: "Publicado"

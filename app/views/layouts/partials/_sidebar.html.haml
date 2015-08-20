@@ -135,7 +135,7 @@
         %li.sub-menu{class: ('toggled active' if params[:module] == "attendance")}
           - if policy(:application, namespace: Protocol).index?
             %a{:href => ""}
-              %i.md.md-description>
+              %i.md.md-speaker-notes>
               Gestão de Atendimento
             %ul{style: ('display:block;' if params[:module] == "attendance")}
               %li= link_to "postos de atendimento", attendance.stations_path
@@ -161,13 +161,16 @@
               %i.md.md-attach-money>
               Financeiro
             %ul{style: ('display:block;' if params[:module] == "finance")}
+              %li= link_to "gerar boleto", finance.new_bank_slip_path
+              %li= link_to "gestão de boletos", finance.bank_slips_path
+              %li= link_to "tipos de boletos", finance.type_slips_path
 
-        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
+        %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
           - if policy(:application, namespace: Protocol).index?
             %a{:href => ""}
-              %i.md.md-attach-money>
+              %i.md.md-assignment>
               Concursos
-            %ul{style: ('display:block;' if params[:module] == "finance")}
+            %ul{style: ('display:block;' if params[:module] == "concourse")}
               %li= link_to "concursos", concourse.projects_path
               %li= link_to "relatórios", concourse.projects_path
 

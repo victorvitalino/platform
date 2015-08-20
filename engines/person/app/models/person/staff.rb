@@ -17,6 +17,12 @@ module Person
     belongs_to :job
     belongs_to :branch_line
 
+    def self.search(search)
+      query =  Staff.where(status: true)
+      query =  query.where("sector_current_id = #{search[:sector]}")  if search[:sector].present?
+      query
+    end
+
 #    validates_uniqueness_of :code, :rg, :cpf
 
 #    validates :cpf, cpf: true

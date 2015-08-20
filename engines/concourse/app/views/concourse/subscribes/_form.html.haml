@@ -5,29 +5,42 @@
         = f.label :title, class: 'fg-label'
         = f.input :title, label: false, prompt: 'selecione...'
     .row
-      .col-md-12
-        = f.label :fee, class: 'fg-label'
-        = f.input :fee, label: false, prompt: 'selecione...'
-    .row
-      .col-md-12
-        / = f.label :bank_slip, class: 'fg-label'
-        / = f.association :bank_slip, label: false, prompt: 'selecione...'
-    .row
-      .col-md-12
-        = f.label :start, class: 'fg-label'
-        = f.input :start, label: false, prompt: 'selecione...'
-    .row
-      .col-md-12
-        = f.label :end, class: 'fg-label'
-        = f.input :end, label: false, prompt: 'selecione...'
-    .row
-      .col-md-12
-        = f.label :publish, class: 'fg-label'
-        = f.input :publish, label: false, prompt: 'selecione...'
+      .col-md-1
+        = f.label 'Início', class: 'fg-label'
+        = f.input :start,as: :string, label: false, input_html: { class: 'date'}
+      .col-md-1
+        = f.label 'Fim', class: 'fg-label'
+        = f.input :end, as: :string, label: false, input_html: { class: 'date'}
+      .col-md-1
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "fee"}
+              = f.label :fee
+          %br
+          %br
+          = f.check_box :fee, id: 'fee',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "fee"}
+      .col-md-1
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "publish"}
+              = f.label :publish
+          %br
+          %br
+          = f.check_box :publish, id: 'publish',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "publish"}
+    %hr/
     .row
       .col-md-12
         = f.label :observation, class: 'fg-label'
-        = f.input :observation, label: false, prompt: 'selecione...'
+        = f.input :observation, label: false, input_html: { class: 'redactor'}
+    %hr/
+    .row
+      .col-md-12
+        = f.simple_fields_for :fields do |builder| 
+          = render 'field_fields', f: builder
+        = link_to_add_fields "adicionar campo", f, :fields
+    %hr/
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
