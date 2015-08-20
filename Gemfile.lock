@@ -123,12 +123,6 @@ PATH
     regularization_treatment (0.0.1)
       rails (~> 4.2.1)
 
-PATH
-  remote: engines/schedule
-  specs:
-    schedule (0.0.1)
-      rails (~> 4.2.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -363,7 +357,6 @@ DEPENDENCIES
   regularization!
   regularization_treatment!
   remotipart (~> 1.2)
-  schedule!
   simple_form
   sqlite3
   turbolinks

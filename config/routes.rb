@@ -48,5 +48,4 @@ Rails.application.routes.draw do
  
   mount Candidate::Engine       => "/candidatos",     as: 'candidate'
 
-  mount Schedule::Engine        => "/agendamento",    as: 'schedule'
 end
