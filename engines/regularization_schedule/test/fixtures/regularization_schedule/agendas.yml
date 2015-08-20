@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  start: 2015-08-19
+  end: 2015-08-19
+  hour_start: 2015-08-19 16:57:13
+  hour_end: 2015-08-19 16:57:13
+  publish: false
+  city_id: 
+  station_id: 
+  quantity_attendants: 1
+  time_attendant: 1
+  lunch: false
+  lunch_start: 2015-08-19
+  lunch_end: 2015-08-19
+  lunch_attendants: 1
+  lunch_time_attendant: 1
+  validate_sql: MyString
+  validate_type: 1
+  validate: false
+
+two:
+  title: MyString
+  description: MyText
+  start: 2015-08-19
+  end: 2015-08-19
+  hour_start: 2015-08-19 16:57:13
+  hour_end: 2015-08-19 16:57:13
+  publish: false
+  city_id: 
+  station_id: 
+  quantity_attendants: 1
+  time_attendant: 1
+  lunch: false
+  lunch_start: 2015-08-19
+  lunch_end: 2015-08-19
+  lunch_attendants: 1
+  lunch_time_attendant: 1
+  validate_sql: MyString
+  validate_type: 1
+  validate: false

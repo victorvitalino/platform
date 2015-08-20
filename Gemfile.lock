@@ -118,6 +118,16 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/regularization_schedule
+  specs:
+    regularization_schedule (0.0.1)
+      carrierwave
+      friendly_id
+      haml-rails
+      rails (~> 4.2.1)
+      simple_form
+
+PATH
   remote: engines/regularization_treatment
   specs:
     regularization_treatment (0.0.1)
@@ -361,6 +371,7 @@ DEPENDENCIES
   rails (= 4.2.1)
   redactor-rails
   regularization!
+  regularization_schedule!
   regularization_treatment!
   remotipart (~> 1.2)
   schedule!

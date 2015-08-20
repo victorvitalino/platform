@@ -23,7 +23,7 @@ module Helpdesk
 
     # GET /order_services/1/edit
     def edit
-      
+
     end
     # POST /order_services
     def create
@@ -34,6 +34,9 @@ module Helpdesk
       @order_service.status = 0
       @order_service.deadline = Date.today
       @order_service.save
+
+      flash[:success] = "Chamado aberto com sucesso. Aguarde retorno da área técnica!"
+
     end
 
     # PATCH/PUT /order_services/1
@@ -82,9 +85,9 @@ module Helpdesk
 
       # Only allow a trusted parameter "white list" through.
       def order_service_params
-        params.require(:order_service).permit(:deadline,  :subject, :category, :number, :qualification, :status, :number_increment, 
-                                              :opened_by_id, :responsible_id, :staff_id, 
-                                              :sector_id, :branch_line_id, :good_id, 
+        params.require(:order_service).permit(:deadline,  :subject, :category, :number, :qualification, :status, :number_increment,
+                                              :opened_by_id, :responsible_id, :staff_id,
+                                              :sector_id, :branch_line_id, :good_id,
                                                monitor_service_orders_attributes: [:appointment, :attachment])
       end
   end

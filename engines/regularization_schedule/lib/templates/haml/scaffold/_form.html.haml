@@ -1,0 +1,13 @@
+= simple_form_for(@<%= singular_table_name %>) do |f| 
+  .card-body.card-padding
+<%- attributes.each do |attribute| -%>
+    .row
+      .col-md-12
+        = f.label :<%= attribute.name %>, class: 'fg-label'
+        = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, label: false, prompt: 'selecione...'
+<%- end -%>
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar", <%= index_helper %>_path,class: 'btn btn-inverse' 
+

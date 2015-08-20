@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819191411) do
+ActiveRecord::Schema.define(version: 20150819195940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -448,7 +448,6 @@ ActiveRecord::Schema.define(version: 20150819191411) do
   create_table "concourse_subscribes", force: :cascade do |t|
     t.integer  "project_id"
     t.string   "title"
-    t.boolean  "fee"
     t.float    "fee_value"
     t.integer  "bank_slip_id"
     t.date     "start"
@@ -942,6 +941,48 @@ ActiveRecord::Schema.define(version: 20150819191411) do
   end
 
   add_index "regularization_requeriments", ["unit_id"], name: "index_regularization_requeriments_on_unit_id", using: :btree
+
+  create_table "regularization_schedule_agendas", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "start"
+    t.date     "end"
+    t.time     "hour_start"
+    t.time     "hour_end"
+    t.boolean  "publish"
+    t.integer  "city_id"
+    t.integer  "station_id"
+    t.integer  "quantity_attendants"
+    t.integer  "time_attendant"
+    t.boolean  "lunch"
+    t.date     "lunch_start"
+    t.date     "lunch_end"
+    t.integer  "lunch_attendants"
+    t.integer  "lunch_time_attendant"
+    t.string   "validate_sql"
+    t.integer  "validate_type"
+    t.boolean  "validate_agenda"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "regularization_schedule_agendas", ["city_id"], name: "index_regularization_schedule_agendas_on_city_id", using: :btree
+  add_index "regularization_schedule_agendas", ["station_id"], name: "index_regularization_schedule_agendas_on_station_id", using: :btree
+
+  create_table "regularization_schedule_schedules", force: :cascade do |t|
+    t.integer  "agenda_id"
+    t.integer  "requeriment_id"
+    t.string   "cpf"
+    t.boolean  "status"
+    t.date     "date_schedule"
+    t.time     "hour_schedule"
+    t.text     "observation"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "regularization_schedule_schedules", ["agenda_id"], name: "index_regularization_schedule_schedules_on_agenda_id", using: :btree
+  add_index "regularization_schedule_schedules", ["requeriment_id"], name: "index_regularization_schedule_schedules_on_requeriment_id", using: :btree
 
   create_table "user_candidates", force: :cascade do |t|
     t.string   "username",               default: "", null: false
