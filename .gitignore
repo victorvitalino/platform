@@ -18,3 +18,4 @@
 /public/uploads/*
 /config/application.yml
 /lib/files/migrate/current
+/public/assets
