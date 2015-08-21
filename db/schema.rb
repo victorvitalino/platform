@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820125012) do
+ActiveRecord::Schema.define(version: 20150821143401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -365,6 +365,48 @@ ActiveRecord::Schema.define(version: 20150820125012) do
   end
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
+
+  create_table "concourse_candidate_messages", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.text     "message"
+    t.integer  "message_type"
+    t.boolean  "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "concourse_candidate_messages", ["candidate_id"], name: "index_concourse_candidate_messages_on_candidate_id", using: :btree
+
+  create_table "concourse_candidates", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "cau_br"
+    t.string   "address"
+    t.string   "burgh"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.string   "cep"
+    t.string   "telephone"
+    t.string   "celphone"
+    t.string   "email"
+    t.string   "fantasy_name"
+    t.string   "social_reason"
+    t.string   "cnpj"
+    t.string   "cau_br_check"
+    t.boolean  "terms_use"
+    t.string   "password"
+    t.datetime "last_sign_in_at"
+    t.boolean  "homologation"
+    t.date     "homologation_date"
+    t.boolean  "refused"
+    t.date     "refused_date"
+    t.text     "observation"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "concourse_candidates", ["city_id"], name: "index_concourse_candidates_on_city_id", using: :btree
+  add_index "concourse_candidates", ["state_id"], name: "index_concourse_candidates_on_state_id", using: :btree
 
   create_table "concourse_fields", force: :cascade do |t|
     t.integer  "subscribe_id"

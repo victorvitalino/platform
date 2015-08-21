@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  candidate_id: 
+  message: MyText
+  message_type: 1
+  status: false
+
+two:
+  candidate_id: 
+  message: MyText
+  message_type: 1
+  status: false
