@@ -10,7 +10,7 @@ module ConcoursePortal
     end
     
     def show
-      @project  = Concourse::Project.friendly.find(params[:id])
+      @project  = Concourse::Project.friendly.active.find(params[:id])
     end
   end
 end

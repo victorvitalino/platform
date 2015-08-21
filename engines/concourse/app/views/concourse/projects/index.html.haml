@@ -12,6 +12,7 @@
           %th Fim
           %th Publicado?
           %th Status
+          %th Etapa
           %th Consulta?
           %th Ações
       %tbody
@@ -22,6 +23,7 @@
             %td= project.end.strftime('%d/%m/%Y')
             %td= project.publish ? 'publicado' : 'não publicado'
             %td= project.status ? 'ativo' : 'inativo'
+            %td= project.step
             %td= project.consultation ? 'aberto' : 'fechado'
             %td
               = link_to "", project_path(project),class: 'md md-arrow-forward btn btn-success'

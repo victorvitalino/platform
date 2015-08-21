@@ -18,7 +18,7 @@
             %a{"aria-controls" => "subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#subscribes", :role => "tab"} Tipo de inscrições
           %li{:class => (params[:q] == 'partictipos') ? 'active' : ''}
             %a{"aria-controls" => "participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#participations", :role => "tab"} Tipo de participações
-          %li{:class => (params[:q] == 'concultas') ? 'active' : ''}
+          %li{:class => (params[:q] == 'consultas') ? 'active' : ''}
             %a{"aria-controls" => "consults", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#consults", :role => "tab"} Consultas
           %li{:class => (params[:q] == 'inscricoes') ? 'active' : ''}
             %a{"aria-controls" => "candidate_subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_subscribes", :role => "tab"} Inscrições
@@ -129,16 +129,25 @@
                       %th Fim
                       %th Publicado?
                       %th Ação
-          #consults.tab-pane{:role => "tabpanel"}
+          #consults.tab-pane{:class => (params[:q] == 'consultas') ? 'active' : '', :role => "tabpanel"}
             .card
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
                 %table.table.table-striped.table-hover.datatable
                   %thead
                     %tr.info
-                      %th.col-md-1 #
+                      %th.col-md-1 Nº
                       %th Questão
                       %th Status
                       %th Ação
+                  %tbody
+                    - @project.consults.each do |consult|
+                      %tr
+                        %td= consult.id
+                        %td= consult.content
+                        %td= consult.status ? 'Leitura realizada' : 'Não lida'
+                        %td
+                          = link_to "marcar como lida", project_consult_read_path(project_id: @project, consult_id: consult) if !consult.status
+                          = link_to "visualizar", project_consult_path(project_id: @project, id: consult), remote: true
           #candidate_subscribes.tab-pane{:role => "tabpanel"}
             .card
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}

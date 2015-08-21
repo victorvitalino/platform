@@ -1,7 +1,8 @@
 %ul.list-group
-  %li.list-group-item= link_to "Inscrição", concourse_portal.project_subscribes_path(@project) 
+  - if @project.aberto?
+    %li.list-group-item= link_to "Inscrição", concourse_portal.project_subscribes_path(@project) 
   - if @project.consultation
-    %li.list-group-item= link_to "Enviar consulta", concourse_portal.project_path(@project) 
+    %li.list-group-item= link_to "Enviar consulta", concourse_portal.new_project_consult_path(@project) 
 %ul.list-group
   %li.list-group-item= link_to "Início", concourse_portal.project_path(@project) 
   - @project.navs.each do |nav|

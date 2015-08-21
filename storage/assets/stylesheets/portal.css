@@ -7,3 +7,6 @@
 .main {margin-top: 45px;}
 .main .title { font-weight: bold;}
 .table>thead>tr>th { font-weight: bold !important;}
+.form-group { margin-bottom:0 !important;}
+hr {margin-top: 0 !important;}
+.row { margin-bottom: 10px !important };

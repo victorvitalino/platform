@@ -60,7 +60,7 @@ module Concourse
 
       # Only allow a trusted parameter "white list" through.
       def project_params
-        params.require(:project).permit(:title, :mini_description, :apresentation, :start, :end, :publish, :status, :image_header, :image_logo, :image_footer, :image_slider, :slider, :consultation)
+        params.require(:project).permit(:title, :step, :mini_description, :apresentation, :start, :end, :publish, :status, :image_header, :image_logo, :image_footer, :image_slider, :slider, :consultation)
       end
   end
 end
