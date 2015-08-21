@@ -1,0 +1,57 @@
+.card
+  .card-header.ch-alt
+    %h2 Boletos Bancários
+    = link_to "Novo Boleto", new_bank_slip_path, class: 'btn btn-success pull-right'
+    %small Listagem de tipos de boletos para cobrança
+  %hr/
+  = form_tag bank_slips_path, method: :get do 
+    .row
+      .col-md-2 
+        = label_tag "data início"
+        .fg-line
+          = text_field_tag :start, params[:start], value: (params[:start].present?) ? params[:start] : Date.today.beginning_of_month.strftime('%d/%m/%Y'), class: 'form-control date'
+      .col-md-2 
+        = label_tag "data fim"
+        .fg-line
+          = text_field_tag :end, params[:end], value: (params[:end].present?) ? params[:end] : Date.today.end_of_month.strftime('%d/%m/%Y'), class: 'form-control date'
+      .col-md-2 
+        = label_tag "tipo"
+        .fg-line
+          .select
+            = select_tag :type, options_for_select(Finance::TypeSlip.all.collect { |p| [p.title.upcase, p.id]}, params[:type]), {class: 'form-control',prompt: "Todos"}
+       
+      .col-md-2
+        = label_tag "status"
+        .fg-line
+          .select
+            = select_tag :status, options_for_select(['pago','não pago'], params[:status]), {class: 'form-control', prompt: "Todos"}
+    
+      .col-md-2 
+        %br/
+        = submit_tag "filtrar", name: nil, class: 'btn btn-primary'
+  %hr/
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.datatable
+      %thead
+        %tr
+          %th Tipo
+          %th Código
+          %th Gerado em
+          %th Valor
+          %th Status
+          %th Nome
+          %th CPF
+          %th Ações
+      %tbody
+        - @bank_slips.each do |slip|
+          %tr
+            %td= slip.type_slip.title if slip.type_slip.present?
+            %td= slip.id
+            %td= slip.created_at.strftime('%d/%m/%Y ás %H:%M')
+            %td= number_to_currency slip.value
+            %td= slip.status ? "<span class='label label-success'>pago".html_safe : "<span class='label label-danger'>não pago".html_safe
+            %td= slip.name.upcase
+            %td= slip.cpf
+            %td
+              = link_to "", bank_slip_path(slip), class: 'md md-arrow-forward btn btn-success'
+            

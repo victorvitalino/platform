@@ -1,0 +1,40 @@
+.row
+  .col-sm-6.col-md-offset-3
+    .card
+      .card-header.bgm-green
+        %h2
+          Boleto Gerado
+          %small Seu boleto já foi gerado, veja os detalhes abaixo
+      .card-body.card-padding
+        .row
+          .col-md-6
+            %h4 Tipo de Cobrança
+            %h5= @bank_slip.type_slip.title if @bank_slip.present?
+        %Hr/
+        .row
+          .col-md-6
+            %h4 Data de Vencimento
+            %h5= @bank_slip.deadline.strftime('%d/%m/%Y')
+          .col-md-6
+            %h4 Valor
+            %h5= number_to_currency @bank_slip.value
+        %hr/
+        .row
+          .col-md-6
+            %h4 Dados Sacado
+        .row
+          .col-md-4
+            %h5 Nome
+            %h6= @bank_slip.name.upcase
+          .col-md-4
+            %h5 CPF
+            %h6= @bank_slip.cpf.upcase
+          .col-md-4
+            %h5 Referência
+            %h6= @bank_slip.observation
+        %hr/
+        .row
+          .col-md-12
+            = link_to "Emitir Cobrança", bank_slip_generate_path(@bank_slip), class: 'btn btn-primary', target: '_blank'
+            = link_to "Nova Cobrança", new_bank_slip_path, class: 'btn btn-success'
+            = link_to "Gestão de Boletos", bank_slips_path, class: 'btn btn-inverse'

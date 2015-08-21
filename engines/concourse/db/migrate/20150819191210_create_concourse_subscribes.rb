@@ -3,8 +3,8 @@ class CreateConcourseSubscribes < ActiveRecord::Migration
     create_table :concourse_subscribes do |t|
       t.references :project, index: true#, foreign_key: true
       t.string :title
-      t.float :fee_value
-      t.references :bank_slip, index: true#, foreign_key: true
+      t.boolean :fee
+      t.references :type_slip, index: true#, foreign_key: true
       t.date :start
       t.date :end
       t.boolean :publish

@@ -1,9 +1,9 @@
 namespace :permissions do
-  
+
   desc "Migração de permissões de usuário"
   task :migrate => :environment do
-  
-		#-------------------------------------------PERSON----------------------------------------------		
+
+		#-------------------------------------------PERSON----------------------------------------------
 		@system_person = Person::System.new(name: 'Gestão de Pessoas',code: 1, status: true)
 		@system_person.save
 
@@ -50,7 +50,7 @@ namespace :permissions do
 		  { action: "Permissões do Usuários - visualizar",			code: 1703, status: true, system_id: @system_person.id }
 		])
 
-	
+
 		#----------------------------------------------CMS---------------------------------------------------------------
 
 
@@ -102,7 +102,7 @@ namespace :permissions do
 		@system_protocolo = Person::System.new(name: 'Protocolo',code: 4, status: true)
 		@system_protocolo.save
 
-		
+
 		@system_permission = Person::SystemPermission.create([
 		  { action: "Autuação - criar/editar",		code: 4101, status: true, system_id: @system_protocolo.id },
 		  { action: "Autuação - excluir", 				code: 4102, status: true, system_id: @system_protocolo.id },
@@ -115,10 +115,10 @@ namespace :permissions do
 		  { action: "Movimentação - excluirr", 				   code: 4302, status: true, system_id: @system_protocolo.id },
 		  { action: "Movimentação - visualizar",			   code: 4303, status: true, system_id: @system_protocolo.id },
 		  { action: "Movimentação - receber remessa",	   code: 4304, status: true, system_id: @system_protocolo.id },
-		  { action: "Movimentação - devolver remessa",   code: 4305, status: true, system_id: @system_protocolo.id }, 
+		  { action: "Movimentação - devolver remessa",   code: 4305, status: true, system_id: @system_protocolo.id },
 		  { action: "Movimentação - adicinar documento", code: 4306, status: true, system_id: @system_protocolo.id }
 		])
-		
+
 		@system_permission = Person::SystemPermission.create([
 		  { action: "Remessas - criar/editar", 	   	code: 4201, status: true, system_id: @system_protocolo.id },
 		  { action: "Remessas - excluir", 					code: 4202, status: true, system_id: @system_protocolo.id },
@@ -137,7 +137,7 @@ namespace :permissions do
 		  { action: "Assunto - excluir", 					code: 4502, status: true, system_id: @system_protocolo.id },
 		  { action: "Assunto - visualizar",				code: 4503, status: true, system_id: @system_protocolo.id }
 		])
-		
+
 		@system_permission = Person::SystemPermission.create([
 		  { action: "Localização - criar/editar", 	  code: 4601, status: true, system_id: @system_protocolo.id },
 		  { action: "Localização - excluir", 					code: 4602, status: true, system_id: @system_protocolo.id },
@@ -167,7 +167,7 @@ namespace :permissions do
 		  { action: "Ordem de Serviço - excluir", 					code: 2102, status: true, system_id: @system_helpdesk.id },
 		  { action: "Ordem de Serviço - visualizar",				code: 2103, status: true, system_id: @system_helpdesk.id }
 		])
-		
+
 		@system_permission = Person::SystemPermission.create([
 		  { action: "Acompanhamento - incluir/editar", 	   	code: 2201, status: true, system_id: @system_helpdesk.id },
 		  { action: "Acompanhamento - excluir", 					code: 2202, status: true, system_id: @system_helpdesk.id },
@@ -180,5 +180,9 @@ namespace :permissions do
 		  { action: "Atendente - visualizar",				code: 2303, status: true, system_id: @system_helpdesk.id },
 		  { action: "Atendente - relatórios",				code: 2304, status: true, system_id: @system_helpdesk.id }
 		])
+
+
+
+
 	end
 end

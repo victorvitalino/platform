@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+       'concourse/subscribe':
+          attributes:
+            start:
+              invalid_date: 'Data inválida'
+            end:
+              invalid_date: 'Data inválida'
+
+
+    models:
+      'concourse/subscribe': 'Tipo de inscrição'
+    attributes:
+      'concourse/subscribe':
+        title: 'Título'
+        type_slip: 'Cobrança'
+        fee: 'Cobrar Taxa'
+        publish: "Publicado?"
+        observation: "Observação"

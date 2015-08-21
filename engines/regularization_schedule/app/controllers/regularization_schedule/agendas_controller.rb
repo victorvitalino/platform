@@ -2,6 +2,9 @@ require_dependency "regularization_schedule/application_controller"
 
 module RegularizationSchedule
   class AgendasController < ApplicationController
+
+     layout 'layouts/material'
+
     before_action :set_agenda, only: [:show, :edit, :update, :destroy]
     before_action :set_agendas, only: [:index]
     # GET /agendas

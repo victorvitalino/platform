@@ -1,7 +1,7 @@
 .card
   .card-header.ch-alt
     %h2 schedules
-    = link_to "Novo", new_schedule_path, class: 'btn btn-success pull-right'
+    = link_to "Novo", new_agenda_schedule_path, class: 'btn btn-success pull-right'
     %small Listagem de schedules
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.datatable
@@ -25,4 +25,3 @@
             %td= schedule.hour_schedule
             %td= schedule.observation
 
-     

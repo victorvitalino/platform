@@ -9,7 +9,7 @@ module RegularizationSchedule
     before_action :set_agenda
     # GET /schedules
     def index
-      @schedules = @agenda.schedule.all
+      @schedules = @agenda.schedules.all
     end
 
     # GET /schedules/1

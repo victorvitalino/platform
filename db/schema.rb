@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150819195940) do
+=======
+ActiveRecord::Schema.define(version: 20150820125012) do
+>>>>>>> 8c9fc29e76efc7526575c60842f6ce91d7fd2a4e
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -448,8 +452,13 @@ ActiveRecord::Schema.define(version: 20150819195940) do
   create_table "concourse_subscribes", force: :cascade do |t|
     t.integer  "project_id"
     t.string   "title"
+<<<<<<< HEAD
     t.float    "fee_value"
     t.integer  "bank_slip_id"
+=======
+    t.boolean  "fee"
+    t.integer  "type_slip_id"
+>>>>>>> 8c9fc29e76efc7526575c60842f6ce91d7fd2a4e
     t.date     "start"
     t.date     "end"
     t.boolean  "publish"
@@ -458,8 +467,35 @@ ActiveRecord::Schema.define(version: 20150819195940) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "concourse_subscribes", ["bank_slip_id"], name: "index_concourse_subscribes_on_bank_slip_id", using: :btree
   add_index "concourse_subscribes", ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree
+  add_index "concourse_subscribes", ["type_slip_id"], name: "index_concourse_subscribes_on_type_slip_id", using: :btree
+
+  create_table "finance_bank_slips", force: :cascade do |t|
+    t.integer  "type_slip_id"
+    t.float    "value"
+    t.date     "deadline"
+    t.date     "paid"
+    t.date     "credited"
+    t.float    "value_paid"
+    t.string   "barcode"
+    t.string   "observation"
+    t.string   "name"
+    t.string   "cpf"
+    t.boolean  "status",       default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "finance_bank_slips", ["type_slip_id"], name: "index_finance_bank_slips_on_type_slip_id", using: :btree
+
+  create_table "finance_type_slips", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "publish"
+    t.float    "value"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "helpdesk_attendants", force: :cascade do |t|
     t.string   "code"

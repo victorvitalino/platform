@@ -1,0 +1,38 @@
+%fieldset
+  .row
+    .col-md-2
+      = f.label :label, class: 'fg-label'
+      = f.input :label, label: false
+    .col-md-2
+      = f.label :field_type, class: 'fg-label'
+      = f.input :field_type, as: :select, label: false, collection: Concourse::Field.field_types.keys.to_a, prompt: 'selecione...'
+    .col-md-2
+      = f.label :max_size, class: 'fg-label'
+      = f.input :max_size, label: false
+    .col-md-2
+      = f.label :file_white_list, class: 'fg-label'
+      = f.input :file_white_list, label: false
+    .col-md-1
+      .toggle-switch{"data-ts-color" => "blue"}
+        %label
+          .ts-label{:for => "requried_#{f.object_id}"}
+            = f.label :required
+        %br
+        = f.check_box :required, id: "requried_#{f.object_id}",hidden: 'hidden', type: 'checkbox'
+        %label.ts-helper{:for => "requried_#{f.object_id}"}
+    .col-md-1
+      .toggle-switch{"data-ts-color" => "blue"}
+        %label
+          .ts-label{:for => "unique_#{f.object_id}"}
+            = f.label :unique
+        %br
+        = f.check_box :unique, id: "unique_#{f.object_id}",hidden: 'hidden', type: 'checkbox'
+        %label.ts-helper{:for => "unique_#{f.object_id}"}
+    .col-md-2
+      .toggle-switch{"data-ts-color" => "blue"}
+        %label
+          .ts-label{:for => "only_number_#{f.object_id}"}
+            = f.label :only_number
+        %br
+        = f.check_box :only_number, id: "only_number_#{f.object_id}",hidden: 'hidden', type: 'checkbox'
+        %label.ts-helper{:for => "only_number_#{f.object_id}"}

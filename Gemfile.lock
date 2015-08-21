@@ -61,6 +61,18 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/finance
+  specs:
+    finance (0.0.1)
+      barby
+      carrierwave
+      chunky_png
+      haml-rails
+      rails (~> 4.2.1)
+      rqrcode
+      simple_form
+
+PATH
   remote: engines/helpdesk
   specs:
     helpdesk (0.0.1)
@@ -133,12 +145,6 @@ PATH
     regularization_treatment (0.0.1)
       rails (~> 4.2.1)
 
-PATH
-  remote: engines/schedule
-  specs:
-    schedule (0.0.1)
-      rails (~> 4.2.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -178,6 +184,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    barby (0.6.2)
     bcrypt (3.1.10)
     builder (3.2.2)
     byebug (5.0.0)
@@ -187,6 +194,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chunky_png (1.3.4)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -289,6 +297,8 @@ GEM
     remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rqrcode (0.6.0)
+      chunky_png
     ruby_parser (3.6.6)
       sexp_processor (~> 4.1)
     sass (3.4.16)
@@ -353,6 +363,7 @@ DEPENDENCIES
   email_validator
   enum_help
   figaro
+  finance!
   friendly_id
   haml-rails
   helpdesk!
@@ -374,7 +385,6 @@ DEPENDENCIES
   regularization_schedule!
   regularization_treatment!
   remotipart (~> 1.2)
-  schedule!
   simple_form
   sqlite3
   turbolinks
