@@ -1,0 +1,48 @@
+= simple_form_for [@project, @candidate] do |f|
+  .row
+    .col-md-4
+      = f.input :name
+    .col-md-2
+      = f.input :cpf
+    .col-md-2
+      = f.input :cau_br
+  .row
+    .col-md-3
+      = f.association :state, prompt: "selecione..."
+    .col-md-3
+      = f.input :city
+    .col-md-2
+      = f.input :cep
+  .row
+    .col-md-8
+      = f.input :address
+  .row
+    .col-md-2
+      = f.input :number
+    .col-md-2
+      = f.input :burgh
+    .col-md-2
+      = f.input :telephone
+    .col-md-2
+      = f.input :celphone
+  .row
+    .col-md-4
+      = f.input :email
+  %hr/
+  .row
+    .col-md-4
+      = f.input :fantasy_name
+    .col-md-4
+      = f.input :social_reason
+  .row
+    .col-md-3
+      = f.input :cnpj
+  %hr/
+  .row
+    .col-md-12
+      = f.input :terms_use
+  %hr/
+  .row
+    .col-md-2
+      = f.button :submit
+      = link_to "Voltar", project_path(@project), class: 'btn btn-default'

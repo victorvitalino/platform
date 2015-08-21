@@ -8,7 +8,10 @@
     .col-md-3
       .row
         .col-md-6
-          = link_to image_tag(project.image_logo.url, width: 130, height: 190), concourse_portal.project_path(project) if project.image_logo?
+          - if project.status
+            = link_to image_tag(project.image_logo.url, width: 130, height: 190), concourse_portal.project_path(project) if project.image_logo?
+          - else
+            = image_tag(project.image_logo.url, width: 130, height: 190)
         .col-md-6
           .row
             .col-md-12
@@ -16,14 +19,17 @@
                 %strong= project.title
           .row
             .col-md-12
-              %strong Período
+              %br/
+              %strong Início
               %br/
               #{project.start.strftime('%d/%m/%Y')}
+              %br/
+              %strong Fim
               %br/
               #{project.end.strftime('%d/%m/%Y')} 
           .row
             .col-md-12
-              %strong Inscrições Abertas
+              %strong= project.step.humanize
   
 %br/
 .row

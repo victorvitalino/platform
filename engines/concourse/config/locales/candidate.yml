@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/candidate': 'Inscrição'
+    attributes:
+      'concourse/candidate':
+        name: 'Nome'
+        cpf: 'CPF'
+        state: 'Estado'
+        city: 'Cidade'
+        cep: 'CEP'
+        number: "Número"
+        burgh: "Bairro"
+        telephone: "Telefone"
+        celphone: "Celular"
+        email: "E-mail"
+        fantasy_name: "Nome Fantasia"
+        social_reason: "Razão Social"
+        cnpj: "CNPJ"
+        terms_use: "Declaro estar ciente e de acordo com todas as regras do Edital do respectivo concurso."
+        address: "Endereço Completo"

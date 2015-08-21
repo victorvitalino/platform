@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   constraints DomainConstraint do
     mount Portal::Engine                => '/',                 as: 'portal'
-    mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',                 module: 'concourse_portal'
+    mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',             module: 'concourse_portal'
     mount Regularization::Engine        => "/regularizacao",    as: 'regularization'
   end
 

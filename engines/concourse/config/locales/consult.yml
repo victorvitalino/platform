@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/consult': 'Consulta'
+    attributes:
+      'concourse/consult':
+        content: 'Conteúdo'

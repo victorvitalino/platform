@@ -11,11 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150819195940) do
-=======
-ActiveRecord::Schema.define(version: 20150820125012) do
->>>>>>> 8c9fc29e76efc7526575c60842f6ce91d7fd2a4e
+
+ActiveRecord::Schema.define(version: 20150821171350) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -370,6 +368,61 @@ ActiveRecord::Schema.define(version: 20150820125012) do
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
 
+  create_table "concourse_candidate_messages", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.text     "message"
+    t.integer  "message_type"
+    t.boolean  "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "concourse_candidate_messages", ["candidate_id"], name: "index_concourse_candidate_messages_on_candidate_id", using: :btree
+
+  create_table "concourse_candidates", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "cau_br"
+    t.string   "address"
+    t.string   "burgh"
+    t.string   "number"
+    t.string   "city"
+    t.integer  "state_id"
+    t.string   "cep"
+    t.string   "telephone"
+    t.string   "celphone"
+    t.string   "email"
+    t.string   "fantasy_name"
+    t.string   "social_reason"
+    t.string   "cnpj"
+    t.string   "cau_br_check"
+    t.boolean  "terms_use"
+    t.string   "password"
+    t.datetime "last_sign_in_at"
+    t.boolean  "homologation",      default: false
+    t.date     "homologation_date"
+    t.boolean  "refused",           default: false
+    t.date     "refused_date"
+    t.text     "observation"
+    t.integer  "subscribe_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "concourse_candidates", ["state_id"], name: "index_concourse_candidates_on_state_id", using: :btree
+  add_index "concourse_candidates", ["subscribe_id"], name: "index_concourse_candidates_on_subscribe_id", using: :btree
+
+  create_table "concourse_consults", force: :cascade do |t|
+    t.text     "content"
+    t.boolean  "status",     default: false
+    t.boolean  "terms_use",  default: false
+    t.integer  "project_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "concourse_consults", ["project_id"], name: "index_concourse_consults_on_project_id", using: :btree
+
   create_table "concourse_fields", force: :cascade do |t|
     t.integer  "subscribe_id"
     t.integer  "participation_id"
@@ -445,8 +498,9 @@ ActiveRecord::Schema.define(version: 20150820125012) do
     t.boolean  "slider"
     t.boolean  "consultation"
     t.string   "slug"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "step",             default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "concourse_subscribes", force: :cascade do |t|
