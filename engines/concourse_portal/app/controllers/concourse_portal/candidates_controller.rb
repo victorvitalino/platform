@@ -7,6 +7,7 @@ module ConcoursePortal
     def new
       if params[:subscribe_id].present?
         session[:subscribe_id] = params[:subscribe_id]
+        @current_nav = 'new_subscribe'
         @candidate = Concourse::Candidate.new
       else
         redirect_to @project
@@ -21,6 +22,7 @@ module ConcoursePortal
         session[:candidate_id] = @candidate.id
         redirect_to project_subscribes_success_path(@project)
       else
+        @nav = 'new_subscribe'
         render action: 'new'
       end
     end
@@ -31,8 +33,16 @@ module ConcoursePortal
 
     def success
       if session[:candidate_id].present?
-        
+        @candidate = Concourse::Candidate.find(session[:candidate_id])
       else
+        redirect_to action: 'new'
+      end
+    end
+
+    def logout
+      if session[:candidate_id].present?
+        session[:candidate_id] = nil
+        redirect_to action: 'new'
       end
     end
 
@@ -45,8 +55,8 @@ module ConcoursePortal
 
 
     def set_params
-      params.require(:candidate).permit(:name, :cpf, :number, :state_id, :city, :cep, :address, :burgh, :telephone,
-                                        :celphone, :email, :fantasy_name, :social_reason, :cnpj, :terms_use, :password)
+      params.require(:candidate).permit(:name, :cpf, :rg, :born, :password, :confirmation_password, :state_id, :city, :cep, :address, :burgh, :telephone,
+                                        :celphone, :email, :gender, :fantasy_name, :social_reason, :cnpj, :terms_use, :password)
     end
   end
 end

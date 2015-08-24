@@ -1,0 +1,86 @@
+.row
+  .col-md-12
+    .panel.panel-success
+      .panel-heading
+        %strong Minha Inscrição
+      .panel-body
+        %h5 Informações sobre a inscrição
+        %hr/
+        .row
+          .col-md-6
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Protocolo
+                  %th Data de inscrição
+              %tbody
+                %tr
+                  %th= @candidate.protocol
+                  %th= @candidate.created_at.strftime("%d/%m/%Y às %H:%M")
+          .col-md-6
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Status de Inscrição
+                  %th Pagamento de Inscrição
+                  %th Ações
+              %tbody
+                %tr
+                  %th= @candidate.status
+                  %th
+                  %th= link_to "imprimir boleto", project_subscribes_bank_slip_path(@project)
+      
+
+        %h5 Informações pessoais
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Nome
+                  %th CPF
+                  %th Data de Nascimento
+                  %th Sexo
+              %tbody
+                %tr
+                  %td= @candidate.name.upcase
+                  %td= @candidate.cpf
+                  %td= @candidate.born.strftime('%d/%m/%Y')
+                  %td= @candidate.gender
+    
+        %h5 Informações de contato
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Telefone
+                  %th Celular
+                  %th E-mail
+              %tbody
+                %tr
+                  %td= @candidate.telephone.upcase
+                  %td= @candidate.celphone
+                  %td= @candidate.email
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Estado
+                  %th Cidade
+                  %th Endereço
+                  %th CEP
+              %tbody
+                %tr
+                  %td= @candidate.state.name if @candidate.state.present?
+                  %td= @candidate.city
+                  %td= @candidate.address
+                  %td= @candidate.cep
+        %h5 Informações adicionais
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+      

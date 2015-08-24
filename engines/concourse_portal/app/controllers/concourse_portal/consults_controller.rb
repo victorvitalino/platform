@@ -7,11 +7,14 @@ module ConcoursePortal
 
     def new
       @consult = @project.consults.new
+      @current_nav = 'new_consult'
+    
     end
 
     def create
     
       @consult = @project.consults.new(set_params)
+      @current_nav = 'new_consult'
 
       if @consult.save
         redirect_to project_consult_path(project_id: @project, id: @consult)

@@ -1,0 +1,8 @@
+pt-BR:
+  activemodel:
+    models:
+      'concourse_portal/subscribe' : "Inscrição"
+    attributes:
+      'concourse_portal/subscribe':
+        subscribe: 'Número de inscrição'
+        password: 'Senha de acesso'
