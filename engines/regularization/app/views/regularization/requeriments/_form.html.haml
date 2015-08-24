@@ -17,7 +17,7 @@
     .col-md-2
       = f.input :nationality
     .col-md-2
-      = f.input :gender, as: :select, collection: Regularization::Requeriment.genders prompt: 'selecione...'
+      = f.input :gender, as: :select, collection: Regularization::Requeriment.genders, prompt: 'selecione...'
   .row
     .col-md-4
       = f.input :email
