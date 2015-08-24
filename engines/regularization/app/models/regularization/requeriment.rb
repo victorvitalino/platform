@@ -7,7 +7,7 @@ module Regularization
     enum marital_status: ['união_estável', 'solteiro']
     enum gender: [:masculino, :feminino]
 
-    validates_presence_of :name, :cpf, :rg, :born, :telephone,:nationality, :email
+    validates_presence_of :name, :marital_status, :gender, :cpf, :rg, :born, :telephone,:nationality, :email
     
     validates_date :born, before: Time.now - 18.years
     validates :email, email: true
