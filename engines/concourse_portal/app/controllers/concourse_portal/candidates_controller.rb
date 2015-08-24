@@ -19,7 +19,7 @@ module ConcoursePortal
       
       if @candidate.save
         session[:candidate_id] = @candidate.id
-        redirect_to project_subscribe_area_path(@project)
+        redirect_to project_subscribes_success_path(@project)
       else
         render action: 'new'
       end
@@ -27,6 +27,12 @@ module ConcoursePortal
 
     def show
       @candidate = Concourse::Candidate.find(session[:candidate_id])
+    end
+
+    def success
+      if session[:candidate_id].present?
+      else
+      end
     end
 
 

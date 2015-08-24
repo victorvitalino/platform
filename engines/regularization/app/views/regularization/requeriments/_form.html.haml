@@ -13,7 +13,7 @@
     .col-md-2
       = f.input :born, as: :string, input_html: { class: 'date'}
     .col-md-2
-      = f.input :marital_status, as: :select, collection: Regularization::Requeriment.marital_statuses.map {|k,v| [k.humanize,k]} , prompt: 'selecione...'
+      = f.input :marital_status, as: :select, collection: Regularization::Requeriment.marital_statuses.keys.to_a , prompt: 'selecione...'
     .col-md-2
       = f.input :nationality
     .col-md-2
