@@ -8,6 +8,6 @@ class Finder
   validates :cpf, cpf: true, allow_blank: true
 
   def search(code)
-    @reference = Regularization::Requeriment.where('?' code)
+    #@reference = Regularization::Requeriment.where('?' code)
   end
 end
