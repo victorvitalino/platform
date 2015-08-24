@@ -19,10 +19,16 @@ module ConcoursePortal
       
       if @candidate.save
         session[:candidate_id] = @candidate.id
+        redirect_to project_subscribe_area_path(@project)
       else
         render action: 'new'
       end
     end
+
+    def show
+      @candidate = Concourse::Candidate.find(session[:candidate_id])
+    end
+
 
     private
 
@@ -32,7 +38,7 @@ module ConcoursePortal
 
 
     def set_params
-      params.require(:candidate).permit(:name, :cpf, :cau_br, :state_id, :city, :cep, :address, :burgh, :telephone,
+      params.require(:candidate).permit(:name, :cpf, :number, :state_id, :city, :cep, :address, :burgh, :telephone,
                                         :celphone, :email, :fantasy_name, :social_reason, :cnpj, :terms_use, :password)
     end
   end

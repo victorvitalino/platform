@@ -3,12 +3,10 @@ class CreateConcourseCandidates < ActiveRecord::Migration
     create_table :concourse_candidates do |t|
       t.string :name
       t.string :cpf
-      t.string :cau_br
       t.string :address
       t.string :burgh
       t.string :number
       t.string :city
-      t.references :state, index: true#, foreign_key: true
       t.string :cep
       t.string :telephone
       t.string :celphone
@@ -16,9 +14,9 @@ class CreateConcourseCandidates < ActiveRecord::Migration
       t.string :fantasy_name
       t.string :social_reason
       t.string :cnpj
-      t.string :cau_br_check
-      t.boolean :terms_use
+      t.references :state, index: true#, foreign_key: true
       t.string :password
+      t.boolean :terms_use
       t.datetime :last_sign_in_at
       t.boolean :homologation, default: false
       t.date :homologation_date

@@ -1,11 +1,9 @@
 = simple_form_for [@project, @candidate] do |f|
   .row
-    .col-md-4
+    .col-md-6
       = f.input :name
     .col-md-2
       = f.input :cpf
-    .col-md-2
-      = f.input :cau_br
   .row
     .col-md-3
       = f.association :state, prompt: "selecione..."

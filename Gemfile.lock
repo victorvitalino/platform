@@ -137,6 +137,7 @@ PATH
       friendly_id
       haml-rails
       rails (~> 4.2.1)
+      rails (~> 4.2.1)
       simple_form
 
 PATH

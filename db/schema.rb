@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20150821171350) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -382,12 +380,10 @@ ActiveRecord::Schema.define(version: 20150821171350) do
   create_table "concourse_candidates", force: :cascade do |t|
     t.string   "name"
     t.string   "cpf"
-    t.string   "cau_br"
     t.string   "address"
     t.string   "burgh"
     t.string   "number"
     t.string   "city"
-    t.integer  "state_id"
     t.string   "cep"
     t.string   "telephone"
     t.string   "celphone"
@@ -395,9 +391,9 @@ ActiveRecord::Schema.define(version: 20150821171350) do
     t.string   "fantasy_name"
     t.string   "social_reason"
     t.string   "cnpj"
-    t.string   "cau_br_check"
-    t.boolean  "terms_use"
+    t.integer  "state_id"
     t.string   "password"
+    t.boolean  "terms_use"
     t.datetime "last_sign_in_at"
     t.boolean  "homologation",      default: false
     t.date     "homologation_date"
@@ -506,13 +502,8 @@ ActiveRecord::Schema.define(version: 20150821171350) do
   create_table "concourse_subscribes", force: :cascade do |t|
     t.integer  "project_id"
     t.string   "title"
-<<<<<<< HEAD
-    t.float    "fee_value"
-    t.integer  "bank_slip_id"
-=======
     t.boolean  "fee"
     t.integer  "type_slip_id"
->>>>>>> 8c9fc29e76efc7526575c60842f6ce91d7fd2a4e
     t.date     "start"
     t.date     "end"
     t.boolean  "publish"
