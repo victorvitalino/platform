@@ -30,7 +30,7 @@ module ConcoursePortal
     end
 
     def success
-      redirectif session[:candidate_id].present?
+      if session[:candidate_id].present?
         
       else
       end
