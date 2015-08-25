@@ -28,6 +28,7 @@ gem 'enum_help'
 gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
 gem 'email_validator'
+gem 'bootstrap-datepicker-rails'
 
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'

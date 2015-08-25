@@ -2,6 +2,7 @@
 *= require portal/css/bootstrap.min
 *= require portal/css/mod
 *= require portal/css/style
+*= require bootstrap-datepicker3
 */
 
 .main {margin-top: 45px;}

@@ -4,22 +4,23 @@ module RegularizationSchedule
     belongs_to :station , class_name: "Address::State"
     has_many :schedules
 
- def time_by_date(date)
+   default_scope { where(publish: true) }
+
+  def time_by_date(date)
     @hours = get_hours
     @date  = Date.parse(date)
     @hours.delete_if { |hour| Time.parse(hour) < Time.now + 2.hour}  if @date == Date.today
 
-    agendas.where(date: @date).group(:hour).count(:id).each do |key, value|
+    RegularizationSchedule::Schedule.where(date_schedule: @date).group(:hour_schedule).count(:id).each do |key, value|
 
       if self.lunch
-        @hours.delete(key.strftime("%H:%M")) if value >= (self.lunch_attendants)
-      else
-        @hours.delete(key.strftime("%H:%M")) if value >= self.quantity_attendants
+        @hours.delete(self.lunch_start.strftime('%H:%M')) if self.lunch_start.present?
+        @hours.delete(self.lunch_end.strftime('%H:%M')) if self.lunch_end.present?
       end
-    end
-
+     end
     @hours
-  end
+   end
+
 
   private
 

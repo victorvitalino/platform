@@ -30,7 +30,7 @@ module RegularizationSchedule
 
     # POST /schedules
     def create
-      @schedule = Schedule.new(schedule_params)
+      @schedule = @agenda.schedules.new(schedule_params)
 
       if @schedule.save
         redirect_to @schedule, notice: 'Schedule was successfully created.'

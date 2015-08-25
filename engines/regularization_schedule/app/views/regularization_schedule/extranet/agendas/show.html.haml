@@ -7,10 +7,10 @@
   = @agenda.description
 %p
   %b Start:
-  = @agenda.start
+  = @agenda.start.strftime('%d/%m/%Y') if @agenda.start.present?
 %p
   %b End:
-  = @agenda.end
+  = @agenda.end.strftime('%d/%m/%Y') if @agenda.end.present?
 %p
   %b Hour start:
   = @agenda.hour_start
