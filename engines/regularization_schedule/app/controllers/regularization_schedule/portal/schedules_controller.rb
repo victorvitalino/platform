@@ -7,10 +7,10 @@ module RegularizationSchedule
     layout 'layouts/portal/application'
 
     before_action :set_schedule, only: [:show, :edit, :update, :destroy]
-    before_action :set_agenda
+
     # GET /schedules
     def index
-      @schedules = @agenda.schedules.all
+      @schedules = Schedule.all
     end
 
     # GET /schedules/1
@@ -19,7 +19,7 @@ module RegularizationSchedule
 
     # GET /schedules/new
     def new
-      @schedule = @agenda.schedules.new
+      @schedule = Schedule.new
     end
 
 
@@ -30,7 +30,7 @@ module RegularizationSchedule
 
     # POST /schedules
     def create
-      @schedule = @agenda.schedules.new(schedule_params)
+      @schedule = Schedule.new(schedule_params)
 
       if @schedule.save
         redirect_to @schedule, notice: 'Schedule was successfully created.'
@@ -58,10 +58,6 @@ module RegularizationSchedule
       # Use callbacks to share common setup or constraints between actions.
       def set_schedule
         @schedule = Schedule.find(params[:id])
-      end
-
-      def set_agenda
-         @agenda = Agenda.find(params[:agenda_id])
       end
 
       # Only allow a trusted parameter "white list" through.

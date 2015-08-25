@@ -1,8 +1,8 @@
-= simple_form_for [:portal,:agenda, @schedule] do |f|
+= simple_form_for [:portal, @schedule] do |f|
   .row
     .col-md-6
       = f.label :agenda, class: 'fg-label'
-      = f.association :agenda, label: false, prompt: 'selecione...'
+      = f.association :agenda, label: false, prompt: 'selecione...',  input_html: { id: 'agenda'}
     .col-md-3
       = f.label :cpf, class: 'fg-label'
       = f.input :cpf, label: false, prompt: 'selecione...'
@@ -40,7 +40,9 @@
   $('#hour').html('
   %option> Carregando...
   ');
-  $.getJSON( "#{portal_agenda_hour_path(agenda_id: @agenda)}?date=" + $(this).val(), function(data) {
+  var e = document.getElementById("agenda").value;
+
+  $.getJSON( "#{portal_agenda_hour_path},e,?date=" + $(this).val(), function(data) {
   var html = ""
   if(data.length > 0) {
   $.each(data, function(key, value) {
