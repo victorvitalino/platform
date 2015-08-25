@@ -1,0 +1,35 @@
+.row
+  .col-md-5
+    .panel.panel-primary
+      .panel-heading
+        Quero me inscrever
+      .panel-body
+        - @project.subscribes.each do |subscribe|
+          .row
+            .col-md-12
+              %h6 Inscrições Abertas
+              %hr/
+              %ul.list-group
+                - if subscribe.fee
+                  = link_to "<strong>#{subscribe.title} - #{number_to_currency subscribe.type_slip.value}</strong>".html_safe, concourse_portal.new_project_candidate_path(project_id: @project, subscribe_id: subscribe), class: 'list-group-item'
+                - else
+                  = link_to subscribe.title, concourse_portal.new_project_subscribe_candidate_subscribe_path(project_id: @project, subscribe_id: subscribe), class: 'list-group-item'
+  .col-md-5
+    .panel.panel-primary
+      .panel-heading
+        Já realizei a minha inscrição
+      .panel-body
+        = simple_form_for [@project, @subscribe] do |f|
+          .row
+            .col-md-12
+              = f.label :subscribe
+              = f.input :subscribe, label: false
+              = f.hint link_to "Esqueci meu número de inscrição", project_subscribes_remember_path(@project)
+          .row
+            .col-md-12
+              = f.label :password
+              = f.input :password, label: false
+              = f.hint link_to "Esqueci minha senha", project_subscribes_password_path(@project)
+          .row
+            .col-md-12
+              = f.button :submit

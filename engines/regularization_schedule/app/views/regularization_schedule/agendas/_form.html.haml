@@ -1,0 +1,80 @@
+= simple_form_for(@agenda) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-12
+        = f.label :title, class: 'fg-label'
+        = f.input :title, label: false, prompt: 'selecione...'
+    .row
+      .col-md-12
+        = f.label :description, class: 'fg-label'
+        = f.input :description, label: false, prompt: 'selecione...'
+    .row
+      .col-md-6
+        = f.label :start, as: 'string', class: 'fg-label'
+        = f.input :start, label: false, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
+      .col-md-6
+        = f.label :end, as: 'string', class: 'fg-label'
+        = f.input :end, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
+    .row
+      .col-md-4
+        = f.label :hour_start, as: 'string', class: 'fg-label'
+        = f.input :hour_start,as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
+      .col-md-4
+        = f.label :hour_end, as: 'string', class: 'fg-label'
+        = f.input :hour_end,as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
+      .col-md-4
+        .checkbox.m-b-15
+          %label
+            = f.check_box :publish
+            %i.input-helper
+            = f.label :publish, class: 'fg-label'
+    .row
+      .col-md-6
+        = f.label :city, class: 'fg-label'
+        = f.association :city, label: false, prompt: 'selecione...'
+      .col-md-6
+        = f.label :station, class: 'fg-label'
+        = f.association :station, label: false, prompt: 'selecione...'
+    .row
+      .col-md-3
+        = f.label :quantity_attendants, class: 'fg-label'
+        = f.input :quantity_attendants, label: false, prompt: 'selecione...'
+      .col-md-3
+        = f.label :time_attendant, class: 'fg-label'
+        = f.input :time_attendant, label: false, prompt: 'selecione...'
+    .row
+      .col-md-2
+        .checkbox.m-b-15
+          %label
+            = f.check_box :lunch
+            %i.input-helper
+            = f.label :lunch, class: 'fg-label'
+      .col-md-3
+        = f.label :lunch_start, as: 'string', class: 'fg-label'
+        = f.input :lunch_start,as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
+      .col-md-3
+        = f.label :lunch_end, as: 'string', class: 'fg-label'
+        = f.input :lunch_end,as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
+      .col-md-2
+        = f.label :lunch_attendants, class: 'fg-label'
+        = f.input :lunch_attendants, label: false
+      .col-md-2
+        = f.label :lunch_time_attendant, class: 'fg-label'
+        = f.input :lunch_time_attendant, label: false
+    .row
+      .col-md-12
+        = f.label :validate_sql, class: 'fg-label'
+        = f.input :validate_sql, label: false, prompt: 'selecione...'
+    .row
+      .col-md-12
+        = f.label :validate_type, class: 'fg-label'
+        = f.input :validate_type, label: false, prompt: 'selecione...'
+    .row
+      .col-md-12
+        = f.label :validate_agenda, class: 'fg-label'
+        = f.input :validate_agenda, label: false
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar", agendas_path,class: 'btn btn-inverse'
+

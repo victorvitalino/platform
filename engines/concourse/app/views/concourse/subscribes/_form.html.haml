@@ -1,0 +1,49 @@
+= simple_form_for([@project, @subscribe],{'data-no-turbolink':false}) do |f| 
+  .card-body.card-padding
+    .row
+      .col-md-12
+        = f.label :title, class: 'fg-label'
+        = f.input :title, label: false, prompt: 'selecione...'
+    .row
+      .col-md-1
+        = f.label 'Início', class: 'fg-label'
+        = f.input :start,as: :string, label: false, input_html: { class: 'date',value: (@subscribe.start) ? localize(f.object.start) : nil }
+      .col-md-1
+        = f.label 'Fim', class: 'fg-label'
+        = f.input :end, as: :string, label: false, input_html: { class: 'date',value: (@subscribe.end) ? localize(f.object.end) : nil }
+      .col-md-3
+        = f.label :type_slip, class: 'fg-label'
+        = f.association :type_slip, label_method: :name_value, label: false, prompt: "selecione a cobrança..."
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "fee"}
+              = f.label :fee
+          %br
+          = f.check_box :fee, id: 'fee',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "fee"}
+      .col-md-1
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "publish"}
+              = f.label :publish
+          %br
+          = f.check_box :publish, id: 'publish',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "publish"}
+    %hr/
+    .row
+      .col-md-12
+        = f.label :observation, class: 'fg-label'
+        = f.input :observation, label: false, input_html: { class: 'redactor'}
+    %hr/
+    .row
+      .col-md-12
+        = f.simple_fields_for :fields do |builder| 
+          = render 'field_fields', f: builder
+        = link_to_add_fields "adicionar campo", f, :fields
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar",  project_path(id: @project, q: 'tipo_inscricoes'),class: 'btn btn-inverse' 
+

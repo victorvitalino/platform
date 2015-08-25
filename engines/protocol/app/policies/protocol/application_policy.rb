@@ -7,10 +7,12 @@ module Protocol
       @record = record
     end
 
-    def index?
+     def index?
       return true if user.account.administrator
-      @system = Person::System.find_by_code('4')#CÓDIGO SISTEMA PROTOCOLO
-      return true if user.account.permissions.where(system_id: @system.id, status: true).present?
+      @system = Person::System.find_by_code('4')#CÓDIGO SISTEMA HELP DESK
+        if @system.present?
+        return true if user.account.permissions.where(system_id: @system.id, status: true).present?
+      end
     end
 
     def show?
@@ -46,7 +48,7 @@ module Protocol
       @permission = Person::SystemPermission.find_by_code(code)
 
       if @permission.present?
-         return true if user.account.permissions.where(system_permission_id: @permission.id, status: true).present? 
+         return true if user.account.permissions.where(system_permission_id: @permission.id, status: true).present?
       end
     end
 

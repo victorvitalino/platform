@@ -1,0 +1,20 @@
+.card
+  .card-header.ch-alt
+    %h2 <%= plural_table_name %>
+    = link_to "Novo", new_<%= singular_table_name %>_path, class: 'btn btn-success pull-right'
+    %small Listagem de <%= plural_table_name %>
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.datatable
+      %thead
+        %tr
+<% for attribute in attributes -%>
+          %th <%= attribute.human_name %>
+<% end -%>
+      %tbody
+        - @<%= plural_table_name %>.each_with_index do |<%= singular_table_name %>, index|
+          %tr
+<% for attribute in attributes -%>
+            %td= <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+
+     

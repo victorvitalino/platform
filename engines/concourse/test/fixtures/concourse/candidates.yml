@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cpf: MyString
+  cau_br: MyString
+  address: MyString
+  burgh: MyString
+  city_id: 
+  state_id: 
+  cep: MyString
+  telephone: MyString
+  celphone: MyString
+  email: MyString
+  fantasy_name: MyString
+  social_reason: MyString
+  cnpj: MyString
+  cau_br_check: MyString
+  terms_use: false
+  password: MyString
+  last_sign_in_at: 2015-08-21 11:32:47
+  homologation: false
+  homologation_date: 2015-08-21
+  refused: false
+  refused_date: 2015-08-21
+  observation: MyText
+
+two:
+  name: MyString
+  cpf: MyString
+  cau_br: MyString
+  address: MyString
+  burgh: MyString
+  city_id: 
+  state_id: 
+  cep: MyString
+  telephone: MyString
+  celphone: MyString
+  email: MyString
+  fantasy_name: MyString
+  social_reason: MyString
+  cnpj: MyString
+  cau_br_check: MyString
+  terms_use: false
+  password: MyString
+  last_sign_in_at: 2015-08-21 11:32:47
+  homologation: false
+  homologation_date: 2015-08-21
+  refused: false
+  refused_date: 2015-08-21
+  observation: MyText

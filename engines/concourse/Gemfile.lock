@@ -3,6 +3,7 @@ PATH
   specs:
     concourse (0.0.1)
       carrierwave
+      friendly_id
       haml-rails
       rails (~> 4.2.1)
       simple_form
@@ -53,6 +54,8 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
     erubis (2.7.0)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.6)

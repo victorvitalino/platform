@@ -72,6 +72,12 @@
           %label.ts-helper{:for => "status"}
     %hr/
     .row
+      .col-md-2
+        = f.label :step, class: 'fg-label'
+        %br/
+        = f.input :step, label:false, as: :select, collection: Concourse::Project.steps.keys.to_a, prompt: 'selecione...'
+    %hr/
+    .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
         = link_to "voltar", projects_path,class: 'btn btn-inverse' 

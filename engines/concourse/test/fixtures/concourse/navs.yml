@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: 
+  page_id: 
+  url: MyString
+  target: 1
+  action: 1
+
+two:
+  project_id: 
+  page_id: 
+  url: MyString
+  target: 1
+  action: 1

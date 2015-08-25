@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     devise_for :users, :path  => '', controllers: { registrations: 'registrations'}
 
     authenticate :user do
+
+
       mount Dashboard::Engine                => '/',               as: 'dashboard',                 module: 'dashboard'
       mount Intranet::Engine                 => '/intranet',       as: 'intranet',                  module: 'intranet'
       mount Cms::Engine                      => "/cms",            as: 'cms',                       module: 'cms'
@@ -34,19 +36,20 @@ Rails.application.routes.draw do
       mount Attendance::Engine               => "/atendimento",    as: 'attendance',                module: 'attendance'
       mount RegularizationTreatment::Engine  => "/regularizacao",  as: 'regularization_treatment',  module: 'regularization_treatment'
       mount Concourse::Engine                => "/concurso",       as: 'concourse',                 module: 'concourse'
+      mount Finance::Engine                  => "/financeiro",     as: 'finance',                   module: 'finance'
     end
   end
 
   constraints DomainConstraint do
     mount Portal::Engine                => '/',                 as: 'portal'
-    mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',                 module: 'concourse_portal'
+    mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',             module: 'concourse_portal'
     mount Regularization::Engine        => "/regularizacao",    as: 'regularization'
   end
 
-  
+  mount RegularizationSchedule::Engine   => "/agenda_regularizacao",       as: 'regularization_schedule',     module: 'regularization_schedule'
+
   mount Address::Engine         => "/endereco",       as: 'address'
- 
+
   mount Candidate::Engine       => "/candidatos",     as: 'candidate'
 
-  mount Schedule::Engine        => "/agendamento",    as: 'schedule'
 end

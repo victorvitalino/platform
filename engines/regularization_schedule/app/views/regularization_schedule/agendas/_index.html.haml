@@ -1,0 +1,12 @@
+- @agendas.each_with_index do |agenda, index|
+  %tr
+    %td= agenda.title
+    %td= agenda.description
+    %td= agenda.start
+    %td= agenda.end
+    %td= agenda.city
+    %td= agenda.quantity_attendants
+    %td.col-md-2
+      = link_to "", edit_agenda_path(agenda),  title: 'Editar', 'data-toggle' => 'tooltip', class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
+      = link_to "", agenda_path(agenda),  title: 'Show', 'data-toggle' => 'tooltip', class: 'md-search btn btn-info waves-effect waves-button waves-float'
+      = link_to "",agenda_schedules_path(agenda),  title: 'Agenda', 'data-toggle' => 'tooltip', class: 'md-event btn bgm-lightgreen waves-effect waves-button waves-float'

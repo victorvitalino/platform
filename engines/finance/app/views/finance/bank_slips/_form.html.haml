@@ -1,0 +1,27 @@
+= simple_form_for(@bank_slip, turboboost: true) do |f| 
+  .card-body.card-padding
+    .row
+      .col-md-3
+        = f.label :type_slip
+        = f.association :type_slip, label_method: :name_value, label: false, prompt: "selecione..."
+      .col-md-2
+        = f.label :value, class: 'fg-label'
+        = f.input :value, label: false, placeholder: "Digite o valor a ser cobrado", hint: "Preencha somente quando não utilizar o valor do tipo do boleto"
+      .col-md-2
+        = f.label 'vencimento', class: 'fg-label'
+        = f.input :deadline, as: :string, label: false, input_html: { class: 'date' }
+    .row
+      .col-md-3
+        = f.label :name, class: 'fg-label'
+        = f.input :name, label: false, placeholder: "Digite um nome"
+      .col-md-2
+        = f.label :cpf, class: 'fg-label'
+        = f.input :cpf, label: false, placeholder: "Digite um cpf válido"
+      .col-md-3
+        = f.label :observation, class: 'fg-label'
+        = f.input :observation, label: false, placeholder: "Digite uma observação"
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar", bank_slips_path, class: 'btn btn-inverse'

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type_slip_id: 
+  value: 1.5
+  deadline: 2015-08-20
+  paid: 2015-08-20
+  credited: 2015-08-20
+  value_paid: 1.5
+  barcode: MyString
+  observation: MyString
+  name: MyString
+  cpf: MyString
+  status: false
+
+two:
+  type_slip_id: 
+  value: 1.5
+  deadline: 2015-08-20
+  paid: 2015-08-20
+  credited: 2015-08-20
+  value_paid: 1.5
+  barcode: MyString
+  observation: MyString
+  name: MyString
+  cpf: MyString
+  status: false

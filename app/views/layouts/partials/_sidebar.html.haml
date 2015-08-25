@@ -110,12 +110,12 @@
                   = link_to "relatório por máquina", helpdesk.new_report_machine_path
 
 
-        %li.sub-menu{class: ('toggled active' if params[:module] == "protocolo")}
+        %li.sub-menu{class: ('toggled active' if params[:module] == "protocol")}
           - if policy(:application, namespace: Protocol).index?
             %a{:href => ""}
               %i.md.md-description>
               Protocolo
-            %ul{style: ('display:block;' if params[:module] == "protocolo")}
+            %ul{style: ('display:block;' if params[:module] == "protocol")}
               - if policy(:Assessment, namespace: Protocol).index?
                 %li
                   = link_to "autuações", protocol.assessments_path
@@ -133,9 +133,9 @@
                   = link_to "localizações", protocol.new_location_path
 
         %li.sub-menu{class: ('toggled active' if params[:module] == "attendance")}
-          - if policy(:application, namespace: Protocol).index?
+          - if policy(:application, namespace: Attendance).index?
             %a{:href => ""}
-              %i.md.md-description>
+              %i.md.md-speaker-notes>
               Gestão de Atendimento
             %ul{style: ('display:block;' if params[:module] == "attendance")}
               %li= link_to "postos de atendimento", attendance.stations_path
@@ -144,7 +144,7 @@
               %li= link_to "gestão de senhas"
               %li= link_to "relatórios"
         %li.sub-menu{class: ('toggled active' if params[:module] == "regularization_treatment")}
-          - if policy(:application, namespace: Protocol).index?
+          - if policy(:application, namespace: RegularizationTreatment).index?
             %a{:href => ""}
               Regularização
               %i.md.md-business>
@@ -153,21 +153,27 @@
               %li= link_to "consulta endereço"
               %li
                 %hr/
+              %li= link_to "Agenda", regularization_schedule.agendas_path
+              %li
+                %hr/
               %li= link_to "relatórios"
 
         %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-          - if policy(:application, namespace: Protocol).index?
+          - if policy(:application, namespace: Finance).index?
             %a{:href => ""}
               %i.md.md-attach-money>
               Financeiro
             %ul{style: ('display:block;' if params[:module] == "finance")}
+              %li= link_to "gerar boleto", finance.new_bank_slip_path
+              %li= link_to "gestão de boletos", finance.bank_slips_path
+              %li= link_to "tipos de boletos", finance.type_slips_path
 
-        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
-          - if policy(:application, namespace: Protocol).index?
+        %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
+          - if policy(:application, namespace: Concourse).index?
             %a{:href => ""}
-              %i.md.md-attach-money>
+              %i.md.md-assignment>
               Concursos
-            %ul{style: ('display:block;' if params[:module] == "finance")}
+            %ul{style: ('display:block;' if params[:module] == "concourse")}
               %li= link_to "concursos", concourse.projects_path
               %li= link_to "relatórios", concourse.projects_path
 

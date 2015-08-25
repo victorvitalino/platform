@@ -10,28 +10,28 @@
     .card-body.card-padding
       %div{:role => "tabpanel"}
         %ul.tab-nav{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "1"}
-          %li.active
+          %li{:class => (params[:q] == 'paginas'|| params[:q].nil?) ? 'active' : ''}
             %a{"aria-controls" => "pages", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#pages", :role => "tab"} Páginas
-          %li
+          %li{:class => (params[:q] == 'menus') ? 'active' : ''}
             %a{"aria-controls" => "navs", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#navs", :role => "tab"} Menus
-          %li
+          %li{:class => (params[:q] == 'tipo_inscricoes') ? 'active' : ''}
             %a{"aria-controls" => "subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#subscribes", :role => "tab"} Tipo de inscrições
-          %li
+          %li{:class => (params[:q] == 'partictipos') ? 'active' : ''}
             %a{"aria-controls" => "participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#participations", :role => "tab"} Tipo de participações
-          %li
+          %li{:class => (params[:q] == 'consultas') ? 'active' : ''}
             %a{"aria-controls" => "consults", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#consults", :role => "tab"} Consultas
-          %li
+          %li{:class => (params[:q] == 'inscricoes') ? 'active' : ''}
             %a{"aria-controls" => "candidate_subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_subscribes", :role => "tab"} Inscrições
-          %li
+          %li{:class => (params[:q] == 'participacoes') ? 'active' : ''}
             %a{"aria-controls" => "candidate_participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_participations", :role => "tab"} Participações
-          %li
+          %li{:class => (params[:q] == 'vencedores') ? 'active' : ''}
             %a{"aria-controls" => "winners", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#winners", :role => "tab"} Vencedores
         .tab-content
-          #pages.tab-pane.active{:role => "tabpanel"}
+          #pages.tab-pane{:class => (params[:q] == 'paginas' || params[:q].nil?) ? 'active' : '', :role => "tabpanel"}
             .card
               .row
                 .col-md-12
-                  = link_to "Nova página", new_project_page_path(@project), class: 'btn btn-success btn-sm', remote: true
+                  = link_to "Nova página", new_project_page_path(@project), class: 'btn btn-success btn-sm'
               %br/
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
                 %table.table.table-striped.table-hover.datatable
@@ -40,12 +40,24 @@
                       %th.col-md-1 #
                       %th Título
                       %th Publicada?
+                      %th Data de criação
                       %th Ações
-          #navs.tab-pane{:role => "tabpanel"}
+                  %tbody
+                    - @project.pages.each_with_index do |page, index|
+                      %tr
+                        %td= index + 1
+                        %td= page.title
+                        %td= page.publish ? 'publicada' : 'não publicada'
+                        %td= page.created_at.strftime('%d/%m/%Y às %H:%M')
+                        %td.col-md-2
+                          = link_to "", edit_project_page_path(project_id: @project, id: page),class: 'md md-edit btn btn-primary'
+                          = link_to "", project_page_path(project_id: @project, id: page), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) } 
+               
+          #navs.tab-pane{:class => (params[:q] == 'menus') ? 'active' : '', :role => "tabpanel"}
             .card
               .row
                 .col-md-12
-                  = link_to "Novo Menu", new_project_page_path(@project), class: 'btn btn-success btn-sm', remote: true
+                  = link_to "Novo Menu", new_project_nav_path(@project), class: 'btn btn-success btn-sm'
               %br/
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
                 %table.table.table-striped.table-hover.datatable
@@ -54,16 +66,28 @@
                       %th.col-md-1 #
                       %th Título
                       %th Tipo
-                      %th Página
                       %th URL
                       %th Target
                       %th Publicado?
                       %th Ações
-          #subscribes.tab-pane{:role => "tabpanel"}
+                  %tbody
+                    - @project.navs.each_with_index do |nav, index|
+                      %tr
+                        %td= index + 1
+                        %td= nav.label
+                        %td= nav.action
+                        %td= nav.url
+                        %td= nav.target
+                        %td= nav.publish ? 'publicado' : 'não publicado'
+                        %td.col-md-2
+                          = link_to "", edit_project_nav_path(project_id: @project, id: nav),class: 'md md-edit btn btn-primary'
+                          = link_to "", project_nav_path(project_id: @project, id: nav), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) } 
+
+          #subscribes.tab-pane{:class => (params[:q] == 'tipo_inscricoes') ? 'active' : '', :role => "tabpanel"}
             .card
               .row
                 .col-md-12
-                  = link_to "Novo Tipo", new_project_page_path(@project), class: 'btn btn-success btn-sm', remote: true
+                  = link_to "Novo Tipo", new_project_subscribe_path(@project), class: 'btn btn-success btn-sm'
               %br/
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
                 %table.table.table-striped.table-hover.datatable
@@ -71,11 +95,24 @@
                     %tr.info
                       %th.col-md-1 #
                       %th Título
-                      %th Taxa de inscrição
                       %th Início
                       %th Fim
+                      %th Taxa de inscrição
                       %th Publicada?
                       %th Ações
+                  %tbody
+                    - @project.subscribes.each_with_index do |subscribe, index|
+                      %tr
+                        %td= index + 1
+                        %td= subscribe.title
+                        %td= subscribe.start.strftime('%d/%m/%Y')
+                        %td= subscribe.end.strftime('%d/%m/%Y')
+                        %td= number_to_currency subscribe.type_slip.value if subscribe.fee && subscribe.type_slip.present?
+                        %td= subscribe.publish ? 'publicado' : 'não publicado'
+                        %td.col-md-2
+                          = link_to "", edit_project_subscribe_path(project_id: @project, id: subscribe),class: 'md md-edit btn btn-primary'
+                          = link_to "", project_subscribe_path(project_id: @project, id: subscribe), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) } 
+
           #participations.tab-pane{:role => "tabpanel"}
             .card
               .row
@@ -92,16 +129,25 @@
                       %th Fim
                       %th Publicado?
                       %th Ação
-          #consults.tab-pane{:role => "tabpanel"}
+          #consults.tab-pane{:class => (params[:q] == 'consultas') ? 'active' : '', :role => "tabpanel"}
             .card
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
                 %table.table.table-striped.table-hover.datatable
                   %thead
                     %tr.info
-                      %th.col-md-1 #
+                      %th.col-md-1 Nº
                       %th Questão
                       %th Status
                       %th Ação
+                  %tbody
+                    - @project.consults.each do |consult|
+                      %tr
+                        %td= consult.id
+                        %td= consult.content
+                        %td= consult.status ? 'Leitura realizada' : 'Não lida'
+                        %td
+                          = link_to "marcar como lida", project_consult_read_path(project_id: @project, consult_id: consult) if !consult.status
+                          = link_to "visualizar", project_consult_path(project_id: @project, id: consult), remote: true
           #candidate_subscribes.tab-pane{:role => "tabpanel"}
             .card
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
