@@ -1,4 +1,4 @@
-= simple_form_for(@agenda) do |f|
+= simple_form_for([:extranet, @agenda]) do |f|
   .card-body.card-padding
     .row
       .col-md-12
@@ -76,5 +76,5 @@
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
-        = link_to "voltar", agendas_path,class: 'btn btn-inverse'
+        = link_to "voltar", extranet_agendas_path,class: 'btn btn-inverse'
 

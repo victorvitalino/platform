@@ -13,8 +13,8 @@ class CreateRegularizationScheduleAgendas < ActiveRecord::Migration
       t.integer :quantity_attendants
       t.integer :time_attendant
       t.boolean :lunch
-      t.date :lunch_start
-      t.date :lunch_end
+      t.time :lunch_start
+      t.time :lunch_end
       t.integer :lunch_attendants
       t.integer :lunch_time_attendant
       t.string :validate_sql
