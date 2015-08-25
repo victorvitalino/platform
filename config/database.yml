@@ -5,10 +5,10 @@ default: &default
 
 development:
   <<: *default
-  database: codhab_development
-  username: postgres
-  password: "mila1324"
-  host: localhost
+  database: "codhab_development"
+  username: "<%= ENV['db_user'] %>"
+  password: "<%= ENV['db_password'] %>"
+  host: "<%= ENV['db_host'] %>"
 
 production:
   <<: *default
@@ -16,3 +16,10 @@ production:
   username: postgres
   password: codhab072771472
   host: 10.233.38.16
+
+test:
+  <<: *default
+  database: codhab_test
+  username: "<%= ENV['db_user'] %>"
+  password: "<%= ENV['db_password'] %>"
+  host: "<%= ENV['db_host'] %>"
