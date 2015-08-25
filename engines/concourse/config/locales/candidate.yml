@@ -9,7 +9,7 @@ pt-BR:
         state: 'Estado'
         city: 'Cidade'
         cep: 'CEP'
-        number: "Número"
+        born: "Data de nascimento"
         burgh: "Bairro"
         telephone: "Telefone"
         celphone: "Celular"
@@ -19,3 +19,6 @@ pt-BR:
         cnpj: "CNPJ"
         terms_use: "Declaro estar ciente e de acordo com todas as regras do Edital do respectivo concurso."
         address: "Endereço Completo"
+        password: "Senha"
+        confirmation_password: "Confirmação de Senha"
+        gender: "Sexo"
