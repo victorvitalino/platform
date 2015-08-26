@@ -7,3 +7,4 @@
 //= require portal/js/jquery.mask.min
 //= require portal/js/mask
 //= require portal/js/portal
+//= require bootstrap-datepicker
