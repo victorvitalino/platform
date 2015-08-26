@@ -1,5 +1,9 @@
 - if !@attendant.errors.any?
+  $(".container").find('.alert').remove()
   $('.index-attendant').html("#{escape_javascript(render 'index')}")
   $(".container").prepend("<div class='alert alert-success'>#{escape_javascript(flash[:success])}</div>")
+- else
+  $(".container").find('.alert').remove()
+  $('.index-attendant').html("#{escape_javascript(render 'index')}")
+  $(".container").prepend("<div class='alert alert-danger'>#{escape_javascript(flash[:danger])}</div>")
   $(".container").show()
-
