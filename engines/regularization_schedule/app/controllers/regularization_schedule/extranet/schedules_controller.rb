@@ -1,7 +1,7 @@
 require_dependency "regularization_schedule/application_controller"
 
 module RegularizationSchedule
-  class SchedulesController < ApplicationController
+  class Extranet::SchedulesController < ApplicationController
 
     layout 'layouts/material'
 

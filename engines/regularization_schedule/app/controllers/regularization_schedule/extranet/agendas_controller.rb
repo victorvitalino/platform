@@ -1,7 +1,7 @@
 require_dependency "regularization_schedule/application_controller"
 
 module RegularizationSchedule
-  class AgendasController < ApplicationController
+  class Extranet::AgendasController < ApplicationController
 
      layout 'layouts/material'
 
@@ -36,7 +36,7 @@ module RegularizationSchedule
       @agenda = Agenda.new(agenda_params)
 
       if @agenda.save
-        redirect_to @agenda, notice: 'Agenda was successfully created.'
+        redirect_to  :show, notice: 'Agenda was successfully created.'
       else
         render :new
       end
@@ -45,7 +45,7 @@ module RegularizationSchedule
     # PATCH/PUT /agendas/1
     def update
       if @agenda.update(agenda_params)
-        redirect_to @agenda, notice: 'Agenda was successfully updated.'
+        redirect_to :show, notice: 'Agenda was successfully updated.'
       else
         render :edit
       end
@@ -60,16 +60,19 @@ module RegularizationSchedule
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_agenda
-        @agenda = Agenda.find(params[:id])
+        @agenda = Agenda.unscoped.find(params[:id])
       end
 
       def set_agendas
-        @agendas = Agenda.all
+        @agendas = Agenda.unscoped.all
       end
 
       # Only allow a trusted parameter "white list" through.
       def agenda_params
-        params.require(:agenda).permit(:title, :description, :start, :end, :hour_start, :hour_end, :publish, :city_id, :station_id, :quantity_attendants, :time_attendant, :lunch, :lunch_start, :lunch_end, :lunch_attendants, :lunch_time_attendant, :validate_sql, :validate_type, :validate_agenda)
+        params.require(:agenda).permit(:title, :description, :start, :end, :hour_start,
+                                                          :hour_end, :publish, :city_id, :station_id, :quantity_attendants,
+                                                          :time_attendant, :lunch, :lunch_start, :lunch_end, :lunch_attendants,
+                                                          :lunch_time_attendant, :validate_sql, :validate_type, :validate_agenda)
       end
   end
 end
