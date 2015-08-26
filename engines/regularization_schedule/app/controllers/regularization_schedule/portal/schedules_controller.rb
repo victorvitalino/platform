@@ -31,9 +31,9 @@ module RegularizationSchedule
     # POST /schedules
     def create
       @schedule = Schedule.new(schedule_params)
-
+      @schedule.status = 0
       if @schedule.save
-        redirect_to @schedule, notice: 'Schedule was successfully created.'
+        redirect_to portal_schedule_path @schedule.id, notice: 'Schedule was successfully created.'
       else
         render :new
       end

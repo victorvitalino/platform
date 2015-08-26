@@ -42,7 +42,8 @@
   ');
   var e = document.getElementById("agenda").value;
 
-  $.getJSON( "#{portal_agenda_hour_path},e,?date=" + $(this).val(), function(data) {
+  if(e != null){
+  $.getJSON( "/agenda_regularizacao/agendas/" + e +"/hour?date=" + $(this).val(), function(data) {
   var html = ""
   if(data.length > 0) {
   $.each(data, function(key, value) {
@@ -57,5 +58,7 @@
   }
   $('#hour').html(html);
   });
+  }
   })
+
   });
