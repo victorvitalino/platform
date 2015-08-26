@@ -6,9 +6,9 @@ default: &default
 development:
   <<: *default
   database: "codhab_development"
-  username: "<%= ENV['db_user'] %>"
-  password: "<%= ENV['db_password'] %>"
-  host: "<%= ENV['db_host'] %>"
+  username: postgres
+  password: "@codh@b+008"
+  host:  10.36.25.15
 
 production:
   <<: *default
