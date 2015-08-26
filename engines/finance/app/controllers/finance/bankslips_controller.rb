@@ -12,7 +12,7 @@ module Finance
 
         @payment_guide = PaymentGuide.find(params[:payment_guide_id])
 
-        @value = '%.2f' % 250.6
+        @value = '%.2f' % @payment_guide.value
 
         @barcode = CodhabBilling::Bills::BankSlip.new({
                                         value: @value.to_s.gsub('.',''),
