@@ -1,7 +1,7 @@
 .card
   .card-header.ch-alt
     %h2 Boletos Bancários
-    = link_to "Novo Boleto", new_payment_guide_path, class: 'btn btn-success pull-right'
+    = link_to "Nova Cobrança", new_payment_guide_path, class: 'btn btn-success pull-right'
     %small Listagem de tipos de boletos para cobrança
   %hr/
   = form_tag payment_guides_path, method: :get do 
@@ -35,6 +35,7 @@
       %thead
         %tr
           %th Tipo
+          %th Cobrança
           %th Código
           %th Gerado em
           %th Valor
@@ -46,6 +47,7 @@
         - @payment_guides.each do |guide|
           %tr
             %td= guide.type_guide.title if guide.type_guide.present?
+            %td= guide.model_guide
             %td= guide.id
             %td= guide.created_at.strftime('%d/%m/%Y ás %H:%M')
             %td= number_to_currency guide.value

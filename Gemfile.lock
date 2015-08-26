@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/codhab/codhab_billing.git
-  revision: 9972e1559392620cdbe3fa9abe71b83c996fea97
+  revision: cbc2290a41b01c4b1d8621729b63ae173772a211
   specs:
     codhab_billing (0.1.0)
 
