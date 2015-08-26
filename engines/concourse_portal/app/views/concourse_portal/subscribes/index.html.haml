@@ -29,7 +29,7 @@
             .col-md-12
               = f.label :password
               = f.input :password, label: false
-              = f.hint link_to "Esqueci minha senha", project_subscribes_password_path(@project)
+              = f.hint link_to "Esqueci minha senha", project_subscribes_remember_path(@project)
           .row
             .col-md-12
               = f.button :submit

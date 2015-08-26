@@ -1,0 +1,26 @@
+.card
+  .card-header.ch-alt
+    %h2 Tipos de Guias de Cobrança
+    = link_to "Novo Tipo", new_type_guide_path, class: 'btn btn-success pull-right'
+    %small Listagem de tipos de guias para cobrança
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.datatable
+      %thead
+        %tr
+          %th Título
+          %th Publicado?
+          %th Valor
+          %th Código
+          %th Ações
+      %tbody
+        - @type_guides.each_with_index do |type_guide, index|
+          %tr
+            %td= type_guide.title
+            %td= type_guide.publish ? 'publicado' : 'não publicado'
+            %td= number_to_currency type_guide.value
+            %td= type_guide.code
+            %td.col-md-2
+              = link_to "", edit_type_guide_path(type_guide),class: 'md md-edit btn btn-primary'
+              = link_to "", type_guide_path(type_guide), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) } 
+               
+     

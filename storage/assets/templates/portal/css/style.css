@@ -232,73 +232,7 @@ img.scale-with-grid {
     height: auto
 }
 
-.button,button,input[type="submit"],input[type="reset"],input[type="button"] {
-    background: #eee;
-    background: #eee -moz-linear-gradient(top, rgba(255,255,255,.2) 0%, rgba(0,0,0,.2) 100%);
-    background: #eee -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.2)), color-stop(100%,rgba(0,0,0,.2)));
-    background: #eee -webkit-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%);
-    background: #eee -o-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%);
-    background: #eee -ms-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%);
-    background: #eee linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%);
-    border: 1px
-    solid #aaa;
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    color: #444;
-    display: inline-block;
-    font-size: 11px;
-    font-weight: bold;
-    text-decoration: none;
-    text-shadow: 0 1px rgba(255, 255, 255, .75);
-    cursor: pointer;
-    margin-bottom: 20px;
-    line-height: normal;
-    padding: 8px
-    10px;
-    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif
-}
 
-.button:hover,button:hover,input[type="submit"]:hover,input[type="reset"]:hover,input[type="button"]:hover {
-    color: #222;
-    background: #ddd;
-    background: #ddd -moz-linear-gradient(top, rgba(255,255,255,.3) 0%, rgba(0,0,0,.3) 100%);
-    background: #ddd -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.3)), color-stop(100%,rgba(0,0,0,.3)));
-    background: #ddd -webkit-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%);
-    background: #ddd -o-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%);
-    background: #ddd -ms-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%);
-    background: #ddd linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%);
-    border: 1px
-    solid #888;
-    border-top: 1px solid #aaa;
-    border-left: 1px solid #aaa
-}
-
-.button:active,button:active,input[type="submit"]:active,input[type="reset"]:active,input[type="button"]:active {
-    border: 1px
-    solid #666;
-    background: #ccc;
-    background: #ccc -moz-linear-gradient(top, rgba(255,255,255,.35) 0%, rgba(10,10,10,.4) 100%);
-    background: #ccc -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.35)), color-stop(100%,rgba(10,10,10,.4)));
-    background: #ccc -webkit-linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%);
-    background: #ccc -o-linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%);
-    background: #ccc -ms-linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%);
-    background: #ccc linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%)
-}
-
-.button.full-width,button.full-width,input[type="submit"].full-width,input[type="reset"].full-width,input[type="button"].full-width {
-    width: 100%;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    text-align: center
-}
-
-button::-moz-focus-inner,input::-moz-focus-inner {
-    border: 0;
-    padding: 0
-}
 
 form {
     margin-bottom: 20px
