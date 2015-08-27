@@ -1,4 +1,4 @@
-= simple_form_for([@agenda,@schedule]) do |f|
+= simple_form_for([:extranet,@agenda,@schedule]) do |f|
   .card-body.card-padding
     .row
       .col-md-12
@@ -44,7 +44,7 @@
   $('#hour').html('
   %option> Carregando...
   ');
-  $.getJSON( "#{agenda_hour_path(agenda_id: @agenda)}?date=" + $(this).val(), function(data) {
+  $.getJSON( "#{portal_agenda_hour_path(agenda_id: @agenda)}?date=" + $(this).val(), function(data) {
   var html = ""
   if(data.length > 0) {
   $.each(data, function(key, value) {

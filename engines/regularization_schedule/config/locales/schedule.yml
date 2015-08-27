@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      'regularization_schedule/schedule': Agendamento
+    attributes:
+      'regularization_schedule/schedule':
+        agenda: "Agenda"
+        date_schedule: "Data de Agendamento"
+        hour_schedule: "Hora de Início"
+        end: "Data Final"
+        hour_schedule: "Horário do Agendamento"
+        observation: "Observação"
+

@@ -4,6 +4,8 @@ module RegularizationSchedule
     belongs_to :station , class_name: "Address::State"
     has_many :schedules
 
+    validates_presence_of :title, :start,:end, :hour_start, :hour_end, :quantity_attendants, :time_attendant
+
    default_scope { where(publish: true) }
 
   def time_by_date(date)
