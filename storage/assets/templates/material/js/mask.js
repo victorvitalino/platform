@@ -15,4 +15,6 @@ $(document).ready(function(){
     $(this).before($(this).data('fields').replace(regexp, time));
     return event.preventDefault();
   });
+
+  $('.carousel').carousel();
 });

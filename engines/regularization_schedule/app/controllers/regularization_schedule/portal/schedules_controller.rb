@@ -2,7 +2,8 @@ require_dependency "regularization_schedule/application_controller"
 
 module RegularizationSchedule
 
-  class Portal::SchedulesController < ApplicationController
+  module Portal
+    class SchedulesController < ApplicationController
 
     layout 'layouts/portal/application'
 
@@ -65,4 +66,5 @@ module RegularizationSchedule
         params.require(:schedule).permit(:agenda_id, :requeriment_id, :cpf, :status, :date_schedule, :hour_schedule, :observation)
       end
   end
+end
 end
