@@ -145,7 +145,7 @@
                         %td= consult.id
                         %td= consult.content
                         %td= consult.status ? 'Leitura realizada' : 'Não lida'
-                        %td
+                        %td.col-md-1
                           = link_to "marcar como lida", project_consult_read_path(project_id: @project, consult_id: consult) if !consult.status
                           = link_to "visualizar", project_consult_path(project_id: @project, id: consult), remote: true
           #candidate_subscribes.tab-pane{:class => (params[:q] == 'inscricoes') ? 'active' : '', :role => "tabpanel"}

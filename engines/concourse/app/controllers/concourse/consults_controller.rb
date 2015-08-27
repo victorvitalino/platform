@@ -14,6 +14,10 @@ module Concourse
       end
     end
 
+    def show
+      @project = Project.friendly.find(params[:project_id])
+      @consult = Consult.find(params[:id])
+    end
 
 
   end
