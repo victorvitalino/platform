@@ -65,7 +65,7 @@ module Concourse
       end
       # Only allow a trusted parameter "white list" through.
       def subscribe_params
-        params.require(:subscribe).permit(:project_id, :title, :fee, :fee_value,  :type_slip_id, :start, :end, :publish, :observation,
+        params.require(:subscribe).permit(:project_id, :title, :fee, :type_guide_id, :start, :end, :publish, :observation,
                                           fields_attributes: [:id, :_destroy, :label, :field_type, :max_size, :file_white_list, :required, :unique, :only_number])
       end
   end

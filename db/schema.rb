@@ -379,10 +379,12 @@ ActiveRecord::Schema.define(version: 20150821171350) do
 
   create_table "concourse_candidates", force: :cascade do |t|
     t.string   "name"
+    t.string   "rg"
+    t.integer  "gender"
+    t.date     "born"
     t.string   "cpf"
     t.string   "address"
     t.string   "burgh"
-    t.string   "number"
     t.string   "city"
     t.string   "cep"
     t.string   "telephone"
@@ -391,18 +393,15 @@ ActiveRecord::Schema.define(version: 20150821171350) do
     t.string   "fantasy_name"
     t.string   "social_reason"
     t.string   "cnpj"
-    t.integer  "state_id"
     t.string   "password"
     t.boolean  "terms_use"
-    t.datetime "last_sign_in_at"
-    t.boolean  "homologation",      default: false
-    t.date     "homologation_date"
-    t.boolean  "refused",           default: false
-    t.date     "refused_date"
-    t.text     "observation"
+    t.integer  "state_id"
     t.integer  "subscribe_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.text     "properties"
+    t.text     "observation"
+    t.integer  "status",        default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "concourse_candidates", ["state_id"], name: "index_concourse_candidates_on_state_id", using: :btree
@@ -503,43 +502,45 @@ ActiveRecord::Schema.define(version: 20150821171350) do
     t.integer  "project_id"
     t.string   "title"
     t.boolean  "fee"
-    t.integer  "type_slip_id"
+    t.integer  "type_guide_id"
     t.date     "start"
     t.date     "end"
     t.boolean  "publish"
     t.text     "observation"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "concourse_subscribes", ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree
-  add_index "concourse_subscribes", ["type_slip_id"], name: "index_concourse_subscribes_on_type_slip_id", using: :btree
+  add_index "concourse_subscribes", ["type_guide_id"], name: "index_concourse_subscribes_on_type_guide_id", using: :btree
 
-  create_table "finance_bank_slips", force: :cascade do |t|
-    t.integer  "type_slip_id"
+  create_table "finance_payment_guides", force: :cascade do |t|
+    t.integer  "type_guide_id"
     t.float    "value"
     t.date     "deadline"
     t.date     "paid"
     t.date     "credited"
     t.float    "value_paid"
     t.string   "barcode"
+    t.string   "our_number"
     t.string   "observation"
     t.string   "name"
     t.string   "cpf"
-    t.boolean  "status",       default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.boolean  "status",        default: false
+    t.integer  "model_guide",   default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
-  add_index "finance_bank_slips", ["type_slip_id"], name: "index_finance_bank_slips_on_type_slip_id", using: :btree
+  add_index "finance_payment_guides", ["type_guide_id"], name: "index_finance_payment_guides_on_type_guide_id", using: :btree
 
-  create_table "finance_type_slips", force: :cascade do |t|
+  create_table "finance_type_guides", force: :cascade do |t|
     t.string   "title"
-    t.boolean  "publish"
+    t.boolean  "publish",    default: true
     t.float    "value"
     t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "helpdesk_attendants", force: :cascade do |t|

@@ -52,6 +52,7 @@ PATH
   remote: engines/concourse_portal
   specs:
     concourse_portal (0.0.1)
+      carrierwave
       rails (~> 4.2.1)
 
 PATH

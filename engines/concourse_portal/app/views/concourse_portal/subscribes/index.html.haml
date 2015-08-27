@@ -11,7 +11,7 @@
               %hr/
               %ul.list-group
                 - if subscribe.fee
-                  = link_to "<strong>#{subscribe.title} - #{number_to_currency subscribe.type_slip.value}</strong>".html_safe, concourse_portal.new_project_candidate_path(project_id: @project, subscribe_id: subscribe), class: 'list-group-item'
+                  = link_to "<strong>#{subscribe.title} - #{number_to_currency subscribe.type_guide.value}</strong>".html_safe, concourse_portal.new_project_candidate_path(project_id: @project, subscribe_id: subscribe), class: 'list-group-item'
                 - else
                   = link_to subscribe.title, concourse_portal.new_project_subscribe_candidate_subscribe_path(project_id: @project, subscribe_id: subscribe), class: 'list-group-item'
   .col-md-5

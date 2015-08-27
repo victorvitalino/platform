@@ -12,8 +12,8 @@
         = f.label 'Fim', class: 'fg-label'
         = f.input :end, as: :string, label: false, input_html: { class: 'date',value: (@subscribe.end) ? localize(f.object.end) : nil }
       .col-md-3
-        = f.label :type_slip, class: 'fg-label'
-        = f.association :type_slip, label_method: :name_value, label: false, prompt: "selecione a cobrança..."
+        = f.label :type_guide, class: 'fg-label'
+        = f.association :type_guide, label_method: :name_value, label: false, prompt: "selecione a cobrança..."
       .col-md-2
         .toggle-switch{"data-ts-color" => "blue"}
           %label
