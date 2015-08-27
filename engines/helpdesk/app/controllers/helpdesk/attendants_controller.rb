@@ -17,11 +17,13 @@ module Helpdesk
       @attendant = Attendant.new(attendant_params)
       if @attendant.save
         flash[:success] = t :success
+      else
+        flash[:danger] = t :error
       end
     end
 
     def edit
-      
+
     end
 
     def update
@@ -36,7 +38,7 @@ module Helpdesk
       if @attendant.destroy
         redirect_to action: 'new'
         flash[:success] = t :success
-      end 
+      end
     end
     private
 

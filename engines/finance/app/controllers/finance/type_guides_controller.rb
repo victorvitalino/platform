@@ -1,12 +1,12 @@
 require_dependency "finance/application_controller"
 
 module Finance
-  class TypeSlipsController < ApplicationController
-    before_action :set_type_slip, only: [:show, :edit, :update, :destroy]
+  class TypeGuidesController < ApplicationController
+    before_action :set_type_guide, only: [:show, :edit, :update, :destroy]
 
     # GET /type_slips
     def index
-      @type_slips = TypeSlip.unscoped.all
+      @type_guides = TypeGuide.unscoped.all
     end
 
     # GET /type_slips/1
@@ -15,7 +15,7 @@ module Finance
 
     # GET /type_slips/new
     def new
-      @type_slip = TypeSlip.new
+      @type_guide = TypeGuide.new
     end
 
     # GET /type_slips/1/edit
@@ -24,9 +24,9 @@ module Finance
 
     # POST /type_slips
     def create
-      @type_slip = TypeSlip.new(type_slip_params)
+      @type_guide = TypeGuide.new(type_guide_params)
 
-      if @type_slip.save
+      if @type_guide.save
         flash[:success] = t :success
         redirect_to action: 'index'
       else
@@ -36,7 +36,7 @@ module Finance
 
     # PATCH/PUT /type_slips/1
     def update
-      if @type_slip.update(type_slip_params)
+      if @type_guide.update(type_slip_params)
         flash[:success] = t :success
         redirect_to action: 'index'
       else
@@ -46,7 +46,7 @@ module Finance
 
     # DELETE /type_slips/1
     def destroy
-      if @type_slip.destroy
+      if @type_guide.destroy
         flash[:success] = t :success
         redirect_to action: 'index'
       end
@@ -54,13 +54,13 @@ module Finance
 
     private
       # Use callbacks to share common setup or constraints between actions.
-      def set_type_slip
-        @type_slip = TypeSlip.unscoped.find(params[:id])
+      def set_type_guide
+        @type_guide = TypeGuide.unscoped.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
-      def type_slip_params
-        params.require(:type_slip).permit(:title, :publish, :value, :code)
+      def type_guide_params
+        params.require(:type_guide).permit(:title, :publish, :value, :code)
       end
   end
 end

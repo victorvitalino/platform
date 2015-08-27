@@ -2,15 +2,15 @@ pt-BR:
   activerecord:
     errors:
       models:
-        'finance/bank_slip':
+        'finance/payment_guide':
           attributes:
             deadline:
               after: "A data não pode ser menor que o dia de hoje"
     models:
-      'finance/bank_slip': "Cobrança"
+      'finance/payment_guide': "Cobrança"
     attributes:
-      'finance/bank_slip':
-        type_slip: "Tipo"
+      'finance/payment_guide':
+        type_guide: "Tipo"
         value: "Valor"
         deadline: "Vencimento"
         name: "Nome"

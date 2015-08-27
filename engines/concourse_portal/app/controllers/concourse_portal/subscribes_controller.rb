@@ -13,12 +13,15 @@ module ConcoursePortal
       @current_nav = 'new_subscribe'
       
       if @subscribe.valid?
+        session[:candidate_id] = @subscribe._id
+        redirect_to project_subscribes_success_path(@project)
       else
         render action: 'index'
       end
     end
 
     def remember_subscribe
+      @subscribes = Concourse::Candidate.where(cpf: params[:cpf])
     end
 
     def remember_password

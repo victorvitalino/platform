@@ -164,9 +164,9 @@
               %i.md.md-attach-money>
               Financeiro
             %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li= link_to "gerar boleto", finance.new_bank_slip_path
-              %li= link_to "gestão de boletos", finance.bank_slips_path
-              %li= link_to "tipos de boletos", finance.type_slips_path
+              %li= link_to "nova cobrança", finance.new_payment_guide_path
+              %li= link_to "gestão de pagamentos/emissões", finance.payment_guides_path
+              %li= link_to "tipos de pagamentos", finance.type_guides_path
 
         %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
           - if policy(:application, namespace: Concourse).index?

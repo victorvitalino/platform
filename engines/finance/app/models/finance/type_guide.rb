@@ -1,5 +1,5 @@
 module Finance
-  class TypeSlip < ActiveRecord::Base
+  class TypeGuide < ActiveRecord::Base
 
     default_scope { where(publish: true) }
     validates_presence_of :title, :value, :code

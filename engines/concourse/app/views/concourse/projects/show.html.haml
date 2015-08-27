@@ -148,7 +148,7 @@
                         %td
                           = link_to "marcar como lida", project_consult_read_path(project_id: @project, consult_id: consult) if !consult.status
                           = link_to "visualizar", project_consult_path(project_id: @project, id: consult), remote: true
-          #candidate_subscribes.tab-pane{:role => "tabpanel"}
+          #candidate_subscribes.tab-pane{:class => (params[:q] == 'inscricoes') ? 'active' : '', :role => "tabpanel"}
             .card
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
                 %table.table.table-striped.table-hover.datatable
@@ -162,6 +162,18 @@
                       %th Data de inscrição
                       %th Status
                       %th Ação
+                  %tbody
+                    - @project.candidates.each_with_index do |candidate, index|
+                      %tr
+                        %td= index + 1
+                        %td= candidate.subscribe.title if candidate.subscribe.present?
+                        %td= candidate.protocol
+                        %td= candidate.cpf
+                        %td
+                        %td= candidate.created_at.strftime('%d/%m/%Y às %H:%M')
+                        %td= candidate.status
+                        %td
+                          = link_to "visualizar", project_candidate_path(project_id: @project, id: candidate), class: 'btn btn-primary btn-sm'
           #candidate_participations.tab-pane{:role => "tabpanel"}
             .card
               .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}

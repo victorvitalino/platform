@@ -4,6 +4,7 @@ module Concourse
     belongs_to :type_slip, class_name: "Finance::TypeSlip"
 
     has_many :fields
+    has_many :candidates
 
     validates_presence_of :title
 
@@ -13,7 +14,6 @@ module Concourse
     validates :type_slip, presence: true, if: :fee?
 
     accepts_nested_attributes_for :fields, allow_destroy: true
-
 
     private
 

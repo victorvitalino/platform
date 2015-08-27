@@ -1,9 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      'finance/type_slip': "Tipo de cobrança"
+      'finance/type_guide': "Tipo de cobrança"
     attributes:
-      'finance/type_slip':
+      'finance/type_guide':
         title: "Título"
         value: "Valor"
         code: "Código"
