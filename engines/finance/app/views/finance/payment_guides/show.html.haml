@@ -1,0 +1,43 @@
+.row
+  .col-sm-6.col-md-offset-3
+    .card
+      .card-header.bgm-green
+        %h2
+          Boleto Gerado
+          %small Seu boleto já foi gerado, veja os detalhes abaixo
+      .card-body.card-padding
+        .row
+          .col-md-6
+            %h4 Tipo de Cobrança
+            %h5= @payment_guide.type_guide.title if @payment_guide.present?
+        %Hr/
+        .row
+          .col-md-6
+            %h4 Data de Vencimento
+            %h5= @payment_guide.deadline.strftime('%d/%m/%Y')
+          .col-md-6
+            %h4 Valor
+            %h5= number_to_currency @payment_guide.value
+        %hr/
+        .row
+          .col-md-6
+            %h4 Dados Sacado
+        .row
+          .col-md-4
+            %h5 Nome
+            %h6= @payment_guide.name.upcase
+          .col-md-4
+            %h5 CPF
+            %h6= @payment_guide.cpf.upcase
+          .col-md-4
+            %h5 Referência
+            %h6= @payment_guide.observation
+        %hr/
+        .row
+          .col-md-12
+            - if @payment_guide.recolhimento?
+              = link_to "Emitir Cobrança", generate_convenant_path(payment_guide_id: @payment_guide), class: 'btn btn-primary', target: '_blank'
+            - if @payment_guide.boleto?
+              = link_to "Emitir Cobrança", generate_bankslip_path(payment_guide_id: @payment_guide), class: 'btn btn-primary', target: '_blank'
+            = link_to "Nova Cobrança", new_payment_guide_path, class: 'btn btn-success'
+            = link_to "Gestão de Boletos", payment_guides_path, class: 'btn btn-inverse'

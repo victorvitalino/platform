@@ -36,7 +36,7 @@ module RegularizationSchedule
       @agenda = Agenda.new(agenda_params)
 
       if @agenda.save
-        redirect_to  :show, notice: 'Agenda was successfully created.'
+        redirect_to extranet_agenda_path(@agenda.id), notice: 'Agenda was successfully created.'
       else
         render :new
       end

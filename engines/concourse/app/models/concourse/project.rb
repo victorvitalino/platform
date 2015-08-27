@@ -12,8 +12,11 @@ module Concourse
     has_many :pages
     has_many :navs
     has_many :subscribes
+    has_many :candidates, through: :subscribes
     has_many :participations
     has_many :consults
+
+
     
     enum step: ['desenvolvimento', 'previsto', 'aberto', 'finalizado']
 

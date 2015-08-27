@@ -513,31 +513,33 @@ ActiveRecord::Schema.define(version: 20150821171350) do
   add_index "concourse_subscribes", ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree
   add_index "concourse_subscribes", ["type_slip_id"], name: "index_concourse_subscribes_on_type_slip_id", using: :btree
 
-  create_table "finance_bank_slips", force: :cascade do |t|
-    t.integer  "type_slip_id"
+  create_table "finance_payment_guides", force: :cascade do |t|
+    t.integer  "type_guide_id"
     t.float    "value"
     t.date     "deadline"
     t.date     "paid"
     t.date     "credited"
     t.float    "value_paid"
     t.string   "barcode"
+    t.string   "our_number"
     t.string   "observation"
     t.string   "name"
     t.string   "cpf"
-    t.boolean  "status",       default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.boolean  "status",        default: false
+    t.integer  "model_guide",   default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
-  add_index "finance_bank_slips", ["type_slip_id"], name: "index_finance_bank_slips_on_type_slip_id", using: :btree
+  add_index "finance_payment_guides", ["type_guide_id"], name: "index_finance_payment_guides_on_type_guide_id", using: :btree
 
-  create_table "finance_type_slips", force: :cascade do |t|
+  create_table "finance_type_guides", force: :cascade do |t|
     t.string   "title"
-    t.boolean  "publish"
+    t.boolean  "publish",    default: true
     t.float    "value"
     t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "helpdesk_attendants", force: :cascade do |t|

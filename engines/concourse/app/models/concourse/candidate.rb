@@ -1,7 +1,8 @@
 module Concourse
   class Candidate < ActiveRecord::Base
     belongs_to :state, class_name: "Address::State"
-
+    belongs_to :subscribe
+    
     attr_accessor :confirmation_password
 
     enum gender: [:masculino, :feminino]

@@ -2,7 +2,7 @@
   .row
     .col-md-6
       = f.label :agenda, class: 'fg-label'
-      = f.association :agenda, label: false, prompt: 'selecione...',  input_html: { id: 'agenda'}
+      = f.association :agenda, collection: RegularizationSchedule::Agenda.where('start <= ? and regularization_schedule_agendas.end >= ?', Time.now,Time.now), label: false, prompt: 'selecione...',  input_html: { id: 'agenda'}
     .col-md-3
       = f.label :cpf, class: 'fg-label'
       = f.input :cpf, label: false, prompt: 'selecione...'
