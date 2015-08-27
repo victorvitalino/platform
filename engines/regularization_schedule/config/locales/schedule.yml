@@ -5,6 +5,7 @@ pt-BR:
     attributes:
       'regularization_schedule/schedule':
         agenda: "Agenda"
+        cpf: "CPF (somente números)"
         date_schedule: "Data de Agendamento"
         hour_schedule: "Hora de Início"
         end: "Data Final"
