@@ -72,7 +72,7 @@ module RegularizationSchedule
         params.require(:agenda).permit(:title, :description, :start, :end, :hour_start,
                                                           :hour_end, :publish, :city_id, :station_id, :quantity_attendants,
                                                           :time_attendant, :lunch, :lunch_start, :lunch_end, :lunch_attendants,
-                                                          :lunch_time_attendant, :validate_sql, :validate_type, :validate_agenda)
+                                                          :lunch_time_attendant,:weekend, :validate_sql, :validate_type, :validate_agenda)
       end
   end
 end

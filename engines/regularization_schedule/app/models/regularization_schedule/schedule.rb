@@ -1,6 +1,8 @@
 module RegularizationSchedule
   class Schedule < ActiveRecord::Base
+
     belongs_to :agenda
+    belongs_to :requiriment
 
    enum :status => [:attendance_waiting, :attended]
 

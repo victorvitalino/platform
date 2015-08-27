@@ -9,6 +9,7 @@ class CreateRegularizationScheduleSchedules < ActiveRecord::Migration
       t.time :hour_schedule
       t.text :observation
 
+
       t.timestamps null: false
     end
   end

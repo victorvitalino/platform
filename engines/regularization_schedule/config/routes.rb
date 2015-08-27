@@ -5,8 +5,9 @@ RegularizationSchedule::Engine.routes.draw do
     namespace :portal, path: '/' do
       resources :agendas do
        get 'hour', to: 'finders#hours'
+       resources :schedules
       end
-       resources :schedules        
+
     end
   end
 
