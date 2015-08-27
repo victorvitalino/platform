@@ -1,9 +1,9 @@
 - @sectors.each_with_index do |j, i|
  %tr
   %td
-   = j.name
+   = j.name.mb_chars.downcase
   %td
-   = j.acron.upcase
+   = j.acron.mb_chars.upcase
   %td
    = j.father.acron if j.father.present?
   %td

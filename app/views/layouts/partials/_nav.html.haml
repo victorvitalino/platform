@@ -13,13 +13,13 @@
       %ul.top-menu
         %li#toggle-width
           .toggle-switch
-            %input#tw-switch{:hidden => "hidden", :type => "checkbox"}
+            %input#tw-switch{:type => "checkbox", :value => "checked", :hidden => "hidden"}
               %label.ts-helper{:for => "tw-switch"}
         %li.toggle-switch
           = link_to "Gestão de Atendimento", "#", class: 'btn btn-primary'
         %li.toggle-switch
           - if  current_user.account.sector_current.present?
-            = link_to "Abrir chamado", helpdesk.new_order_service_path, remote: true, class: 'btn btn-danger'            
+            = link_to "Abrir chamado", helpdesk.new_order_service_path, remote: true, class: 'btn btn-danger'
         %li#chat-trigger.hidden-xs{"data-trigger" => "#chat"}
           %a.tm-search{:href => ""}
   / Top Search Content

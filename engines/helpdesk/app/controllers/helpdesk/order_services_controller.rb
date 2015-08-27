@@ -35,8 +35,9 @@ module Helpdesk
       @order_service.deadline = Date.today
       @order_service.save
 
-      flash[:success] = "Chamado aberto com sucesso. Aguarde retorno da área técnica!"
-
+      if @order_service.save
+        flash[:success] = "Chamado aberto com sucesso. Aguarde retorno da área técnica!"
+      end
     end
 
     # PATCH/PUT /order_services/1
