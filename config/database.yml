@@ -10,12 +10,6 @@ development:
   password: "@codh@b+008"
   host:  10.36.25.15
 
-production:
-  <<: *default
-  database: codhab_production
-  username: postgres
-  password: codhab072771472
-  host: 10.233.38.16
 
 test:
   <<: *default

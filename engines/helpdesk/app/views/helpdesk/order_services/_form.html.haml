@@ -21,10 +21,11 @@
     .col-md-2
      = f.label :branch_line_id, class: 'fg-label'
      = f.input :branch_line_id, collection: current_user.account.sector_current.branch_line, label_method: :telephone, value_method: :id, label: false, prompt: "selecione..."
-   .row
-    .col-md-6
-     = f.label :good_id, class: 'fg-label'
-     = f.input :good_id, collection: Patrimony::Good.where(sector_id: current_user.account.sector_current_id), label_method: :code_goods, value_method: :id, label: false, prompt: "selecione..."
+   -# Patrimonio será desenvolvido em breve - funcionalidade excluída (adicionar patrimonio ao chamado.)
+   -#.row
+    -#.col-md-6
+     -#= f.label :good_id, class: 'fg-label'
+     -#= f.input :good_id, collection: Patrimony::Good.where(sector_id: current_user.account.sector_current_id), label_method: :code_goods, value_method: :id, label: false, prompt: "selecione..."
    .row
     .col-md-12
      = f.fields_for :monitor_service_orders do |builder|

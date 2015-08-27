@@ -105,10 +105,6 @@
               - if policy(:Attendant, namespace: Helpdesk).report?
                 %li
                   = link_to "relatório por tipo de solicitação", helpdesk.new_report_request_path
-              - if policy(:Attendant, namespace: Helpdesk).report?
-                %li
-                  = link_to "relatório por máquina", helpdesk.new_report_machine_path
-
 
         %li.sub-menu{class: ('toggled active' if params[:module] == "protocol")}
           - if policy(:application, namespace: Protocol).index?
@@ -176,4 +172,3 @@
             %ul{style: ('display:block;' if params[:module] == "concourse")}
               %li= link_to "concursos", concourse.projects_path
               %li= link_to "relatórios", concourse.projects_path
-
