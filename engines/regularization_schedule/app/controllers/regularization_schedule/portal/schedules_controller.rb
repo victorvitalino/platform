@@ -2,15 +2,17 @@ require_dependency "regularization_schedule/application_controller"
 
 module RegularizationSchedule
 
-  class Portal::SchedulesController < ApplicationController
+  module Portal
+    class SchedulesController < ApplicationController
 
     layout 'layouts/portal/application'
 
     before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+    before_action :set_agenda
 
     # GET /schedules
     def index
-      @schedules = Schedule.all
+      @schedules = @agenda.schedules.all
     end
 
     # GET /schedules/1
@@ -19,7 +21,7 @@ module RegularizationSchedule
 
     # GET /schedules/new
     def new
-      @schedule = Schedule.new
+       @schedule = @agenda.schedules.new
     end
 
 
@@ -32,10 +34,17 @@ module RegularizationSchedule
     def create
       @schedule = Schedule.new(schedule_params)
       @schedule.status = 0
-      if @schedule.save
-        redirect_to portal_schedule_path @schedule.id, notice: 'Schedule was successfully created.'
+
+      requeriment = Regularization::Requeriment.where(cpf: @schedule.cpf , status: true)
+
+      if requeriment.present?
+        if @schedule.save
+          redirect_to portal_schedule_path @schedule.id, notice: 'Schedule was successfully created.'
+        else
+          render :new
+        end
       else
-        render :new
+         render :new, flash[:danger] = 'Você não possui requerimento sem atendimento.'
       end
     end
 
@@ -51,7 +60,8 @@ module RegularizationSchedule
     # DELETE /schedules/1
     def destroy
       @schedule.destroy
-      redirect_to schedules_url, notice: 'Schedule was successfully destroyed.'
+      redirect_to schedules_url
+
     end
 
     private
@@ -60,9 +70,14 @@ module RegularizationSchedule
         @schedule = Schedule.find(params[:id])
       end
 
+       def set_agenda
+         @agenda = Agenda.find(params[:agenda_id])
+      end
+
       # Only allow a trusted parameter "white list" through.
       def schedule_params
         params.require(:schedule).permit(:agenda_id, :requeriment_id, :cpf, :status, :date_schedule, :hour_schedule, :observation)
       end
   end
+end
 end

@@ -36,7 +36,7 @@ module RegularizationSchedule
       @agenda = Agenda.new(agenda_params)
 
       if @agenda.save
-        redirect_to extranet_agenda_path(@agenda.id), notice: 'Agenda was successfully created.'
+        redirect_to extranet_agenda_path(@agenda.id), notice: 'Agenda criada com sucesso.'
       else
         render :new
       end
@@ -45,7 +45,7 @@ module RegularizationSchedule
     # PATCH/PUT /agendas/1
     def update
       if @agenda.update(agenda_params)
-        redirect_to :show, notice: 'Agenda was successfully updated.'
+        redirect_to :show, notice: 'Agenda atualizada com sucesso.'
       else
         render :edit
       end
@@ -72,7 +72,7 @@ module RegularizationSchedule
         params.require(:agenda).permit(:title, :description, :start, :end, :hour_start,
                                                           :hour_end, :publish, :city_id, :station_id, :quantity_attendants,
                                                           :time_attendant, :lunch, :lunch_start, :lunch_end, :lunch_attendants,
-                                                          :lunch_time_attendant, :validate_sql, :validate_type, :validate_agenda)
+                                                          :lunch_time_attendant,:weekend, :validate_sql, :validate_type, :validate_agenda)
       end
   end
 end

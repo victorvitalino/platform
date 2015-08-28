@@ -15,7 +15,7 @@ pt-BR:
     attributes:
       'concourse/subscribe':
         title: 'Título'
-        type_slip: 'Cobrança'
+        type_guide: 'Cobrança'
         fee: 'Cobrar Taxa'
         publish: "Publicado?"
         observation: "Observação"

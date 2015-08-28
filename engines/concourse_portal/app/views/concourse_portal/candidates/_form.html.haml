@@ -54,8 +54,15 @@
       = f.input :social_reason
     .col-md-3
       = f.input :cnpj
-  .row
+  %br/
+  %h5 Informações Adicionais
   %hr/
+  .row
+    = f.simple_fields_for :properties, OpenStruct.new(@candidate.properties) do |builder|
+      - @candidate.subscribe.fields.each do |field|
+        .col-md-4
+          = render "concourse_portal/candidates/fields/#{field.field_type}", field: field, f: builder, c: @candidate
+  %br/
   .row
     .col-md-12
       = f.input :terms_use

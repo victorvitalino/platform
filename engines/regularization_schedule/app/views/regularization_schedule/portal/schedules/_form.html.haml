@@ -1,8 +1,9 @@
-= simple_form_for [:portal, @schedule] do |f|
+= simple_form_for [:portal, @agenda, @schedule] do |f|
   .row
     .col-md-6
       = f.label :agenda, class: 'fg-label'
-      = f.association :agenda, collection: RegularizationSchedule::Agenda.where('start <= ? and regularization_schedule_agendas.end >= ?', Time.now,Time.now), label: false, prompt: 'selecione...',  input_html: { id: 'agenda'}
+      %br
+      %h5= @schedule.agenda.title
     .col-md-3
       = f.label :cpf, class: 'fg-label'
       = f.input :cpf, label: false, prompt: 'selecione...'
@@ -16,10 +17,6 @@
       = f.input :hour_schedule,  label: false,  as: 'select', prompt: 'Selecione a data...', input_html: { id: 'hour'}
   .row
     .col-md-12
-      = f.label :observation, class: 'fg-label'
-      = f.input :observation, label: false, prompt: 'selecione...'
-  .row
-    .col-md-12
       = f.button :submit, class: 'btn btn-success'
 
 
@@ -31,8 +28,12 @@
   format: "dd/mm/yyyy",
   language: "pt-BR",
   autoclose: true,
-  daysOfWeekDisabled: "0,6",
-  startDate: "#{"#{(Time.now).strftime('%d/%m/%Y')}"}",
+  - if @agenda.weekend
+    daysOfWeekDisabled: "0,7",
+  - else
+    daysOfWeekDisabled: "0,6",
+  startDate: "#{"#{(@agenda.start).strftime('%d/%m/%Y')}"}",
+  endDate: "#{"#{(@agenda.end).strftime('%d/%m/%Y')}"}",
   });
 
 
@@ -40,10 +41,7 @@
   $('#hour').html('
   %option> Carregando...
   ');
-  var e = document.getElementById("agenda").value;
-
-  if(e != null){
-  $.getJSON( "/agenda_regularizacao/agendas/" + e +"/hour?date=" + $(this).val(), function(data) {
+  $.getJSON( "#{portal_agenda_hour_path(agenda_id: @agenda)}?date=" + $(this).val(), function(data) {
   var html = ""
   if(data.length > 0) {
   $.each(data, function(key, value) {
@@ -58,7 +56,5 @@
   }
   $('#hour').html(html);
   });
-  }
   })
-
   });

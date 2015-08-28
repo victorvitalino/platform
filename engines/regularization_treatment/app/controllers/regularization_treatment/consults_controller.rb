@@ -2,7 +2,7 @@ require_dependency 'regularization_treatment/application_controller'
 
 module RegularizationTreatment
   class ConsultsController < ApplicationController
-    
+
     def new
       @consult = Consult.new
     end
@@ -12,6 +12,7 @@ module RegularizationTreatment
 
       if @consult.valid?
         @requeriments = Regularization::Requeriment.where(cpf: @consult.cpf)
+        @schedules = RegularizationSchedule::Schedule.where(cpf: @consult.cpf)
         #@attendant = Regularization::Requeriment.where(cpf: @consult.cpf)
         render action: 'new'
       else

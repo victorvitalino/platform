@@ -1,7 +1,7 @@
 module Concourse
   class Subscribe < ActiveRecord::Base
     belongs_to :project
-    belongs_to :type_slip, class_name: "Finance::TypeSlip"
+    belongs_to :type_guide, class_name: "Finance::TypeGuide"
 
     has_many :fields
     has_many :candidates
@@ -11,7 +11,7 @@ module Concourse
     validates_date :start, before: :end,  presence: true 
     validates_date :end,   after: :start, presence: true
 
-    validates :type_slip, presence: true, if: :fee?
+    validates :type_guide, presence: true, if: :fee?
 
     accepts_nested_attributes_for :fields, allow_destroy: true
 
