@@ -13,14 +13,14 @@
     .listview.lv-message
       .lv-header-alt.bgm-white
         .lvh-label.hidden-xs
-          %span.c-black 
+          %span.c-black
             %b Resultado
       .lv-body
         %br/
         .row
           .col-md-12
             .lvh-label.hidden-xs
-              %span.c-black 
+              %span.c-black
                 %h5
                   %b Requerimentos
             - if @requeriments.present?
@@ -54,7 +54,7 @@
         .row
           .col-md-12
             .lvh-label.hidden-xs
-              %span.c-black 
+              %span.c-black
                 %h5
                   %b Atendimentos
             %table.table
@@ -73,25 +73,33 @@
         .row
           .col-md-12
             .lvh-label.hidden-xs
-              %span.c-black 
+              %span.c-black
                 %h5 Agendamentos
-            %table.table
-              %thead
-                %tr
-                  %th #
-                  %th CPF
-                  %th Endereço
-                  %th Data do Requerimento
-                  %th Status Boleto
-              %tbody
-                %tr
-                  %td 
+            - if @schedules.present?
+              %table.table.table-hover.table-striped.table-condensed
+                %thead
+                  %tr
+                    %th Agenda
+                    %th CPF
+                    %th Data do Atendimento
+                    %th Horário de Atendimento
+                %tbody
+                  - @schedules.each do |schedule|
+                    %tr
+                      %td= schedule.agenda.title
+                      %td= schedule.cpf
+                      %td= schedule.date_schedule.strftime("%d/%m/%Y")
+                      %td= schedule.hour_schedule.strftime("%H:%M")
+            - else
+              .row
+                .col-md-12
+                  Não existem agendamentos vínculado a este CPF.
         %hr/
         %br/
         .row
           .col-md-12
             .lvh-label.hidden-xs
-              %span.c-black 
+              %span.c-black
                 %h5 Informações
             %table.table
               %thead
@@ -105,4 +113,3 @@
                 %tr
                   %td
 
-      

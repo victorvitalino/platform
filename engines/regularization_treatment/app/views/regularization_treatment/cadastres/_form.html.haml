@@ -5,6 +5,10 @@
         %b Dados Pessoais
   %hr/
   .row
+    .col-md-12
+      = f.fields_for :adjunct_cadastre do |builder|
+      = render "form_adjunct_cadastre", :f => builder
+  .row
     .col-md-2
       = f.label :cpf, class: 'fg-label'
       = f.input :cpf, label: false
@@ -16,7 +20,7 @@
       = f.input :place_birth, label: false, input_html: { class: 'date'}
     .col-md-1
       = label_tag :born
-      = f.input :born, label: false, as: :string, input_html: { class: 'date'} 
+      = f.input :born, label: false, as: :string, input_html: { class: 'date'}
     .col-md-1
       = label_tag :arrival_df
       = f.input :arrival_df, label: false, as: :string, input_html: { class: 'date'}

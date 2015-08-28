@@ -20,6 +20,7 @@ class CreateRegularizationScheduleAgendas < ActiveRecord::Migration
       t.string :validate_sql
       t.integer :validate_type
       t.boolean :validate_agenda
+      t.boolean :weekend
 
       t.timestamps null: false
     end

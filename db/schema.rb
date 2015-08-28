@@ -397,7 +397,9 @@ ActiveRecord::Schema.define(version: 20150821171350) do
     t.boolean  "terms_use"
     t.integer  "state_id"
     t.integer  "subscribe_id"
+
     t.text     "properties"
+
     t.text     "observation"
     t.integer  "status",        default: 0
     t.datetime "created_at",                null: false
@@ -1017,6 +1019,7 @@ ActiveRecord::Schema.define(version: 20150821171350) do
     t.string   "spouse_name"
     t.string   "spouse_cpf"
     t.boolean  "owner",            default: false
+    t.boolean  "status",           default: false
     t.integer  "unit_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
@@ -1044,6 +1047,7 @@ ActiveRecord::Schema.define(version: 20150821171350) do
     t.string   "validate_sql"
     t.integer  "validate_type"
     t.boolean  "validate_agenda"
+    t.boolean  "weekend"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
