@@ -28,4 +28,11 @@ module ApplicationHelper
     end
   end
 
+  def my_order_service
+    @user_id = current_user.id
+    @my_order = Helpdesk::OrderService.where(staff_id: @user_id)
+    @my_order.each do |z|
+       yield z
+    end
+  end
 end

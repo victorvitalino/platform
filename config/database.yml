@@ -14,6 +14,6 @@ development:
 test:
   <<: *default
   database: codhab_test
-  username: "<%= ENV['db_user'] %>"
-  password: "<%= ENV['db_password'] %>"
-  host: "<%= ENV['db_host'] %>"
+  username: postgres
+  password: "123456789"
+  host: "localhost"
