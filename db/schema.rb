@@ -397,6 +397,9 @@ ActiveRecord::Schema.define(version: 20150821171350) do
     t.boolean  "terms_use"
     t.integer  "state_id"
     t.integer  "subscribe_id"
+
+    t.text     "properties"
+
     t.text     "observation"
     t.integer  "status",        default: 0
     t.datetime "created_at",                null: false
@@ -501,17 +504,17 @@ ActiveRecord::Schema.define(version: 20150821171350) do
     t.integer  "project_id"
     t.string   "title"
     t.boolean  "fee"
-    t.integer  "type_slip_id"
+    t.integer  "type_guide_id"
     t.date     "start"
     t.date     "end"
     t.boolean  "publish"
     t.text     "observation"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "concourse_subscribes", ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree
-  add_index "concourse_subscribes", ["type_slip_id"], name: "index_concourse_subscribes_on_type_slip_id", using: :btree
+  add_index "concourse_subscribes", ["type_guide_id"], name: "index_concourse_subscribes_on_type_guide_id", using: :btree
 
   create_table "finance_payment_guides", force: :cascade do |t|
     t.integer  "type_guide_id"

@@ -5,11 +5,15 @@ module Concourse
     
     attr_accessor :confirmation_password
 
+
+    
     enum gender: [:masculino, :feminino]
     enum status: [:processando, :homologado, :indeferido]
+    
+    serialize  :properties, Hash 
+    validate   :validate_properties
 
     validates_presence_of :name, :terms_use, :state, :city, :cep, :address, :burgh,  :telephone
-
     validates :cpf, cpf: true, presence: true
     validates_uniqueness_of :cpf, :scope => :subscribe_id
 
@@ -23,11 +27,18 @@ module Concourse
     
     validate :compare_password
 
+
     def protocol
       "CODHAB#{self.id}#{self.created_at.strftime('%Y')}"
     end
 
     private
+
+    def validate_properties
+      subscribe.fields.each do |field|
+        errors.add :"#{field.label}", "não pode ficar em branco" if field.required && self.properties[field.label].blank?
+      end
+    end
 
     def juridical_person?
       self.fantasy_name.present?

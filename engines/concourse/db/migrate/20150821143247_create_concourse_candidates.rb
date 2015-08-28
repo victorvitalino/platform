@@ -20,6 +20,7 @@ class CreateConcourseCandidates < ActiveRecord::Migration
       t.boolean :terms_use
       t.references :state, index: true#, foreign_key: true
       t.references :subscribe, index: true
+      t.text :properties
       
       t.text :observation
       t.integer :status, default: 0
