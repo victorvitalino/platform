@@ -10,5 +10,7 @@ module RegularizationSchedule
 
    validates :cpf, cpf: true
 
+
+
   end
 end

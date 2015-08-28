@@ -7,7 +7,7 @@ module RegularizationSchedule
 
     # GET /agendas
     def index
-        @agendas = Agenda.where('start <= ? and regularization_schedule_agendas.end >= ?', Time.now,Time.now)
+        @agendas = Agenda.where('regularization_schedule_agendas.end >= ?', Time.now)
     end
 
     # GET /agendas/1
