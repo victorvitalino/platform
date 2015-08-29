@@ -3,14 +3,15 @@ module RegularizationTreatment
     before_action :set_step
 
     def new
-      @cadastre = Candidate::Cadastre.new
+      @cadastre = Regularization::Cadastre.new
+      @cadastre.build_adjunct_cadastre
     end
 
     def create
-      @cadastre = Candidate::Cadastre.new(set_params)
+      @cadastre = Regularization::Cadastre.new(set_params)
 
       if @cadastre.save
-      
+
       else
         render action: 'new'
       end

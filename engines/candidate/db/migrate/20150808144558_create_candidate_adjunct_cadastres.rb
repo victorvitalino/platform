@@ -1,6 +1,6 @@
-class CreateCandidateAdjuctCadastres < ActiveRecord::Migration
+class CreateCandidateAdjunctCadastres < ActiveRecord::Migration
   def change
-    create_table :candidate_adjuct_cadastres do |t|
+    create_table :candidate_adjunct_cadastres do |t|
 
       t.string      :name
       t.string      :telephone
@@ -11,9 +11,9 @@ class CreateCandidateAdjuctCadastres < ActiveRecord::Migration
       t.boolean     :flag_special_condition, default: false
       t.string      :cep
       t.references  :city, index: true
-      t.references  :state, index: true 
+      t.references  :state, index: true
       t.string      :address
-      t.string      :adjunt_address
+      t.string      :adjunct_address
       t.string      :number_address
       t.float       :income
       t.string      :work
@@ -21,7 +21,7 @@ class CreateCandidateAdjuctCadastres < ActiveRecord::Migration
       t.references  :city_work, index: true
       t.references  :state_work, index: true
       t.string      :address_work
-      t.string      :adjunt_address_work
+      t.string      :adjunct_address_work
       t.string      :number_address_work
       t.string      :nis, unique: true
       t.string      :cid, unique: true

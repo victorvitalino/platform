@@ -1,0 +1,26 @@
+.row
+  .col-md-10
+    %h1.title Agendas de regularização
+%br/
+.row
+  .col-md-12
+    - if @agendas.present?
+      %table.table
+        %thead
+          %tr
+            %th #
+            %th Agenda
+            %th Cidade
+            %th Inicio de Atendimento
+            %th Fim de Atendimento
+            %th
+        %tbody
+          - @agendas.each_with_index do |agenda, index|
+            %tr
+              %td= index + 1
+              %td= agenda.title
+              %td= agenda.city
+              %td= agenda.start.strftime('%d/%m/%Y')
+              %td= agenda.end.strftime('%d/%m/%Y')
+              %td
+                = link_to "Agendar", new_portal_agenda_schedule_path(agenda), class: 'btn btn-primary'
