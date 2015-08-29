@@ -1,0 +1,52 @@
+= simple_form_for @kin do |f|
+  .row
+    .col-md-12
+      %h5
+        %b Dados Pessoais
+  %hr/
+  .row
+    .col-md-12
+      = f.label :name, class: 'fg-label'
+      = f.input :name, label: false
+  .row
+    .col-md-2
+      = f.label :cpf, class: 'fg-label'
+      = f.input :cpf, label: false
+    .col-md-2
+      = f.label :rg, class: 'fg-label'
+      = f.input :rg, label: false
+  .row
+    .col-md-2
+      = f.label :rg_org, class: 'fg-label'
+      = f.input :rg_org, label: false
+    .col-md-2
+      = f.label :rg_uf, class: 'fg-label'
+      = f.input :rg_uf, label: false
+  .row
+    .col-md-4
+      = f.input :gender, as: :select, collection: Regularization::Requeriment.genders.keys.to_a, prompt: 'selecione...'
+    .col-md-2
+      = label_tag :born
+      = f.input :born, label: false, as: :string, input_html: { class: 'date'}
+    .col-md-2
+      = label_tag :place_birth
+      = f.input :place_birth, label: false
+  .row
+    .col-md-4
+      .checkbox.m-b-15
+        %label
+          = f.check_box :flag_special_condition
+          %i.input-helper
+          = f.label :flag_special_condition, class: 'fg-label'
+    .col-md-4
+      = f.label :special_condition, class: 'fg-label'
+      = f.association :special_condition, label: false, prompt: 'selecione...'
+
+  .row
+    .col-md-12
+      = f.simple_fields_for :kin_adjunct do |builder|
+        = render "form_kin_adjunct", :f => builder
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Prosseguir", class: 'btn btn-primary pull-right'

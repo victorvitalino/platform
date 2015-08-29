@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821171350) do
+ActiveRecord::Schema.define(version: 20150829194257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -272,6 +272,50 @@ ActiveRecord::Schema.define(version: 20150821171350) do
   end
 
   add_index "candidate_convocations", ["pontuation_id"], name: "index_candidate_convocations_on_pontuation_id", using: :btree
+
+  create_table "candidate_kin_adjuncts", force: :cascade do |t|
+    t.string   "income"
+    t.string   "percent"
+    t.integer  "kin_type_id"
+    t.integer  "civil_status_id"
+    t.integer  "kin_id"
+    t.integer  "kinship_id"
+    t.boolean  "copurchaser_flag"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "candidate_kin_adjuncts", ["civil_status_id"], name: "index_candidate_kin_adjuncts_on_civil_status_id", using: :btree
+  add_index "candidate_kin_adjuncts", ["kin_id"], name: "index_candidate_kin_adjuncts_on_kin_id", using: :btree
+  add_index "candidate_kin_adjuncts", ["kin_type_id"], name: "index_candidate_kin_adjuncts_on_kin_type_id", using: :btree
+  add_index "candidate_kin_adjuncts", ["kinship_id"], name: "index_candidate_kin_adjuncts_on_kinship_id", using: :btree
+
+  create_table "candidate_kins", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "rg"
+    t.string   "rg_org"
+    t.string   "rg_uf"
+    t.date     "born"
+    t.string   "gender"
+    t.string   "place_birth"
+    t.boolean  "status"
+    t.boolean  "flag_special_condition"
+    t.integer  "cadastre_id"
+    t.integer  "special_condition_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "candidate_kins", ["cadastre_id"], name: "index_candidate_kins_on_cadastre_id", using: :btree
+  add_index "candidate_kins", ["special_condition_id"], name: "index_candidate_kins_on_special_condition_id", using: :btree
+
+  create_table "candidate_kinships", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "candidate_special_conditions", force: :cascade do |t|
     t.string   "name"

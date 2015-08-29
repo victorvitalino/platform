@@ -9,7 +9,7 @@ module RegularizationTreatment
 
     def create
       @cadastre = Regularization::Cadastre.new(set_params)
-
+      @cadastre.build_adjunct_cadastre
       if @cadastre.save
 
       else

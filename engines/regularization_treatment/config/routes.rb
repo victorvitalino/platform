@@ -4,4 +4,5 @@ RegularizationTreatment::Engine.routes.draw do
   resources :addresses
   resources :cadastres
   resources :checklists
+  resources :kins
 end
