@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
-
 gem 'rails', '4.2.1'
 
 gem 'uglifier', '>= 1.3.0'
@@ -65,4 +63,3 @@ gem 'concourse_portal',                 path: 'engines/concourse_portal'
 gem 'attendance',                       path: 'engines/attendance'
 gem 'regularization_schedule',          path: 'engines/regularization_schedule'
 gem 'finance',                          path: 'engines/finance'
-

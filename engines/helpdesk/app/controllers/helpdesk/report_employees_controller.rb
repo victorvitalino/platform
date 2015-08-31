@@ -9,7 +9,7 @@ module Helpdesk
 
     def new
       authorize :attendant, :report?
-      @users = Person::Staff.all
+      @user = current_user.account
       result = Helpdesk::OrderService.where(staff_id: @user)
       result.each do |a|
         if a.responsible_id.present?

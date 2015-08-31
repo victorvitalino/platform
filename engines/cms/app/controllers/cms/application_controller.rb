@@ -8,12 +8,13 @@ module Cms
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     helper ::ApplicationHelper
-  
-  
+
+
     private
 
     def user_not_authorized(exception)
       redirect_to('/404')
     end
- end
+  end
+
 end
