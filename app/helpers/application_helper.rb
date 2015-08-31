@@ -1,7 +1,4 @@
 module ApplicationHelper
-  def link_to_nav(param, param2)
-  end
-
   def users_list
     @query = Person::Staff.includes(:sector_current).all.order(:name)
     @query.each do |u|
@@ -28,4 +25,11 @@ module ApplicationHelper
     end
   end
 
+  def my_order_service
+    @user_id = current_user.id
+    @my_order = Helpdesk::OrderService.where(staff_id: @user_id)
+    @my_order.each do |z|
+       yield z
+    end
+  end
 end

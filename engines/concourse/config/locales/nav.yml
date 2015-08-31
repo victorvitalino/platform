@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/nav': 'Menu'
+    attributes:
+      'concourse/nav':
+        label: 'Label'
+        page: 'Página'
+        url: 'URL'
+        target: 'Target'
+        action: "Ação"
+        publish: "Publicado?"

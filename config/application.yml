@@ -1,19 +1,15 @@
 production:
+
+
+  db_user: "postgres"
+  db_pass: "codhab072771472"
+  db_host: "10.233.38.16"
+development:
+  db_user: "postgres"
+  db_pass: "123456789"
+  db_host: "localhost"
+test:
   db_user: "user"
   db_pass: "pass"
   db_host: "host"
 
-#development:
-  #db_user: "postgres"
-  #db_pass: "@codh@b+008"
-  #db_host: "10.36.25.15"
-
-development:
-  db_user: "igor"
-  db_pass: "mila1324"
-  db_host: "localhost"
-
-test:
-  db_user: "igor"
-  db_pass: "mila1324"
-  db_host: "localhost"

@@ -87,7 +87,6 @@ margin-bottom: 6px!important;
 border-bottom: 0 !important;border: none!important; color: #303236 !important;}
 .borders{border:none!important;}
 
-
 /*slider info*/
 .tab-fundo{display:block;background-image: url('/portal/estadio.png');background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -121,3 +120,6 @@ border-bottom: 0 !important;border: none!important; color: #303236 !important;}
   font-weight: 600;
   display: inline-block;
   color: #8397a3;}
+  .respsocial{
+    width: 190px!important;
+  }

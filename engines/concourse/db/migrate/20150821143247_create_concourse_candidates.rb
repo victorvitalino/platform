@@ -21,6 +21,7 @@ class CreateConcourseCandidates < ActiveRecord::Migration
       t.references :state, index: true#, foreign_key: true
       t.references :subscribe, index: true
       t.text :properties
+      t.string :protocol, unique: true
       
       t.text :observation
       t.integer :status, default: 0

@@ -96,77 +96,62 @@
                 %a{:href => "#"} Habitação
                 %ul.submenu
                   %li.first
-                    %a{:href => "#", :class => "linkD"} Programa Morar Bem
+                    %a{:href => "#", :class => "linkD"} Participe
                     %ul.submenu-item
-                      - link_each('Programa Morar Bem') do |l|
+                      - link_each('Participe - Habitacao') do |l|
                         %li
                           = link_to_nav l
                   %li.first
-                    %a{:href => "#", :class => "linkD"} Relação de Habilitados
+                    %a{:href => "#", :class => "linkD"} Acompanhe
                     %ul.submenu-item
-                      %li.first
-                        = link_to 'Diferença entre RII e RIE', 'habitacao'
-                      %li
-                        %a{:href => "http://www.morarbem.df.gov.br/Consultas/Habilitados?projeto=1", :target => "_BLANK"} Lista de Habilitados RII
-                      %li
-                        %a{:href => "http://www.morarbem.df.gov.br/Consultas/Habilitados?projeto=2", :target => "_BLANK"} Lista de Habilitados RIE
-                  %li.first
-                    %a{:href => "#", :class => "linkD"} Convocados Não Habilitados
-                    %ul.submenu-item
-                      %li.first
-                        = link_to 'O que são convocados não habilitados?', 'habitacao'
-                      %li
-                        %a{:href => "http://www.morarbem.df.gov.br/Consultas/NaoHabilitados", :target => "_BLANK"} Lista de Convocados não Habilitados
+                      - link_each('Acompanhe - Habitacao') do |l|
+                        %li
+                          = link_to_nav l
               %li.regularizacao.main-link
                 %a{:href => "#"} Regularização
                 %ul.submenu
                   %li.first
-                    %a{:href => "#", :class => "linkD"} Regularizou, é seu
+                    %a{:href => "#", :class => "linkD"} Participe
                     %ul.submenu-item
-                      %li
-                        = link_to 'Informações', 'regularizacao'
-                      %li
-                        = link_to 'Requerimento', regularization.new_address_path
-                      %li
-                        = link_to 'Meu Requerimento', regularization.new_candidate_requeriment_path
-                      %li
-                        = link_to '2º Via de Boleto', regularization.new_candidate_requeriment_path
-                      %li
-                        = link_to 'Agendar / Reagendar atendimento', regularization_schedule.portal_agendas_path
+                      - link_each('Participe - Regularizacao') do |l|
+                        %li
+                          = link_to_nav l
                   %li.first
-                    %a{:href => "#", :class => "linkD"} Cidades Consolidadas
+                    %a{:href => "#", :class => "linkD"} Acompanhe
                     %ul.submenu-item
-                      %li
-                        = link_to 'Andamento de sua localidade', 'regularizacao'
-                      %li
-                        = link_to 'Critérios de Habilitação - Regularização em Cidades Consolidadas', 'regularizacao'
-                      %li
-                        = link_to 'Habilitação em Cidades Consolidadas', 'regularizacao'
-                  %li.first
-                    %a{:href => "#", :class => "linkD"} Parcelamentos Informais
-                    %ul.submenu-item
-                      %li
-                        = link_to 'Andamento de sua localidade', 'parcelamentos_informais'
-                      %li
-                        = link_to 'Critérios de Habilitação - Regularização em Parcelamento Informal Consolidado', 'parcelamentos_informais'
-                      %li
-                        = link_to 'Habilitação de Parcelamentos Informais Consolidados', 'parcelamentos_informais'
+                      - link_each('Acompanhe - Regularizacao') do |l|
+                        %li
+                          = link_to_nav l
               %li.entidades.main-link
                 %a{:href => "#"} Entidades
-
+                %ul.submenu
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Participe
+                    %ul.submenu-item
+                      - link_each('Participe - Entidades') do |l|
+                        %li
+                          = link_to_nav l
+                  %li.first
+                    %a{:href => "#", :class => "linkD"} Acompanhe
+                    %ul.submenu-item
+                      - link_each('Acompanhe - Entidades') do |l|
+                        %li
+                          = link_to_nav l
               %li.servicos.main-link
                 %a{:href => "#"} Serviços
                 %ul.submenu
-                  %li.first
-                    %a{:href => "#"} Responsabilidade Social
+                  %li.first.respsocial
+                    %a{:href => "#", :class => "linkD"} Responsabilidade Social
                     %ul.submenu-item
-                      %li.first
-                        = link_to 'Programa de Assistência Técnica', 'Servicos'
+                      - link_each('Social - Servicos') do |l|
+                        %li
+                          = link_to_nav l
                   %li.first
-                    %a{:href => "#"} Consulta
+                    %a{:href => "#", :class => "linkD"} Ferramentas
                     %ul.submenu-item
-                      %li.first
-                        = link_to 'Certidão Positiva', portal.root_path
+                      - link_each('Ferramentas - Servicos') do |l|
+                        %li
+                          = link_to_nav l
 
               %li.editais.main-link
                 %a{:href => "#"} Editais

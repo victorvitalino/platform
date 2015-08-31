@@ -12,7 +12,7 @@ module ConcoursePortal
     private
 
     def authenticate?
-      @candidate = Concourse::Candidate.where(id: self.subscribe, password: self.password) 
+      @candidate = Concourse::Candidate.where(protocol: self.subscribe, password: self.password) 
       if @candidate.present?
         self._id = @candidate.first.id
       else

@@ -1,0 +1,14 @@
+= simple_form_for [@project, @candidate], url: project_subscribes_password_edit_path(@project), method: :put do |f|
+  .row
+    .col-md-4
+      = f.input :password, hint: 'Digite a nova senha'
+  .row
+    .col-md-4
+      = f.input :confirmation_password, hint: "Repita a nova senha"
+  .row
+    .col-md-4
+      = f.input :current_password, hint: "Por motivos de segurança informe sua senha atual"
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Atualizar minha senha", class: 'btn btn-default'

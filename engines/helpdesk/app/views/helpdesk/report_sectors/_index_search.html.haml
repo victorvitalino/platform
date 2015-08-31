@@ -27,8 +27,6 @@
             %td
               = a.created_at.strftime("%d/%m/%Y - %H:%M")
             %td
-              = a.finalized_in ? a.finalized_in.strftime("%d/%m/%Y - %H:%M") : 'ainda não finalizado' 
+              = a.finalized_in ? a.finalized_in.strftime("%d/%m/%Y - %H:%M") : 'ainda não finalizado'
             %td
-              = distance_of_time_in_words(a.created_at.to_i, a.finalized_in.to_i)
-
-        
+              = a.finalized_in.present? ? distance_of_time_in_words(a.created_at.to_i, a.finalized_in.to_i) : 'ainda não finalizado'

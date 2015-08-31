@@ -29,7 +29,7 @@
                     - @subscribes.each_with_index do |subscribe, index|
                       %tr
                         %td.col-md-1= index + 1
-                        %td= subscribe.id
+                        %td= subscribe.protocol
                         %td= subscribe.created_at.strftime("%d/%m/%Y às %H:%M")
                         %td= link_to "Resetar minha senha"
                   - else
