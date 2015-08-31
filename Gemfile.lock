@@ -219,12 +219,9 @@ GEM
       rails (>= 3.1.1)
     email_validator (1.6.0)
       activemodel
-    enum_help (0.0.14)
     erubis (2.7.0)
     eventmachine (1.0.7)
     execjs (2.5.2)
-    figaro (1.1.1)
-      thor (~> 0.14)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     globalid (0.3.5)
@@ -371,8 +368,6 @@ DEPENDENCIES
   devise
   devise_security_extension
   email_validator
-  enum_help
-  figaro
   finance!
   friendly_id
   haml-rails

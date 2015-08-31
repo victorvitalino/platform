@@ -21,7 +21,6 @@ gem 'mini_magick'
 
 gem 'friendly_id'
 gem 'remotipart', '~> 1.2'
-gem 'enum_help'
 
 gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
@@ -38,7 +37,6 @@ gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
-  gem 'figaro'
   gem 'thin'
 end
 

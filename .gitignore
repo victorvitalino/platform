@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 /public/uploads/*
-/config/application.yml
+/config/database.yml
 /lib/files/migrate/current
 /public/assets
 /public/barcodes/*
