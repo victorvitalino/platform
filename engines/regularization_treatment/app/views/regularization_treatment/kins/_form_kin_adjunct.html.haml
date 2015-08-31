@@ -1,0 +1,20 @@
+.row
+  .col-md-6
+    = f.label :civil_state, class: 'fg-label'
+    = f.association :civil_state, label: false, prompt: 'selecione...'
+  .col-md-6
+    = f.label :income, class: 'fg-label'
+    = f.input :income, label: false
+.row
+  .col-md-4
+    = f.label :kinship, class: 'fg-label'
+    = f.association :kinship, label: false, prompt: 'selecione...'
+  .col-md-4
+    .checkbox.m-b-15
+      %label
+        = f.check_box :copurchaser_flag
+        %i.input-helper
+        = f.label :copurchaser_flag, class: 'fg-label'
+  .col-md-2
+    = f.label :percent, class: 'fg-label'
+    = f.input :percent, label: false

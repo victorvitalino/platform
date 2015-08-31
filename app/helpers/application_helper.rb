@@ -1,7 +1,4 @@
 module ApplicationHelper
-  def link_to_nav(param, param2)
-  end
-
   def users_list
     @query = Person::Staff.includes(:sector_current).all.order(:name)
     @query.each do |u|

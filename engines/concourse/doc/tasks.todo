@@ -1,0 +1,26 @@
+## concursos
+
+- [ ] texto do botão de realizar acesso
+- [ ] campo para manipular data de inicio e fim de consultas
+- [ ] campo para texto explicativo sobre consultas
+- [ ] ordem dos menus atráves de botões
+- [ ] montar texto explicativo em tipo de inscrição
+- [ ] vincular boleto gerado de inscrição com tipos de boleto
+- [ ] homologação de candidato por inscrição
+- [ ] trocar minha senha do candidato do concurso
+- [ ] verificar sobre 'protocolo' do candidato para realizar seu login
+- [ ] verificar sobre tamanho do slider na tela principal
+- [ ] validações de campos dinâmicos
+- [ ] botão para excluir campo dinâmico
+- [ ] traduzir todas as telas
+- [ ] escrever as permissões
+
+
+## portal
+
+- [ ] fazer dump do banco de dados do cms
+- [ ] escrever rake task para migração de cms corrigindo campos necessários
+- [ ] fazer dump do redactor 
+- [ ] escrever rake task para migração de redactor
+- [ ] migrar todos os dados e vincular as imagens
+- [ ] corrigir e montar os menus principais
