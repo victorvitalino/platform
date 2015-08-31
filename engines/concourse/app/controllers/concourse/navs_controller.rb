@@ -24,6 +24,19 @@ module Concourse
     def edit
     end
 
+    def change_order
+      @current_nav = Nav.unscoped.find(params[:nav_id])
+      @next_nav    = Nav.unscoped.find(params[:next_nav_id])
+
+      current_order = @current_nav.order
+      next_order    = @next_nav.order
+      
+      @current_nav.update(order: next_order)
+      @next_nav.update(order: current_order)
+
+      redirect_to project_path(id: @project, q: 'menus', css_order: @current_nav.id)
+    end
+
     # POST /navs
     def create
       @nav = @project.navs.new(nav_params)
@@ -57,7 +70,7 @@ module Concourse
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_nav
-        @nav = @project.navs.find(params[:id])
+        @nav = @project.navs.unscoped.find(params[:id])
       end
 
       def set_project
@@ -66,7 +79,7 @@ module Concourse
 
       # Only allow a trusted parameter "white list" through.
       def nav_params
-        params.require(:nav).permit(:project_id, :label,:page_id, :url, :target, :action)
+        params.require(:nav).permit(:project_id, :label,:page_id, :url, :target, :action, :publish)
       end
   end
 end

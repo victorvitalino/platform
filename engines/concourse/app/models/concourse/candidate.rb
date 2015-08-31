@@ -3,9 +3,7 @@ module Concourse
     belongs_to :state, class_name: "Address::State"
     belongs_to :subscribe
     
-    attr_accessor :confirmation_password
-
-
+    attr_accessor :confirmation_password, :current_password
     
     enum gender: [:masculino, :feminino]
     enum status: [:processando, :homologado, :indeferido]
@@ -24,12 +22,18 @@ module Concourse
     validates :celphone, numericality: true, allow_blank: true
     validates :email, email: true, presence: true
     validates :cnpj, cnpj: true, presence: true, if: :juridical_person?
-    
-    validate :compare_password
+    validates :current_password, presence: true, on: :update
+   
+    validate  :compare_password
+    validate  :validate_current_password, on: :update
 
+    after_create :set_protocol
 
-    def protocol
-      "CODHAB#{self.id}#{self.created_at.strftime('%Y')}"
+    def paid?
+        type = self.subscribe.type_guide.id
+        cpf  = self.cpf
+
+        Finance::PaymentGuide.where(type_guide_id: type, cpf: cpf, status: true).present?
     end
 
     private
@@ -46,6 +50,15 @@ module Concourse
 
     def compare_password
       errors.add(:confirmation_password, 'senha não confere') unless self.password == self.confirmation_password
+    end
+
+    def set_protocol
+      update(protocol: "codhab#{self.id}#{self.created_at.strftime('%Y')}")
+    end
+
+    def validate_current_password
+        @candidate = Concourse::Candidate.find(self.id)
+        errors.add(:current_password, 'senha não coincide com a senha atual') if @candidate.password != self.current_password
     end
   end
 end

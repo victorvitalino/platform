@@ -27,8 +27,11 @@
               %tbody
                 %tr
                   %th= @candidate.status
-                  %th
-                  %th= link_to "imprimir boleto", project_subscribes_bank_slip_path(@project), target: '_blank'
+                  %th= @candidate.paid? ? 'Boleto Pago' : 'Boleto não pago'
+                  - if @candidate.paid?
+                    %th= link_to "imprimir comprovante", project_subscribes_bank_slip_path(@project), target: '_blank'
+                  - else
+                    %th= link_to "imprimir boleto", project_subscribes_bank_slip_path(@project), target: '_blank'
       
 
         %h5 Informações pessoais
@@ -46,7 +49,7 @@
                 %tr
                   %td= @candidate.name.upcase
                   %td= @candidate.cpf
-                  %td= @candidate.born.strftime('%d/%m/%Y')
+                  %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
                   %td= @candidate.gender
     
         %h5 Informações de contato

@@ -1,0 +1,29 @@
+#subscribes.tab-pane{:class => (params[:q] == 'tipo_inscricoes') ? 'active' : '', :role => "tabpanel"}
+  .card
+    .row
+      .col-md-12
+        = link_to "Novo Tipo", new_project_subscribe_path(@project), class: 'btn btn-success btn-sm'
+    %br/
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table.table.table-striped.table-hover.datatable
+        %thead
+          %tr.info
+            %th.col-md-1 #
+            %th Título
+            %th Início
+            %th Fim
+            %th Taxa de inscrição
+            %th Publicada?
+            %th Ações
+        %tbody
+          - @project.subscribes.each_with_index do |subscribe, index|
+            %tr
+              %td= index + 1
+              %td= subscribe.title
+              %td= subscribe.start.strftime('%d/%m/%Y')
+              %td= subscribe.end.strftime('%d/%m/%Y')
+              %td= number_to_currency subscribe.type_guide.value if subscribe.fee && subscribe.type_guide.present?
+              %td= subscribe.publish ? 'publicado' : 'não publicado'
+              %td.col-md-2
+                = link_to "", edit_project_subscribe_path(project_id: @project, id: subscribe),class: 'md md-edit btn btn-primary'
+                = link_to "", project_subscribe_path(project_id: @project, id: subscribe), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) } 

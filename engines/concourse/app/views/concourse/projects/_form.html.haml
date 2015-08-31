@@ -37,21 +37,34 @@
       .col-md-2
         .toggle-switch{"data-ts-color" => "blue"}
           %label
-            .ts-label{:for => "slider"}
-              = f.label :slider
-          %br
-          %br
-          = f.check_box :slider, id: 'slider',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "slider"}
-      .col-md-2
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
             .ts-label{:for => "consultation"}
               = f.label :consultation
           %br
           %br
           = f.check_box :consultation, id: 'consultation',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "consultation"}
+      .col-md-2
+        = f.label 'Início de consultas', class: 'fg-label'
+        = f.input :consultation_start,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.consultation_start) ? localize(f.object.consultation_start) : nil}
+      .col-md-2
+        = f.label 'Fim de consultas', class: 'fg-label'
+        = f.input :consultation_end,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.consultation_end) ? localize(f.object.consultation_end) : nil}
+    %br/
+    .row
+      .col-md-12
+        = f.label :consultation_description, class: 'fg-label'
+        = f.input :consultation_description, as: :text,label: false, input_html: { class: 'redactor' }
+    %hr/
+    .row
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "slider"}
+              = f.label :slider
+          %br
+          %br
+          = f.check_box :slider, id: 'slider',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "slider"}
       .col-md-2
         .toggle-switch{"data-ts-color" => "blue"}
           %label

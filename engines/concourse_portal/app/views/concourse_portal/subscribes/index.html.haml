@@ -1,6 +1,6 @@
 .row
   .col-md-5
-    .panel.panel-primary
+    .panel.panel-warning
       .panel-heading
         Quero me inscrever
       .panel-body
@@ -15,7 +15,7 @@
                 - else
                   = link_to subscribe.title, concourse_portal.new_project_subscribe_candidate_subscribe_path(project_id: @project, subscribe_id: subscribe), class: 'list-group-item'
   .col-md-5
-    .panel.panel-primary
+    .panel.panel-warning
       .panel-heading
         Já realizei a minha inscrição
       .panel-body
@@ -32,4 +32,4 @@
               = f.hint link_to "Esqueci minha senha", project_subscribes_remember_path(@project)
           .row
             .col-md-12
-              = f.button :submit
+              = f.submit 'Realizar acesso', class: 'btn btn-default'
