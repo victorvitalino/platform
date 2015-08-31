@@ -6,7 +6,7 @@ module Concourse
     friendly_id :title, use: :slugged
     
     default_scope { where('publish = true AND step <> 0' ) }
-    
+    scope :sliders, -> {where(slider: true)}
     scope :active, -> { where(status: true )}
     
     has_many :pages
