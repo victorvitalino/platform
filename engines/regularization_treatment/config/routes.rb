@@ -3,6 +3,8 @@ RegularizationTreatment::Engine.routes.draw do
   resources :requeriments
   resources :addresses
   resources :cadastres
-  resources :checklists
   resources :kins
+  resources :checklist_treatments
+  resources :cadastre_procedural_statuses
+
 end

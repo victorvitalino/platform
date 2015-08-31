@@ -22,10 +22,10 @@
 .row
   .col-md-3
     = f.label :state, class: 'fg-label'
-    = f.association :state, label: false, prompt: 'selecione...'
+    = f.input :state, label:false, as: :select, collection: Address::State.all, prompt: 'selecione a cidade...'
   .col-md-3
     = f.label :city, class: 'fg-label'
-    = f.association :city, label: false, prompt: 'selecione...'
+    = f.input :city, label: false, as: :select, collection: (@cadastre.adjunct_cadastre.state.present?) ? Address::City.select(:city).where(state_id: @cadastre.adjunct_cadastre.state) : {}, label_method: :block, value_method: :block, prompt: 'selecione a cidade...', input_html: { value:  @cadastre.adjunct_cadastre.state}
   .col-md-3
     = f.label :cep, class: 'fg-label'
     = f.input :cep, label: false
@@ -86,3 +86,27 @@
   .col-md-2
     = f.label :number_address_work, class: 'fg-label'
     = f.input :number_address_work, label: false
+
+:javascript
+
+  $(document).ready(function() {
+
+    $("#cadastre_adjunct_cadastre_attributes_state").on('change', function(){
+
+      $.getJSON("#{address.cities_path}?state_id=" + $(this).val(), function(data) {
+
+        html = "<option value>selecione...</option>"
+        if(data.length > 0) {
+          console.log(data)
+          for(var i = 0; i < data.length; i++) {
+            html += "<option value='"+data[i].block+"'>"+data[i].block+"</option>"
+          }
+
+        } else {
+          html = "<option value>Não foram encontradas cidades</option>"
+        }
+        $("#cadastre_adjunct_cadastre_attributes_city").html(html);
+      });
+     });
+
+

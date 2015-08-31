@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829194257) do
+ActiveRecord::Schema.define(version: 20150831193353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -237,6 +237,20 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "candidate_cadastre_procedural_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.text     "observation"
+    t.integer  "adjunct_cadastre_id"
+    t.integer  "procedural_status_id"
+    t.integer  "convocation_id"
+    t.integer  "assessment_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "candidate_cadastre_procedural_statuses", ["assessment_id"], name: "index_candidate_cadastre_procedural_statuses_on_assessment_id", using: :btree
+  add_index "candidate_cadastre_procedural_statuses", ["convocation_id"], name: "index_candidate_cadastre_procedural_statuses_on_convocation_id", using: :btree
+
   create_table "candidate_cadastres", force: :cascade do |t|
     t.string   "cpf"
     t.integer  "gender",      default: 0
@@ -250,6 +264,37 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "candidate_checklist_treatments", force: :cascade do |t|
+    t.boolean  "status"
+    t.integer  "checklist_id"
+    t.integer  "attendance_cadastre_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "candidate_checklist_treatments", ["attendance_cadastre_id"], name: "index_candidate_checklist_treatments_on_attendance_cadastre_id", using: :btree
+  add_index "candidate_checklist_treatments", ["checklist_id"], name: "index_candidate_checklist_treatments_on_checklist_id", using: :btree
+
+  create_table "candidate_checklist_types", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "candidate_checklists", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "help"
+    t.boolean  "status"
+    t.integer  "checklist_type_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "candidate_checklists", ["checklist_type_id"], name: "index_candidate_checklists_on_checklist_type_id", using: :btree
 
   create_table "candidate_civil_states", force: :cascade do |t|
     t.string   "name"
@@ -277,7 +322,7 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.string   "income"
     t.string   "percent"
     t.integer  "kin_type_id"
-    t.integer  "civil_status_id"
+    t.integer  "civil_state_id"
     t.integer  "kin_id"
     t.integer  "kinship_id"
     t.boolean  "copurchaser_flag"
@@ -285,7 +330,7 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "candidate_kin_adjuncts", ["civil_status_id"], name: "index_candidate_kin_adjuncts_on_civil_status_id", using: :btree
+  add_index "candidate_kin_adjuncts", ["civil_state_id"], name: "index_candidate_kin_adjuncts_on_civil_state_id", using: :btree
   add_index "candidate_kin_adjuncts", ["kin_id"], name: "index_candidate_kin_adjuncts_on_kin_id", using: :btree
   add_index "candidate_kin_adjuncts", ["kin_type_id"], name: "index_candidate_kin_adjuncts_on_kin_type_id", using: :btree
   add_index "candidate_kin_adjuncts", ["kinship_id"], name: "index_candidate_kin_adjuncts_on_kinship_id", using: :btree
@@ -315,6 +360,13 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "candidate_procedural_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "candidate_special_conditions", force: :cascade do |t|

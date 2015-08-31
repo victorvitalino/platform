@@ -4,9 +4,9 @@ module Candidate
     belongs_to :civil_state
     belongs_to :kinship
 
-  
 
-    validates_presence_of :income
+
+    validates_presence_of :income, :kinship
 
   end
 end

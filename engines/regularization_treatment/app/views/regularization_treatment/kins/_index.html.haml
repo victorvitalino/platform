@@ -1,0 +1,10 @@
+.table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+  %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+    %thead
+      %tr
+        %th Nome
+        %th CPF
+        %th Ações
+    %tbody.index-kin
+      - if @kins.present?
+        = render 'index_kin'
