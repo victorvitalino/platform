@@ -1,3 +1,4 @@
+%br/
 %fieldset
   .row
     .col-md-2
@@ -36,3 +37,8 @@
         %br
         = f.check_box :only_number, id: "only_number_#{f.object_id}",hidden: 'hidden', type: 'checkbox'
         %label.ts-helper{:for => "only_number_#{f.object_id}"}
+  .row 
+    .col-md-12
+      = f.hidden_field :_destroy
+      = link_to "remover", '#', class: "remove_fields btn btn-danger btn-xs"
+  %br/

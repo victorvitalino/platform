@@ -442,6 +442,7 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.integer  "state_id"
     t.integer  "subscribe_id"
     t.text     "properties"
+    t.string   "protocol"
     t.text     "observation"
     t.integer  "status",        default: 0
     t.datetime "created_at",                null: false
