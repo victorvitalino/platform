@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "candidate_adjunct_cadastres", force: :cascade do |t|
+  create_table "candidate_adjuct_cadastres", force: :cascade do |t|
     t.string   "name"
     t.string   "telephone"
     t.string   "telephone_optional"
@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.integer  "city_id"
     t.integer  "state_id"
     t.string   "address"
-    t.string   "adjunct_address"
+    t.string   "adjunt_address"
     t.string   "number_address"
     t.float    "income"
     t.string   "work"
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.integer  "city_work_id"
     t.integer  "state_work_id"
     t.string   "address_work"
-    t.string   "adjunct_address_work"
+    t.string   "adjunt_address_work"
     t.string   "number_address_work"
     t.string   "nis"
     t.string   "cid"
@@ -209,13 +209,13 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.datetime "updated_at",                             null: false
   end
 
-  add_index "candidate_adjunct_cadastres", ["cadastre_id"], name: "index_candidate_adjunct_cadastres_on_cadastre_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["city_id"], name: "index_candidate_adjunct_cadastres_on_city_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["city_work_id"], name: "index_candidate_adjunct_cadastres_on_city_work_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["civil_state_id"], name: "index_candidate_adjunct_cadastres_on_civil_state_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["special_condition_id"], name: "index_candidate_adjunct_cadastres_on_special_condition_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["state_id"], name: "index_candidate_adjunct_cadastres_on_state_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["state_work_id"], name: "index_candidate_adjunct_cadastres_on_state_work_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["cadastre_id"], name: "index_candidate_adjuct_cadastres_on_cadastre_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["city_id"], name: "index_candidate_adjuct_cadastres_on_city_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["city_work_id"], name: "index_candidate_adjuct_cadastres_on_city_work_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["civil_state_id"], name: "index_candidate_adjuct_cadastres_on_civil_state_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["special_condition_id"], name: "index_candidate_adjuct_cadastres_on_special_condition_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["state_id"], name: "index_candidate_adjuct_cadastres_on_state_id", using: :btree
+  add_index "candidate_adjuct_cadastres", ["state_work_id"], name: "index_candidate_adjuct_cadastres_on_state_work_id", using: :btree
 
   create_table "candidate_attendance_cadastres", force: :cascade do |t|
     t.integer  "adjuct_cadastre_id"
@@ -487,8 +487,9 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.integer  "target"
     t.integer  "action"
     t.boolean  "publish"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "order",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "concourse_navs", ["page_id"], name: "index_concourse_navs_on_page_id", using: :btree
@@ -528,18 +529,21 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.text     "apresentation"
     t.date     "start"
     t.date     "end"
-    t.boolean  "publish"
-    t.boolean  "status"
+    t.boolean  "publish",                  default: false
+    t.boolean  "status",                   default: false
     t.string   "image_header"
     t.string   "image_logo"
     t.string   "image_footer"
     t.string   "image_slider"
-    t.boolean  "slider"
-    t.boolean  "consultation"
+    t.boolean  "slider",                   default: false
+    t.boolean  "consultation",             default: false
+    t.date     "consultation_start"
+    t.date     "consultation_end"
+    t.text     "consultation_description"
     t.string   "slug"
-    t.integer  "step",             default: 0
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "step",                     default: 0
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "concourse_subscribes", force: :cascade do |t|
@@ -1061,7 +1065,6 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.string   "spouse_name"
     t.string   "spouse_cpf"
     t.boolean  "owner",            default: false
-    t.boolean  "status",           default: false
     t.integer  "unit_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
@@ -1089,7 +1092,6 @@ ActiveRecord::Schema.define(version: 20150829194257) do
     t.string   "validate_sql"
     t.integer  "validate_type"
     t.boolean  "validate_agenda"
-    t.boolean  "weekend"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end

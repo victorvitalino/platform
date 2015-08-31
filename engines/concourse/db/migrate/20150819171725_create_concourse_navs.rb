@@ -8,6 +8,7 @@ class CreateConcourseNavs < ActiveRecord::Migration
       t.integer :target
       t.integer :action
       t.boolean :publish
+      t.integer :order, default: 0
 
       t.timestamps null: false
     end

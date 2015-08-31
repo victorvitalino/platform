@@ -1,7 +1,10 @@
 Concourse::Engine.routes.draw do
   resources :projects do 
     resources :pages
-    resources :navs
+    resources :navs do 
+      get 'change_order'
+    end
+
     resources :subscribes
     resources :participations
     resources :consults

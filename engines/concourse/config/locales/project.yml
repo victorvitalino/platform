@@ -8,6 +8,12 @@ pt-BR:
               invalid_date: 'Data inválida'
             end:
               invalid_date: 'Data inválida'
+            consultation_start:
+              invalid_date: 'Data inválida'
+              before: "Data não pode ser igual ou maior que data fim"
+            consultation_end:
+              invalid_date: 'Data inválida'
+              after: 'Data não pode ser igual ou menor que data início'
 
 
     models:
@@ -26,5 +32,8 @@ pt-BR:
         image_footer: "Rodapé"
         image_slider: "Imagem Rotativa"
         slider: "Imagem Rotativa?"
-        consultation: "Consulta"
+        consultation: "Consulta ativa?"
+        consultation_start: "Início de consultas"
+        consultation_end: "Fim de consultas"
+        consultation_description: "Texto de obsevação de consultas"
         step: 'Etapa'

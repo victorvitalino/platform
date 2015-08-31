@@ -6,7 +6,7 @@
   - else
     - if @project.aberto?
       = link_to "Inscrição", concourse_portal.project_subscribes_path(@project), class: "list-group-item #{(@current_nav == 'new_subscribe') ? 'active' : ''}"
-  - if @project.consultation
+  - if @project.consultation && @project.consultation_time?
     = link_to "Enviar consulta", concourse_portal.new_project_consult_path(@project), class: "list-group-item #{(@current_nav == 'new_consult') ? 'active' : ''}" 
 .list-group
   = link_to "Início", concourse_portal.project_path(@project), class: 'list-group-item' 
