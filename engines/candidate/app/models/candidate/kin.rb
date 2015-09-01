@@ -5,19 +5,19 @@ module Candidate
     has_one :kin_adjunct
 
     accepts_nested_attributes_for :kin_adjunct
-    
+
     belongs_to :special_condition
 
     validates_presence_of :name,:born
 
-    validates :rg_uf, length: { is: 2 }
+    #validates :rg_uf, length: { is: 2 }, if: "rg.nil?"
 
-    validates_presence_of :cpf, :if => :old?
+   # validates_presence_of :cpf, :if => :old?
 
-   def old?
-     old = advance(:born => -18)
-     old >= 18
-   end
+   #def old?
+    # old = advance(:born => -18)
+    # old >= 18
+   #end
 
   end
 end

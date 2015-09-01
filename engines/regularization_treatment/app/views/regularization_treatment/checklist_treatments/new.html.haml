@@ -1,0 +1,18 @@
+= render 'layouts/regularization_treatment/steps'
+.row
+  .col-md-12
+    .card
+      .card-body.card-padding
+        .row
+          .col-md-12
+            %h3
+              %b Preenchimento Checklist
+        %hr/
+        - if @candidate.present?
+          .row
+            .col-md.12
+              %h5
+                = @candidate.adjunct_cadastre.name if @candidate.adjunct_cadastre.present?
+              %h5
+                = @candidate.cpf
+        = render "form"

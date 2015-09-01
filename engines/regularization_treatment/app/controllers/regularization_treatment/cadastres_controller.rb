@@ -9,9 +9,8 @@ module RegularizationTreatment
 
     def create
       @cadastre = Regularization::Cadastre.new(set_params)
-      @cadastre.build_adjunct_cadastre
       if @cadastre.save
-
+        render new_kin_path
       else
         render action: 'new'
       end
@@ -25,7 +24,11 @@ module RegularizationTreatment
     end
 
     def set_params
-      params.require(:cadastre).permit(:cpf)
+      params.require(:cadastre).permit(:id,:rg,:place_birth,:born,:cpf,
+                                                          adjunct_cadastre_attributes: [:id,:name,:civil_state_id,:flag_special_condition,:special_condition_id,
+                                                          :cid,:state_id,:city_id,:cep, :address,:adjunct_address,:number_address, :income,:nis,:telephone,:telephone_optional,
+                                                          :celphone,:email,:work,:cep_work,:address_work,:adjunct_address_work,:number_address_work,
+                                                          :city_work_id,:state_work_id])
     end
   end
 end

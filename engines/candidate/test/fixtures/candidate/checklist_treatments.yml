@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: false
+  checklist_id: 
+  cadastre_treatment_id: 
+
+two:
+  status: false
+  checklist_id: 
+  cadastre_treatment_id: 
