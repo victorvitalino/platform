@@ -4,7 +4,7 @@
       - @checklist.each do |a|
         .checkbox.m-b-15
           %label
-            = f.check_box :checklist
+            = f.check_box :checklist, name: "checklist_treatment[#{a.id}]"
             %i.input-helper
             = f.label a.name, class: 'fg-label'
   %hr/

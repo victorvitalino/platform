@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/kin': Dependente
+    attributes:
+      'candidate/kin':
+        name: "Nome"
+        cpf: "CPF"
+        born: "Data de Nascimento"
+        rg_uf: "UF do RG"
+        rg: "RG"
+        rg_org: "Orgão Emissor"
+        place_birth: "Naturalidade"
+        flag_special_condition: "Condição Especial?"
+        gender: "Sexo"

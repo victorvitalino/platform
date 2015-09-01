@@ -3,7 +3,7 @@ module Address
 
     def cities
        return false unless params[:state_id].present?
-      @cities = Address::City.select(:name).where(state_id: params[:state_id]).order(:name).distinct
+      @cities = Address::City.select(:name, :id).where(state_id: params[:state_id]).order(:name).distinct
 
       render json: @cities
     end

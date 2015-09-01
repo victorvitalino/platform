@@ -8,11 +8,16 @@
             %h3
               %b Preenchimento Checklist
         %hr/
-        - if @candidate.present?
+        - if @cadastre.present?
           .row
-            .col-md.12
+            .col-md-4
               %h5
-                = @candidate.adjunct_cadastre.name if @candidate.adjunct_cadastre.present?
+                %b Nome
               %h5
-                = @candidate.cpf
+                = @cadastre.adjunct_cadastre.name if @cadastre.adjunct_cadastre.present?
+            .col-md-4
+              %h5
+                %b CPF
+              %h5
+                = @cadastre.cpf
         = render "form"

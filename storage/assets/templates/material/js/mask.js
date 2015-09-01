@@ -17,4 +17,38 @@ $(document).ready(function(){
   });
 
   $('.carousel').carousel();
+
+  $("#state_id").on('change', function(){
+
+      $.getJSON("/endereco/city?state_id=" + $(this).val(), function(data) {
+        html = "<option value>selecione...</option>"
+        if(data.length > 0) {
+          for(var i = 0; i < data.length; i++) {
+            html += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+          }
+
+        } else {
+          html = "<option value>Não foram encontradas cidades</option>"
+        }
+
+        $("#city_id").html(html);
+      });
+    });
+
+    $("#second_state_id").on('change', function(){
+
+      $.getJSON("/endereco/city?state_id=" + $(this).val(), function(data) {
+        html = "<option value>selecione...</option>"
+        if(data.length > 0) {
+          for(var i = 0; i < data.length; i++) {
+            html += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+          }
+
+        } else {
+          html = "<option value>Não foram encontradas cidades</option>"
+        }
+
+        $("#second_city_id").html(html);
+      });
+    });
 });

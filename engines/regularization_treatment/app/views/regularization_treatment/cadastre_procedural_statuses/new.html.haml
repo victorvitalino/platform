@@ -8,4 +8,11 @@
             %h3
               %b Finalizar atendimento
         %hr/
+        - if @cadastre.present?
+          .row
+            .col-md.12
+              %h5
+                = @cadastre.adjunct_cadastre.name if @cadastre.adjunct_cadastre.present?
+              %h5
+                = @cadastre.cpf
         = render "form"

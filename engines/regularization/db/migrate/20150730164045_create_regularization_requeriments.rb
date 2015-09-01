@@ -17,6 +17,7 @@ class CreateRegularizationRequeriments < ActiveRecord::Migration
       t.string  :spouse_cpf
       t.boolean :owner, default: false
       t.boolean :status, default: false
+      t.references :convocation, index: true
 
       t.references :unit, index: true
       t.timestamps null: false

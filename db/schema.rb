@@ -310,12 +310,15 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.integer  "quantity"
     t.text     "discretion"
     t.boolean  "stauts",            default: true
+    t.integer  "tipe"
     t.string   "legacy_pontuation"
     t.integer  "pontuation_id"
+    t.integer  "city_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
 
+  add_index "candidate_convocations", ["city_id"], name: "index_candidate_convocations_on_city_id", using: :btree
   add_index "candidate_convocations", ["pontuation_id"], name: "index_candidate_convocations_on_pontuation_id", using: :btree
 
   create_table "candidate_kin_adjuncts", force: :cascade do |t|
@@ -494,7 +497,6 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.integer  "state_id"
     t.integer  "subscribe_id"
     t.text     "properties"
-    t.string   "protocol"
     t.text     "observation"
     t.integer  "status",        default: 0
     t.datetime "created_at",                null: false
@@ -540,9 +542,8 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.integer  "target"
     t.integer  "action"
     t.boolean  "publish"
-    t.integer  "order",      default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "concourse_navs", ["page_id"], name: "index_concourse_navs_on_page_id", using: :btree
@@ -582,21 +583,18 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.text     "apresentation"
     t.date     "start"
     t.date     "end"
-    t.boolean  "publish",                  default: false
-    t.boolean  "status",                   default: false
+    t.boolean  "publish"
+    t.boolean  "status"
     t.string   "image_header"
     t.string   "image_logo"
     t.string   "image_footer"
     t.string   "image_slider"
-    t.boolean  "slider",                   default: false
-    t.boolean  "consultation",             default: false
-    t.date     "consultation_start"
-    t.date     "consultation_end"
-    t.text     "consultation_description"
+    t.boolean  "slider"
+    t.boolean  "consultation"
     t.string   "slug"
-    t.integer  "step",                     default: 0
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.integer  "step",             default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "concourse_subscribes", force: :cascade do |t|
@@ -1119,11 +1117,13 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.string   "spouse_cpf"
     t.boolean  "owner",            default: false
     t.boolean  "status",           default: false
+    t.integer  "convocation_id"
     t.integer  "unit_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
 
+  add_index "regularization_requeriments", ["convocation_id"], name: "index_regularization_requeriments_on_convocation_id", using: :btree
   add_index "regularization_requeriments", ["unit_id"], name: "index_regularization_requeriments_on_unit_id", using: :btree
 
   create_table "regularization_schedule_agendas", force: :cascade do |t|

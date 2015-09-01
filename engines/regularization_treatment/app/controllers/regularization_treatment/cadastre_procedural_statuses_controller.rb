@@ -1,5 +1,6 @@
 module RegularizationTreatment
   class CadastreProceduralStatusesController < ApplicationController
+    before_action :set_cadastre
     before_action :set_step
 
     def new
@@ -18,6 +19,15 @@ module RegularizationTreatment
     end
 
     private
+
+    def set_cadastre
+      if session[:cadastre_id].present?
+        @cadastre = Candidate::Cadastre.find(session[:cadastre_id])
+      else
+        flash[:info] = "É necessario preencher o cadastro."
+        redirect_to new_cadastre_path
+      end
+    end
 
     def set_step
       @step = "final"

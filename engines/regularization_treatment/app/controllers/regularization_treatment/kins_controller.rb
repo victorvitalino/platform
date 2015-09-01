@@ -1,14 +1,15 @@
 module RegularizationTreatment
   class KinsController < ApplicationController
+    before_action :set_cadastre
     before_action :set_step
-    before_action :set_kins
+
     def new
-      @kin = Candidate::Kin.new
+      @kin = @cadastre.kins.new
       @kin.build_kin_adjunct
     end
 
     def create
-      @kin = Candidate::Kin.new(set_params)
+      @kin = @cadastre.kins.new(set_params)
       if @kin.save
         render action: 'new'
       else
@@ -23,8 +24,13 @@ module RegularizationTreatment
       @step = "kin"
     end
 
-    def set_kins
-      @kins = Candidate::Kin.where(cadastre_id: @cadastre)
+    def set_cadastre
+      if session[:cadastre_id].present?
+        @cadastre = Candidate::Cadastre.find(session[:cadastre_id])
+      else
+        flash[:info] = "É necessario preencher o cadastro."
+        redirect_to new_cadastre_path
+      end
     end
 
     def set_params

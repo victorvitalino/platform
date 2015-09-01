@@ -4,6 +4,6 @@ module Regularization
 
      accepts_nested_attributes_for :adjunct_cadastre
 
-     validates_presence_of :rg, :place_birth, :born, :arrival_df
+     validates_presence_of :rg, :place_birth, :born
    end
 end

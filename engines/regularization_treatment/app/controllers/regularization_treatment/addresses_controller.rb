@@ -1,8 +1,12 @@
 module RegularizationTreatment
   class AddressesController < ApplicationController
     before_action :set_step
+
     def new
-      @requeriment = Regularization::Requeriment.find(params[:requeriment_id])
+     session[:requeriment_id] = params[:requeriment_id] if params[:requeriment_id].present?
+
+     @requeriment = Regularization::Requeriment.find(session[:requeriment_id])
+
     end
 
     def create

@@ -5,6 +5,8 @@ module RegularizationTreatment
 
     def new
       @consult = Consult.new
+      session[:cadastre_id] = nil if session[:cadastre_id].present?
+      session[:requeriment_id] = nil if session[:requeriment_id].present?
     end
 
     def create
