@@ -1,14 +1,12 @@
-.form-group {
-  margin-top: 0 !important;
-}
 .sidebar-menu .submenu .submenu .submenu a {
   padding-left: 100px;
   background-position: 77px 50%;
 }
 
+/* Update 2014-12-18 */
 .topSlider {
   height: 440px;
-  margin-bottom: 91px;
+  margin-bottom: 46px;
   padding-bottom: 46px;
 }
 .topSlider .flexslider {
@@ -87,8 +85,9 @@ margin-bottom: 6px!important;
 border-bottom: 0 !important;border: none!important; color: #303236 !important;}
 .borders{border:none!important;}
 
+
 /*slider info*/
-.tab-fundo{display:block;background-image: url('/portal/estadio.png');background-repeat: no-repeat;
+.tab-fundo{background-image: url('/images/estadio.png');background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center top;
   background-attachment: fixed; width: 100%;}
@@ -104,9 +103,10 @@ border-bottom: 0 !important;border: none!important; color: #303236 !important;}
 .conquistatgsub{  margin-bottom: -5px!important;}
 .conquistasubt{margin-bottom: 5px;}
 .conq-just{text-align: justify!important;}
-.rogue{display:block}
-.rogue1{display:block}
+.rogue{display:none}
+.rogue1{display:none}
 #footer{margin-top:0px!important;}
+
 .img-thumbpost{width: 500px; margin: 0 auto;display: block;}
 .img-thumbpost img{margin-top: -2px!important;}
 .img-thumbpost strong{text-align: right;display: block;font-size: 10px;font-style: italic;color:#999}

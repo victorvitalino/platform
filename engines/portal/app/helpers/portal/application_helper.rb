@@ -11,6 +11,19 @@ module Portal
       end
     end
 
+    def batata(categories)
+  		@sliderss = categories
+  		if @sliderss == 'habitação'
+  				@sliderss = 'habitacao'
+  		elsif @sliderss == 'regularização'
+  				@sliderss = 'regularizacao'
+  		else
+  			@sliderss = categories
+  		end
+
+  			yield @sliderrs
+  	end
+
     def link_to_nav(nav)
       if nav.pagina?
         link_to nav.name, portal.page_path(nav.link_page), target: "#{(nav.target)}"

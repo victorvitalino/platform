@@ -6023,7 +6023,7 @@ span.label {
     }
 
     .topSlider .flex-caption {
-        width: 400px;
+        width: 500px;
         margin-left: 95px
     }
 
@@ -6167,6 +6167,10 @@ span.label {
         position: relative;
         top: -4px
     }
+    .topSlider .flex-caption {
+            width: 500px!important;
+            margin-left: 95px!important;
+        }
 
     .homeFeature .four h3,
     .homeLatest
