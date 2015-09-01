@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 20150831193353) do
   add_index "candidate_adjunct_cadastres", ["state_work_id"], name: "index_candidate_adjunct_cadastres_on_state_work_id", using: :btree
 
   create_table "candidate_attendance_cadastres", force: :cascade do |t|
-    t.integer  "adjuct_cadastre_id"
+    t.integer  "adjunct_cadastre_id"
     t.integer  "convocation_id"
     t.integer  "attendance_status_id"
     t.boolean  "status",               default: false
@@ -226,7 +226,7 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.datetime "updated_at",                           null: false
   end
 
-  add_index "candidate_attendance_cadastres", ["adjuct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjuct_cadastre_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["adjunct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjunct_cadastre_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendance_status_id"], name: "index_candidate_attendance_cadastres_on_attendance_status_id", using: :btree
   add_index "candidate_attendance_cadastres", ["convocation_id"], name: "index_candidate_attendance_cadastres_on_convocation_id", using: :btree
 

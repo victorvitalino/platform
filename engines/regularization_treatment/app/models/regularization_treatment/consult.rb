@@ -1,7 +1,7 @@
 module RegularizationTreatment
   class Consult
-    include ActiveModel::Model 
-    
+    include ActiveModel::Model
+
     attr_accessor :cpf, :name
 
     validates :cpf, cpf: true, presence: true

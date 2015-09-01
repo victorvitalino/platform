@@ -12,6 +12,7 @@ module RegularizationTreatment
       params[:checklist_treatment].each do |id, value|
         @checklist_treatment = Candidate::ChecklistTreatment.new({checklist_id: id, status: value})
         @checklist_treatment.save
+        Regularization::Cadastre.set_treatment(1,3,@cadastre.adjunct_cadastre.id)
       end
 
       redirect_to action: new

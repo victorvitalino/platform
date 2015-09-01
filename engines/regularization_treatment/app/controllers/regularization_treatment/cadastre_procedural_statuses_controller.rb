@@ -11,6 +11,7 @@ module RegularizationTreatment
     def create
       @cadastre_procedural_status = Candidate::CadastreProceduralStatus.new(set_params)
       if @cadastre_procedural_status.save
+        Regularization::Cadastre.set_treatment(1,4,@cadastre.adjunct_cadastre.id)
         render new_kin_path
       else
         render action: 'new'

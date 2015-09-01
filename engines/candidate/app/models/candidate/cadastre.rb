@@ -10,6 +10,7 @@ module Candidate
     accepts_nested_attributes_for :adjunct_cadastres
 
 
-    validates :cpf, presence:true, cpf: true
+    validates :cpf, presence:true, cpf: true, uniqueness: true
+
   end
 end
