@@ -22,10 +22,10 @@
 .row
   .col-md-3
     = f.label :state, class: 'fg-label'
-    = f.input :state, label:false, as: :select, collection: Address::State.all, prompt: 'selecione a cidade...'
+    = f.association :state, label: false, prompt: 'selecione...'
   .col-md-3
     = f.label :city, class: 'fg-label'
-    = f.input :city, label: false, as: :select, collection: (@cadastre.adjunct_cadastre.state.present?) ? Address::City.select(:city).where(state_id: @cadastre.adjunct_cadastre.state) : {}, label_method: :block, value_method: :block, prompt: 'selecione a cidade...', input_html: { value:  @cadastre.adjunct_cadastre.state}
+    = f.association :city, label: false, prompt: 'selecione...'
   .col-md-3
     = f.label :cep, class: 'fg-label'
     = f.input :cep, label: false
@@ -67,11 +67,11 @@
     = f.input :work, label: false
 .row
   .col-md-3
-    = f.label :state, class: 'fg-label'
-    = f.association :state, label: false, prompt: 'selecione...'
+    = f.label :state_work, class: 'fg-label'
+    = f.association :state_work, label: false, prompt: 'selecione...'
   .col-md-3
-    = f.label :city, class: 'fg-label'
-    = f.association :city, label: false, prompt: 'selecione...'
+    = f.label :city_work, class: 'fg-label'
+    = f.association :city_work, label: false, prompt: 'selecione...'
   .col-md-3
     = f.label :cep_work, class: 'fg-label'
     = f.input :cep_work, label: false
@@ -108,5 +108,3 @@
         $("#cadastre_adjunct_cadastre_attributes_city").html(html);
       });
      });
-
-

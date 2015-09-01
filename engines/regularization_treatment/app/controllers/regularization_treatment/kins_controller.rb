@@ -29,7 +29,7 @@ module RegularizationTreatment
 
     def set_params
       params.require(:kin).permit(:name, :rg, :rg_org, :rg_uf, :gender, :born, :place_birth, :flag_special_condition, :special_condition_id,
-        kin_adjunct_attributes: [:income, :kinship_id, :copurchaser_flag, :percent])
+        kin_adjunct_attributes: [:income, :kinship_id, :copurchaser_flag, :percent, :civil_state_id])
     end
   end
 end
