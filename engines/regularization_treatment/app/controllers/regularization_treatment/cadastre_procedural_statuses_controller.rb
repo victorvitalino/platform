@@ -5,14 +5,15 @@ module RegularizationTreatment
 
     def new
       @cadastre_procedural_status = Candidate::CadastreProceduralStatus.new
-
+      @attendance = ::Candidate::AttendanceCadastre.where(adjunct_cadastre_id: @cadastre.adjunct_cadastre.id)
+      @checklist = Candidate::ChecklistTreatment.where(attendance_cadastre_id: @attendance)
     end
 
     def create
       @cadastre_procedural_status = Candidate::CadastreProceduralStatus.new(set_params)
       if @cadastre_procedural_status.save
-        Regularization::Cadastre.set_treatment(1,4,@cadastre.adjunct_cadastre.id)
-        render new_kin_path
+        @cadastre.set_treatment(1,4,@cadastre.adjunct_cadastre.id)
+        render new_consult_path
       else
         render action: 'new'
       end
@@ -23,7 +24,7 @@ module RegularizationTreatment
 
     def set_cadastre
       if session[:cadastre_id].present?
-        @cadastre = Candidate::Cadastre.find(session[:cadastre_id])
+        @cadastre = Regularization::Cadastre.find(session[:cadastre_id])
       else
         flash[:info] = "É necessario preencher o cadastro."
         redirect_to new_cadastre_path

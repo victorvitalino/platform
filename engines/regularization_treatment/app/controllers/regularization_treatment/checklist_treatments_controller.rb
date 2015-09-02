@@ -9,13 +9,16 @@ module RegularizationTreatment
     end
 
     def create
+      @cadastre.set_treatment(1,3,@cadastre.adjunct_cadastre.id)
+      @attendance = ::Candidate::AttendanceCadastre.where(adjunct_cadastre_id: @cadastre.adjunct_cadastre.id).last
       params[:checklist_treatment].each do |id, value|
         @checklist_treatment = Candidate::ChecklistTreatment.new({checklist_id: id, status: value})
+        @checklist_treatment.attendance_cadastre = @attendance.id
         @checklist_treatment.save
-        Regularization::Cadastre.set_treatment(1,3,@cadastre.adjunct_cadastre.id)
+
       end
 
-      redirect_to action: new
+      redirect_to new_cadastre_procedural_status_path
     end
 
     private

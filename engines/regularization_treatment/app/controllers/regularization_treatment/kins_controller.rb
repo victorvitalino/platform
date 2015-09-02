@@ -11,7 +11,7 @@ module RegularizationTreatment
     def create
       @kin = @cadastre.kins.new(set_params)
       if @kin.save
-        Regularization::Cadastre.set_treatment(1,2,@cadastre.adjunct_cadastre.id)
+        @cadastre.set_treatment(1,2,@cadastre.adjunct_cadastre.id)
         render action: 'new'
       else
         render action: 'new'

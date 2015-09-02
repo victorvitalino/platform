@@ -5,12 +5,12 @@ module Protocol
         before_action :set_allotment, only: [:edit, :destroy, :update]
 
         def index
-           authorize @allotments
+           authorize :allotment,  :index?
         end
 
         def new
             @allotment = Allotment.new
-            authorize @allotment
+            authorize :allotment,  :create?
         end
 
         def create
@@ -25,12 +25,12 @@ module Protocol
         end
 
         def update
-            authorize @allotment
+            authorize :allotment,  :update?
             @allotment.update(allotment_params)
         end
 
         def destroy
-            authorize @allotment
+            authorize :allotment,  :destroy?
             if @allotment.destroy
                 redirect_to action: 'index'
             end

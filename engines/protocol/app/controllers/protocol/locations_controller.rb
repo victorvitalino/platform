@@ -5,17 +5,17 @@ module Protocol
         before_action :set_location, only: [:edit, :destroy, :update]
         before_action :set_assessment, only: [:index,:new,:edit]
         def index
-           #authorize @locations
+           authorize :conduct,  :index?
 
         end
 
         def new
             @location = Location.new
-            authorize @location
+             authorize :conduct,  :create?
         end
 
         def create
-            authorize @location
+            authorize :conduct,  :create?
             @assessment = Protocol::Assessment.find(params[:assessment_ids])
                 @assessment.each do |a|
                     @location = Location.new(location_params)
@@ -30,12 +30,12 @@ module Protocol
         end
 
         def update
-            authorize @location
+            authorize :conduct,  :update?
             @location.update(location_params)
         end
 
         def destroy
-            authorize @location
+            authorize :conduct,  :destroy?
             if @location.destroy
                 redirect_to action: 'index'
             end

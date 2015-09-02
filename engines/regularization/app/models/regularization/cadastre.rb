@@ -6,8 +6,6 @@ module Regularization
 
      validates_presence_of :rg, :place_birth, :born
 
-
-
     def set_treatment(convocation, status,cadastre)
          @treatment = ::Candidate::AttendanceCadastre.new
          @treatment.adjunct_cadastre_id = cadastre

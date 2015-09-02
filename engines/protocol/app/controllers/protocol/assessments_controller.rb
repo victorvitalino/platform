@@ -16,10 +16,10 @@ module Protocol
 
         def new
            @assessment = Assessment.new
-             authorize @assessment
+             authorize :assessment,  :create?
         end
         def create
-            authorize @assessment
+           authorize :assessment,  :create?
             @assessment = Assessment.new(set_assessment_params)
             @assessment.set_staff(current_user.account_id)
 
@@ -43,7 +43,7 @@ module Protocol
         end
 
         def update
-            authorize @assessment
+            authorize :assessment,  :update?
             if @assessment.update(set_assessment_params)
                 render action: 'index'
             else
@@ -52,7 +52,7 @@ module Protocol
         end
 
         def destroy
-            authorize @assessment
+            authorize :assessment,  :destroy?
             @assessment.destroy
             redirect_to action: 'index'
         end

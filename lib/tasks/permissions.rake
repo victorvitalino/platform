@@ -112,7 +112,7 @@ namespace :permissions do
 
 		@system_permission = Person::SystemPermission.create([
 		  { action: "Movimentação - criar/editar",		   code: 4301, status: true, system_id: @system_protocolo.id },
-		  { action: "Movimentação - excluirr", 				   code: 4302, status: true, system_id: @system_protocolo.id },
+		  { action: "Movimentação - excluir", 				   code: 4302, status: true, system_id: @system_protocolo.id },
 		  { action: "Movimentação - visualizar",			   code: 4303, status: true, system_id: @system_protocolo.id },
 		  { action: "Movimentação - receber remessa",	   code: 4304, status: true, system_id: @system_protocolo.id },
 		  { action: "Movimentação - devolver remessa",   code: 4305, status: true, system_id: @system_protocolo.id },

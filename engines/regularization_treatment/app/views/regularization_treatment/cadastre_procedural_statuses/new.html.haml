@@ -10,9 +10,20 @@
         %hr/
         - if @cadastre.present?
           .row
-            .col-md.12
+            .col-md-4
+              %h5
+                %b Nome
               %h5
                 = @cadastre.adjunct_cadastre.name if @cadastre.adjunct_cadastre.present?
+            .col-md-4
+              %h5
+                %b CPF
               %h5
                 = @cadastre.cpf
+        %hr
+        - if @checklist.present?
+          .row
+            .col-md-12
+              - @checklist.each do |c|
+                %h6= c.checklist.name
         = render "form"

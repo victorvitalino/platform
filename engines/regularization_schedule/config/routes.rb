@@ -3,9 +3,9 @@ RegularizationSchedule::Engine.routes.draw do
   constraints DomainConstraint do
 
     namespace :portal, path: '/' do
-      resources :agendas do
+      resources :agendas, path: 'agendas' do
        get 'hour', to: 'finders#hours'
-       resources :schedules
+       resources :schedules, path: 'agendamento'
       end
 
     end
