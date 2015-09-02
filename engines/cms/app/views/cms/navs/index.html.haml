@@ -10,6 +10,7 @@
         %tr
           %th #
           %th Título
+          %th Categoria
           %th Publicado
           %th Ações
 
@@ -18,6 +19,7 @@
           %tr
             %td= i + 1
             %td= nav.name
+            %td= nav.category.name if nav.category.present?
             %td= status_helper (nav.publish)
             %td.col-md-2
               = link_to '', edit_nav_path(nav), class: 'md md-edit btn btn-primary'if policy(:nav, namespace: Cms).update?

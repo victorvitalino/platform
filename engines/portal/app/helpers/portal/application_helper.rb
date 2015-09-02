@@ -24,9 +24,9 @@ module Portal
 
     def link_to_nav(nav)
       if nav.pagina?
-        link_to nav.name, portal.page_path(nav.link_page.id), target: "#{(nav.target)}" if nav.link_page.present?
+        link_to nav.name, portal.page_path(nav.link_page.id), target: nav.target if nav.link_page.present?
       else
-        link_to nav.name, nav.link_external, target: "#{(nav.target)}"
+        link_to nav.name, nav.link_external, target: nav.target
       end
     end
 

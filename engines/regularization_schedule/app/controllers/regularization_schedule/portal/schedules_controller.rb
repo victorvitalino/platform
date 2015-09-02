@@ -7,8 +7,8 @@ module RegularizationSchedule
 
     layout 'layouts/portal/application'
 
-    before_action :set_schedule, only: [:show, :edit, :update, :destroy]
     before_action :set_agenda
+    before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
     # GET /schedules
     def index
@@ -34,17 +34,11 @@ module RegularizationSchedule
     def create
       @schedule = Schedule.new(schedule_params)
       @schedule.status = 0
-
-      requeriment = Regularization::Requeriment.where(cpf: @schedule.cpf , status: true)
-
-      if requeriment.present?
-        if @schedule.save
-          redirect_to portal_schedule_path @schedule.id, notice: 'Schedule was successfully created.'
-        else
-          render :new
-        end
+      
+      if @schedule.save
+        redirect_to portal_schedule_path @schedule
       else
-         render :new, flash[:danger] = 'Você não possui requerimento sem atendimento.'
+        render :new
       end
     end
 
@@ -67,7 +61,7 @@ module RegularizationSchedule
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_schedule
-        @schedule = Schedule.find(params[:id])
+        @schedule = @agenda.schedules.find(params[:id])
       end
 
        def set_agenda

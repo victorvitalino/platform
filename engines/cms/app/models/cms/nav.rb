@@ -6,11 +6,12 @@ module Cms
 
     default_scope { where(publish: true) }
 
+
     validates_presence_of :name
     before_create :set_order
 
     enum :type_nav => [:pagina, :post, :externo]
-
+    enum :target   => [:_blank, :_self]
     private
 
       def set_order
