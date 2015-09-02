@@ -7,8 +7,10 @@ class CreateCandidateConvocations < ActiveRecord::Migration
       t.integer :quantity
       t.text    :discretion
       t.boolean :stauts, default: true
+      t.integer :tipe
       t.string  :legacy_pontuation
       t.references :pontuation, index: true
+      t.references :city, index: true
       t.timestamps null: false
     end
   end

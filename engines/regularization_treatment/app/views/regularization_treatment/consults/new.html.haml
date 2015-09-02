@@ -57,24 +57,29 @@
               %span.c-black
                 %h5
                   %b Atendimentos
-            %table.table
-              %thead
-                %tr
-                  %th #
-                  %th CPF
-                  %th Endereço
-                  %th Data do Requerimento
-                  %th Status Boleto
-              %tbody
-                %tr
-                  %td
+            - if @attendance.present?
+              %table.table
+                %thead
+                  %tr
+                    %th #
+                    %th Name
+                    %th CPF
+                    %th Status
+                %tbody
+                  - @attendance.each do |a|
+                    %tr
+                      %td
+                      %td= a.adjunct_cadastre.name
+                      %td= a.adjunct_cadastre.cadastre.cpf
+                      %td= a.attendance_status.name
         %hr/
         %br/
         .row
           .col-md-12
             .lvh-label.hidden-xs
               %span.c-black
-                %h5 Agendamentos
+                %h5
+                  %b Agendamentos
             - if @schedules.present?
               %table.table.table-hover.table-striped.table-condensed
                 %thead
@@ -96,20 +101,24 @@
                   Não existem agendamentos vínculado a este CPF.
         %hr/
         %br/
-        .row
-          .col-md-12
-            .lvh-label.hidden-xs
-              %span.c-black
-                %h5 Informações
-            %table.table
-              %thead
-                %tr
-                  %th #
-                  %th CPF
-                  %th Endereço
-                  %th Data do Requerimento
-                  %th Status Boleto
-              %tbody
-                %tr
-                  %td
+        - if @cadastre_olds.present?
+          .row
+            .col-md-12
+              .lvh-label.hidden-xs
+                %span.c-black
+                  %h5
+                    %b Informações
+              %table.table
+                %thead
+                  %tr
+                    %th #
+                    %th Name
+                    %th CPF
+                %tbody
+                  - @cadastre_olds.each_with_index do |c, index|
+                    %tr
+                      %td= index + 1
+                      %td= c.adjunct_cadastre.name if c.adjunct_cadastre.present?
+                      %td= c.cpf
+
 

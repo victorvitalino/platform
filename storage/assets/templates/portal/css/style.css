@@ -2584,7 +2584,7 @@ img {
 }
 
 .latestDate {
-    background: url('/portal/clock.png') no-repeat 90px 8px;
+    background: url('/images/clock.png') no-repeat 90px 8px;
     color: #8397A3;
     float: right;
     font-size: 12px;
@@ -2849,7 +2849,7 @@ a {
 .latestDate {
     margin: -5px 0px 0 0;
     color: #fff;
-    background-image: url('/portal/clock-white.png') !important;
+    background-image: url('/images/clock-white.png') !important;
     background-repeat: no-repeat !important;
     background-position: 90px 8px !important;
     background-size: 19px 20px !important
@@ -6023,7 +6023,7 @@ span.label {
     }
 
     .topSlider .flex-caption {
-        width: 400px;
+        width: 500px;
         margin-left: 95px
     }
 
@@ -6167,6 +6167,10 @@ span.label {
         position: relative;
         top: -4px
     }
+    .topSlider .flex-caption {
+            width: 500px!important;
+            margin-left: 95px!important;
+        }
 
     .homeFeature .four h3,
     .homeLatest

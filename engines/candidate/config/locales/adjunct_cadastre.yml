@@ -1,0 +1,32 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/adjunct_cadastre': Complemento do Cadastro
+    attributes:
+      'candidate/adjunct_cadastre':
+        name: "Nome"
+        telephone: "Telefone"
+        telephone_optional: "Telefone Opcional"
+        celphone: "Celular"
+        email: "Email"
+        special_condition: "Condição Especial"
+        flag_special_condition: "Condição Especial?"
+        city: "Cidade"
+        state: "Estado"
+        address: "Endereço"
+        adjunct_address: "Complemento"
+        number_address: "Número"
+        income: "Renda"
+        work: "Profissão"
+        cep_work: "CEP do Trabalho"
+        city_work: "Cidade do Trabalho"
+        state_work: "Estado do Trabalho"
+        address_work: "Endereço do Trabalho"
+        adjunct_address_work: "Complemento Endereço do Trabalho"
+        number_address_work: "Número do Endereço"
+        civil_state: "Estado Civil"
+        nis: "NIS"
+        cid: "CID"
+
+
+

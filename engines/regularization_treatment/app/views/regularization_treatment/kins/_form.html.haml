@@ -24,12 +24,13 @@
       = f.input :rg_uf, label: false
   .row
     .col-md-4
-      = f.input :gender, as: :select, collection: Regularization::Requeriment.genders.keys.to_a, prompt: 'selecione...'
+      = f.label :gender
+      = f.input :gender, label:false, as: :select, collection: Regularization::Requeriment.genders.keys.to_a, prompt: 'selecione...'
     .col-md-2
-      = label_tag :born
+      = f.label :born, as: 'string', class: 'fg-label'
       = f.input :born, label: false, as: :string, input_html: { class: 'date'}
     .col-md-2
-      = label_tag :place_birth
+      = f.label :place_birth, as: 'string', class: 'fg-label'
       = f.input :place_birth, label: false
   .row
     .col-md-4
@@ -38,10 +39,6 @@
           = f.check_box :flag_special_condition
           %i.input-helper
           = f.label :flag_special_condition, class: 'fg-label'
-    .col-md-4
-      = f.label :special_condition, class: 'fg-label'
-      = f.association :special_condition, label: false, prompt: 'selecione...'
-
   .row
     .col-md-12
       = f.simple_fields_for :kin_adjunct do |builder|
@@ -49,4 +46,4 @@
   %hr/
   .row
     .col-md-12
-      = f.submit "Prosseguir", class: 'btn btn-primary pull-right'
+      = f.submit "Gravar", class: 'btn btn-success pull-right'

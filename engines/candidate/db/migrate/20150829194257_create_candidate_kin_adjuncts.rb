@@ -4,7 +4,7 @@ class CreateCandidateKinAdjuncts < ActiveRecord::Migration
       t.string :income
       t.string :percent
       t.references :kin_type, index: true
-      t.references :civil_status, index: true
+      t.references :civil_state, index: true
       t.references :kin, index: true
       t.references :kinship, index: true
       t.boolean :copurchaser_flag

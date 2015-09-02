@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      'Regularization/cadastre': Cadastro
+    attributes:
+      'Regularization/cadastre':
+        cpf: "CPF"
+        gender: "Sexo"
+        born: "Data de Nascimento"
+        born_uf: "UF de Nascimento"
+        rg: "RG"
+        rg_org: "Orgão Emissor"
+        place_birth: "Naturalidade"
+        arrival_df: "Chegada no DF"

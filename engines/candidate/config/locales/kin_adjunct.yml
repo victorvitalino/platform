@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/kin_adjunct': Complemento Dependente
+    attributes:
+      'candidate/kin_adjunct':
+        income: "Renda"
+        percent: "Percentual"
+        kinship: "Parentesco"
+        copurchaser_flag: "Cooadquirente?"
+        civil_state: "Estado Civil"

@@ -1,7 +1,11 @@
 module Address
   class InformationsController < ApplicationController
-    
+
     def cities
+       return false unless params[:state_id].present?
+      @cities = Address::City.select(:name, :id).where(state_id: params[:state_id]).order(:name).distinct
+
+      render json: @cities
     end
 
     def states
@@ -23,7 +27,7 @@ module Address
 
     def units
       return false unless params[:group].present?
-     
+
       @units = Address::Unit.joins(:registry_units)
                             .where("address_units.city_id = ? AND address_units.block = ? AND address_units.group = ? AND address_units.program = 1", params[:city_id], params[:block], params[:group])
                             .where("address_registry_units.situation <> ?", 2)
