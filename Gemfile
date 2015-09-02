@@ -10,6 +10,10 @@ gem 'carrierwave'
 gem 'simple_form'
 gem 'haml-rails'
 
+gem 'i18n'
+gem 'railties'
+gem 'enum_help'
+
 gem 'devise'
 gem 'devise_security_extension'
 

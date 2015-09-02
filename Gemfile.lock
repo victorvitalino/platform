@@ -219,6 +219,7 @@ GEM
       rails (>= 3.1.1)
     email_validator (1.6.0)
       activemodel
+    enum_help (0.0.14)
     erubis (2.7.0)
     eventmachine (1.0.7)
     execjs (2.5.2)
@@ -368,10 +369,12 @@ DEPENDENCIES
   devise
   devise_security_extension
   email_validator
+  enum_help
   finance!
   friendly_id
   haml-rails
   helpdesk!
+  i18n
   intranet!
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
@@ -385,6 +388,7 @@ DEPENDENCIES
   protocol!
   pundit!
   rails (= 4.2.1)
+  railties
   redactor-rails
   regularization!
   regularization_schedule!

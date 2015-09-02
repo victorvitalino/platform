@@ -6,70 +6,59 @@
   .card-body.card-padding
     .row
       .col-md-12
-        %b Title:
+        %b Título:
         = @agenda.title
     .row
       .col-md-12
-        %b Description:
+        %b Descrição:
         = @agenda.description
     .row
       .col-md-6
-        %b Start:
+        %b Data de Início:
         = @agenda.start.strftime('%d/%m/%Y') if @agenda.start.present?
       .col-md-6
-        %b End:
+        %b Data Final:
         = @agenda.end.strftime('%d/%m/%Y') if @agenda.end.present?
     .row
       .col-md-4
-        %b Hour start:
+        %b Horário de Início:
         = @agenda.hour_start.strftime('%H:%M') if @agenda.hour_start.present?
       .col-md-4
-        %b Hour end:
+        %b Horário Final:
         = @agenda.hour_end.strftime('%H:%M') if @agenda.hour_end.present?
       .col-md-4
-        %b Publish:
+        %b Publicado?:
         = @agenda.publish
     .row
       .col-md-6
-        %b City:
-        = @agenda.city
+        %b Cidade:
+        = @agenda.city.name if @agenda.city.present?
       .col-md-6
-        %b Station:
-        = @agenda.station
+        %b Estado:
+        = @agenda.station.name if @agenda.station.present?
     .row
       .col-md-6
-        %b Quantity attendants:
+        %b Quantidade de Atendentes:
         = @agenda.quantity_attendants
       .col-md-6
-        %b Time attendant:
+        %b Tempo de Atendimento:
         = @agenda.time_attendant
     .row
       .col-md-6
-        %b Lunch:
+        %b Pausa de Almoço:
         = @agenda.lunch
       .col-md-6
-        %b Lunch start:
+        %b Início do Horário de Almoço:
         = @agenda.lunch_start
     .row
       .col-md-6
-        %b Lunch end:
+        %b Fim do Horário de Almoço:
         = @agenda.lunch_end
       .col-md-6
-        %b Lunch attendants:
+        %b Atendentes:
         = @agenda.lunch_attendants
     .row
       .col-md-12
-        %b Lunch time attendant:
+        %b Tempo de Atendimento no Hoŕaio de Almoço:
         = @agenda.lunch_time_attendant
-    .row
-      .col-md-12
-        %b Validate sql:
-        = @agenda.validate_sql
-    .row
-      .col-md-12
-        %b Validate type:
-        = @agenda.validate_type
-    .row
-      .col-md-12
-        %b Validate:
-        = @agenda.validate
+
