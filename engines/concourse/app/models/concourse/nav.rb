@@ -3,7 +3,7 @@ module Concourse
     belongs_to :project
     belongs_to :page
 
-    default_scope {where(:publish => true).order(:order)}
+    scope :actives, -> {where(:publish => true).order(:order)}
 
     enum :target  => [:_blank, :_self]
     enum :action => ['url', 'página']
@@ -26,7 +26,7 @@ module Concourse
     end
 
     def set_order
-      @navs           = Nav.all
+      @navs           = Nav.where(project_id: self.project_id)
       current_order   = @navs.last
 
       self.order    = (current_order.present? && current_order.order >= 0) ? current_order.order + 1 : 0 if @navs.present?

@@ -32,8 +32,7 @@ module RegularizationSchedule
       @schedule = Schedule.new(schedule_params)
 
       if @schedule.save
-        redirect_to extranet_agenda_schedule_path(@schedule.id), notice: 'Agendamento criado com sucesso.'
-      else
+        redirect_to extranet_agenda_schedule_path(@schedule.id)
         render :new
       end
     end

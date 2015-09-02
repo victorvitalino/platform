@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       mount RegularizationTreatment::Engine  => "/regularizacao",  as: 'regularization_treatment',  module: 'regularization_treatment'
       mount Concourse::Engine                => "/concurso",       as: 'concourse',                 module: 'concourse'
       mount Finance::Engine                  => "/financeiro",     as: 'finance',                   module: 'finance'
+      mount Candidate::Engine                => "/candidatos",     as: 'candidate'
     end
   end
 
@@ -47,9 +48,6 @@ Rails.application.routes.draw do
   end
 
   mount RegularizationSchedule::Engine   => "/agenda_regularizacao",       as: 'regularization_schedule',     module: 'regularization_schedule'
-
-  mount Address::Engine         => "/endereco",       as: 'address'
-
-  mount Candidate::Engine       => "/candidatos",     as: 'candidate'
+  mount Address::Engine                  => "/endereco",       as: 'address'
 
 end

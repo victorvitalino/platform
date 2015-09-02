@@ -1,7 +1,8 @@
 require_dependency "regularization_schedule/application_controller"
 
 module RegularizationSchedule
-  class Portal::AgendasController < ApplicationController
+  module Portal
+    class AgendasController < ApplicationController
 
    layout 'layouts/portal/application'
 
@@ -22,5 +23,6 @@ module RegularizationSchedule
                                                           :time_attendant, :lunch, :lunch_start, :lunch_end, :lunch_attendants,
                                                           :lunch_time_attendant, :validate_sql, :validate_type, :validate_agenda)
       end
+    end
   end
 end

@@ -17,7 +17,7 @@
             %th Ordem
             %th Ações
         %tbody
-          - @project.navs.unscoped.order(:order).each_with_index do |nav, index|
+          - @project.navs.actives.each_with_index do |nav, index|
             %tr{:class => (params[:css_order].present? && params[:css_order].to_i == nav.id) ? 'success' : '' }
               %td= index + 1
               %td= nav.label
