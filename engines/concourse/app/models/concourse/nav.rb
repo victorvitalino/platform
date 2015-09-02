@@ -3,7 +3,7 @@ module Concourse
     belongs_to :project
     belongs_to :page
 
-    default_scope {where(:publish => true).order(:order)}
+    scope :actives, -> {where(:publish => true).order(:order)}
 
     enum :target  => [:_blank, :_self]
     enum :action => ['url', 'página']
