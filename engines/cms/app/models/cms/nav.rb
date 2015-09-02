@@ -12,6 +12,7 @@ module Cms
 
     enum :type_nav => [:pagina, :post, :externo]
     enum :target   => [:_blank, :_self]
+
     private
 
       def set_order

@@ -7,7 +7,7 @@
     .row
       .col-md-3
         = f.label :link_page, class: 'fg-label'
-        = f.association :link_page, label: false, prompt: 'Selecione...'
+        = f.association :link_page, label_method: :title_concat, label: false, prompt: 'Selecione...'
       .col-md-3
         = f.label :category, class: 'fg-label'
         = f.association :category, label: false, prompt: 'Selecione...'
