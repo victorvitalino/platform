@@ -20,7 +20,6 @@
               %table.table.table-striped.table-bordered
                 %thead
                   %tr
-                    %th # 
                     %th Número de inscrição 
                     %th Data de inscrição
                     %th Ações
@@ -28,8 +27,7 @@
                   - if @subscribes.present?
                     - @subscribes.each_with_index do |subscribe, index|
                       %tr
-                        %td.col-md-1= index + 1
-                        %td= subscribe.protocol
+                        %td= subscribe.id
                         %td= subscribe.created_at.strftime("%d/%m/%Y às %H:%M")
                         %td= link_to "Resetar minha senha"
                   - else

@@ -13,7 +13,7 @@ module Concourse
 
     validates_presence_of :name, :terms_use, :state, :city, :cep, :address, :burgh,  :telephone
     validates :cpf, cpf: true, presence: true
-    validates_uniqueness_of :cpf, :scope => :subscribe_id
+    validates_uniqueness_of :cpf, :scope => :subscribe_id, on: :create
 
     validates :password, presence: true, length: { minimum: 6, maximum: 8}
     validates :confirmation_password, presence: true, length: { minimum: 6, maximum: 8}
@@ -27,7 +27,6 @@ module Concourse
     validate  :compare_password
     validate  :validate_current_password, on: :update
 
-    after_create :set_protocol
 
     def paid?
         type = self.subscribe.type_guide.id
@@ -36,6 +35,10 @@ module Concourse
         Finance::PaymentGuide.where(type_guide_id: type, cpf: cpf, status: true).present?
     end
 
+    def protocol_number
+        "#{self.id}#{self.created_at.strftime("%Y")}"
+    end
+    
     private
 
     def validate_properties
@@ -50,10 +53,6 @@ module Concourse
 
     def compare_password
       errors.add(:confirmation_password, 'senha não confere') unless self.password == self.confirmation_password
-    end
-
-    def set_protocol
-      Concourse::Candidate.find(self.id).update(protocol: "codhab#{self.id}#{self.created_at.strftime('%Y')}")
     end
 
     def validate_current_password

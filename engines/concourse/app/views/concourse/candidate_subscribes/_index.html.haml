@@ -7,6 +7,7 @@
             %th.col-md-1 #
             %th Tipo de inscrição
             %th Protocolo
+            %th Nº inscrição
             %th CPF
             %th Taxa de inscrição
             %th Data de inscrição
@@ -17,9 +18,10 @@
             %tr
               %td= index + 1
               %td= candidate.subscribe.title if candidate.subscribe.present?
-              %td= candidate.protocol
+              %td= "#{candidate.id}#{candidate.created_at.strftime('%d/%m/%Y')}"
+              %td= candidate.id
               %td= candidate.cpf
-              %td
+              %td  Pendente
               %td= candidate.created_at.strftime('%d/%m/%Y às %H:%M')
               %td= candidate.status
               %td
