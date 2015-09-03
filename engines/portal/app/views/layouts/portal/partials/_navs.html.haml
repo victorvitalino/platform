@@ -156,18 +156,25 @@
               %li.editais.main-link
                 %a{:href => "#"} Editais
                 %ul.submenu
-                  %li.first
+                  %li.firsts
                     %a{:href => "#", :class => "linkD"} Entidades
                     %ul.submenu-item
                       - link_each('Entidades - Editais') do |l|
                         %li
                           = link_to_nav l
-                  %li.first
+                  %li.firsts
                     %a{:href => "#", :class => "linkD"} Pregões
                     %ul.submenu-item
                       - link_each('Pregoes - Editais') do |l|
                         %li
                           = link_to_nav l
+                  %li.firsts
+                    %a{:href => "#", :class => "linkD"} Convites
+                    %ul.submenu-item
+                      - link_each('Convites - Editais') do |l|
+                        %li
+                          = link_to_nav l
+
 
                 %li.concursos.main-link
                   %a{:href => "#"} Concursos
