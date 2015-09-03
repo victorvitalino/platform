@@ -41,7 +41,7 @@ module Candidate
     private
 
     def set_params
-      params.require(:convocation).permit(:)
+      params.require(:convocation).permit(:title)
     end
   end
 end
