@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @page.title
+%p
+  %b Content:
+  = @page.content
+%p
+  %b Publish:
+  = @page.publish
+%p
+  %b Page category:
+  = @page.page_category
+
+= link_to 'Edit', edit_page_path(@page)
+\|
+= link_to 'Voltar',pages_path

@@ -1,19 +1,14 @@
 .row
-  .col-md-12
-    = f.label :name, class: 'fg-label'
-    = f.input :name, label: false
-.row
-  .col-md-12
+  .col-md-3
     = f.label :civil_state, class: 'fg-label'
     = f.association :civil_state, label: false, prompt: "selecione..."
-.row
-  .col-md-4
-    .checkbox.m-b-15
+  .col-md-3
+    .checkbox.m-b-10
       %label
         = f.check_box :flag_special_condition
         %i.input-helper
         = f.label :flag_special_condition, class: 'fg-label'
-  .col-md-4
+  .col-md-2
     = f.label :cid, class: 'fg-label'
     = f.input :cid, label: false
 .row
@@ -23,45 +18,41 @@
   .col-md-3
     = f.label :city, class: 'fg-label'
     = f.input :city, as: :select, prompt: "selecione o estado...", collection: {}, label: false, input_html: { id: 'city_id'}
-  .col-md-3
+  .col-md-2
     = f.label :cep, class: 'fg-label'
     = f.input :cep, label: false
 .row
-  .col-md-12
+  .col-md-8
     = f.label :address, class: 'fg-label'
     = f.input :address, label: false
 .row
-  .col-md-8
+  .col-md-6
     = f.label :adjunct_address, class: 'fg-label'
     = f.input :adjunct_address, label: false
   .col-md-2
     = f.label :number_address, class: 'fg-label'
     = f.input :number_address, label: false
 .row
-  .col-md-6
-    = f.label :income, class: 'fg-label'
-    = f.input :income, label: false
-  .col-md-6
-    = f.label :nis, class: 'fg-label'
-    = f.input :nis, label: false
-.row
-  .col-md-3
+  .col-md-2
     = f.label :telephone, class: 'fg-label'
     = f.input :telephone, label: false
-  .col-md-3
+  .col-md-2
     = f.label :telephone_optional, class: 'fg-label'
     = f.input :telephone_optional, label: false
-  .col-md-3
+  .col-md-2
     = f.label :celphone, class: 'fg-label'
     = f.input :celphone, label: false
 .row
-  .col-md-12
+  .col-md-8
     = f.label :email, class: 'fg-label'
-    = f.input :email, label: false
+    = f.input :email, label: false,  input_html: { value: @requeriment.email}
 .row
-  .col-md-12
+  .col-md-6
     = f.label :work, class: 'fg-label'
     = f.input :work, label: false
+  .col-md-2
+    = f.label :income, class: 'fg-label'
+    = f.input :income, label: false
 .row
   .col-md-3
     = f.label :state_work, class: 'fg-label'
@@ -69,15 +60,15 @@
   .col-md-3
     = f.label :city_work, class: 'fg-label'
     = f.input :city_work, as: :select, prompt: "selecione o estado...", collection: {}, label: false, input_html: { id: 'second_city_id'}
-  .col-md-3
+  .col-md-2
     = f.label :cep_work, class: 'fg-label'
     = f.input :cep_work, label: false
 .row
-  .col-md-12
+  .col-md-8
     = f.label :address_work, class: 'fg-label'
     = f.input :address_work, label: false
 .row
-  .col-md-8
+  .col-md-6
     = f.label :adjunct_address_work, class: 'fg-label'
     = f.input :adjunct_address_work, label: false
   .col-md-2
