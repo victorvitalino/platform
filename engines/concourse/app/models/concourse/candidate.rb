@@ -53,7 +53,7 @@ module Concourse
     end
 
     def set_protocol
-      update(protocol: "codhab#{self.id}#{self.created_at.strftime('%Y')}")
+      Concourse::Candidate.find(self.id).update(protocol: "codhab#{self.id}#{self.created_at.strftime('%Y')}")
     end
 
     def validate_current_password
