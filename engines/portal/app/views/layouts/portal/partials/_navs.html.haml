@@ -156,25 +156,31 @@
               %li.editais.main-link
                 %a{:href => "#"} Editais
                 %ul.submenu
-                  %li.first
+                  %li.firsts
                     %a{:href => "#", :class => "linkD"} Entidades
                     %ul.submenu-item
-                      %li
-                        = link_to 'Credenciamento', 'Editais'
-                      %li
-                        = link_to 'Chamamento', 'Editais'
-                  %li.first
+                      - link_each('Entidades - Editais') do |l|
+                        %li
+                          = link_to_nav l
+                  %li.firsts
                     %a{:href => "#", :class => "linkD"} Pregões
                     %ul.submenu-item
-                      %li
-                        = link_to 'Pregão Eletrônico', 'Editais'
-                      %li
-                        = link_to 'Pregão Presencial', 'Editais'
+                      - link_each('Pregoes - Editais') do |l|
+                        %li
+                          = link_to_nav l
+                  %li.firsts
+                    %a{:href => "#", :class => "linkD"} Convites
+                    %ul.submenu-item
+                      - link_each('Convites - Editais') do |l|
+                        %li
+                          = link_to_nav l
+
 
                 %li.concursos.main-link
                   %a{:href => "#"} Concursos
                   %ul.submenu
                     %li.first
                       %ul.submenu-item
-                        %li= link_to 'O que são?', 'concursos'
-                        %li= link_to 'Lista de Concursos', concourse_portal.projects_path
+                        - link_each('Concursos') do |l|
+                          %li
+                            = link_to_nav l

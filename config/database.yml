@@ -13,15 +13,15 @@ development:
 
 production:
   <<: *default
-  database: codhab_production
-  username: "igor"
-  password: "mila1324"
+  database: codhab_development
+  username: "postgres"
+  password: "123456789"
 
   host: "localhost"
 
 test:
   <<: *default
   database: codhab_test
-  username: "igor"
-  password: "mila1324"
+  username: "postgres"
+  password: "123456789"
   host: "localhost"
