@@ -11,7 +11,8 @@ module RegularizationTreatment
     def create
       @kin = @cadastre.kins.new(set_params)
       if @kin.save
-        @cadastre.set_treatment(1,2,@cadastre.adjunct_cadastre.id)
+        #@adjunct_cadastre = Candidate::AdjunctCadastre.where(cadastre_id: @cadastre)
+        #@cadastre.set_treatment(1,2,@adjunct_cadastre)
         render action: 'new'
       else
         render action: 'new'
@@ -27,7 +28,7 @@ module RegularizationTreatment
 
     def set_cadastre
       if session[:cadastre_id].present?
-        @cadastre = Candidate::Cadastre.find(session[:cadastre_id])
+        @cadastre = Regularization::Cadastre.find(session[:cadastre_id])
       else
         flash[:info] = "É necessario preencher o cadastro."
         redirect_to new_cadastre_path

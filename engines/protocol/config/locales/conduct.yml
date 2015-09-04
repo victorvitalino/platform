@@ -1,4 +1,12 @@
 pt-BR:
+  enums:
+    'protocol/conduct':
+      conduct_type:
+        doc_create: "Criado"
+        doc_send: "Enviado"
+        doc_return: "Devolvido"
+        doc_cancel: "Cancelado"
+        doc_receive: "Recebido"
   activerecord:
     models:
       'protocol/conduct': Tramitação
@@ -6,9 +14,4 @@ pt-BR:
       'protocol/conduct':
         document: "Documento"
         document_type: "Tipo de Documento"
-      conduct/conduct_type:
-        doc_create: "Criado"
-        doc_send: "Enviado"
-        doc_return: "Devolvido"
-        doc_cancel: "Cancelado"
-        doc_receive: "Recebido"
+

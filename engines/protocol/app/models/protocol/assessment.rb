@@ -14,7 +14,7 @@ module Protocol
 
     before_validation :set_number
 
-    validates_presence_of :document_type, :subject, :requesting_unit, :external_agency
+    validates_presence_of :document_type, :subject, :requesting_unit
     validates :document_number, uniqueness: true, presence: true
 
     after_create :set_conduct
@@ -58,6 +58,7 @@ module Protocol
             errors.add(:document_number, "Setor não encontrado")
         end
     end
+
 
 
     def format_document_number

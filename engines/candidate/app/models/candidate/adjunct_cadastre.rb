@@ -8,7 +8,7 @@ module Candidate
     belongs_to :city_work, class_name: "Address::City"
     belongs_to :state_work, class_name: "Address::State"
 
-    validates_presence_of :name, :civil_state,:cep, :address, :income, :state, :city
+    validates_presence_of :name, :civil_state,:cep, :address, :income, :state
 
 
   end

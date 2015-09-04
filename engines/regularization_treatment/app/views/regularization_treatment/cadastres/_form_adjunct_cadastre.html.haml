@@ -17,7 +17,7 @@
     = f.association :state, label: false, input_html: { id: 'state_id'}, prompt: "selecione..."
   .col-md-3
     = f.label :city, class: 'fg-label'
-    = f.input :city, as: :select, prompt: "selecione o estado...", collection: {}, label: false, input_html: { id: 'city_id'}
+    = f.input :city, as: :select, prompt: "selecione o estado...", collection: (@cadastre.adjunct_cadastre.city_id.present?) ? Address::City.where(state: @cadastre.adjunct_cadastre.state_id) : {}, label: false, input_html: { id: 'city_id', value: @cadastre.adjunct_cadastre.city_id.present? ? @cadastre.adjunct_cadastre.city_id : ' '}
   .col-md-2
     = f.label :cep, class: 'fg-label'
     = f.input :cep, label: false

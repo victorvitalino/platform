@@ -24,6 +24,11 @@
         - if @checklist.present?
           .row
             .col-md-12
+              %h5
+                %b Checklist
+          .row
+            .col-md-12
               - @checklist.each do |c|
                 %h6= c.checklist.name
+        %hr
         = render "form"
