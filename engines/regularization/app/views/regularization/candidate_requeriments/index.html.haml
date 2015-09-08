@@ -27,5 +27,6 @@
             %td
               = link_to "visualizar", candidate_requeriment_path(requeriment), class: 'btn btn-primary'
               = link_to "emitir boleto", requeriment_bank_slip_path(requeriment), class: 'btn btn-warning'
+              = link_to "meus agendamentos", regularization_schedule.portal_my_schedules_path(requeriment.cpf), class: 'btn btn-success'
 
 

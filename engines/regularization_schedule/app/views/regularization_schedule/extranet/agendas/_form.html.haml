@@ -37,10 +37,7 @@
     .row
       .col-md-6
         = f.label :city, class: 'fg-label'
-        = f.input :city, as: :select, label: false, collection: Address::City.federal_district, prompt: 'selecione a cidade...' , selected: (@agenda.city.id if @agenda.city.present?)
-      .col-md-6
-        = f.label :station, class: 'fg-label'
-        = f.association :station, label: false, prompt: 'selecione...'
+        = f.input :city_id, as: :select, label: false, collection: Address::City.federal_district, prompt: 'selecione a cidade...' , selected: (@agenda.city.id if @agenda.city.present?)
     .row
       .col-md-3
         = f.label :quantity_attendants, class: 'fg-label'

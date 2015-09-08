@@ -1,0 +1,15 @@
+.table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+  %table#data-table-command.table.table-striped.table-vmiddle.datatable
+    %thead
+      %tr
+        %th CPF
+        %th Data de Agendamento
+        %th Hora de Agendamento
+        %th Situação
+    %tbody
+      - @schedules.each_with_index do |s, index|
+        %tr
+          %td= s.cpf
+          %td= s.date_schedule.strftime('%d/%m/%Y')
+          %td= s.hour_schedule.strftime('%H:%M')
+          %td= s.status ?  "Atendido" : "Aguardando atendimento"

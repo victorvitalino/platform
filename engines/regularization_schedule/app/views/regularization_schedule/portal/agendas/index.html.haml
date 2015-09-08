@@ -19,7 +19,7 @@
             %tr
               %td= index + 1
               %td= agenda.title
-              %td= agenda.city.name
+              %td= agenda.city.name if agenda.city.present?
               %td= agenda.start.strftime('%d/%m/%Y')
               %td= agenda.end.strftime('%d/%m/%Y')
               %td

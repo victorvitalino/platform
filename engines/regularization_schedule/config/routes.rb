@@ -7,7 +7,7 @@ RegularizationSchedule::Engine.routes.draw do
        get 'hour', to: 'finders#hours'
        resources :schedules, path: 'agendamento'
       end
-
+      get 'my_schedules/:cpf', to: 'schedules#my_schedules', as: 'my_schedules'
     end
   end
 
