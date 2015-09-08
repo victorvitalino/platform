@@ -61,4 +61,13 @@
       .col-md-12
         %b Tempo de Atendimento no Hoŕaio de Almoço:
         = @agenda.lunch_time_attendant
+- if @schedules.present?
+  .card
+    .card-header.ch-alt
+      %h2
+        Pessoas Agendadas
+    .card-body.card-padding
+      .row
+        .col-md-12
+          = render 'index_schedules'
 

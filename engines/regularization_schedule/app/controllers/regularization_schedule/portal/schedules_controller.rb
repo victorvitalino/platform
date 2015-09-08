@@ -7,12 +7,20 @@ module RegularizationSchedule
 
     layout 'layouts/portal/application'
 
-    before_action :set_agenda
+    before_action :set_agenda, except: [:my_schedules]
     before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
     # GET /schedules
     def index
       @schedules = @agenda.schedules.all
+    end
+
+    def  my_schedules
+       if session[:candidate_id].present?
+        @schedules = RegularizationSchedule::Schedule.where(cpf: params[:cpf])
+       else
+         redirect_to regularization.candidate_requeriments_path
+       end
     end
 
     # GET /schedules/1
@@ -32,11 +40,11 @@ module RegularizationSchedule
 
     # POST /schedules
     def create
-      @schedule = Schedule.new(schedule_params)
+      @schedule = @agenda.schedules.new(schedule_params)
       @schedule.status = 0
-      
+
       if @schedule.save
-        redirect_to portal_schedule_path @schedule
+        redirect_to portal_agenda_schedule_path(@agenda.id,@schedule)
       else
         render :new
       end

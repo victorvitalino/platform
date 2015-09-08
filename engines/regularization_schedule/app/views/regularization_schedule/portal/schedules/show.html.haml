@@ -14,21 +14,12 @@
       = @schedule.cpf if @schedule.cpf.present?
 .row
   .col-md-12
-    %h4.title Status:
-    %h5
-      = @schedule.status
-.row
-  .col-md-12
-    %h4.title Date schedule:
+    %h4.title Data de Atendimento:
     %h5
       = @schedule.date_schedule
 .row
   .col-md-12
-    %h4.title Hour schedule:
+    %h4.title Hora de Atendimento:
     %h5
       = @schedule.hour_schedule.strftime('%H:%M')
-.row
-  .col-md-12
-    %h4.title Observation:
-    %h5
-      = @schedule.observation
+

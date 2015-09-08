@@ -14,6 +14,7 @@ module RegularizationSchedule
 
     # GET /agendas/1
     def show
+      @schedules = @agenda.schedules.all
     end
 
     # GET /agendas/new
@@ -45,7 +46,7 @@ module RegularizationSchedule
     # PATCH/PUT /agendas/1
     def update
       if @agenda.update(agenda_params)
-        redirect_to :show, notice: 'Agenda atualizada com sucesso.'
+        redirect_to extranet_agenda_path(@agenda.id), notice: 'Agenda atualizada com sucesso.'
       else
         render :edit
       end
