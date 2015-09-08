@@ -2,12 +2,12 @@ require_dependency "attendance/application_controller"
 
 module Attendance
   class CountersController < ApplicationController
-    before_action :set_counter, only: [:show, :edit, :update, :destroy]
     before_action :set_station
+    before_action :set_counter, only: [:show, :edit, :update, :destroy]
 
     # GET /counters
     def index
-      @counters = Counter.all
+      @counters = @station.counters
     end
 
     # GET /counters/1
@@ -16,7 +16,8 @@ module Attendance
 
     # GET /counters/new
     def new
-      @counter = Counter.new
+      @counter =  @station.counters.new
+      @counter.counter_subjects.build
     end
 
     # GET /counters/1/edit
@@ -25,10 +26,11 @@ module Attendance
 
     # POST /counters
     def create
-      @counter = Counter.new(counter_params)
+      @counter =  @station.counters.new(counter_params)
 
       if @counter.save
-        redirect_to @counter, notice: 'Counter was successfully created.'
+        flash[:success] = t :success
+        redirect_to action: 'index'
       else
         render :new
       end
@@ -37,7 +39,8 @@ module Attendance
     # PATCH/PUT /counters/1
     def update
       if @counter.update(counter_params)
-        redirect_to @counter, notice: 'Counter was successfully updated.'
+        flash[:success] = t :success
+        redirect_to action: 'index'
       else
         render :edit
       end
@@ -45,19 +48,21 @@ module Attendance
 
     # DELETE /counters/1
     def destroy
-      @counter.destroy
-      redirect_to counters_url, notice: 'Counter was successfully destroyed.'
+      if @counter.destroy
+        flash[:success] = t :success
+        redirect_to action: 'index'
+      end
     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_counter
-        @counter = Counter.find(params[:id])
+        @counter = @station.counters.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def counter_params
-        params[:counter]
+        params.require(:counter).permit(:subject_id, :number, :preference, :status, counter_subjects_attributes: [:subject_id ,:_destroy, :id])
       end
 
       def set_station

@@ -1,31 +1,28 @@
 .card
   .card-header.ch-alt
     %h2
-      Postos de Atendimento / Atendentes
-      = link_to 'Novo Atendente', attendance.new_station_station_attendant_path, class: 'btn btn-success pull-right'
+      #{@station.name} / Atendentes
+      .pull-right
+        = link_to "Voltar",  attendance.stations_path, class: 'btn btn-inverse'
+        = link_to 'Novo Atendente', attendance.new_station_station_attendant_path, class: 'btn btn-success'
       %small Listagem de atendentes
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table.table.table-striped.datatable
       %thead
         %tr
-          %th #
           %th Nome
-          %th Cidade
-          %th Posto
-          %th Status
-          %th Supervisor
+          %th Supervisor?
+          %th Ativo?
           %th Guichê
-          %th{:colspan => "3"} Ações
+          %th Ações
       %tbody
-        - @station_attendants.each_with_index do |station, index|
+        - @station_attendants.each_with_index do |attendant, index|
           %tr
-            %td= index + 1
-            %td= station.name
-            %td= station.city.name if station.city.present?
-            %td= station.station_type
-            %td
+            %td= attendant.attendant.staff.name if attendant.attendant.present? && attendant.attendant.staff.present?
+            %td= attendant.supervisor ? "Sim" : "Não"
+            %td= attendant.status ? "Sim" : "Não"
+            %td= attendant.counter.number
             %td.col-md-2
-              = link_to '', station_station_attendants_path(station), class: 'md md-edit btn btn-success'
-              = link_to '', station_counters_path(station), class: 'md md-edit btn btn-success'
-              = link_to '', edit_station_path(station), class: 'md md-edit btn btn-primary'
-              = link_to '', station, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }
+              = link_to '', station_station_attendants_path(station_id: @station, id: attendant), class: 'md md-edit btn btn-success'
+              = link_to '', edit_station_station_attendant_path(station_id: @station, id: attendant), class: 'md md-edit btn btn-primary'
+              = link_to '', station_station_attendants_path(station_id: @station, id: attendant), class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }

@@ -5,5 +5,6 @@ Attendance::Engine.routes.draw do
   end
 
   resources :attendants
+  resources :attendant_counters
   resources :subjects
 end

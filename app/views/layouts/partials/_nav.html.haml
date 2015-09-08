@@ -7,8 +7,12 @@
         .line.bottom
     %li.logo.hidden-xs
       = link_to "Extranet <b>codhab</b>".html_safe, dashboard.root_path
-    %li.logo.hidden-xs
-      = link_to "<b>Posto</b> regularização estrutural |  <b>Guichê</b> 01".html_safe
+    - if current_user.account.attendant.present?
+      %li.logo.hidden-xs
+        - if current_user.account.attendant.station_attendant.present? && 
+          = link_to "<b>Posto</b> #{current_user.account.attendant.station_attendant.station.name} |  <b>Guichê</b> #{current_user.account.attendant.station_attendant.counter.number}".html_safe, attendance.edit_attendant_counter_path(current_user.account_id), remote: true
+        - else
+          = link_to "<b> Não alocado</b>"
     %li.pull-right
       %ul.top-menu
         %li#toggle-width

@@ -13,10 +13,10 @@
         %label
           .ts-label{:for => "ts4"}
             = f.label :status
+        %br/
         = f.check_box :status, label: false, id: 'ts4',hidden: 'hidden', type: 'checkbox'
         %label.ts-helper{:for => "ts4"}
   %hr/
   .row
     .col-md-12
-      = f.button :submit, class: 'btn btn-success'
-      = link_to "voltar", attendants_path, class: 'btn btn-inverse'
+      = f.button :submit, class: 'btn btn-success pull-right'
