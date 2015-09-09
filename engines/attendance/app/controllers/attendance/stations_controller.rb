@@ -4,6 +4,10 @@ module Attendance
   class StationsController < ApplicationController
     before_action :set_station, only: [:show, :edit, :update, :destroy]
 
+    def counters
+      render json: Counter.where(station_id: params[:station_id]).order(:number)
+    end
+
     # GET /stations
     def index
       @stations = Station.all

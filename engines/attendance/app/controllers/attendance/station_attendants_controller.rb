@@ -6,7 +6,7 @@ module Attendance
     before_action :set_station_attendant, only: [:show, :edit, :update, :destroy]
     # GET /station_attendants
     def index
-      @station_attendants = @station.attendants
+      @station_attendants = @station.attendants.unscoped
     end
 
     # GET /station_attendants/1
@@ -46,14 +46,16 @@ module Attendance
 
     # DELETE /station_attendants/1
     def destroy
-      @station_attendant.destroy
-      redirect_to station_attendants_url, notice: 'Station attendant was successfully destroyed.'
+      if @station_attendant.destroy
+        flash[:success] = t :success
+        redirect_to action: 'index'
+      end
     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
     def set_station_attendant
-      @station_attendant = StationAttendant.find(params[:id])
+      @station_attendant = StationAttendant.unscoped.find(params[:id])
     end
 
     def set_station

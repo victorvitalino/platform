@@ -4,6 +4,8 @@ module Attendance
     belongs_to :counter
     belongs_to :station
 
-    validates_presence_of :attendant, :counter
+    scope :active, -> {where(status: true)}
+
+    validates :attendant, presence: true, uniqueness: true
   end
 end

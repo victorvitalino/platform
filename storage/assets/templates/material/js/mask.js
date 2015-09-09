@@ -51,4 +51,18 @@ $(document).ready(function(){
         $("#second_city_id").html(html);
       });
     });
+
+
+    $('#station_id').on('change', function() {
+      $.getJSON("/atendimento/counters?station_id=" + $(this).val(), function(data) {
+        var items = '<option value>Não víncular guichê</option>';
+       
+        for(var i = 0; i < data.length; i++) {
+          items += "<option value='"+ data[i].id +"'>"+data[i].number+"</option>";
+        }
+
+        $('#counter_id').html(items);
+      });
+    });
+
 });

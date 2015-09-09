@@ -21,8 +21,7 @@
             %td= attendant.attendant.staff.name if attendant.attendant.present? && attendant.attendant.staff.present?
             %td= attendant.supervisor ? "Sim" : "Não"
             %td= attendant.status ? "Sim" : "Não"
-            %td= attendant.counter.number
+            %td= attendant.counter.number if attendant.counter.present?
             %td.col-md-2
-              = link_to '', station_station_attendants_path(station_id: @station, id: attendant), class: 'md md-edit btn btn-success'
               = link_to '', edit_station_station_attendant_path(station_id: @station, id: attendant), class: 'md md-edit btn btn-primary'
-              = link_to '', station_station_attendants_path(station_id: @station, id: attendant), class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }
+              = link_to '', station_station_attendant_path(station_id: @station, id: attendant), class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }

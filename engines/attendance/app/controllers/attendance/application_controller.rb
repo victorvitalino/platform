@@ -1,4 +1,4 @@
-require_dependency 'app/helpers/application_helper'
+require_dependency '../../../../../../app/helpers/application_helper'
 
 module Attendance
   class ApplicationController < ActionController::Base

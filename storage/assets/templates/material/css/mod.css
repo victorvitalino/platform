@@ -22,3 +22,10 @@ appearance: normal!important;
 .mgl{
 	    margin-left: 15px;
 }
+
+.alert-success {
+    background-color: #4CAF5C !important;
+    border-color: #4CAF5C !important;
+    color: #FFFFFF !important;
+    font-weight: bold;
+}

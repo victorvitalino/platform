@@ -2,7 +2,7 @@ module Address
   class InformationsController < ApplicationController
 
     def cities
-       return false unless params[:state_id].present?
+      params[:state_id] = nil unless params[:state_id].present?
       @cities = Address::City.select(:name, :id).where(state_id: params[:state_id]).order(:name).distinct
 
       render json: @cities
