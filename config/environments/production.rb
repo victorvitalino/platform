@@ -76,4 +76,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  CarrierWave.configure do |config|
+    config.sftp_host = "10.233.38.19"
+    config.sftp_user = "codhab"
+    config.sftp_folder = "/var/public"
+    config.sftp_url = "http://api.codhab.df.gov.br/uploads"
+    config.sftp_options = {
+      :password => "codhab2014",
+      :port     => 22
+    }
+  end
 end

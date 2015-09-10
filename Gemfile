@@ -34,6 +34,8 @@ gem 'wicked_pdf'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 
+gem 'dotenv-rails'
+
 group :test do 
   gem 'sqlite3'
   gem 'thin'
