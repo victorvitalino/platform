@@ -7,8 +7,8 @@ module RegularizationSchedule
 
     layout 'layouts/portal/application'
 
-    before_action :set_agenda, except: [:my_schedules]
-    before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+    before_action :set_agenda, except: [:my_schedules, :disable]
+    before_action :set_schedule, only: [:show, :edit, :update, :destroy, :disable]
 
     # GET /schedules
     def index
@@ -17,6 +17,7 @@ module RegularizationSchedule
 
     def  my_schedules
        if session[:candidate_id].present?
+        session[:cpf] = params[:cpf]
         @schedules = RegularizationSchedule::Schedule.where(cpf: params[:cpf])
        else
          redirect_to regularization.candidate_requeriments_path
@@ -50,6 +51,11 @@ module RegularizationSchedule
       end
     end
 
+    def disable
+        @schedule.update(status: 3)
+         redirect_to portal_my_schedules_path(@schedule.cpf)
+    end
+
     # PATCH/PUT /schedules/1
     def update
       if @schedule.update(schedule_params)
@@ -69,7 +75,7 @@ module RegularizationSchedule
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_schedule
-        @schedule = @agenda.schedules.find(params[:id])
+        @schedule = RegularizationSchedule::Schedule.find(params[:id])
       end
 
        def set_agenda

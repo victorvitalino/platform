@@ -8,6 +8,7 @@ RegularizationSchedule::Engine.routes.draw do
        resources :schedules, path: 'agendamento'
       end
       get 'my_schedules/:cpf', to: 'schedules#my_schedules', as: 'my_schedules'
+      get 'disable/:id', to: 'schedules#disable', as: 'disable'
     end
   end
 

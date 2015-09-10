@@ -1158,7 +1158,7 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.integer  "agenda_id"
     t.integer  "requeriment_id"
     t.string   "cpf"
-    t.boolean  "status"
+    t.integer  "status"
     t.date     "date_schedule"
     t.time     "hour_schedule"
     t.text     "observation"
