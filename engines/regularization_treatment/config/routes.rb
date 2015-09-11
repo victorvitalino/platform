@@ -6,5 +6,6 @@ RegularizationTreatment::Engine.routes.draw do
   resources :kins
   resources :checklist_treatments
   resources :cadastre_procedural_statuses
+  resources :authenticates
 
 end

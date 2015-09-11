@@ -24,5 +24,5 @@
             %td= schedule.hour_schedule
             %td= schedule.observation
             %td.col-md-2
-              = link_to "", edit_extranet_agenda_schedule_path(schedule.agenda.id,schedule),  title: 'Editar', 'data-toggle' => 'tooltip', class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
+              = link_to "", edit_extranet_agenda_schedule_path(schedule.agenda.id,schedule), remote: true, title: 'Editar', 'data-toggle' => 'tooltip', class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'
 

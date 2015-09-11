@@ -76,6 +76,7 @@ module RegularizationSchedule
       # Use callbacks to share common setup or constraints between actions.
       def set_schedule
         @schedule = RegularizationSchedule::Schedule.find(params[:id])
+        @kins = Candidate::Kin.where(cadastre_id: params[:id])
       end
 
        def set_agenda

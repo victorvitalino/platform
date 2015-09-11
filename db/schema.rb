@@ -222,12 +222,14 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.integer  "convocation_id"
     t.integer  "attendance_status_id"
     t.boolean  "status",               default: false
+    t.integer  "attendant_id"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end
 
   add_index "candidate_attendance_cadastres", ["adjunct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjunct_cadastre_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendance_status_id"], name: "index_candidate_attendance_cadastres_on_attendance_status_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["attendant_id"], name: "index_candidate_attendance_cadastres_on_attendant_id", using: :btree
   add_index "candidate_attendance_cadastres", ["convocation_id"], name: "index_candidate_attendance_cadastres_on_convocation_id", using: :btree
 
   create_table "candidate_attendance_statuses", force: :cascade do |t|
@@ -244,11 +246,13 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.integer  "procedural_status_id"
     t.integer  "convocation_id"
     t.integer  "assessment_id"
+    t.integer  "attendant_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   add_index "candidate_cadastre_procedural_statuses", ["assessment_id"], name: "index_candidate_cadastre_procedural_statuses_on_assessment_id", using: :btree
+  add_index "candidate_cadastre_procedural_statuses", ["attendant_id"], name: "index_candidate_cadastre_procedural_statuses_on_attendant_id", using: :btree
   add_index "candidate_cadastre_procedural_statuses", ["convocation_id"], name: "index_candidate_cadastre_procedural_statuses_on_convocation_id", using: :btree
 
   create_table "candidate_cadastres", force: :cascade do |t|
@@ -269,11 +273,13 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.boolean  "status"
     t.integer  "checklist_id"
     t.integer  "attendance_cadastre_id"
+    t.integer  "attendant_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   add_index "candidate_checklist_treatments", ["attendance_cadastre_id"], name: "index_candidate_checklist_treatments_on_attendance_cadastre_id", using: :btree
+  add_index "candidate_checklist_treatments", ["attendant_id"], name: "index_candidate_checklist_treatments_on_attendant_id", using: :btree
   add_index "candidate_checklist_treatments", ["checklist_id"], name: "index_candidate_checklist_treatments_on_checklist_id", using: :btree
 
   create_table "candidate_checklist_types", force: :cascade do |t|
@@ -497,6 +503,7 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.integer  "state_id"
     t.integer  "subscribe_id"
     t.text     "properties"
+    t.string   "protocol"
     t.text     "observation"
     t.integer  "status",        default: 0
     t.datetime "created_at",                null: false
@@ -542,8 +549,9 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.integer  "target"
     t.integer  "action"
     t.boolean  "publish"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "order",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "concourse_navs", ["page_id"], name: "index_concourse_navs_on_page_id", using: :btree
@@ -583,18 +591,21 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.text     "apresentation"
     t.date     "start"
     t.date     "end"
-    t.boolean  "publish"
-    t.boolean  "status"
+    t.boolean  "publish",                  default: false
+    t.boolean  "status",                   default: false
     t.string   "image_header"
     t.string   "image_logo"
     t.string   "image_footer"
     t.string   "image_slider"
-    t.boolean  "slider"
-    t.boolean  "consultation"
+    t.boolean  "slider",                   default: false
+    t.boolean  "consultation",             default: false
+    t.date     "consultation_start"
+    t.date     "consultation_end"
+    t.text     "consultation_description"
     t.string   "slug"
-    t.integer  "step",             default: 0
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "step",                     default: 0
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "concourse_subscribes", force: :cascade do |t|

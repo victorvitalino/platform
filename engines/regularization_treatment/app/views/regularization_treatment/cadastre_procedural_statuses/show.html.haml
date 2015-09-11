@@ -1,0 +1,181 @@
+.Pagina
+  .CabecalhoPagina
+    %img.LogoCodhab{:src => "/images/logo_codhab.png"}/
+    %b
+      GOVERNO DO DISTRITO FEDERAL
+      %br/
+      Secretaria de Estado de Habitação Regularização e Desenvolvimento Urbano
+      %br/
+      Companhia de Desenvolvimento Habitacional do Distrito Federal
+      %br/
+      %br/
+      Diretoria Imobiliária
+    %br/
+    %br/
+    %h2 FORMALIZAÇÃO DO PROCESSO DE REGULARIZAÇÃO
+%div{:style => " width:805px; margin: 0 auto;"}
+  #divMsgErro{:runat => "server", :visible => "false"}
+    %table{:style => "border: 0px solid black"}
+      %tr
+        %td
+          %center{:style => "color: red"} CANDIDATO NÃO CONVOCADO
+  #divVisualizacao{:runat => "server"}
+    %table.DadosCandidato
+      %tr
+        %th{:colspan => "3"}
+          Dados do Candidato
+      %tr
+        %td{:colspan => "2"}
+          Nome
+          %br/
+          %b
+            = @cadastre.adjunct_cadastre.name
+        %td
+          Inscrição n.
+          %br/
+          %b
+            %label#lblSeqCad{:runat => "server", :text => ""}
+      %tr
+        %td{:colspan => "3", :style => "border-bottom: 0px;"}
+          Endereço
+      %tr
+        %td{:colspan => "2", :style => "border-top: 0px;"}
+          %b
+            %label#lblEndereResid{:runat => "server", :text => ""}
+        %td
+          Requerimento:
+          %br/
+          %b
+            %label#lblProtocolo{:runat => "server", :text => ""}
+      %tr
+        %td
+          Descrição de
+          %b
+            %label#lblDtConv{:runat => "server", :text => ""}
+          %br/
+          %label#lblDescConv{:runat => "server", :text => ""}
+        %td
+          Estado Civil
+          %br/
+          %b
+            = @cadastre.adjunct_cadastre.civil_state.name if  @cadastre.adjunct_cadastre.civil_state
+      %tr
+        %td
+          Condição especial
+          %br/
+          %b
+            %label#lblCondEspecial{:runat => "server", :text => ""}
+        %td
+          CPF
+          %b
+            = @cadastre.cpf
+        %td
+          Data de chegada ao DF
+          %br/
+          %b
+            %label#lblDtChegadaDF{:runat => "server", :text => ""}
+      %tr
+        %td{:colspan => "3"}
+          Cônjuge/companheiro (nome e CPF)
+          %br/
+          %b
+            %label#lblCompanheiro{:runat => "server", :text => ""}
+      %tr
+        %td{:colspan => "3"}
+          #divAquisicao{:runat => "server", :style => "width: 100%; text-align:justify"}
+            %p
+              %b Senhor Diretor,
+            %p
+              Para fins de formalização do processo de habilitação visado à aquisição de unidade habitacional
+              de interesse social, nos termos da Lei n. 3.877, de 26/06/2006, venho apresentar a documentação
+              comprobatória dos dados declarados por ocasião do cadastramento ou recadastramento.
+            %p
+              DECLARO, que não sou nem fui proprietário, promitente comprador, cessionário de direito aquisitivo
+              de lote ou imóvel residencial no Distrio Federal, bem como não sou usufrutuário de imóvel residencial
+              no Distrito Federal, nem mesmo detentor de financiamento habitacional, nas condições estabelecidas
+              pelo Sistema Financeiro da Habitação (SFH) ou no Sistema Financeiro Imobiliário (SFI), no âmbito do
+              território nacional, responsabilizando-me civil, penal e administrativamente pela veracidade da
+              presente declaração, sob as penas da lei.
+            %p
+              Estou CIENTE de que:
+              %br>/
+              \- É vedada a comercialização, cessão, permuta, aluguel e/ou qualquer
+              outra transação imobiliária enquanto não houver transferência de domínio pelo Poder Público para o
+              beneficiário, salvo se autorizado pelo poder executivo;
+              %br>/
+              \- A CODHAB/DF não se responsabiliza
+              pela questões financeiras relativas à análise de crédito junto ao agente financeiro.
+            %p{:align => "right"}
+              %b Brasília-DF, ____/____/_________ 
+            %br/
+            %p{:align => "center"}
+              _____________________________________
+                   
+                   
+              _____________________________________
+            %p
+              %b
+                            
+                            
+                            
+                Assinatura do candidato
+                     
+                     
+                     
+                     
+                   
+                Assinatura do Cônjuge/Companheiro
+              %br/
+              %br/
+            %p{:align => "center"}
+              %br/
+              %b
+                Analizado por:
+                %label#lblNomeAnalista1{:runat => "server"}
+              %br/
+          #divRegularizacao{:runat => "server", :style => "width: 100%; text-align:justify"}
+            %p
+              %b> Senhor Diretor
+              ,
+            %p
+              Declaro(amos) que não sou(somos) e não fui(fomos) proprietário(s) promitente(s)
+              comprador(es), cessionário(s) de direito aquisitivo de lote ou qualquer imóvel residencial
+              no Distrito Federal, bem como não sou(somos) atualmente, titular(es) de usufrutuário(s)
+              de imóvel residencial nesta capital, nem mesmo detentor de qualquer financiamento
+              habitacional, nas condições estabelecidas para o Sistema Financeiro da Habitação,
+              no âmbito do território nacional, responsabilizando(nos) civil, criminal e administrativamente
+              pela veracidade da presente declaração e, nesta conformidade, afirmo(amos) sob as
+              penas das leis, que tenho(amos) conhecimento das condições legais existentes para
+              as falsas declarações prestadas.
+            %p{:align => "right"}
+              %b Brasília-DF, ____/____/_________ 
+            %br/
+            %p{:align => "center"}
+              _____________________________________
+                   
+                   
+              _____________________________________
+            %p
+              %b
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                Assinatura do candidato
+                  
+                     
+                     
+                     
+                   
+                Assiantura do Cônjuge/Companheiro
+              %br/
+              %br/
+            %p{:align => "center"}
+              %br/
+              %b
+                Supervisionado por:
+                %label#lblNomeAnalista2{:runat => "server"}
+              %br/

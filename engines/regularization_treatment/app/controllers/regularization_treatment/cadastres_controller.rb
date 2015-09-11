@@ -1,7 +1,8 @@
 module RegularizationTreatment
   class CadastresController < ApplicationController
     before_action :set_step
-    before_action :set_requeriment
+    before_action :set_requeriment, except: [:show]
+    before_action :set_cadastre, only: [:show]
 
     def new
       if session[:cadastre_id].present?
@@ -10,6 +11,10 @@ module RegularizationTreatment
         @cadastre = Regularization::Cadastre.new
         @cadastre.build_adjunct_cadastre
       end
+    end
+
+    def show
+
     end
 
     def create
@@ -30,6 +35,10 @@ module RegularizationTreatment
 
     def set_step
       @step = "cadastre"
+    end
+
+    def set_cadastre
+       @cadastre =   Regularization::Cadastre.find(params[:id])
     end
 
     def set_requeriment
