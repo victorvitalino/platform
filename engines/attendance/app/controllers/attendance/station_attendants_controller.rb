@@ -2,11 +2,11 @@ require_dependency "attendance/application_controller"
 
 module Attendance
   class StationAttendantsController < ApplicationController
+    before_action :set_station
     before_action :set_station_attendant, only: [:show, :edit, :update, :destroy]
-
     # GET /station_attendants
     def index
-      @station_attendants = StationAttendant.all
+      @station_attendants = @station.attendants.unscoped
     end
 
     # GET /station_attendants/1
@@ -15,7 +15,7 @@ module Attendance
 
     # GET /station_attendants/new
     def new
-      @station_attendant = StationAttendant.new
+      @station_attendant = @station.attendants.new
     end
 
     # GET /station_attendants/1/edit
@@ -24,10 +24,11 @@ module Attendance
 
     # POST /station_attendants
     def create
-      @station_attendant = StationAttendant.new(station_attendant_params)
+      @station_attendant = @station.attendants.new(station_attendant_params)
 
       if @station_attendant.save
-        redirect_to @station_attendant, notice: 'Station attendant was successfully created.'
+        flash[:success] = t :success
+        redirect_to action: 'index'
       else
         render :new
       end
@@ -36,7 +37,8 @@ module Attendance
     # PATCH/PUT /station_attendants/1
     def update
       if @station_attendant.update(station_attendant_params)
-        redirect_to @station_attendant, notice: 'Station attendant was successfully updated.'
+        flash[:success] = t :success
+        redirect_to action: 'index'
       else
         render :edit
       end
@@ -44,19 +46,26 @@ module Attendance
 
     # DELETE /station_attendants/1
     def destroy
-      @station_attendant.destroy
-      redirect_to station_attendants_url, notice: 'Station attendant was successfully destroyed.'
+      if @station_attendant.destroy
+        flash[:success] = t :success
+        redirect_to action: 'index'
+      end
     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
-      def set_station_attendant
-        @station_attendant = StationAttendant.find(params[:id])
-      end
+    def set_station_attendant
+      @station_attendant = StationAttendant.unscoped.find(params[:id])
+    end
 
-      # Only allow a trusted parameter "white list" through.
-      def station_attendant_params
-        params[:station_attendant]
-      end
+    def set_station
+      @station = Station.find(params[:station_id])
+    end
+    
+    # Only allow a trusted parameter "white list" through.
+    def station_attendant_params
+      params.require(:station_attendant).permit(:attendant_id, :status, :counter_id, :supervisor, :counter)
+    end
+
   end
 end

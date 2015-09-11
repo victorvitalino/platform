@@ -43,11 +43,11 @@ module Attendance
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_attendant
-        @attendant = Attendant.find(params[:id])
+        @attendant = Attendant.unscoped.find(params[:id])
       end
 
       def set_attendants
-        @attendants = Attendant.all
+        @attendants = Attendant.unscoped.all
       end
 
       # Only allow a trusted parameter "white list" through.

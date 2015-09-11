@@ -25,12 +25,11 @@ module Plataform
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Brasilia'
 
-    config.assets.paths << File.join(Rails.root, 'storage', 'assets', 'templates')
-    config.assets.paths << File.join(Rails.root, 'storage', 'assets', 'stylesheets')
-    config.assets.paths << File.join(Rails.root, 'storage', 'assets', 'javascripts')
-    config.assets.paths << File.join(Rails.root, 'storage', 'assets', 'images')
-    config.assets.paths << File.join(Rails.root, 'storage', 'assets', 'fonts')
-    config.railties_order = [:main_app, Portal::Engine, Dashboard::Engine, :all]
+    config.assets.paths << File.join(Rails.root, 'assets', 'templates')
+    config.assets.paths << File.join(Rails.root, 'assets', 'stylesheets')
+    config.assets.paths << File.join(Rails.root, 'assets', 'javascripts')
+    config.assets.paths << File.join(Rails.root, 'assets', 'images')
+    config.assets.paths << File.join(Rails.root, 'assets', 'fonts')
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*','**','***', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :'pt-BR'

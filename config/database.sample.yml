@@ -5,22 +5,24 @@ default: &default
 
 development:
   <<: *default
-  database: "codhab_development"
-  username: "username"
-  password: "password"
-  host: "host"
+  database: "codhab_production"
+  username: <%= ENV['USERNAME'] %>
+  password: <%= ENV['PASSWORD'] %>
+  host: <%= ENV['HOST'] %>
 
 
 production:
   <<: *default
-  database: codhab_production
-  username: "username"
-  password: "password"
-  host: "host"
+  database: codhab_development
+  username: "<%= ENV['USERNAME'] %>"
+  password: "<%= ENV['PASSWORD'] %>"
+  host: "<%= ENV['HOST'] %>"
+
 
 test:
   <<: *default
   database: codhab_test
-  username: "username"
-  password: "password"
-  host: "host"
+  username: "<%= ENV['USERNAME'] %>"
+  password: "<%= ENV['PASSWORD'] %>"
+  host: "<%= ENV['HOST'] %>"
+

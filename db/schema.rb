@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831193353) do
+ActiveRecord::Schema.define(version: 20150908191616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,18 +132,28 @@ ActiveRecord::Schema.define(version: 20150831193353) do
   add_index "attendance_codes", ["counter_id"], name: "index_attendance_codes_on_counter_id", using: :btree
   add_index "attendance_codes", ["station_id"], name: "index_attendance_codes_on_station_id", using: :btree
 
-  create_table "attendance_counters", force: :cascade do |t|
-    t.integer  "station_id"
+  create_table "attendance_counter_subjects", force: :cascade do |t|
+    t.integer  "counter_id"
     t.integer  "subject_id"
-    t.boolean  "preference"
-    t.boolean  "status"
-    t.integer  "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "attendance_counter_subjects", ["counter_id"], name: "index_attendance_counter_subjects_on_counter_id", using: :btree
+  add_index "attendance_counter_subjects", ["subject_id"], name: "index_attendance_counter_subjects_on_subject_id", using: :btree
+
+  create_table "attendance_counters", force: :cascade do |t|
+    t.integer  "station_id"
+    t.integer  "counter_subject_id"
+    t.boolean  "preference",         default: false
+    t.boolean  "status",             default: false
+    t.integer  "number",             default: 1
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "attendance_counters", ["counter_subject_id"], name: "index_attendance_counters_on_counter_subject_id", using: :btree
   add_index "attendance_counters", ["station_id"], name: "index_attendance_counters_on_station_id", using: :btree
-  add_index "attendance_counters", ["subject_id"], name: "index_attendance_counters_on_subject_id", using: :btree
 
   create_table "attendance_station_attendants", force: :cascade do |t|
     t.integer  "attendant_id"
@@ -218,7 +228,7 @@ ActiveRecord::Schema.define(version: 20150831193353) do
   add_index "candidate_adjunct_cadastres", ["state_work_id"], name: "index_candidate_adjunct_cadastres_on_state_work_id", using: :btree
 
   create_table "candidate_attendance_cadastres", force: :cascade do |t|
-    t.integer  "adjunct_cadastre_id"
+    t.integer  "adjuct_cadastre_id"
     t.integer  "convocation_id"
     t.integer  "attendance_status_id"
     t.boolean  "status",               default: false
@@ -227,7 +237,7 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.datetime "updated_at",                           null: false
   end
 
-  add_index "candidate_attendance_cadastres", ["adjunct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjunct_cadastre_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["adjuct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjuct_cadastre_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendance_status_id"], name: "index_candidate_attendance_cadastres_on_attendance_status_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendant_id"], name: "index_candidate_attendance_cadastres_on_attendant_id", using: :btree
   add_index "candidate_attendance_cadastres", ["convocation_id"], name: "index_candidate_attendance_cadastres_on_convocation_id", using: :btree
@@ -316,22 +326,19 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.integer  "quantity"
     t.text     "discretion"
     t.boolean  "stauts",            default: true
-    t.integer  "tipe"
     t.string   "legacy_pontuation"
     t.integer  "pontuation_id"
-    t.integer  "city_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
 
-  add_index "candidate_convocations", ["city_id"], name: "index_candidate_convocations_on_city_id", using: :btree
   add_index "candidate_convocations", ["pontuation_id"], name: "index_candidate_convocations_on_pontuation_id", using: :btree
 
   create_table "candidate_kin_adjuncts", force: :cascade do |t|
     t.string   "income"
     t.string   "percent"
     t.integer  "kin_type_id"
-    t.integer  "civil_state_id"
+    t.integer  "civil_status_id"
     t.integer  "kin_id"
     t.integer  "kinship_id"
     t.boolean  "copurchaser_flag"
@@ -339,7 +346,7 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "candidate_kin_adjuncts", ["civil_state_id"], name: "index_candidate_kin_adjuncts_on_civil_state_id", using: :btree
+  add_index "candidate_kin_adjuncts", ["civil_status_id"], name: "index_candidate_kin_adjuncts_on_civil_status_id", using: :btree
   add_index "candidate_kin_adjuncts", ["kin_id"], name: "index_candidate_kin_adjuncts_on_kin_id", using: :btree
   add_index "candidate_kin_adjuncts", ["kin_type_id"], name: "index_candidate_kin_adjuncts_on_kin_type_id", using: :btree
   add_index "candidate_kin_adjuncts", ["kinship_id"], name: "index_candidate_kin_adjuncts_on_kinship_id", using: :btree
@@ -1128,13 +1135,11 @@ ActiveRecord::Schema.define(version: 20150831193353) do
     t.string   "spouse_cpf"
     t.boolean  "owner",            default: false
     t.boolean  "status",           default: false
-    t.integer  "convocation_id"
     t.integer  "unit_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
 
-  add_index "regularization_requeriments", ["convocation_id"], name: "index_regularization_requeriments_on_convocation_id", using: :btree
   add_index "regularization_requeriments", ["unit_id"], name: "index_regularization_requeriments_on_unit_id", using: :btree
 
   create_table "regularization_schedule_agendas", force: :cascade do |t|

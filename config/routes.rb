@@ -14,7 +14,6 @@ end
 
 Rails.application.routes.draw do
 
-
   mount RedactorRails::Engine => '/redactor_rails'
 
   devise_for :user_candidates
@@ -23,8 +22,6 @@ Rails.application.routes.draw do
     devise_for :users, :path  => '', controllers: { registrations: 'registrations'}
 
     authenticate :user do
-
-
       mount Dashboard::Engine                => '/',               as: 'dashboard',                 module: 'dashboard'
       mount Intranet::Engine                 => '/intranet',       as: 'intranet',                  module: 'intranet'
       mount Cms::Engine                      => "/cms",            as: 'cms',                       module: 'cms'

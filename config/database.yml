@@ -1,0 +1,30 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  port: 5432
+
+development:
+  <<: *default
+  database: "codhab_production"
+  username: "postgres"
+  password: "codhab072771472"
+  host: "10.233.38.16"
+
+
+production:
+  <<: *default
+  database: codhab_production
+  username: "postgres"
+  password: "codhab072771472"
+  host: "10.233.38.16"
+
+
+test:
+  <<: *default
+  database: codhab_test
+  username: "postgres"
+  password: "codhab072771472"
+  host: "10.233.38.16"
+
+
+

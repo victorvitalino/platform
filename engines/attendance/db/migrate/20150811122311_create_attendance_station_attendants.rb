@@ -3,8 +3,8 @@ class CreateAttendanceStationAttendants < ActiveRecord::Migration
     create_table :attendance_station_attendants do |t|
       t.references :attendant, index: true
       t.references :station, index: true 
-      t.boolean    :status
-      t.boolean    :supervisor
+      t.boolean    :status, default: false
+      t.boolean    :supervisor, default: false
       t.references :counter, index: true
       t.timestamps null: false
     end

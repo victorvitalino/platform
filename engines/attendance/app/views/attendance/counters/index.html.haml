@@ -1,7 +1,7 @@
 .card
   .card-header.ch-alt
     %h2
-      Postos de Atendimento / Guichês
+      #{@station.name} / Guichês
       %span.pull-right
         = link_to 'Voltar', attendance.stations_path, class: 'btn btn-inverse'
         = link_to 'Novo Guichê', attendance.new_station_counter_path(@station), class: 'btn btn-success'
@@ -10,20 +10,21 @@
     %table.table.table-striped.datatable
       %thead
         %tr
-          %th #
           %th Número
-          %th Posto
           %th Assuntos
           %th Preferêncial
           %th Status
-          %th{:colspan => "3"} Ações
+          %th Ações
       %tbody
-        - @counters.each_with_index do |station, index|
+        - @counters.order(:number).each_with_index do |counter, index|
           %tr
-            %td= index + 1
-            %td= station.name
-            %td
-            %td.col-md-2
-              = link_to '', station_counters_path(station), class: 'md md-edit btn btn-success'
-              = link_to '', edit_station_counter_path(station), class: 'md md-edit btn btn-primary'
-              = link_to '', station, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }
+            %td.col-md-1= counter.number
+            %td.col-md-7
+              - counter.counter_subjects.each do |counter_subject| 
+                .label.label-primary{:style => 'margin-left: 5px'}
+                  = counter_subject.subject.name if counter_subject.subject.present?
+            %td.col-md-1= counter.preference ? 'sim' : 'não'
+            %td.col-md-1= counter.status ? 'ativo' : 'inativo'
+            %td.col-md-3
+              = link_to '', edit_station_counter_path(station_id: @station, id: counter), class: 'md md-edit btn btn-primary'
+              = link_to '', station_counter_path(station_id: @station, id: counter), class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }

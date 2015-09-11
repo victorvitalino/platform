@@ -5,7 +5,6 @@ gem 'rails', '4.2.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'carrierwave'
 
 gem 'simple_form'
 gem 'haml-rails'
@@ -35,16 +34,33 @@ gem 'wicked_pdf'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 
+gem 'dotenv-rails'
 
-group :development, :test do
+group :test do 
+  gem 'sqlite3'
+  gem 'thin'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'poltergeist'
+end
+
+group :development do
+  gem 'carrierwave'
   gem 'sqlite3'
   gem 'byebug'
   gem 'thin'
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-puma', require: false
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-rvm',   '~> 0.1', require: false
 end
 
 group :production do
   gem 'pg'
   gem 'unicorn'
+  gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp' 
 end
 
 
