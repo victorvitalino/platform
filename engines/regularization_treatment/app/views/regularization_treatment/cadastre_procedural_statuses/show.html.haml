@@ -13,12 +13,6 @@
     %br/
     %br/
     %h2 FORMALIZAÇÃO DO PROCESSO DE REGULARIZAÇÃO
-%div{:style => " width:805px; margin: 0 auto;"}
-  #divMsgErro{:runat => "server", :visible => "false"}
-    %table{:style => "border: 0px solid black"}
-      %tr
-        %td
-          %center{:style => "color: red"} CANDIDATO NÃO CONVOCADO
   #divVisualizacao{:runat => "server"}
     %table.DadosCandidato
       %tr
@@ -41,12 +35,12 @@
       %tr
         %td{:colspan => "2", :style => "border-top: 0px;"}
           %b
-            %label#lblEndereResid{:runat => "server", :text => ""}
+            = "#{@requeriment.unit.city.name} - #{@requeriment.unit.complete_address}" if @requeriment.unit.present? && @requeriment.unit.city.present?
         %td
           Requerimento:
           %br/
           %b
-            %label#lblProtocolo{:runat => "server", :text => ""}
+            = "CODHAB#{@requeriment.id}#{@requeriment.created_at.strftime('%Y')}"
       %tr
         %td
           Descrição de
@@ -69,11 +63,6 @@
           CPF
           %b
             = @cadastre.cpf
-        %td
-          Data de chegada ao DF
-          %br/
-          %b
-            %label#lblDtChegadaDF{:runat => "server", :text => ""}
       %tr
         %td{:colspan => "3"}
           Cônjuge/companheiro (nome e CPF)
@@ -179,3 +168,82 @@
                 Supervisionado por:
                 %label#lblNomeAnalista2{:runat => "server"}
               %br/
+:css
+  body {
+      font-family: Verdana;
+      font-size: 11px;
+  }
+
+  /*-------Container---------*/
+  .Pagina {
+      margin: auto;
+      width: 800px;
+  }
+  /*------Cabecalho---------*/
+  .CabecalhoPagina {
+      text-align: center;
+  }
+  .LogoCodhab {
+      width: 75px;
+      float: left;
+  }
+  .LogoGDF{
+      width: 90px;
+      float: right;
+  }
+
+  .DadosCandidato {
+      border-top: 1px solid #cfcfcf;
+  }
+  .Cabecalho h2, .Cabecalho h3 {
+      color: #4f4f4f;
+      margin: 4px;
+  }
+
+  /*------Tabelas-------*/
+  table {
+      border: 1px solid #b5b5b5;
+      border-top: none;
+      border-bottom: none;
+      width: 800px;
+      /*Equivalente ao CellPadding*/
+      border-spacing:0;
+      border-collapse:collapse;
+  }
+  table th {
+      border: 1px solid #b5b5b5;
+      background: #e8e8e8;
+      width: 800px;
+      text-align: center;
+  }
+  table td {
+      padding: 2px;
+  }
+  table .Label {
+      width: 760px;
+  }
+  .LinhaEscura td {
+      background: #f5f5f5;
+  }
+
+  /*-----Tabelas diferentes-------*/
+  .Parecer {
+      width: 400px;
+      float: left;
+      border-bottom: 1px solid #b5b5b5;
+  }
+  .Parecer td {
+      height: 140px;
+  }
+  .Parecer hr, .ParecerNUATE hr{
+      width: 300px;
+      border: none;
+      border-top: 1px solid #363636;
+      margin: 0;
+  }
+  .ParecerNUATE {
+      border-bottom: 1px solid #b5b5b5;
+  }
+  .ParecerNUATE td {
+      padding: 5px;
+  }

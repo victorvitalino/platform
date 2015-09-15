@@ -56,7 +56,7 @@
         Endereço requerimento - Regularizou é seu
         %br/
         %b
-          %label#lblEnderecoRequerimento{:runat => "server"}
+          = "#{@requeriment.unit.city.name} - #{@requeriment.unit.complete_address}" if @requeriment.unit.present? && @requeriment.unit.city.present?
     %tr
       %td{:colspan => "3"}
         Endereço do projeto - URB
@@ -73,7 +73,7 @@
         Metragem do lote
         %br/
         %b
-          %label#lblMetragemLote{:runat => "server"}
+          = @requeriment.unit.area  if @requeriment.unit.present? && @requeriment.unit.area.present?
       %td
         URB nº
         %br/
@@ -89,12 +89,12 @@
         Protocolo Req. nº
         %br/
         %b
-          %label#lblNumeroProtocolo{:runat => "server"}
+          = "CODHAB#{@requeriment.id}#{@requeriment.created_at.strftime('%Y')}"
       %td
         Inscrição IPTU
         %br/
         %b
-          %label#lblInscricaoIPTU{:runat => "server"}
+          = @requeriment.unit.registration_iptu  if @requeriment.unit.present? && @requeriment.unit.registration_iptu.present?
   %table
     %tr
       %th{:colspan => "2"}
@@ -283,3 +283,83 @@
         %br/
         %hr{:style => "margin: auto;"}/
         Chefe do NUATE
+
+:css
+  body {
+      font-family: Verdana;
+      font-size: 11px;
+  }
+
+  /*-------Container---------*/
+  .Pagina {
+      margin: auto;
+      width: 800px;
+  }
+  /*------Cabecalho---------*/
+  .CabecalhoPagina {
+      text-align: center;
+  }
+  .LogoCodhab {
+      width: 75px;
+      float: left;
+  }
+  .LogoGDF{
+      width: 90px;
+      float: right;
+  }
+
+  .DadosCandidato {
+      border-top: 1px solid #cfcfcf;
+  }
+  .Cabecalho h2, .Cabecalho h3 {
+      color: #4f4f4f;
+      margin: 4px;
+  }
+
+  /*------Tabelas-------*/
+  table {
+      border: 1px solid #b5b5b5;
+      border-top: none;
+      border-bottom: none;
+      width: 800px;
+      /*Equivalente ao CellPadding*/
+      border-spacing:0;
+      border-collapse:collapse;
+  }
+  table th {
+      border: 1px solid #b5b5b5;
+      background: #e8e8e8;
+      width: 800px;
+      text-align: center;
+  }
+  table td {
+      padding: 2px;
+  }
+  table .Label {
+      width: 760px;
+  }
+  .LinhaEscura td {
+      background: #f5f5f5;
+  }
+
+  /*-----Tabelas diferentes-------*/
+  .Parecer {
+      width: 400px;
+      float: left;
+      border-bottom: 1px solid #b5b5b5;
+  }
+  .Parecer td {
+      height: 140px;
+  }
+  .Parecer hr, .ParecerNUATE hr{
+      width: 300px;
+      border: none;
+      border-top: 1px solid #363636;
+      margin: 0;
+  }
+  .ParecerNUATE {
+      border-bottom: 1px solid #b5b5b5;
+  }
+  .ParecerNUATE td {
+      padding: 5px;
+  }

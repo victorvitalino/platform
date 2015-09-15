@@ -1,7 +1,9 @@
 module RegularizationTreatment
   class CadastreProceduralStatusesController < ApplicationController
-    before_action :set_cadastre
+    before_action :set_cadastre,except: [:show]
     before_action :set_step
+    before_action  :set_cadastre_show, only: [:show]
+
 
     def new
       @cadastre_procedural_status = Candidate::CadastreProceduralStatus.new
@@ -10,7 +12,9 @@ module RegularizationTreatment
     end
 
     def show
+      @requeriment = Regularization::Requeriment.find_by_cpf(@cadastre.cpf)
 
+       render layout: 'layouts/regularization_treatment/application'
     end
 
     def create
@@ -39,13 +43,17 @@ module RegularizationTreatment
 
     private
 
-    def set_cadastre
+     def set_cadastre
       if session[:cadastre_id].present?
         @cadastre = Regularization::Cadastre.find(session[:cadastre_id])
       else
         flash[:info] = "É necessario preencher o cadastro."
         redirect_to new_cadastre_path
       end
+    end
+
+    def set_cadastre_show
+        @cadastre = Regularization::Cadastre.find(params[:id])
     end
 
     def set_step

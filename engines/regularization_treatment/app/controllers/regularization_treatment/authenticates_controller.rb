@@ -26,7 +26,7 @@ module RegularizationTreatment
       else
            flash[:danger] = "Você não está autorizado a fnalizar este Atendimento."
       end
-       redirect_to new_consult_path
+           redirect_to new_consult_path
     end
 
     private

@@ -1,11 +1,17 @@
 module RegularizationTreatment
   class ChecklistTreatmentsController < ApplicationController
-    before_action :set_cadastre
+    before_action :set_cadastre,except: [:show]
     before_action :set_step
+    before_action  :set_cadastre_show, only: [:show]
 
     def new
       @checklist = Candidate::Checklist.all
       @checklist_treatment = Candidate::ChecklistTreatment.new
+    end
+
+    def show
+       @requeriment = Regularization::Requeriment.find_by_cpf(@cadastre.cpf)
+       render layout: 'layouts/regularization_treatment/application'
     end
 
     def create
@@ -20,6 +26,10 @@ module RegularizationTreatment
     end
 
     private
+
+    def set_cadastre_show
+         @cadastre = Regularization::Cadastre.find(params[:id])
+    end
 
     def set_cadastre
       if session[:cadastre_id].present?

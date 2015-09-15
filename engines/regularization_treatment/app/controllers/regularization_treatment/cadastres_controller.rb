@@ -14,7 +14,7 @@ module RegularizationTreatment
     end
 
     def show
-
+        render layout: 'layouts/regularization_treatment/application'
     end
 
     def create

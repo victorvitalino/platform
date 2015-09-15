@@ -77,6 +77,9 @@
                       %td= a.attendant.staff.name if a.attendant.present? && a.attendant.staff.present?
                       %td
                         = link_to "Autorizar", new_authenticate_path(id: a.adjunct_cadastre.id, cadastre_id: a.adjunct_cadastre.cadastre.id), remote: true, class: 'btn btn-success' if a.attendance_status_id == 4
+                        = link_to "Ficha CheckList", checklist_treatment_path(a.adjunct_cadastre.cadastre.id), target: :blank, class: 'btn btn-success' if a.attendance_status_id == 3
+                        = link_to "Ficha Cadastro", cadastre_path(a.adjunct_cadastre.cadastre.id), target: :blank, class: 'btn btn-success' if a.attendance_status_id == 1
+                        = link_to "Formalização", cadastre_procedural_status_path(a.adjunct_cadastre.cadastre.id), target: :blank, class: 'btn btn-success' if a.attendance_status_id == 4
 
         %hr/
         %br/
