@@ -13,7 +13,7 @@
             %th Agenda
             %th Data de Atendimento
             %th Hora de Atendimento
-            %th
+            %th Situação
         %tbody
           - @schedules.each_with_index do |s, index|
             %tr
@@ -21,6 +21,7 @@
               %td= s.agenda.title
               %td= s.date_schedule.strftime('%d/%m/%Y')
               %td= s.hour_schedule.strftime('%H:%M')
+              %td= s.status_i18n
               %td
                 = link_to "visualizar", portal_agenda_schedule_path(s.agenda.id,s), class: 'btn btn-success'
-                = link_to "cancelar agendamento", portal_agenda_schedule_path(s.agenda.id,s), method: :delete,  class: 'btn btn-danger', data: {confirm: "#{t(:confirm_delete)}"}
+                = link_to "cancelar agendamento", portal_disable_path(s), class: 'btn btn-danger', data: {confirm: "#{t(:confirm_delete)}"} if s.attendance_waiting?

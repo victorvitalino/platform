@@ -1,0 +1,285 @@
+.Pagina
+  .CabecalhoPagina
+    %img.LogoCodhab{:src => "/images/logo_codhab.png"}/
+    %b
+      GOVERNO DO DISTRITO FEDERAL
+      %br/
+      Secretaria de Estado de Habitação Regularização e Desenvolvimento Urbano
+      %br/
+      Companhia de Desenvolvimento Habitacional do Distrito Federal
+      %br/
+      %br/
+      Diretoria Imobiliária
+    %br/
+    %br/
+    %h2 CheckList
+  %table.DadosCandidato
+    %tr
+      %th{:colspan => "3"}
+        CHECKLIST - REGULARIZOU É SEU
+        %br/
+        PARCELAMENTOS INFORMAIS CONSOLIDADOS - Lei 4.996 de 19 de dezembro de 2012
+    %tr
+      %td
+        Titular
+        %br/
+        %b
+          = @cadastre.adjunct_cadastre.name
+      %td
+        CPF nº
+        %br/
+        %b
+          = @cadastre.cpf
+      %td
+        Requerimento nº
+        %br/
+        %b
+          %label#lblNumeroProcesso{:runat => "server"}
+    %tr
+      %td
+        Cônjuge
+        %br/
+        %b
+          %label#lblNomeConjuge{:runat => "server"}
+      %td
+        CPF nº
+        %br/
+        %b
+          %label#lblCPFConjuge{:runat => "server"}
+      %td
+        Telefone
+        %br/
+        %b
+          = @cadastre.adjunct_cadastre.telephone
+    %tr
+      %td{:colspan => "3"}
+        Endereço requerimento - Regularizou é seu
+        %br/
+        %b
+          %label#lblEnderecoRequerimento{:runat => "server"}
+    %tr
+      %td{:colspan => "3"}
+        Endereço do projeto - URB
+        %br/
+        %b
+          %label#lblEnderecoProjeto{:runat => "server"}
+    %tr
+      %td
+        RA
+        %br/
+        %b
+          %label#lblRA{:runat => "server"}
+      %td
+        Metragem do lote
+        %br/
+        %b
+          %label#lblMetragemLote{:runat => "server"}
+      %td
+        URB nº
+        %br/
+        %b
+          %label#lblURB{:runat => "server"}
+    %tr
+      %td
+        Código de convocação
+        %br/
+        %b
+          %label#lblCodConv{:runat => "server"}
+      %td
+        Protocolo Req. nº
+        %br/
+        %b
+          %label#lblNumeroProtocolo{:runat => "server"}
+      %td
+        Inscrição IPTU
+        %br/
+        %b
+          %label#lblInscricaoIPTU{:runat => "server"}
+  %table
+    %tr
+      %th{:colspan => "2"}
+        DOCUMENTOS
+    %tr
+      %td.Label
+        1. Requerimento Regularizou é seu
+      %td
+        %b
+          %label#lblCheckRequerimento{:runat => "server"}
+    %tr.LinhaEscura
+      %td.Label
+        2. RG
+      %td
+        %b
+          %label#lblCheckRG{:runat => "server"}
+    %tr
+      %td.Label
+        3. CPF
+      %td
+        %b
+          %label#lblCheckCPF{:runat => "server"}
+    %tr.LinhaEscura
+      %td.Label
+        4. RG do Cônjuge
+      %td
+        %b
+          %label#lblCheckRGConjuge{:runat => "server"}
+    %tr
+      %td.Label
+        5. CPF Cônjuge
+      %td
+        %b
+          %label#lblCheckCPFConjuge{:runat => "server"}
+    %tr.LinhaEscura
+      %td.Label
+        6. Certidão de nascimento/casamento
+      %td
+        %b
+          %label#lblCheckCertNasc{:runat => "server"}
+    %tr
+      %td.Label
+        7. Declaração de posse mansa e pacífica
+      %td
+        %b
+          %label#lblCheckDeclaracaoPosse{:runat => "server"}
+    %tr.LinhaEscura
+      %td.Label
+        8. Certidões cartorárias de imóveis no DF
+      %td
+        %b
+          %label#lblCheckCertCartoraria{:runat => "server"}
+    %tr
+      %td.Label
+        9. Comprovante de ocupação a ser regularizado
+      %td
+        %b
+          %label#lblCheckCompOcupacao{:runat => "server"}
+  %table
+    %tr
+      %th{:colspan => "2"}
+        ANÁLISE
+    %tr
+      %td.Label
+        1. Duplicidade de endereço requerido
+      %td
+        %b
+          %label#lblCheckDuplicidadeEndereco{:runat => "server"}
+    %tr.LinhaEscura
+      %td.Label
+        2. CPF em duplicidade no Regularizou é seu
+      %td
+        %b
+          %label#lblCheckDuplicidadeCPF{:runat => "server"}
+    %tr
+      %td.Label
+        3. Pesquisa cadastral - SIHAB
+      %td
+        %b
+          %label#lblCheckPesquisaCadastral{:runat => "server"}
+    %tr.LinhaEscura
+      %td.Label
+        4. Pesquisa - SEFAZ / IPTU
+      %td
+        %b
+          %label#lblCheckSEFAZ{:runat => "server"}
+    %tr
+      %td.Label
+        5. Possui outro imóvel no DF
+      %td
+        %b
+          %label#lblCheckPossuiImovelDF{:runat => "server"}
+    %tr.LinhaEscura
+      %td.Label
+        6. Ex-proprietário de imóvel no DF
+      %td
+        %b
+          %label#lblCheckExProprietario{:runat => "server"}
+    %tr
+      %td.Label
+        7. Promitente comprador/Cessionário outro imóvel DF
+      %td
+        %b
+          %label#lblCheckCompradorCessionario{:runat => "server"}
+    %tr.LinhaEscura
+      %td.Label
+        8. Comprova cinco anos de ocupação a ser regularizado
+      %td
+        %b
+          %label#lblCheckCompCincoAnos{:runat => "server"}
+  %table
+    %tr
+      %th
+        MENSAGENS
+    %tr
+      %td
+        %label#lblMsnRenda{:runat => "server", :visible => "false"}
+        %label#lblMsnTempoBrasilia{:runat => "server", :visible => "false"}
+        %label#lblMsnCartoraria{:runat => "server", :visible => "false"}
+        %label#lblSefaz{:runat => "server", :visible => "false"}
+        %label#lblMsg{:runat => "server", :visible => "false"}
+        %label#lblVoiEstrutural{:runat => "server"}
+        %br/
+        %label#lblComunid{:runat => "server"}
+        %br/
+        %label#lblHerdeiros{:runat => "server"}
+        %br/
+        %label#lblImoveis{:runat => "server"}
+        %br/
+        %label#lblCessionario{:runat => "server"}
+  %table.Parecer
+    %tr
+      %th
+        PARECER DO DIGITADOR
+    %tr
+      %td
+        Parecer
+        %br/
+        %b
+          %label#lblParecerDigitador{:runat => "server"}
+        %br/
+        %br/
+        Observação
+        %br/
+        %b
+          %label#lblObsDigitador{:runat => "server"}
+        %br/
+        %br/
+        Digitado por
+        %br/
+        %b
+          %label#lblNomeDigitador{:runat => "server"}
+  %table.Parecer
+    %tr
+      %th
+        PARECER DO SUPERVISOR
+    %tr
+      %td
+        Parecer
+        %br/
+        %b
+          %label#lblParecerSupervisor{:runat => "server"}
+        %br/
+        %br/
+        Observação
+        %br/
+        %b
+          %label#lblObsSupervisor{:runat => "server"}
+        %br/
+        %br/
+        %br/
+        %hr/
+        %b
+          %label#lblNomeSupervisor{:runat => "server"}
+        %br/
+        Assinatura do Supervisor
+  %table.ParecerNUATE
+    %tr
+      %td{:style => "text-align: left;"}
+        De acordo. Autue-se e após à DIMOB para publicar.
+      %td{:style => "text-align: right;"}
+        Brasília/DF,__/__/____.
+    %tr
+      %td{:colspan => "2", :style => "text-align: center;"}
+        %br/
+        %br/
+        %hr{:style => "margin: auto;"}/
+        Chefe do NUATE

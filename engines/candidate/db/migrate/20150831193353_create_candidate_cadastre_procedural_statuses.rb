@@ -7,6 +7,7 @@ class CreateCandidateCadastreProceduralStatuses < ActiveRecord::Migration
       t.references :procedural_status#, index: true#, foreign_key: true
       t.references :convocation, index: true#, foreign_key: true
       t.references :assessment, index: true#, foreign_key: true
+      t.references :attendant, index: true
 
       t.timestamps null: false
     end

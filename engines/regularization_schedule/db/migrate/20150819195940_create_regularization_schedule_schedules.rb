@@ -4,7 +4,7 @@ class CreateRegularizationScheduleSchedules < ActiveRecord::Migration
       t.references :agenda, index: true #,foreign_key: true
       t.references :requeriment, index: true #,foreign_key: true
       t.string :cpf
-      t.boolean :status
+      t.integer :status
       t.date :date_schedule
       t.time :hour_schedule
       t.text :observation

@@ -39,8 +39,8 @@ module RegularizationSchedule
 
     # PATCH/PUT /schedules/1
     def update
-      if @schedule.update(schedule_params)
-        redirect_to @schedule, notice: 'Agendamento atualizado com sucesso.'
+      if @schedule.update(schedule_params_update)
+        redirect_to extranet_agenda_schedules_path(@agenda.id), notice: 'Agendamento atualizado com sucesso.'
       else
         render :edit
       end
@@ -65,6 +65,10 @@ module RegularizationSchedule
       # Only allow a trusted parameter "white list" through.
       def schedule_params
         params.require(:schedule).permit(:agenda_id, :requeriment_id, :cpf, :status, :date_schedule, :hour_schedule, :observation)
+      end
+
+       def schedule_params_update
+        params.require(:schedule).permit(:status)
       end
   end
 end

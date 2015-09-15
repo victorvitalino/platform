@@ -5,6 +5,7 @@ class CreateCandidateAttendanceCadastres < ActiveRecord::Migration
       t.references :convocation, index: true
       t.references :attendance_status, index: true
       t.boolean    :status, default: false
+      t.references :attendant, index: true
       t.timestamps null: false
     end
   end

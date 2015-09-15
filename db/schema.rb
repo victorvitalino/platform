@@ -232,12 +232,14 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.integer  "convocation_id"
     t.integer  "attendance_status_id"
     t.boolean  "status",               default: false
+    t.integer  "attendant_id"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end
 
   add_index "candidate_attendance_cadastres", ["adjuct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjuct_cadastre_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendance_status_id"], name: "index_candidate_attendance_cadastres_on_attendance_status_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["attendant_id"], name: "index_candidate_attendance_cadastres_on_attendant_id", using: :btree
   add_index "candidate_attendance_cadastres", ["convocation_id"], name: "index_candidate_attendance_cadastres_on_convocation_id", using: :btree
 
   create_table "candidate_attendance_statuses", force: :cascade do |t|
@@ -254,11 +256,13 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.integer  "procedural_status_id"
     t.integer  "convocation_id"
     t.integer  "assessment_id"
+    t.integer  "attendant_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   add_index "candidate_cadastre_procedural_statuses", ["assessment_id"], name: "index_candidate_cadastre_procedural_statuses_on_assessment_id", using: :btree
+  add_index "candidate_cadastre_procedural_statuses", ["attendant_id"], name: "index_candidate_cadastre_procedural_statuses_on_attendant_id", using: :btree
   add_index "candidate_cadastre_procedural_statuses", ["convocation_id"], name: "index_candidate_cadastre_procedural_statuses_on_convocation_id", using: :btree
 
   create_table "candidate_cadastres", force: :cascade do |t|
@@ -279,11 +283,13 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.boolean  "status"
     t.integer  "checklist_id"
     t.integer  "attendance_cadastre_id"
+    t.integer  "attendant_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   add_index "candidate_checklist_treatments", ["attendance_cadastre_id"], name: "index_candidate_checklist_treatments_on_attendance_cadastre_id", using: :btree
+  add_index "candidate_checklist_treatments", ["attendant_id"], name: "index_candidate_checklist_treatments_on_attendant_id", using: :btree
   add_index "candidate_checklist_treatments", ["checklist_id"], name: "index_candidate_checklist_treatments_on_checklist_id", using: :btree
 
   create_table "candidate_checklist_types", force: :cascade do |t|
@@ -1235,7 +1241,7 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.integer  "agenda_id"
     t.integer  "requeriment_id"
     t.string   "cpf"
-    t.boolean  "status"
+    t.integer  "status"
     t.date     "date_schedule"
     t.time     "hour_schedule"
     t.text     "observation"

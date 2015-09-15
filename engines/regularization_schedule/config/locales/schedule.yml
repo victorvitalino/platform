@@ -1,4 +1,11 @@
 pt-BR:
+  enums:
+    'regularization_schedule/schedule':
+       status:
+         attendance_waiting: "aguardando atendimento"
+         attended: "atendido"
+         rescheduling: "reagendar"
+         canceled: "agendamento cancelado"
   activerecord:
     models:
       'regularization_schedule/schedule': Agendamento

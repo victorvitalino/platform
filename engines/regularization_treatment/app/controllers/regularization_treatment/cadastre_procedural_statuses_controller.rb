@@ -9,6 +9,10 @@ module RegularizationTreatment
       @checklist = Candidate::ChecklistTreatment.where(attendance_cadastre_id: @attendance, status: true)
     end
 
+    def show
+
+    end
+
     def create
       @cadastre_procedural_status = Candidate::CadastreProceduralStatus.new(set_params)
       create_assessment

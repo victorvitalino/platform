@@ -4,12 +4,12 @@ module RegularizationSchedule
     belongs_to :agenda
     belongs_to :requiriment
 
-    enum :status => [:attendance_waiting, :attended]
+    enum :status => [:attendance_waiting, :attended, :rescheduling, :canceled]
 
     validates_presence_of :agenda, :cpf,:date_schedule,:hour_schedule
 
     validates :cpf, cpf: true, presence: true
-    validate :requeriment?, :open_schedule?
+    validate :requeriment?, :open_schedule?, on: :create
 
     private
 
@@ -19,8 +19,8 @@ module RegularizationSchedule
     end
 
      def open_schedule?
-      @open_schedule = RegularizationSchedule::Schedule.where(cpf: self.cpf, status: false)
-      errors.add(:cpf, 'este cpf possuí agendamento aberto.') if @open_schedule.present?
+      @open_schedule = RegularizationSchedule::Schedule.where(cpf: self.cpf, status:[0,1])
+      errors.add(:cpf, 'este cpf não pode fazer agendamento.') if @open_schedule.present?
     end
 
 
