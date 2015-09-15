@@ -19,10 +19,12 @@
           %li
             = link_to "<i class='md md-settings-input-antenna'></i> Minha Conta".html_safe, main_app.edit_user_registration_path
           %li
+            = link_to "<i class='md md-live-help'></i> Minhas Solicitações".html_safe, helpdesk.ticket_requester_path
+          %li
             = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
       %ul.main-menu
         %li{class: ('active' if params[:module] == "dashboard")}
-          = link_to "<i class='md  md-dashboard'></i> Dashboard".html_safe, dashboard.root_path
+          = link_to "<i class='md  md-dashboard'></i> Mural".html_safe, dashboard.root_path
         - if policy(:application, namespace: Person).index?
           %li.sub-menu{class: ('toggled active' if params[:module] == "person")}
             %a{:href => ""}
@@ -70,42 +72,13 @@
                   %li
                     = link_to "categorias de menu", cms.nav_categories_path
         %li.sub-menu{class: ('toggled active' if params[:module] == "helpdesk")}
-          - if policy(:application, namespace: Helpdesk).index?
+          - if policy(:application, namespace: Cms).index?
             %a{:href => ""}
-              %i.md.md-face-unlock>
+              %i.md.md-live-help>
               Helpdesk
             %ul{style: ('display:block;' if params[:module] == "helpdesk")}
-              - if policy(:OrderService, namespace: Helpdesk).index?
-                %li
-                  - if current_user.account.administrator?
-                    = link_to "todos os chamados", helpdesk.order_services_path
-                  - else
-              - if policy(:OrderServiceUser, namespace: Helpdesk).index?
-                %li
-                  - if current_user.account.administrator?
-
-                  - else
-                    = link_to "meus chamados", helpdesk.order_service_users_path
-              - if policy(:OrderServiceTechnical, namespace: Helpdesk).index?
-                %li
-                  = link_to "meus chamados", helpdesk.order_service_technicals_path
-              - if policy(:Attendant, namespace: Helpdesk).index?
-                %li
-                  = link_to "atendentes", helpdesk.new_attendant_path
-                  %hr/
-              - if policy(:Attendant, namespace: Helpdesk).report?
-                %li
-                  = link_to "relatório por atendente", helpdesk.new_report_attendant_path
-              - if policy(:Attendant, namespace: Helpdesk).report?
-                %li
-                  = link_to "relatório por setor", helpdesk.new_report_sector_path
-              - if policy(:Attendant, namespace: Helpdesk).report?
-                %li
-                  = link_to "relatório por funcionário", helpdesk.new_report_employee_path
-              - if policy(:Attendant, namespace: Helpdesk).report?
-                %li
-                  = link_to "relatório por tipo de solicitação", helpdesk.new_report_request_path
-
+              %li= link_to "Centrais de serviço", helpdesk.ticket_types_path
+              %li= link_to "Solicitações", helpdesk.tickets_path(q: 'open') if current_user.account.helpdesk_attendant.present?
         %li.sub-menu{class: ('toggled active' if params[:module] == "protocol")}
           - if policy(:application, namespace: Protocol).index?
             %a{:href => ""}

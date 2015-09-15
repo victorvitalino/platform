@@ -11,7 +11,7 @@
         = label_tag "Setor"
         .fg-line
           .select
-            = select_tag :sector, options_for_select(Person::Sector.unscoped.all.collect { |p| [p.acron.upcase, p.id]}, params[:sector]), {class: 'form-control',prompt: "Todos"}
+            = select_tag :sector, options_for_select(Person::Sector.all.collect { |p| [p.acron.upcase, p.id]}, params[:sector]), {class: 'form-control',prompt: "Todos"}
        
       .col-md-2 
         = label_tag "status"
