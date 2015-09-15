@@ -5,26 +5,22 @@ default: &default
 
 development:
   <<: *default
-  database: "codhab_production"
-  username: "postgres"
-  password: "codhab072771472"
-  host: "10.233.38.16"
+  database: "codhab_development"
+  username: "igor"
+  password: "mila1324"
+  host: "localhost"
 
 
 production:
   <<: *default
   database: codhab_production
-  username: "postgres"
-  password: "codhab072771472"
-  host: "10.233.38.16"
-
+  username: "igor"
+  password: "mila1324"
+  host: "localhost"
 
 test:
   <<: *default
   database: codhab_test
-  username: "postgres"
-  password: "codhab072771472"
-  host: "10.233.38.16"
-
-
-
+  username: "igor"
+  password: "mila1324"
+  host: "localhost"

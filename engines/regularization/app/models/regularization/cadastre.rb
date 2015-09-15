@@ -6,11 +6,12 @@ module Regularization
 
      validates_presence_of :rg, :place_birth, :born
 
-    def set_treatment(convocation, status,cadastre)
+    def set_treatment(convocation, status,cadastre,attendant)
          @treatment = ::Candidate::AttendanceCadastre.new
          @treatment.adjunct_cadastre_id = cadastre
          @treatment.convocation_id = convocation
          @treatment. attendance_status_id = status
+         @treatment.attendant_id = attendant
          @treatment.status = true
          @treatment.save
     end

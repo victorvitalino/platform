@@ -15,7 +15,7 @@ module RegularizationTreatment
         @checklist_treatment.attendance_cadastre_id =  @attendance.id
         @checklist_treatment.save
       end
-        @cadastre.set_treatment(1,3,@cadastre.adjunct_cadastre.id)
+        @cadastre.set_treatment(1,3,@cadastre.adjunct_cadastre.id,current_user.account.attendant.id)
       redirect_to new_cadastre_procedural_status_path
     end
 

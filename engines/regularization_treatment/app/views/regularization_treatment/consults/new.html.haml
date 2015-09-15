@@ -65,6 +65,7 @@
                     %th Name
                     %th CPF
                     %th Status
+                    %th Atendante
                     %th
                 %tbody
                   - @attendance.each do |a|
@@ -73,8 +74,9 @@
                       %td= a.adjunct_cadastre.name
                       %td= a.adjunct_cadastre.cadastre.cpf
                       %td= a.attendance_status.name
+                      %td= a.attendant.staff.name if a.attendant.present? && a.attendant.staff.present?
                       %td
-                        = link_to "Autorizar", new_authenticate_path(id: a.adjunct_cadastre.id), remote: true, class: 'btn btn-success' if a.attendance_status_id == 4
+                        = link_to "Autorizar", new_authenticate_path(id: a.adjunct_cadastre.id, cadastre_id: a.adjunct_cadastre.cadastre.id), remote: true, class: 'btn btn-success' if a.attendance_status_id == 4
 
         %hr/
         %br/

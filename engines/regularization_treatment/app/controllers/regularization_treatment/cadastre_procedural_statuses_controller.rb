@@ -19,7 +19,7 @@ module RegularizationTreatment
       @cadastre_procedural_status.assessment_id = @assessment.id
       @cadastre_procedural_status.adjunct_cadastre_id = @cadastre.adjunct_cadastre.id
       if @cadastre_procedural_status.save
-        @cadastre.set_treatment(1,4,@cadastre.adjunct_cadastre.id)
+        @cadastre.set_treatment(1,4,@cadastre.adjunct_cadastre.id,current_user.account.attendant.id)
         redirect_to new_consult_path
       else
         render action: 'new'

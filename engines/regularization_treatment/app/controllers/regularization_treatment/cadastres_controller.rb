@@ -22,7 +22,7 @@ module RegularizationTreatment
       @cadastre.cpf = @requeriment.cpf
 
       if @cadastre.save
-        @cadastre.set_treatment(1,1,@cadastre.adjunct_cadastre.id)
+        @cadastre.set_treatment(1,1,@cadastre.adjunct_cadastre.id,current_user.account.attendant.id)
         session[:cadastre_id] =  @cadastre.id
         redirect_to new_kin_path
       else
