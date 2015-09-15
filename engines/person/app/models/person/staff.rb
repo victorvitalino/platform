@@ -8,6 +8,7 @@ module Person
     accepts_nested_attributes_for :user
 
     has_one :attendant, class_name: "Attendance::Attendant"
+    has_one :helpdesk_attendant, class_name: "Helpdesk::TicketAttendant"
 
     has_many :permissions, class_name: "Person::StaffPermission"
     has_many :responsible, class_name: "Person:Sector"

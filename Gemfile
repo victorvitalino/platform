@@ -4,7 +4,7 @@ gem 'rails', '4.2.1'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-gem 'turbolinks'
+gem 'jquery-ui-rails'
 
 gem 'simple_form'
 gem 'haml-rails'
@@ -47,6 +47,7 @@ end
 
 group :development do
   gem 'carrierwave'
+  gem 'derailed'
   gem 'sqlite3'
   gem 'byebug'
   gem 'thin'

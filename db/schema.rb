@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908191616) do
+ActiveRecord::Schema.define(version: 20150915140335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -710,6 +710,73 @@ ActiveRecord::Schema.define(version: 20150908191616) do
   add_index "helpdesk_order_services", ["responsible_id"], name: "index_helpdesk_order_services_on_responsible_id", using: :btree
   add_index "helpdesk_order_services", ["sector_id"], name: "index_helpdesk_order_services_on_sector_id", using: :btree
   add_index "helpdesk_order_services", ["staff_id"], name: "index_helpdesk_order_services_on_staff_id", using: :btree
+
+  create_table "helpdesk_ticket_attendants", force: :cascade do |t|
+    t.integer  "ticket_type_id"
+    t.integer  "staff_id"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "helpdesk_ticket_attendants", ["staff_id"], name: "index_helpdesk_ticket_attendants_on_staff_id", using: :btree
+  add_index "helpdesk_ticket_attendants", ["ticket_type_id"], name: "index_helpdesk_ticket_attendants_on_ticket_type_id", using: :btree
+
+  create_table "helpdesk_ticket_comments", force: :cascade do |t|
+    t.integer  "ticket_id"
+    t.integer  "user_type"
+    t.text     "comment"
+    t.boolean  "read"
+    t.datetime "read_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "helpdesk_ticket_comments", ["ticket_id"], name: "index_helpdesk_ticket_comments_on_ticket_id", using: :btree
+
+  create_table "helpdesk_ticket_subjects", force: :cascade do |t|
+    t.integer  "ticket_type_id"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "helpdesk_ticket_subjects", ["ticket_type_id"], name: "index_helpdesk_ticket_subjects_on_ticket_type_id", using: :btree
+
+  create_table "helpdesk_ticket_types", force: :cascade do |t|
+    t.integer  "sector_id"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "helpdesk_ticket_types", ["sector_id"], name: "index_helpdesk_ticket_types_on_sector_id", using: :btree
+
+  create_table "helpdesk_tickets", force: :cascade do |t|
+    t.integer  "ticket_type_id"
+    t.integer  "requester_id"
+    t.integer  "attendant_id"
+    t.integer  "ticket_subject_id"
+    t.integer  "sector_id"
+    t.datetime "attendance_start"
+    t.datetime "attendance_end"
+    t.datetime "deadline"
+    t.integer  "status",            default: 0
+    t.text     "description"
+    t.text     "meta_tags"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "helpdesk_tickets", ["attendant_id"], name: "index_helpdesk_tickets_on_attendant_id", using: :btree
+  add_index "helpdesk_tickets", ["requester_id"], name: "index_helpdesk_tickets_on_requester_id", using: :btree
+  add_index "helpdesk_tickets", ["sector_id"], name: "index_helpdesk_tickets_on_sector_id", using: :btree
+  add_index "helpdesk_tickets", ["ticket_subject_id"], name: "index_helpdesk_tickets_on_ticket_subject_id", using: :btree
+  add_index "helpdesk_tickets", ["ticket_type_id"], name: "index_helpdesk_tickets_on_ticket_type_id", using: :btree
 
   create_table "juridical_action_types", force: :cascade do |t|
     t.string   "name"

@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Helpdesk::VERSION
   s.authors     = ["Elton Silva"]
   s.email       = ["elton.chrls@gmail.com"]
-  s.homepage    = ""
-  s.summary     = ": Summary of Helpdesk."
-  s.description = ": Description of Helpdesk."
+  s.homepage    = "TODO"
+  s.summary     = "TODO: Summary of Helpdesk."
+  s.description = "TODO: Description of Helpdesk."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
@@ -19,5 +19,6 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.2.1"
   s.add_dependency "haml-rails"
 
+  s.add_development_dependency "carrierwave"
   s.add_development_dependency "sqlite3"
 end
