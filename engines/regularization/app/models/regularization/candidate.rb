@@ -14,7 +14,7 @@ module Regularization
     private
 
     def requeriment_valid?
-      unless Regularization::Requeriment.where(cpf: self.cpf, born: self.born).present?
+      unless Regularization::Requeriment.where(cpf: self.cpf, born: Date.parse(self.born).strftime('%Y-%m-%d')).present?
         errors.add :cpf, 'CPF ou data de nascimento não encontrado. Verifique.'
       else
         self.id = self.cpf

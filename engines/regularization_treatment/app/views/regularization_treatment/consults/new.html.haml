@@ -80,6 +80,10 @@
                         = link_to "Ficha CheckList", checklist_treatment_path(a.adjunct_cadastre.cadastre.id), target: :blank, class: 'btn btn-success' if a.attendance_status_id == 3
                         = link_to "Ficha Cadastro", cadastre_path(a.adjunct_cadastre.cadastre.id), target: :blank, class: 'btn btn-success' if a.attendance_status_id == 1
                         = link_to "Formalização", cadastre_procedural_status_path(a.adjunct_cadastre.cadastre.id), target: :blank, class: 'btn btn-success' if a.attendance_status_id == 4
+            - else
+              .row
+                .col-md-12
+                  Não existem atendimentos vínculado a este CPF.
 
         %hr/
         %br/

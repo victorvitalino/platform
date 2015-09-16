@@ -2,6 +2,7 @@ module Regularization
   class Requeriment < ActiveRecord::Base
     belongs_to :unit, class_name: "Address::Unit"
 
+    scope :applicant, -> (cpf) { where(cpf: cpf)}
 
     validates :cpf, cpf: true
 

@@ -129,13 +129,7 @@
             %ul{style: ('display:block;' if params[:module] == "regularization_treatment")}
               %li= link_to "consulta", regularization_treatment.new_consult_path
               %li= link_to "consulta endereço"
-              %li
-                %hr/
-              %li= link_to "Agenda", regularization_schedule.extranet_agendas_path
-              %li
-                %hr/
-              %li= link_to "relatórios"
-
+              %li= link_to "agendamentos", regularization_schedule.extranet_agendas_path
         %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
           - if policy(:application, namespace: Finance).index?
             %a{:href => ""}

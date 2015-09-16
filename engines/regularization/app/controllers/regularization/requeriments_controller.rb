@@ -2,6 +2,7 @@ module Regularization
   class RequerimentsController < ApplicationController
     layout 'layouts/portal/application'
     before_action :set_address
+    before_action :validate_cpf_session, only: [:show, :bank_slip]
 
     def index
     end
@@ -14,6 +15,7 @@ module Regularization
       @requeriment = Requeriment.new(set_params)
       @requeriment.unit_id = session[:address_id]
       if @requeriment.save
+        session[:cpf] = @requeriment.cpf
         flash[:success] = t :success
         redirect_to @requeriment
       else
@@ -22,11 +24,24 @@ module Regularization
     end
 
     def bank_slip
+      @requeriment = Requeriment.applicant(session[:cpf]).find(params[:requeriment_id])
+
+      @convenant = Finance::Convenant.new({
+        code: 'requerimento',
+        deadline: Time.now + 10.days,
+        cpf: @requeriment.cpf,
+        name: @requeriment.name,
+        observation: "requerimento para regularização - #{@requeriment.unit.complete_address}"
+      })
+
+      render layout: 'layouts/finance/show_payment' 
+
     end
 
     def show
-      @requeriment = Requeriment.find(params[:id])
+      @requeriment = Requeriment.applicant(session[:cpf]).find(params[:id])
     end
+
 
     private
 
@@ -45,6 +60,10 @@ module Regularization
                                           :gender, :born, :telephone, :celphone, :complete_address,
                                           :income, :income, :spouse_name, :spouse_cpf, :owner, 
                                           :marital_status, :nationality)
+    end
+
+    def validate_cpf_session
+      redirect_to new_address_path unless session[:cpf].present?
     end
 
   end

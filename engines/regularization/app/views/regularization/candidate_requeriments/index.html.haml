@@ -1,11 +1,11 @@
 .row
   .col-md-10
     %h1.title Requerimentos de regularização
-    = link_to "Finalizar Sessão", sign_out_candidate_requeriments_path, class: 'btn btn-success'
+    = link_to "Finalizar Sessão", sign_out_candidate_requeriments_path
 %br/
 .row
   .col-md-12
-    %table.table
+    %table.table.table-striped.table-bordered.table-condensed
       %thead
         %tr
           %th #
@@ -25,8 +25,6 @@
             %td= requeriment.unit.city.name if requeriment.unit.present? && requeriment.unit.city.present?
             %td= requeriment.unit.complete_address if requeriment.unit.present?
             %td
-              = link_to "visualizar", candidate_requeriment_path(requeriment), class: 'btn btn-primary'
-              = link_to "emitir boleto", requeriment_bank_slip_path(requeriment), class: 'btn btn-warning'
-              = link_to "meus agendamentos", regularization_schedule.portal_my_schedules_path(requeriment.cpf), class: 'btn btn-success'
-
+              = link_to "visualizar", candidate_requeriment_path(requeriment), class: 'btn btn-primary btn-xs'
+              = link_to "emitir boleto", requeriment_bank_slip_path(requeriment), class: 'btn btn-warning btn-xs', target: '_blank'
 
