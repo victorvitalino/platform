@@ -4,7 +4,7 @@
   %h4#modal.modal-title Requerimento - #{@requeriment.protocol}
 .modal-body
   .row
-    .col-md-3
+    .col-md-12
       %h5
         %b Nome:
       = @requeriment.name
@@ -61,5 +61,5 @@
   %hr/
   .row
     .col-md-12
-      = link_to "iniciar atendimento", new_address_path(requeriment_id: @requeriment.id), class: 'btn btn-success'
+      = link_to "iniciar atendimento", new_requeriment_address_path(requeriment_id: @requeriment.id), class: 'btn btn-success'
   %br/

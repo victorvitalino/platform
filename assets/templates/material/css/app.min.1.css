@@ -3498,7 +3498,8 @@ fieldset[disabled] .checkbox label {
 
 select.input-sm {
   height: 30px;
-  line-height: 30px;
+  /* line-height: 30px; */
+  line-height: 10px;
 }
 
 textarea.input-sm,
@@ -5469,8 +5470,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs-justified > li > a {
   margin-right: 0;
   border-radius: 2px;
-}
 
+}
 .nav-tabs-justified > .active > a,
 .nav-tabs-justified > .active > a:hover,
 .nav-tabs-justified > .active > a:focus {
@@ -11818,7 +11819,9 @@ input:focus {
 .form-control {
   box-shadow: none;
   border: 0;
-  border-bottom: 1px solid #e0e0e0;
+ /* border-bottom: 1px solid #e0e0e0; */
+  border: 1px solid #CACACA; /* #e0e0e0 */
+
 }
 
 .form-control:active,
@@ -14758,6 +14761,7 @@ fieldset[disabled] .btn-inverse.active {
 html:not(.ie9) .select {
   position: relative;
 }
+/*
 
 html:not(.ie9) .select:before {
   position: absolute;
@@ -14771,6 +14775,21 @@ html:not(.ie9) .select:before {
   background-image: url("/images/select.png");
   pointer-events: none;
   z-index: 5;
+}
+*/
+
+html:not(.ie9) .select:before {
+    position: absolute;
+    top: 0;
+    content: "";
+    height: calc(100% - 1px);
+    width: 30px;
+    /* background-color: #FFF; */
+    background-position: right calc(100%);
+    background-repeat: no-repeat;
+    background-image: url("/images/select.png");
+    pointer-events: none;
+    z-index: 5;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
@@ -14939,7 +14958,7 @@ html:not(.ie9) .select.fg-line:before {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding: 0;
+  /* padding: 0; */
   border-radius: 0;
 }
 
@@ -14952,7 +14971,7 @@ html:not(.ie9) .select.fg-line:before {
 }
 
 .form-group {
-  margin-bottom: 30px;
+  margin-bottom: 15px;  /* 30px */
 }
 
 /*

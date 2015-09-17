@@ -10,11 +10,10 @@
             %h4
               = @requeriment.unit.city.name if @requeriment.unit.present? && @requeriment.unit.city.present?
               = @requeriment.unit.complete_address if @requeriment.unit.present?
-        %hr/
+        %br/
+        %br/
+        %br/
+        %br/
         .row
           .col-md-12
-            = render 'form'
-        %hr/
-        .row
-          .col-md-12
-            = link_to "Prosseguir", new_cadastre_path, class: 'btn btn-primary pull-right'
+            = link_to "Prosseguir", new_requeriment_cadastre_path(@requeriment), class: 'btn btn-primary pull-right'

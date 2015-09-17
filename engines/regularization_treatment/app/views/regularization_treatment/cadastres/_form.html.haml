@@ -1,19 +1,9 @@
-= simple_form_for @cadastre do |f|
+= simple_form_for [@requeriment, @cadastre] do |f|
   .row
     .col-md-12
-      %h5
-        %b Dados Pessoais
+      %h4
+        %b Dados únicos
   %hr/
-  .row
-    .col-md-12
-      = f.simple_fields_for :adjunct_cadastre do |builder|
-        .row
-          .col-md-6
-            = builder.label :name, class: 'fg-label'
-            = builder.input :name, label: false,  input_html: { value: @requeriment.name}
-          .col-md-2
-            = builder.label :nis, class: 'fg-label'
-            = builder.input :nis, label: false
   .row
     .col-md-2
       = f.label :cpf, class: 'fg-label'
@@ -23,14 +13,20 @@
       = f.input :rg, label: false,  input_html: { value: @requeriment.rg}
     .col-md-2
       = f.label :place_birth, class: 'fg-label'
-      = f.input :place_birth, label: false
+      = f.input :place_birth, label: false, placeholder: "Ex.: Brasileiro"
     .col-md-2
       = f.label :born, as: 'string', class: 'fg-label'
       = f.input :born, label: false, as: :string, input_html: { class: 'date'}
+  %br/
+  %br/
   .row
     .col-md-12
-      = f.simple_fields_for :adjunct_cadastre do |builder|
-        = render "form_adjunct_cadastre", :f => builder
+      %h4
+        %b Informações pessoais
+  %hr/
+  .row
+    = f.simple_fields_for :adjunct_cadastre do |builder|
+      = render "form_adjunct_cadastre", :f => builder
   %hr/
   .row
     .col-md-12
