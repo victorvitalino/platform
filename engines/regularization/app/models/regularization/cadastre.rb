@@ -1,10 +1,11 @@
 module Regularization
    class  Cadastre < Candidate::Cadastre
-     has_one :adjunct_cadastre, class_name: "Candidate::AdjunctCadastre"
+     has_many :adjunct_cadastres
+     accepts_nested_attributes_for :adjunct_cadastres
 
-     accepts_nested_attributes_for :adjunct_cadastre
 
-     validates_presence_of :rg, :place_birth, :born
+     validates :rg, :place_birth, presence: true
+     validates_date :born, before: Time.now - 18.years
 
     def set_treatment(convocation, status,cadastre,attendant)
          @treatment = ::Candidate::AttendanceCadastre.new

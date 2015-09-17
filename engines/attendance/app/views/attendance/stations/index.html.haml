@@ -3,7 +3,7 @@
     %h2
       Postos de Atendimento
       = link_to 'Novo Posto', attendance.new_station_path, class: 'btn btn-success pull-right'
-      %small Listagem de postos dẽ atendimento
+      %small Listagem de postos de atendimento
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table.table.table-striped.datatable
       %thead
@@ -20,7 +20,7 @@
             %td= station.name
             %td= station.city.name if station.city.present?
             %td= station.station_type
-            %td= station.convocation.name if station.convocation.present?
+            %td= station.convocation.description if station.convocation.present?
             %td= station.status ? 'ativo' : 'inativo'
             %td.col-md-2
               = link_to '', station_station_attendants_path(station), class: 'md md-account-child btn btn-warning', title: "atendentes"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915140335) do
+ActiveRecord::Schema.define(version: 20150917160111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,7 +228,9 @@ ActiveRecord::Schema.define(version: 20150915140335) do
   add_index "candidate_adjunct_cadastres", ["state_work_id"], name: "index_candidate_adjunct_cadastres_on_state_work_id", using: :btree
 
   create_table "candidate_attendance_cadastres", force: :cascade do |t|
-    t.integer  "adjuct_cadastre_id"
+    t.integer  "adjunct_cadastre_id"
+    t.integer  "requeriment_id"
+    t.integer  "program_id"
     t.integer  "convocation_id"
     t.integer  "attendance_status_id"
     t.boolean  "status",               default: false
@@ -237,13 +239,16 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.datetime "updated_at",                           null: false
   end
 
-  add_index "candidate_attendance_cadastres", ["adjuct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjuct_cadastre_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["adjunct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjunct_cadastre_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendance_status_id"], name: "index_candidate_attendance_cadastres_on_attendance_status_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendant_id"], name: "index_candidate_attendance_cadastres_on_attendant_id", using: :btree
   add_index "candidate_attendance_cadastres", ["convocation_id"], name: "index_candidate_attendance_cadastres_on_convocation_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["program_id"], name: "index_candidate_attendance_cadastres_on_program_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["requeriment_id"], name: "index_candidate_attendance_cadastres_on_requeriment_id", using: :btree
 
   create_table "candidate_attendance_statuses", force: :cascade do |t|
     t.string   "name"
+    t.integer  "code"
     t.boolean  "status",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -256,13 +261,11 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.integer  "procedural_status_id"
     t.integer  "convocation_id"
     t.integer  "assessment_id"
-    t.integer  "attendant_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   add_index "candidate_cadastre_procedural_statuses", ["assessment_id"], name: "index_candidate_cadastre_procedural_statuses_on_assessment_id", using: :btree
-  add_index "candidate_cadastre_procedural_statuses", ["attendant_id"], name: "index_candidate_cadastre_procedural_statuses_on_attendant_id", using: :btree
   add_index "candidate_cadastre_procedural_statuses", ["convocation_id"], name: "index_candidate_cadastre_procedural_statuses_on_convocation_id", using: :btree
 
   create_table "candidate_cadastres", force: :cascade do |t|
@@ -283,13 +286,11 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.boolean  "status"
     t.integer  "checklist_id"
     t.integer  "attendance_cadastre_id"
-    t.integer  "attendant_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   add_index "candidate_checklist_treatments", ["attendance_cadastre_id"], name: "index_candidate_checklist_treatments_on_attendance_cadastre_id", using: :btree
-  add_index "candidate_checklist_treatments", ["attendant_id"], name: "index_candidate_checklist_treatments_on_attendant_id", using: :btree
   add_index "candidate_checklist_treatments", ["checklist_id"], name: "index_candidate_checklist_treatments_on_checklist_id", using: :btree
 
   create_table "candidate_checklist_types", force: :cascade do |t|
@@ -320,19 +321,17 @@ ActiveRecord::Schema.define(version: 20150915140335) do
   end
 
   create_table "candidate_convocations", force: :cascade do |t|
-    t.text     "description"
+    t.string   "description"
+    t.text     "criterion"
     t.date     "start"
     t.date     "end"
     t.integer  "quantity"
-    t.text     "discretion"
-    t.boolean  "stauts",            default: true
+    t.boolean  "status",            default: true
+    t.integer  "convocation_type",  default: 0
     t.string   "legacy_pontuation"
-    t.integer  "pontuation_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
-
-  add_index "candidate_convocations", ["pontuation_id"], name: "index_candidate_convocations_on_pontuation_id", using: :btree
 
   create_table "candidate_kin_adjuncts", force: :cascade do |t|
     t.string   "income"
@@ -383,6 +382,14 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "candidate_programs", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.integer  "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "candidate_special_conditions", force: :cascade do |t|
@@ -1241,7 +1248,7 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.integer  "agenda_id"
     t.integer  "requeriment_id"
     t.string   "cpf"
-    t.integer  "status"
+    t.boolean  "status"
     t.date     "date_schedule"
     t.time     "hour_schedule"
     t.text     "observation"

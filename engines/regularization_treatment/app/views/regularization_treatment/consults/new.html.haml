@@ -1,5 +1,5 @@
 .block-header
-  %h2 Consulta de Regularização
+  %h2 Consulta Regularização
 #messages-main.card.m-b-0
   .ms-menu
     .ms-block
@@ -14,124 +14,10 @@
       .lv-header-alt.bgm-white
         .lvh-label.hidden-xs
           %span.c-black
-            %b Resultado
+            %h3
+              %b Resultado
       .lv-body
-        %br/
-        .row
-          .col-md-12
-            .lvh-label.hidden-xs
-              %span.c-black
-                %h5
-                  %b Requerimentos
-            - if @requeriments.present?
-              %table.table.table-hover.table-striped.table-condensed
-                %thead
-                  %tr
-                    %th Protocolo
-                    %th CPF
-                    %th Cidade
-                    %th Endereço
-                    %th Data do Requerimento
-                    %th Status Boleto
-                    %th Ações
-                %tbody
-                  - @requeriments.each_with_index do |requeriment, index|
-                    %tr
-                      %td= requeriment.protocol
-                      %td= requeriment.cpf
-                      %td= requeriment.unit.city.name if requeriment.unit.present? && requeriment.unit.city.present?
-                      %td= requeriment.unit.complete_address if requeriment.unit.present?
-                      %td= requeriment.created_at.strftime("%d/%m/%Y às %H:%M")
-                      %td
-                      %td
-                        = link_to "", requeriment_path(requeriment), remote: true, class: 'btn btn-success md-launch'
-            - else
-              .row
-                .col-md-12
-                  Não existem requerimentos vínculado a este CPF.
-        %hr/
-        %br/
-        .row
-          .col-md-12
-            .lvh-label.hidden-xs
-              %span.c-black
-                %h5
-                  %b Atendimentos
-            - if @attendance.present?
-              %table.table
-                %thead
-                  %tr
-                    %th #
-                    %th Name
-                    %th CPF
-                    %th Status
-                    %th Atendante
-                    %th
-                %tbody
-                  - @attendance.each do |a|
-                    %tr
-                      %td
-                      %td= a.adjunct_cadastre.name
-                      %td= a.adjunct_cadastre.cadastre.cpf
-                      %td= a.attendance_status.name
-                      %td= a.attendant.staff.name if a.attendant.present? && a.attendant.staff.present?
-                      %td
-                        = link_to "Autorizar", new_authenticate_path(id: a.adjunct_cadastre.id, cadastre_id: a.adjunct_cadastre.cadastre.id), remote: true, class: 'btn btn-success' if a.attendance_status_id == 4
-                        = link_to "Ficha CheckList", checklist_treatment_path(a.adjunct_cadastre.cadastre.id), target: :blank, class: 'btn btn-success' if a.attendance_status_id == 3
-                        = link_to "Ficha Cadastro", cadastre_path(a.adjunct_cadastre.cadastre.id), target: :blank, class: 'btn btn-success' if a.attendance_status_id == 1
-                        = link_to "Formalização", cadastre_procedural_status_path(a.adjunct_cadastre.cadastre.id), target: :blank, class: 'btn btn-success' if a.attendance_status_id == 4
-            - else
-              .row
-                .col-md-12
-                  Não existem atendimentos vínculado a este CPF.
-
-        %hr/
-        %br/
-        .row
-          .col-md-12
-            .lvh-label.hidden-xs
-              %span.c-black
-                %h5
-                  %b Agendamentos
-            - if @schedules.present?
-              %table.table.table-hover.table-striped.table-condensed
-                %thead
-                  %tr
-                    %th Agenda
-                    %th CPF
-                    %th Data do Atendimento
-                    %th Horário de Atendimento
-                %tbody
-                  - @schedules.each do |schedule|
-                    %tr
-                      %td= schedule.agenda.title
-                      %td= schedule.cpf
-                      %td= schedule.date_schedule.strftime("%d/%m/%Y")
-                      %td= schedule.hour_schedule.strftime("%H:%M")
-            - else
-              .row
-                .col-md-12
-                  Não existem agendamentos vínculado a este CPF.
-        %hr/
-        %br/
-        - if @cadastre_olds.present?
-          .row
-            .col-md-12
-              .lvh-label.hidden-xs
-                %span.c-black
-                  %h5
-                    %b Informações
-              %table.table
-                %thead
-                  %tr
-                    %th #
-                    %th Name
-                    %th CPF
-                %tbody
-                  - @cadastre_olds.each_with_index do |c, index|
-                    %tr
-                      %td= index + 1
-                      %td= c.adjunct_cadastre.name if c.adjunct_cadastre.present?
-                      %td= c.cpf
-
+        = render 'requeriments'
+        = render 'attendances'
+        = render 'schedules'
 

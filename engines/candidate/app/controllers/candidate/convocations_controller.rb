@@ -1,6 +1,9 @@
+require_dependency 'candidate/application_controller'
+
 module Candidate
   class ConvocationsController < ApplicationController
-    
+    before_action :set_convocation, only: [:edit, :update, :destroy]
+
     def index
       @convocations = Convocation.all
     end
@@ -34,14 +37,18 @@ module Candidate
 
     def destroy
       if @convocation.destroy
-        
+        redirect_to action: 'index'
       end
     end
 
     private
 
+    def set_convocation
+      @convocation = Convocation.find(params[:id])
+    end
+
     def set_params
-      params.require(:convocation).permit(:title)
+      params.require(:convocation).permit(:description, :criterion, :start, :end, :quantity, :convocation_type, :status)
     end
   end
 end

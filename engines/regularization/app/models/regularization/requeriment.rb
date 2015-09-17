@@ -1,6 +1,7 @@
 module Regularization
   class Requeriment < ActiveRecord::Base
     belongs_to :unit, class_name: "Address::Unit"
+    has_many :attendance_cadastres, class_name: "Candidate::AttendanceCadastre"
 
     scope :applicant, -> (cpf) { where(cpf: cpf)}
 
@@ -23,6 +24,10 @@ module Regularization
 
     def protocol
       "CODHAB#{self.id}#{self.created_at.strftime('%Y')}"
+    end
+
+    def attendece_requeriment_open?
+      ::Candidate::AttendanceCadastre.where(requeriment_id: self.id, status: true).present?
     end
 
     private
