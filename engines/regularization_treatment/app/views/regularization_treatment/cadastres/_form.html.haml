@@ -16,7 +16,7 @@
       = f.input :place_birth, label: false, placeholder: "Ex.: Brasileiro"
     .col-md-2
       = f.label :born, as: 'string', class: 'fg-label'
-      = f.input :born, label: false, as: :string, input_html: { class: 'date'}
+      = f.input :born, label: false, as: :string, input_html: { class: 'date', value: (@cadastre.born) ? localize(f.object.born) : nil}
   %br/
   %br/
   .row
@@ -25,7 +25,7 @@
         %b Informações pessoais
   %hr/
   .row
-    = f.simple_fields_for :adjunct_cadastres do |builder|
+    = f.simple_fields_for @cadastre.adjunct_cadastres.build do |builder|
       = render "form_adjunct_cadastre", :f => builder
   %hr/
   .row

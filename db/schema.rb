@@ -336,8 +336,7 @@ ActiveRecord::Schema.define(version: 20150917160111) do
   create_table "candidate_kin_adjuncts", force: :cascade do |t|
     t.string   "income"
     t.string   "percent"
-    t.integer  "kin_type_id"
-    t.integer  "civil_status_id"
+    t.integer  "civil_state_id"
     t.integer  "kin_id"
     t.integer  "kinship_id"
     t.boolean  "copurchaser_flag"
@@ -345,9 +344,8 @@ ActiveRecord::Schema.define(version: 20150917160111) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "candidate_kin_adjuncts", ["civil_status_id"], name: "index_candidate_kin_adjuncts_on_civil_status_id", using: :btree
+  add_index "candidate_kin_adjuncts", ["civil_state_id"], name: "index_candidate_kin_adjuncts_on_civil_state_id", using: :btree
   add_index "candidate_kin_adjuncts", ["kin_id"], name: "index_candidate_kin_adjuncts_on_kin_id", using: :btree
-  add_index "candidate_kin_adjuncts", ["kin_type_id"], name: "index_candidate_kin_adjuncts_on_kin_type_id", using: :btree
   add_index "candidate_kin_adjuncts", ["kinship_id"], name: "index_candidate_kin_adjuncts_on_kinship_id", using: :btree
 
   create_table "candidate_kins", force: :cascade do |t|
@@ -361,13 +359,13 @@ ActiveRecord::Schema.define(version: 20150917160111) do
     t.string   "place_birth"
     t.boolean  "status"
     t.boolean  "flag_special_condition"
-    t.integer  "cadastre_id"
+    t.integer  "adjunct_cadastre_id"
     t.integer  "special_condition_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  add_index "candidate_kins", ["cadastre_id"], name: "index_candidate_kins_on_cadastre_id", using: :btree
+  add_index "candidate_kins", ["adjunct_cadastre_id"], name: "index_candidate_kins_on_adjunct_cadastre_id", using: :btree
   add_index "candidate_kins", ["special_condition_id"], name: "index_candidate_kins_on_special_condition_id", using: :btree
 
   create_table "candidate_kinships", force: :cascade do |t|

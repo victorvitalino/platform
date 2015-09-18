@@ -29,8 +29,7 @@ PARA TESTAR O ATENDIMENTO DE REGULARIZACAO
 @status  = Candidate::AttendanceStatus.create({
     name: "atendimento iniciado", code: 1
   }) 
-=end
-
 @status  = Candidate::AttendanceStatus.create({
-    name: "atualização cadastral", code: 2
+    name: "preenchimento de checklist", code: 4
 }) 
+=end

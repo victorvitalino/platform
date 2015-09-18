@@ -30,6 +30,7 @@ module RegularizationTreatment
     
     end
 
+
     def cadastre_step
       @attendance_status = Candidate::AttendanceStatus.find_by_code(2)
 
@@ -42,7 +43,7 @@ module RegularizationTreatment
       @attendance.convocation_id        = current_user.account.attendant.station.convocation_id
 
       if @attendance.save
-        if @attendance_old = Candidate::AttendanceCadastre.where('id <>  ?', @attendance.id).update_all(status: false)
+        if @attendance_old = Candidate::AttendanceCadastre.where('id <>  ? AND requeriment_id = ?', @attendance.id, @requeriment.id).update_all(status: false)
           redirect_to new_requeriment_cadastre_path(@requeriment)
         else
           redirect_to new_consult_path
@@ -55,9 +56,54 @@ module RegularizationTreatment
     end
 
     def kin_step
+      @attendance_status = Candidate::AttendanceStatus.find_by_code(3)
+
+      @attendance = Candidate::AttendanceCadastre.new
+
+      @attendance.requeriment_id        = @requeriment.id
+      @attendance.program_id            = @program.id
+      @attendance.attendance_status_id  = @attendance_status.id
+      @attendance.status                = true
+      @attendance.attendant_id          = current_user.account.attendant.id
+      @attendance.convocation_id        = current_user.account.attendant.station.convocation_id
+
+      if @attendance.save
+        if @attendance_old = Candidate::AttendanceCadastre.where('id <>  ? AND requeriment_id = ?', @attendance.id, @requeriment.id).update_all(status: false)
+          redirect_to new_requeriment_kin_path(@requeriment)
+        else
+          redirect_to new_consult_path
+        end
+      else
+        flash[:danger] = 'não foi possível continuar o atendimento! Tente novamente em instantes.'
+        redirect_to new_consult_path
+      end
+    
     end
 
     def checklist_step
+
+      @attendance_status = Candidate::AttendanceStatus.find_by_code(4)
+
+      @attendance = Candidate::AttendanceCadastre.new
+
+      @attendance.requeriment_id        = @requeriment.id
+      @attendance.program_id            = @program.id
+      @attendance.attendance_status_id  = @attendance_status.id
+      @attendance.status                = true
+      @attendance.attendant_id          = current_user.account.attendant.id
+      @attendance.convocation_id        = current_user.account.attendant.station.convocation_id
+
+      if @attendance.save
+        if @attendance_old = Candidate::AttendanceCadastre.where('id <>  ? AND requeriment_id = ?', @attendance.id, @requeriment.id).update_all(status: false)
+          redirect_to new_requeriment_checklist_path(@requeriment)
+        else
+          redirect_to new_consult_path
+        end
+      else
+        flash[:danger] = 'não foi possível continuar o atendimento! Tente novamente em instantes.'
+        redirect_to new_consult_path
+      end
+    
     end
 
     def supervisor_step
@@ -73,6 +119,7 @@ module RegularizationTreatment
       when 2
         redirect_to new_requeriment_cadastre_path(@requeriment)
       when 3
+        redirect_to new_requeriment_kin_path(@requeriment)
       when 4
       end
         

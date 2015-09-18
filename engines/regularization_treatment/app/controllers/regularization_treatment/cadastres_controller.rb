@@ -4,17 +4,22 @@ module RegularizationTreatment
     before_action :set_requeriment
 
     def new
-      @cadastre = Regularization::Cadastre.find_by_cpf(@requeriment.cpf).present?
-      
-      redirect_to edit_requeriment_cadastre_path(requeriment_id: @requeriment, id: @cadastre) if @cadastre.present?
-
+      @cadastre = Regularization::Cadastre.find_by_cpf(@requeriment.cpf)
     end
 
     def edit
       @cadastre = Regularization::Cadastre.find_by_cpf(@requeriment.cpf)
-      @cadastre.adjunct_cadastres.new
     end
 
+    def update
+      @cadastre = Regularization::Cadastre.find_by_cpf(@requeriment.cpf)
+      if @cadastre.update(set_params)
+        session[:cadastre_id] = @cadastre.adjunct_cadastres.last.id
+        redirect_to requeriment_kin_step_path(@requeriment)
+      else
+        render :new
+      end
+    end
 
     def show
         render layout: 'layouts/regularization_treatment/application'
@@ -23,6 +28,7 @@ module RegularizationTreatment
     def create
       @cadastre = Regularization::Cadastre.new(set_params)
       if @cadastre.save
+        session[:cadastre_id] = @cadastre.adjunct_cadastres.last.id
         redirect_to requeriment_kin_step_path(@requeriment)
       else
         render action: 'new'

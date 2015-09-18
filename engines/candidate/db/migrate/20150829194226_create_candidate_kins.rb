@@ -11,7 +11,7 @@ class CreateCandidateKins < ActiveRecord::Migration
       t.string :place_birth
       t.boolean :status
       t.boolean :flag_special_condition
-      t.references :cadastre, index: true
+      t.references :adjunct_cadastre, index: true
       t.references :special_condition, index: true
 
       t.timestamps null: false
