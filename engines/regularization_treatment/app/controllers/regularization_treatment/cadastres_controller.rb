@@ -5,6 +5,10 @@ module RegularizationTreatment
 
     def new
       @cadastre = Regularization::Cadastre.find_by_cpf(@requeriment.cpf)
+      if !@cadastre.present? 
+         @cadastre = Regularization::Cadastre.new
+         @cadastre.adjunct_cadastres.build
+      end
     end
 
     def edit
@@ -47,11 +51,11 @@ module RegularizationTreatment
     end
 
     def set_params
-      params.require(:cadastre).permit(:id,:rg,:place_birth,:born, :cpf,
-                                       adjunct_cadastres_attributes: [:id,:name,:civil_state_id,:flag_special_condition,:special_condition_id,
-                                       :cid,:state_id,:city_id,:cep, :address,:adjunct_address,:number_address, :income,:nis,:telephone,:telephone_optional,
-                                       :celphone,:email,:work,:cep_work,:address_work,:adjunct_address_work,:number_address_work,
-                                       :city_work_id,:state_work_id])
+      params.require(:cadastre).permit(:rg,:place_birth,:born,:cpf,:name,:state_id,:city_id,:cep,:address,:adjunct_address,
+                                       :number_address,:telephone,:telephone_optional,:celphone,:email,:work,:cep_work,:address_work,
+                                       :adjunct_address_work,:number_address_work,:city_work_id,:state_work_id,
+                                       adjunct_cadastres_attributes: [:civil_state_id,:flag_special_condition,:special_condition_id,
+                                       :cid, :income,:nis])
     end
   end
 end

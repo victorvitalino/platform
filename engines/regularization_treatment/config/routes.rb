@@ -7,7 +7,7 @@ RegularizationTreatment::Engine.routes.draw do
     resources :addresses, path: 'endereco'
     resources :cadastres, path: 'cadastro'
     resources :kins,  path: 'dependentes'
-    resources :checklist_treatments, path: 'checklist'
+    resources :checklists, path: 'checklist'
 
     get '/address_step',      to: 'attendances#address_step',     path: 'etapa_endereco'
     get '/cadastre_step',     to: 'attendances#cadastre_step',    path: 'etapa_cadastro'

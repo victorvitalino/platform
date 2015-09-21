@@ -2,7 +2,7 @@
   .row
     .col-md-12
       %h4
-        %b Dados únicos
+        %b Informações Pessoais
   %hr/
   .row
     .col-md-2
@@ -13,19 +13,90 @@
       = f.input :rg, label: false,  input_html: { value: @requeriment.rg}
     .col-md-2
       = f.label :place_birth, class: 'fg-label'
-      = f.input :place_birth, label: false, placeholder: "Ex.: Brasileiro"
+      = f.input :place_birth, label: false, placeholder: "Ex.: Brasília"
     .col-md-2
       = f.label :born, as: 'string', class: 'fg-label'
       = f.input :born, label: false, as: :string, input_html: { class: 'date', value: (@cadastre.born) ? localize(f.object.born) : nil}
   %br/
+  .row
+    .col-md-6
+      = f.label :name, class: 'fg-label'
+      = f.input :name, label: false,  input_html: { value: @requeriment.name}
+
+  .row
+    .col-md-3
+      = f.label :state, class: 'fg-label'
+      = f.association :state, label: false, input_html: { id: 'state_id'}, prompt: "selecione..."
+    .col-md-3
+      = f.label :city, class: 'fg-label'
+      = f.input :city, as: :select, prompt: "selecione o estado...", collection: (f.object.state.present?) ? Address::City.where(state: @cadastre.state_id) : {}, label: false, input_html: { id: 'city_id', name: 'cadastre[city_id]'}
+    .col-md-2
+      = f.label :cep, class: 'fg-label'
+      = f.input :cep, label: false, placeholder: "Digite o CEP"
+      = f.hint link_to "Pesquisar nos correios", "http://www.buscacep.correios.com.br/", target: "_blank"
+  .row
+    .col-md-8
+      = f.label :address, class: 'fg-label'
+      = f.input :address, label: false, placeholder: "Digite o endereço de residência do candidato"
+  .row
+    .col-md-6
+      = f.label :adjunct_address, class: 'fg-label'
+      = f.input :adjunct_address, label: false, placeholder: "Digite o complemento do endereço de residência do candidato"
+    .col-md-2
+      = f.label :number_address, class: 'fg-label'
+      = f.input :number_address, label: false
+  %br/
+  %hr/
   %br/
   .row
-    .col-md-12
-      %h4
-        %b Informações pessoais
-  %hr/
+    .col-md-6
+      = f.label :work, class: 'fg-label'
+      = f.input :work, label: false, placeholder: "Descreva a profissão do candidato"
   .row
-    = f.simple_fields_for @cadastre.adjunct_cadastres.build do |builder|
+    .col-md-3
+      = f.label :state_work, class: 'fg-label'
+      = f.association :state_work, label: false, prompt: "selecione...", input_html: { id: 'second_state_id'}
+    .col-md-3
+      = f.label :city_work, class: 'fg-label'
+      = f.input :city_work_id, as: :select, prompt: "selecione o estado...", collection: (f.object.state_work.present?) ? Address::City.where(state: @cadastre.state_work_id) : {}, label: false, input_html: { id: 'second_city_id',  name: 'cadastre[city_work_id]'}
+    .col-md-2
+      = f.label :cep_work, class: 'fg-label'
+      = f.input :cep_work, label: false
+      = f.hint link_to "Pesquisar nos correios", "http://www.buscacep.correios.com.br/", target: "_blank"
+  .row
+    .col-md-8
+      = f.label :address_work, class: 'fg-label'
+      = f.input :address_work, label: false, placeholder: "Digite o endereço do trabalho"
+  .row
+    .col-md-6
+      = f.label :adjunct_address_work, class: 'fg-label'
+      = f.input :adjunct_address_work, label: false, placeholder: "Digite o completo do endereço do trabalho (se houver)"
+    .col-md-2
+      = f.label :number_address_work, class: 'fg-label'
+      = f.input :number_address_work, label: false
+
+  %br/
+  %hr/
+  %br/
+  .row
+    .col-md-2
+      = f.label :telephone, class: 'fg-label'
+      = f.input :telephone, label: false, placeholder: 'somente números'
+    .col-md-2
+      = f.label :telephone_optional, class: 'fg-label'
+      = f.input :telephone_optional, label: false, placeholder: 'somente números'
+    .col-md-2
+      = f.label :celphone, class: 'fg-label'
+      = f.input :celphone, label: false, placeholder: 'somente números'
+  .row
+    .col-md-6
+      = f.label :email, class: 'fg-label'
+      = f.input :email, label: false,  input_html: { value: @requeriment.email}
+  %br/
+  %hr/
+  %br/
+  .row
+    = f.simple_fields_for :adjunct_cadastres  do |builder|
       = render "form_adjunct_cadastre", :f => builder
   %hr/
   .row

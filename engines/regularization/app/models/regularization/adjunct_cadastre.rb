@@ -1,5 +1,6 @@
-module Regularization
-  class AdjunctCadastre < Candidate::AdjunctCadastre
-    has_many :kins  
-  end
+class Regularization::AdjunctCadastre < Candidate::AdjunctCadastre
+  has_many :kins  
+  belongs_to :cadastre
+ 
+  validates :income, presence: true
 end

@@ -1,15 +1,19 @@
 module Candidate
   class AdjunctCadastre < ActiveRecord::Base
+
     belongs_to :cadastre
-    belongs_to :state, class_name: "Address::State"
-    belongs_to :city, class_name: "Address::City"
     belongs_to :civil_state
     belongs_to :special_condition
-    belongs_to :city_work, class_name: "Address::City"
-    belongs_to :state_work, class_name: "Address::State"
 
-    validates_presence_of :name, :civil_state,:cep, :address, :income, :state
+    validates :civil_state, presence: true
+    validates :income,  numericality: {only_float: true}
+    validates :cid, presence: true, if: :special_condition?
 
+    private
+
+    def special_condition?
+        self.flag_special_condition.present?
+    end
 
   end
 end

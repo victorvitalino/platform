@@ -6,14 +6,24 @@ class CreateCandidateKins < ActiveRecord::Migration
       t.string :rg
       t.string :rg_org
       t.string :rg_uf
-      t.date :born
-      t.string :gender
+      t.date   :born
+      t.integer :gender, default: 0
       t.string :place_birth
-      t.boolean :status
-      t.boolean :flag_special_condition
+      
+      #junção de tabelas
+      t.float :income
+      t.integer :percent, default: 0
+      
+      t.references :kin, index: true
+      t.references :kinship, index: true
+
+      t.boolean :copurchaser_flag
+      t.boolean :flag_special_condition, default: false
+
       t.references :adjunct_cadastre, index: true
       t.references :special_condition, index: true
 
+      t.boolean :status, default: true
       t.timestamps null: false
     end
   end

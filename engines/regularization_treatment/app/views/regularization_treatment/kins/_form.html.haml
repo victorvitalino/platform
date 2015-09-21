@@ -5,46 +5,64 @@
         %b Dados Pessoais
   %hr/
   .row
-    .col-md-6
+    .col-md-4
       = f.label :name, class: 'fg-label'
-      = f.input :name, label: false
-    .col-md-2
-      = f.label :cpf, class: 'fg-label'
-      = f.input :cpf, label: false
-    .col-md-2
-      = f.label :rg, class: 'fg-label'
-      = f.input :rg, label: false
-    .col-md-2
-      = f.label :rg_org, class: 'fg-label'
-      = f.input :rg_org, label: false
-  .row
-    .col-md-2
-      = f.label :rg_uf, class: 'fg-label'
-      = f.input :rg_uf, label: false
-    .col-md-2
-      = f.label :gender
-      = f.input :gender, label:false, as: :select, collection: Regularization::Requeriment.genders.keys.to_a, prompt: 'selecione...'
+      = f.input :name, label: false, placeholder: "digite o nome do dependente"
     .col-md-2
       = f.label :born, as: 'string', class: 'fg-label'
       = f.input :born, label: false, as: :string, input_html: { class: 'date'}
     .col-md-2
+      = f.label :gender
+      = f.input :gender, label:false, as: :select, collection: Regularization::Requeriment.genders.keys.to_a, prompt: 'selecione...'
+    .col-md-2
+      = f.label :kinship, class: 'fg-label'
+      = f.association :kinship, label: false, prompt: 'selecione...'
+  .row
+    .col-md-2
+      = f.label :cpf, class: 'fg-label'
+      = f.input :cpf, label: false, hint: "obrigatório para maior de 18 anos", placeholder: "somente números"
+    .col-md-2
       = f.label :place_birth, as: 'string', class: 'fg-label'
-      = f.input :place_birth, label: false
+      = f.input :place_birth, label: false, placeholder: "Ex.: Brasília"
     .col-md-2
       = f.label :flag_special_condition, class: 'fg-label'
-      = f.input :flag_special_condition, as: :select, label: false, prompt: 'selecione...', class: 'fg-label'
-  %hr/
+      = f.input :flag_special_condition, as: :select, label: false, include_blank: false, class: 'fg-label'
+    .col-md-2
+      = f.label :rg, class: 'fg-label'
+      = f.input :rg, label: false, placeholder: "carteira de identidade"
+    .col-md-2
+      = f.label :rg_org, class: 'fg-label'
+      = f.input :rg_org, label: false, placeholder: "Ex.: SSP"
+    .col-md-1
+      = f.label :rg_uf, class: 'fg-label'
+      = f.input :rg_uf, as: :select, collection: Address::State.all, label_method: :acronym, value_method: :acronym, label: false, include_allow: true
   .row
-    = f.simple_fields_for :kin_adjuncts do |builder|
-      = render "form_kin_adjunct", :f => builder
-  %hr/
+    .col-md-2
+      = f.label :copurchaser_flat, class: 'fg-label'
+      = f.input :copurchaser_flag, label: false, as: :select, prompt: 'selecione...'
+    .col-md-2
+      = f.label :percent, class: 'fg-label'
+      = f.input :percent, label: false
+    .col-md-2
+      = f.label :income, class: 'fg-label'
+      = f.input :income, label: false, as: :string, input_html: { class: 'coin_mask', value: 0}
+
   .row
     .col-md-12
       %span.pull-right
         = f.button :submit, class: 'btn btn-success'
+  %hr/
+  %br/
+  %br/
+  .row
+    .col-md-12
+      %h4 Dependentes
+  %br/
   .row
     = render 'kins'
   %hr/
+  %br/
+  %br/
   .row
     .col-md-12
       %span.pull-right

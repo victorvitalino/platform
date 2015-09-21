@@ -3,9 +3,19 @@ module Regularization
      has_many :adjunct_cadastres
      accepts_nested_attributes_for :adjunct_cadastres
 
+     validates_presence_of :rg, :place_birth, :name, :state, :city, :cep, :address
+     validates_presence_of :telephone 
+     
+     validates :telephone, :telephone_optional, :celphone, numericality: true, allow_blank: true
 
-     validates :rg, :place_birth, presence: true
      validates_date :born, before: Time.now - 18.years
+
+
+     private
+
+     def locate_work_set?; self.state_work.present? && self.city_work.present?; end; 
+     def state_set?; self.state_work.present?; end;
+     def work_set?; self.work.present?; end;
 
     def set_treatment(convocation, status,cadastre,attendant)
          @treatment = ::Candidate::AttendanceCadastre.new

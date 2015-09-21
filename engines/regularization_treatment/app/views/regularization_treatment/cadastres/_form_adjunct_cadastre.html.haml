@@ -1,88 +1,17 @@
 .row
-  .col-md-6
-    = f.label :name, class: 'fg-label'
-    = f.input :name, label: false,  input_html: { value: @requeriment.name}
-  .col-md-2
-    = f.label :nis, class: 'fg-label'
-    = f.input :nis, label: false, placeholder: "Número do NIS"
-.row
   .col-md-2
     = f.label :civil_state, class: 'fg-label'
     = f.association :civil_state, label: false, prompt: "selecione..."
   .col-md-2
+    = f.label :nis, class: 'fg-label'
+    = f.input :nis, label: false, placeholder: "Número do NIS"
+  .col-md-2
     = f.label :flag_special_condition, class: 'fg-label'
-    = f.input :flag_special_condition, label: false, as: :select, prompt: 'selecione...'
+    = f.input :flag_special_condition, label: false, include_blank: false, as: :select
   .col-md-2
     = f.label :cid, class: 'fg-label'
     = f.input :cid, label: false, placeholder: "Número do CID"
-%br/
-%br/
 .row
-  .col-md-3
-    = f.label :state, class: 'fg-label'
-    = f.association :state, label: false, input_html: { id: 'state_id'}, prompt: "selecione..."
-  .col-md-3
-    = f.label :city, class: 'fg-label'
-    = f.input :city, as: :select, prompt: "selecione o estado...", collection: (f.object.city.present?) ? Address::City.where(state: @cadastre.adjunct_cadastres.state_id) : {}, label: false, input_html: { id: 'city_id', value: f.object.city.present? ? @cadastre.adjunct_cadastres.city : ' '}
-  .col-md-2
-    = f.label :cep, class: 'fg-label'
-    = f.input :cep, label: false, placeholder: "Digite o CEP"
-    = f.hint link_to "Pesquisar nos correios", "http://www.buscacep.correios.com.br/", target: "_blank"
-.row
-  .col-md-8
-    = f.label :address, class: 'fg-label'
-    = f.input :address, label: false, placeholder: "Digite o endereço de residência do candidato"
-.row
-  .col-md-6
-    = f.label :adjunct_address, class: 'fg-label'
-    = f.input :adjunct_address, label: false, placeholder: "Digite o complemento do endereço de residência do candidato"
-  .col-md-2
-    = f.label :number_address, class: 'fg-label'
-    = f.input :number_address, label: false
-%br/
-%br/
-.row
-  .col-md-2
-    = f.label :telephone, class: 'fg-label'
-    = f.input :telephone, label: false, placeholder: 'somente números'
-  .col-md-2
-    = f.label :telephone_optional, class: 'fg-label'
-    = f.input :telephone_optional, label: false, placeholder: 'somente números'
-  .col-md-2
-    = f.label :celphone, class: 'fg-label'
-    = f.input :celphone, label: false, placeholder: 'somente números'
-.row
-  .col-md-4
-    = f.label :email, class: 'fg-label'
-    = f.input :email, label: false,  input_html: { value: @requeriment.email}
-%br/
-%br/
-.row
-  .col-md-6
-    = f.label :work, class: 'fg-label'
-    = f.input :work, label: false, placeholder: "Descreva a profissão do candidato"
   .col-md-2
     = f.label :income, class: 'fg-label'
-    = f.input :income, label: false, placeholder: "Ex.: 879.00"
-.row
-  .col-md-3
-    = f.label :state_work, class: 'fg-label'
-    = f.association :state_work, label: false, prompt: "selecione...", input_html: { id: 'second_state_id'}
-  .col-md-3
-    = f.label :city_work, class: 'fg-label'
-    = f.input :city_work, as: :select, prompt: "selecione o estado...", collection: {}, label: false, input_html: { id: 'second_city_id'}
-  .col-md-2
-    = f.label :cep_work, class: 'fg-label'
-    = f.input :cep_work, label: false
-    = f.hint link_to "Pesquisar nos correios", "http://www.buscacep.correios.com.br/", target: "_blank"
-.row
-  .col-md-8
-    = f.label :address_work, class: 'fg-label'
-    = f.input :address_work, label: false, placeholder: "Digite o endereço do trabalho"
-.row
-  .col-md-6
-    = f.label :adjunct_address_work, class: 'fg-label'
-    = f.input :adjunct_address_work, label: false, placeholder: "Digite o completo do endereço do trabalho (se houver)"
-  .col-md-2
-    = f.label :number_address_work, class: 'fg-label'
-    = f.input :number_address_work, label: false
+    = f.input :income, label: false, as: :string, placeholder: "Ex.: 879.00", input_html: { class: 'coin_mask' }

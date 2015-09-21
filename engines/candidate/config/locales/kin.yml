@@ -1,5 +1,11 @@
 pt-BR:
   activerecord:
+    errors:
+      models:
+        'candidate/kin':
+          attributes:
+            born:
+              invalid_date: "data inválida"
     models:
       'candidate/kin': Dependente
     attributes:
@@ -13,3 +19,10 @@ pt-BR:
         place_birth: "Naturalidade"
         flag_special_condition: "Condição Especial?"
         gender: "Sexo"
+        income: "Renda"
+        percent: "Percentual"
+        kinship: "Parentesco"
+        copurchaser_flag: "Cooadquirente?"
+        civil_state: "Estado Civil"
+        copurchaser_flat: "Coadquirente?"
+

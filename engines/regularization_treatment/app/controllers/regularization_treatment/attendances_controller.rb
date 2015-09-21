@@ -7,9 +7,6 @@ module RegularizationTreatment
     before_action :set_program
 
     def address_step
-      # program 1 => regularização, 2 => habitação
-      # attendance_status => 1 => atendimento iniciado
-     
       @attendance_status = Candidate::AttendanceStatus.find_by_code(1)
 
       @attendance = Candidate::AttendanceCadastre.new
@@ -121,6 +118,7 @@ module RegularizationTreatment
       when 3
         redirect_to new_requeriment_kin_path(@requeriment)
       when 4
+        redirect_to new_requeriment_checklist_path(@requeriment)
       end
         
     end
