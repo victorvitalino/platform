@@ -75,6 +75,12 @@ PATH
       simple_form
 
 PATH
+  remote: engines/habitation_treatment
+  specs:
+    habitation_treatment (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/helpdesk
   specs:
     helpdesk (0.0.1)
@@ -461,6 +467,7 @@ DEPENDENCIES
   factory_girl_rails
   finance!
   friendly_id
+  habitation_treatment!
   haml-rails
   helpdesk!
   i18n

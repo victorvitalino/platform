@@ -10,7 +10,6 @@ development:
   password: "mila1324"
   host: "localhost"
 
-
 production:
   <<: *default
   database: codhab_production

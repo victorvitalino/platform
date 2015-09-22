@@ -1,0 +1,38 @@
+#messages-main.card.m-b-0
+  .ms-menu
+    .ms-block
+      .ms-user
+        Pesquisar Documento
+    .ms-block
+    .listview.lv-user.m-t-20
+    = simple_form_for  @report  do |f|
+      .lv-item.media
+        .media-body
+          .lv-title
+            = f.label :date_start, class: 'fg-label'
+          .lv-small
+            = f.input :date_start, label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
+      .lv-item.media
+        .media-body
+          .lv-title
+            = f.label :date_end, class: 'fg-label'
+          .lv-small
+            = f.input :date_start, label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
+      .lv-item.media
+        .media-body
+          .lv-small
+            = f.submit 'Pesquisar', class:  'btn btn-success'
+  .ms-body
+    .listview.lv-message
+      .lv-header-alt.bgm-white
+        #ms-menu-trigger
+          .line-wrap
+            .line.top
+            .line.center
+            .line.bottom
+        .lvh-label.hidden-xs
+          %span.c-black Remessa
+      .lv-body{:style => "min-height: 270px"}
+        .lv-item.media
+          .media-body
+            = render 'form'
