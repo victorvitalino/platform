@@ -1,55 +1,38 @@
-= simple_form_for(@page) do |f|
+= simple_form_for(@convocation) do |f|
   .card-body.card-padding
     .row
       .col-md-12
-        = f.label :title, class: 'fg-label'
-        = f.input :title, label: false, input_html: { placeholder: 'Digite um título'}
+        = f.label :description, class: 'fg-label'
+        = f.input :description, as: :string, label: false, input_html: { placeholder: 'Digite uma descrição para a convocação'}
     .row
       .col-md-12
-        = f.label :content, class: 'fg-label'
-        = f.input :content, label: false, input_html: {class: 'redactor'}
+        = f.label :criterion, class: 'fg-label'
+        = f.input :criterion, as: :string, label: false, input_html: { placeholder: 'Digite os critérios da convocação'}
     .row
-      .col-md-3
-        = f.label :thumbnail, as: 'file', class: 'fg-label'
-        = f.input :thumbnail, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
-      .col-md-3
-        = f.label :page_category, class: 'fg-label'
-        = f.association :page_category, label: false, prompt: 'Selecione...'
-      .col-md-3
+      .col-md-2
+        = f.label 'Início', class: 'fg-label'
+        = f.input :start,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@convocation.start) ? localize(f.object.start) : nil}
+      .col-md-2
+        = f.label 'Fim', class: 'fg-label'
+        = f.input :end, as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date', value: (@convocation.end) ? localize(f.object.end) : nil }
+      .col-md-2
+        = f.label :quantity, class: 'fg-label'
+        = f.input :quantity, as: :string, label: false
+      .col-md-2
+        = f.label :convocation_type, class: 'fg-label'
+        = f.input :convocation_type, as: :select, collection: Candidate::Convocation.convocation_types.keys.to_a, label: false, prompt: 'selecione...'
+    .row
+      .col-md-2
         .toggle-switch{"data-ts-color" => "blue"}
           %label
-            .ts-label{:for => "ts4"}
-              = f.label :publish
-          = f.check_box :publish, id: 'ts4',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts4"}
-      .col-md-3
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts5"}
-              = f.label :active_photo
-          = f.check_box :active_photo, id: 'ts5',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts5"}
-    .row
-      .col-md-4
-        = f.label :author, class: 'fg-label'
-        = f.input :author, label: false, input_html: { placeholder: 'Ex: CODHAB' }
-      .col-md-4
-        = f.label 'Titulo do link', class: 'fg-label'
-        = f.input :label_link, label: false, input_html: { placeholder: 'Digite o rótulo do link' }
-      .col-md-4
-        = f.label :link, class: 'fg-label'
-        = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
-    .row
-      .col-md-4
-        = f.label :photo_description, class: 'fg-label'
-        = f.input :photo_description, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
-      .col-md-4
-        = f.label :photo_author, class: 'fg-label'
-        = f.input :photo_author, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
-      .col-md-4
-        = f.label :date, as: 'string', class: 'fg-label'
-        = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@page.date) ? localize(f.object.date) : nil}
+            .ts-label{:for => "status"}
+              = f.label :status
+          %br
+          = f.check_box :status, id: 'status',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "status"}
+    %br/
+    %br/
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
-        = link_to 'Voltar',pages_path , class: 'btn btn-inverse'
+        = link_to 'Voltar', convocations_path, class: 'btn btn-inverse'

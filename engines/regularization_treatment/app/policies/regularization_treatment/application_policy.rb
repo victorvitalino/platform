@@ -8,11 +8,7 @@ module RegularizationTreatment
     end
 
     def index?
-      return true if user.account.administrator
-      @system = Person::System.find_by_code('6')#CÓDIGO SISTEMA HELP DESK
-        if @system.present?
-        return true if user.account.permissions.where(system_id: @system.id, status: true).present?
-      end
+      true
     end
 
     def show?
@@ -42,17 +38,9 @@ module RegularizationTreatment
     def scope
       Pundit.policy_scope!(user, record.class)
     end
-    #VERIFICA SE O USUÁRIO POSSUI O CÓDIGO DA PERMISSÃO
-    def allow?(code)
-      return true if user.account.administrator
-      @permission = Person::SystemPermission.find_by_code(code)
-
-      if @permission.present?
-         return true if user.account.permissions.where(system_permission_id: @permission.id, status: true).present?
-      end
-    end
-
+  
     private
+    
     class Scope
       attr_reader :user, :scope
 

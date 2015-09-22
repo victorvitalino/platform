@@ -13,6 +13,10 @@
         = f.input :station_type, as: :select, label: false, collection: Attendance::Station.station_types.keys.to_a, prompt: 'selecione...'
     .row
       .col-md-4
+        = f.label :convocation, class: 'fg-label'
+        = f.association :convocation, label_method: :description, label: false, prompt: 'selecione...'
+    .row
+      .col-md-4
         .toggle-switch{"data-ts-color" => "blue"}
           %label
             .ts-label{:for => "ts4"}

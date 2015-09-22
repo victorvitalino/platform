@@ -4,12 +4,10 @@
   .col-md-12
     .btn-group.btn-group-justified{"aria-label" => "...", :role => "group"}
       .btn-group{:role => "group"}
-        = link_to "1. Seleção de Endereço", new_address_path, class: "btn waves-effect waves-button waves-float #{ (@step == 'address') ? 'btn-default' : 'btn-inverse'}"
+        = link_to "1. Seleção de Endereço", "#", class: "btn waves-effect waves-button waves-float #{ (@step == 'address') ? 'btn-default' : 'btn-inverse'}"
       .btn-group{:role => "group"}
-        = link_to "2. Cadastro do Candidato", new_cadastre_path, class: "btn waves-effect waves-button waves-float #{ (@step == 'cadastre') ? 'btn-default' : 'btn-inverse'}"
+        = link_to "2. Cadastro do Candidato", "#", class: "btn waves-effect waves-button waves-float #{ (@step == 'cadastre') ? 'btn-default' : 'btn-inverse'}"
       .btn-group{:role => "group"}
-        = link_to "3. Cadastro do Dependente", new_kin_path, class: "btn waves-effect waves-button waves-float #{ (@step == 'kin') ? 'btn-default' : 'btn-inverse'}"
+        = link_to "3. Cadastro do Dependente", "#", class: "btn waves-effect waves-button waves-float #{ (@step == 'kin') ? 'btn-default' : 'btn-inverse'}"
       .btn-group{:role => "group"}
-        = link_to "4. CHECKLIST", new_checklist_treatment_path, class: "btn waves-effect waves-button waves-float #{ (@step == 'checklist') ? 'btn-default' : 'btn-inverse'}"
-      .btn-group{:role => "group"}
-        = link_to "5. Finalização", new_cadastre_procedural_status_path, class: "btn waves-effect waves-button waves-float #{ (@step == 'final') ? 'btn-default' : 'btn-inverse'}"
+        = link_to "4. Preenchimento de Checklist", "#", class: "btn waves-effect waves-button waves-float #{ (@step == 'checklist') ? 'btn-default' : 'btn-inverse'}"

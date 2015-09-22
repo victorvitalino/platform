@@ -4,9 +4,7 @@ module RegularizationTreatment
 
     def new
      session[:requeriment_id] = params[:requeriment_id] if params[:requeriment_id].present?
-
      @requeriment = Regularization::Requeriment.find(session[:requeriment_id])
-
     end
 
     def create

@@ -1,0 +1,41 @@
+.row{:style => 'margin-top: 35px'} 
+  .col-md-12
+    .lvh-label.hidden-xs
+      %span.c-black
+        %h4
+          %b Requerimentos
+
+.row{:style => 'margin-top: 35px'} 
+  .col-md-12
+    - if @requeriments.present?
+      %table.table.table-striped.table-condensed.table-bordered
+        %thead
+          %tr
+            %th Protocolo
+            %th CPF
+            %th Cidade
+            %th Endereço
+            %th Data do Requerimento
+            %th Status Boleto
+            %th Ações
+        %tbody
+          - @requeriments.each_with_index do |requeriment, index|
+            %tr
+              %td= requeriment.protocol
+              %td= requeriment.cpf
+              %td= requeriment.unit.city.name if requeriment.unit.present? && requeriment.unit.city.present?
+              %td= requeriment.unit.complete_address if requeriment.unit.present?
+              %td= requeriment.created_at.strftime("%d/%m/%Y às %H:%M")
+              %td
+              %td
+                - if policy(:attendance, namespace: RegularizationTreatment).attendant?
+                  - if requeriment.attendece_requeriment_open?
+                    sem ações
+                  - else
+                    = link_to "", requeriment_path(requeriment), remote: true, class: 'btn btn-success md-launch' 
+                - else
+                  sem ações
+    - else
+      .row
+        .col-md-12
+          Não existem requerimentos vínculado a este CPF.

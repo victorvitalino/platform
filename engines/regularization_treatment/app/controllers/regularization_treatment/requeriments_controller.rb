@@ -3,8 +3,6 @@ module RegularizationTreatment
 
     def show
       @requeriment = Regularization::Requeriment.find(params[:id])
-      session[:cpf] = @requeriment.cpf
     end
-
   end
 end

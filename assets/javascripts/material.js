@@ -6,6 +6,7 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require material/js/bootstrap.min
 //= require material/js/jquery.mask.min
+//= require material/js/jquery-maskmoney.min
 //= require material/vendors/flot/jquery.flot.min
 //= require material/vendors/flot/jquery.flot.resize.min
 //= require material/vendors/flot/plugins/curvedLines
@@ -19,7 +20,6 @@
 //= require material/js/functions
 //= require material/js/demo
 //= require material/js/datatables
-//= require jquery.remotipart
 //= require mod
 
 

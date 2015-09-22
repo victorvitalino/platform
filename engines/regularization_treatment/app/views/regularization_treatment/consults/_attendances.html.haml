@@ -1,0 +1,35 @@
+.row{:style => 'margin-top: 35px'} 
+  .col-md-12
+    .lvh-label.hidden-xs
+      %span.c-black
+        %h4
+          %b Atendimentos
+
+.row{:style => 'margin-top: 35px;'} 
+  .col-md-12
+    - if @attendances.present?
+      %table.table.table-striped.table-condensed.table-bordered
+        %thead
+          %tr
+            %th #
+            %th Status
+            %th Requerimento
+            %th Atendente
+            %th Data
+            %th Ações
+        %tbody
+          - @attendances.each_with_index do |attendance, index|
+            %tr
+              %td= index + 1
+              %td= attendance.attendance_status.name
+              %td= attendance.requeriment.protocol
+              %td= attendance.attendant.staff.name if attendance.attendant.present? && attendance.attendant.staff.present?
+              %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
+              %td
+                = link_to "", requeriment_replay_path(requeriment_id: attendance.requeriment.id), class: 'md md-replay btn btn-primary', title: 'continuar atendimento'
+                = link_to "", "#", class: 'md md-verified-user btn btn-inverse', title: 'aprovação com supervisor'
+    - else
+      .row
+        .col-md-12
+          Não existem atendimentos vínculado a este CPF.
+%hr/

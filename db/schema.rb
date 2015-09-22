@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915140335) do
+ActiveRecord::Schema.define(version: 20150917160111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,45 +190,28 @@ ActiveRecord::Schema.define(version: 20150915140335) do
   end
 
   create_table "candidate_adjunct_cadastres", force: :cascade do |t|
-    t.string   "name"
-    t.string   "telephone"
-    t.string   "telephone_optional"
-    t.string   "celphone"
-    t.string   "email"
-    t.integer  "special_condition_id"
     t.boolean  "flag_special_condition", default: false
-    t.string   "cep"
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.string   "address"
-    t.string   "adjunct_address"
-    t.string   "number_address"
     t.float    "income"
-    t.string   "work"
-    t.string   "cep_work"
-    t.integer  "city_work_id"
-    t.integer  "state_work_id"
-    t.string   "address_work"
-    t.string   "adjunct_address_work"
-    t.string   "number_address_work"
     t.string   "nis"
     t.string   "cid"
     t.integer  "cadastre_id"
+    t.integer  "special_condition_id"
     t.integer  "civil_state_id"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
 
   add_index "candidate_adjunct_cadastres", ["cadastre_id"], name: "index_candidate_adjunct_cadastres_on_cadastre_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["city_id"], name: "index_candidate_adjunct_cadastres_on_city_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["city_work_id"], name: "index_candidate_adjunct_cadastres_on_city_work_id", using: :btree
   add_index "candidate_adjunct_cadastres", ["civil_state_id"], name: "index_candidate_adjunct_cadastres_on_civil_state_id", using: :btree
   add_index "candidate_adjunct_cadastres", ["special_condition_id"], name: "index_candidate_adjunct_cadastres_on_special_condition_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["state_id"], name: "index_candidate_adjunct_cadastres_on_state_id", using: :btree
-  add_index "candidate_adjunct_cadastres", ["state_work_id"], name: "index_candidate_adjunct_cadastres_on_state_work_id", using: :btree
 
   create_table "candidate_attendance_cadastres", force: :cascade do |t|
     t.integer  "adjunct_cadastre_id"
+<<<<<<< HEAD
+=======
+    t.integer  "requeriment_id"
+    t.integer  "program_id"
+>>>>>>> 969a70a58df859c6688c5f4f6eaf916e2776a7c4
     t.integer  "convocation_id"
     t.integer  "attendance_status_id"
     t.boolean  "status",               default: false
@@ -241,9 +224,12 @@ ActiveRecord::Schema.define(version: 20150915140335) do
   add_index "candidate_attendance_cadastres", ["attendance_status_id"], name: "index_candidate_attendance_cadastres_on_attendance_status_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendant_id"], name: "index_candidate_attendance_cadastres_on_attendant_id", using: :btree
   add_index "candidate_attendance_cadastres", ["convocation_id"], name: "index_candidate_attendance_cadastres_on_convocation_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["program_id"], name: "index_candidate_attendance_cadastres_on_program_id", using: :btree
+  add_index "candidate_attendance_cadastres", ["requeriment_id"], name: "index_candidate_attendance_cadastres_on_requeriment_id", using: :btree
 
   create_table "candidate_attendance_statuses", force: :cascade do |t|
     t.string   "name"
+    t.integer  "code"
     t.boolean  "status",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -256,18 +242,34 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.integer  "procedural_status_id"
     t.integer  "convocation_id"
     t.integer  "assessment_id"
-    t.integer  "attendant_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   add_index "candidate_cadastre_procedural_statuses", ["assessment_id"], name: "index_candidate_cadastre_procedural_statuses_on_assessment_id", using: :btree
-  add_index "candidate_cadastre_procedural_statuses", ["attendant_id"], name: "index_candidate_cadastre_procedural_statuses_on_attendant_id", using: :btree
   add_index "candidate_cadastre_procedural_statuses", ["convocation_id"], name: "index_candidate_cadastre_procedural_statuses_on_convocation_id", using: :btree
 
   create_table "candidate_cadastres", force: :cascade do |t|
     t.string   "cpf"
-    t.integer  "gender",      default: 0
+    t.integer  "gender",               default: 0
+    t.string   "name"
+    t.string   "telephone"
+    t.string   "telephone_optional"
+    t.string   "celphone"
+    t.string   "email"
+    t.string   "cep"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.string   "address"
+    t.string   "adjunct_address"
+    t.string   "number_address"
+    t.string   "work"
+    t.string   "cep_work"
+    t.integer  "city_work_id"
+    t.integer  "state_work_id"
+    t.string   "address_work"
+    t.string   "adjunct_address_work"
+    t.string   "number_address_work"
     t.date     "born"
     t.string   "born_uf"
     t.string   "rg"
@@ -275,21 +277,24 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.string   "place_birth"
     t.date     "arrival_df"
     t.string   "seqcad"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
+
+  add_index "candidate_cadastres", ["city_id"], name: "index_candidate_cadastres_on_city_id", using: :btree
+  add_index "candidate_cadastres", ["city_work_id"], name: "index_candidate_cadastres_on_city_work_id", using: :btree
+  add_index "candidate_cadastres", ["state_id"], name: "index_candidate_cadastres_on_state_id", using: :btree
+  add_index "candidate_cadastres", ["state_work_id"], name: "index_candidate_cadastres_on_state_work_id", using: :btree
 
   create_table "candidate_checklist_treatments", force: :cascade do |t|
     t.boolean  "status"
     t.integer  "checklist_id"
     t.integer  "attendance_cadastre_id"
-    t.integer  "attendant_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   add_index "candidate_checklist_treatments", ["attendance_cadastre_id"], name: "index_candidate_checklist_treatments_on_attendance_cadastre_id", using: :btree
-  add_index "candidate_checklist_treatments", ["attendant_id"], name: "index_candidate_checklist_treatments_on_attendant_id", using: :btree
   add_index "candidate_checklist_treatments", ["checklist_id"], name: "index_candidate_checklist_treatments_on_checklist_id", using: :btree
 
   create_table "candidate_checklist_types", force: :cascade do |t|
@@ -320,20 +325,28 @@ ActiveRecord::Schema.define(version: 20150915140335) do
   end
 
   create_table "candidate_convocations", force: :cascade do |t|
-    t.text     "description"
+    t.string   "description"
+    t.text     "criterion"
     t.date     "start"
     t.date     "end"
     t.integer  "quantity"
+<<<<<<< HEAD
     t.text     "discretion"
     t.boolean  "stauts",            default: true
     t.integer  "tipe"
     t.string   "legacy_pontuation"
     t.integer  "pontuation_id"
     t.integer  "city_id"
+=======
+    t.boolean  "status",            default: true
+    t.integer  "convocation_type",  default: 0
+    t.string   "legacy_pontuation"
+>>>>>>> 969a70a58df859c6688c5f4f6eaf916e2776a7c4
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
 
+<<<<<<< HEAD
   add_index "candidate_convocations", ["city_id"], name: "index_candidate_convocations_on_city_id", using: :btree
   add_index "candidate_convocations", ["pontuation_id"], name: "index_candidate_convocations_on_pontuation_id", using: :btree
 
@@ -354,6 +367,8 @@ ActiveRecord::Schema.define(version: 20150915140335) do
   add_index "candidate_kin_adjuncts", ["kin_type_id"], name: "index_candidate_kin_adjuncts_on_kin_type_id", using: :btree
   add_index "candidate_kin_adjuncts", ["kinship_id"], name: "index_candidate_kin_adjuncts_on_kinship_id", using: :btree
 
+=======
+>>>>>>> 969a70a58df859c6688c5f4f6eaf916e2776a7c4
   create_table "candidate_kins", force: :cascade do |t|
     t.string   "name"
     t.string   "cpf"
@@ -361,17 +376,24 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.string   "rg_org"
     t.string   "rg_uf"
     t.date     "born"
-    t.string   "gender"
+    t.integer  "gender",                 default: 0
     t.string   "place_birth"
-    t.boolean  "status"
-    t.boolean  "flag_special_condition"
-    t.integer  "cadastre_id"
+    t.float    "income"
+    t.integer  "percent",                default: 0
+    t.integer  "kin_id"
+    t.integer  "kinship_id"
+    t.boolean  "copurchaser_flag"
+    t.boolean  "flag_special_condition", default: false
+    t.integer  "adjunct_cadastre_id"
     t.integer  "special_condition_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.boolean  "status",                 default: true
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
-  add_index "candidate_kins", ["cadastre_id"], name: "index_candidate_kins_on_cadastre_id", using: :btree
+  add_index "candidate_kins", ["adjunct_cadastre_id"], name: "index_candidate_kins_on_adjunct_cadastre_id", using: :btree
+  add_index "candidate_kins", ["kin_id"], name: "index_candidate_kins_on_kin_id", using: :btree
+  add_index "candidate_kins", ["kinship_id"], name: "index_candidate_kins_on_kinship_id", using: :btree
   add_index "candidate_kins", ["special_condition_id"], name: "index_candidate_kins_on_special_condition_id", using: :btree
 
   create_table "candidate_kinships", force: :cascade do |t|
@@ -386,6 +408,14 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "candidate_programs", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.integer  "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "candidate_special_conditions", force: :cascade do |t|
@@ -1246,7 +1276,7 @@ ActiveRecord::Schema.define(version: 20150915140335) do
     t.integer  "agenda_id"
     t.integer  "requeriment_id"
     t.string   "cpf"
-    t.integer  "status"
+    t.boolean  "status"
     t.date     "date_schedule"
     t.time     "hour_schedule"
     t.text     "observation"

@@ -1,0 +1,27 @@
+%table.table.table-striped.table-condensed.table-bordered
+  %thead
+    %tr
+      %th #
+      %th Nome
+      %th CPF
+      %th RG
+      %th Data de nascimento
+      %th Parentesco
+      %th Condição Especial?
+      %th Coadquirente?
+      %th Renda
+      %th Ação
+  %tbody
+    - @kins.each_with_index do |k, index|
+      %tr
+        %td= index + 1
+        %td= k.name
+        %td= k.cpf
+        %td= "#{k.rg}/#{k.rg_org} - #{k.rg_uf}"
+        %td= k.born.strftime('%d/%m/%Y') if k.born.present?
+        %td= k.kinship
+        %td= k.flag_special_condition ? 'sim' : 'não'
+        %td= k.copurchaser_flag ? "Sim - #{k.percent}" : "Não"
+        %td= number_to_currency k.income
+        %td 
+          = link_to "remover", requeriment_kin_path(id: k.id), method: :delete, data: { confirm: t(:confirm_delete)}
