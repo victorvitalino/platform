@@ -1,70 +1,61 @@
-= simple_form_for [@requeriment,@kin] do |f|
+= simple_form_for [@requeriment,@kin], remote: true do |f|
   .row
     .col-md-12
-      %h4
-        %b Dados Pessoais
-  %hr/
-  .row
-    .col-md-4
       = f.label :name, class: 'fg-label'
       = f.input :name, label: false, placeholder: "digite o nome do dependente"
-    .col-md-2
+  .row
+    .col-md-4
       = f.label :born, as: 'string', class: 'fg-label'
       = f.input :born, label: false, as: :string, input_html: { class: 'date'}
-    .col-md-2
+    .col-md-4
       = f.label :gender
       = f.input :gender, label:false, as: :select, collection: Regularization::Requeriment.genders.keys.to_a, prompt: 'selecione...'
-    .col-md-2
+    .col-md-4
       = f.label :kinship, class: 'fg-label'
       = f.association :kinship, label: false, prompt: 'selecione...'
   .row
-    .col-md-2
+    .col-md-4
       = f.label :cpf, class: 'fg-label'
       = f.input :cpf, label: false, hint: "obrigatório para maior de 18 anos", placeholder: "somente números"
-    .col-md-2
-      = f.label :place_birth, as: 'string', class: 'fg-label'
-      = f.input :place_birth, label: false, placeholder: "Ex.: Brasília"
-    .col-md-2
-      = f.label :flag_special_condition, class: 'fg-label'
-      = f.input :flag_special_condition, as: :select, label: false, include_blank: false, class: 'fg-label'
-    .col-md-2
+    .col-md-3
       = f.label :rg, class: 'fg-label'
       = f.input :rg, label: false, placeholder: "carteira de identidade"
-    .col-md-2
+    .col-md-3
       = f.label :rg_org, class: 'fg-label'
       = f.input :rg_org, label: false, placeholder: "Ex.: SSP"
-    .col-md-1
+    .col-md-2
       = f.label :rg_uf, class: 'fg-label'
       = f.input :rg_uf, as: :select, collection: Address::State.all, label_method: :acronym, value_method: :acronym, label: false, include_allow: true
   .row
-    .col-md-2
-      = f.label :copurchaser_flat, class: 'fg-label'
-      = f.input :copurchaser_flag, label: false, as: :select, prompt: 'selecione...'
-    .col-md-2
+    .col-md-4
+      = f.label :place_birth, as: 'string', class: 'fg-label'
+      = f.input :place_birth, label: false, placeholder: "Ex.: Brasília"
+    .col-md-4
+      = f.label :flag_special_condition, class: 'fg-label'
+      = f.input :flag_special_condition, as: :select, label: false, include_blank: false, class: 'fg-label'
+    .col-md-4
+      = f.label :cid, class: 'fg-label'
+      = f.input :cid, label: false, placeholder: "Informe o CID"
+  .row
+    .col-md-4
+      = f.label :copurchaser_flag, class: 'fg-label'
+      = f.input :copurchaser_flag, label: false, as: :select, include_blank: false
+    .col-md-4
       = f.label :percent, class: 'fg-label'
       = f.input :percent, label: false
-    .col-md-2
+    .col-md-4
       = f.label :income, class: 'fg-label'
-      = f.input :income, label: false, as: :string, input_html: { class: 'coin_mask', value: 0}
+      = f.input :income, label: false, as: :string, input_html: { class: 'coin_mask', value: '0.00'}
 
+  %hr/
+  %br/
+  %br/
   .row
     .col-md-12
       %span.pull-right
         = f.button :submit, class: 'btn btn-success'
-  %hr/
-  %br/
-  %br/
-  .row
-    .col-md-12
-      %h4 Dependentes
-  %br/
-  .row
-    = render 'kins'
-  %hr/
-  %br/
-  %br/
-  .row
-    .col-md-12
-      %span.pull-right
-        = link_to "Voltar para consulta", new_consult_path, class: 'btn btn-inverse'
-        = link_to "Prosseguir", requeriment_checklist_step_path(@requeriment), class: 'btn btn-primary'
+
+:javascript
+  $(document).ready(function() {
+    $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true,allowZero:true, thousands:'', decimal:'.', affixesStay: false});
+  });

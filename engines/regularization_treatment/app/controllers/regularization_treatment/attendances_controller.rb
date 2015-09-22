@@ -116,9 +116,9 @@ module RegularizationTreatment
       when 2
         redirect_to new_requeriment_cadastre_path(@requeriment)
       when 3
-        redirect_to new_requeriment_kin_path(@requeriment)
+        redirect_to requeriment_kins_path(@requeriment)
       when 4
-        redirect_to new_requeriment_checklist_path(@requeriment)
+        redirect_to new_requeriment_checklist_treatment_path(@requeriment)
       end
         
     end

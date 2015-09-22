@@ -287,11 +287,13 @@ ActiveRecord::Schema.define(version: 20150917160111) do
     t.boolean  "status"
     t.integer  "checklist_id"
     t.integer  "attendance_cadastre_id"
+    t.integer  "attendant_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   add_index "candidate_checklist_treatments", ["attendance_cadastre_id"], name: "index_candidate_checklist_treatments_on_attendance_cadastre_id", using: :btree
+  add_index "candidate_checklist_treatments", ["attendant_id"], name: "index_candidate_checklist_treatments_on_attendant_id", using: :btree
   add_index "candidate_checklist_treatments", ["checklist_id"], name: "index_candidate_checklist_treatments_on_checklist_id", using: :btree
 
   create_table "candidate_checklist_types", force: :cascade do |t|
@@ -347,8 +349,9 @@ ActiveRecord::Schema.define(version: 20150917160111) do
     t.integer  "percent",                default: 0
     t.integer  "kin_id"
     t.integer  "kinship_id"
-    t.boolean  "copurchaser_flag"
+    t.boolean  "copurchaser_flag",       default: false
     t.boolean  "flag_special_condition", default: false
+    t.string   "cid"
     t.integer  "adjunct_cadastre_id"
     t.integer  "special_condition_id"
     t.boolean  "status",                 default: true

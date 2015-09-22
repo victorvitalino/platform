@@ -17,8 +17,10 @@ class CreateCandidateKins < ActiveRecord::Migration
       t.references :kin, index: true
       t.references :kinship, index: true
 
-      t.boolean :copurchaser_flag
+      t.boolean :copurchaser_flag, default: false
       t.boolean :flag_special_condition, default: false
+
+      t.string :cid
 
       t.references :adjunct_cadastre, index: true
       t.references :special_condition, index: true
