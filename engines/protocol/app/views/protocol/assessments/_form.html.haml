@@ -35,15 +35,15 @@
      = f.label :subject, class: 'fg-label'
      = f.association :subject, prompt: 'selecione...', label: false, input_html: { class: 'input-sm fg-input'}
     .col-md-6
-     = f.input :description_subject, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite o nome'}
+     = f.input :description_subject, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite um complemento do assunto'}
 
    .row
     .col-md-6
      = f.label :sign_by, class: 'fg-label'
-     = f.input :sign_by, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite o nome'}
+     = f.input :sign_by, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Assinado por'}
     .col-md-6
      = f.label :observation, class: 'fg-label'
-     = f.input :observation, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite o nome'}
+     = f.input :observation, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite uma observação'}
    .row
     .col-md-8
      = f.submit 'salvar' , class: 'btn btn-success waves-effect waves-button waves-float'

@@ -10,6 +10,8 @@ resources :subjects, path: 'assuntos'
 
 resources :locations, path: 'localizacoes'
 
+resources :reports, path: 'relatorios'
+
 #get 'new_multiple', to: 'locations#new_multiple', as:'new_multiple'
 
 get 'add_conduct/:assessment_id/alloment/:id', to: 'conducts#add', as: 'add'

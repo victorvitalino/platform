@@ -36,7 +36,9 @@ gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 
 gem 'dotenv-rails'
 
-group :test do 
+gem 'axlsx', '~> 2.0.1'
+
+group :test do
   gem 'sqlite3'
   gem 'thin'
   gem 'rspec-rails'
@@ -61,7 +63,7 @@ end
 group :production do
   gem 'pg'
   gem 'unicorn'
-  gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp' 
+  gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp'
 end
 
 
@@ -84,3 +86,4 @@ gem 'concourse_portal',                 path: 'engines/concourse_portal'
 gem 'attendance',                       path: 'engines/attendance'
 gem 'regularization_schedule',          path: 'engines/regularization_schedule'
 gem 'finance',                          path: 'engines/finance'
+gem 'habitation_treatment',                          path: 'engines/habitation_treatment'

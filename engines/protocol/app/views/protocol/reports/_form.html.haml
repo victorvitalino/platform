@@ -1,0 +1,23 @@
+%span.c-black
+%br
+- if @assessments.present?
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th Processo
+          %th Tipo de Documento
+          %th Orgão Destinatário
+          %th Assunto
+          %th Área Solicitante
+      %tbody
+        - @assessments.each_with_index do |a|
+          %tr
+            %td= a.document_number
+            %td= a.doc_type_name
+            %td= a.external_agency
+            %td= a.subject_name
+            %td= a.requesting_unit
+  = link_to "Excell", new_report_path({format: "csv"}.merge( search:{date_start: @date_start, date_end:@date_end}))
+
+
