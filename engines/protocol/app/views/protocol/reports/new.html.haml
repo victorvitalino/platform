@@ -5,7 +5,7 @@
         Pesquisar Documento
     .ms-block
     .listview.lv-user.m-t-20
-    = simple_form_for  @report  do |f|
+    = simple_form_for :search, url: new_report_path, :method => 'get' do |f|
       .lv-item.media
         .media-body
           .lv-title
@@ -17,7 +17,7 @@
           .lv-title
             = f.label :date_end, class: 'fg-label'
           .lv-small
-            = f.input :date_start, label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
+            = f.input :date_end, label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
       .lv-item.media
         .media-body
           .lv-small
@@ -31,7 +31,7 @@
             .line.center
             .line.bottom
         .lvh-label.hidden-xs
-          %span.c-black Remessa
+          %span.c-black Relatório de Expediente
       .lv-body{:style => "min-height: 270px"}
         .lv-item.media
           .media-body

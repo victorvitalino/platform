@@ -4,18 +4,31 @@ module Protocol
 
         def new
            @report = Report.new
-        end
 
-        def  create
-           @report = Report.new(set_params)
-
-           if @report.date_start.present? && @report.date_end.present?
-              @assessments = Assessment.where("created_at >= ? AND created_at <= ?", @report.date_start, @report.date_end)
+           if params[:search].present?
+              if params[:search][:date_start].present? && params[:search][:date_end].present?
+                @date_start = params[:search][:date_start]
+                @date_end  = params[:search][:date_end]
+                @assessments = Assessment.joins(:subject,:document_type).
+                select('document_number, protocol_document_types.name as doc_type_name, external_agency, protocol_subjects.name as subject_name, requesting_unit').
+                where("protocol_assessments.created_at::date >= ?  AND protocol_assessments.created_at::date <= ? ", @date_start ,  @date_end )
+              else
+                @assessments = Assessment.joins(:subject,:document_type).
+                select('document_number, protocol_document_types.name as doc_type_name, external_agency, protocol_subjects.name as subject_name, requesting_unit').
+                where("created_at >= ?", Date.today)
+              end
            else
-              @assessments = Assessment.where(created_at: Date.today)
+                @assessments = Assessment.joins(:subject,:document_type).
+                select('document_number, protocol_document_types.name as doc_type_name, external_agency, protocol_subjects.name as subject_name, requesting_unit').
+                where("created_at >= ?", Date.today)
            end
 
-           render action: 'new'
+              respond_to do |format|
+                format.html
+                format.csv { send_data @assessments.to_csv }
+
+              end
+
         end
 
         private

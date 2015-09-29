@@ -69,7 +69,14 @@ module Protocol
         self.document_number = number
     end
 
-
+   def self.to_csv(options = {})
+      CSV.generate(options) do |csv|
+        csv << all.first.attributes.keys
+            all.each do |assessment|
+              csv << assessment.attributes.values
+            end
+      end
+   end
 
 
   end

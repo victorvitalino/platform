@@ -5,5 +5,6 @@ module Protocol
     attr_accessor :date_start, :date_end
 
 
+
   end
 end

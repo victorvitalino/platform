@@ -28,10 +28,10 @@ module Person
 
 
 
-#    validates_uniqueness_of :code, :rg, :cpf
+    validates_uniqueness_of :code, :rg, :cpf
 
-#    validates :cpf, cpf: true
- #   validates_date :born, :before => lambda {18.years.ago}
+    validates :cpf, cpf: true
+    validates_date :born, :before => lambda {18.years.ago}
 
     mount_uploader :avatar, Person::AvatarUploader
     mount_uploader :curriculum, Person::CurriculumUploader
