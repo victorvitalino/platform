@@ -34,8 +34,6 @@ gem 'wicked_pdf'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 
-gem 'dotenv-rails'
-
 gem 'axlsx', '~> 2.0.1'
 
 group :test do
