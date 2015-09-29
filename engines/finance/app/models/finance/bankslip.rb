@@ -19,7 +19,7 @@ module Finance
 
 
       def set_guide
-        @guide = Finance::TypeGuide.find(@type_guide_id) ||= errors.add(:type_guide_id, 'tipo de cobrança inválida')
+        @guide = Finance::TypeGuide.find(@type_guide_id) 
       end
 
       def set_payment_guide
