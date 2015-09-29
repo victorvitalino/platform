@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       mount Protocol::Engine                 => "/protocolo",      as: 'protocol',                  module: 'protocol'
       mount Juridical::Engine                => "/juridico",       as: 'juridical',                 module: 'juridical'
       mount Attendance::Engine               => "/atendimento",    as: 'attendance',                module: 'attendance'
-#      mount RegularizationTreatment::Engine  => "/regularizacao",  as: 'regularization_treatment',  module: 'regularization_treatment'
+      mount RegularizationTreatment::Engine  => "/regularizacao",  as: 'regularization_treatment',  module: 'regularization_treatment'
       mount HabitationTreatment::Engine  => "/habitacao",  as: 'habitation_treatment',  module: 'habitation_treatment'
       mount Concourse::Engine                => "/concurso",       as: 'concourse',                 module: 'concourse'
       mount Finance::Engine                  => "/financeiro",     as: 'finance',                   module: 'finance'
