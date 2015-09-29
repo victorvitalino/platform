@@ -1,0 +1,40 @@
+= render 'layouts/regularization_treatment/steps'
+.row
+  .col-md-12
+    .card
+      .card-body.card-padding
+        .row
+          .col-md-12
+            %h3
+              %b Atualização de Dependentes
+
+        .row{:style => "margin-top: 35px"}
+          .col-md-12
+            = link_to "novo dependente", new_requeriment_kin_path(@requeriment), remote: true, class: 'btn btn-success'
+        .row{:style => "margin-top: 35px"}
+          .col-md-12
+            %table.table.table-striped.table-condensed.table-bordered
+              %thead
+                %tr
+                  %th #
+                  %th Nome
+                  %th CPF
+                  %th RG
+                  %th Data de nascimento
+                  %th Parentesco
+                  %th Condição Especial?
+                  %th Coadquirente?
+                  %th Renda
+                  %th Remover
+              %tbody.index-kin
+                - if @kins.present?
+                  = render 'index'
+                - else
+                  %tr
+                    %td{:colspan => 10} Não existem dependentes cadastrados.
+        .row{:style => "margin-top: 100px"}
+          .col-md-12
+            %span.pull-right
+              = link_to "Voltar para consulta", new_consult_path, class: 'btn btn-inverse'
+              = link_to "Prosseguir", requeriment_checklist_step_path(@requeriment), class: 'btn btn-primary'
+

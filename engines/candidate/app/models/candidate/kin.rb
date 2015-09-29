@@ -8,26 +8,27 @@ module Candidate
     default_scope {where(status: true)}
 
     validates :name, :place_birth, presence: true
-    validates_date :born
+    validates_date :born, presence: true
   
     validates :cpf, cpf: true, unless: :is_kid?
     validates :rg, :rg_org, :rg_uf, presence: true, unless: :is_kid?  
 
     validate  :unique_cpf?, unless: :is_kid?, on: :create
     validate  :cadastre_cpf?
-      
+
     validates :percent, presence: true, numericality: true, if: :copurchaser?
-    validates :income,  numericality: {only_float: true}
+    validates :income,  numericality: {only_float: true}, presence: true
 
-   # validates_presence_of :cpf, :if => :old?
+    validates :cid, presence: true, if: :is_special?
 
-   #def old?
-    # old = advance(:born => -18)
-    # old >= 18
-   #end
+    validates :kinship, presence: true
 
    private
 
+   def is_special?
+    self.flag_special_condition.present?
+   end
+   
    def unique_cpf?
      if adjunct_cadastre.kins.where(cpf: self.cpf, status: true).present?
         errors.add(:cpf, 'cpf já cadastrado')

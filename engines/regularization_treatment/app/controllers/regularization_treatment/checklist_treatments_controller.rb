@@ -1,48 +1,47 @@
 module RegularizationTreatment
   class ChecklistTreatmentsController < ApplicationController
-    before_action :set_cadastre,except: [:show]
-    before_action :set_step
-    before_action  :set_cadastre_show, only: [:show]
 
-    def new
-      @checklist = Candidate::Checklist.all
-      @checklist_treatment = Candidate::ChecklistTreatment.new
+    before_action :set_requeriment
+    before_action :set_station_attendant
+    before_action :set_checklist, only: [:new]
+
+    def index
     end
 
-    def show
-       @requeriment = Regularization::Requeriment.find_by_cpf(@cadastre.cpf)
-       render layout: 'layouts/regularization_treatment/application'
+    def new
+      @checklist = Candidate::ChecklistTreatment.new
     end
 
     def create
-       @attendance = ::Candidate::AttendanceCadastre.where(adjunct_cadastre_id: @cadastre.adjunct_cadastre.id).last
-      params[:checklist_treatment].each do |id, value|
-        @checklist_treatment = Candidate::ChecklistTreatment.new({checklist_id: id, status: value})
-        @checklist_treatment.attendance_cadastre_id =  @attendance.id
-        @checklist_treatment.save
+      params[:checklist_treatment].each do |key, value|
+        @checklist = Candidate::ChecklistTreatment.new
+        @checklist.checklist_id             = key
+        @checklist.status                   = value
+        @checklist.attendance_cadastre_id   = 1
+        @checklist.attendant_id             = current_user.account.attendant.id
+        @checklist.save
       end
-        @cadastre.set_treatment(1,3,@cadastre.adjunct_cadastre.id,current_user.account.attendant.id)
-      redirect_to new_cadastre_procedural_status_path
-    end
 
+    end
+      
     private
 
-    def set_cadastre_show
-         @cadastre = Regularization::Cadastre.find(params[:id])
+    def set_checklist
+      @checklists = Candidate::Checklist.informal_installment if @station.parcelamento_informal?
+      @checklists = Candidate::Checklist.consolidated_city if @station.cidade_consolidada?
     end
 
-    def set_cadastre
-      if session[:cadastre_id].present?
-        @cadastre = Regularization::Cadastre.find(session[:cadastre_id])
+    def set_requeriment
+      @requeriment = Regularization::Requeriment.find(params[:requeriment_id])
+    end
+
+    def set_station_attendant
+      if current_user.account.attendant.present? && current_user.account.attendant.station.present?
+        @station = current_user.account.attendant.station
       else
-        flash[:info] = "É necessario preencher o cadastro."
-        redirect_to new_cadastre_path
+        flash[:danger] = "Atendente não está vínculado a nenhum posto de atendimento."
+        redirect_to new_consult_path
       end
     end
-
-    def set_step
-      @step = 'checklist'
-    end
-
   end
 end

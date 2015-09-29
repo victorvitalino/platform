@@ -353,8 +353,9 @@ ActiveRecord::Schema.define(version: 20150917160111) do
     t.integer  "percent",                default: 0
     t.integer  "kin_id"
     t.integer  "kinship_id"
-    t.boolean  "copurchaser_flag"
+    t.boolean  "copurchaser_flag",       default: false
     t.boolean  "flag_special_condition", default: false
+    t.string   "cid"
     t.integer  "adjunct_cadastre_id"
     t.integer  "special_condition_id"
     t.boolean  "status",                 default: true

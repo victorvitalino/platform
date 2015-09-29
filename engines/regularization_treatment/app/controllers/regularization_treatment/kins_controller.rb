@@ -10,25 +10,17 @@ module RegularizationTreatment
 
     def create
       @kin = @cadastre.kins.new(set_params)
-      if @kin.save
-        flash[:success] = t :success
-        redirect_to action: 'new'
-      else
-        render action: 'new'
-      end
+      @kin.save
+    end
 
+    def delete
+      @kin = Regularization::Kin.find(params[:kin_id])
     end
 
     def destroy
       @kin = Regularization::Kin.find(params[:id])
+      @kin.update(status: false)
 
-      if @kin.update(status: false)
-        flash[:success] = t :success
-        redirect_to action: 'new'
-      else
-        flash[:danger] = t :danger
-        redirect_to action: 'new'
-      end
     end
 
     private
@@ -51,7 +43,7 @@ module RegularizationTreatment
     end
 
     def set_params
-      params.require(:kin).permit(:name, :rg, :rg_org, :cpf, :rg_uf, :gender, :born, :place_birth, :flag_special_condition, :special_condition_id,
+      params.require(:kin).permit(:name, :rg, :rg_org, :cid, :cpf, :rg_uf, :gender, :born, :place_birth, :flag_special_condition, :special_condition_id,
                                   :income, :kinship_id, :copurchaser_flag, :percent)
     end
   end

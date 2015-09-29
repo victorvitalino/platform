@@ -1,10 +1,13 @@
-.table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-  %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-    %thead
-      %tr
-        %th Nome
-        %th CPF
-        %th Ações
-    %tbody.index-kin
-      - if @kins.present?
-        = render 'index_kin'
+- @kins.each_with_index do |k, index|
+  %tr
+    %td= index + 1
+    %td= k.name
+    %td= k.cpf
+    %td= k.rg.present? ? "#{k.rg}/#{k.rg_org} - #{k.rg_uf}" : ""
+    %td= k.born.strftime('%d/%m/%Y') if k.born.present?
+    %td= k.kinship.name if k.kinship.present?
+    %td= k.flag_special_condition ? 'sim' : 'não'
+    %td= k.copurchaser_flag ? "Sim - #{k.percent}%" : "Não"
+    %td= number_to_currency k.income
+    %td 
+      = link_to "", requeriment_kin_delete_path(kin_id: k.id), remote: true, class: 'md md-highlight-remove btn btn-danger btn-sm', title: "remover dependente"

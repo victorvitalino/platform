@@ -8,7 +8,11 @@ module Attendance
     has_many :attendants, class_name: "StationAttendant"
     has_many :counters, -> { where(status: true) }
 
-    enum station_type: ['cidade consolidada', 'parcelamento formal', 'N/D']
+    # Habitação = 1
+    # Parcelamento Informal = 2
+    # Cidade Consolidada = 3
+
+    enum station_type: ['N/D','parcelamento_informal', 'cidade_consolidada']
 
     validates_presence_of :name, :city, :station_type
     
