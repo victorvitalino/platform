@@ -100,6 +100,9 @@
               - if policy(:Location, namespace: Protocol).index?
                 %li
                   = link_to "localizações", protocol.new_location_path
+              - if policy(:Location, namespace: Protocol).index?
+                %li
+                  = link_to "relatórios", protocol.new_report_path
 
         %li.sub-menu{class: ('toggled active' if params[:module] == "attendance")}
           - if policy(:application, namespace: Attendance).index?

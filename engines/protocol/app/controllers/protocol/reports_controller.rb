@@ -15,12 +15,12 @@ module Protocol
               else
                 @assessments = Assessment.joins(:subject,:document_type).
                 select('document_number, protocol_document_types.name as doc_type_name, external_agency, protocol_subjects.name as subject_name, requesting_unit').
-                where("created_at >= ?", Date.today)
+                where("protocol_assessments.created_at::date >= ?", Date.today)
               end
            else
                 @assessments = Assessment.joins(:subject,:document_type).
                 select('document_number, protocol_document_types.name as doc_type_name, external_agency, protocol_subjects.name as subject_name, requesting_unit').
-                where("created_at >= ?", Date.today)
+                where("protocol_assessments.created_at::date>= ?", Date.today)
            end
 
               respond_to do |format|

@@ -147,6 +147,12 @@ PATH
       rails (~> 4.2.1)
       simple_form
 
+PATH
+  remote: engines/regularization_treatment
+  specs:
+    regularization_treatment (0.0.1)
+      rails (~> 4.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -486,6 +492,7 @@ DEPENDENCIES
   redactor-rails
   regularization!
   regularization_schedule!
+  regularization_treatment!
   remotipart (~> 1.2)
   rspec-rails
   simple_form

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917160111) do
+ActiveRecord::Schema.define(version: 20150922141815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,25 +206,15 @@ ActiveRecord::Schema.define(version: 20150917160111) do
   add_index "candidate_adjunct_cadastres", ["special_condition_id"], name: "index_candidate_adjunct_cadastres_on_special_condition_id", using: :btree
 
   create_table "candidate_attendance_cadastres", force: :cascade do |t|
-    t.integer  "adjunct_cadastre_id"
-    t.integer  "requeriment_id"
-    t.integer  "program_id"
-    t.integer  "station_id"
-    t.integer  "convocation_id"
     t.integer  "attendance_status_id"
-    t.boolean  "status",               default: false
     t.integer  "attendant_id"
+    t.boolean  "status",               default: false
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end
 
-  add_index "candidate_attendance_cadastres", ["adjunct_cadastre_id"], name: "index_candidate_attendance_cadastres_on_adjunct_cadastre_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendance_status_id"], name: "index_candidate_attendance_cadastres_on_attendance_status_id", using: :btree
   add_index "candidate_attendance_cadastres", ["attendant_id"], name: "index_candidate_attendance_cadastres_on_attendant_id", using: :btree
-  add_index "candidate_attendance_cadastres", ["convocation_id"], name: "index_candidate_attendance_cadastres_on_convocation_id", using: :btree
-  add_index "candidate_attendance_cadastres", ["program_id"], name: "index_candidate_attendance_cadastres_on_program_id", using: :btree
-  add_index "candidate_attendance_cadastres", ["requeriment_id"], name: "index_candidate_attendance_cadastres_on_requeriment_id", using: :btree
-  add_index "candidate_attendance_cadastres", ["station_id"], name: "index_candidate_attendance_cadastres_on_station_id", using: :btree
 
   create_table "candidate_attendance_statuses", force: :cascade do |t|
     t.string   "name"
@@ -288,12 +278,12 @@ ActiveRecord::Schema.define(version: 20150917160111) do
   add_index "candidate_cadastres", ["state_work_id"], name: "index_candidate_cadastres_on_state_work_id", using: :btree
 
   create_table "candidate_checklist_treatments", force: :cascade do |t|
-    t.boolean  "status"
     t.integer  "checklist_id"
     t.integer  "attendance_cadastre_id"
     t.integer  "attendant_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.boolean  "status",                 default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   add_index "candidate_checklist_treatments", ["attendance_cadastre_id"], name: "index_candidate_checklist_treatments_on_attendance_cadastre_id", using: :btree
@@ -389,6 +379,25 @@ ActiveRecord::Schema.define(version: 20150917160111) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "candidate_regularization_attendances", force: :cascade do |t|
+    t.integer  "adjunct_cadastre_id"
+    t.integer  "requeriment_id"
+    t.integer  "program_id"
+    t.integer  "station_id"
+    t.integer  "convocation_id"
+    t.integer  "attendant_id"
+    t.boolean  "status",              default: false
+    t.integer  "step",                default: 0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "candidate_regularization_attendances", ["attendant_id"], name: "index_candidate_regularization_attendances_on_attendant_id", using: :btree
+  add_index "candidate_regularization_attendances", ["convocation_id"], name: "index_candidate_regularization_attendances_on_convocation_id", using: :btree
+  add_index "candidate_regularization_attendances", ["program_id"], name: "index_candidate_regularization_attendances_on_program_id", using: :btree
+  add_index "candidate_regularization_attendances", ["requeriment_id"], name: "index_candidate_regularization_attendances_on_requeriment_id", using: :btree
+  add_index "candidate_regularization_attendances", ["station_id"], name: "index_candidate_regularization_attendances_on_station_id", using: :btree
 
   create_table "candidate_special_conditions", force: :cascade do |t|
     t.string   "name"
