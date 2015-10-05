@@ -31,8 +31,6 @@ Rails.application.routes.draw do
       mount Protocol::Engine                 => "/protocolo",      as: 'protocol',                  module: 'protocol'
       mount Juridical::Engine                => "/juridico",       as: 'juridical',                 module: 'juridical'
       mount Attendance::Engine               => "/atendimento",    as: 'attendance',                module: 'attendance'
-      mount RegularizationTreatment::Engine  => "/regularizacao",  as: 'regularization_treatment',  module: 'regularization_treatment'
-      mount HabitationTreatment::Engine  => "/habitacao",  as: 'habitation_treatment',  module: 'habitation_treatment'
       mount Concourse::Engine                => "/concurso",       as: 'concourse',                 module: 'concourse'
       mount Finance::Engine                  => "/financeiro",     as: 'finance',                   module: 'finance'
       mount Candidate::Engine                => "/candidatos",     as: 'candidate'
@@ -42,10 +40,8 @@ Rails.application.routes.draw do
   constraints DomainConstraint do
     mount Portal::Engine                => '/',                 as: 'portal'
     mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',             module: 'concourse_portal'
-    mount Regularization::Engine        => "/regularizacao",    as: 'regularization'
   end
 
-  mount RegularizationSchedule::Engine   => "/agenda_regularizacao",       as: 'regularization_schedule',     module: 'regularization_schedule'
   mount Address::Engine                  => "/endereco",       as: 'address'
 
 end

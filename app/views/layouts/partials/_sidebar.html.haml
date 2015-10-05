@@ -124,33 +124,6 @@
               %li= link_to "consulta", attendance.stations_path
               %li= link_to "convocações", candidate.convocations_path
               %li= link_to "geolocalização", attendance.subjects_path
-        %li.sub-menu{class: ('toggled active' if params[:module] == "regularization_treatment")}
-          - if policy(:application, namespace: RegularizationTreatment).index?
-            %a{:href => ""}
-              Regularização
-              %i.md.md-business>
-            %ul{style: ('display:block;' if params[:module] == "regularization_treatment")}
-              %li= link_to "consulta", regularization_treatment.new_consult_path
-              %li= link_to "consulta endereço"
-              %li
-                %hr/
-              %li= link_to "Agenda", regularization_schedule.extranet_agendas_path
-              %li
-                %hr/
-              %li= link_to "relatórios"
-        %li.sub-menu{class: ('toggled active' if params[:module] == "habitation_treatment")}
-          - if policy(:application, namespace: HabitationTreatment).index?
-            %a{:href => ""}
-              Habitação
-              %i.md.md-business>
-            %ul{style: ('display:block;' if params[:module] == "habitation_treatment")}
-              %li= link_to "consulta", habitation_treatment.new_consult_path
-              %li
-                %hr/
-              %li= link_to "Agenda"
-              %li
-                %hr/
-              %li= link_to "relatórios"
         %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
           - if policy(:application, namespace: Finance).index?
             %a{:href => ""}
