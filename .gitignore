@@ -21,4 +21,5 @@ database.yml
 /lib/files/migrate/current
 /public/assets
 /public/barcodes/*
+/lib/files/*
 !/public/barcodes/.keep
