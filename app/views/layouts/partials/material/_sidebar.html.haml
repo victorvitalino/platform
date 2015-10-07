@@ -1,0 +1,144 @@
+%aside#sidebar
+  .sidebar-inner
+    .si-inner
+      .profile-menu
+        %a{:href => ""}
+          .profile-pic
+            - if current_user.account.avatar?
+              = image_tag current_user.account.avatar_url
+            - else
+              .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
+                = current_user.account.name[0]
+          .profile-info
+            %b
+              = current_user.account.name
+            %i.md.md-arrow-drop-down
+        %ul.main-menu
+          %li
+            = link_to "<i class='md md-person'></i> Meu perfil".html_safe, person.profile_path(current_user)
+          %li
+            = link_to "<i class='md md-settings-input-antenna'></i> Minha Conta".html_safe, main_app.edit_user_registration_path
+          %li
+            = link_to "<i class='md md-live-help'></i> Minhas Solicitações".html_safe, helpdesk.ticket_requester_path
+          %li
+            = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
+      %ul.main-menu
+        %li{class: ('active' if params[:module] == "dashboard")}
+          = link_to "<i class='md  md-dashboard'></i> Mural".html_safe, dashboard.root_path
+        - if policy(:application, namespace: Person).index?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "person")}
+            %a{:href => ""}
+              %i.md.md-account-child
+              Gestão de Pessoas
+            %ul{style: ('display:block;' if params[:module] == "person")}
+              - if policy(:job, namespace: Person).index?
+                %li
+                  = link_to "cargos", person.jobs_path
+              - if policy(:staff, namespace: Person).index?
+                %li
+                  = link_to "usuarios", person.staffs_path
+              - if policy(:system, namespace: Person).index?
+                %li
+                  = link_to "sistemas", person.systems_path
+              %li.divider
+              - if policy(:sector, namespace: Person).index?
+                %li
+                  = link_to "setores", person.sectors_path
+          %ul{style: ('display:block;' if @module == "person")}
+        %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
+          - if policy(:application, namespace: Cms).index?
+            %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
+              %a{:href => ""}
+                %i.md.md-public>
+                Gestão Site
+              %ul{style: ('display:block;' if params[:module] == "cms")}
+                - if policy(:post, namespace: Cms).index?
+                  %li
+                    = link_to "postagens", cms.posts_path
+                - if policy(:page, namespace: Cms).index?
+                  %li
+                    = link_to "páginas", cms.pages_path
+                - if policy(:PostCategory, namespace: Cms).index?
+                  %li.divider
+                  %li
+                    = link_to "categorias de post", cms.post_categories_path
+                - if policy(:PageCategory, namespace: Cms).index?
+                  %li
+                    = link_to "categorias de página", cms.page_categories_path
+                - if policy(:nav, namespace: Cms).index?
+                  %li
+                    = link_to "menu", cms.navs_path
+                - if policy(:NavCategory, namespace: Cms).index?
+                  %li
+                    = link_to "categorias de menu", cms.nav_categories_path
+        %li.sub-menu{class: ('toggled active' if params[:module] == "helpdesk")}
+          - if policy(:application, namespace: Cms).index?
+            %a{:href => ""}
+              %i.md.md-live-help>
+              Helpdesk
+            %ul{style: ('display:block;' if params[:module] == "helpdesk")}
+              %li= link_to "Centrais de serviço", helpdesk.ticket_types_path
+              %li= link_to "Solicitações", helpdesk.tickets_path(q: 'open') if current_user.account.helpdesk_attendant.present?
+        %li.sub-menu{class: ('toggled active' if params[:module] == "protocol")}
+          - if policy(:application, namespace: Protocol).index?
+            %a{:href => ""}
+              %i.md.md-description>
+              Protocolo
+            %ul{style: ('display:block;' if params[:module] == "protocol")}
+              - if policy(:Assessment, namespace: Protocol).index?
+                %li
+                  = link_to "autuações", protocol.assessments_path
+              - if policy(:Allotment, namespace: Protocol).index?
+                %li
+                  = link_to "remessas", protocol.allotments_path
+              - if policy(:DocumentType, namespace: Protocol).index?
+                %li
+                  = link_to "tipo de documentos", protocol.document_types_path
+              - if policy(:Subject, namespace: Protocol).index?
+                %li
+                  = link_to "assuntos", protocol.subjects_path
+              - if policy(:Location, namespace: Protocol).index?
+                %li
+                  = link_to "localizações", protocol.new_location_path
+              - if policy(:Location, namespace: Protocol).index?
+                %li
+                  = link_to "relatórios", protocol.new_report_path
+
+        %li.sub-menu{class: ('toggled active' if params[:module] == "attendance")}
+          - if policy(:application, namespace: Attendance).index?
+            %a{:href => ""}
+              %i.md.md-speaker-notes>
+              Gestão de Atendimento
+            %ul{style: ('display:block;' if params[:module] == "attendance")}
+              %li= link_to "postos de atendimento", attendance.stations_path
+              %li= link_to "atendentes", attendance.attendants_path
+              %li= link_to "assuntos de guichê", attendance.subjects_path
+              %li= link_to "gestão de senhas"
+              %li= link_to "relatórios"
+        %li.sub-menu{class: ('toggled active' if params[:module] == "candidate")}
+          - if policy(:application, namespace: Attendance).index?
+            %a{:href => ""}
+              %i.md.md-person>
+              Cadastro Geral
+            %ul{style: ('display:block;' if params[:module] == "candidate")}
+              %li= link_to "consulta", attendance.stations_path
+              %li= link_to "convocações", candidate.convocations_path
+              %li= link_to "geolocalização", attendance.subjects_path
+        %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
+          - if policy(:application, namespace: Finance).index?
+            %a{:href => ""}
+              %i.md.md-attach-money>
+              Financeiro
+            %ul{style: ('display:block;' if params[:module] == "finance")}
+              %li= link_to "nova cobrança", finance.new_payment_guide_path
+              %li= link_to "gestão de pagamentos/emissões", finance.payment_guides_path
+              %li= link_to "tipos de pagamentos", finance.type_guides_path
+
+        %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
+          - if policy(:application, namespace: Concourse).index?
+            %a{:href => ""}
+              %i.md.md-assignment>
+              Concursos
+            %ul{style: ('display:block;' if params[:module] == "concourse")}
+              %li= link_to "concursos", concourse.projects_path
+              %li= link_to "relatórios", concourse.projects_path

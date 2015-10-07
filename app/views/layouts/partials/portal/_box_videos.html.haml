@@ -1,0 +1,29 @@
+.homeVideoWrapper
+  .stocking-row3
+  .bottomSlider.container
+    %h2 CODHAB em Foco
+    .flexslider
+      %div{:style => "clear: both;"}
+      .flex-viewport
+        %ul.slides
+          %li.clone{"aria-hidden" => "true",:style => "text-align:center;"}
+            .sliderVideo{"data-video-parent" => "yes"}
+              .tinsel
+              .tinsel-2
+              .home-video-wrap{"data-video-parent" => "yes"}
+            <iframe width="760" height="550" src="https://www.youtube.com/embed/OJxgI8dZDjw" frameborder="0" allowfullscreen></iframe>
+            / .sliderVideo
+            %li.clone{"aria-hidden" => "true",:style => "text-align:center;"}
+              .sliderVideo{"data-video-parent" => "yes"}
+                .tinsel
+                .tinsel-2
+                .home-video-wrap{"data-video-parent" => "yes"}
+              <iframe width="760" height="550" src="https://www.youtube.com/embed/xFB2QZM6mcU" frameborder="0" allowfullscreen></iframe>
+              / .sliderVideo
+            %div{:style => "clear: both;"}
+      %ol.flex-control-nav.flex-control-paging
+        %li
+          %a 1
+        %li
+          %a 2
+    %div{:style => "clear: both;"}

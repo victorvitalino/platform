@@ -1,0 +1,16 @@
+.container.main.homeLatest
+  %h2 Últimas Notícias
+  - post_each(3, 'DESC') do |p|
+    .five.columns.sidebar.bloco-noticia{:style => "height: 494px;"}
+      .imgWrapper
+        = image_tag p.thumb if p.thumb?
+      .latestHeader
+        = link_to "##{p.post_category.title}", post_path(p), class: 'council'
+        .latestDate
+          = p.date.strftime('%d/%m/%Y')
+      %h3
+        = link_to p.title, post_path(p)
+      %p
+        = p.resume.html_safe
+      %p.bt-noticia
+        = link_to 'Leia Mais', post_path(p), class: 'sliderLink'

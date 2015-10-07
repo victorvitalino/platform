@@ -38,7 +38,6 @@ gem 'axlsx', '~> 2.0.1'
 
 group :test do
   gem 'sqlite3'
-  gem 'thin'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
@@ -48,7 +47,6 @@ end
 group :development do
   gem 'carrierwave'
   gem 'derailed'
-  gem 'sqlite3'
   gem 'byebug'
   gem 'thin'
   gem 'capistrano', '~> 3.1.0'
@@ -65,19 +63,23 @@ group :production do
 end
 
 
-gem 'person',                           path: 'engines/person'
-gem 'cms',                              path: 'engines/cms'
-gem 'portal',                           path: 'engines/portal'
-gem 'dashboard',                        path: 'engines/dashboard'
-gem 'intranet',                         path: 'engines/intranet'
-gem 'patrimony',                        path: 'engines/patrimony'
-gem 'helpdesk',                         path: 'engines/helpdesk'
-gem 'notify',                           path: 'engines/notify'
-gem 'protocol',                         path: 'engines/protocol'
-gem 'juridical',                        path: 'engines/juridical'
-gem 'address',                          path: 'engines/address'
-gem 'concourse',                        path: 'engines/concourse'
-gem 'candidate',                        path: 'engines/candidate'
-gem 'concourse_portal',                 path: 'engines/concourse_portal'
-gem 'attendance',                       path: 'engines/attendance'
-gem 'finance',                          path: 'engines/finance'
+gem 'portal',                       path: 'engines/portal'
+
+gem 'dashboard',                    path: 'engines/dashboard'
+gem 'person',                       path: 'engines/person'
+gem 'cms',                          path: 'engines/cms'
+gem 'helpdesk',                     path: 'engines/helpdesk'
+gem 'protocol',                     path: 'engines/protocol'
+
+gem 'concourse',                    path: 'engines/concourse'
+gem 'concourse_portal',             path: 'engines/concourse_portal'
+
+gem 'attendance',                   path: 'engines/attendance'
+gem 'finance',                      path: 'engines/finance'
+
+
+gem 'candidate',                    path: 'engines/candidate'
+gem 'address',                      path: 'engines/address'
+
+gem 'regularization',               path: 'engines/regularization'
+gem 'regularization_portal',        path: 'engines/regularization_portal'

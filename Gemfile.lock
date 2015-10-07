@@ -75,41 +75,9 @@ PATH
       simple_form
 
 PATH
-  remote: engines/habitation_treatment
-  specs:
-    habitation_treatment (0.0.1)
-      rails (~> 4.2.1)
-
-PATH
   remote: engines/helpdesk
   specs:
     helpdesk (0.0.1)
-      haml-rails
-      rails (~> 4.2.1)
-
-PATH
-  remote: engines/intranet
-  specs:
-    intranet (0.0.1)
-      rails (~> 4.2.1)
-
-PATH
-  remote: engines/juridical
-  specs:
-    juridical (0.0.1)
-      haml-rails
-      rails (~> 4.2.1)
-
-PATH
-  remote: engines/notify
-  specs:
-    notify (0.0.1)
-      rails (~> 4.2.1)
-
-PATH
-  remote: engines/patrimony
-  specs:
-    patrimony (0.0.1)
       haml-rails
       rails (~> 4.2.1)
 
@@ -138,19 +106,10 @@ PATH
       rails (~> 4.2.1)
 
 PATH
-  remote: engines/regularization_schedule
+  remote: engines/regularization_portal
   specs:
-    regularization_schedule (0.0.1)
-      carrierwave
-      friendly_id
+    regularization_portal (0.0.1)
       haml-rails
-      rails (~> 4.2.1)
-      simple_form
-
-PATH
-  remote: engines/regularization_treatment
-  specs:
-    regularization_treatment (0.0.1)
       rails (~> 4.2.1)
 
 GEM
@@ -469,18 +428,13 @@ DEPENDENCIES
   factory_girl_rails
   finance!
   friendly_id
-  habitation_treatment!
   haml-rails
   helpdesk!
   i18n
-  intranet!
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   jquery-ui-rails
-  juridical!
   mini_magick
-  notify!
-  patrimony!
   person!
   pg
   poltergeist
@@ -491,8 +445,7 @@ DEPENDENCIES
   railties
   redactor-rails
   regularization!
-  regularization_schedule!
-  regularization_treatment!
+  regularization_portal!
   remotipart (~> 1.2)
   rspec-rails
   simple_form

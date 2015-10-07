@@ -1,76 +1,99 @@
 require 'csv'
 
 namespace :candidate do
-
   desc "migração Cadastros"
   task :cadastres => :environment do
     @index = 0
-    @error = Array.new
-    CSV.foreach("lib/files/migrate/current/candidate_cadastres.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/cadastro.csv", :col_sep => ",") do |row|
+      @index += 1
 
-      begin
-      
-      @candidate = Candidate::Cadastre.new
-      
-      @candidate.seqcad       = row[0]
-      @candidate.cpf          = row[1].to_s.gsub('.', '').gsub('-','').strip
-      @candidate.gender       = row[2]
-      @candidate.born         = row[3]
-      @candidate.rg           = row[4].to_s.strip.downcase
-      @candidate.rg_org       = row[5].to_s.strip.downcase
-      @candidate.born_uf      = row[6]
-      @candidate.arrival_df   = row[7]
+      #if @index > 300_000
+        @cadastre = Candidate::Cadastre.new({
+          name: row[0].to_s.strip.upcase,
+          cpf:  row[1].to_s.strip,
+          seqcad_id: row[2],
+          born: row[3],
+          born_uf: row[4].to_s.strip,
+          rg: row[5],
+          gender: row[6],
+          rg_org: row[7],
+          rg_uf: row[8].to_s.gsub('/',''),
+          arrival_df: row[9],
+          telephone: row[10],
+          telephone_optional: row[11],
+          celphone: row[12],
+          email: row[13],
+          special_condition_id: row[14],
+          cep: row[15], 
+          city_id: row[16],
+          address: row[17],
+          income: row[18],
+          work_address: row[19],
+          work_city_id: row[20],
+          nis: row[21],
+          cid: row[22],
+          civil_state_id: row[23],
+          program_id: row[24],
+          adapted_property: row[25],
+          date_old_cadastre: row[26]
+        })
 
-      @candidate.build_user_candidate(username: @candidate.cpf,
-                            password: '12345678',
-                            password_confirmation: '12345678')
-      
-      if @candidate.save!
-        @index = @index + 1 
+        begin
+          if @cadastre.save
+            @cadastre_mirror = Candidate::CadastreMirror.new({
+              name: @cadastre.name,
+              cpf:  @cadastre.cpf,
+              born: @cadastre.born,
+              gender: @cadastre.gender,
+              born_uf: @cadastre.born_uf,
+              rg: @cadastre.rg,
+              rg_org: @cadastre.rg_org,
+              rg_uf: @cadastre.rg_uf,
+              arrival_df: @cadastre.arrival_df,
+              telephone: @cadastre.telephone,
+              telephone_optional: @cadastre.telephone_optional,
+              celphone: @cadastre.celphone,
+              email: @cadastre.email,
+              special_condition_id: @cadastre.special_condition_id,
+              cep: @cadastre.cep, 
+              city_id: @cadastre.city_id,
+              address: @cadastre.address,
+              income: @cadastre.income,
+              work_address: @cadastre.work_address,
+              work_city_id: @cadastre.work_city_id,
+              nis: @cadastre.nis,
+              cid: @cadastre.cid,
+              civil_state_id: @cadastre.civil_state_id,
+              program_id: @cadastre.program_id,
+              adapted_property: @cadastre.adapted_property,
+              cadastre_id: @cadastre.id
+            })
+
+            @cadastre_mirror.save
+          else
+            @ruim = Ruim.new({
+              name: @cadastre.name,
+              cpf: @cadastre.cpf,
+              seqcad: @cadastre.seqcad_id,
+              motivo: 'cpf invalido',
+              type_scope: 'candidatos'
+            })
+
+           @ruim.save
+          end
+        rescue Exception => e
+          @ruim = Ruim.new({
+            name: @cadastre.name,
+            cpf: @cadastre.cpf,
+            seqcad: @cadastre.seqcad_id,
+            motivo: e,
+            type_scope: 'candidatos'
+          })
+          @ruim.save
+        end
         puts @index
-      end
 
-      rescue Exception => e
-        puts "ERROR- #{e}"
-      end
-    end
-  end
-
-
-
-    desc "migração Complemento"
-  task :adjuct => :environment do
-    @index = 0
-    @error = Array.new
-    CSV.foreach("lib/files/migrate/current/candidate_adjuct_cadastres.csv", :col_sep => "#") do |row|
-
-      begin
       
-      @candidate = Candidate::AdjuctCadastre.new
-      
-      @candidate.telephone              = row[0]
-      @candidate.email                  = row[1].to_s.downcase.strip
-      @candidate.special_condition_id   = row[2]
-      @candidate.cep                    = row[3].to_s.strip
-      @candidate.address                = row[4].to_s.downcase.strip
-      @candidate.income                 = row[5]
-      @candidate.address_work           = row[6]
-      @candidate.nis                    = row[7]
-      @candidate.civil_state_id         = row[8]
-      @candidate.name                   = row[9].to_s.downcase.strip
-      @candidate.flag_special_condition = row[10]
-      @candidate.cadastre_id            = row[11]
-      @candidate.city_id                = row[12]
-
-
-      if @candidate.save!
-        @index = @index + 1 
-        puts @index
-      end
-
-      rescue Exception => e
-        puts "ERROR- #{e}"
-      end
     end
   end
 end
