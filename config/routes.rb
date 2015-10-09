@@ -30,13 +30,16 @@ Rails.application.routes.draw do
       mount Attendance::Engine               => "/atendimento",    as: 'attendance',                module: 'attendance'
       mount Concourse::Engine                => "/concurso",       as: 'concourse',                 module: 'concourse'
       mount Finance::Engine                  => "/financeiro",     as: 'finance',                   module: 'finance'
-      mount Candidate::Engine                => "/candidatos",     as: 'candidate'
+      mount Candidate::Engine                => "/candidatos",     as: 'candidate',                 module: 'candidate'
+      mount Schedule::Engine                 => "/agendamento",    as: 'schedule',                  module: 'schedule'
+      mount Regularization::Engine           => "/regularizacao",  as: 'regularization',            module: 'regularization'
     end
   end
 
   constraints DomainConstraint do
     mount Portal::Engine                => '/',                 as: 'portal',                       module: 'portal'
     mount RegularizationPortal::Engine  => '/regularizacao',    as: 'regularization_portal',        module: 'regularization_portal'
+    mount SchedulePortal::Engine        => '/agendamento',      as: 'shedule_portal',               module: 'schedule_portal'
     mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',             module: 'concourse_portal'
   end
 

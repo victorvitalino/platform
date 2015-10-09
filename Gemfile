@@ -54,6 +54,9 @@ group :development do
   gem 'capistrano-rails',   '~> 1.1', require: false
   gem 'capistrano-bundler', '~> 1.1', require: false
   gem 'capistrano-rvm',   '~> 0.1', require: false
+  gem 'guard'
+  gem 'guard-rails'
+  gem 'guard-livereload'
 end
 
 group :production do
@@ -83,3 +86,6 @@ gem 'address',                      path: 'engines/address'
 
 gem 'regularization',               path: 'engines/regularization'
 gem 'regularization_portal',        path: 'engines/regularization_portal'
+
+gem 'schedule',                     path: 'engines/schedule'           
+gem 'schedule_portal',              path: 'engines/schedule_portal'

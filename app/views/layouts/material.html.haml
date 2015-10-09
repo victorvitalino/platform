@@ -8,7 +8,7 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,300", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
   %body.toggled.sw-toggled
-    = render "layouts/partials/nav" if user_signed_in?
+    = render "layouts/partials/material/nav" if user_signed_in?
     %section#main
       = render "layouts/partials/material/aside"
       = render "layouts/partials/material/sidebar"

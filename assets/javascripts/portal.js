@@ -7,4 +7,6 @@
 //= require portal/js/jquery.mask.min
 //= require portal/js/mask
 //= require portal/js/portal
-//= require bootstrap-datepicker
+//= require portal/js/bootstrap-datepicker.min
+//= require portal/js/bootstrap-datepicker.pt-br
+//= require portal/js/custom

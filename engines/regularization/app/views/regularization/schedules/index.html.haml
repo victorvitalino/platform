@@ -1,0 +1,31 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Agendamentos
+      %small Listagem de agendamentos
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+      %thead
+        %tr
+          %th Nome
+          %th CPF
+          %th Telefone
+          %th E-mail
+          %th Data
+          %th Hora
+          %th Status
+          %th Ações
+
+      %tbody
+        - @schedules.each_with_index do |schedule, i|
+          %tr
+            %td.col-md-3= schedule.name
+            %td.col-md-1= schedule.cpf
+            %td.col-md-1= "#{schedule.telephone}"
+            %td.col-md-1= schedule.email
+            %td.col-md-1= schedule.date.strftime('%d/%m/%Y')
+            %td.col-md-1= schedule.hour.strftime('%H:%M')
+            %td.col-md-1= schedule.status
+            %td.col-md-1
+              = link_to "", '#', class: 'md md-edit btn btn-primary'
+              = link_to "", "#", class: 'md md-edit btn btn-success md md-arrow-forward'

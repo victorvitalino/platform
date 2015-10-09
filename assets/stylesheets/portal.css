@@ -1,13 +1,5 @@
 /*
 *= require portal/css/bootstrap.min
-*= require portal/css/mod
-*= require portal/css/style
-*= require bootstrap-datepicker3
+*= require portal/css/bootstrap-datepicker.min
+*= require portal/css/custom
 */
-
-.main {margin-top: 45px;}
-.main .title { font-weight: bold;}
-.table>thead>tr>th { font-weight: bold !important;}
-.form-group { margin-bottom:0 !important;}
-hr {margin-top: 0 !important;}
-.row { margin-bottom: 10px !important };

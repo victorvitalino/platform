@@ -1,0 +1,30 @@
+.row
+  .col-md-12
+    %h1
+      %b Meus requerimentos
+      .pull-right
+        %b CPF:
+        = @requeriments.first.cpf
+    = link_to "Finalizar sessão", regularization_portal.verification_candidate_requeriments_path
+%hr/
+%br/
+.row
+  .col-md-12
+    %table.table.table-condensed.table-bordered.table-striped
+      %thead
+        %tr
+          %th Protocolo
+          %th Data de envio
+          %th Cidade
+          %th Endereço 
+          %th Boleto
+          %th Detalhes
+      %tbody
+        - @requeriments.each do |requeriment|
+          %tr
+            %td= requeriment.protocol
+            %td= requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td= requeriment.unit.city.name if requeriment.unit.present? && requeriment.unit.city.present?
+            %td= requeriment.unit.complete_address if requeriment.unit.present?
+            %td.col-md-2= link_to "Emitir boleto"
+            %td.col-md-2= link_to "Visualizar", regularization_portal.candidate_requeriment_path(requeriment)

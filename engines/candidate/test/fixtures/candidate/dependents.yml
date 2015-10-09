@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cpf: MyString
+  rg: MyString
+  rg_org: MyString
+  rg_uf_id: MyString
+  born: 2015-10-09
+  gender: 1
+  place_birth: MyString
+  cadastre_id: 
+  civil_state_id: 
+  income: 1.5
+  kinship_id: 
+  co_acquirer: false
+  percentage: 1.5
+  special_condition_id: 
+  special_condition_flag: false
+  cid: MyString
+  nis: MyString
+
+two:
+  name: MyString
+  cpf: MyString
+  rg: MyString
+  rg_org: MyString
+  rg_uf_id: MyString
+  born: 2015-10-09
+  gender: 1
+  place_birth: MyString
+  cadastre_id: 
+  civil_state_id: 
+  income: 1.5
+  kinship_id: 
+  co_acquirer: false
+  percentage: 1.5
+  special_condition_id: 
+  special_condition_flag: false
+  cid: MyString
+  nis: MyString

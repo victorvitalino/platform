@@ -7,8 +7,8 @@ development:
   <<: *default
   database: "codhab_production2"
   username: "postgres"
-  password: "123456789"
-  host: "localhost"
+  password: "codhab072771472"
+  host: "10.233.38.16"
 
 production:
   <<: *default

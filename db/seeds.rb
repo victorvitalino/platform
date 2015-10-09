@@ -17,6 +17,12 @@
 
 @staff.save!
 
+
+Candidate::Program.create([
+  {name: 'RII'},
+  {name: 'RIE'},
+  {name: 'REGULARIZAÇÃO'}
+]);
 =begin
 
 PARA TESTAR O ATENDIMENTO DE REGULARIZACAO 

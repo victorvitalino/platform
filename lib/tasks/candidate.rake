@@ -4,7 +4,7 @@ namespace :candidate do
   desc "migração Cadastros"
   task :cadastres => :environment do
     @index = 0
-    CSV.foreach("lib/files/cadastro.csv", :col_sep => ",") do |row|
+    CSV.foreach("lib/files/candidatos_2.csv", :col_sep => ",") do |row|
       @index += 1
 
       #if @index > 300_000
@@ -16,26 +16,26 @@ namespace :candidate do
           born_uf: row[4].to_s.strip,
           rg: row[5],
           gender: row[6],
-          rg_org: row[7],
-          rg_uf: row[8].to_s.gsub('/',''),
-          arrival_df: row[9],
-          telephone: row[10],
-          telephone_optional: row[11],
-          celphone: row[12],
-          email: row[13],
-          special_condition_id: row[14],
-          cep: row[15], 
-          city_id: row[16],
-          address: row[17],
-          income: row[18],
-          work_address: row[19],
-          work_city_id: row[20],
-          nis: row[21],
-          cid: row[22],
-          civil_state_id: row[23],
-          program_id: row[24],
-          adapted_property: row[25],
-          date_old_cadastre: row[26]
+          #rg_org: row[7], #ROW[7]
+          #rg_uf: row[8].to_s.gsub('/',''),
+          arrival_df: row[8],
+          telephone: row[9],
+          telephone_optional: row[10],
+          celphone: row[11],
+          email: row[12],
+          special_condition_id: row[13],
+          cep: row[14], 
+          city_id: row[15],
+          address: row[16],
+          income: row[17],
+          work_address: row[18],
+          work_city_id: row[19],
+          nis: row[20],
+          cid: row[21],
+          civil_state_id: row[22],
+          program_id: row[23],
+          adapted_property: row[24],
+          date_old_cadastre: row[25]
         })
 
         begin
@@ -47,8 +47,6 @@ namespace :candidate do
               gender: @cadastre.gender,
               born_uf: @cadastre.born_uf,
               rg: @cadastre.rg,
-              rg_org: @cadastre.rg_org,
-              rg_uf: @cadastre.rg_uf,
               arrival_df: @cadastre.arrival_df,
               telephone: @cadastre.telephone,
               telephone_optional: @cadastre.telephone_optional,
@@ -76,7 +74,7 @@ namespace :candidate do
               cpf: @cadastre.cpf,
               seqcad: @cadastre.seqcad_id,
               motivo: 'cpf invalido',
-              type_scope: 'candidatos'
+              type_scope: 'candidatos 2'
             })
 
            @ruim.save
@@ -87,7 +85,7 @@ namespace :candidate do
             cpf: @cadastre.cpf,
             seqcad: @cadastre.seqcad_id,
             motivo: e,
-            type_scope: 'candidatos'
+            type_scope: 'candidatos 2'
           })
           @ruim.save
         end

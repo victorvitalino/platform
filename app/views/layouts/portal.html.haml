@@ -7,7 +7,7 @@
     = javascript_include_tag 'portal', media: 'all'
     = csrf_meta_tags
   %body
-    = render 'layouts/partials/portal/navs'
-    %div{class: (controller_name != 'home') ? 'container main' : '' }
+    / = render 'layouts/partials/portal/navs'
+    .container
       = yield
-    = render 'layouts/partials/portal/footer'
+    / = render 'layouts/partials/portal/footer'

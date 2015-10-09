@@ -1,0 +1,15 @@
+pt-BR:
+  activemodel:
+    errors:
+      models:
+        'regularization_portal/requeriment_verification':
+          attributes:
+            born:
+              invalid_date: 'data inválida'
+    models:
+      'regularization_portal/requeriment_verification': Verificação
+    attributes:
+      'regularization_portal/requeriment_verification':
+        cpf: "CPF (somente números)"
+        born: "Data de nascimento"
+       
