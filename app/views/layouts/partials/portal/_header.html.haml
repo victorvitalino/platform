@@ -1,0 +1,146 @@
+%nav.navbar.navbar-default.navbar-codhab
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "http://www.google.com"}
+        %img{:alt => "...", :height => "71", :src => "/images/codhab.png"}/
+      / <img src="smiley.gif" alt="Smiley face" height="42" width="42">
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.dropdown.item_menu.habitacao
+          %a#link_habitacao.dropdown-toggle.item_menu{:href => "#"}
+            Habitacao
+            %span.sr-only (current)
+          %ul#habitacao.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Programa Morar Bem
+              %ul
+                %li.link_submenu
+                  %a{:href => "#"} Conheca o Programa
+                %li.link_submenu
+                  %a{:href => "#"} Documentos Necessarios
+                %li.link_submenu
+                  %a{:href => "#"} Inscricao
+            %li.menu-insider-li
+              %span.submenu_title Acompanhe
+              %ul
+                %li.link_submenu
+                  %a{:href => "#"} Agendar / Reagendar
+                %li.link_submenu
+                  %a{:href => "#"} Atualizacao Cadastral
+                %li.link_submenu
+                  %a{:href => "#"} Listas
+        %li.dropdown.item_menu.regularizacao
+        %li.dropdown.item_menu.regularizacao
+          %a#link_regularizacao.dropdown-toggle.item_menu{:href => "#"}
+            Regularizacao
+            %span.sr-only (current)
+          %ul#regularizacao.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Participe
+              %ul
+                %li.link_submenu
+                  %a{:href => "#"} Conheca o Programa
+                %li.link_submenu
+                  %a{:href => "#"} Documentacao Necessaria
+                %li.link_submenu
+                  %a{:href => "#"} Inscricao / Requerimento
+            %li.menu-insider-li
+              %span.submenu_title Acompanhe
+              %ul
+                %li.link_submenu
+                  %a{:href => "#"} Andamento da Localidade
+                %li.link_submenu
+                  %a{:href => "#"}
+                    Agendar / Reagendar
+                    %br/
+                    Atendimento
+                %li.link_submenu
+                  %a{:href => "#"}
+                    Atualizacao Cadastral
+                    %br/
+                    Consulta
+        %li.dropdown.item_menu.entidades
+        %li.dropdown.item_menu.entidades
+          %a#link_entidades.dropdown-toggle.item_menu{:href => "#"}
+            Entidades
+            %span.sr-only (current)
+          %ul#entidades.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Participe
+              %ul
+                %li.link_submenu
+                  %a{:href => "#"}
+                  %a{:href => "#"} Conheca o Programa
+                %li.link_submenu
+                  %a{:href => "#"} Documentacao Necessaria
+                %li.link_submenu
+                  %a{:href => "#"} Inscricao / Requerimento
+            %li.menu-insider-li
+              %span.submenu_title Acompanhe
+              %ul
+                %li.link_submenu
+                  %a{:href => "#"} Andamento da Localidade
+                %li.link_submenu
+                  %a{:href => "#"}
+                    Agendar / Reagendar
+                    %br/
+                    Atendimento
+                %li.link_submenu
+                  %a{:href => "#"}
+                    Atualizacao Cadastral
+                    %br/
+                    Consulta
+        %li.dropdown.item_menu.servicos
+        %li.dropdown.item_menu.servicos
+          %a#link_servicos.dropdown-toggle.item_menu{:href => "#"}
+            Servicos
+            %span.sr-only (current)
+          %ul#servicos.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Responsabilidade Social
+              %ul
+                %li.link_submenu
+                  %a{:href => "#"}
+                  %a{:href => "#"} ASMOB
+                %li.link_submenu
+                  %a{:href => "#"} Assistencia Tecnica
+                %li.link_submenu
+                  %a{:href => "#"} App
+            %li.menu-insider-li
+              %span.submenu_title Ferramentas
+              %ul
+                %li.link_submenu
+                  %a{:href => "#"} Emitir Certidao
+                %li.link_submenu
+                  %a{:href => "#"}
+                    Boletos
+                    %br/
+                    Atendimento
+                %li.link_submenu
+                  %a{:href => "#"}
+                    Agendar / Reagendar
+                    %br/
+                    Atendimento
+        %li.dropdown.item_menu.editais
+        %li.dropdown.item_menu.editais
+          %a#link_editais.dropdown-toggle.item_menu{"data-toggle" => "dropdown", :href => "#"}
+            Editais
+            %span.sr-only (current)
+          %ul#editais.dropdown-menu-mod.dropdown-menu
+            %li teste
+        %li.dropdown.item_menu.concursos
+        %li.dropdown.item_menu.concursos
+          %a#link_concursos.dropdown-toggle.item_menu{:href => "#"}
+            Concursos
+            %span.sr-only (current)
+          %ul#concursos.dropdown-menu-mod.dropdown-menu
+            %li teste
+    / /.navbar-collapse
+  / /.container-fluid

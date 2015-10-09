@@ -1,30 +1,40 @@
-#footer
-  .star-footer
-  .container
-    .social.sixteen.columns
-    .sixteen.columns
-      .five.columns.contact-form.alpha
-        = image_tag('/images/logo_codhab.png', class: 'logo_footer')
-      .five.columns
-        %h3 Últimas Notícias
-        .footer-box
-          - post_each(3, 'DESC') do |p|
-            .noticias-footer
-              %p
-                = link_to p.title, portal.post_path(p)
-              %p
-                = p.date.strftime('%d/%m/%Y')
-      .five.columns.omega
-        %h3 Entre em Contato
-        .footer-box
-          %p
-            %span{"aria-label" => "address"}
-              Edifício SEDHAB - Setor Comercial Sul
-              %br
-                Quadra 06, Bloco A - Lotes 12/13 - Térreo.
-                %br
-                  Brasília/DF
-          %h3 Central de Atendimento
-          %p
-            %span{"aria-label" => "address"}
-              156 opção 5. Das 7h às 19h
+%footer
+  .col-sm-6.col-md-4
+    .block_footer_
+      .logo_footer
+        %img{:alt => "...", :src => "/images/codhab_footer.png", :width => "264"}/
+  / Fim do bloco footer
+  .col-sm-6.col-md-4
+    .block_footer
+      %h3.title_notice_footer Utimas Noticias
+      .box_footer
+        %p
+          %a.link_notices_footer LISTA DE IDOSOS, PESSOAS COM DEFICIÊNCIA E CASOS DE VULNERABILIDADE
+        %p.date_link_notices 08/09/2015
+      .box_footer
+        %p
+          %a.link_notices_footer GOVERNO ENTREGA MAIS 400 APARTAMENTOS NO RIACHO FUNDO II
+        %p.date_link_notices 08/09/2015
+      .box_footer
+        %p
+          %a.link_notices_footer MODALIDADE DE CONCURSO SERÁ PRIORIDADE PARA LICITAR PROJETOS DE CONSTRUÇÕES
+        %p.date_link_notices 01/09/2015
+  .col-sm-6.col-md-4
+    .block_footer
+      %h3.title_contact_footer Entre em Contato
+      .contact_box
+        %p.contact
+          Edificio SEDHAB -
+          Setor Comercial Sul
+          %br/
+          Quadra 06, Bloco A - Lotes 12/13 - Térreo.
+          %br/
+          Brasilia/DF
+        %br/
+        %br/
+        .contact_box
+          %h3.title_contact_footer Central de Atendimento
+          .contact_box
+            %p.contact
+              %b 156
+              opcao 5. Das 7h as 19h
