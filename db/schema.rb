@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009133737) do
+ActiveRecord::Schema.define(version: 20151014172248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,31 @@ ActiveRecord::Schema.define(version: 20151009133737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "candidate_attendance_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "candidate_attendances", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "cadastre_mirror_id"
+    t.integer  "convocation_id"
+    t.integer  "attendance_status_id"
+    t.integer  "staff_id"
+    t.text     "observation"
+    t.boolean  "status",               default: true
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "candidate_attendances", ["attendance_status_id"], name: "index_candidate_attendances_on_attendance_status_id", using: :btree
+  add_index "candidate_attendances", ["cadastre_id"], name: "index_candidate_attendances_on_cadastre_id", using: :btree
+  add_index "candidate_attendances", ["cadastre_mirror_id"], name: "index_candidate_attendances_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_attendances", ["convocation_id"], name: "index_candidate_attendances_on_convocation_id", using: :btree
+  add_index "candidate_attendances", ["staff_id"], name: "index_candidate_attendances_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_mirrors", force: :cascade do |t|
     t.string   "name"
@@ -938,6 +963,7 @@ ActiveRecord::Schema.define(version: 20151009133737) do
     t.string   "blood_type"
     t.date     "born"
     t.string   "avatar"
+    t.string   "personal_image"
     t.string   "curriculum"
     t.string   "email",               default: "",   null: false
     t.time     "start_hour"
@@ -947,7 +973,7 @@ ActiveRecord::Schema.define(version: 20151009133737) do
     t.boolean  "wekeend"
     t.boolean  "status",              default: true
     t.boolean  "administrator",       default: true
-    t.integer  "gender"
+    t.integer  "gender",              default: 0
     t.integer  "branch_line_id"
     t.integer  "job_id"
     t.integer  "sector_origin_id"
@@ -958,6 +984,7 @@ ActiveRecord::Schema.define(version: 20151009133737) do
   end
 
   add_index "person_staffs", ["branch_line_id"], name: "index_person_staffs_on_branch_line_id", using: :btree
+  add_index "person_staffs", ["code"], name: "index_person_staffs_on_code", unique: true, using: :btree
   add_index "person_staffs", ["job_id"], name: "index_person_staffs_on_job_id", using: :btree
   add_index "person_staffs", ["sector_current_id"], name: "index_person_staffs_on_sector_current_id", using: :btree
   add_index "person_staffs", ["sector_origin_id"], name: "index_person_staffs_on_sector_origin_id", using: :btree

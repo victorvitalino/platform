@@ -1,7 +1,7 @@
-= simple_form_for [:regularization, @schedule] do |f|
+= simple_form_for [:habitation, @schedule] do |f|
   .row
     .col-md-4
-      = f.association :agenda, collection: Schedule::Agenda.regularization,prompt: 'selecione a agenda...'
+      = f.association :agenda, collection: Schedule::Agenda.habitation,prompt: 'selecione a agenda...'
       = f.hint "", id: 'description'
   %hr/
   #hide{style: "#{f.object.agenda.present? ? 'display: block;' : 'display: none'}"}

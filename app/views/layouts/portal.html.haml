@@ -4,11 +4,11 @@
     %title Portal Codhab
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
     = stylesheet_link_tag 'portal', media: 'all'
+    = javascript_include_tag 'portal', media: 'all'
     = csrf_meta_tags
   %body
     = render 'layouts/partials/portal/top_nav'
     = render 'layouts/partials/portal/header'
-    %div{class: (controller_path == "portal/home") ? "" : "container"}
+    %div{class: (controller_path == "portal/home") ? "" : "container portal-container"}
       = yield
-    = javascript_include_tag 'portal', media: 'all'
     = render 'layouts/partials/portal/footer'

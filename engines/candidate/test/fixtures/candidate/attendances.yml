@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cadastre_id: 
+  cadastre_mirror_id: 
+  convocation_id: 
+  attendance_status_id: 
+  observation: MyText
+  status: false
+
+two:
+  cadastre_id: 
+  cadastre_mirror_id: 
+  convocation_id: 
+  attendance_status_id: 
+  observation: MyText
+  status: false

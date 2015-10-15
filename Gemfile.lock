@@ -278,6 +278,9 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    has_scope (0.6.0)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hitimes (1.2.2)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
@@ -374,7 +377,6 @@ GEM
       devise
       mime-types
       orm_adapter
-    remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rqrcode (0.6.0)
@@ -492,6 +494,7 @@ DEPENDENCIES
   guard-livereload
   guard-rails
   haml-rails
+  has_scope
   helpdesk!
   i18n
   jquery-datatables-rails (~> 3.3.0)
@@ -505,11 +508,9 @@ DEPENDENCIES
   protocol!
   pundit!
   rails (= 4.2.1)
-  railties
   redactor-rails
   regularization!
   regularization_portal!
-  remotipart (~> 1.2)
   rspec-rails
   schedule!
   schedule_portal!

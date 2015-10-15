@@ -2,7 +2,8 @@ module Person
   class Staff < ActiveRecord::Base
 
 
-    default_scope { where(status: true)}
+    scope :status, -> (status = true) {where(status: status)}
+    scope :sector, -> sector_current_id {where(sector_current_id: sector_current_id)}
 
     has_one :user, as: :account, dependent: :destroy
     accepts_nested_attributes_for :user
@@ -20,20 +21,13 @@ module Person
     belongs_to :job
     belongs_to :branch_line
 
-    def self.search(search)
-      query =  Staff.where(status: true)
-      query =  query.where("sector_current_id = #{search[:sector]}")  if search[:sector].present?
-      query
-    end
+    validates_uniqueness_of :code
 
-
-
-    validates_uniqueness_of :code, :rg, :cpf
-
-    validates :cpf, cpf: true
-    validates_date :born, :before => lambda {18.years.ago}
+#    validates :cpf, cpf: true
+ #   validates_date :born, :before => lambda {18.years.ago}
 
     mount_uploader :avatar, Person::AvatarUploader
+    mount_uploader :personal_image, Person::AvatarUploader
     mount_uploader :curriculum, Person::CurriculumUploader
   end
 end

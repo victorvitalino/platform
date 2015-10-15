@@ -3,16 +3,14 @@ require_dependency 'person/application_controller'
 module Person
   class StaffsController < ApplicationController
     layout 'layouts/material'
-    before_action :set_staffs,       only: [:create, :destroy, :update]
     before_action :set_staff,        only: [:edit, :destroy, :update]
     before_action :set_staff_status, only: [:enable, :disable]
 
+    has_scope :status
+    has_scope :sector
+
     def index
-      if params[:status].present? || params[:sector].present?
-        @staffs = Staff.search(params)
-      else
-        @staffs = Staff.where(status: true).order(:name)
-      end
+      @staffs = apply_scopes(Staff).includes(:sector_current).all
     end
 
     def new
@@ -55,12 +53,10 @@ module Person
 
     def enable
       @staff.update(status: true)
-
     end
 
     def disable
       @staff.update(status: false)
-
     end
 
     def destroy
@@ -80,12 +76,8 @@ module Person
       params.require(:staff).permit(:name,:cpf,:rg,:rg_org,:born,:blood_type,:curriculum, :end_hour,:start_hour,:wekeend,:attendant,:email,:date_contract,:code,:status,:avatar,:sector_current_id,:sector_origin_id, :job_id,:branch_line_id,:administrator)
     end
 
-    def set_staffs
-      @staffs = Staff.includes(:sector_current).unscoped.all.order(:name)
-    end
-
     def set_staff
-      @staff = Staff.unscoped.find(params[:id])
+      @staff = Staff.find(params[:id])
     end
 
     def set_staff_status

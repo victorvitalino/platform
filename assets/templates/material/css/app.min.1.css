@@ -319,8 +319,8 @@ th {
 
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('/fonts/glyphicons-halflings-regular.eot');
+  src: url('/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
 .glyphicon {
@@ -11584,11 +11584,7 @@ body #content {
 
 #sidebar .profile-menu > a {
   display: block;
-  height: 129px;
-  margin-bottom: 5px;
-  width: 100%;
-  background: url(/images/profile-menu.jpg) no-repeat left top;
-  background-size: 100%;
+   
 }
 
 #sidebar .profile-menu > a .profile-pic {
@@ -11604,10 +11600,10 @@ body #content {
 }
 
 #sidebar .profile-menu > a .profile-info {
-  background: rgba(0, 0, 0, 0.37);
-  padding: 7px 14px;
-  color: #fff;
-  margin-top: 20px;
+  background: rgb(255, 255, 255);
+  padding: 20px 10px 10px 20px;
+  color:#3C3C3C;;
+  margin-top: 0px;
   position: relative;
 }
 
@@ -12495,7 +12491,7 @@ input:focus {
 
 @media screen and (min-width: 768px) {
   .card .card-body.card-padding {
-    padding: 23px 26px;
+      padding: 0 10px 25px 0;
   }
 }
 
@@ -15711,9 +15707,7 @@ a.thumbnail.active {
   padding: 23px 26px;
 }
 
-.modal .modal-body {
-  padding: 0 26px 10px;
-}
+
 
 .modal .modal-footer .btn-link {
   font-size: 14px;

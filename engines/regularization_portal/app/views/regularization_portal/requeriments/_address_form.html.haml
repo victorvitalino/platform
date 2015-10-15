@@ -1,10 +1,10 @@
 = simple_form_for @address, url: set_address_requeriments_path do |f|
   .row
-    .col-md-3
+    .col-md-4
       = f.input :city, as: :select, collection: Address::City.federal_district, prompt: 'selecione a cidade...'
-    .col-md-2
+    .col-md-3
       = f.input :block, as: :select, collection: (@address.city.present?) ? Address::Unit.select(:block).where(city_id: @address.city).distinct : {}, label_method: :block, value_method: :block, prompt: 'selecione a cidade...', input_html: { value: @address.city}
-    .col-md-2
+    .col-md-3
       = f.input :group, as: :select, collection: (@address.city.present? &&  @address.block.present? ) ? Address::Unit.select(:group).where(city_id: @address.city, block: @address.block).distinct : {}, label_method: :group, value_method: :group, prompt: 'selecione a cidade...', input_html: { value: @address.block}
     .col-md-2
       = f.input :unit, as: :select, collection: (@address.city.present? &&  @address.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @address.city,block: @address.block, group: @address.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a cidade...', input_html: { value: @address.unit}

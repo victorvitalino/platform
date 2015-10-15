@@ -3,16 +3,15 @@
     .si-inner
       .profile-menu
         %a{:href => ""}
-          .profile-pic
-            - if current_user.account.avatar?
-              = image_tag current_user.account.avatar_url
-            - else
-              .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
-                = current_user.account.name[0]
           .profile-info
+            .lv-avatar.bgm-blue{"style": 'margin-bottom: 20px'}
+              - if current_user.account.avatar?
+                = image_tag current_user.account.avatar_url
+              - else
+                = current_user.account.name[0]
             %b
               = current_user.account.name
-            %i.md.md-arrow-drop-down
+              %i.md.md-arrow-drop-down
         %ul.main-menu
           %li
             = link_to "<i class='md md-person'></i> Meu perfil".html_safe, person.profile_path(current_user)
@@ -31,19 +30,10 @@
               %i.md.md-account-child
               Gestão de Pessoas
             %ul{style: ('display:block;' if params[:module] == "person")}
-              - if policy(:job, namespace: Person).index?
-                %li
-                  = link_to "cargos", person.jobs_path
-              - if policy(:staff, namespace: Person).index?
-                %li
-                  = link_to "usuarios", person.staffs_path
-              - if policy(:system, namespace: Person).index?
-                %li
-                  = link_to "sistemas", person.systems_path
-              %li.divider
-              - if policy(:sector, namespace: Person).index?
-                %li
-                  = link_to "setores", person.sectors_path
+              %li= link_to "cargos", person.jobs_path if policy(:job, namespace: Person).index?
+              %li= link_to "usuarios", person.staffs_path(status: true) if policy(:staff, namespace: Person).index?
+              %li= link_to "sistemas", person.systems_path if policy(:system, namespace: Person).index?
+              %li= link_to "setores", person.sectors_path(status: true) if policy(:sector, namespace: Person).index?
           %ul{style: ('display:block;' if @module == "person")}
         %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
           - if policy(:application, namespace: Cms).index?

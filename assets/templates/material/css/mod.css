@@ -23,9 +23,37 @@ appearance: normal!important;
 	    margin-left: 15px;
 }
 
+
+.card-header {
+  margin-bottom: 10px !important;
+}
 .alert-success {
     background-color: #4CAF5C !important;
     border-color: #4CAF5C !important;
     color: #FFFFFF !important;
     font-weight: bold;
+}
+
+.dataTables_wrapper .col-sm-12 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-bottom: 10px !important;
+  margin-top: 10px !important;
+}
+
+.dataTables_filter {
+  margin-top: 5px !important;
+}
+
+.dataTables_paginate  {
+  padding-bottom: 10px !important;
+}
+
+.inline-button {
+  padding-top: 25px;
+}
+
+
+.modal-title {
+  font-weight: bold !important;
 }

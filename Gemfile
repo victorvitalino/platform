@@ -5,12 +5,12 @@ gem 'rails', '4.2.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'bootstrap-datepicker-rails'
 
 gem 'simple_form'
 gem 'haml-rails'
 
 gem 'i18n'
-gem 'railties'
 gem 'enum_help'
 
 gem 'devise'
@@ -21,12 +21,11 @@ gem 'redactor-rails'
 gem 'mini_magick'
 
 gem 'friendly_id'
-gem 'remotipart', '~> 1.2'
+gem 'has_scope'
 
 gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
 gem 'email_validator'
-gem 'bootstrap-datepicker-rails'
 
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
@@ -67,7 +66,6 @@ end
 
 
 gem 'portal',                       path: 'engines/portal'
-
 gem 'dashboard',                    path: 'engines/dashboard'
 gem 'person',                       path: 'engines/person'
 gem 'cms',                          path: 'engines/cms'
@@ -79,8 +77,6 @@ gem 'concourse_portal',             path: 'engines/concourse_portal'
 
 gem 'attendance',                   path: 'engines/attendance'
 gem 'finance',                      path: 'engines/finance'
-
-
 gem 'candidate',                    path: 'engines/candidate'
 gem 'address',                      path: 'engines/address'
 

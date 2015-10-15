@@ -1,8 +1,9 @@
 module Person
   class Sector < ActiveRecord::Base
 
-    default_scope { where(status: true) }
-    default_scope { order ('name ASC') }
+    default_scope { order(:name) }
+    
+    scope :status, -> (status = true) { where(:status => status) }
 
     has_many :subordinates, class_name: "Sector",foreign_key: "father_id"
     has_many :staffs, foreign_key: "sector_current_id"
@@ -17,7 +18,7 @@ module Person
     has_many :conducts, class_name: "Protocol::Conduct"
 
 
-    validates_presence_of :name, :acron,:prefex
+#    validates_presence_of :name, :acron,:prefex
 
 
 

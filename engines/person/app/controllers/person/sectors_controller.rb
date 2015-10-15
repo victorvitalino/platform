@@ -3,11 +3,13 @@ require_dependency "person/application_controller"
 module Person
 	class SectorsController < ApplicationController
 		layout 'layouts/material'
-		before_action :set_sectors, only: [:index, :create, :destroy, :update]
+
 		before_action :set_sector, only: [:edit, :destroy, :update]
 
+		has_scope :status
+
 		def index
-			authorize @sectors
+			@sectors = apply_scopes(Sector).includes(:responsible).all
 		end
 
 		def new
@@ -40,12 +42,6 @@ module Person
 
 		def sector_params
 			params.require(:sector).permit(:name,:acron,:father_id, :responsible_id,:status,:prefex)
-		end
-
-
-		def set_sectors
-			@sectors = Sector.includes(:responsible).unscoped.all
-			@person = Staff.all
 		end
 
 		def set_sector
