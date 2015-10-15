@@ -34,7 +34,6 @@
               %li= link_to "usuarios", person.staffs_path(status: true) if policy(:staff, namespace: Person).index?
               %li= link_to "sistemas", person.systems_path if policy(:system, namespace: Person).index?
               %li= link_to "setores", person.sectors_path(status: true) if policy(:sector, namespace: Person).index?
-          %ul{style: ('display:block;' if @module == "person")}
         %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
           - if policy(:application, namespace: Cms).index?
             %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
@@ -136,7 +135,7 @@
               %i.md.md-assignment>
               Cadastro Geral
             %ul{style: ('display:block;' if params[:module] == "candidate")}
-              %li= link_to "Pesquisar CPF", regularization.agendas_path
+              %li= link_to "Pesquisar CPF", candidate.cadastres_path
               %li
                 %hr/
               %li= link_to "Convocações", regularization.agendas_path

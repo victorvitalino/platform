@@ -1,0 +1,91 @@
+.row
+  %h4 Informações Básicas
+.row
+  %table.table.table-striped.table-condensed.table-bordered
+    %thead
+      %tr
+        %th Nome Completo
+        %th CPF
+        %th Data de nascimento
+        %th Idade
+        %th Sexo
+    %tbody
+      %tr
+        %td.col-md-3= @cadastre.name
+        %td.col-md-1= @cadastre.cpf
+        %td.col-md-1= @cadastre.born.strftime('%d/%m/%Y') if @cadastre.born.present?
+        %td.col-md-1
+          = "#{(Date.today.strftime('%Y').to_i - @cadastre.born.strftime('%Y').to_i)} anos" if @cadastre.born.present?
+        %td.col-md-1= @cadastre.gender
+%hr/
+.row
+  %h4 Informações de Contato
+.row
+  %table.table.table-striped.table-condensed.table-bordered
+    %thead
+      %tr
+        %th Cidade
+        %th Endereço
+        %th CEP
+    %tbody
+      %tr
+        %td.col-md-2= "#{@cadastre.city.name} / #{@cadastre.city.state.acronym}" if @cadastre.city.present? && @cadastre.city.state.present?
+        %td.col-md-2= @cadastre.address
+        %td.col-md-1= @cadastre.cep
+%br/
+.row
+  %table.table.table-striped.table-condensed.table-bordered
+    %thead
+      %tr
+        %th Telefone
+        %th Telefone Opcional
+        %th Celular
+        %th E-mail
+    %tbody
+      %tr
+        %td.col-md-2= @cadastre.telephone
+        %td.col-md-2= @cadastre.telephone_optional
+        %td.col-md-1= @cadastre.celphone
+        %td.col-md-1= @cadastre.email.to_s.downcase
+%hr/
+.row
+  %h4 Dependentes
+.row
+  %table.table.table-striped.table-condensed.table-bordered
+    %thead
+      %tr
+        %th Nome Completo
+        %th CPF
+        %th Data de nascimento
+        %th Sexo
+        %th Parentesco
+        %th Co-Adquirente
+        %th Condição Especial
+    %tbody
+      - @cadastre.dependents.each do |dependent|
+        %tr
+          %td.col-md-4= dependent.name
+          %td.col-md-1= dependent.cpf
+          %td.col-md-2= dependent.born.strftime('%d/%m/%Y') if @cadastre.born.present?
+          %td.col-md-1= dependent.gender
+          %td.col-md-1= dependent.kinship_id
+          %td.col-md-1= (dependent.co_acquirer) ? "#{dependent.percentage}" : "Não"
+          %td.col-md-1= (dependent.special_condition_flag) ? "#{dependent.special_condition_id}" : "Não"
+%hr/
+.row
+  %h4 Atendimentos 
+.row
+  %table.table.table-striped.table-condensed.table-bordered
+    %thead
+      %tr
+        %th Status
+        %th Convocação
+        %th Observação
+        %th Data
+    %tbody
+      - @cadastre.attendances.order(:created_at).each do |attendance|
+        %tr
+          %td.col-md-1= attendance.attendance_status_id
+          %td.col-md-1= attendance.convocation_id
+          %td.col-md-4= attendance.observation
+          %td.col-md-1= attendance.created_at.strftime('%d/%m/%Y %H:%M') if attendance.created_at.present?

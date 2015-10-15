@@ -6,6 +6,14 @@ module Candidate
     belongs_to :work_city
     belongs_to :civil_state
     belongs_to :program
+    belongs_to :city, class_name: "Address::City"
+
+    has_many :dependents
+    has_many :attendances
+
+    scope :by_cpf, -> (cpf = nil) { where(cpf: cpf) }
+
+    enum gender: ['N/D', 'masculino', 'feminino']
 
     validates :cpf, cpf: true
   end
