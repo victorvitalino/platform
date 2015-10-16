@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       mount Candidate::Engine                => "/candidatos",     as: 'candidate',                 module: 'candidate'
       mount Schedule::Engine                 => "/agendamento",    as: 'schedule',                  module: 'schedule'
       mount Regularization::Engine           => "/regularizacao",  as: 'regularization',            module: 'regularization'
+      mount Sefaz::Engine                    => "/sefaz",          as: 'sefaz',                     module: 'bun'
     end
   end
 

@@ -163,6 +163,14 @@
               %li
                 %hr/
               %li= link_to "Pesquisar CPF", regularization.agendas_path
-              
+        %li.sub-menu{class: ('toggled active' if params[:module] == "sefaz")}
+          - if policy(:application, namespace: Concourse).index?
+            %a{:href => ""}
+              %i.md.md-assignment>
+              Sefaz
+            %ul{style: ('display:block;' if params[:module] == "sefaz")}
+              %li= link_to "Insenção de ITCD/ITBI", sefaz.transmissions_path
+              /%li= link_to "Consulta IPTU", sefaz.agendas_path
+   
    
 

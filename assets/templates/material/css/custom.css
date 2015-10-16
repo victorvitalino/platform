@@ -57,3 +57,13 @@ appearance: normal!important;
 .modal-title {
   font-weight: bold !important;
 }
+
+.table-sefaz td {
+  font-size: 10px !important;
+  padding: 5px !important;
+}
+
+.table-sefaz th {
+  font-size: 10px !important;
+  padding: 5px !important;
+}

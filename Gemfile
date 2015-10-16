@@ -31,9 +31,11 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
 gem 'jquery-datatables-rails', '~> 3.3.0'
-gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 
 gem 'axlsx', '~> 2.0.1'
+
+gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
+gem 'signer', git: 'https://github.com/codhab/signer.git'
 
 group :test do
   gem 'sqlite3'
@@ -85,3 +87,5 @@ gem 'regularization_portal',        path: 'engines/regularization_portal'
 
 gem 'schedule',                     path: 'engines/schedule'           
 gem 'schedule_portal',              path: 'engines/schedule_portal'
+
+gem 'sefaz',                        path: 'engines/sefaz'

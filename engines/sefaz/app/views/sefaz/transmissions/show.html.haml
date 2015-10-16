@@ -1,0 +1,58 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Solicitação de insenção de ITBI/ITCD
+      = link_to 'Voltar', transmissions_path, class: 'btn btn-inverse pull-right' if policy(:page, namespace: Cms).create?
+      %small Protocolo #{@transmission.protocol}
+  .row
+    .col-md-12
+      %h4 Situação da solicitação
+  .row
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.table-sefaz
+      %thead
+        %tr
+          %th Status da solicitação
+          %th Setor solicitante
+          %th Tipo de isenção
+          %th Orgão transmitente
+          %th CNPJ transmitente
+      %tbody
+        %tr
+          %td.col-md-3= @transmission.status.humanize
+          %td.col-md-2= @transmission.transmission_candidates.first.sector.to_s.upcase
+          %td.col-md-2= @transmission.transmission_candidates.first.exemption_type.to_s.upcase
+          %td= @transmission.transmission_candidates.first.organization.to_s.upcase
+          %td= @transmission.transmission_candidates.first.cnpj.to_s.upcase
+  %br/
+  %br/
+  %br/
+  .row
+    .col-md-12
+      %h4 Detalhamento da solicitação
+  .row
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.table-sefaz
+        %thead
+          %tr
+            %th NOME
+            %th CPF
+            %th CIDADE
+            %th ENDEREÇO
+            %th MATRÍCULA
+            %th VALOR
+            %th SITUAÇÃO
+            %th RETORNO
+            %th ATO
+
+        %tbody
+          - @transmission.transmission_candidates.order('id ASC').each do |candidate|
+            %tr
+              %td.col-sm-3= candidate.name
+              %td.col-sm-1= candidate.cpf
+              %td.col-sm-1= candidate.city
+              %td.col-sm-2= candidate.address
+              %td.col-sm-1= candidate.unit_code
+              %td.col-sm-1= candidate.unit_value
+              %td.col-sm-1= candidate.status.humanize
+              %td.col-sm-1
+              %td.col-sm-1= candidate.declaratory_act

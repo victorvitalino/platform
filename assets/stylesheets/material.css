@@ -5,7 +5,7 @@
 *= require material/vendors/socicon/socicon.min
 *= require material/css/app.min.1
 *= require material/css/app.min.2
-*= require material/css/mod
+*= require material/css/custom
 *= require redactor-rails
 *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 */
