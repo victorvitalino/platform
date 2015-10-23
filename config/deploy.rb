@@ -15,7 +15,7 @@ set :rails_env, 'production'
 
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
-set :shared_paths, ['config/database.yml', 'log']
+set :shared_paths, ['config/database.yml', 'log', 'tmp']
 
 
 task :setup => :environment do
@@ -27,6 +27,7 @@ task :setup => :environment do
   
   queue! %[mkdir -p "#{deploy_to}/shared/pids"]
   queue! %[mkdir -p "#{deploy_to}/shared/sockets"]
+  queue! %[mkdir -p "#{deploy_to}/shared/tmp"]
 
   queue! %[touch "#{deploy_to}/shared/config/database.yml"]
 end
