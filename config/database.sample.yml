@@ -3,26 +3,9 @@ default: &default
   encoding: unicode
   port: 5432
 
-development:
-  <<: *default
-  database: "codhab_production"
-  username: <%= ENV['USERNAME'] %>
-  password: <%= ENV['PASSWORD'] %>
-  host: <%= ENV['HOST'] %>
-
-
 production:
   <<: *default
-  database: codhab_development
-  username: "<%= ENV['USERNAME'] %>"
-  password: "<%= ENV['PASSWORD'] %>"
-  host: "<%= ENV['HOST'] %>"
-
-
-test:
-  <<: *default
-  database: codhab_test
-  username: "<%= ENV['USERNAME'] %>"
-  password: "<%= ENV['PASSWORD'] %>"
-  host: "<%= ENV['HOST'] %>"
-
+  database: codhab_production2
+  username: <%= ENV["DB_PRODUCTION_USERNAME"] %>
+  password: <%= ENV["DB_PRODUCTION_PASSWORD"] %>
+  host: <%= ENV["DB_PRODUCTION_HOST"] %>
