@@ -60,17 +60,3 @@ namespace :log do
   end
 end
 
-namespace :unicorn do
-  task :start do 
-    queue "RAILS_ENV=#{rails_env} unicorn_rails -c shared/config/unicorn.rb -D"
-  end
-
-  task :stop do 
-    queue "kill -9 $(cat < shared/pids/unicorn.pid)"
-  end
-
-  task :restart do 
-    invoke :'unicorn:stop'
-    invoke :'unicorn:start'
-  end
-end

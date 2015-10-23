@@ -5,7 +5,7 @@ default: &default
 
 production:
   <<: *default
-  database: codhab_production
+  database: codhab_production2
   username: <%= ENV["DB_PRODUCTION_USERNAME"] %>
   password: <%= ENV["DB_PRODUCTION_PASSWORD"] %>
   host: <%= ENV["DB_PRODUCTION_HOST"] %>
