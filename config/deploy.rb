@@ -1,56 +1,76 @@
-# config valid only for Capistrano 3.1
-lock '3.1.0'
+require 'mina/bundler'
+require 'mina/rails'
+require 'mina/git'
+require 'mina/rvm'
+require 'mina/unicorn'
 
-set :application, 'platform'
-set :repo_url, 'https://github.com/codhab/platform'
-set :deploy_to, '/deploy/apps/plataform'
-set :branch, 'master'
-set :keep_releases, 5
-set :format, :pretty
-set :log_level, :debug
-set :pty, true
 
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set  :domain,  ENV['HOST_PRODUCTION_SERVER']
+set  :user,  'sedhab'
+set  :deploy_to, '/var/www/platform'
+set  :repository, 'https://github.com/codhab/platform.git' 
+set  :branch, 'stable'
 
-# Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+set :rails_env, 'production'
 
-# Default deploy_to directory is /var/www/my_app
-# set :deploy_to, '/var/www/my_app'
+set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
-# Default value for :scm is :git
-# set :scm, :git
+set :shared_paths, ['config/database.yml', 'log']
 
-# Default value for :format is :pretty
-# set :format, :pretty
 
-# Default value for :log_level is :debug
-# set :log_level, :debug
+task :setup => :environment do
+  queue! %[mkdir -p "#{deploy_to}/shared/log"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/log"]
 
-# Default value for :pty is false
-# set :pty, true
+  queue! %[mkdir -p "#{deploy_to}/shared/config"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/config"]
 
-# Default value for :linked_files is []
-# set :linked_files, %w{config/database.yml}
+  queue! %[touch "#{deploy_to}/shared/config/database.yml"]
+end
 
-# Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+task :down do
+  invoke :restart
+  invoke :mina 
+end
 
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+task :deploy => :environment do
+  deploy do
+    
+    invoke :'git:clone'
+    invoke :'deploy:link_shared_paths'
+    invoke :'bundle:install'
+    invoke :'rails:assets_precompile'
+    invoke :'deploy:cleanup'
 
-# Default value for keep_releases is 5
-# set :keep_releases, 5
-set :puma_rackup, -> { File.join(current_path, 'config.ru') }
-set :puma_state, "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
-set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"
-set :puma_conf, "#{shared_path}/puma.rb"
-set :puma_access_log, "#{shared_path}/log/puma_error.log"
-set :puma_error_log, "#{shared_path}/log/puma_access.log"
-set :puma_role, :app
-set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
-set :puma_threads, [0, 16]
-set :puma_workers, 0
-set :puma_init_active_record, true
-set :puma_preload_app, true
+    to :launch do
+      invoke :'unicorn:restart'
+    end
+  end
+end
+
+namespace :nginx do 
+  task :restart do
+    queue 'sudo service nginx restart'
+  end
+end
+
+namespace :log do
+  task :nginx do 
+    queue 'cat < /var/log/nginx/error.log'
+  end
+end
+
+namespace :unicorn do
+  task :start do 
+    queue "RAILS_ENV=#{rails_env} unicorn_rails -c shared/config/unicorn.rb -D"
+  end
+
+  task :stop do 
+    queue "kill -9 $(cat < shared/pids/unicorn.pid)"
+  end
+
+  task :restart do 
+    invoke :'unicorn:stop'
+    invoke :'unicorn:start'
+  end
+end
