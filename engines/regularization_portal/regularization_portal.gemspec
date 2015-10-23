@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = RegularizationPortal::VERSION
   s.authors     = ["Elton Silva"]
   s.email       = ["elton.chrls@gmail.com"]
-  s.homepage    = "codhab.df.gov.br"
+  s.homepage    = "http://codhab.df.gov.br"
   s.summary     = "Engine de regularização no portal"
   s.description = "Engine gestora de agendamentos e requerimentos de regularização"
   s.license     = "MIT"
@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2.1"
   s.add_dependency "haml-rails"
-  
+
   s.add_development_dependency "sqlite3"
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019135231) do
+ActiveRecord::Schema.define(version: 20151016183144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -276,21 +276,6 @@ ActiveRecord::Schema.define(version: 20151019135231) do
   add_index "candidate_cadastre_mirrors", ["state_id"], name: "index_candidate_cadastre_mirrors_on_state_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["work_city_id"], name: "index_candidate_cadastre_mirrors_on_work_city_id", using: :btree
 
-  create_table "candidate_cadastre_procedurals", force: :cascade do |t|
-    t.integer  "cadastre_mirror_id"
-    t.integer  "cadastre_id"
-    t.integer  "procedural_status_id"
-    t.integer  "convocation_id"
-    t.integer  "assessment_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "candidate_cadastre_procedurals", ["assessment_id"], name: "index_candidate_cadastre_procedurals_on_assessment_id", using: :btree
-  add_index "candidate_cadastre_procedurals", ["cadastre_mirror_id"], name: "index_candidate_cadastre_procedurals_on_cadastre_mirror_id", using: :btree
-  add_index "candidate_cadastre_procedurals", ["convocation_id"], name: "index_candidate_cadastre_procedurals_on_convocation_id", using: :btree
-  add_index "candidate_cadastre_procedurals", ["procedural_status_id"], name: "index_candidate_cadastre_procedurals_on_procedural_status_id", using: :btree
-
   create_table "candidate_cadastre_situations", force: :cascade do |t|
     t.integer  "cadastre_mirror_id"
     t.integer  "cadastre_id"
@@ -446,38 +431,6 @@ ActiveRecord::Schema.define(version: 20151019135231) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
-
-  create_table "candidate_pontuations", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.integer  "cadastre_mirror_id"
-    t.integer  "code"
-    t.float    "bsb"
-    t.float    "dependent"
-    t.float    "timelist"
-    t.float    "special_condition"
-    t.float    "income"
-    t.float    "total"
-    t.integer  "program_id"
-    t.integer  "situation_status_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  add_index "candidate_pontuations", ["cadastre_id"], name: "index_candidate_pontuations_on_cadastre_id", using: :btree
-  add_index "candidate_pontuations", ["cadastre_mirror_id"], name: "index_candidate_pontuations_on_cadastre_mirror_id", using: :btree
-  add_index "candidate_pontuations", ["program_id"], name: "index_candidate_pontuations_on_program_id", using: :btree
-  add_index "candidate_pontuations", ["situation_status_id"], name: "index_candidate_pontuations_on_situation_status_id", using: :btree
-
-  create_table "candidate_procedural_statuses", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "code"
-    t.boolean  "status",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  add_index "candidate_procedural_statuses", ["code"], name: "index_candidate_procedural_statuses_on_code", unique: true, using: :btree
 
   create_table "candidate_programs", force: :cascade do |t|
     t.string   "name"

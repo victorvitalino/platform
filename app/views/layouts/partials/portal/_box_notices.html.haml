@@ -3,49 +3,19 @@
     %h2.title_notice Utimas Noticias
   .row
     / bloco de noticias
-    .col-sm-6.col-md-4
-      .thumbnail
-        %img{:alt => "...", :src => "img/roro.jpg"}/
-        .caption.caption_notice
-          %a.link_caption #Habitacao
-          .link_caption_date
-            19/06/2015
-        .link_caption_text
-          %h3 Lista de idosos, pessoas com deficiência e casos de vulnerabilidade
-          %p
-            A Companhia de Desenvolvimento Habitacional do Distrito Federal (CODHAB) divulga as listas que contemplam, exclusivamente,
-            idosos, pessoas com deficiência e casos de vulnerabilidade habilitados no Programa Morar Bem.
-          %p
-            %a.btn.btn-primary-mod{:href => "#", :role => "button"} Leia Mais
-    / fim do bloco
-    / bloco de noticias
-    .col-sm-6.col-md-4
-      .thumbnail
-        %img{:alt => "...", :src => "img/roro.jpg"}/
-        .caption.caption_notice
-          %a.link_caption #Codhab
-          .link_caption_date 19/06/2015
-        .link_caption_text
-          %h3 Lista de idosos, pessoas com deficiência e casos de vulnerabilidade
-          %p
-            A Companhia de Desenvolvimento Habitacional do Distrito Federal (CODHAB) divulga as listas que contemplam, exclusivamente,
-            idosos, pessoas com deficiência e casos de vulnerabilidade habilitados no Programa Morar Bem.
-          %p
-            %a.btn.btn-primary-mod{:href => "#", :role => "button"} Leia Mais
-    / fim do bloco
-    / bloco de noticias
-    .col-sm-6.col-md-4
-      .thumbnail
-        %img{:alt => "...", :src => "img/roro.jpg"}/
-        .caption.caption_notice
-          %a.link_caption #Habitacao
-          .link_caption_date
-            19/06/2015
-        .link_caption_text
-          %h3 Lista de idosos, pessoas com deficiência e casos de vulnerabilidade
-          %p
-            A Companhia de Desenvolvimento Habitacional do Distrito Federal (CODHAB) divulga as listas que contemplam, exclusivamente,
-            idosos, pessoas com deficiência e casos de vulnerabilidade habilitados no Programa Morar Bem.
-          %p
-            %a.btn.btn-primary-mod{:href => "#", :role => "button"} Leia Mais
-    / fim do bloco
+    - post_each(3, 'DESC') do |p|
+      .col-sm-6.col-md-4
+        .thumbnail
+          = image_tag p.thumb if p.thumb?
+          .caption.caption_notice
+            %a.link_caption
+              = link_to "##{p.post_category.title}", post_path(p), class: 'council'
+            .link_caption_date
+              = p.date.strftime('%d/%m/%Y')
+          .link_caption_text
+            %h3
+              = link_to p.title, post_path(p)
+            %p
+              = p.resume.html_safe
+            %p
+              = link_to 'Leia Mais', post_path(p), class: 'btn btn-primary-mod'

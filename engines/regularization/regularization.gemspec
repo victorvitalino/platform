@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Regularization::VERSION
   s.authors     = ["Elton Silva"]
   s.email       = ["elton.chrls@gmail.com"]
-  s.homepage    = "extranet.codhab.df.gov.br"
+  s.homepage    = "http://extranet.codhab.df.gov.br"
   s.summary     = "Engine para gestão de regularização interna"
   s.description = "Engine gestora de atendimento, relatórios, processos e etc.. vínculado a regularização"
   s.license     = "MIT"
