@@ -7,7 +7,7 @@ module Schedule
 
     scope :regularization,  -> { where(program: 3)}
     scope :habitation,      -> { where(program: [1,2])}
-    
+
     validates :program, :description, presence: true
     validates :attendants, :attendance_time, numericality: true, presence: true
     validates :title, presence: true, uniqueness: true

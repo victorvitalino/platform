@@ -11600,9 +11600,9 @@ body #content {
 }
 
 #sidebar .profile-menu > a .profile-info {
-  background: rgb(255, 255, 255);
-  padding: 20px 10px 10px 20px;
-  color:#3C3C3C;;
+  background-image: url('/images/background-avatar.png');
+  padding: 60px 10px 10px 20px;
+  color:#FFFFFF;;
   margin-top: 0px;
   position: relative;
 }

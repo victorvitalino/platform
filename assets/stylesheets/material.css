@@ -8,8 +8,9 @@
 *= require material/css/custom
 *= require redactor-rails
 *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+*= require nprogress
+*= require nprogress-bootstrap
 */
-
 li a.btn {
   font-weight: bold !important;
 }
@@ -74,3 +75,12 @@ ul.ui-autocomplete {
   }
 }
 
+
+#nprogress .bar{
+  background-color: orange !important;
+  height: 6px !important;
+}
+
+#nprogress .peg {
+  box-shadow: none !important;
+}

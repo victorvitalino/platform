@@ -1,0 +1,18 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Agendamentos | #{@agenda.title}
+      %small Listagem de agendamentos
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+      %thead
+        %tr
+          %th #
+          %th Programa
+          %th Título
+          %th Período
+          %th Horário
+          %th Status
+          %th Ações
+
+      %tbody

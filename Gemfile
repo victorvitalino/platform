@@ -4,6 +4,9 @@ gem 'rails', '4.2.1'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem 'turbolinks'
+gem 'nprogress-rails'
+
 gem 'jquery-ui-rails'
 gem 'bootstrap-datepicker-rails'
 
@@ -17,8 +20,8 @@ gem 'devise'
 gem 'devise_security_extension'
 
 gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
-gem 'redactor-rails'
 gem 'mini_magick'
+gem 'redactor-rails'
 
 gem 'friendly_id'
 gem 'has_scope'
