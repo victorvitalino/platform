@@ -5,7 +5,7 @@ class CreateScheduleAgendaSchedules < ActiveRecord::Migration
       
       t.date       :date
       t.time       :hour
-      
+      t.date       :born
       t.string     :name
       t.string     :cpf
       t.string     :email

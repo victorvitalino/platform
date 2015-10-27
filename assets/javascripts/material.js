@@ -2,9 +2,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require turbolinks
-//= require nprogress
-//= require nprogress-turbolinks
-//= require material/js/custom
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require material/js/bootstrap.min
@@ -20,11 +17,4 @@
 //= require material/js/demo
 //= require material/js/datatables
 //= require mod
-
-
-
-$(document).on('page:fetch',   function() { NProgress.start(); });
-$(document).on('page:change',  function() { NProgress.done(); });
-$(document).on('page:restore', function() { NProgress.remove(); });
-
-NProgress.configure({ showSpinner: false });
+//= require material/js/custom

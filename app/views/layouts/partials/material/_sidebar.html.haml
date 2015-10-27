@@ -125,7 +125,7 @@
         %li.sub-menu{class: ('toggled active' if params[:module] == "candidate")}
           - if policy(:application, namespace: Concourse).index?
             %a{:href => ""}
-              %i.md.md-assignment>
+              %i.md.md-person>
               Cadastro Geral
             %ul{style: ('display:block;' if params[:module] == "candidate")}
               %li= link_to "Pesquisar CPF", candidate.cadastres_path
@@ -135,20 +135,23 @@
         %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
           - if policy(:application, namespace: Concourse).index?
             %a{:href => ""}
-              %i.md.md-assignment>
+              %i.md.md-business>
               Regularização
             %ul{style: ('display:block;' if params[:module] == "regularization")}
-              %li= link_to "Agendas", regularization.agendas_path
+              %li= link_to "Agendas & Agendamentos", regularization.agendas_path
               %li= link_to "Requerimentos", regularization.agendas_path
               %li= link_to "Atendimento", regularization.agendas_path
-              %li
-                %hr/
+              %hr/
+              %li= link_to "Assentar Candidato", regularization.agendas_path
+              %li= link_to "Alteração Cadastral", regularization.agendas_path
+              %hr/
               %li= link_to "Pesquisar CPF", regularization.agendas_path
               %li= link_to "Pesquisar Endereço", regularization.agendas_path
+              %hr/
         %li.sub-menu{class: ('toggled active' if params[:module] == "habitation")}
           - if policy(:application, namespace: Concourse).index?
             %a{:href => ""}
-              %i.md.md-assignment>
+              %i.md.md-home>
               Habitação
             %ul{style: ('display:block;' if params[:module] == "habitation")}
               %li= link_to "Agendamentos", regularization.agendas_path
@@ -159,7 +162,7 @@
         %li.sub-menu{class: ('toggled active' if params[:module] == "sefaz")}
           - if policy(:application, namespace: Concourse).index?
             %a{:href => ""}
-              %i.md.md-assignment>
+              %i.md.md-pageview>
               Sefaz
             %ul{style: ('display:block;' if params[:module] == "sefaz")}
               %li= link_to "Insenção de ITCD/ITBI", sefaz.transmissions_path

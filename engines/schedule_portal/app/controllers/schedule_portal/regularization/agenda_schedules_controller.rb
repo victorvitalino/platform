@@ -13,7 +13,7 @@ module SchedulePortal
 
         if @schedule.save
           session[:schedule_id] = @schedule.id
-          redirect_to action: 'show', id: @schedule.id
+          redirect_to action: 'success'
         else
           render action: 'new'
         end
@@ -25,7 +25,7 @@ module SchedulePortal
       def update
       end
 
-      def show
+      def success
         if session[:schedule_id].present?
           @schedule = Schedule::AgendaSchedule.find(session[:schedule_id])
         else
@@ -36,7 +36,7 @@ module SchedulePortal
       private
 
       def set_params
-        params.require(:agenda_schedule).permit(:date, :hour, :agenda_id, :name, :cpf, :telephone, :telephone_optional, :celphone, :email,:observation)
+        params.require(:agenda_schedule).permit(:date, :born, :hour, :agenda_id, :name, :cpf, :telephone, :telephone_optional, :celphone, :email,:observation)
       end
 
     end
