@@ -110,9 +110,9 @@
               %i.md.md-attach-money>
               Financeiro
             %ul{style: ('display:block;' if params[:module] == "finance")}
-              %li= link_to "nova cobrança", finance.new_payment_guide_path
-              %li= link_to "gestão de pagamentos/emissões", finance.payment_guides_path
-              %li= link_to "tipos de pagamentos", finance.type_guides_path
+              %li= link_to "Nova Cobrança", finance.new_payment_guide_path
+              %li= link_to "Pagamentos & Emissões", finance.payment_guides_path
+              %li= link_to "Tipos de Pagamentos", finance.type_guides_path
 
         %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
           - if policy(:application, namespace: Concourse).index?
@@ -128,10 +128,9 @@
               %i.md.md-person>
               Cadastro Geral
             %ul{style: ('display:block;' if params[:module] == "candidate")}
-              %li= link_to "Pesquisar CPF", candidate.cadastres_path
-              %li
-                %hr/
+              %li= link_to "Pesquisar Geral", candidate.cadastres_path
               %li= link_to "Convocações", regularization.agendas_path
+              %li= link_to "Listas", regularization.agendas_path
         %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
           - if policy(:application, namespace: Concourse).index?
             %a{:href => ""}
@@ -154,6 +153,20 @@
               %i.md.md-home>
               Habitação
             %ul{style: ('display:block;' if params[:module] == "habitation")}
+              %li= link_to "Agendas & Agendamentos", regularization.agendas_path
+              %li= link_to "Atendimento", regularization.agendas_path
+              %hr/
+              %li= link_to "Alteração cadastral", regularization.agendas_path
+              %li= link_to "Ordem para publicação", regularization.agendas_path
+              %li= link_to "Indicação para empresa", regularization.agendas_path
+              %hr/
+              %li= link_to "Pesquisar CPF", regularization.agendas_path
+        %li.sub-menu{class: ('toggled active' if params[:module] == "habitation")}
+          - if policy(:application, namespace: Concourse).index?
+            %a{:href => ""}
+              %i.md.md-home>
+              Empresa
+            %ul{style: ('display:block;' if params[:module] == "habitation")}
               %li= link_to "Agendamentos", regularization.agendas_path
               %li= link_to "Atendimento", regularization.agendas_path
               %li
@@ -166,7 +179,7 @@
               Sefaz
             %ul{style: ('display:block;' if params[:module] == "sefaz")}
               %li= link_to "Insenção de ITCD/ITBI", sefaz.transmissions_path
-              /%li= link_to "Consulta IPTU", sefaz.agendas_path
+              %li= link_to "Consulta IPTU", sefaz.transmissions_path
    
    
 

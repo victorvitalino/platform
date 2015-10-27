@@ -1,0 +1,30 @@
+@regularization
+  @agendamento
+    ☐ adicionar campo 'local' em agenda
+    ☐ visualizar dados de um agendamento
+    ☐ atualizar agendamento (atualizar status e dados)
+    ☐ solicitação de cancelamento de agendamento
+    ☐ tela de listagem de agendamento em cancelamento
+    ☐ validação de calculos e algoritmo 
+  @requerimento
+    ☐ listagem de requerimentos
+    ☐ visualização de requerimento
+    ☐ cancelamento (destroy) requerimento
+  @atendimento
+    ☐ consulta cpf retornando todos os atendimentos, requerimentos & agendamentos
+    +
+  @pesquisa_cpf
+    ☐ pesquisa geral de um cpf em regularização, tudo que ele fez e já mexeu em regularização
+    ☐ pesquisa gerla de endereço, trazendo tudo que já ocorreu deste endereço
+
+@habitation
+  @agendamento
+    ☐ lista de agendas de habitação
+    ☐ listagem de agendamentos em cada agenda
+    ☐ atualização, edição e cancelamento de agendamento
+    ☐ listagem de pedidos de cancelamentos internos 
+  @atendimento
+    ☐ consulta cpf retornando todos os atendimentos & agendamentos
+    +
+  @pesquisa_cpf
+    ☐ retorno geral sobre um candidato na habitação
