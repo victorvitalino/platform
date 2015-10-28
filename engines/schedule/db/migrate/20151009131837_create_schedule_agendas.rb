@@ -19,6 +19,7 @@ class CreateScheduleAgendas < ActiveRecord::Migration
       t.time    :lunch_end
       t.integer :restriction_type, default: 0
       t.text    :restriction_sql
+      t.string  :location
       
       t.references :program, index: true
       t.references :staff, index: true

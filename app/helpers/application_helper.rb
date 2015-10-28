@@ -1,6 +1,6 @@
 module ApplicationHelper
   def users_list
-    @query = Person::Staff.includes(:sector_current).all.order(:name)
+    @query = Person::Staff.includes(:sector_current).status(true).order(:name)
     @query.each do |u|
       yield u
     end
@@ -10,7 +10,7 @@ module ApplicationHelper
 
    @user_current = current_user.account
    if @user_current.sector_current.present?
-     @user_current.sector_current.staffs.each do |ul|
+     @user_current.sector_current.staffs.status(true).order(:name).each do |ul|
         yield ul
       end
     end

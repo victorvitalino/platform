@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       mount Candidate::Engine                => "/candidatos",     as: 'candidate',                 module: 'candidate'
       mount Schedule::Engine                 => "/agendamento",    as: 'schedule',                  module: 'schedule'
       mount Regularization::Engine           => "/regularizacao",  as: 'regularization',            module: 'regularization'
+      mount Habitation::Engine               => "/habitacao",      as: 'habitation',                module: 'habitation'
+      mount Entity::Engine                   => "/entidades",      as: 'entity',                    module: 'entity'
       mount Sefaz::Engine                    => "/sefaz",          as: 'sefaz',                     module: 'bun'
     end
   end
@@ -39,6 +41,8 @@ Rails.application.routes.draw do
   constraints DomainConstraint do
     mount Portal::Engine                => '/',                 as: 'portal',                       module: 'portal'
     mount RegularizationPortal::Engine  => '/regularizacao',    as: 'regularization_portal',        module: 'regularization_portal'
+    mount HabitationPortal::Engine      => "/habitacao",        as: 'habitation_portal',            module: 'habitation_portal'
+    mount EntityPortal::Engine          => "/entidades",        as: 'entity_portal',                module: 'entity_portal'
     mount SchedulePortal::Engine        => '/agendamento',      as: 'shedule_portal',               module: 'schedule_portal'
     mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',             module: 'concourse_portal'
   end

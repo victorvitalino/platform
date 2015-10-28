@@ -70,6 +70,18 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/entity
+  specs:
+    entity (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/entity_portal
+  specs:
+    entity_portal (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/finance
   specs:
     finance (0.0.1)
@@ -80,6 +92,18 @@ PATH
       rails (~> 4.2.1)
       rqrcode
       simple_form
+
+PATH
+  remote: engines/habitation
+  specs:
+    habitation (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/habitation_portal
+  specs:
+    habitation_portal (0.0.1)
+      rails (~> 4.2.1)
 
 PATH
   remote: engines/helpdesk
@@ -485,6 +509,8 @@ DEPENDENCIES
   devise
   devise_security_extension
   email_validator
+  entity!
+  entity_portal!
   enum_help
   factory_girl_rails
   finance!
@@ -492,6 +518,8 @@ DEPENDENCIES
   guard
   guard-livereload
   guard-rails
+  habitation!
+  habitation_portal!
   haml-rails
   has_scope
   helpdesk!

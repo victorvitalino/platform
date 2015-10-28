@@ -86,6 +86,12 @@ gem 'address',                      path: 'engines/address'
 gem 'regularization',               path: 'engines/regularization'
 gem 'regularization_portal',        path: 'engines/regularization_portal'
 
+gem 'habitation',                   path: 'engines/habitation'
+gem 'habitation_portal',            path: 'engines/habitation_portal'
+
+gem 'entity',                       path: 'engines/entity'
+gem 'entity_portal',                path: 'engines/entity_portal'
+
 gem 'schedule',                     path: 'engines/schedule'           
 gem 'schedule_portal',              path: 'engines/schedule_portal'
 
