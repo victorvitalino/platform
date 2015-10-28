@@ -81,7 +81,7 @@ Rails.application.configure do
     config.sftp_host = "10.233.38.19"
     config.sftp_user = "codhab"
     config.sftp_folder = "/var/public"
-    config.sftp_url = "http://api.codhab.df.gov.br/"
+    config.sftp_url = "http://api.codhab.df.gov.br/static"
     config.sftp_options = {
       :password => "codhab2014",
       :port     => 22
