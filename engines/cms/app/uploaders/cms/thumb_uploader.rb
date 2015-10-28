@@ -6,7 +6,7 @@ class Cms::ThumbUploader < CarrierWave::Uploader::Base
   storage :sftp if Rails.env.production?
 
   def store_dir
-    "uploads/images"
+    "content/images"
   end
 
 
