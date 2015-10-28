@@ -2,11 +2,10 @@
 class RedactorRailsDocumentUploader < CarrierWave::Uploader::Base
   include RedactorRails::Backend::CarrierWave
 
-  # storage :fog
-  storage :file
+  storage :sftp
 
   def store_dir
-    "uploads/files"
+    "uploads/cms/files"
   end
 
   def extension_white_list
