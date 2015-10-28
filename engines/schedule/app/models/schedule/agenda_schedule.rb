@@ -9,12 +9,17 @@ module Schedule
     validates :cpf, cpf: true, presence: true
     validates :telephone, numericality: true, presence: true
     validates :telephone_optional, :celphone, numericality: true, allow_blank: true
-    validates :email, email: true, allow_blank: true
-    validates :date, :hour, presence: true
-
+    validates :email, email: true, presence: true
+    validates_date :date, presence: true 
+    validates :hour, presence: true
+    validates_date :born, presence: true
 
     validate :unique_schedule, on: :create
     validate :validate!, on: :create
+
+    def protocol
+      "AG#{self.agenda_id}#{self.id}#{self.created_at.strftime('%Y')}"
+    end
 
     private
 
@@ -23,7 +28,9 @@ module Schedule
         errors.add(:date, 'data não díspónivel')
       end
 
-      if !agenda.hours(self.date).include? self.hour 
+      hour = self.hour.strftime('%H:%M') rescue '00:00'
+
+      if !agenda.hours(self.date).include? hour
         errors.add(:hour, 'horário não dispónivel')
       end
     end

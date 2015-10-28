@@ -1,0 +1,38 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h1
+              %b Meus Agendamentos
+              %small.pull-right
+                %b CPF:
+                #{@cpf}
+              %br/
+              %small
+                = link_to "Encerrar sessão", candidate_new_verification_path
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-hover
+              %thead
+                %tr
+                  %th Protocolo
+                  %th Agenda
+                  %th Data
+                  %th Hora
+                  %th Situação
+                  %th Ações
+              %tbody
+                - @schedules.each do |schedule|
+                  %tr
+                    %td.col-md-1= schedule.protocol
+                    %td.col-md-5= schedule.agenda.title
+                    %td.col-md-1= schedule.date.strftime('%d/%m/%Y')
+                    %td.col-md-1= schedule.hour.strftime('%H:%M')
+                    %td.col-md-1= schedule.status
+                    %td.col-md-2
+                      = link_to "visualizar", candidate_schedule_path(schedule)
+                      = link_to "cancelar", candidate_schedule_path(schedule), method: :delete, data: { confirm: "Tem certeza que deseja cancelar este agendamento?"}
+                      

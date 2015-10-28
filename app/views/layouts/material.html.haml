@@ -12,6 +12,15 @@
     %section#main
       = render "layouts/partials/material/aside"
       = render "layouts/partials/material/sidebar"
+      %ol.breadcrumb{:style => "margin-bottom: 5px;"}
+        %li
+          %a{data: { href: "#"}}
+            = t("engines.#{controller_path.split('/')[0]}")
+        %li
+          %a{data: { href: "#"}}
+            = t("modules.#{controller_name}")
+        %li.active
+          = t("actions.#{action_name}")
       %section#content
         %div.container
           - flash.each do |key, value|

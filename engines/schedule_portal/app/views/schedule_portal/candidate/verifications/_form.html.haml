@@ -1,0 +1,14 @@
+= simple_form_for @verification, url: candidate_verification_path do |f|  
+  .row
+    .col-md-2
+      = f.input :cpf
+    .col-md-2
+      = f.input :born, as: :string, input_html: { class: 'date'}
+    .col-md-2
+      = f.input :telephone
+    .col-md-4
+      = f.input :email
+  %hr/
+  .row
+    .col-md-12
+      = f.submit 'Acessar meus agendamentos', class: 'btn btn-success'

@@ -1,0 +1,12 @@
+pt-BR:
+  engines:
+    regularization: "Regularização"
+  modules:
+    regularization:
+      agendas: "Agendas"
+  actions:
+    index: "Listagem"
+    new: "Novo"
+    edit: "Editar"
+    destroy: "Excluir"
+    show: "Detalhes"
