@@ -13,6 +13,7 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'simple_form'
 gem 'haml-rails'
+gem 'shareable'
 
 gem 'i18n'
 gem 'enum_help'
@@ -86,7 +87,7 @@ gem 'address',                      path: 'engines/address'
 gem 'regularization',               path: 'engines/regularization'
 gem 'regularization_portal',        path: 'engines/regularization_portal'
 
-gem 'schedule',                     path: 'engines/schedule'           
+gem 'schedule',                     path: 'engines/schedule'
 gem 'schedule_portal',              path: 'engines/schedule_portal'
 
 gem 'sefaz',                        path: 'engines/sefaz'
