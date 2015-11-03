@@ -1,4 +1,25 @@
-
+nav.share {display:inline-block;float: left;} /* shareable's nav tag */
+nav.share div {float:left;}
+nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
+#___plusone_0 {font-size: default !important;}
+.fb_iframe_widget span { vertical-align: top; }
+.fb_edge_widget_with_comment { vertical-align: top;}
+.fb-like{display:inline-block}
+* html .fb-like{display:inline}/* ie6 inline block fix*/
+*+html .fb-like{display:inline}/* ie7 inline block fix*/
+.author_custom{
+  font-size: 9px;
+  height: 15px;
+  color: #8397a3;
+  text-transform: uppercase;
+  margin-left: 20px;
+  margin-top: 5px;
+  display: block;
+}
+.author_custom span{
+  float: right;
+margin-right: 10px;
+}
 .portal-container {
   margin-top: 50px !important;
 }
@@ -372,7 +393,7 @@ a {
 .latestDate {
     margin: -5px 0px 0 0;
     color: #fff;
-    background-image: url('../clock-white.png') !important;
+    background-image: url('/images/clock-white.png') !important;
     background-repeat: no-repeat !important;
     background-position: 90px 8px !important;
     background-size: 19px 20px !important
@@ -415,7 +436,7 @@ a {
     color: #444;
     font-weight: 500;
     font-size: 16px;
-    padding: 14px
+    padding: 13px
     0;
     border-left: 1px solid #BBB;
     text-decoration: none;
@@ -751,9 +772,13 @@ a {
 }
 @media only screen and (min-width: 1200px) {
   .topSlider .flex-caption {
-      width: 400px;
+      width: 500px;
       margin-left: 95px
   }
+}
+.topSlider .flex-caption{
+  width: 500px;
+  margin-left: 95px
 }
 
 @media only screen and (min-width: 960px) and (max-width: 1199px) {
