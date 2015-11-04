@@ -1,7 +1,10 @@
 #!/bin/bash
 
+date_deploy=`date +"%Y%m%d%H%M-deploy"`
+user_deploy=`git config user.email`
+
 git add -A
-git commit -m 'deploy --deploy.sh'
+git commit -m "$date_deploy --deployer $user_deploy"
 git push origin master
 git checkout stable
 git merge master
