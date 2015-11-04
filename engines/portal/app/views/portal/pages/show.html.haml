@@ -1,33 +1,26 @@
-.landingBkgd
-  .container.main{:role => "main"}
-    .content
-      .main-content.your-council
-        .internal
-          .post-meta
-            .post-author
-              - if @page.author?
-                = @page.author
-                - if @page.link?
-                  = link_to @page.label_link, @page.link, target: "_BLANK"
-                - else
-                  = @page.label_link
-            .post-date
-              = @page.created_at.strftime('%d/%m/%Y')
-          / /sn_post_meta
-          .internal-content
-            %h1.post-header
+/ conteudo da pagina
+.container
+  .row
+    .col-md-9.box
+      .box_internal
+        .post_meta
+          = render_shareable :buttons=> ['twitter', 'facebook','google_plus'], :facebook=> {:send=> 'true', :url=> "#{request.original_url}"}
+          .post_date
+            = @page.date.strftime('%d/%m/%Y')
+        .post
+          .imagem_post
+            - if @page.active_photo? && @page.photo_author?
+              = image_tag @page.thumbnail
+          .author_custom
+            - if @page.photo_description? && @page.photo_author?
+              = @page.photo_description
+              %span
+                Autor:
+                = @page.photo_author.html_safe
+          .content_post
+            %h1.post_title
               = @page.title
-            %p.img-thumbpost
-              - if @page.active_photo?
-                - if @page.photo_author?
-                  %strong
-                    Foto:
-                    = @page.photo_author.html_safe
-                  = image_tag @page.thumbnail, width:'500px', height:'300px'
-                  - if @page.photo_description?
-                    %br
-                    %i.desc-fots
-                      = @page.photo_description.html_safe
-            = @page.content.html_safe
-            %a.back-to-top.launch.button{"aria-label" => "back to top", :href => "#"} Voltar ao Topo
-            %div{:style => "clear: both;"}
+            %p.post-post
+              = @page.content.html_safe
+            %a.button_back{"arial-label" => "back to top", :href => "#"} VOLTAR AO TOPO
+    = render('layouts/partials/portal/sidebar')
