@@ -7,4 +7,6 @@ Cms::Engine.routes.draw do
   resources :pages
   resources :post_categories
   resources :posts
+  get 'navsort', to: 'navs#sortable'
+  post 'sortable', to: 'navs#sortable', as: 'sortable'
 end

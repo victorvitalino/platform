@@ -1,0 +1,12 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Ordenação
+      %small Listagem de menus
+      .row
+        %h5 Participe - Habitacao
+        %ul#navsort#macaco{"data-update-url" => "#{sortable_path}"}
+          - link_each('Participe - Habitacao') do |l|
+            %li.ui-state-default
+              %span.ui-icon.ui-icon-arrowthick-2-n-s>
+              = link_to_nav l

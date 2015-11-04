@@ -23,4 +23,12 @@
   $(function () {
   listFilter($("#buscador"), $(".listview"));
   });
+
+  // $('#navsort').sortable({
+  //   axis:'y',
+  //   update:function(){
+  //   console.log($(this).sortable('serialize'))
+  //   //  $.post($(this).data('update-url'), $(this).sortable('serialize'))
+  //   }
+  // });
 }(jQuery));

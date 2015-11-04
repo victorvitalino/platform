@@ -14,6 +14,9 @@
       .col-md-3
         = f.label :target, class: 'fg-label'
         = f.input :target, as: :select, collection: Cms::Nav.targets.keys.to_a, label: false, prompt: 'selecione...'
+      .col-md-3
+        = f.label :order, class: 'fg-label'
+        = f.input :order, label: false, input_html: { placeholder: 'Ordene' }
     .row
       .col-md-3
         = f.label :link_external, class: 'fg-label'

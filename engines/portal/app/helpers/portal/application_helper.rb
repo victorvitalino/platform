@@ -1,9 +1,9 @@
 module Portal
   module ApplicationHelper
-    def link_each(category)
+    def link_each(category, order = 'ASC')
       @category = Cms::NavCategory.find_by_name(category)
       if @category.present? && @category.navs.present?
-        @category.navs.each do |n|
+        @category.navs.order(:order).each do |n|
           yield n
         end
       end
