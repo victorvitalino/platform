@@ -108,6 +108,8 @@
             Concursos
             %span.sr-only (current)
           %ul#concursos.dropdown-menu-mod.dropdown-menu
-            - link_each('Concursos') do |l|
-              %li.link_submenu
-                = link_to_nav l
+            %li.menu-insider-li
+              %ul
+                - link_each('Concursos') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
