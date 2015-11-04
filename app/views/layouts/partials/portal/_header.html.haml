@@ -45,6 +45,9 @@
                   %li.link_submenu
                     = link_to_nav l
         %li.dropdown.item_menu.entidades
+          %a#link_entidades.dropdown-toggle.item_menu{:href => "#"}
+            Entidades
+            %span.sr-only (current)
           %ul#entidades.dropdown-menu-mod.dropdown-menu
             %li.menu-insider-li
               %span.submenu_title Participe
@@ -58,6 +61,7 @@
                 - link_each('Acompanhe - Entidades') do |l|
                   %li.link_submenu
                     = link_to_nav l
+        %li.dropdown.item_menu.entidades
         %li.dropdown.item_menu.servicos
           %a#link_servicos.dropdown-toggle.item_menu{:href => "#"}
             Servicos
