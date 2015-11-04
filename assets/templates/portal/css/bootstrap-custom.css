@@ -298,7 +298,7 @@ color: #fff;
 
 #habitacao{
   background-color:#289728;
-  width: 430px;
+  width: 500px;
 }
 
 .menu-insider-li{
@@ -324,7 +324,7 @@ color: #fff;
 
 #regularizacao{
   background-color:#feaa15;
-  width: 430px;
+  width: 500px;
 }
 .menu-insider-li{
   float: left;
@@ -346,7 +346,7 @@ color: #fff;
 }
 #entidades{
   background-color:#f4400a;
-  width: 430px;
+  width: 500px;
 }
 .menu-insider-li{
   float: left;
@@ -367,7 +367,7 @@ background-color:#147EA1;
 }
 #servicos{
   background-color:#147EA1;
-  width: 430px;
+  width: 500px;
 }
 .navbar-default .navbar-nav>.open.editais>a, .navbar-default .navbar-nav>.open.editais>a:focus, .navbar-default .navbar-nav>.open.editais>
 a:hover{
@@ -379,7 +379,7 @@ color: #fff;
 }
 #editais{
   background-color:#7c3961;
-  width:400px;
+  width:450px;
 }
 .navbar-default .navbar-nav>.open.concursos>a, .navbar-default .navbar-nav>.open.concursos>a:focus, .navbar-default .navbar-nav>.open.concursos>
 a:hover{
