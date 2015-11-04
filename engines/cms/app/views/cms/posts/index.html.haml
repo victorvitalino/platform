@@ -20,7 +20,7 @@
           %tr
             %td= i+1
             %td= post.title
-            %td= post.post_category.title
+            %td= post.post_category.title if post.post_category.present?
             %td= status_helper (post.publish)
             %td= post.date.strftime('%d-%m-%Y')
             %td.col-md-2
