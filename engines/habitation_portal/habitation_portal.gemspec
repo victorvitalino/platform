@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = HabitationPortal::VERSION
   s.authors     = ["Elton Silva"]
   s.email       = ["elton.chrls@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of HabitationPortal."
-  s.description = "TODO: Description of HabitationPortal."
+  s.homepage    = ""
+  s.summary     = " HabitationPortal."
+  s.description = "of HabitationPortal."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
