@@ -1246,3 +1246,46 @@ table{max-width: 100%;}
 width: auto!important;
 max-width: 1355px;
 }
+
+
+/* -------------- TABELAS SITE ------------- */
+
+
+table {
+    margin-top: 30px;
+    width: auto;
+    margin-bottom: 25px
+}
+
+table
+caption {
+    padding: 9px
+    20px;
+    text-align: left;
+    font-weight: 600
+}
+
+table
+td {
+    border: 1px
+    solid #E4E4E4;
+    padding: 10px
+    20px;
+    text-align: left;
+    vertical-align: middle
+}
+
+table tr:nth-child(2n+1) {
+ background: #f9f9f9
+
+}
+
+table tr
+th {
+    background: none repeat scroll 0 0 #FFF;
+    font-weight: 600;
+    padding: 10px
+    20px;
+    text-align: left;
+    vertical-align: middle
+}
