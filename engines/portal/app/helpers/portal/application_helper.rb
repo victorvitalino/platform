@@ -29,7 +29,7 @@ module Portal
         link_to nav.name, nav.link_external, target: nav.target
       end
     end
-
+    
     def slider_each(limit = 10, order = 'ASC')
       @slider = Cms::Post.where(slider: true ,publish: true).limit(limit).order("date #{order}")
 
