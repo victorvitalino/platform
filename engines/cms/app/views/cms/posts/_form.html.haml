@@ -5,9 +5,9 @@
         = f.label :title, class: 'fg-label'
         = f.input :title, label: false, input_html: { placeholder: 'Digite um titulo' }
     .row
-      .col-md-12
+      .col-md-12{data: { no_turbolinks: true}}
         = f.label :content, class: 'fg-label'
-        = f.input :content, label: false, input_html: { class: 'redactor' }
+        = f.input :content, label: false, input_html: { class: 'redactor'}
     .row
       .col-md-12
         = f.label :post_category, class: 'fg-label'
@@ -63,7 +63,7 @@
         = f.label :link, class: 'fg-label'
         = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
     .row
-      .col-md-12
+      .col-md-12{data: { no_turbolinks: true}}
         = f.label :resume, class: 'fg-label'
         = f.input :resume, label: false, input_html: { class: 'redactor' }
     .row
