@@ -7,4 +7,4 @@ git checkout stable
 git merge master
 git push origin stable
 git checkout master
-mina deploy
+mina deploy force_assets=1

@@ -7,7 +7,6 @@ module RegularizationPortal
     before_action :reset_session!, only: [:new_address]
 
     def new_address
-
       @address = RegularizationPortal::Address.new
     end
 
