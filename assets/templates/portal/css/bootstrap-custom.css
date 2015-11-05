@@ -174,7 +174,7 @@ padding-bottom: 20px;
 }
 .post_title{
   font-weight: 600;
-  font-size: 20px;
+  font-size: 36px;
   margin-bottom: 20px;
   margin-top: 0;
 }
@@ -227,6 +227,9 @@ float: right;
 }
 .content_post{
   padding:20px;
+}
+.content_post img{
+  width: 100%;
 }
 /*fim da pagina single*/
 
