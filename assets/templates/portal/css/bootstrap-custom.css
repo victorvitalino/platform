@@ -567,7 +567,7 @@ width:80%;
   padding: 5px 30px 15px;
   border-bottom: 1px dotted #cdcdcd;
   text-align: center;
-  width: 400px;
+  width:100%;
   margin: auto;
   border-bottom: 1px dotted #cdcdcd;
 }
@@ -594,3 +594,68 @@ width:80%;
 body{
   background-color: #EBECF0;
 }
+/* Portrait and Landscape iphone4*/
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .navbar-superior{
+      display: none;
+    }
+    .menu-insider-li{
+      clear: both;
+      width: 100%;
+      padding: 0 20px;
+    }
+    .menu-insider-li span, .menu-insider-li ul{
+      margin-left: 0;
+      padding-left: 0;
+    }
+    #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
+      width: 100%!important;
+    }
+    .dropdown-menu {
+      position: absolute!important;
+    }
+}
+/* Landscape iphone 4*/
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
+      width: 100%!important;
+    }
+  }
+
+/* Landscape iphone 5*/
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+      #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
+        width: 100%!important;
+      }
+      .dropdown-menu {
+        position: absolute!important;
+      }
+    }
+
+/* Landscape iphone6*/
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    .navbar-superior {
+      display: none;
+    }
+    #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
+      width: 100%!important;
+    }
+    .dropdown-menu {
+      position: absolute!important;
+    }
+  }
