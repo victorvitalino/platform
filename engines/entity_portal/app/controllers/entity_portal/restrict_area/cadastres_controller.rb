@@ -24,7 +24,7 @@ module EntityPortal
         if session[:entity_auth_id].present?
           @entity = Entity::Cadastre.find(session[:entity_auth_id])
         else
-          redirect_to new_authenticate_path
+          redirect_to entity_portal.new_authenticate_path
         end
       end
 
