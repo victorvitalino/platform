@@ -1,0 +1,18 @@
+.row
+  .col-md-12
+    %h1
+      %b Área restrita - Entidades
+      %br/
+      %small
+        = link_to "Finalizar Sessão"
+%br/
+%br/
+%br/
+.row
+  .col-md-12
+    %ul.nav.nav-tabs
+      %li{:role => "geral", :class => "#{(@tab == 'geral') ? 'active' : ''}"}
+        %a{:href => "#{restrict_area_cadastres_path}"} Dados Gerais
+      %li{:role => "doc", :class => "#{(@tab == 'docs') ? 'active' : ''}"}
+        %a{:href => "#{restrict_area_documentations_path}"} Documentação
+    

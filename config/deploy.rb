@@ -37,6 +37,12 @@ task :down do
   invoke :mina 
 end
 
+namespace :db do 
+  task :migrate do 
+    queue 'cd #{deploy_to} && rake db:migrate'
+  end
+end
+
 task :deploy => :environment do
   deploy do
     

@@ -1,9 +1,16 @@
 EntityPortal::Engine.routes.draw do
 
-  root 'authenticate#new'
-  
-  get   'authenticate', path: 'verificacao', to: 'authenticate#new', as: 'new_authenticate'
-  post  'authenticate', path: 'verificacao', to: 'authenticate#create', as: 'authenticate'
+  resources :cadastres, path: 'cadastros' do 
+    collection do 
+      get 'success', path: 'sucesso', as: 'success'
+    end
+  end
 
-  resources :entity_companies, path: 'cooperativas'
+  get 'authorization',  path: 'acesso', to: 'authorization#new',    as: 'new_authorization'
+  post 'authorization', path: 'acesso', to: 'authorization#create', as: 'authorization'
+
+  namespace :restrict_area, path: 'area_restrita' do
+    resources :cadastres, path: 'cadastro'
+    resources :documentations, path: 'documentacao'
+  end
 end
