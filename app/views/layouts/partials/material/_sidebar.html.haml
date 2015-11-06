@@ -162,6 +162,17 @@
           - if policy(:application, namespace: Concourse).index?
             %a{:href => ""}
               %i.md.md-home>
+              Entidades
+            %ul{style: ('display:block;' if params[:module] == "habitation")}
+              %li= link_to "Agendas & Agendamentos", regularization.agendas_path
+              %li= link_to "Atendimento", regularization.agendas_path
+              %hr/
+              %li= link_to "Cadastros", regularization.agendas_path
+              %li= link_to "Alteração Cadastral", regularization.agendas_path
+        %li.sub-menu{class: ('toggled active' if params[:module] == "habitation")}
+          - if policy(:application, namespace: Concourse).index?
+            %a{:href => ""}
+              %i.md.md-home>
               Empresa
             %ul{style: ('display:block;' if params[:module] == "habitation")}
               %li= link_to "Agendamentos", regularization.agendas_path
