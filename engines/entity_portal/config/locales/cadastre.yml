@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      'entity/cadastre': "Cadastro de Entidade"
+    attributes:
+      'entity/cadastre':
+        cnpj: "CNPJ"
+        name: "Nome Fatansia"
+        fantasy_name: "Sigla"
+        telephone: "Telefone"
+        telephone_optional: "Telefone Opcional"
+        celphone: "Celular"
+        password: "Senha"
+        password_confirmation: "Confirmação da Senha"
+        city: "Cidade"
+        cep: "CEP"
+        address: "Endereço/Logradouro"
+        complement: "Complemento"
+        number: "Número"
+
+        
+

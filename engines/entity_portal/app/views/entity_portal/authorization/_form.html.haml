@@ -1,0 +1,12 @@
+.col-md-8.col-md-offset-2
+  = simple_form_for @authorization, url: authorization_path,method: :post do |f|
+    .row
+      .col-md-6
+        = f.input :cnpj, input_html: {class: 'cnpj'}
+      .col-md-6
+        = f.input :password, input_html: {placeholder: 'Digite sua senha'}
+    .row
+      .col-md-6
+        = f.submit "Realizar acesso", class: 'btn btn-success'
+      .col-md-6
+        = link_to "Esqueci minha senha"
