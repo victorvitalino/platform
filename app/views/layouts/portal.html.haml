@@ -1,14 +1,15 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     - if controller_name == "posts"
       %meta{:content => "#{@post.title}", :property => "og:title"}/
       %meta{:content => "http://www.#{request.subdomain}#{@post.thumbnail}", :property => "og:image"}/
       %meta{:content => "#{request.url}", :property => "og:url"}
     %title Portal Codhab
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
-    = stylesheet_link_tag 'portal', media: 'all'
-    = javascript_include_tag 'portal', media: 'all'
+    = stylesheet_link_tag 'portal', media: 'screen'
+    = javascript_include_tag 'portal', media: 'screen'
     = csrf_meta_tags
   %body
     = render 'layouts/partials/portal/top_nav'

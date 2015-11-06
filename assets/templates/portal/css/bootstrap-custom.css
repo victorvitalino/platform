@@ -604,7 +604,7 @@ body{
     }
     .menu-insider-li{
       clear: both;
-      width: 100%;window.init_redactor
+      width: 100%;
       padding: 0 20px;
     }
     .menu-insider-li span, .menu-insider-li ul{
@@ -619,6 +619,38 @@ body{
     }
 }
 /* Landscape iphone 4*/
+/* Portrait */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
+      width: 100%!important;
+    }
+    .topSlider .flex-caption {
+    width: 365px;
+    margin-left: -190px;
+    left:34%;
+    }
+    .flex-viewport li{
+      width: 360px!important;
+    }
+    .tab-fundo img{
+      width: 100%;
+    }
+    .tab-mes{
+      height: 150px;
+    }
+    .tab-mes span{
+      display: block;
+      float: left;
+      margin-top: 20px;
+    }
+    .homeVideoWrapper{
+      display: none;
+    }
+}
 @media only screen
   and (min-device-width: 320px)
   and (max-device-width: 480px)
