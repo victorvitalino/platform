@@ -167,10 +167,11 @@
               %li= link_to "Agendas & Agendamentos", regularization.agendas_path
               %li= link_to "Atendimento", regularization.agendas_path
               %hr/
-              %li= link_to "Cadastros", regularization.agendas_path
+              %li= link_to "Cadastros", entity.cadastres_path
               %li= link_to "Alteração Cadastral", regularization.agendas_path
               %hr/
               %li= link_to "Categorias de Documentos", entity.document_categories_path
+              %li= link_to "Cargos Diretoria Entidade", entity.member_jobs_path
         %li.sub-menu{class: ('toggled active' if params[:module] == "habitation")}
           - if policy(:application, namespace: Concourse).index?
             %a{:href => ""}

@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'entity/document': 'Documento'
+    attributes:
+      'entity/document': 
+        document_category: "Categoria de Documento"
+        observation: "Observação"
+        archive_path: "Arquivo"

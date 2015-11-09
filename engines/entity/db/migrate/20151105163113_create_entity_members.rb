@@ -12,6 +12,7 @@ class CreateEntityMembers < ActiveRecord::Migration
       t.string :celphone
       t.string :certificate_civil_criminal
       t.boolean :status, default: true
+      t.references :member_job, index: true
 
       t.timestamps null: false
     end

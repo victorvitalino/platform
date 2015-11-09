@@ -1,4 +1,4 @@
-require_dependency 'entity/application_controller'
+require_dependency 'entity_portal/application_controller'
 module EntityPortal
   class AuthorizationController < ApplicationController
     
@@ -11,10 +11,18 @@ module EntityPortal
       
       if @authorization.valid?
         session[:entity_auth_id] = @authorization.id
+        session[:entity_expiration_id] = Time.now + 2.hours
         redirect_to restrict_area_cadastres_path
       else
         render action: 'new'
       end
+    end
+
+    def destroy
+      session[:entity_auth_id] = nil
+      session[:entity_expiration_id] = nil
+
+      redirect_to entity_portal.new_authorization_path
     end
 
     private

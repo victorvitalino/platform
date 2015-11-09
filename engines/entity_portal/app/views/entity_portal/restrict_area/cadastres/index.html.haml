@@ -8,7 +8,7 @@
             %b Dados da Entidade 
             %br/
             %small
-              = link_to "Atualizar dados"
+              = link_to "Atualizar dados", edit_restrict_area_cadastre_path(@entity)
       .row
         .col-md-12 
           %table.table.table-condensed.table-bordered.table-striped
@@ -75,7 +75,7 @@
             %b Diretoria 
             %br/
             %small
-              = link_to "Atualizar Diretoria"
+              = link_to "Atualizar Diretoria",restrict_area_members_path
       .row
         .col-md-12 
           %table.table.table-condensed.table-bordered.table-hover.table-striped
@@ -86,11 +86,12 @@
                 %th Cargo
                 %th Anexo
             %tbody 
-              %tr
-                %td.col-md-2
-                %td.col-md-2
-                %td.col-md-2
-                %td.col-md-2
+              - @entity.members.each do |member|
+                %tr
+                  %td.col-md-4= member.name
+                  %td.col-md-2= member.cpf
+                  %td.col-md-2= member.member_job.name if member.member_job.present?
+                  %td.col-md-2= link_to "visualizar", member.certificate_civil_criminal.url, target: '_blank' if member.certificate_civil_criminal.present?
 
       %hr/
       .row
@@ -99,18 +100,21 @@
             %b Documentos 
             %br/
             %small
-              = link_to "Atualizar Documentos"
+              = link_to "Atualizar Documentos", restrict_area_documentations_path
       .row
         .col-md-12 
           %table.table.table-condensed.table-bordered.table-hover.table-striped
             %thead
               %tr
                 %th Documento
+                %th Enviado em
                 %th Digital
             %tbody 
-              %tr
-                %td.col-md-2
-                %td.col-md-6
+              - @entity.documents.each do |document|
+                %tr
+                  %td= document.document_category.name if document.document_category.present?
+                  %td= document.created_at.strftime('%d/%m/%Y às %H:%M')
+                  %td= link_to "Visualizar", document.archive_path.url, target: "_blank"
 
       %hr/
       .row

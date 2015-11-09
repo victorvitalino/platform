@@ -815,12 +815,14 @@ ActiveRecord::Schema.define(version: 20151109115901) do
     t.string   "celphone"
     t.string   "certificate_civil_criminal"
     t.boolean  "status",                     default: true
+    t.integer  "member_job_id"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
 
   add_index "entity_members", ["cadastre_id"], name: "index_entity_members_on_cadastre_id", using: :btree
   add_index "entity_members", ["cpf", "cadastre_id"], name: "index_entity_members_on_cpf_and_cadastre_id", unique: true, using: :btree
+  add_index "entity_members", ["member_job_id"], name: "index_entity_members_on_member_job_id", using: :btree
 
   create_table "entity_situation_statuses", force: :cascade do |t|
     t.string   "name"

@@ -1,0 +1,42 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/entity_portal/tabs'
+      %br/
+      %br/
+      %br/
+      .row
+        .col-md-12
+          %h4
+            %b Cadastrar membro da diretoria
+      .row
+        .col-md-12
+          = render 'form'
+      %hr/
+      .row
+        .col-md-12
+          %h4
+            %b Membros da Diretoria
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-bordered.table-striped
+            %thead
+              %tr
+                %th Cargo
+                %th Nome
+                %th CPF
+                %th RG
+                %th Data de cadastro
+                %th Certidão Negativa Civil/Criminal
+                %th Ação
+            %tbody
+              - @entity.members.each do |member|
+                %tr
+                  %td= member.member_job.name if member.member_job.present?
+                  %td= member.name
+                  %td= member.cpf
+                  %td= "#{member.rg} - #{member.rg_org}"
+                  %td= member.created_at.strftime('%d/%m/%Y às %H:%M') if member.created_at.present?
+                  %td= link_to 'visualizar', member.certificate_civil_criminal.url, target: '_blank'
+                  %td
+                    = link_to "excluir", restrict_area_member_path(member), method: :delete, data: { confirm: t(:confirm_delete)}
