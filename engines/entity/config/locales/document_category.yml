@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'entity/document_category': 'Categoria de Documento'
+    attributes:
+      'entity/document_category': 
+        name: "Nome"
+        description: "Descrição"
+        code: "Código"
+        status: "Ativo?"
