@@ -1,18 +1,18 @@
 require_dependency 'entity_portal/application_controller'
 module EntityPortal
   module RestrictArea
-    class DocumentationsController < ApplicationController
+    class MembersController < ApplicationController
       before_action :validate_session!
       before_action :set_tab
 
       def index
-        @document = Entity::Document.new
+        @member = Entity::Member.new
       end
 
       def create
-        @document = Entity::Document.new(set_params)
-        @document.cadastre_id = @entity.id
-        if @document.save
+        @member = Entity::Member.new(set_params)
+        @member.cadastre_id = @entity.id
+        if @member.save
           flash[:success] = t :success
           redirect_to action: 'index'
         else
@@ -23,9 +23,9 @@ module EntityPortal
       end
 
       def destroy
-        @document = Entity::Document.find(params[:id])
+        @member = @entity.members.find(params[:id])
 
-        if @document.destroy
+        if @member.destroy
           flash[:success] = t :success
         else
           flash[:danger] = t :danger
@@ -37,7 +37,8 @@ module EntityPortal
       private
 
       def set_params
-        params.require(:document).permit(:archive_path, :observation, :document_category_id)
+        params.require(:member).permit(:name, :cpf, :rg, :rg_org, :born, :telephone, :telephone_optional,
+                                       :celphone, :member_job_id, :certificate_civil_criminal)
       end
 
       def validate_session!
@@ -49,7 +50,7 @@ module EntityPortal
       end
 
       def set_tab
-        @tab = 'docs'
+        @tab = 'members'
       end
     end
   end

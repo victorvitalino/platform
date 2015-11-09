@@ -1,0 +1,26 @@
+= simple_form_for @member, url: restrict_area_members_path do |f|
+  .row
+    .col-md-4
+      = f.input :name, as: :string
+    .col-md-2
+      = f.input :cpf, as: :string
+    .col-md-2
+      = f.input :rg, as: :string
+    .col-md-2
+      = f.input :rg_org, as: :string
+    .col-md-2
+      = f.input :born, as: :string, input_html: {  class: 'date '}
+  .row
+    .col-md-2
+      = f.input :telephone, as: :string
+    .col-md-2
+      = f.input :telephone_optional, as: :string
+    .col-md-2
+      = f.input :celphone, as: :string
+    .col-md-2
+      = f.association :member_job, include_blank: false
+    .col-md-4
+      = f.input :certificate_civil_criminal, as: :file
+  .row
+    .col-md-12
+      = f.submit "Cadastrar Membro", class: 'btn btn-success btn-sm'

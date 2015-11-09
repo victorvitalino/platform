@@ -4,7 +4,9 @@
       %b Área restrita - Entidades
       %br/
       %small
-        = link_to "Finalizar Sessão"
+        = link_to "Finalizar Sessão", destroy_authorization_path, method: :delete
+        |
+        = link_to "Alterar Dados de Acesso", restrict_area_edit_session_path
 %br/
 %br/
 %br/
@@ -16,6 +18,4 @@
       %li{:role => "doc", :class => "#{(@tab == 'docs') ? 'active' : ''}"}
         %a{:href => "#{restrict_area_documentations_path}"} Documentação
       %li{:role => "doc", :class => "#{(@tab == 'members') ? 'active' : ''}"}
-        %a{:href => "#{restrict_area_documentations_path}"} Diretoria
-      %li{:role => "doc", :class => "#{(@tab == 'members') ? 'active' : ''}"}
-        %a{:href => "#{restrict_area_documentations_path}"} Associados
+        %a{:href => "#{restrict_area_members_path}"} Diretoria
