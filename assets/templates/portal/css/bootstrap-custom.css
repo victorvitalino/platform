@@ -625,6 +625,9 @@ body{
   and (device-height: 480px)
   and (-webkit-device-pixel-ratio: 2)
   and (orientation: portrait) {
+    .navbar-superior{
+      display: none;
+    }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
       width: 100%!important;
     }
@@ -660,6 +663,9 @@ body{
   and (device-height: 320px)
   and (-webkit-device-pixel-ratio: 2)
   and (orientation: landscape)  {
+    .navbar-superior{
+      display: none;
+    }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
       width: 100%!important;
     }
@@ -689,11 +695,13 @@ body{
 
 /* Landscape iphone 5*/
 @media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
+  and (device-width: 568px)
+  and (device-height: 320px)
+  and (-webkit-device-pixel-ratio: 2)
   and (orientation: landscape) {
-
+    .navbar-superior{
+      display: none;
+    }
       .dropdown-menu {
         position: absolute!important;
       }
@@ -723,6 +731,49 @@ body{
         height: 55px;
       }
     }
+
+    /*Portrait iphone 5*/
+
+    @media only screen
+      and (device-width: 320px)
+      and (device-height: 568px)
+      and (-webkit-device-pixel-ratio: 2)
+      and (orientation: portrait) {
+        .navbar-superior{
+          display: none;
+        }
+          .dropdown-menu {
+            position: absolute!important;
+          }
+          #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
+            width: 100%!important;
+          }
+          .topSlider .flex-caption {
+          width: 320px;
+          margin-left: -100px;
+          left:29%;
+          }
+          .flex-viewport li{
+            width: 320px!important;
+          }
+          .tab-fundo img{
+            width: 100%;
+          }
+          .tab-mes{
+            height: 150px;
+          }
+          .tab-mes span{
+            display: block;
+            float: left;
+            margin-top: 20px;
+          }
+          .homeVideoWrapper{
+            display: none;
+          }
+          .item_menu{
+            height: 55px;
+          }
+        }
 
 
 
@@ -892,6 +943,9 @@ body{
     and (device-height: 640px)
     and (-webkit-min-device-pixel-ratio: 2)
     and (orientation: portrait) {
+      .navbar-superior{
+        display: none;
+      }
       #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
         width: 100%!important;
       }
@@ -927,6 +981,9 @@ body{
   and (device-height: 360px)
   and (-webkit-device-pixel-ratio: 3)
   and (orientation: landscape) {
+    .navbar-superior{
+      display: none;
+    }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
       width: 100%!important;
     }
@@ -962,6 +1019,9 @@ and (device-width: 640px)
 and (device-height: 360px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: landscape) {
+  .navbar-superior{
+    display: none;
+  }
   #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
     width: 100%!important;
   }
@@ -998,6 +1058,9 @@ and (device-width: 384px)
 and (device-height: 567px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: portrait) {
+  .navbar-superior{
+    display: none;
+  }
   #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
     width: 100%!important;
   }
@@ -1035,6 +1098,9 @@ and (device-width: 384px)
 and (device-height: 567px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: portrait) {
+  .navbar-superior{
+    display: none;
+  }
   #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos{
     width: 100%!important;
   }
