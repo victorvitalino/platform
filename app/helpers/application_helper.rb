@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def profile_users(id_sector)
-    @query_avatar = Person::Staff.where(sector_current_id:id_sector)
+    @query_avatar = Person::Staff.where(sector_current_id:id_sector).status(true)
 
     @query_avatar.each do |qa|
 
