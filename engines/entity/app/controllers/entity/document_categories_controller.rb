@@ -2,7 +2,7 @@ require_dependency 'entity/application_controller'
 
 module Entity
   class DocumentCategoriesController < ApplicationController
-
+    before_action :set_document_category, only: [:edit, :show, :update, :destroy]
     def index
       @categories = DocumentCategory.all.order(:created_at)
     end
