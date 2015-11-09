@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105163130) do
+ActiveRecord::Schema.define(version: 20151109115901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1336,10 +1336,12 @@ ActiveRecord::Schema.define(version: 20151105163130) do
     t.integer  "height"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
+  add_index "redactor_assets", ["user_id"], name: "index_redactor_assets_on_user_id", using: :btree
 
   create_table "regularization_requeriments", force: :cascade do |t|
     t.string   "name"
