@@ -17,3 +17,6 @@
 //= require material/js/datatables
 //= require mod
 //= require material/js/custom
+//= require material/js/redactor
+
+
