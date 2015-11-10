@@ -1,4 +1,4 @@
-module Person
+module Helpdesk
   class ApplicationPolicy
     attr_reader :user, :record
 
@@ -9,7 +9,7 @@ module Person
 
     def view_nav?
       return true if user.account.administrator
-      system = Person::System.find_by_code('1') rescue nil
+      system = Person::System.find_by_code('3') rescue nil
       (user.account.privilege_id & system.system_permissions.map(&:code)).present?
     end
 
@@ -40,7 +40,7 @@ module Person
     def scope
       Pundit.policy_scope!(user, record.class)
     end
-    #VERIFICA SE O USUÁRIO POSSUIO O CÓDIGO DA PERMISSÃO
+    #VERIFICA SE O USUÁRIO POSSUI O CÓDIGO DA PERMISSÃO
     def allow?(code)
       return true if user.account.administrator?
       user.account.privilege_id.to_a.include? code.to_i
