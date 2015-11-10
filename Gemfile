@@ -4,12 +4,10 @@ gem 'rails', '4.2.1'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jquery-turbolinks'
-gem 'nprogress-rails'
 
 gem 'jquery-ui-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'jquery-datatables-rails', '~> 3.3.0'
 
 gem 'simple_form'
 gem 'haml-rails'
@@ -26,6 +24,7 @@ gem 'mini_magick'
 gem 'redactor-rails'
 
 gem 'friendly_id'
+
 gem 'has_scope'
 
 gem 'validates_cpf_cnpj'
@@ -34,8 +33,6 @@ gem 'email_validator'
 
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-
-gem 'jquery-datatables-rails', '~> 3.3.0'
 
 gem 'axlsx', '~> 2.0.1'
 
