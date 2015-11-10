@@ -8,9 +8,8 @@
 *= require material/css/custom
 *= require redactor-rails
 *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-*= require nprogress
-*= require nprogress-bootstrap
 */
+
 li a.btn {
   font-weight: bold !important;
 }
