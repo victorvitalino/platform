@@ -3,7 +3,7 @@ module Portal
     def link_each(category, order = 'ASC')
       @category = Cms::NavCategory.find_by_name(category)
       if @category.present? && @category.navs.present?
-        @category.navs.order(:order).each do |n|
+        @category.navs.active.order(:order).each do |n|
           yield n
         end
       end
@@ -29,7 +29,7 @@ module Portal
         link_to nav.name, nav.link_external, target: nav.target
       end
     end
-    
+
     def slider_each(limit = 10, order = 'ASC')
       @slider = Cms::Post.where(slider: true ,publish: true).limit(limit).order("date #{order}")
 
