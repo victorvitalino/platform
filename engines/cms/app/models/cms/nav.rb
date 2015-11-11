@@ -6,6 +6,8 @@ module Cms
 
     scope :active, -> {where(publish: true)}
 
+    audited
+    
     validates_presence_of :name
     before_create :set_order
 
