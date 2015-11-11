@@ -1,0 +1,16 @@
+module Candidate
+  class List < ActiveRecord::Base
+
+    extend FriendlyId
+    friendly_id :title, use: :slugged
+
+    enum list_types: ['extranet', 'portal']
+
+    validates :title, :condition_sql, :list_type, :view_target, presence: true
+    validates :title, uniqueness: true
+
+    def self.view_targets
+      %w(Candidate::View::GeneralCandidate)
+    end
+  end
+end

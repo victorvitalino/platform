@@ -56,3 +56,10 @@
             %ul{style: ('display:block;' if params[:module] == "helpdesk")}
               %li= link_to "Centrais de serviço", helpdesk.ticket_types_path if policy(:TicketType, namespace: Helpdesk).index?
               %li= link_to "Solicitações", helpdesk.tickets_path(q: 'open')  if policy(:Ticket, namespace: Helpdesk).index?
+        - if policy(:application, namespace: Helpdesk).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "habitation")}
+            %a{:href => ""}
+              %i.md.md-person>
+              Cadastro Geral
+            %ul{style: ('display:block;' if params[:module] == "habitation")}
+              %li= link_to "Listas", candidate.lists_path
