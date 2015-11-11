@@ -430,6 +430,17 @@ color: #fff;
 .thumbnail {
   background-color: #fff;
 }
+.thumbnail-img{
+  width: 100%;
+margin: 0 auto;
+  height: 155px;
+  overflow: hidden;
+}
+.thumbnail-img img{
+  width: 100%;
+height: auto;
+}
+.flex-caption a:hover{color:#fff;text-decoration: none;}
 .caption_notice{
   border-bottom: 1px dotted #cdcdcd;
     padding-top: 13px!important;
