@@ -43,6 +43,7 @@
               %li= link_to "postagens", cms.posts_path if policy(:post, namespace: Cms).index?
               %li= link_to "páginas", cms.pages_path   if policy(:page, namespace: Cms).index?
               %li= link_to "menu", cms.navs_path       if policy(:nav, namespace: Cms).index?
+              %li= link_to "vídeos", cms.videos_path   if policy(:video, namespace: Cms).index?
               %li
                 %hr/
               %li= link_to "categorias de post", cms.post_categories_path   if policy(:PostCategory,  namespace: Cms).index?

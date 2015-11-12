@@ -22,6 +22,14 @@ module Portal
   			yield @sliderrs
   	end
 
+    def video_each(limit = 10)
+    @videos = Cms::Video.where(publish: true).limit(limit).order(:position)
+
+      @videos.each do |v|
+        yield v
+      end
+    end
+
     def link_to_nav(nav)
       if nav.pagina?
         link_to nav.name, portal.page_path(nav.link_page.id), target: nav.target if nav.link_page.present?

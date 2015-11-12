@@ -6,22 +6,12 @@
       %div{:style => "clear: both;"}
       .flex-viewport
         %ul.slides
-          %li.clone{"aria-hidden" => "true",:style => "text-align:center;"}
-            <iframe width="760" height="550" src="https://www.youtube.com/embed/GWRgnzcsVFI" frameborder="0" allowfullscreen></iframe>
-          %li.clone{"aria-hidden" => "true",:style => "text-align:center;"}
-            <iframe width="760" height="550" src="https://www.youtube.com/embed/EmgtIB2sKRc" frameborder="0" allowfullscreen></iframe>
-          %li.clone{"aria-hidden" => "true",:style => "text-align:center;"}
-            <iframe width="760" height="550" src="https://www.youtube.com/embed/OJxgI8dZDjw" frameborder="0" allowfullscreen></iframe>
-          %li.clone{"aria-hidden" => "true",:style => "text-align:center;"}
-            <iframe width="760" height="550" src="https://www.youtube.com/embed/xFB2QZM6mcU" frameborder="0" allowfullscreen></iframe>
-          %div{:style => "clear: both;"}
+          - video_each(5) do |vid|
+            %li.clone{"aria-hidden" => "true",:style => "text-align:center;"}
+              <iframe width="760" height="550" src="#{vid.url}" frameborder="0" allowfullscreen></iframe>
       %ol.flex-control-nav.flex-control-paging
-        %li
-          %a 1
-        %li
-          %a 2
-        %li
-          %a 3
-        %li
-          %a 4
+        - video_each(5) do |vid|
+          %li
+            %a
+              = vid.title
     %div{:style => "clear: both;"}
