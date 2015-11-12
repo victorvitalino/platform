@@ -1,0 +1,13 @@
+/ conteudo da pagina
+.container
+  .row
+    .col-md-12.box
+      .box_internal
+        .post
+          .content_post
+            %h1 Todas as Notícias
+            %hr
+            - post_each(100, 'DESC') do |p|
+              %b= link_to p.title, post_path(p)
+              Publicado em :
+              = p.date.strftime('%d/%m/%Y')
