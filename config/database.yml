@@ -20,6 +20,6 @@ production:
 test:
   <<: *default
   database: "codhab_development"
-  username: "postgres"
-  password: "123456789"
+  username: "igor"
+  password: "mila1324"
   host: "localhost"

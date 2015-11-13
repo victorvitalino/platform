@@ -23,15 +23,21 @@ module Protocol
              authorize :assessment,  :create?
         end
         def create
-           authorize :assessment,  :create?
-            @assessment = Assessment.new(set_assessment_params)
-            @assessment.set_staff(current_user.account_id)
+            authorize :assessment,  :create?
+            if current_user.account.sector_current.present?
+              @assessment = Assessment.new(set_assessment_params)
+              @assessment.set_staff(current_user.account_id)
 
-            if @assessment.save!
-                redirect_to action: 'index'
+              if @assessment.save!
+                  redirect_to action: 'index'
+              else
+                  render action: 'new'
+              end
             else
-                render action: 'new'
+              flash[:danger] = "Usuário não está alocado em um setor."
+              redirect_to action: 'index'
             end
+
         end
 
 
