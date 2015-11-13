@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     mount EntityPortal::Engine          => "/entidades",        as: 'entity_portal',                module: 'entity_portal'
     mount SchedulePortal::Engine        => '/agendamento',      as: 'shedule_portal',               module: 'schedule_portal'
     mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',             module: 'concourse_portal'
-    mount FirmPortal::Engine            => "/empresa",          as: 'firm',                         module: 'firm_portal'
+    mount FirmPortal::Engine            => "/empresa",          as: 'firm_portal',                         module: 'firm_portal'
   end
 
   mount Address::Engine                  => "/endereco",       as: 'address'

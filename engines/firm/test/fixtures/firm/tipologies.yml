@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  home_type: MyString
+  private_area: MyString
+  income_family: MyString
+  initial_value: 1.5
+  end_value: 1.5
+
+two:
+  name: MyString
+  home_type: MyString
+  private_area: MyString
+  income_family: MyString
+  initial_value: 1.5
+  end_value: 1.5

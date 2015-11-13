@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112174501) do
+ActiveRecord::Schema.define(version: 20151113160342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -914,6 +914,84 @@ ActiveRecord::Schema.define(version: 20151112174501) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "firm_companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "trade"
+    t.string   "cnpj"
+    t.string   "email"
+    t.integer  "city_id"
+    t.string   "address"
+    t.string   "adjuntc_address"
+    t.string   "cep"
+    t.string   "telephone"
+    t.string   "telephone_optional"
+    t.boolean  "status",             default: true
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "firm_companies", ["city_id"], name: "index_firm_companies_on_city_id", using: :btree
+
+  create_table "firm_enterprise_cadastres", force: :cascade do |t|
+    t.integer  "enterprise_id"
+    t.integer  "cadastre_id"
+    t.integer  "status_cadastre_id"
+    t.text     "observation"
+    t.string   "archive_path"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "firm_enterprise_cadastres", ["cadastre_id"], name: "index_firm_enterprise_cadastres_on_cadastre_id", using: :btree
+  add_index "firm_enterprise_cadastres", ["enterprise_id"], name: "index_firm_enterprise_cadastres_on_enterprise_id", using: :btree
+  add_index "firm_enterprise_cadastres", ["status_cadastre_id"], name: "index_firm_enterprise_cadastres_on_status_cadastre_id", using: :btree
+
+  create_table "firm_enterprises", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "value"
+    t.integer  "tipology_id"
+    t.integer  "company_id"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "firm_enterprises", ["company_id"], name: "index_firm_enterprises_on_company_id", using: :btree
+  add_index "firm_enterprises", ["tipology_id"], name: "index_firm_enterprises_on_tipology_id", using: :btree
+
+  create_table "firm_status_cadastres", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "firm_tipologies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "home_type"
+    t.string   "private_area"
+    t.string   "income_family"
+    t.float    "initial_value"
+    t.float    "end_value"
+    t.boolean  "status",        default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "firm_user_companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "login"
+    t.string   "password"
+    t.boolean  "admin"
+    t.integer  "company_id"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "firm_user_companies", ["company_id"], name: "index_firm_user_companies_on_company_id", using: :btree
 
   create_table "helpdesk_ticket_attendants", force: :cascade do |t|
     t.integer  "ticket_type_id"
