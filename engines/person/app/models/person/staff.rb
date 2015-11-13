@@ -1,6 +1,7 @@
 module Person
   class Staff < ActiveRecord::Base
 
+    audited
 
     scope :status, -> (status = true) {where(status: status)}
     scope :sector, -> sector_current_id {where(sector_current_id: sector_current_id)}
@@ -23,11 +24,13 @@ module Person
 
     validates_uniqueness_of :code
 
-#    validates :cpf, cpf: true
- #   validates_date :born, :before => lambda {18.years.ago}
+    validates :cpf, cpf: true
+    validates_date :born, :before => lambda {18.years.ago}
 
     mount_uploader :avatar, Person::AvatarUploader
     mount_uploader :personal_image, Person::AvatarUploader
     mount_uploader :curriculum, Person::CurriculumUploader
+
+    
   end
 end

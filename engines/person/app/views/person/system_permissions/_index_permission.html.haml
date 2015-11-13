@@ -1,8 +1,7 @@
 - @system_permissions.each_with_index do |j, i|
  %tr
-  %td.col-md-1
-   = i + 1
-  %td
-   = j.action
+  %td.col-md-1= i + 1
+  %td= j.action
+  %td= j.code
   %td.col-md-2
    = link_to "", system_system_permission_path(system_id:@system,id:j), method: :delete,remote:true,  class: 'md-highlight-remove btn btn-danger waves-effect waves-button waves-float', data: {confirm: "#{t(:confirm_delete)}"} if policy(:SystemPermission, namespace: Person).destroy?

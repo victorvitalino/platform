@@ -506,7 +506,11 @@ body.login-content:before {
   position: absolute;
   top: 0;
   left: 0;
-  background: #333;
+  background-image: url('/images/wood-bg.jpg');
+  background-repeat: repeat-x;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-color: black;
   content: "";
   z-index: 0;
 }

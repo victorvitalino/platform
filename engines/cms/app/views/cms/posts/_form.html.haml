@@ -34,7 +34,7 @@
           %br
           = f.check_box :slider, id: 'ts4',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts4"}
-      - if (current_user.account.sector_current.id == 11)
+      - if policy(:Post, namespace: Cms).publish?
         .col-md-2
           .toggle-switch{"data-ts-color" => "blue"}
             %label

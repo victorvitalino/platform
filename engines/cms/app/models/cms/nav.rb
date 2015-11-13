@@ -4,9 +4,10 @@ module Cms
     belongs_to :link_post, class_name: "Cms::Post"
     belongs_to :category,  class_name: "Cms::NavCategory"
 
-    default_scope { where(publish: true) }
+    scope :active, -> {where(publish: true)}
 
-
+    audited
+    
     validates_presence_of :name
     before_create :set_order
 

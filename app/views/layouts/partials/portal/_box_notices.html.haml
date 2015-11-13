@@ -1,12 +1,13 @@
 .container
   .col-md-12
-    %h2.title_notice Utimas Noticias
+    %h2.title_notice Útimas Notícias
   .row
     / bloco de noticias
     - post_each(3, 'DESC') do |p|
       .col-sm-6.col-md-4
         .thumbnail
-          = image_tag p.thumb if p.thumb?
+          .thumbnail-img
+            = image_tag p.thumb if p.thumb?
           .caption.caption_notice
             %a.link_caption
               %b= link_to "#{(p.post_category.present?) ? p.post_category.title : ''}", post_path(p), class: 'council'

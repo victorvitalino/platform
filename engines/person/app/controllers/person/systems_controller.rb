@@ -43,7 +43,7 @@ module Person
 		end
 
 		def set_systems
-			@systems = System.all
+			@systems = System.all.order(:code)
 		end
 
 		def set_system

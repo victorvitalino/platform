@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109115901) do
+ActiveRecord::Schema.define(version: 20151112174501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,29 @@ ActiveRecord::Schema.define(version: 20151109115901) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "audits", force: :cascade do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "associated_id"
+    t.string   "associated_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "audited_changes"
+    t.integer  "version",         default: 0
+    t.string   "comment"
+    t.string   "remote_address"
+    t.string   "request_uuid"
+    t.datetime "created_at"
+  end
+
+  add_index "audits", ["associated_id", "associated_type"], name: "associated_index", using: :btree
+  add_index "audits", ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
+  add_index "audits", ["created_at"], name: "index_audits_on_created_at", using: :btree
+  add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
+  add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
 
   create_table "candidate_attendance_statuses", force: :cascade do |t|
     t.string   "name"
@@ -447,6 +470,22 @@ ActiveRecord::Schema.define(version: 20151109115901) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "candidate_lists", force: :cascade do |t|
+    t.string   "title"
+    t.string   "condition_sql"
+    t.integer  "list_type",     default: 0
+    t.string   "view_target"
+    t.boolean  "publish"
+    t.boolean  "cpf_filter",    default: false
+    t.boolean  "name_filter",   default: false
+    t.boolean  "income_filter", default: false
+    t.string   "slug"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "candidate_lists", ["slug"], name: "index_candidate_lists_on_slug", unique: true, using: :btree
+
   create_table "candidate_pontuations", force: :cascade do |t|
     t.integer  "cadastre_id"
     t.integer  "cadastre_mirror_id"
@@ -588,6 +627,15 @@ ActiveRecord::Schema.define(version: 20151109115901) do
   end
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
+
+  create_table "cms_videos", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.integer  "position"
+    t.boolean  "publish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "concourse_candidate_messages", force: :cascade do |t|
     t.integer  "candidate_id"
@@ -815,14 +863,12 @@ ActiveRecord::Schema.define(version: 20151109115901) do
     t.string   "celphone"
     t.string   "certificate_civil_criminal"
     t.boolean  "status",                     default: true
-    t.integer  "member_job_id"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
 
   add_index "entity_members", ["cadastre_id"], name: "index_entity_members_on_cadastre_id", using: :btree
   add_index "entity_members", ["cpf", "cadastre_id"], name: "index_entity_members_on_cpf_and_cadastre_id", unique: true, using: :btree
-  add_index "entity_members", ["member_job_id"], name: "index_entity_members_on_member_job_id", using: :btree
 
   create_table "entity_situation_statuses", force: :cascade do |t|
     t.string   "name"
@@ -1019,6 +1065,7 @@ ActiveRecord::Schema.define(version: 20151109115901) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.date     "password_change"
+    t.integer  "privilege_id",                                    array: true
   end
 
   add_index "person_staffs", ["branch_line_id"], name: "index_person_staffs_on_branch_line_id", using: :btree

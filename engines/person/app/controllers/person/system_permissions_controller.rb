@@ -12,12 +12,12 @@ module Person
 		end
 
 		def new
-			@system_permission = @system.system_permission.new
+			@system_permission = @system.system_permissions.new
 			authorize @system_permission
 		end
 
 		def create
-			@system_permission = @system.system_permission.new(system_permission_params)
+			@system_permission = @system.system_permissions.new(system_permission_params)
 			authorize @system_permission
 			@system_permission.save			
 		end

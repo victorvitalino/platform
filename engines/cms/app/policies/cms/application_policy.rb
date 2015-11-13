@@ -7,13 +7,10 @@ module Cms
       @record = record
     end
 
-    def index?
+    def view_nav?
       return true if user.account.administrator
-      @system = Person::System.find_by_code('3')#CÓDIGO DO SISTEMA CMS
-
-        if @system.present?
-        return true if user.account.permissions.where(system_id: @system.id, status: true).present?
-      end
+      system = Person::System.find_by_code('3') rescue nil
+      (user.account.privilege_id & system.system_permissions.map(&:code)).present?
     end
 
     def show?
@@ -45,11 +42,8 @@ module Cms
     end
     #VERIFICA SE O USUÁRIO POSSUI O CÓDIGO DA PERMISSÃO
     def allow?(code)
-      return true if user.account.administrator
-      @permission = Person::SystemPermission.find_by_code(code)
-      if @permission.present?
-        user.account.permissions.where(system_permission_id: @permission.id, status: true).present?
-      end
+      return true if user.account.administrator?
+      user.account.privilege_id.to_a.include? code.to_i
     end
 
     private
