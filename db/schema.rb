@@ -1224,6 +1224,7 @@ ActiveRecord::Schema.define(version: 20151109115901) do
     t.integer  "agenda_id"
     t.date     "date"
     t.time     "hour"
+    t.date     "born"
     t.string   "name"
     t.string   "cpf"
     t.string   "email"
@@ -1259,6 +1260,7 @@ ActiveRecord::Schema.define(version: 20151109115901) do
     t.time     "lunch_end"
     t.integer  "restriction_type", default: 0
     t.text     "restriction_sql"
+    t.string   "location"
     t.integer  "program_id"
     t.integer  "staff_id"
     t.boolean  "status",           default: true

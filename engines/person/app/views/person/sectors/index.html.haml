@@ -26,4 +26,5 @@
             %th Status
             %th Ações
         %tbody.index-sector
-          = render 'index'
+          - if @sectors.present?
+            = render 'index'
