@@ -91,7 +91,12 @@ gem 'habitation_portal',            path: 'engines/habitation_portal'
 gem 'entity',                       path: 'engines/entity'
 gem 'entity_portal',                path: 'engines/entity_portal'
 
+gem 'firm',                         path: 'engines/firm'
+gem 'firm_portal',                  path: 'engines/firm_portal'
+
 gem 'schedule',                     path: 'engines/schedule'
 gem 'schedule_portal',              path: 'engines/schedule_portal'
 
 gem 'sefaz',                        path: 'engines/sefaz'
+
+
