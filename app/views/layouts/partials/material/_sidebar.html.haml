@@ -23,7 +23,7 @@
             = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
       %ul.main-menu
         %li{class: ('active' if params[:module] == "dashboard")}
-          = link_to "<i class='md  md-dashboard'></i> Mural".html_safe, dashboard.root_pathcd
+          = link_to "<i class='md  md-dashboard'></i> Mural".html_safe, dashboard.root_path
         - if policy(:application, namespace: Person).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "person")}
             %a{:href => ""}
@@ -65,3 +65,15 @@
             %ul{style: ('display:block;' if params[:module] == "habitation")}
               %li= link_to "Pesquisar Geral", candidate.cadastres_path
               %li= link_to "Listas", candidate.lists_path
+        - if policy(:application, namespace: Sefaz).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "sefaz")}
+            %a{:href => ""}
+              %i.md.md-pageview>
+              Sefaz
+            %ul{style: ('display:block;' if params[:module] == "sefaz")}
+              %li= link_to "Insenção de ITCD/ITBI", sefaz.new_iptu_consult_path
+              %li= link_to "Cancelamento de isenção", sefaz.transmissions_path
+              %li= link_to "Consulta IPTU", sefaz.new_iptu_consult_path
+   
+   
+
