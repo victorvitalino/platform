@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112174501) do
+ActiveRecord::Schema.define(version: 20151113160342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -238,20 +238,9 @@ ActiveRecord::Schema.define(version: 20151112174501) do
   add_index "candidate_attendances", ["staff_id"], name: "index_candidate_attendances_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_addresses", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.integer  "cadastre_mirror_id"
-    t.integer  "unit_id"
-    t.integer  "dominal_chair"
-    t.integer  "type_receiving"
-    t.integer  "type_occurence"
-    t.text     "observation"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadastre_addresses_on_cadastre_id", using: :btree
-  add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadastre_addresses_on_cadastre_mirror_id", using: :btree
-  add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadastre_addresses_on_unit_id", using: :btree
 
   create_table "candidate_cadastre_mirrors", force: :cascade do |t|
     t.string   "name"
@@ -863,12 +852,14 @@ ActiveRecord::Schema.define(version: 20151112174501) do
     t.string   "celphone"
     t.string   "certificate_civil_criminal"
     t.boolean  "status",                     default: true
+    t.integer  "member_job_id"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
 
   add_index "entity_members", ["cadastre_id"], name: "index_entity_members_on_cadastre_id", using: :btree
   add_index "entity_members", ["cpf", "cadastre_id"], name: "index_entity_members_on_cpf_and_cadastre_id", unique: true, using: :btree
+  add_index "entity_members", ["member_job_id"], name: "index_entity_members_on_member_job_id", using: :btree
 
   create_table "entity_situation_statuses", force: :cascade do |t|
     t.string   "name"
@@ -923,6 +914,84 @@ ActiveRecord::Schema.define(version: 20151112174501) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "firm_companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "trade"
+    t.string   "cnpj"
+    t.string   "email"
+    t.integer  "city_id"
+    t.string   "address"
+    t.string   "adjuntc_address"
+    t.string   "cep"
+    t.string   "telephone"
+    t.string   "telephone_optional"
+    t.boolean  "status",             default: true
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "firm_companies", ["city_id"], name: "index_firm_companies_on_city_id", using: :btree
+
+  create_table "firm_enterprise_cadastres", force: :cascade do |t|
+    t.integer  "enterprise_id"
+    t.integer  "cadastre_id"
+    t.integer  "status_cadastre_id"
+    t.text     "observation"
+    t.string   "archive_path"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "firm_enterprise_cadastres", ["cadastre_id"], name: "index_firm_enterprise_cadastres_on_cadastre_id", using: :btree
+  add_index "firm_enterprise_cadastres", ["enterprise_id"], name: "index_firm_enterprise_cadastres_on_enterprise_id", using: :btree
+  add_index "firm_enterprise_cadastres", ["status_cadastre_id"], name: "index_firm_enterprise_cadastres_on_status_cadastre_id", using: :btree
+
+  create_table "firm_enterprises", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "value"
+    t.integer  "tipology_id"
+    t.integer  "company_id"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "firm_enterprises", ["company_id"], name: "index_firm_enterprises_on_company_id", using: :btree
+  add_index "firm_enterprises", ["tipology_id"], name: "index_firm_enterprises_on_tipology_id", using: :btree
+
+  create_table "firm_status_cadastres", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "firm_tipologies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "home_type"
+    t.string   "private_area"
+    t.string   "income_family"
+    t.float    "initial_value"
+    t.float    "end_value"
+    t.boolean  "status",        default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "firm_user_companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "login"
+    t.string   "password"
+    t.boolean  "admin"
+    t.integer  "company_id"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "firm_user_companies", ["company_id"], name: "index_firm_user_companies_on_company_id", using: :btree
 
   create_table "helpdesk_ticket_attendants", force: :cascade do |t|
     t.integer  "ticket_type_id"
@@ -990,6 +1059,178 @@ ActiveRecord::Schema.define(version: 20151112174501) do
   add_index "helpdesk_tickets", ["sector_id"], name: "index_helpdesk_tickets_on_sector_id", using: :btree
   add_index "helpdesk_tickets", ["ticket_subject_id"], name: "index_helpdesk_tickets_on_ticket_subject_id", using: :btree
   add_index "helpdesk_tickets", ["ticket_type_id"], name: "index_helpdesk_tickets_on_ticket_type_id", using: :btree
+
+  create_table "juridical_action_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "juridical_activities", force: :cascade do |t|
+    t.integer  "document_type_id"
+    t.integer  "action_type_id"
+    t.integer  "local_instance_id"
+    t.date     "date_distribution"
+    t.date     "deadline"
+    t.string   "days"
+    t.date     "end_date"
+    t.text     "complemet"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.string   "monitoring_type"
+    t.string   "attachment"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "juridical_activities", ["action_type_id"], name: "index_juridical_activities_on_action_type_id", using: :btree
+  add_index "juridical_activities", ["document_type_id"], name: "index_juridical_activities_on_document_type_id", using: :btree
+  add_index "juridical_activities", ["local_instance_id"], name: "index_juridical_activities_on_local_instance_id", using: :btree
+  add_index "juridical_activities", ["user_id"], name: "index_juridical_activities_on_user_id", using: :btree
+
+  create_table "juridical_atividades", force: :cascade do |t|
+    t.integer  "document_type_id"
+    t.integer  "action_type_id"
+    t.integer  "local_instance_id"
+    t.date     "date_distribution"
+    t.date     "deadline"
+    t.string   "days"
+    t.date     "end_date"
+    t.text     "complemet"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.string   "monitoring_type"
+    t.string   "attachment"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "juridical_atividades", ["action_type_id"], name: "index_juridical_atividades_on_action_type_id", using: :btree
+  add_index "juridical_atividades", ["document_type_id"], name: "index_juridical_atividades_on_document_type_id", using: :btree
+  add_index "juridical_atividades", ["user_id"], name: "index_juridical_atividades_on_user_id", using: :btree
+
+  create_table "juridical_instances", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "juridical_local_instances", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "instance_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "juridical_local_instances", ["instance_id"], name: "index_juridical_local_instances_on_instance_id", using: :btree
+
+  create_table "juridical_process_monitorings", force: :cascade do |t|
+    t.string   "number_lawsuit"
+    t.string   "number_administrative_process"
+    t.string   "organ"
+    t.integer  "action_type_id"
+    t.string   "value_cause"
+    t.integer  "local_instance_id"
+    t.string   "part"
+    t.integer  "lawyer_responsible_id"
+    t.text     "complemet"
+    t.boolean  "status"
+    t.date     "initial_date"
+    t.date     "end_date"
+    t.integer  "process_type"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "juridical_process_monitorings", ["action_type_id"], name: "index_juridical_process_monitorings_on_action_type_id", using: :btree
+  add_index "juridical_process_monitorings", ["lawyer_responsible_id"], name: "index_juridical_process_monitorings_on_lawyer_responsible_id", using: :btree
+  add_index "juridical_process_monitorings", ["local_instance_id"], name: "index_juridical_process_monitorings_on_local_instance_id", using: :btree
+
+  create_table "patrimony_down_goods", force: :cascade do |t|
+    t.string   "name"
+    t.string   "number_process"
+    t.string   "description"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "good_id"
+  end
+
+  add_index "patrimony_down_goods", ["good_id"], name: "index_patrimony_down_goods_on_good_id", using: :btree
+
+  create_table "patrimony_drives", force: :cascade do |t|
+    t.date     "date_drive"
+    t.integer  "sector_id"
+    t.integer  "user_id"
+    t.integer  "good_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "patrimony_drives", ["good_id"], name: "index_patrimony_drives_on_good_id", using: :btree
+  add_index "patrimony_drives", ["sector_id"], name: "index_patrimony_drives_on_sector_id", using: :btree
+  add_index "patrimony_drives", ["user_id"], name: "index_patrimony_drives_on_user_id", using: :btree
+
+  create_table "patrimony_goods", force: :cascade do |t|
+    t.string   "code_goods"
+    t.date     "date_acquisition"
+    t.boolean  "status"
+    t.integer  "sector_id"
+    t.integer  "user_id"
+    t.integer  "material_id"
+    t.integer  "property_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "patrimony_goods", ["material_id"], name: "index_patrimony_goods_on_material_id", using: :btree
+  add_index "patrimony_goods", ["property_id"], name: "index_patrimony_goods_on_property_id", using: :btree
+  add_index "patrimony_goods", ["sector_id"], name: "index_patrimony_goods_on_sector_id", using: :btree
+  add_index "patrimony_goods", ["user_id"], name: "index_patrimony_goods_on_user_id", using: :btree
+
+  create_table "patrimony_materials", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "type_material_id"
+    t.boolean  "status"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "patrimony_materials", ["type_material_id"], name: "index_patrimony_materials_on_type_material_id", using: :btree
+
+  create_table "patrimony_properties", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "patrimony_serial_numbers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "number"
+    t.integer  "good_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "patrimony_serial_numbers", ["good_id"], name: "index_patrimony_serial_numbers_on_good_id", using: :btree
+
+  create_table "patrimony_type_materials", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "percentage"
+    t.integer  "life_cycle"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "person_branch_lines", force: :cascade do |t|
     t.string   "telephone"
@@ -1271,6 +1512,7 @@ ActiveRecord::Schema.define(version: 20151112174501) do
     t.integer  "agenda_id"
     t.date     "date"
     t.time     "hour"
+    t.date     "born"
     t.string   "name"
     t.string   "cpf"
     t.string   "email"
@@ -1306,6 +1548,7 @@ ActiveRecord::Schema.define(version: 20151112174501) do
     t.time     "lunch_end"
     t.integer  "restriction_type", default: 0
     t.text     "restriction_sql"
+    t.string   "location"
     t.integer  "program_id"
     t.integer  "staff_id"
     t.boolean  "status",           default: true
@@ -1315,6 +1558,40 @@ ActiveRecord::Schema.define(version: 20151112174501) do
 
   add_index "schedule_agendas", ["program_id"], name: "index_schedule_agendas_on_program_id", using: :btree
   add_index "schedule_agendas", ["staff_id"], name: "index_schedule_agendas_on_staff_id", using: :btree
+
+  create_table "sefaz_allotment_candidates", force: :cascade do |t|
+    t.integer  "allotment_id"
+    t.string   "sector"
+    t.integer  "exemption_type", default: 0
+    t.string   "organization"
+    t.string   "cnpj"
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "city"
+    t.string   "address"
+    t.string   "unit_code"
+    t.float    "unit_value"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "sefaz_allotment_candidates", ["allotment_id"], name: "index_sefaz_allotment_candidates_on_allotment_id", using: :btree
+
+  create_table "sefaz_allotments", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.string   "sector"
+    t.integer  "exemption_type", default: 0
+    t.integer  "quantity",       default: 0
+    t.integer  "status",         default: 0
+    t.string   "csv_archive"
+    t.string   "xml_archive"
+    t.string   "sefaz_protocol"
+    t.datetime "send"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "sefaz_allotments", ["staff_id"], name: "index_sefaz_allotments_on_staff_id", using: :btree
 
   create_table "sefaz_transmission_candidates", force: :cascade do |t|
     t.integer  "transmission_id"

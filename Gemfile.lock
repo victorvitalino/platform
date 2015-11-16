@@ -94,6 +94,18 @@ PATH
       simple_form
 
 PATH
+  remote: engines/firm
+  specs:
+    firm (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/firm_portal
+  specs:
+    firm_portal (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/habitation
   specs:
     habitation (0.0.1)
@@ -513,6 +525,8 @@ DEPENDENCIES
   enum_help
   factory_girl_rails
   finance!
+  firm!
+  firm_portal!
   friendly_id
   guard
   guard-livereload
@@ -529,6 +543,7 @@ DEPENDENCIES
   mina
   mina-unicorn
   mini_magick
+  nokogiri
   person!
   pg
   poltergeist

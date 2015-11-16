@@ -37,6 +37,7 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
 gem 'axlsx', '~> 2.0.1'
+gem 'nokogiri'
 
 gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 gem 'signer', git: 'https://github.com/codhab/signer.git'
@@ -91,7 +92,12 @@ gem 'habitation_portal',            path: 'engines/habitation_portal'
 gem 'entity',                       path: 'engines/entity'
 gem 'entity_portal',                path: 'engines/entity_portal'
 
+gem 'firm',                         path: 'engines/firm'
+gem 'firm_portal',                  path: 'engines/firm_portal'
+
 gem 'schedule',                     path: 'engines/schedule'
 gem 'schedule_portal',              path: 'engines/schedule_portal'
 
 gem 'sefaz',                        path: 'engines/sefaz'
+
+

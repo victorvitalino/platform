@@ -34,7 +34,8 @@ Rails.application.routes.draw do
       mount Regularization::Engine           => "/regularizacao",  as: 'regularization',            module: 'regularization'
       mount Habitation::Engine               => "/habitacao",      as: 'habitation',                module: 'habitation'
       mount Entity::Engine                   => "/entidades",      as: 'entity',                    module: 'entity'
-      mount Sefaz::Engine                    => "/sefaz",          as: 'sefaz',                     module: 'bun'
+      mount Sefaz::Engine                    => "/sefaz",          as: 'sefaz',                     module: 'sefaz'
+      mount Firm::Engine                     => "/empresa",        as: 'firm',                      module: 'firm'
     end
   end
 
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
     mount EntityPortal::Engine          => "/entidades",        as: 'entity_portal',                module: 'entity_portal'
     mount SchedulePortal::Engine        => '/agendamento',      as: 'shedule_portal',               module: 'schedule_portal'
     mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',             module: 'concourse_portal'
+    mount FirmPortal::Engine            => "/empresa",          as: 'firm_portal',                         module: 'firm_portal'
   end
 
   mount Address::Engine                  => "/endereco",       as: 'address'

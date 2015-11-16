@@ -1,0 +1,14 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Listas de candidatos
+      %small Listagem de listas de candidatos
+  .card-body.card-padding
+    .row
+      .col-md-6
+        %p.c.black
+          Nome
+        %p
+          = @company.name
+      .col-md-6
+        = @company.trade

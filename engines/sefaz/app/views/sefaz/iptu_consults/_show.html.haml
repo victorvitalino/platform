@@ -1,0 +1,16 @@
+%table.table.table-striped.table-hover.table-bordered
+  %thead
+    %tr
+      %td Inscrição
+      %td Proprietário
+      %td Endereço
+      %td CPF/CGC
+      %td Cidade
+  %tbody
+    - @iptu.result[1..-3].each do |item|
+      %tr 
+        %td= item[:registration]
+        %td= item[:property]
+        %td= item[:address]
+        %td= item[:cpf]
+        %td= item[:city]

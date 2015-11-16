@@ -63,4 +63,17 @@
               %i.md.md-person>
               Cadastro Geral
             %ul{style: ('display:block;' if params[:module] == "habitation")}
+              %li= link_to "Pesquisar Geral", candidate.cadastres_path
               %li= link_to "Listas", candidate.lists_path
+        - if policy(:application, namespace: Sefaz).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "sefaz")}
+            %a{:href => ""}
+              %i.md.md-pageview>
+              Sefaz
+            %ul{style: ('display:block;' if params[:module] == "sefaz")}
+              %li= link_to "Insenção de ITCD/ITBI", sefaz.new_iptu_consult_path
+              %li= link_to "Cancelamento de isenção", sefaz.transmissions_path
+              %li= link_to "Consulta IPTU", sefaz.new_iptu_consult_path
+   
+   
+
