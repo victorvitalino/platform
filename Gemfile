@@ -37,6 +37,7 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
 gem 'axlsx', '~> 2.0.1'
+gem 'nokogiri'
 
 gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 gem 'signer', git: 'https://github.com/codhab/signer.git'

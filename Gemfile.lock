@@ -543,6 +543,7 @@ DEPENDENCIES
   mina
   mina-unicorn
   mini_magick
+  nokogiri
   person!
   pg
   poltergeist
