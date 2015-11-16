@@ -5,12 +5,18 @@
         = f.label :name, class: 'fg-label'
         = f.input :name, label: false, input_html: { placeholder: 'Digite um título'}
     .row
-      .col-md-6
+      .col-md-3
         = f.label :link_page, class: 'fg-label'
-        = f.association :link_page, label: false, prompt: 'Selecione...'
-      .col-md-6
+        = f.association :link_page, label_method: :title_concat, label: false, prompt: 'Selecione...'
+      .col-md-3
         = f.label :category, class: 'fg-label'
         = f.association :category, label: false, prompt: 'Selecione...'
+      .col-md-3
+        = f.label :target, class: 'fg-label'
+        = f.input :target, as: :select, collection: Cms::Nav.targets.keys.to_a, label: false, prompt: 'selecione...'
+      .col-md-3
+        = f.label :order, class: 'fg-label'
+        = f.input :order, label: false, input_html: { placeholder: 'Ordene' }
     .row
       .col-md-3
         = f.label :link_external, class: 'fg-label'
@@ -18,7 +24,7 @@
       .col-md-3
         = f.label :type_nav, class: 'fg-label'
         = f.input :type_nav, as: 'select',collection:Cms::Nav.type_navs.keys.to_a, label: false, prompt: 'Selecione...'
-      .col-md-3
+      .col-md-1
         .toggle-switch{"data-ts-color" => "blue"}
           %label
             .ts-label{:for => "ts4"}
@@ -27,16 +33,7 @@
           %br
           = f.check_box :publish, id: 'ts4',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts4"}
-      .col-md-3
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts1"}
-              = f.label :target
-          %br
-          %br
-          = f.check_box :target, id: 'ts1',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts1"}
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
-        = link_to 'Voltar',navs_path , class: 'btn btn-danger'
+        = link_to 'Voltar',navs_path , class: 'btn btn-inverse'

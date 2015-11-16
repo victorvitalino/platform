@@ -4,35 +4,37 @@
       Devolver Documentos
       %small Lista de Documentos
   .card-body.card-padding
-    = simple_form_for @conduct, url: update_docs_path(2), method: 'get' do |f|
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-        %table.table.table-hover.table-bordered
-          %thead
-            %tr
-              %th #
-              %th Número do Documento
-              %th Tipo de Documento
-              %th Remessa
-              %th Prioridade
-              %th Marcar
-          %tbody.index-docs
-            - @conduct_receive.each_with_index do |j, i|
+    - if @conduct_receive.present?
+      = simple_form_for @conduct, url: update_docs_path(2), method: 'get' do |f|
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table.table.table-hover.table-bordered
+            %thead
               %tr
-                %td.col-md-1
-                  = i + 1
-                %td
-                  = j.assessment.document_number
-                %td
-                  = j.assessment.document_type.name
-                %td
-                  = j.allotment.description
-                %td
-                  = j.allotment.priority
-                %td
-                  = check_box_tag "assessment_ids[]", j.assessment_id
-      %br
-      %br
-      .row
-        .col-md-6
-          = f.button :submit, class: 'btn btn-success waves-effect'
-
+                %th #
+                %th Número do Documento
+                %th Tipo de Documento
+                %th Remessa
+                %th Prioridade
+                %th Marcar
+            %tbody.index-docs
+              - @conduct_receive.each_with_index do |j, i|
+                %tr
+                  %td.col-md-1
+                    = i + 1
+                  %td
+                    = j.assessment.document_number
+                  %td
+                    = j.assessment.document_type.name
+                  %td
+                    = j.allotment.description
+                  %td
+                    = j.allotment.priority_i18n
+                  %td
+                    = check_box_tag "assessment_ids[]", j.assessment_id
+        %br
+        %br
+        .row
+          .col-md-6
+            = f.button :submit, class: 'btn btn-success waves-effect'
+    - else
+      .alert.alert-warning{:role => "alert"} Nenhum documento para ser devolvido

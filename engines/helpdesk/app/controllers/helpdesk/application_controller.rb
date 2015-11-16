@@ -1,15 +1,11 @@
+require_dependency 'application_helper'
+
 module Helpdesk
   class ApplicationController < ActionController::Base
-  	layout 'layouts/material'
-  	helper ::ApplicationHelper
-  	include Pundit
-  	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-   
-    private
-
-		def user_not_authorized(exception)
-		  redirect_to('/404')
-		end
+    layout 'material'
+  
+    helper 'application'
+        
+    include Pundit
   end
 end

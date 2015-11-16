@@ -1,0 +1,21 @@
+EntityPortal::Engine.routes.draw do
+
+  resources :cadastres, path: 'cadastros' do 
+    collection do 
+      get 'success', path: 'sucesso', as: 'success'
+    end
+  end
+
+  get     'authorization',  path: 'acesso', to: 'authorization#new',      as: 'new_authorization'
+  post    'authorization',  path: 'acesso', to: 'authorization#create',   as: 'authorization'
+  delete  'authorization',  path: 'acesso', to: 'authorization#destroy',  as: 'destroy_authorization'
+
+  namespace :restrict_area, path: 'area_restrita' do
+    get   'access_data', path: 'dados_acesso', to: 'session#edit',    as: 'edit_session'
+    put   'access_data/:id', path: 'dados_acesso', to: 'session#update',  as: 'session'
+
+    resources :cadastres, path: 'cadastro'
+    resources :documentations, path: 'documentacao'
+    resources :members, path: 'membros'
+  end
+end

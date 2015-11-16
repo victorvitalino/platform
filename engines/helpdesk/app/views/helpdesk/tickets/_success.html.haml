@@ -1,0 +1,15 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+.modal-body
+  .row
+    %h1
+      %b Parabéns!
+    %h3 Sua solicitação foi enviada com sucesso!
+  .row
+    %h4 O mais breve possível a área requisitada ira notifica-lo(a) sobre sua solicitação.
+    %h4 Para acompanhar suas solicitações ou realizar comentários de em uma solicitação, clique sobre o link <b>"Mural"</b> no menu lateral esquerdo da tela. 
+  %hr/
+  .row
+    = link_to "ver minhas solicitações", helpdesk.ticket_requester_path, class: 'btn btn-success'
+  %br/

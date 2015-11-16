@@ -1,0 +1,37 @@
+= simple_form_for @entity, url: restrict_area_cadastre_path do |f|
+  .row
+    .col-md-3
+      = f.input :cnpj, input_html: { class: 'cnpj', disabled: true}
+    .col-md-6
+      = f.input :name, input_html: { placeholder: "Digite o nome fatansia da cooperativa"}
+  .row
+    .col-md-3
+      = f.input :fantasy_name, input_html: { placeholder: "Digite a sigla da cooperativa"}
+    .col-md-2
+      = f.input :telephone, input_html: { placeholder: "Somente números"}
+    .col-md-2
+      = f.input :telephone_optional, input_html: { placeholder: "Somente números"}
+    .col-md-2
+      = f.input :celphone, input_html: { placeholder: "Somente números"}
+  .row
+    .col-md-3
+      = f.input :email, input_html: { placeholder: "Informe um e-mail"}
+  %hr/
+  .row
+    .col-md-3
+      = f.association :city, collection: Address::City.federal_district, prompt: "selecione..."
+    .col-md-2
+      = f.input :cep
+  .row
+    .col-md-5
+      = f.input :address, input_html: { placeholder: "Informe o logradouro/endereço"}
+    .col-md-4
+      = f.input :complement, input_html: { placeholder: "Informe o complemento"}
+  .row
+    .col-md-2
+      = f.input :number
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
+      

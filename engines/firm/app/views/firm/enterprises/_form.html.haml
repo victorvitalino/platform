@@ -1,0 +1,27 @@
+= simple_form_for @enterprise  do |f|
+  .row
+    .col-md-8
+      = f.label :name, class: 'fg-label'
+      = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+  .row
+    .col-md-3
+      = f.label :value, class: 'fg-label'
+      = f.input :value, label: false, input_html: { placeholder: 'Digite um nome fantasia'}
+  .row
+    .col-md-4
+      = f.label :company, class: 'fg-label'
+      = f.association :company, label: false, prompt: 'selecione...'
+    .col-md-4
+      = f.label :tipology, class: 'fg-label'
+      = f.association :tipology, label: false, prompt: 'selecione...'
+  .row
+    .col-md-2
+      .checkbox.m-b-15
+        %label
+          = f.check_box :status
+          %i.input-helper
+          = f.label :status, class: 'fg-label'
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'

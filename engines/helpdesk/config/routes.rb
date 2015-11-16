@@ -1,19 +1,19 @@
 Helpdesk::Engine.routes.draw do
-  get 'image/:image', as:'get_image',                to: 'monitor_service_orders#get_image'
-  resources :attendants, path: 'atendente'
-  resources :order_service_users, path: 'usuario'
-  resources :order_service_technicals, path: 'tecnico'
-  resources :order_services , path: 'os' do
-    resources :qualifications, path: 'qualificacao'
-    resources :monitor_service_orders, path: 'acompanhameto' do
-  		get 'assume'
-  		get 'close_order_service'
-      get 'open_again'
-  	end
+
+  resources :ticket_types do 
+    resources :ticket_subjects
+    resources :ticket_attendants
   end
-  resources :report_attendants, path: 'relatorio_por_atendente'
-  resources :report_sectors,    path: 'relatorio_por_setor'
-  resources :report_employees,  path: 'relatorio_por_funcionario'
-  resources :report_requests,   path: 'relatorio_por_tipo'
-  resources :report_machines,   path: 'relatorio_por_maquina'
+
+  resources :reports
+
+  resources :tickets do 
+    get 'in_progress',  to: 'tickets#in_progress',  as: 'in_progress'
+    get 'closed',       to: 'tickets#closed',       as: 'closed'
+    get 'open',         to: 'tickets#open',         as: 'open'
+    resources :ticket_comments
+  end
+
+  get 'ticket_subjects',      to: 'ticket_subjects#index_json', path: "tickets_json",        as: 'ticket_subjects_json'
+  get 'requester_tickets',    to: 'tickets#requester',          path: "minhas_solicitacoes", as: 'ticket_requester'
 end

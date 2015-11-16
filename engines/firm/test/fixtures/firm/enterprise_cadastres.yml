@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enterprise_id: 
+  cadastre_id: 
+  status_cadastre_id: 
+  observation: MyText
+  archive_path: MyString
+
+two:
+  enterprise_id: 
+  cadastre_id: 
+  status_cadastre_id: 
+  observation: MyText
+  archive_path: MyString

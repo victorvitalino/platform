@@ -1,5 +1,5 @@
 .row
- .col-md-8
+ .col-md-12
   = simple_form_for @assessment do |f|
    .row
     .col-md-4
@@ -10,22 +10,19 @@
      = f.label :document_number, class: 'fg-label'
      = f.input :document_number, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Gerado pelo sistema', readonly: true}
    .row
-    .col-md-8
+    .col-md-4
      = f.label :requesting_unit, class: 'fg-label'
      = f.input :requesting_unit, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Preencha'}
-   .row
-    .col-md-8
+    .col-md-4
      = f.label :external_agency, class: 'fg-label'
      = f.input :external_agency, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Preencha'}
-   .row
-    .col-md-8
+    .col-md-4
      = f.label :recipient, class: 'fg-label'
      = f.input :recipient, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Preencha'}
    .row
-    .col-md-8
+    .col-md-4
      = f.label :address, class: 'fg-label'
      = f.input :address, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Preencha'}
-   .row
     .col-md-4
      = f.label :cpf, class: 'fg-label'
      = f.input :cpf, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Preencha'}
@@ -34,19 +31,19 @@
      = f.label :cnpj, class: 'fg-label'
      = f.input :cnpj, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Preencha'}
    .row
-    .col-md-8
+    .col-md-6
      = f.label :subject, class: 'fg-label'
      = f.association :subject, prompt: 'selecione...', label: false, input_html: { class: 'input-sm fg-input'}
-     = f.input :description_subject, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite o nome'}
+    .col-md-6
+     = f.input :description_subject, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite um complemento do assunto'}
 
    .row
-    .col-md-8
+    .col-md-6
      = f.label :sign_by, class: 'fg-label'
-     = f.input :sign_by, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite o nome'}
-   .row
-    .col-md-8
+     = f.input :sign_by, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Assinado por'}
+    .col-md-6
      = f.label :observation, class: 'fg-label'
-     = f.input :observation, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite o nome'}
+     = f.input :observation, label: false, input_html: { class: 'input-sm fg-input', placeholder: 'Digite uma observação'}
    .row
     .col-md-8
      = f.submit 'salvar' , class: 'btn btn-success waves-effect waves-button waves-float'

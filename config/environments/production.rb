@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.serve_static_files = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -63,7 +63,7 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-
+  config.logger = Logger.new(Rails.root.join("log", Rails.env + ".log"), 5, 20*1024*1024)
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
@@ -76,4 +76,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  CarrierWave.configure do |config|
+    config.sftp_host = "10.233.38.19"
+    config.sftp_user = "codhab"
+    config.sftp_folder = "/var/public"
+    config.sftp_url = "http://api.codhab.df.gov.br/static"
+    config.sftp_options = {
+      :password => "codhab2014",
+      :port     => 22
+    }
+  end
 end

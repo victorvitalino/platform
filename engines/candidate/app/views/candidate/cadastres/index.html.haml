@@ -1,0 +1,27 @@
+#messages-main.card.m-b-0
+  .ms-menu
+    .ms-block
+      .ms-user
+        Pesquisar Cadastro
+    .ms-block
+      = simple_form_for cadastres_path, method: :get do |f|
+        = f.label :cpf
+        = f.input :cpf, label: false,  input_html: { name: :cpf,value: params[:cpf] }
+        = f.submit "Pesquisar CPF", name: nil, class: 'btn btn-success'
+  .ms-body
+    .listview.lv-message
+      .lv-header-alt.bgm-white
+        #ms-menu-trigger
+          .line-wrap
+            .line.top
+            .line.center
+            .line.bottom
+        .lvh-label.hidden-xs
+          %span.c-black Detalhamento do Cadastro
+      .lv-body{:style => "min-height: 270px"}
+        .lv-item.media
+          .media-body
+            - if @cadastre.present?
+              = render 'show_cadastre'
+            - else
+              Nenhum resultado para mostrar.

@@ -1,0 +1,11 @@
+pt-BR:
+  activemodel:
+    models:
+      'entity_portal/authorization': "Acesso"
+    attributes:
+      'entity_portal/authorization':
+        cnpj: "CNPJ"
+        password: "Senha"
+        
+        
+

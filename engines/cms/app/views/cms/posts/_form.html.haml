@@ -7,7 +7,7 @@
     .row
       .col-md-12
         = f.label :content, class: 'fg-label'
-        = f.input :content, label: false, input_html: { class: 'redactor' }
+        = f.input :content, label: false, input_html: { class: 'redactorbox'}
     .row
       .col-md-12
         = f.label :post_category, class: 'fg-label'
@@ -34,15 +34,16 @@
           %br
           = f.check_box :slider, id: 'ts4',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts4"}
-      .col-md-2
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts5"}
-              =f.label :publish
-          %br
-          %br
-          = f.check_box :publish, id: 'ts5',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts5"}
+      - if policy(:Post, namespace: Cms).publish?
+        .col-md-2
+          .toggle-switch{"data-ts-color" => "blue"}
+            %label
+              .ts-label{:for => "ts5"}
+                =f.label :publish
+            %br
+            %br
+            = f.check_box :publish, id: 'ts5',hidden: 'hidden', type: 'checkbox'
+            %label.ts-helper{:for => "ts5"}
       .col-md-2
         .toggle-switch{"data-ts-color" => "blue"}
           %label
@@ -63,7 +64,7 @@
         = f.label :link, class: 'fg-label'
         = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
     .row
-      .col-md-12
+      .col-md-12{data: { no_turbolinks: true}}
         = f.label :resume, class: 'fg-label'
         = f.input :resume, label: false, input_html: { class: 'redactor' }
     .row
@@ -79,4 +80,4 @@
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'
-        = link_to 'Voltar',posts_path , class: 'btn btn-danger'
+        = link_to 'Voltar',posts_path , class: 'btn btn-inverse'

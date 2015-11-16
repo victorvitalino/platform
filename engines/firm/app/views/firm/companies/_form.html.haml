@@ -1,0 +1,50 @@
+= simple_form_for @company  do |f|
+  .row
+    .col-md-8
+      = f.label :name, class: 'fg-label'
+      = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+  .row
+    .col-md-8
+      = f.label :trade, class: 'fg-label'
+      = f.input :trade, label: false, input_html: { placeholder: 'Digite um nome fantasia'}
+  .row
+    .col-md-3
+      = f.label :cnpj, class: 'fg-label'
+      = f.input :cnpj, label: false, input_html: { placeholder: 'Digite um cnpj'}
+  .row
+    .col-md-8
+      = f.label :email, class: 'fg-label'
+      = f.input :email, label: false, input_html: { placeholder: 'Digite um email'}
+  .row
+    .col-md-2
+      = f.label :cep, class: 'fg-label'
+      = f.input :cep, label: false, input_html: { placeholder: 'Digite um cep'}
+    .col-md-4
+      = f.label :city, class: 'fg-label'
+      = f.association :city, label:false,collection: Address::City.federal_district, prompt: 'selecione...'
+  .row
+    .col-md-8
+      = f.label :address, class: 'fg-label'
+      = f.input :address, label: false, input_html: { placeholder: 'Digite um endereço'}
+  .row
+    .col-md-8
+      = f.label :adjuntc_address, class: 'fg-label'
+      = f.input :adjuntc_address, label: false, input_html: { placeholder: 'Digite um complemento de endereço'}
+  .row
+    .col-md-2
+      = f.label :telephone, class: 'fg-label'
+      = f.input :telephone, label: false, input_html: { placeholder: 'Digite um telefone'}
+    .col-md-2
+      = f.label :telephone_optional, class: 'fg-label'
+      = f.input :telephone_optional, label: false, input_html: { placeholder: 'Telefone opcional'}
+  .row
+    .col-md-2
+      .checkbox.m-b-15
+        %label
+          = f.check_box :status
+          %i.input-helper
+          = f.label :status, class: 'fg-label'
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'

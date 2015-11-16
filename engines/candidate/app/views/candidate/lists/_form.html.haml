@@ -1,0 +1,62 @@
+= simple_form_for(@list) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-6
+        = f.label :title, class: 'fg-label'
+        = f.input :title, label: false, input_html: { placeholder: 'Digite um título'}
+      .col-md-6
+        = f.label :slug, class: 'fg-label'
+        = f.input :slug, label: false, input_html: { readonly: (f.object.new_record? ? true : false)}
+    .row
+      .col-md-12
+        = f.label :condition_sql, class: 'fg-label'
+        = f.input :condition_sql, label: false
+    .row
+      .col-md-3
+        = f.label :list_type, class: 'fg-label'
+        = f.input :list_type, as: :select,  label: false, collection: Candidate::List.list_types.keys.to_a, prompt: "selecione..."
+      .col-md-3
+        = f.label :view_target, class: 'fg-label'
+        = f.input :view_target, as: :select, label: false, collection: Candidate::List.view_targets, prompt: 'Selecione...'
+    %hr/
+    .row
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "income_filter"}
+              = f.label :income_filter
+          %br/
+          = f.check_box :income_filter, id: 'income_filter',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "income_filter"}
+
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "cpf_filter"}
+              = f.label :cpf_filter
+          %br/
+          = f.check_box :cpf_filter, id: 'cpf_filter',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "cpf_filter"}
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "name_filter"}
+              = f.label :name_filter
+          %br/
+          = f.check_box :name_filter, id: 'name_filter',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "name_filter"}
+    %hr/
+    .row
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "ts5"}
+              = f.label :publish
+          %br/
+          = f.check_box :publish, id: 'ts5',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "ts5"}
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to 'Voltar',lists_path , class: 'btn btn-inverse'

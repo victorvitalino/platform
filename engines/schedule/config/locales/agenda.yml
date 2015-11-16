@@ -1,0 +1,33 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'schedule/agenda':
+          attributes:
+            start:
+              invalid_date: "data inválida"
+            end:
+              invalid_date: "data inválida"
+            start_hour:
+              invalid_time: "hora inválida"
+            end_hour:
+              invalid_time: "hora inválida"
+            lunch_start:
+              invalid_time: "hora inválida"
+            lunch_end:
+              invalid_time: "hora inválida"
+
+    models:
+      'schedule/agenda': 'Agenda'
+    attributes:
+      'schedule/agenda': 
+        program: "Programa"
+        title: "Título"
+        description: "Descrição"
+        attendants: "Atendentes (quantidade)"
+        attendance_time: "Atendimento (minutos)"
+        lunch_time: "Intervalo ou Almoço?"
+        lunch_attendants: "Atendentes (quantidade)"
+        restriction_type: "Tipo de restrição"
+        restriction_sql: "SQL de restrição"
+        status: "Ativa?"

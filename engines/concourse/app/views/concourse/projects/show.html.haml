@@ -1,0 +1,37 @@
+.card
+  .card
+    .card-header
+      .pull-right
+        = link_to "", edit_project_path(@project), class: 'md md-edit btn btn-primary'
+        = link_to "voltar", projects_path, class: 'btn btn-inverse'
+      %h2
+        #{@project.title}
+        %small= @project.mini_description.html_safe
+    .card-body.card-padding
+      %div{:role => "tabpanel"}
+        %ul.tab-nav{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "1"}
+          %li{:class => (params[:q] == 'paginas'|| params[:q].nil?) ? 'active' : ''}
+            %a{"aria-controls" => "pages", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#pages", :role => "tab"} Páginas
+          %li{:class => (params[:q] == 'menus') ? 'active' : ''}
+            %a{"aria-controls" => "navs", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#navs", :role => "tab"} Menus
+          %li{:class => (params[:q] == 'tipo_inscricoes') ? 'active' : ''}
+            %a{"aria-controls" => "subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#subscribes", :role => "tab"} Tipo de inscrições
+          %li{:class => (params[:q] == 'partictipos') ? 'active' : ''}
+            %a{"aria-controls" => "participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#participations", :role => "tab"} Tipo de participações
+          %li{:class => (params[:q] == 'consultas') ? 'active' : ''}
+            %a{"aria-controls" => "consults", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#consults", :role => "tab"} Consultas
+          %li{:class => (params[:q] == 'inscricoes') ? 'active' : ''}
+            %a{"aria-controls" => "candidate_subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_subscribes", :role => "tab"} Inscrições
+          %li{:class => (params[:q] == 'participacoes') ? 'active' : ''}
+            %a{"aria-controls" => "candidate_participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_participations", :role => "tab"} Participações
+          %li{:class => (params[:q] == 'vencedores') ? 'active' : ''}
+            %a{"aria-controls" => "winners", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#winners", :role => "tab"} Vencedores
+        .tab-content
+          = render 'concourse/pages/index'
+          = render 'concourse/navs/index'
+          = render 'concourse/subscribes/index'
+          = render 'concourse/participations/index'
+          = render 'concourse/candidate_subscribes/index'
+          = render 'concourse/candidate_participations/index'
+          = render 'concourse/winners/index'
+          = render 'concourse/consults/index'

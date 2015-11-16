@@ -1,0 +1,4 @@
+pt-BR:
+ success: "Operação realizada com sucesso!"
+ danger: "Não foi possível realizar esta operação, tente novamente daqui instantes"
+ confirm_delete: "Deseja realmente excluir?"

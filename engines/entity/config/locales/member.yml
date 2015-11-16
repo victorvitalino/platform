@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'entity/member':
+          attributes:
+            born:
+              invalid_date: "data inválida"
+    models:
+      'entity/member': 'Membro da Diretoria'
+    attributes:
+      'entity/member': 
+        name: "Nome"
+        cpf: "CPF"
+        rg: "RG"
+        rg_org: "RG ORG"
+        born: "Nascimento"
+        telephone: "Telefone"
+        telephone_optiona: "Telefone Opcional"
+        celphone: "Celular"
+        member_job: "Cargo"
+        certificate_civil_criminal: "Certidão Negativa Civil Criminal"

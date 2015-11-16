@@ -1,0 +1,36 @@
+= simple_form_for [:habitation, @schedule] do |f|
+  .row
+    .col-md-4
+      = f.association :agenda, collection: Schedule::Agenda.habitation,prompt: 'selecione a agenda...'
+      = f.hint "", id: 'description'
+  %hr/
+  #hide{style: "#{f.object.agenda.present? ? 'display: block;' : 'display: none'}"}
+    .row
+      .col-md-2
+        = f.input :cpf, input_html: { placeholder: "digite seu cpf"}
+      .col-md-6
+        = f.input :name, input_html: { placeholder: 'preencha com seu nome completo'}
+    %hr/
+    .row
+      .col-md-2
+        = f.input :telephone, input_html: { placeholder: '(61) xxxx-xxxx'}
+      .col-md-2
+        = f.input :telephone_optional, input_html: { placeholder: '(61) xxxx-xxxx'}
+      .col-md-2
+        = f.input :celphone, input_html: { placeholder: '(61) xxxx-xxxx'}
+    .row
+      .col-md-4
+        = f.input :email, input_html: { placeholder: 'preencha com seu e-mail'}
+      .col-md-2
+        = f.association :city, collection: Address::City.federal_district, prompt: 'selecione...'
+    %hr/
+    .row
+      .col-md-2
+        = f.input :date, as: :string, input_html: { class: 'datepicker', placeholder: "selecione a agenda..."}
+      .col-md-2
+        = f.input :hour, as: :select, collection: [], prompt: 'selecione...', input_html: { value: f.object.hour.present? ? f.object.hour.strftime('%H:%M') : ''}
+    %hr/
+    .row
+      .col-md-2
+        = f.button :submit, class: 'btn btn-success'
+

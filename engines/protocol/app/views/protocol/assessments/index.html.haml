@@ -1,26 +1,12 @@
 .card
-  .card-header
+  .card-header.ch-alt
     %h2
       Documentos
-    %ul.lv-actions.actions
-      %li.dropdown
-        %a{"aria-expanded" => "true", "data-toggle" => "dropdown", :href => ""}
-          %i.md.md-more-vert
-        %ul.dropdown-menu.dropdown-menu-right
-          %li
-            = link_to 'Novo Documento', new_assessment_path
-          %li
-            = link_to 'Remessa', allotments_path
-          %li
-            = link_to 'Nova Localização', new_location_path
-          %li
-            = link_to 'Receber Tramitação', receive_path
-
-
     %small Listagem de Documentos
-  .card-body.card-padding
+    = link_to 'Novo Documento', new_assessment_path,class: 'btn btn-success pull-right mgl'  if policy(:Assessment, namespace: Protocol).create?
+  .card-body
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table.table.table-hover.table-bordered
+      %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
         %thead
           %tr
             %th Número
@@ -28,4 +14,5 @@
             %th Setor
             %th Ações
         %tbody
-          = render 'index'
+          - if @assessments.present?
+            = render 'index'

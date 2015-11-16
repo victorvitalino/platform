@@ -1,12 +1,17 @@
 module Person
   class Sector < ActiveRecord::Base
 
+    audited
+    
+    default_scope { order(:name) }
+
+    scope :status, -> (status = true) { where(:status => status) }
+
     has_many :subordinates, class_name: "Sector",foreign_key: "father_id"
     has_many :staffs, foreign_key: "sector_current_id"
 
-    default_scope { where(status: true) }
-    belongs_to :father, class_name: "Sector"
-    belongs_to :responsible, class_name: "Staff"
+    belongs_to :father, class_name: "Sector", foreign_key: 'father_id'
+    belongs_to :responsible, class_name: "Staff", foreign_key: 'responsible_id'
 
     has_many :branch_line
 
@@ -15,7 +20,8 @@ module Person
     has_many :conducts, class_name: "Protocol::Conduct"
 
 
-    validates_presence_of :name, :acron,:prefex
+   validates_presence_of :name, :acron,:prefex
+   validates_uniqueness_of :acron
 
 
 

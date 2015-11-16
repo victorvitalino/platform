@@ -1,0 +1,79 @@
+%aside#sidebar
+  .sidebar-inner
+    .si-inner
+      .profile-menu
+        %a{:href => ""}
+          .profile-info
+            .lv-avatar.bgm-orange{"style": 'margin-bottom: 20px'}
+              - if current_user.account.avatar?
+                = image_tag current_user.account.avatar_url
+              - else
+                = current_user.account.name[0]
+            %b
+              = current_user.account.name
+              %i.md.md-arrow-drop-down
+        %ul.main-menu
+          %li
+            = link_to "<i class='md md-person'></i> Meu perfil".html_safe, person.profile_path(current_user)
+          %li
+            = link_to "<i class='md md-settings-input-antenna'></i> Minha Conta".html_safe, main_app.edit_user_registration_path
+          %li
+            = link_to "<i class='md md-live-help'></i> Minhas Solicitações".html_safe, helpdesk.ticket_requester_path
+          %li
+            = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
+      %ul.main-menu
+        %li{class: ('active' if params[:module] == "dashboard")}
+          = link_to "<i class='md  md-dashboard'></i> Mural".html_safe, dashboard.root_path
+        - if policy(:application, namespace: Person).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "person")}
+            %a{:href => ""}
+              %i.md.md-account-child
+              Gestão de Pessoas
+            %ul{style: ('display:block;' if params[:module] == "person")}
+              %li= link_to "cargos", person.jobs_path if policy(:job, namespace: Person).view_nav?
+              %li= link_to "usuarios", person.staffs_path(status: true) if policy(:staff, namespace: Person).view_nav?
+              %li= link_to "sistemas", person.systems_path if policy(:system, namespace: Person).view_nav?
+              %li= link_to "setores", person.sectors_path(status: true) if policy(:sector, namespace: Person).view_nav?
+        - if policy(:application, namespace: Cms).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
+            %a{:href => ""}
+              %i.md.md-public>
+              Gestão Site
+            %ul{style: ('display:block;' if params[:module] == "cms")}
+              %li= link_to "postagens", cms.posts_path if policy(:post, namespace: Cms).index?
+              %li= link_to "páginas", cms.pages_path   if policy(:page, namespace: Cms).index?
+              %li= link_to "menu", cms.navs_path       if policy(:nav, namespace: Cms).index?
+              %li= link_to "vídeos", cms.videos_path   if policy(:video, namespace: Cms).index?
+              %li
+                %hr/
+              %li= link_to "categorias de post", cms.post_categories_path   if policy(:PostCategory,  namespace: Cms).index?
+              %li= link_to "categorias de página", cms.page_categories_path if policy(:PageCategory,  namespace: Cms).index?
+              %li= link_to "categorias de menu", cms.nav_categories_path    if policy(:NavCategory,   namespace: Cms).index?
+        - if policy(:application, namespace: Helpdesk).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "helpdesk")}
+            %a{:href => ""}
+              %i.md.md-live-help>
+              Helpdesk
+            %ul{style: ('display:block;' if params[:module] == "helpdesk")}
+              %li= link_to "Centrais de serviço", helpdesk.ticket_types_path if policy(:TicketType, namespace: Helpdesk).index?
+              %li= link_to "Solicitações", helpdesk.tickets_path(q: 'open')  if policy(:Ticket, namespace: Helpdesk).index?
+        - if policy(:application, namespace: Helpdesk).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "habitation")}
+            %a{:href => ""}
+              %i.md.md-person>
+              Cadastro Geral
+            %ul{style: ('display:block;' if params[:module] == "habitation")}
+              %li= link_to "Pesquisar Geral", candidate.cadastres_path
+              %li= link_to "Listas", candidate.lists_path
+        - if policy(:application, namespace: Sefaz).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "sefaz")}
+            %a{:href => ""}
+              %i.md.md-pageview>
+              Sefaz
+            %ul{style: ('display:block;' if params[:module] == "sefaz")}
+              %li= link_to "Insenção de ITCD/ITBI", sefaz.new_iptu_consult_path
+              %li= link_to "Cancelamento de isenção", sefaz.transmissions_path
+              %li= link_to "Consulta IPTU", sefaz.new_iptu_consult_path
+   
+   
+

@@ -15,5 +15,9 @@ module Cms
 		def destroy?
 			allow?(3502)
 		end
+
+		def publish?
+			allow? (3505)
+		end
 	end
 end

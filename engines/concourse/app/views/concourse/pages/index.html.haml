@@ -1,0 +1,23 @@
+.card
+  .card-header.ch-alt
+    %h2 pages
+    %small Listagem de pages
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.datatable
+      %thead
+        %tr
+          %th Project
+          %th Title
+          %th Content
+          %th Publish
+          %th Slug
+      %tbody
+        - @pages.each_with_index do |page, index|
+          %tr
+            %td= page.project
+            %td= page.title
+            %td= page.content
+            %td= page.publish
+            %td= page.slug
+
+     

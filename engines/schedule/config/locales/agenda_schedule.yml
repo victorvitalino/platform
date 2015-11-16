@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      'schedule/agenda_schedule': 'Agendamento'
+    attributes:
+      'schedule/agenda_schedule': 
+        cpf: "CPF"
+        name: "Nome"
+        telephone: "Telefone"
+        telphone_optional: "Telefone Opcional"
+        celphone: "Celular"
+        email: "E-mail"
+        city: "Cidade"
+        date: "Data"
+        hour: "Hora do agendamento"

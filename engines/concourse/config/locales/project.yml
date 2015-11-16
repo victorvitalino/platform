@@ -1,0 +1,39 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+       'concourse/project':
+          attributes:
+            start:
+              invalid_date: 'Data inválida'
+            end:
+              invalid_date: 'Data inválida'
+            consultation_start:
+              invalid_date: 'Data inválida'
+              before: "Data não pode ser igual ou maior que data fim"
+            consultation_end:
+              invalid_date: 'Data inválida'
+              after: 'Data não pode ser igual ou menor que data início'
+
+
+    models:
+      'concourse/project': 'Concurso'
+    attributes:
+      'concourse/project':
+        title: 'Título'
+        mini_description: 'Resumo'
+        apresentation: 'Apresentação'
+        start: 'Início do Concurso'
+        end: 'Fim do Concurso'
+        publish: "Publicado?"
+        status: "Ativo?"
+        image_header: "Cabeçalho"
+        image_logo: "Logo"
+        image_footer: "Rodapé"
+        image_slider: "Imagem Rotativa"
+        slider: "Imagem Rotativa?"
+        consultation: "Consulta ativa?"
+        consultation_start: "Início de consultas"
+        consultation_end: "Fim de consultas"
+        consultation_description: "Texto de obsevação de consultas"
+        step: 'Etapa'

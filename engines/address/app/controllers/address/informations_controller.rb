@@ -1,7 +1,11 @@
 module Address
   class InformationsController < ApplicationController
-    
+
     def cities
+      params[:state_id] = nil unless params[:state_id].present?
+      @cities = Address::City.select(:name, :id).where(state_id: params[:state_id]).order(:name).distinct
+
+      render json: @cities
     end
 
     def states
@@ -23,22 +27,23 @@ module Address
 
     def units
       return false unless params[:group].present?
-      @units = Address::Unit.select(:unit)
-                            .where(city_id: params[:city_id],
-                                   block: params[:block],
-                                   group: params[:group])
-                            .order(:unit)
+
+      @units = Address::Unit.joins(:registry_units)
+                            .where("address_units.city_id = ? AND address_units.block = ? AND address_units.group = ? AND address_units.program = 1", params[:city_id], params[:block], params[:group])
+                            .where("address_registry_units.situation <> ?", 2)
+                            .order(:id)
 
       render json: @units
     end
 
     def show_unit
       return false unless params[:unit].present?
-      @unit = Address::Unit.select(:id)
-                            .where(city_id: params[:city_id],
-                                   block: params[:block],
-                                   group: params[:group],
-                                   unit: params[:unit]).first
+
+      @unit = Address::Unit.joins(:registry_units)
+                           .where("address_units.id = ? AND program = ?", params[:unit], 1)
+                           .where("address_registry_units.situation <> ?", 2).first
+
+
       render json: @unit
     end
 

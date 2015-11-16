@@ -11,10 +11,16 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+.env.production
+database.yml
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
 /public/uploads/*
-/config/application.yml
 /lib/files/migrate/current
+/public/assets
+/public/barcodes/*
+/lib/files/*
+/public/uploads/*
+!/public/barcodes/.keep

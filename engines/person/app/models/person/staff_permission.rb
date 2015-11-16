@@ -4,6 +4,6 @@ module Person
     belongs_to :system_permission
 
 
-
+    audited
   end
 end

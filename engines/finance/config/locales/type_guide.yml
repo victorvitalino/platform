@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'finance/type_guide': "Tipo de cobrança"
+    attributes:
+      'finance/type_guide':
+        title: "Título"
+        value: "Valor"
+        code: "Código"
+        publish: "Publicado"

@@ -3,11 +3,11 @@
     = stylesheet_link_tag  'material', media: 'all'
 
   %body.login-content
-
-
     #l-login.lc-block.toggled
+      - flash.each do |key, value|
+        = content_tag(:div, value, :class => "alert alert-danger")
       .codhab-logo
-        %b CODHAB
+        = image_tag('/images/codhab_footer.png')
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .input-group.m-b-20
           %span.input-group-addon
@@ -26,7 +26,7 @@
             %i.input-helper
             Lembrar-me
             %br/
-        = f.button :button,  class: "btn btn-login btn-danger btn-float waves-effect waves-button waves-float" do
+        = f.button :button,  class: "btn btn-login btn-warning btn-float waves-effect waves-button waves-float" do
           %i.md.md-arrow-forward
     / Forgot Password
     #l-forget-password.lc-block

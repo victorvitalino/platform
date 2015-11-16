@@ -1,0 +1,23 @@
+= simple_form_for @attendant, remote: true do |f|
+  .row
+    .col-md-12
+      = f.label :staff, class: 'fg-label'
+      = f.association :staff, label: false, prompt: 'selecione o funcionário...'
+  .row
+    .col-md-12
+      = f.label :description, class: 'fg-label'
+      = f.input :description, label: false, prompt: 'selecione a descrição...'
+  .row
+    .col-md-4
+      .toggle-switch{"data-ts-color" => "blue"}
+        %label
+          .ts-label{:for => "ts4"}
+            = f.label :status
+        %br/
+        = f.check_box :status, label: false, id: 'ts4',hidden: 'hidden', type: 'checkbox'
+        %label.ts-helper{:for => "ts4"}
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success pull-right'
+      = link_to "voltar", attendants_path, class: 'btn btn-inverse'

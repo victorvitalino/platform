@@ -1,0 +1,26 @@
+= simple_form_for([@project, @page]) do |f| 
+  .card-body.card-padding
+    .row
+      .col-md-12
+        = f.label :title, class: 'fg-label'
+        = f.input :title, label: false, prompt: 'selecione...'
+    .row
+      .col-md-12
+        = f.label :content, class: 'fg-label'
+        = f.input :content, label: false, prompt: 'selecione...', input_html: { class: 'redactor'}
+    .row
+      .col-md-12
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "publish"}
+              = f.label :publish
+          %br
+          %br
+          = f.check_box :publish, id: 'publish',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "publish"}
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar", project_path(id: @project, q: 'paginas'),class: 'btn btn-inverse' 
+

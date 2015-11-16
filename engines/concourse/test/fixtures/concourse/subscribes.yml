@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: 
+  title: MyString
+  fee: false
+  fee_value: 1.5
+  bank_slip_id: 
+  start: 2015-08-19
+  end: 2015-08-19
+  publish: false
+  observation: MyText
+
+two:
+  project_id: 
+  title: MyString
+  fee: false
+  fee_value: 1.5
+  bank_slip_id: 
+  start: 2015-08-19
+  end: 2015-08-19
+  publish: false
+  observation: MyText

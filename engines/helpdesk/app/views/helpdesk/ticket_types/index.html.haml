@@ -1,0 +1,29 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Centrais de serviço
+      = link_to 'Nova Central', new_ticket_type_path, class: 'btn btn-success pull-right' if policy(:TicketType, namespace: Helpdesk).create?
+      %small Listagem de centrais de suporte de serviços
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+      %thead
+        %tr
+          %th Setor
+          %th Título
+          %th Descrição
+          %th Publicado
+          %th Ações
+      %tbody
+        - @ticket_types.each do |t|
+          %tr
+            %td= t.sector.name if t.sector.present?
+            %td= t.title
+            %td= t.description
+            %td= t.status ? "ativo" : "inativo"
+            %td.col-md-2
+              = link_to '', ticket_type_ticket_attendants_path(t), class: 'md md-account-child btn btn-warning' if policy(:TicketAttendant, namespace: Helpdesk).index?
+              = link_to '', ticket_type_ticket_subjects_path(t), class: 'md md-open-in-browser btn btn-success'
+              = link_to '', edit_ticket_type_path(t), class: 'md md-edit btn btn-primary' if policy(:TicketType, namespace: Helpdesk).update?
+              = link_to '', ticket_type_path(t), class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) } if policy(:TicketType, namespace: Helpdesk).destroy?
+
+       

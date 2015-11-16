@@ -1,0 +1,19 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Listas de candidatos
+      %small Listagem de listas de candidatos
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+      %thead
+        %tr
+          %th Posição
+          %th Nome
+          %th Pontuação
+      %tbody
+        - @candidates.limit(100).each do |candidate|
+          %tr
+            %td= candidate.position_x
+            %td= candidate.name
+            %td= candidate.total
+    = will_paginate @candidates

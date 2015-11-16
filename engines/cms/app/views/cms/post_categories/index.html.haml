@@ -4,13 +4,13 @@
       Categorias de Posts
       = link_to 'Nova Categoria', new_post_category_path, class: 'btn btn-success pull-right' if policy(:PostCategory, namespace: Cms).create?
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
       %thead
         %tr
           %th #
           %th Nome
           %th Publicado
-          %th{:colspan => "3"} Ações
+          %th Ações
 
       %tbody
         - @post_categories.each_with_index do |post_category, i|

@@ -1,34 +1,30 @@
-.row
- .col-md-12
-  = simple_form_for @sector, remote: true do |f|
-   .row
+= simple_form_for @sector, remote: true do |f|
+  .row
     .col-md-12
-     = f.label :name, class: 'fg-label'
-     = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
-   .row
+      = f.label :name, class: 'fg-label'
+      = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+  .row
     .col-md-12
-     = f.label :acron, class: 'fg-label'
-     = f.input :acron, label: false, input_html: { placeholder: 'Digite uma sigla'}
-   .row
+      = f.label :acron, class: 'fg-label'
+      = f.input :acron, label: false, input_html: { placeholder: 'Digite uma sigla'}
+  .row
     .col-md-12
-     = f.label :prefex, class: 'fg-label'
-     = f.input :prefex, label: false, input_html: { placeholder: 'Digite um  prefixo'}
-   .row
+      = f.label :prefex, class: 'fg-label'
+      = f.input :prefex, label: false, input_html: { placeholder: 'Digite um  prefixo'}
+  .row
     .col-md-12
-     = f.label :father, class: 'fg-label'
-     = f.association :father, label: false
-   .row
+      = f.label :father, class: 'fg-label'
+      = f.association :father, label: false
+  .row
     .col-md-12
-     = f.label :responsible, class: 'fg-label'
-     = f.association :responsible, label: false
-   .row
+      = f.label :responsible, class: 'fg-label'
+      = f.association :responsible, label: false
+  .row
+    .col-md-3
+      = f.label :status, class: 'fg-label'
+      = f.input :status, as: :select, label: false, include_blank: false
+  %hr/
+  .row
     .col-md-12
-     .checkbox.m-b-15
-      %label
-       = f.check_box :status
-       %i.input-helper
-       = f.label :status, class: 'fg-label'
-   .row
-    .col-md-12
-     = f.button :submit, class: 'btn btn-success'
-   %br/
+      = f.button :submit, class: 'btn btn-success'
+

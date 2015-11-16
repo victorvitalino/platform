@@ -1,0 +1,5 @@
+- if @ticket.errors.any?
+  $('#modal .modal-content').html("#{escape_javascript(render 'new')}")
+- else
+  $('#modal .modal-content').html("#{escape_javascript(render 'success')}")
+  

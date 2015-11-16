@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'helpdesk/ticket': "Solicitação"
+    attributes:
+      'helpdesk/ticket':
+        ticket_type: "Solicitar para"
+        ticket_subject_title: "O que você precisa?"
+        description: "Detalhe um pouco mais sua necessidade abaixo"

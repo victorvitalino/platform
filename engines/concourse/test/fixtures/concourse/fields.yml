@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subscribe_id: 
+  participation_id: 
+  label: MyString
+  field_type: 1
+  required: false
+  unique: false
+  max_size: 1
+  file_white_list: MyString
+  only_number: false
+
+two:
+  subscribe_id: 
+  participation_id: 
+  label: MyString
+  field_type: 1
+  required: false
+  unique: false
+  max_size: 1
+  file_white_list: MyString
+  only_number: false

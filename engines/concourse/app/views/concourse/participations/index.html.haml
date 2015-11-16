@@ -1,0 +1,28 @@
+.card
+  .card-header.ch-alt
+    %h2 participations
+    = link_to "Novo", new_participation_path, class: 'btn btn-success pull-right'
+    %small Listagem de participations
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.datatable
+      %thead
+        %tr
+          %th Project
+          %th Title
+          %th Start
+          %th End
+          %th Publish
+          %th Observation
+          %th Subscribe
+      %tbody
+        - @participations.each_with_index do |participation, index|
+          %tr
+            %td= participation.project
+            %td= participation.title
+            %td= participation.start
+            %td= participation.end
+            %td= participation.publish
+            %td= participation.observation
+            %td= participation.subscribe
+
+     

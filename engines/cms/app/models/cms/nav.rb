@@ -4,10 +4,15 @@ module Cms
     belongs_to :link_post, class_name: "Cms::Post"
     belongs_to :category,  class_name: "Cms::NavCategory"
 
+    scope :active, -> {where(publish: true)}
+
+    audited
+    
     validates_presence_of :name
     before_create :set_order
 
     enum :type_nav => [:pagina, :post, :externo]
+    enum :target   => [:_blank, :_self]
 
     private
 

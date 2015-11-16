@@ -1,0 +1,34 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Portal Codhab
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag 'portal', media: 'all'
+    = javascript_include_tag 'portal', media: 'all'
+    = csrf_meta_tags
+    :css
+      .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+        z-index: 2;
+        color: #010101;
+        background-color: #FDD000;
+        border-color: #FDD000;  
+      }
+      .panel-warning>.panel-heading {
+        color: #010101;
+        background-color: #FDD000;
+        border-color: #FDD000;
+      }
+
+  %body
+    = render 'layouts/portal/partials/navs'
+    %div{class: (controller_name != 'home') ? 'container main' : '' }
+      .row
+        .col-md-12
+          = image_tag @project.image_header, width: 500
+      %hr/
+      .row
+        .col-md-2
+          = render 'layouts/concourse_portal/partials/sidebar'
+        .col-md-10
+          = yield
+    = render 'layouts/portal/partials/footer'

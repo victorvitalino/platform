@@ -29,6 +29,8 @@ module Cms
       @page_category = PageCategory.new(page_category_params)
       authorize @page_category
       if @page_category.save
+
+        flash[:success] =  t :success
         redirect_to action: 'index'
       else
         render :new

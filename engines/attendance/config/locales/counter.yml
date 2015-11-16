@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'attendance/counter': Guichê
+    attributes:
+      'attendance/counter':
+        number: "Número"
+        preference: "Preferêncial?"
+        status: "Ativo?"
+        subject: "Assunto"

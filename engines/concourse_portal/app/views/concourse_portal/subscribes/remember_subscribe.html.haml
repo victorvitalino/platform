@@ -1,0 +1,36 @@
+.row
+  .col-md-12
+    .panel.panel-warning
+      .panel-heading
+        Esqueci meus dados de acesso
+      .panel-body
+        = simple_form_for project_subscribes_remember_path, method: :get, input_html: { class: 'form-inline'} do |f|
+          .row
+            .col-md-3
+              CPF (Somente números)
+              = text_field_tag :cpf, params[:cpf], class: 'form-control'
+            .col-md-2
+              %br/
+              = submit_tag "Pesquisar", name: nil, class: 'form-control'
+            .col-md-7
+              = link_to "voltar para tela de acesso",  concourse_portal.project_subscribes_path(@project), class: 'pull-right'
+          %hr
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Número de inscrição 
+                    %th Data de inscrição
+                    %th Ações
+                %tbody
+                  - if @subscribes.present?
+                    - @subscribes.each_with_index do |subscribe, index|
+                      %tr
+                        %td= subscribe.id
+                        %td= subscribe.created_at.strftime("%d/%m/%Y às %H:%M")
+                        %td= link_to "Resetar minha senha"
+                  - else
+                    %tr
+                      %td{:colspan => '4'}
+                        Registro não encontrado

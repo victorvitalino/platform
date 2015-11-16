@@ -1,0 +1,17 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Atendentes
+      = link_to 'Novo Atendente', attendance.new_attendant_path, remote: true, class: 'btn btn-success pull-right'
+      %small Listagem de atendentes
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-striped.datatable
+      %thead
+        %tr
+          %th #
+          %th Nome
+          %th Setor
+          %th Status
+          %th Ações
+      %tbody.index-attendant
+        = render 'index'

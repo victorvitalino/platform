@@ -1,0 +1,18 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'finance/payment_guide':
+          attributes:
+            deadline:
+              after: "A data não pode ser menor que o dia de hoje"
+    models:
+      'finance/payment_guide': "Cobrança"
+    attributes:
+      'finance/payment_guide':
+        type_guide: "Tipo"
+        value: "Valor"
+        deadline: "Vencimento"
+        name: "Nome"
+        cpf: "CPF(somente números)"
+        observation: "Referência"

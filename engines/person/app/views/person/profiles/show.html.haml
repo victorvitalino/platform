@@ -38,7 +38,7 @@
         .pmob-body
           .row
             - profile_users(@user.sector_current) do |qa|
-              %a.col-xs-2{:href => "#{person.profile_url(qa)}"}
+              %a.col-xs-2{:href => "#{person.profile_url(qa)}", :title => "#{qa.name}"}
                 - if qa.avatar?
                   = image_tag(qa.avatar.url,:class => "lv-avatar bgm-blue")
                 - else
@@ -63,11 +63,11 @@
             %dl.dl-horizontal
               %dt Aniversário
               %dd
-                =@user.born.strftime('%d/%m/%Y')
+                =@user.born.strftime('%d/%m/%Y') if @user.born.present?
             %dl.dl-horizontal
               %dt Tipo Sanguineo
               %dd
-                =@user.blood_type.upcase.present? ? @user.blood_type : 'Não Informado'
+                =@user.blood_type.to_s.upcase.present? ? @user.blood_type : 'Não Informado'
       .pmb-block
         .pmbb-header
           %h2
@@ -91,3 +91,5 @@
               %dt Setor Corrente
               %dd
                 = @user.sector_current.present? ? @user.sector_current.name : 'Não Informado'
+
+

@@ -1,0 +1,9 @@
+= simple_form_for @requeriment, url: validate_verification_candidate_requeriments_path  do |f|
+  .row
+    .col-md-3
+      = f.input :cpf
+    .col-md-2
+      = f.input :born, as: :string, input_html: { class: "date" }
+  .row
+    .col-md-12
+      = f.submit "Acessar meus requerimentos", class: 'btn btn-success'

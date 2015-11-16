@@ -1,5 +1,6 @@
 Address::Engine.routes.draw do
 
+  get '/city',        to: 'informations#cities',      as: 'cities'
   get '/blocks',      to: 'informations#blocks',      as: 'blocks'
   get '/groups',      to: 'informations#groups',      as: 'groups'
   get '/units',       to: 'informations#units',       as: 'units'

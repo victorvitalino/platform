@@ -2,25 +2,42 @@ module Protocol
     class AssessmentsController < ApplicationController
      layout 'layouts/material'
       before_action :set_assessment, only: [:show, :edit, :update, :destroy]
+
         def index
-            @assessments = Assessment.all
-            #authorize @assessments
+            #TA ERRADO
+            #@assessments = Conduct.find_sector(current_user.account.sector_current.id, 4).asse
+            if current_user.account.sector_current.present?
+                @assessments = Assessment.where(sector_id: current_user.account.sector_current.id)
+            else
+                @assessments = nil
+            end
+            authorize :assessment,  :index?
+        end
+
+        def  daily_summary
+           @assessments = Assessment.where(created_at: (date.beginning_of_day..date.end_of_day))
         end
 
         def new
-            @assessment = Assessment.new
-          #  authorize @assessment
+           @assessment = Assessment.new
+             authorize :assessment,  :create?
         end
         def create
-         #   authorize @assessment
-            @assessment = Assessment.new(set_assessment_params)
+            authorize :assessment,  :create?
+            if current_user.account.sector_current.present?
+              @assessment = Assessment.new(set_assessment_params)
+              @assessment.set_staff(current_user.account_id)
 
-            @assessment.set_staff(current_user.account_id)
-            if @assessment.save!
-                redirect_to action: 'index'
+              if @assessment.save!
+                  redirect_to action: 'index'
+              else
+                  render action: 'new'
+              end
             else
-                render action: 'new'
+              flash[:danger] = "Usuário não está alocado em um setor."
+              redirect_to action: 'index'
             end
+
         end
 
 
@@ -36,7 +53,7 @@ module Protocol
         end
 
         def update
-            #authorize @assessmentfind_sector()
+            authorize :assessment,  :update?
             if @assessment.update(set_assessment_params)
                 render action: 'index'
             else
@@ -45,7 +62,7 @@ module Protocol
         end
 
         def destroy
-            #authorize @assessment
+            authorize :assessment,  :destroy?
             @assessment.destroy
             redirect_to action: 'index'
         end
@@ -60,6 +77,7 @@ module Protocol
         def set_assessment_params
                 params.require(:assessment).permit(:document_number, :document_type_id, :subject_id,:description_subject,:requesting_unit,:external_agency,:recipient,:address,:cpf,:cnpj ,:sign_by ,:observation,:staff_id,:sector_id)
         end
+
 
 
     end

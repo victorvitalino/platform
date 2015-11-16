@@ -1,0 +1,20 @@
+= simple_form_for(@subject) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-4
+        = f.label :name, class: 'fg-label'
+        = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+    .row
+      .col-md-4
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "ts4"}
+              = f.label :status
+          %br/
+          = f.check_box :status, label: false, id: 'ts4',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "ts4"}
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar", subjects_path, class: 'btn btn-inverse'

@@ -14,7 +14,7 @@ module Protocol
 
     before_validation :set_number
 
-    validates_presence_of :document_type, :subject, :requesting_unit, :external_agency
+    validates_presence_of :document_type, :subject, :requesting_unit
     validates :document_number, uniqueness: true, presence: true
 
     after_create :set_conduct
@@ -60,6 +60,7 @@ module Protocol
     end
 
 
+
     def format_document_number
         number = "#{self.prefex}#{'%06d' % self.number}#{self.year}"
         number =~ /(\d{3})\.?(\d{3})\.?(\d{3})-?(\d{4})/
@@ -68,7 +69,14 @@ module Protocol
         self.document_number = number
     end
 
-
+   def self.to_csv(options = {})
+      CSV.generate(options) do |csv|
+        csv << all.first.attributes.keys
+            all.each do |assessment|
+              csv << assessment.attributes.values
+            end
+      end
+   end
 
 
   end

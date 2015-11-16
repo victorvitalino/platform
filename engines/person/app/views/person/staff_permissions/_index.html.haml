@@ -8,26 +8,20 @@
               %a.collapsed{"aria-controls" => "collapse#{j.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{j.id}"}
                 .row
                   .col-md-4
-                    = i +1
-                  .col-md-4
                     = j.name
-                  .col-md-4
-                    = j.code
                   .col-md-4
           .collapse{"aria-expanded" => "false", "aria-labelledby" => "heading#{j.id}", :id => "collapse#{j.id}", :role => "tabpanel", :style => "height: 0px;"}
             .panel-body
-              %table.table
+              %table.table.table-striped.table-condensed.table-hover
                 %thead
                   %tr
-                    %th #
                     %th Nome
                     %th Código
-                    %th
+                    %th Ação
                 %tbody
-                  - j.system_permission.each do |m|
+                  - j.system_permissions.each do |permission|
                     %tr
-                      %td= i +1
-                      %td= m.action
-                      %td= m.code
-                      %td{ class: "tr-#{m.id}"}
-                        = link_permission_to @staff.id, m.id
+                      %td.col-md-6= permission.action
+                      %td.col-md-1= permission.code
+                      %td.col-md-1{ class: "tr-#{permission.code}"}
+                        = link_permission_to @staff.id, permission.code

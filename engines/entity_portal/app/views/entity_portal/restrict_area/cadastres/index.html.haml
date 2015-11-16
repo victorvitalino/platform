@@ -1,0 +1,134 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/entity_portal/tabs'
+      .row
+        .col-md-12
+          %h3 
+            %b Dados da Entidade 
+            %br/
+            %small
+              = link_to "Atualizar dados", edit_restrict_area_cadastre_path(@entity)
+      .row
+        .col-md-12 
+          %table.table.table-condensed.table-bordered.table-striped
+            %thead
+              %tr
+                %th CNPJ
+                %th Nome Fantasia
+                %th Sigla
+            %tbody 
+              %tr
+                %td.col-md-2= @entity.cnpj
+                %td.col-md-6= @entity.name
+                %td.col-md-4= @entity.fantasy_name
+      .row
+        .col-md-12 
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Cidade
+                %th Endereço/Logradouro
+                %th Complemento
+                %th Número
+            %tbody 
+              %tr
+                %td.col-md-2= @entity.city.name if @entity.city.present?
+                %td.col-md-6= @entity.address
+                %td.col-md-3= @entity.complement
+                %td.col-md-1= @entity.number
+      .row
+        .col-md-12 
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Telefone
+                %th Telefone Opcional 
+                %th Celular
+                %th E-mail
+            %tbody 
+              %tr
+                %td.col-md-2= @entity.telephone
+                %td.col-md-2= @entity.telephone_optional
+                %td.col-md-2= @entity.celphone
+                %td.col-md-3= @entity.email
+      .row
+        .col-md-12 
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Data de cadastro
+                %th Ùltima atualização 
+                %th Situação da Entidade
+                %th Data da Situação
+            %tbody 
+              %tr
+                %td.col-md-2= @entity.created_at.strftime('%d/%m/%Y')
+                %td.col-md-2= @entity.updated_at.strftime('%d/%m/%Y')
+                %td.col-md-4
+                %td.col-md-4
+      
+      %hr/
+      .row
+        .col-md-12
+          %h3 
+            %b Diretoria 
+            %br/
+            %small
+              = link_to "Atualizar Diretoria",restrict_area_members_path
+      .row
+        .col-md-12 
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Nome
+                %th CPF
+                %th Cargo
+                %th Anexo
+            %tbody 
+              - @entity.members.each do |member|
+                %tr
+                  %td.col-md-4= member.name
+                  %td.col-md-2= member.cpf
+                  %td.col-md-2= member.member_job.name if member.member_job.present?
+                  %td.col-md-2= link_to "visualizar", member.certificate_civil_criminal.url, target: '_blank' if member.certificate_civil_criminal.present?
+
+      %hr/
+      .row
+        .col-md-12
+          %h3 
+            %b Documentos 
+            %br/
+            %small
+              = link_to "Atualizar Documentos", restrict_area_documentations_path
+      .row
+        .col-md-12 
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Documento
+                %th Enviado em
+                %th Digital
+            %tbody 
+              - @entity.documents.each do |document|
+                %tr
+                  %td= document.document_category.name if document.document_category.present?
+                  %td= document.created_at.strftime('%d/%m/%Y às %H:%M')
+                  %td= link_to "Visualizar", document.archive_path.url, target: "_blank"
+
+      %hr/
+      .row
+        .col-md-12
+          %h3 
+            %b Observações 
+      .row
+        .col-md-12 
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Data
+                %th Observação
+            %tbody 
+              %tr
+                %td.col-md-2= @entity.cnpj
+                %td.col-md-6= @entity.name

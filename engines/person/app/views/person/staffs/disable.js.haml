@@ -1,2 +1,2 @@
 - if !@staff.errors.any?
-    $(".tr-#{@staff.id}").html("#{escape_javascript(link_status_to(@staff.id))}")
+    $(".tr-#{@staff.id}").html("#{escape_javascript(link_status_to(@staff.id, false))}")

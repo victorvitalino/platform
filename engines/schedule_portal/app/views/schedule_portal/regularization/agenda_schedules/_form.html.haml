@@ -1,0 +1,89 @@
+= simple_form_for [:regularization, @schedule] do |f|
+  .row
+    .col-md-4
+      = f.association :agenda, collection: Schedule::Agenda.regularization,prompt: 'selecione a agenda...'
+      = f.hint "", id: 'description'
+  %hr/
+  #hide{style: "#{f.object.agenda.present? ? 'display: block;' : 'display: none'}"}
+    .row
+      .col-md-2
+        = f.input :cpf, input_html: { placeholder: "digite seu cpf"}
+      .col-md-6
+        = f.input :name, input_html: { placeholder: 'preencha com seu nome completo'}
+    %hr/
+    .row
+      .col-md-2
+        = f.input :born, as: :string, input_html: { class: 'date'}
+      .col-md-2
+        = f.input :telephone, input_html: { placeholder: '(61) xxxx-xxxx'}
+      .col-md-2
+        = f.input :telephone_optional, input_html: { placeholder: '(61) xxxx-xxxx'}
+      .col-md-2
+        = f.input :celphone, input_html: { placeholder: '(61) xxxx-xxxx'}
+    .row
+      .col-md-4
+        = f.input :email, input_html: { placeholder: 'preencha com seu e-mail'}
+      .col-md-2
+        = f.association :city, collection: Address::City.federal_district, prompt: 'selecione...'
+    %hr/
+    .row
+      .col-md-2
+        = f.input :date, as: :string, input_html: { class: 'datepicker', placeholder: "selecione a agenda..."}
+      .col-md-2
+        = f.input :hour, as: :select, collection: [], prompt: 'selecione...', input_html: { value: f.object.hour.present? ? f.object.hour.strftime('%H:%M') : ''}
+    %hr/
+    .row
+      .col-md-2
+        = f.button :submit, class: 'btn btn-success'
+
+:javascript
+  $(document).ready(function() {
+
+    $("#agenda_schedule_agenda_id").on('change', function(){
+      $("#hide").fadeIn()
+      getAgenda($(this).val())
+    });
+
+    $("#agenda_schedule_date").on('change', function(){
+      setHours($(this).val() ,$("#agenda_schedule_agenda_id").val());
+    });
+
+    getAgenda($("#agenda_schedule_agenda_id").val());
+
+    
+    setHours($("#agenda_schedule_date").val() ,$("#agenda_schedule_agenda_id").val());
+  });
+
+
+
+  function getAgenda(id) {
+    $.getJSON("/agendamento/info?id=" + id,function(data) {
+        if(data.length > 0) {
+          var weekend = "0,6"
+
+          // disable weekend
+          if(data[0].weekend == true) { weekend = '' }
+
+          $("#agenda_schedule_date").datepicker({
+            format: "dd/mm/yyyy",
+            language: "pt-BR",
+            startDate: data[1],
+            daysOfWeekDisabled: weekend,
+            autoclose: true,
+            endDate: data[2]
+          });
+
+          $("#description").html("<i>" + data[0].description + "</i>")
+        }
+      });
+  }
+
+  function setHours(date, id) {
+    $.getJSON("/agendamento/horario?date=" + date +"&id=" + id,function(data) {
+     hour = ""
+     for(var i = 0; i < data.length; i++) {
+       hour += "<option value='"+ data[i] +"'>"+data[i]+"</option>";
+     }
+     $("#agenda_schedule_hour").html(hour);
+    });
+  }

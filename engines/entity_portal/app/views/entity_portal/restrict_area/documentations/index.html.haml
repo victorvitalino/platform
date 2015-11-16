@@ -1,0 +1,38 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/entity_portal/tabs'
+      %br/
+      %br/
+      %br/
+      .row
+        .col-md-12
+          %h4
+            %b Enviar documento
+      .row
+        .col-md-12
+          = render 'form'
+      %hr/
+      .row
+        .col-md-12
+          %h4
+            %b Documentos enviados
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-bordered.table-striped
+            %thead
+              %tr
+                %th Documento
+                %th Descrição
+                %th Data de envio
+                %th Arquivo
+                %th Ação
+            %tbody
+              - @entity.documents.each do |document|
+                %tr
+                  %td= document.document_category.name if document.document_category.present?
+                  %td= document.document_category.description if document.document_category.present?
+                  %td= document.created_at.strftime('%d/%m/%Y às %H:%M')
+                  %td= link_to "Visualizar", document.archive_path.url, target: "_blank"
+                  %td
+                    = link_to "excluir", restrict_area_documentation_path(document), method: :delete, data: { confirm: t(:confirm_delete) }

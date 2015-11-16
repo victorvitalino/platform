@@ -5,18 +5,29 @@
     %title Extranet
     = stylesheet_link_tag  'material', media: 'all'
     = stylesheet_link_tag  'print', media: 'print'
-    = javascript_include_tag 'material'
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,300", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
   %body.toggled.sw-toggled
-    = render "layouts/partials/nav" if user_signed_in?
+    = render "layouts/partials/material/nav" if user_signed_in?
     %section#main
-      = render "layouts/partials/aside"
-      = render "layouts/partials/sidebar"
+      = render "layouts/partials/material/aside"
+      = render "layouts/partials/material/sidebar"
+      %ol.breadcrumb{:style => "margin-bottom: 5px;"}
+        %li
+          %a{data: { href: "#"}}
+            = t("engines.#{controller_path.split('/')[0]}")
+        %li
+          %a{data: { href: "#"}}
+            = t("modules.#{controller_name}")
+        %li.active
+          = t("actions.#{action_name}")
       %section#content
         %div.container
+          - flash.each do |key, value|
+            = content_tag(:div, value, :class => "alert alert-#{key}")
           = yield
 
     #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
       .modal-dialog
         .modal-content
+    = javascript_include_tag 'material', "data-turbolinks-track" => true

@@ -1,0 +1,97 @@
+= simple_form_for(@project) do |f| 
+  .card-body.card-padding
+    .row
+      .col-md-8
+        = f.label :title, class: 'fg-label'
+        = f.input :title, label: false, prompt: 'selecione...'
+      .col-md-2
+        = f.label 'Início do Concurso', class: 'fg-label'
+        = f.input :start,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.start) ? localize(f.object.start) : nil}
+      .col-md-2
+        = f.label 'Fim do Concurso', class: 'fg-label'
+        = f.input :end, as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date', value: (@project.end) ? localize(f.object.end) : nil }
+    .row
+      .col-md-12
+        = f.label :mini_description, class: 'fg-label'
+        = f.input :mini_description, label: false
+    .row
+      .col-md-12
+        = f.label :apresentation, class: 'fg-label'
+        = f.input :apresentation, label: false, prompt: 'selecione...', input_html: { class: 'redactor' }
+    %hr/
+    .row
+      .col-md-2
+        = f.label :image_header, class: 'fg-label'
+        = f.input :image_header, as: :file, label: false, prompt: 'selecione...'
+      .col-md-2
+        = f.label :image_logo, class: 'fg-label'
+        = f.input :image_logo, as: :file, label: false, prompt: 'selecione...'
+      .col-md-2
+        = f.label :image_footer, class: 'fg-label'
+        = f.input :image_footer, as: :file,label: false, prompt: 'selecione...'
+      .col-md-2
+        = f.label :image_slider, class: 'fg-label'
+        = f.input :image_slider, as: :file,label: false, prompt: 'selecione...'
+    %hr/
+    .row
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "consultation"}
+              = f.label :consultation
+          %br
+          %br
+          = f.check_box :consultation, id: 'consultation',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "consultation"}
+      .col-md-2
+        = f.label 'Início de consultas', class: 'fg-label'
+        = f.input :consultation_start,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.consultation_start) ? localize(f.object.consultation_start) : nil}
+      .col-md-2
+        = f.label 'Fim de consultas', class: 'fg-label'
+        = f.input :consultation_end,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.consultation_end) ? localize(f.object.consultation_end) : nil}
+    %br/
+    .row
+      .col-md-12
+        = f.label :consultation_description, class: 'fg-label'
+        = f.input :consultation_description, as: :text,label: false, input_html: { class: 'redactor' }
+    %hr/
+    .row
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "slider"}
+              = f.label :slider
+          %br
+          %br
+          = f.check_box :slider, id: 'slider',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "slider"}
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "publish"}
+              = f.label :publish
+          %br
+          %br
+          = f.check_box :publish, id: 'publish',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "publish"}
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "status"}
+              = f.label :status
+          %br
+          %br
+          = f.check_box :status, id: 'status',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "status"}
+    %hr/
+    .row
+      .col-md-2
+        = f.label :step, class: 'fg-label'
+        %br/
+        = f.input :step, label:false, as: :select, collection: Concourse::Project.steps.keys.to_a, prompt: 'selecione...'
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar", projects_path,class: 'btn btn-inverse' 
+

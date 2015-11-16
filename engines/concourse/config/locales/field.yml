@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/field': 'Campo'
+    attributes:
+      'concourse/field':
+        label: 'Título'
+        field_type: 'Tipo'
+        max_size: 'Tam. Max'
+        file_white_list: 'Extensões'
+        required: 'Obrigatório'
+        unique: "Único"
+        only_number: "Somente números"
+        image_header: "Cabeçalho"
+        image_logo: "Logo"
+        image_footer: "Rodapé"
+        image_slider: "Imagem Rotativa"
+        slider: "Imagem Rotativa?"
+        consultation: "Consulta"

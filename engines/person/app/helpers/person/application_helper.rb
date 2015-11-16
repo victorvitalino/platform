@@ -1,13 +1,12 @@
 module Person
   module ApplicationHelper
     def link_permission_to(staff_id, staff_permission_id)
-      @permissions = Person::StaffPermission.where(system_permission_id: staff_permission_id, staff_id: staff_id, status: true)
 
-      if @permissions.present?
-        link_to "", staff_staff_permission_disable_path(:staff_id => staff_id, :staff_permission_id => staff_permission_id), title: 'Desativar', 'data-toggle' => 'tooltip', remote: true, class: 'md-close btn btn-danger waves-effect waves-button waves-float'
-      else
-        link_to "", staff_staff_permission_enable_path(:staff_id => staff_id, :staff_permission_id => staff_permission_id), title: 'Ativar', 'data-toggle' => 'tooltip',  remote: true, class: 'md-check btn btn-success waves-effect waves-button waves-float'
-      end
+      staff = Person::Staff.find(staff_id) rescue nil
+      #array = [ação, titulo da ação, icone da ação, classe de cor do botão] 
+      button = (staff.privilege_id.to_a.include?(staff_permission_id.to_i)) ? %w(disable desativar close danger) : %w(enable ativar check success)
+    
+      link_to "", send("staff_staff_permission_#{button[0]}_path", :staff_id => staff_id, :staff_permission_id => staff_permission_id), title: "#{button[1]}", 'data-toggle' => 'tooltip', remote: true, class: "md-#{button[2]} btn btn-#{button[3]} waves-effect waves-button waves-float"
     end
 
     def link_status_to(staff_id, status)

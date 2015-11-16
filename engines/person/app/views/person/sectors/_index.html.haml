@@ -1,15 +1,15 @@
-- @sectors.each_with_index do |j, i|
+- @sectors.each do |j|
  %tr
-  %td.col-md-1
-   = i + 1
   %td
-   = j.name
+   = j.name.to_s.upcase
   %td
-   = j.acron
+   = j.acron.to_s.upcase
   %td
-   = j.father.name if j.father.present?
+   = j.father.acron if j.father.present?
   %td
    = j.responsible.name if j.responsible.present?
+  %td
+   = j.status ? 'ativo' : 'inativo'
   %td.col-md-2
    = link_to "", new_sector_branch_line_path(j),title: 'Novo Ramal', 'data-toggle' => 'tooltip',  remote: true, class: 'md-arrow-forward btn btn-success waves-effect waves-button waves-float' if policy(:BranchLine, namespace: Person).create?
    = link_to "", edit_sector_path(j), title: 'Editar', 'data-toggle' => 'tooltip',  remote: true, class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float'if policy(:sector, namespace: Person).update?

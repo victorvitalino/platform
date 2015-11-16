@@ -1,0 +1,20 @@
+module Candidate
+  class Cadastre < ActiveRecord::Base
+    belongs_to :special_condition
+    belongs_to :city
+    belongs_to :state
+    belongs_to :work_city
+    belongs_to :civil_state
+    belongs_to :program
+    belongs_to :city, class_name: "Address::City"
+
+    has_many :dependents
+    has_many :attendances
+
+    scope :by_cpf, -> (cpf = nil) { where(cpf: cpf) }
+
+    enum gender: ['N/D', 'masculino', 'feminino']
+
+    validates :cpf, cpf: true
+  end
+end

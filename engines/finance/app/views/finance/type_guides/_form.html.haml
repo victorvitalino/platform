@@ -1,0 +1,29 @@
+= simple_form_for(@type_guide) do |f| 
+  .card-body.card-padding
+    .row
+      .col-md-12
+        = f.label :title, class: 'fg-label'
+        = f.input :title, label: false, prompt: 'selecione...'
+    .row
+      .col-md-2
+        = f.label :value, class: 'fg-label'
+        = f.input :value, as: :string, label: false, prompt: 'selecione...'
+      .col-md-2
+        = f.label :code, class: 'fg-label'
+        = f.input :code, label: false, prompt: 'selecione...'
+    .row
+      .col-md-12
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "publish"}
+              = f.label :publish
+          %br
+          %br
+          = f.check_box :publish, id: 'publish',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "publish"}
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar", type_guides_path,class: 'btn btn-inverse' 
+

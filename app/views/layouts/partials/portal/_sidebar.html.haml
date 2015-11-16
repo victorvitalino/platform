@@ -1,0 +1,9 @@
+.col-md-3.box
+  .title_box_internal_notices.box_internal
+    %h5.title_green ÚLTIMAS NOTÍCIAS
+    .post_notices
+      %ul.link_title_green
+      - post_each(3, 'DESC') do |p|
+        %li.link-submenu-sidebar
+          %a{:href => "#{post_path(p)}"}
+            = p.title

@@ -1,0 +1,86 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Detalhamento de Inscrição
+      %span.pull-right
+        = link_to "homologar", "#", class: 'btn btn-success'
+        = link_to "voltar", project_path(@project, q: 'inscricoes'), class: 'btn btn-inverse'
+  .card-body.card-padding
+    
+    %h4 Informações sobre a inscrição
+    .row
+      .col-md-6
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Protocolo
+              %th Data de inscrição
+          %tbody
+            %tr
+              %th= @candidate.protocol
+              %th= @candidate.created_at.strftime("%d/%m/%Y às %H:%M")
+      .col-md-6
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Status de Inscrição
+              %th Pagamento de Inscrição
+              %th Ações
+          %tbody
+            %tr
+              %th= @candidate.status
+              %th
+              %th= link_to "imprimir boleto", "#"
+  
+    %br
+    %br
+    %h4 Informações pessoais
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Data de Nascimento
+              %th Sexo
+          %tbody
+            %tr
+              %td= @candidate.name.upcase
+              %td= @candidate.cpf
+              %td= @candidate.born.strftime('%d/%m/%Y')
+              %td= @candidate.gender
+    %br
+    %br
+    %h4 Informações de contato
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Telefone
+              %th Celular
+              %th E-mail
+          %tbody
+            %tr
+              %td.col-md-1= @candidate.telephone.upcase
+              %td.col-md-1= @candidate.celphone
+              %td.col-md-3= @candidate.email
+        %br/
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Estado
+              %th Cidade
+              %th Endereço
+              %th CEP
+          %tbody
+            %tr
+              %td.col-md-2= @candidate.state.name if @candidate.state.present?
+              %td.col-md-3= @candidate.city
+              %td.col-md-3= @candidate.address
+              %td.col-md-3= @candidate.cep
+    %br
+    %br
+    %h4 Informações adicionais
+   

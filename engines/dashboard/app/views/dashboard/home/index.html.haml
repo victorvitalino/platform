@@ -1,3 +1,2 @@
-%h1
-  %b
-    O novo mural estará disponível em breve.
+- dash = Cms::Post.find_by_title('Mural') rescue nil
+= image_tag dash.thumbnail, width: '100%' if dash.present?

@@ -1,0 +1,113 @@
+%nav.navbar.navbar-default.navbar-codhab
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#{portal.root_path}"}
+        %img{:alt => "...", :height => "71", :src => "/images/codhab.png"}/
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.dropdown.item_menu.habitacao
+          %a#link_habitacao.dropdown-toggle.item_menu{:href => "#"}
+            Habitação
+            %span.sr-only (current)
+          %ul#habitacao.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Participe
+              %ul
+                - link_each('Participe - Habitacao') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Acompanhe
+              %ul
+                - link_each('Acompanhe - Habitacao') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+        %li.dropdown.item_menu.regularizacao
+          %a#link_regularizacao.dropdown-toggle.item_menu{:href => "#"}
+            Regularização
+            %span.sr-only (current)
+          %ul#regularizacao.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Participe
+              %ul
+                - link_each('Participe - Regularizacao') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Acompanhe
+              %ul
+                - link_each('Acompanhe - Regularizacao') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+        %li.dropdown.item_menu.entidades
+          %a#link_entidades.dropdown-toggle.item_menu{:href => "#"}
+            Entidades
+            %span.sr-only (current)
+          %ul#entidades.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Participe
+              %ul
+                - link_each('Participe - Entidades') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Acompanhe
+              %ul
+                - link_each('Acompanhe - Entidades') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+        %li.dropdown.item_menu.servicos
+          %a#link_servicos.dropdown-toggle.item_menu{:href => "#"}
+            Serviços
+            %span.sr-only (current)
+          %ul#servicos.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Responsabilidade Social
+              %ul
+                - link_each('Responsabilidade Social - Servicos') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Ferramentas
+              %ul
+                - link_each('Ferramentas - Servicos') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+        %li.dropdown.item_menu.editais
+          %a#link_editais.dropdown-toggle.item_menu{:href => "#"}
+            Editais
+            %span.sr-only (current)
+          %ul#editais.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Entidades
+              %ul
+                - link_each('Entidades - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Pregões
+              %ul
+                - link_each('Pregoes - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Convite
+              %ul
+                - link_each('Convite - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+        %li.dropdown.item_menu.concursos
+          %a#link_concursos.dropdown-toggle.item_menu{:href => "#"}
+            Concursos
+            %span.sr-only (current)
+          %ul#concursos.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %ul
+                - link_each('Concursos') do |l|
+                  %li.link_submenu
+                    = link_to_nav l

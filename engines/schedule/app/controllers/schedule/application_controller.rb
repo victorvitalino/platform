@@ -1,6 +1,7 @@
 module Schedule
   class ApplicationController < ActionController::Base
+    layout 'material'
 
-    helper ::ApplicationHelper
+    include Pundit
   end
 end

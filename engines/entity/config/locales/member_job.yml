@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'entity/member_job': 'Cargo Diretoria'
+    attributes:
+      'entity/member_job': 
+        name: "Nome"
+        status: "Ativo?"
+        code: "Código"

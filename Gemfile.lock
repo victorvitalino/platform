@@ -1,8 +1,8 @@
 GIT
-  remote: https://github.com/codhab/codhab_barcode.git
-  revision: 97738e0d866702a1527271deb7bdaf0bf2c307f3
+  remote: https://github.com/codhab/codhab_billing.git
+  revision: cbc2290a41b01c4b1d8621729b63ae173772a211
   specs:
-    codhab_barcode (0.1.0)
+    codhab_billing (0.1.0)
 
 GIT
   remote: https://github.com/codhab/pundit.git
@@ -12,10 +12,31 @@ GIT
     pundit (0.2.3)
       activesupport (>= 3.0.0)
 
+GIT
+  remote: https://github.com/codhab/signer.git
+  revision: 01f65278db8852be3f4a28c7f10a2cced966f506
+  specs:
+    signer (1.4.2)
+      nokogiri (>= 1.5.1)
+
 PATH
   remote: engines/address
   specs:
     address (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/attendance
+  specs:
+    attendance (0.0.1)
+      haml-rails
+      pundit
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/candidate
+  specs:
+    candidate (0.0.1)
       rails (~> 4.2.1)
 
 PATH
@@ -29,6 +50,17 @@ PATH
   remote: engines/concourse
   specs:
     concourse (0.0.1)
+      carrierwave
+      friendly_id
+      haml-rails
+      rails (~> 4.2.1)
+      simple_form
+
+PATH
+  remote: engines/concourse_portal
+  specs:
+    concourse_portal (0.0.1)
+      carrierwave
       rails (~> 4.2.1)
 
 PATH
@@ -38,34 +70,57 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/entity
+  specs:
+    entity (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/entity_portal
+  specs:
+    entity_portal (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/finance
+  specs:
+    finance (0.0.1)
+      barby
+      carrierwave
+      chunky_png
+      haml-rails
+      rails (~> 4.2.1)
+      rqrcode
+      simple_form
+
+PATH
+  remote: engines/firm
+  specs:
+    firm (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/firm_portal
+  specs:
+    firm_portal (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/habitation
+  specs:
+    habitation (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/habitation_portal
+  specs:
+    habitation_portal (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/helpdesk
   specs:
     helpdesk (0.0.1)
-      haml-rails
-      rails (~> 4.2.1)
-
-PATH
-  remote: engines/intranet
-  specs:
-    intranet (0.0.1)
-      rails (~> 4.2.1)
-
-PATH
-  remote: engines/juridical
-  specs:
-    juridical (0.0.1)
-      rails (~> 4.2.1)
-
-PATH
-  remote: engines/notify
-  specs:
-    notify (0.0.1)
-      rails (~> 4.2.1)
-
-PATH
-  remote: engines/patrimony
-  specs:
-    patrimony (0.0.1)
       haml-rails
       rails (~> 4.2.1)
 
@@ -94,9 +149,9 @@ PATH
       rails (~> 4.2.1)
 
 PATH
-  remote: engines/regularization_treatment
+  remote: engines/regularization_portal
   specs:
-    regularization_treatment (0.0.1)
+    regularization_portal (0.0.1)
       haml-rails
       rails (~> 4.2.1)
 
@@ -104,6 +159,19 @@ PATH
   remote: engines/schedule
   specs:
     schedule (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/schedule_portal
+  specs:
+    schedule_portal (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
+  remote: engines/sefaz
+  specs:
+    sefaz (0.0.1)
+      carrierwave
       rails (~> 4.2.1)
 
 GEM
@@ -144,25 +212,52 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    arel (6.0.0)
+    arel (6.0.3)
+    audited (4.2.0)
+      rails-observers (~> 0.1.2)
+    audited-activerecord (4.2.0)
+      activerecord (~> 4.0)
+      audited (= 4.2.0)
+    axlsx (2.0.1)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.0.0)
+    barby (0.6.2)
     bcrypt (3.1.10)
+    benchmark-ips (2.3.0)
+    bootstrap-datepicker-rails (1.4.0)
+      railties (>= 3.0)
     builder (3.2.2)
-    byebug (5.0.0)
-      columnize (= 0.9.0)
+    byebug (6.0.2)
+    capybara (2.5.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    coffee-rails (4.1.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.0)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.9.1.1)
-    columnize (0.9.0)
-    devise (3.5.1)
+    carrierwave-ftp (0.2.8)
+      carrierwave (>= 0.6.2)
+      net-sftp (~> 2.1.2)
+    chunky_png (1.3.4)
+    cliver (0.3.2)
+    coderay (1.1.0)
+    daemons (1.2.3)
+    derailed (0.1.0)
+      derailed_benchmarks
+    derailed_benchmarks (1.1.3)
+      benchmark-ips (~> 2)
+      get_process_mem (~> 0)
+      heapy (~> 0)
+      memory_profiler (~> 0)
+      rack (~> 1)
+      rake (~> 10)
+      thor (~> 0.19)
+    devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -172,18 +267,46 @@ GEM
     devise_security_extension (0.9.2)
       devise (>= 2.0.0)
       rails (>= 3.1.1)
+    diff-lcs (1.2.5)
+    em-websocket (0.5.1)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.6.0)
     email_validator (1.6.0)
       activemodel
     enum_help (0.0.14)
     erubis (2.7.0)
-    execjs (2.5.2)
-    figaro (1.1.1)
-      thor (~> 0.14)
+    eventmachine (1.0.8)
+    execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
+    ffi (1.9.10)
+    formatador (0.2.5)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
-    globalid (0.3.5)
+    get_process_mem (0.2.0)
+    globalid (0.3.6)
       activesupport (>= 4.1.0)
-    haml (4.0.6)
+    guard (2.13.0)
+      formatador (>= 0.2.4)
+      listen (>= 2.7, <= 4.0)
+      lumberjack (~> 1.0)
+      nenv (~> 0.1)
+      notiffany (~> 0.0)
+      pry (>= 0.9.12)
+      shellany (~> 0.0)
+      thor (>= 0.18.1)
+    guard-compat (1.2.1)
+    guard-livereload (2.4.0)
+      em-websocket (~> 0.5)
+      guard (~> 2.8)
+      multi_json (~> 1.8)
+    guard-rails (0.7.2)
+      guard (~> 2.11)
+      guard-compat (~> 1.0)
+    haml (4.0.7)
       tilt
     haml-rails (0.9.0)
       actionpack (>= 4.0.1)
@@ -191,35 +314,72 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    has_scope (0.6.0)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
+    heapy (0.1.1)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
+    htmlentities (4.3.4)
+    http_parser.rb (0.6.0)
     i18n (0.7.0)
     jquery-datatables-rails (3.3.0)
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
       sass-rails
-    jquery-rails (4.0.3)
+    jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
     json (1.8.3)
-    loofah (2.0.2)
+    kgio (2.10.0)
+    listen (3.0.3)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+    loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mime-types (2.6.1)
-    mini_magick (4.2.4)
+    memory_profiler (0.9.6)
+    method_source (0.8.2)
+    mime-types (2.6.2)
+    mina (0.3.4)
+      open4 (~> 1.3.4)
+      rake
+    mina-unicorn (0.3.0)
+    mini_magick (4.3.6)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.1)
+    multi_json (1.11.2)
+    nenv (0.2.0)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.0.1)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    notiffany (0.0.8)
+      nenv (~> 0.1)
+      shellany (~> 0.0)
+    open4 (1.3.4)
     orm_adapter (0.5.0)
-    pg (0.18.2)
-    rack (1.6.1)
+    pg (0.18.3)
+    poltergeist (1.7.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    rack (1.6.2)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -235,108 +395,178 @@ GEM
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.6)
+    rails-dom-testing (1.0.7)
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     railties (4.2.1)
       actionpack (= 4.2.1)
       activesupport (= 4.2.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    raindrops (0.15.0)
     rake (10.4.2)
+    rb-fsevent (0.9.6)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
     redactor-rails (0.5.0)
       devise
       mime-types
       orm_adapter
-    remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    ruby_parser (3.6.6)
+    rqrcode (0.7.0)
+      chunky_png
+    rspec-core (3.3.2)
+      rspec-support (~> 3.3.0)
+    rspec-expectations (3.3.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-mocks (3.3.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-rails (3.3.3)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
+      rspec-core (~> 3.3.0)
+      rspec-expectations (~> 3.3.0)
+      rspec-mocks (~> 3.3.0)
+      rspec-support (~> 3.3.0)
+    rspec-support (3.3.0)
+    ruby_parser (3.7.1)
       sexp_processor (~> 4.1)
-    sass (3.4.16)
-    sass-rails (5.0.3)
+    rubyzip (1.0.0)
+    sass (3.4.19)
+    sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
-      tilt (~> 1.1)
-    sexp_processor (4.5.1)
-    simple_form (3.1.0)
+      tilt (>= 1.1, < 3)
+    sexp_processor (4.6.0)
+    shareable (1.1.4)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    shellany (0.0.1)
+    simple_form (3.2.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    sprockets (3.2.0)
-      rack (~> 1.0)
-    sprockets-rails (2.3.1)
+    slop (3.6.0)
+    sprockets (3.4.0)
+      rack (> 1, < 3)
+    sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sqlite3 (1.3.10)
+    sqlite3 (1.3.11)
+    thin (1.6.4)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (1.4.1)
+    tilt (2.0.1)
     timeliness (0.3.7)
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicorn (4.9.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     validates_cpf_cnpj (0.2.0)
       activemodel (>= 3.0.0)
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
     warden (1.2.3)
       rack (>= 1.0)
+    websocket-driver (0.6.2)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     wicked_pdf (0.11.0)
       rails
+    will_paginate (3.0.7)
     wkhtmltopdf-binary (0.9.9.3)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   address!
+  attendance!
+  audited-activerecord (~> 4.0)
+  axlsx (~> 2.0.1)
+  bootstrap-datepicker-rails
   byebug
+  candidate!
+  capybara
   carrierwave
+  carrierwave-ftp
   cms!
-  codhab_barcode!
+  codhab_billing!
   concourse!
+  concourse_portal!
   dashboard!
+  derailed
   devise
   devise_security_extension
   email_validator
+  entity!
+  entity_portal!
   enum_help
-  figaro
+  factory_girl_rails
+  finance!
+  firm!
+  firm_portal!
   friendly_id
+  guard
+  guard-livereload
+  guard-rails
+  habitation!
+  habitation_portal!
   haml-rails
+  has_scope
   helpdesk!
-  intranet!
+  i18n
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
-  juridical!
+  jquery-ui-rails
+  mina
+  mina-unicorn
   mini_magick
-  notify!
-  patrimony!
+  nokogiri
   person!
   pg
+  poltergeist
   portal!
   protocol!
   pundit!
   rails (= 4.2.1)
   redactor-rails
   regularization!
-  regularization_treatment!
-  remotipart (~> 1.2)
+  regularization_portal!
+  rspec-rails
   schedule!
+  schedule_portal!
+  sefaz!
+  shareable
+  signer!
   simple_form
   sqlite3
-  turbolinks
+  thin
   uglifier (>= 1.3.0)
+  unicorn
   validates_cpf_cnpj
   validates_timeliness
   wicked_pdf
+  will_paginate (~> 3.0.6)
   wkhtmltopdf-binary

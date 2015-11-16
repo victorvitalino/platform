@@ -6,8 +6,11 @@ module Person
 		before_action :set_sectors, only: [:index, :create, :destroy, :update]
 		before_action :set_sector, only: [:edit, :destroy, :update]
 
+
+		has_scope :status
+
 		def index
-			authorize @sectors
+
 		end
 
 		def new
@@ -42,10 +45,8 @@ module Person
 			params.require(:sector).permit(:name,:acron,:father_id, :responsible_id,:status,:prefex)
 		end
 
-
 		def set_sectors
-			@sectors = Sector.all
-			@person = Staff.all
+			@sectors = apply_scopes(Sector).includes(:responsible).all
 		end
 
 		def set_sector

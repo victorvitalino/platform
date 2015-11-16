@@ -1,0 +1,34 @@
+= simple_form_for([@station, @counter]) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-1
+        = f.label :number, class: 'fg-label'
+        = f.input :number, as: :string, label: false
+    .row
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "ts4"}
+              = f.label :preference
+          %br/
+          = f.check_box :preference, label: false, id: 'ts4',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "ts4"}
+    
+      .col-md-2
+        .toggle-switch{"data-ts-color" => "blue"}
+          %label
+            .ts-label{:for => "status"}
+              = f.label :status
+          %br/
+          = f.check_box :status, label: false, id: 'status',hidden: 'hidden', type: 'checkbox'
+          %label.ts-helper{:for => "status"}
+    %hr/
+    .row
+      = f.simple_fields_for :counter_subjects do |builder|
+        = render 'counter_subject_fields', f: builder
+      = link_to_add_fields "Adicionar assunto", f, :counter_subjects
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+        = link_to "voltar", station_counters_path(@station), class: 'btn btn-inverse'

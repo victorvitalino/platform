@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'attendance/station_attendant': Atendente
+    attributes:
+      'attendance/station_attendant':
+        attendant: "Atendente"
+        counter: "Guichê"
+        supervisor: "Supervisor?"
+        status: "Ativo?"

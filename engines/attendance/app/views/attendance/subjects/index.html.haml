@@ -1,0 +1,21 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Assuntos de Atendimento
+      = link_to 'Novo Assunto', attendance.new_subject_path, class: 'btn btn-success pull-right'
+      %small Listagem de assuntos para atendimento
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table.table.table-striped.datatable
+      %thead
+        %tr
+          %th Nome
+          %th Status
+          %th Ações
+      %tbody
+        - @subjects.each_with_index do |subject, index|
+          %tr
+            %td= subject.name
+            %td= subject.status ? 'ativo' : 'inativo'
+            %td.col-md-2
+              = link_to '', edit_subject_path(subject), class: 'md md-edit btn btn-primary'
+              = link_to '', subject, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }

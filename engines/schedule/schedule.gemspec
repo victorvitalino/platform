@@ -7,8 +7,8 @@ require "schedule/version"
 Gem::Specification.new do |s|
   s.name        = "schedule"
   s.version     = Schedule::VERSION
-  s.authors     = ["elton.silva@codhab.df.gov.br"]
-  s.email       = ["elton.silva@codhab.df.gov.br"]
+  s.authors     = ["Elton Silva"]
+  s.email       = ["elton.chrls@gmail.com"]
   s.homepage    = ""
   s.summary     = "Summary of Schedule."
   s.description = "Description of Schedule."
