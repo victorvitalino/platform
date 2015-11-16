@@ -1,0 +1,25 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/entity_portal/tabs'
+      .row
+        .col-md-12
+          %h3
+            %b Dados da Entidade
+            %br/
+            %small
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Nome
+                %th CPF
+                %th Status
+            %tbody
+              -if @enterprise_cadastres.present?
+                - @enterprise_cadastres.cand.each do |cand|
+                  %tr
+                    %td.col-md-4= cand.cadastres.name
+                    %td.col-md-2= cand.cadastres.cpf
+                    %td.col-md-2= cand.status_cadastres.name

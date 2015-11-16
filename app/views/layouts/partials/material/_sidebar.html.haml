@@ -23,7 +23,7 @@
             = link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
       %ul.main-menu
         %li{class: ('active' if params[:module] == "dashboard")}
-          = link_to "<i class='md  md-dashboard'></i> Mural".html_safe, dashboard.root_pathcd
+          = link_to "<i class='md  md-dashboard'></i> Mural".html_safe, dashboard.root_path
         - if policy(:application, namespace: Person).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "person")}
             %a{:href => ""}

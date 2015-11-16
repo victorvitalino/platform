@@ -1,0 +1,34 @@
+= simple_form_for @tipology  do |f|
+  .row
+    .col-md-8
+      = f.label :name, class: 'fg-label'
+      = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+  .row
+    .col-md-8
+      = f.label :home_type, class: 'fg-label'
+      = f.input :home_type, label: false, input_html: { placeholder: 'Digite um Tipo de Habitação'}
+  .row
+    .col-md-3
+      = f.label :private_area, class: 'fg-label'
+      = f.input :private_area, label: false, input_html: { placeholder: 'Digite uma area'}
+    .col-md-3
+      = f.label :income_family, class: 'fg-label'
+      = f.input :income_family, label: false, input_html: { placeholder: 'Digite uma renda familiar'}
+  .row
+    .col-md-3
+      = f.label :initial_value, class: 'fg-label'
+      = f.input :initial_value, label: false, input_html: { placeholder: 'Digite um valor inicial'}
+    .col-md-4
+      = f.label :end_value, class: 'fg-label'
+      = f.input :end_value, label: false, input_html: { placeholder: 'Digite um valor final'}
+  .row
+    .col-md-2
+      .checkbox.m-b-15
+        %label
+          = f.check_box :status
+          %i.input-helper
+          = f.label :status, class: 'fg-label'
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
