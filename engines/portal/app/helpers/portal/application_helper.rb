@@ -47,7 +47,7 @@ module Portal
     end
 
     def post_each(limit = 10, order = 'ASC')
-      @posts = Cms::Post.where(publish: true, slider: false).limit(limit).order("created_at #{order}")
+      @posts = Cms::Post.where(publish: true, slider: false).limit(limit).order("date DESC")
 
       @posts.each do |p|
         yield p
