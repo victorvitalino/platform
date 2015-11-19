@@ -10,8 +10,16 @@ module Candidate
     end
 
     def show
-      @candidates = apply_scopes("#{@list.view_target}".constantize).select("*, row_number() OVER (ORDER BY total DESC) AS position_x").paginate(:page => params[:page], :per_page => 40)
-      @candidates  = @candidates.where("#{@list.condition_sql}") if @list.condition_sql.present?
+      respond_to do |format|
+        format.json {
+          @candidates = apply_scopes("#{@list.view_target}".constantize).select("*, row_number() OVER (ORDER BY total DESC) AS position_x").where("#{@list.condition_sql}") 
+          render json: {data: @candidates}
+        }
+
+        format.html {
+          @list
+        }
+      end
     end
 
     def new

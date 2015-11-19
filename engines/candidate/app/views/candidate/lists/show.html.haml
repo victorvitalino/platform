@@ -4,16 +4,28 @@
       Listas de candidatos
       %small Listagem de listas de candidatos
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+    %table#data-table-command.table.table-striped.table-vmiddle#backend
       %thead
         %tr
-          %th Posição
+          %th Cidade
           %th Nome
           %th Pontuação
+          %th Com Deficiência
+          %th Faixa
+          %th Genero
+          %th Idoso
+          %th Depedente Norm.
+          %th Depedente Com Def.
+          %th Tipo
       %tbody
-        - @candidates.limit(100).each do |candidate|
-          %tr
-            %td= candidate.position_x
-            %td= candidate.name
-            %td= candidate.total
-    = will_paginate @candidates
+        %tr
+          %td
+      
+:javascript
+  $(document).ready(function() {
+      $('#backend').DataTable( {
+          "processing": true,
+          "serverSide": true,
+          "ajax": "http://www.morarbem.df.gov.br/consultas/geocity?cidade=Cruzeiro%20Novo&sexo=2&faixa=4&tipo=2&quantidade=4"
+      } );
+  });
