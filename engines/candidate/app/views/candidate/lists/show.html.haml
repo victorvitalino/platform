@@ -4,28 +4,25 @@
       Listas de candidatos
       %small Listagem de listas de candidatos
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle#backend
+    .row
+      .col-md-4
+        = paginate(@candidates.length, params[:page])
+      .col-md-4
+        = simple_form_for url_for do |f|
+          = f.input :income, as: :select, label: false
+    %table#data-table-command.table.table-striped.table-vmiddle.datatable
       %thead
         %tr
-          %th Cidade
+          %th Posição
           %th Nome
+          %th CPF
           %th Pontuação
-          %th Com Deficiência
-          %th Faixa
-          %th Genero
-          %th Idoso
-          %th Depedente Norm.
-          %th Depedente Com Def.
-          %th Tipo
+          %th Programa Habitacional
       %tbody
-        %tr
-          %td
-      
-:javascript
-  $(document).ready(function() {
-      $('#backend').DataTable( {
-          "processing": true,
-          "serverSide": true,
-          "ajax": "http://www.morarbem.df.gov.br/consultas/geocity?cidade=Cruzeiro%20Novo&sexo=2&faixa=4&tipo=2&quantidade=4"
-      } );
-  });
+        - @candidates.paginate(:page => params[:page] ||= 1).each do |candidate|
+          %tr    
+            %td= @candidates.map(&:cpf).index(candidate.cpf) + 1
+            %td= candidate.name
+            %td= candidate.cpf
+            %td= candidate.total
+            %td= (candidate.program_id == 1) ? "RII" : "RIE"
