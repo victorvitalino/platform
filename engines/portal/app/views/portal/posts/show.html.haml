@@ -4,7 +4,8 @@
     .col-md-9.box
       .box_internal
         .post_meta
-          = render_shareable :buttons=> ['twitter', 'facebook','google_plus'], :facebook=> {:send=> 'true', :static_link => true, :url=> "#{request.original_url}",:turbolinks => true}
+          = render_shareable :buttons=> ['twitter', 'facebook','google_plus']
+          .fb-share-button{"data-href" => "https://www.facebook.com/sharer.php?u=#{request.original_url}", "data-layout" => "button",:style => 'float:left'}
           .post_date
             = @post.date.strftime('%d/%m/%Y')
         .post
