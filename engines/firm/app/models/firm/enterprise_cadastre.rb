@@ -1,7 +1,7 @@
 module Firm
   class EnterpriseCadastre < ActiveRecord::Base
-    belongs_to :enterprise
-    belongs_to :cadastre
+
+    belongs_to :cadastre, class_name: "Candidate::Cadastre"
     belongs_to :status_cadastre
   end
 end

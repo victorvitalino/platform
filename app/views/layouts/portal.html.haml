@@ -27,3 +27,6 @@
     %div{class: (controller_path == "portal/home") ? "" : "container portal-container"}
       = yield
     = render 'layouts/partials/portal/footer'
+    #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content

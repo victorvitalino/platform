@@ -74,6 +74,15 @@
               %li= link_to "Insenção de ITCD/ITBI", sefaz.new_iptu_consult_path
               %li= link_to "Cancelamento de isenção", sefaz.transmissions_path
               %li= link_to "Consulta IPTU", sefaz.new_iptu_consult_path
-   
-   
+        - if policy(:application, namespace: Firm).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "firm")}
+            %a{:href => ""}
+              %i.md.md-business>
+              Empresas
+            %ul{style: ('display:block;' if params[:module] == "firm")}
+              %li= link_to "Empresas", firm.companies_path
+              %li= link_to "Empreendimentos", firm.enterprises_path
+              %li= link_to "Tipologias", firm.tipologies_path
+
+
 

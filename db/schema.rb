@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113160342) do
+ActiveRecord::Schema.define(version: 20151119115351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,11 +95,13 @@ ActiveRecord::Schema.define(version: 20151113160342) do
     t.integer  "type_use_unit_id"
     t.integer  "city_id"
     t.integer  "program"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "firm_enterprise_id"
   end
 
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
+  add_index "address_units", ["firm_enterprise_id"], name: "index_address_units_on_firm_enterprise_id", using: :btree
   add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
   add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
 
@@ -936,16 +938,27 @@ ActiveRecord::Schema.define(version: 20151113160342) do
   create_table "firm_enterprise_cadastres", force: :cascade do |t|
     t.integer  "enterprise_id"
     t.integer  "cadastre_id"
-    t.integer  "status_cadastre_id"
-    t.text     "observation"
-    t.string   "archive_path"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.boolean  "status"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "firm_enterprise_cadastres", ["cadastre_id"], name: "index_firm_enterprise_cadastres_on_cadastre_id", using: :btree
   add_index "firm_enterprise_cadastres", ["enterprise_id"], name: "index_firm_enterprise_cadastres_on_enterprise_id", using: :btree
-  add_index "firm_enterprise_cadastres", ["status_cadastre_id"], name: "index_firm_enterprise_cadastres_on_status_cadastre_id", using: :btree
+
+  create_table "firm_enterprise_statuses", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "enterprise_cadastre_id"
+    t.integer  "status_cadastre_id"
+    t.text     "observation"
+    t.string   "archive_file"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "firm_enterprise_statuses", ["cadastre_id"], name: "index_firm_enterprise_statuses_on_cadastre_id", using: :btree
+  add_index "firm_enterprise_statuses", ["enterprise_cadastre_id"], name: "index_firm_enterprise_statuses_on_enterprise_cadastre_id", using: :btree
+  add_index "firm_enterprise_statuses", ["status_cadastre_id"], name: "index_firm_enterprise_statuses_on_status_cadastre_id", using: :btree
 
   create_table "firm_enterprises", force: :cascade do |t|
     t.string   "name"
@@ -962,9 +975,10 @@ ActiveRecord::Schema.define(version: 20151113160342) do
 
   create_table "firm_status_cadastres", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "status",     default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.boolean  "status",      default: true
+    t.string   "type_status"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "firm_tipologies", force: :cascade do |t|
@@ -982,7 +996,7 @@ ActiveRecord::Schema.define(version: 20151113160342) do
   create_table "firm_user_companies", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "login"
+    t.string   "login_user"
     t.string   "password"
     t.boolean  "admin"
     t.integer  "company_id"
