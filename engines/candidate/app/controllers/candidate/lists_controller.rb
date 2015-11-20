@@ -4,28 +4,35 @@ module Candidate
     before_action :set_list, only: [:show, :edit, :update, :destroy]
 
     has_scope :by_income, :using => [:started_at, :ended_at], :type => :hash
+    has_scope :cpf
     
     def index
       @lists = List.all.order(:created_at)
     end
 
     def show
-      respond_to do |format|
-        format.json {
-          @candidates = apply_scopes("#{@list.view_target}".constantize).select("*, row_number() OVER (ORDER BY total DESC) AS position_x").where("#{@list.condition_sql}") 
-          render_cached_json("#{@list.view_target}:show", expires_in: 1.hour) do
-           @candidates
-          end
-        }
-        format.html {
-          @list
-          @candidates = apply_scopes("#{@list.view_target}".constantize).select("*, row_number() OVER (ORDER BY total DESC) AS position_x").where("#{@list.condition_sql}") 
-          
-          Rails.cache.fetch("#{@list.view_target}:html", {raw: true}.merge({expires_in: 1.day})) do
-            @candidates
-          end
-        }
+      params[:income] ||= 'faixa1'
+
+      case params[:income]
+      when 'faixa1'
+        @geral = Rails.cache.fetch("faixa1", :expires_in => 7.day) do
+          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income BETWEEN 0 AND 1600")
+        end
+      when 'faixa2'
+        @geral = Rails.cache.fetch("faixa2", :expires_in => 7.day) do
+          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income BETWEEN 1601 AND 3000")
+        end
+      when 'faixa3'
+        @geral = Rails.cache.fetch("faixa3", :expires_in => 7.day) do
+          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income BETWEEN 3001 AND 5000")
+        end
+      when 'faixa4'
+        @geral = Rails.cache.fetch("faixa4", :expires_in => 7.day) do
+          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income > 5001")
+        end
       end
+
+      @candidates = apply_scopes(@geral).paginate(:page => params[:page], :per_page => 20)
     end
 
     def new
