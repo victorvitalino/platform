@@ -38,7 +38,7 @@ module Portal
       end
     end
 
-    def slider_each(limit = 10, order = 'ASC')
+    def slider_each(limit = 10, order = 'DESC')
       @slider = Cms::Post.where(slider: true ,publish: true).limit(limit).order("date #{order}")
 
       @slider.each do |s|
@@ -47,7 +47,7 @@ module Portal
     end
 
     def post_each(limit = 10, order = 'ASC')
-      @posts = Cms::Post.where(publish: true, slider: false).limit(limit).order("created_at #{order}")
+      @posts = Cms::Post.where(publish: true, slider: false).limit(limit).order("date DESC, id DESC")
 
       @posts.each do |p|
         yield p

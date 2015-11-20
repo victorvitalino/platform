@@ -3,17 +3,49 @@
     %h2
       Listas de candidatos
       %small Listagem de listas de candidatos
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
-      %thead
-        %tr
-          %th Posição
-          %th Nome
-          %th Pontuação
-      %tbody
-        - @candidates.limit(100).each do |candidate|
-          %tr
-            %td= candidate.position_x
-            %td= candidate.name
-            %td= candidate.total
-    = will_paginate @candidates
+  .row
+    .col-md-12
+      = simple_form_for url_for, method: :get do |f|
+        .row
+          .col-md-3
+            = f.input :income, as: :hidden, input_html: { value: params[:income], name: 'income'}
+            = f.input :cpf, input_html: { name: 'cpf', value: params[:cpf]}
+        .row
+          .col-md-3
+            = f.submit "pesquisar", name: nil, class: 'btn btn-primary'
+  %hr/
+  .row
+    .col-md-3
+      = link_to "Faixa 1 - R$ 0 à R$ 1600", url_for(income: 'faixa1'), class: 'btn btn-primary'
+    .col-md-3
+      = link_to "Faixa 2 - R$ 1601 à R$ 3000", url_for(income: 'faixa2'), class: 'btn btn-primary'
+    .col-md-3
+      = link_to "Faixa 3 - R$ 3001 à R$ 5000", url_for(income: 'faixa3'), class: 'btn btn-primary'
+    .col-md-3
+      = link_to "Faixa 4 - acima de R$ 5000 ", url_for(income: 'faixa4'), class: 'btn btn-primary'
+  %hr/
+  .row
+    .col-md-12
+      = will_paginate @candidates
+  %hr/
+  .row
+    .col-md-12
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-vmiddle.datatable
+          %thead
+            %tr
+              %th Posição
+              %th Nome
+              %th CPF
+              %th Pontuação
+              %th Renda
+              %th Programa Habitacional
+          %tbody
+            - @candidates.each do |candidate|
+              %tr    
+                %td= "#{@geral.map(&:cpf).index(candidate.cpf) + 1} º"
+                %td= link_to candidate.name, cadastres_path(cpf: candidate.cpf)
+                %td= candidate.cpf
+                %td= candidate.total
+                %td= number_to_currency candidate.income
+                %td= (candidate.program_id == 1) ? "RII" : "RIE"

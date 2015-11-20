@@ -10,7 +10,7 @@ module Candidate
     validates :title, uniqueness: true
 
     def self.view_targets
-      %w(Candidate::View::GeneralCandidate)
+      %w(Candidate::View::GeneralCandidate Candidate::View::GeneralPontuation)
     end
   end
 end
