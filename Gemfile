@@ -11,7 +11,7 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 
 gem 'simple_form'
 gem 'haml-rails'
-gem 'shareable'
+
 
 gem 'i18n'
 gem 'enum_help'
@@ -99,5 +99,3 @@ gem 'schedule',                     path: 'engines/schedule'
 gem 'schedule_portal',              path: 'engines/schedule_portal'
 
 gem 'sefaz',                        path: 'engines/sefaz'
-
-
