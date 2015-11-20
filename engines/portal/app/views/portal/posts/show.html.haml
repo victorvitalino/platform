@@ -5,7 +5,8 @@
       .box_internal
         .post_meta
           = render_shareable :buttons=> ['twitter', 'facebook','google_plus']
-          .fb-share-button{"data-href" => "https://www.facebook.com/sharer.php?u=#{request.original_url}", "data-layout" => "button",:style => 'float:left'}
+          %a{:href => "https://www.facebook.com/sharer.php?u=#{request.original_url}",:style => 'float:left'}
+            Compartilhar no facebook
           .post_date
             = @post.date.strftime('%d/%m/%Y')
         .post
