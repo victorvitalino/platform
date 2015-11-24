@@ -21,6 +21,10 @@
       .col-md-2
         = f.label 'Hora fim', class: 'fg-label'
         = f.input :end_hour, label: false, as: :string, input_html: { class: 'hour',value: (f.object.end_hour) ? localize(f.object.end_hour, format:"%H:%M") : nil}
+    .row
+      .col-md-8
+        = f.label 'Datas excluídas'
+        = f.input :disable_dates, label: false
     %hr/
     .row
       .col-md-2

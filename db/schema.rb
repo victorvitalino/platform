@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124143920) do
+ActiveRecord::Schema.define(version: 20151124175038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1570,6 +1570,7 @@ ActiveRecord::Schema.define(version: 20151124143920) do
     t.boolean  "status",           default: true
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "local"
   end
 
   add_index "schedule_agendas", ["program_id"], name: "index_schedule_agendas_on_program_id", using: :btree

@@ -20,7 +20,6 @@ module ApplicationHelper
     @query_avatar = Person::Staff.where(sector_current_id:id_sector).status(true)
 
     @query_avatar.each do |qa|
-
       yield qa
     end
   end

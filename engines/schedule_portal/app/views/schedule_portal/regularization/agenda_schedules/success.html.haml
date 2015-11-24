@@ -1,5 +1,5 @@
 .row
-  .col-md-12
+  .col-md-12.box
     .panel.panel-default
       .panel-body
         .row
@@ -17,12 +17,11 @@
               %thead
                 %tr
                   %th Protocolo
+                  %th Local
               %tbody
                 %tr
-                  %td.col-md-4= @schedule.protocol
-        .row
-          .col-md-12
-            %table.table.table-bordered.table-striped.table-hover.table-condensed
+                  %td.col-md-2= @schedule.protocol
+                  %td.col-md-2= @schedule.agenda.local
               %thead
                 %tr
                   %th Nome
@@ -31,17 +30,11 @@
                 %tr
                   %td.col-md-4= @schedule.name.to_s.upcase
                   %td.col-md-4= @schedule.cpf.to_s.upcase
-                  
-        .row
-          .col-md-12
-            %table.table.table-bordered.table-striped.table-hover.table-condensed
               %thead
                 %tr
                   %th Data
                   %th Hora
-                  %th Local
               %tbody
                 %tr
                   %td.col-md-1= @schedule.date.strftime('%d/%m/%Y')
                   %td.col-md-1= @schedule.hour.strftime('%H:%M')
-                  %td.col-md-2

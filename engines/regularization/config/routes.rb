@@ -6,5 +6,13 @@ Regularization::Engine.routes.draw do
       delete 'cancel'
     end
   end
+
+  resources :attendances
+  resources :requeriments
+
+  resources :candidates
+  resources :addresses
+
+  resources :resettles
 end
 
