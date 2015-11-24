@@ -1,0 +1,31 @@
+/ conteudo da pagina
+.container
+  .row
+    .col-md-12.box
+      .box_internal
+        .row
+          .col-md-12
+            .container
+              %h1
+                %b= @list.title
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Posição
+                  %th Nome
+                  %th CPF
+                  %th Pontuação
+                  %th Renda
+              %tbody
+                - @candidates.each do |candidate|
+                  %tr    
+                    %td.col-md-1= "#{@geral.map(&:cpf).index(candidate.cpf) + 1} º"
+                    %td= link_to candidate.name, candidate_path(candidate.cpf)
+                    %td= candidate.cpf
+                    %td= candidate.total
+                    %td= number_to_currency candidate.income
+        .row
+          .col-md-12
+            = will_paginate @candidates

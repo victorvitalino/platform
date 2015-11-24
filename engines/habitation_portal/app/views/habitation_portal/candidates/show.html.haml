@@ -1,0 +1,76 @@
+/ conteudo da pagina
+.container
+  .row
+    .col-md-12.box
+      .box_internal
+        .row
+          .col-md-12
+            .container
+              %h1
+                %b Detalhe do Cadastro
+              = link_to "Voltar para listas"
+        %hr/
+        .row
+          .col-md-12
+            .container
+              %h2 
+                %b Dados do Cadastro
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Status do Cadastro
+                  %th Posição
+                  %th Última Pontuação
+              %tbody
+                %tr
+                  %td= @candidate.name 
+                  %td= @candidate.cpf 
+                  %td= @candidate.cpf 
+        .row
+          .col-md-12
+            .container
+              %h2 
+                %b Dados Pessoais
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Nome Completo
+                  %th CPF
+                  %th RG
+                  %th Data de Nascimento
+                  %th Idade
+              %tbody
+                %tr
+                  %td= @candidate.name 
+                  %td= @candidate.cpf 
+                  %td= @candidate.rg 
+                  %td= @candidate.born.strftime('%d/%m/%Y') 
+                  %td= "#{Date.today.year - @candidate.born.year} anos" 
+
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Nome Completo
+                  %th CPF
+                  %th RG
+                  %th Data de Nascimento
+                  %th Idade
+              %tbody
+                - @candidate.dependents.each do |dependent|
+                  %tr
+                    %td= @candidate.id
+                    %td= dependent.cpf 
+                    %td= dependent.rg 
+                    %td= dependent.born.strftime('%d/%m/%Y') 
+                    %td= "#{Date.today.year - dependent.born.year} anos"          
+        .row
+          .col-md-12
+            .container
+              %h2 
+                %b Dados de Contato

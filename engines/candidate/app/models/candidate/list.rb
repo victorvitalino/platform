@@ -4,7 +4,7 @@ module Candidate
     extend FriendlyId
     friendly_id :title, use: :slugged
 
-    enum list_types: ['extranet', 'portal']
+    enum list_type: ['extranet', 'portal']
 
     validates :title, :condition_sql, :list_type, :view_target, presence: true
     validates :title, uniqueness: true

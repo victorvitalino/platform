@@ -74,6 +74,21 @@
               %li= link_to "Insenção de ITCD/ITBI", sefaz.new_iptu_consult_path
               %li= link_to "Cancelamento de isenção", sefaz.transmissions_path
               %li= link_to "Consulta IPTU", sefaz.new_iptu_consult_path
-   
+        - if policy(:application, namespace: Regularization).index?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
+            %a{:href => ""}
+              %i.md.md-business>
+              Regularização
+            %ul{style: ('display:block;' if params[:module] == "regularization")}
+              %li= link_to "Agendas & Agendamentos", regularization.agendas_path 
+              %li= link_to "Requerimentos", regularization.agendas_path
+              %li= link_to "Atendimento", regularization.agendas_path
+              %hr/
+              %li= link_to "Assentar Candidato", regularization.agendas_path
+              %li= link_to "Alteração Cadastral", regularization.agendas_path
+              %hr/
+              %li= link_to "Pesquisar CPF", regularization.agendas_path
+              %li= link_to "Pesquisar Endereço", regularization.agendas_path
+              %hr/
    
 

@@ -11,27 +11,10 @@ module Candidate
     end
 
     def show
-      params[:income] ||= 'faixa1'
-
-      case params[:income]
-      when 'faixa1'
-        @geral = Rails.cache.fetch("faixa1", :expires_in => 7.day) do
-          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income BETWEEN 0 AND 1600")
-        end
-      when 'faixa2'
-        @geral = Rails.cache.fetch("faixa2", :expires_in => 7.day) do
-          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income BETWEEN 1601 AND 3000")
-        end
-      when 'faixa3'
-        @geral = Rails.cache.fetch("faixa3", :expires_in => 7.day) do
-          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income BETWEEN 3001 AND 5000")
-        end
-      when 'faixa4'
-        @geral = Rails.cache.fetch("faixa4", :expires_in => 7.day) do
-          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income > 5001")
-        end
+      @geral = Rails.cache.fetch("customsql_#{@list.id}", :expires_in => 7.day) do
+        "#{@list.view_target}".constantize.where("#{@list.condition_sql}")
       end
-
+    
       @candidates = apply_scopes(@geral).paginate(:page => params[:page], :per_page => 20)
     end
 
