@@ -1,0 +1,23 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/firm_portal/tabs'
+      .row
+        .col-md-12
+          %h3
+            %b Usuários
+            %br/
+            %small
+            = link_to "Novo", new_user_company_path, remote: true, class: 'btn btn-success pull-right'
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Nome
+                %th Email
+                %th Login
+                %th
+            %tbody
+            - if @user_companies.present?
+              = render 'index'

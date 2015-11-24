@@ -1,0 +1,18 @@
+= simple_form_for @user_company do |f|
+  .row
+    .col-md-12
+      = f.input :name, as: :string
+  .row
+    .col-md-12
+      = f.input :email, as: :string
+  .row
+    .col-md-4
+      = f.input :login_user, as: :string
+    .col-md-4
+      = f.input :password, as: :string
+  .row
+    .col-md-12
+      = f.input :admin, as: :boolean
+  .row
+    .col-md-12
+      = f.submit "Gravar", class: 'btn btn-success btn-sm'

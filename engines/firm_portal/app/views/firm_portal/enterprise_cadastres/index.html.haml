@@ -1,11 +1,11 @@
 .col-md-12
   .panel.panel-default
     .panel-body
-      = render 'layouts/entity_portal/tabs'
+      = render 'layouts/firm_portal/tabs'
       .row
         .col-md-12
           %h3
-            %b Dados da Entidade
+            %b Candidatos
             %br/
             %small
       .row
@@ -15,11 +15,20 @@
               %tr
                 %th Nome
                 %th CPF
+                %th Condição
                 %th Status
+                %th Pontuação
+                %th Contactar
+                %th
             %tbody
-              -if @enterprise_cadastres.present?
-                - @enterprise_cadastres.cand.each do |cand|
+              - @enterprise_cadastres.each do |cand|
+                - if cand.cadastre.present?
                   %tr
-                    %td.col-md-4= cand.cadastres.name
-                    %td.col-md-2= cand.cadastres.cpf
-                    %td.col-md-2= cand.status_cadastres.name
+                    %td.col-md-4= cand.cadastre.name
+                    %td.col-md-2= cand.cadastre.cpf
+                    %td.col-md-2= cand.cadastre.special_condition_flag
+                    %td.col-md-2= cand.status_cadastre.present? ? cand.status_cadastre.name : "Não Contactado"
+                    %td.col-md-2= cand.total
+                    %td.col-md-1{ class: "tr-#{cand.id}"}
+                      = link_contact_to cand.cadastre.id, cand.id,cand.status_cadastre_id
+                    %td.col-md-1= link_to "Situação", new_enterprise_status_path(id: cand.id, cadastre_id: cand.cadastre_id), remote: true
