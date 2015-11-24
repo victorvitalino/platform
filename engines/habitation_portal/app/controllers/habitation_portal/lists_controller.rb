@@ -1,21 +1,24 @@
-require_dependency 'portal/application_controller'
+require_dependency 'habitation_portal/application_controller'
 
 module HabitationPortal
   class ListsController < ApplicationController 
     before_action :set_list, only: [:show]
 
+    has_scope :cpf
+
     def show
-      @geral = Rails.cache.fetch("customsql_#{@list.id}", :expires_in => 7.day) do
-        "#{@list.view_target}".constantize.where("#{@list.condition_sql}")
-      end
-    
+      @geral = "#{@list.view_target}".constantize.where("#{@list.condition_sql}")     
       @candidates = apply_scopes(@geral).paginate(:page => params[:page], :per_page => 20)  
     end
 
     private
 
     def set_list
-      @list = Candidate::List.friendly.find(params[:id])
+      begin
+        @list = Candidate::List.portal.friendly.find(params[:id]) 
+      rescue 
+        redirect_to '/404'
+      end
     end
   end
 end

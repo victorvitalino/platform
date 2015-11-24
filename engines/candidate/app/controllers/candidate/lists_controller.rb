@@ -11,10 +11,7 @@ module Candidate
     end
 
     def show
-      @geral = Rails.cache.fetch("customsql_#{@list.id}", :expires_in => 7.day) do
-        "#{@list.view_target}".constantize.where("#{@list.condition_sql}")
-      end
-    
+      @geral = "#{@list.view_target}".constantize.where("#{@list.condition_sql}")    
       @candidates = apply_scopes(@geral).paginate(:page => params[:page], :per_page => 20)
     end
 
@@ -62,7 +59,7 @@ module Candidate
 
     def set_params
       params.require(:list).permit(:title, :condition_sql, :list_type, :view_target, :publish, :cpf_filter,
-                                   :name_filter, :income_filter)
+                                   :name_filter, :income_filter, :slug, :description)
     end
 
     def set_list

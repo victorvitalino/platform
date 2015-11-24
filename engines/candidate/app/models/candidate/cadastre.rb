@@ -7,9 +7,12 @@ module Candidate
     belongs_to :civil_state
     belongs_to :program
     belongs_to :city, class_name: "Address::City"
+    belongs_to :work_city, class_name: "Address::City"
 
     has_many :dependents
+    has_many :cadastre_situations
     has_many :attendances
+    has_many :pontuations
 
     scope :by_cpf, -> (cpf = nil) { where(cpf: cpf) }
 

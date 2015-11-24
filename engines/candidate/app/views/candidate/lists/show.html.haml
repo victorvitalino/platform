@@ -5,6 +5,9 @@
       %small Listagem de listas de candidatos
   .row
     .col-md-12
+      = @list.description.html_safe
+  .row
+    .col-md-12
       = simple_form_for url_for, method: :get do |f|
         .row
           .col-md-3

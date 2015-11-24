@@ -1,0 +1,29 @@
+ @regularization
+   ☐ visualização :show de agendamentos 
+   ☐ atualização de agendamentos (status & observações)
+   ☐ cancelamento de agendamento (solicitação)
+   ☐ aprovação de cancelamento
+   ☐ inputar filtros nas listagens de agendamento (status, cpf, data)
+   ☐ testes (gerar horário, cortar datas, almoço, sql reverso)
+   ☐ testes (crud de agenda)
+   ☐ [portal] - visualizar meus agendamentos
+   ☐ [portal] - envio de e-mail confirmando agendamento 
+   ☐ [portal] - cancelamento de agendamento
+   ☐ [portal] - envio de e-mail confirmando cancelamento de agendamento
+   ☐ [portal] - emissão de requerimento 
+   ☐ [portal] - envio de email confirmando requerimento
+   ☐ [portal] - visualizar meus requerimentos
+   ☐ visualizar requerimentos realizados
+   ☐ cancelar requerimentos
+   ☐ [portal] - emitir guia de pagamento (abertura de processo) [financeiro]
+
+
+@financeiro 
+   ☐ emissão de guia simples para pagamento 
+   ☐ upload de retorno bancário para homologação de pagamentos
+   ☐ [portal] emissão de guia simples para pagamento
+
+@atendimento
+   ☐ pesquisa CPF 
+   ☐ visualização de candidato
+   ☐ iniciar atendimento

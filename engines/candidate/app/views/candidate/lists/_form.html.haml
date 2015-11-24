@@ -6,7 +6,11 @@
         = f.input :title, label: false, input_html: { placeholder: 'Digite um título'}
       .col-md-6
         = f.label :slug, class: 'fg-label'
-        = f.input :slug, label: false, input_html: { readonly: (f.object.new_record? ? true : false)}
+        = f.input :slug, label: false
+    .row
+      .col-md-12
+        = f.label :description, class: 'fg-label'
+        = f.input :description, label: false,input_html: {class: 'redactorbox'}
     .row
       .col-md-12
         = f.label :condition_sql, class: 'fg-label'

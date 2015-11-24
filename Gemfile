@@ -27,7 +27,7 @@ gem 'redactor-rails'
 gem 'friendly_id'
 
 gem 'has_scope'
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap' 
 
 gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
