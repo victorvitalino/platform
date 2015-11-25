@@ -2,12 +2,16 @@
   .ms-menu
     .ms-block
       .ms-user
-        Pesquisar Requerimento
+        Pesquisar Cadastro
     .ms-block
       = simple_form_for candidates_path, method: :get do |f|
-        = f.label "CPF"
-        = f.input :cpf, label: false,  input_html: { name: :cpf,value: params[:cpf] }
-        = f.submit "Pesquisar CPF", name: nil, class: 'btn btn-success'
+        = f.label "Endereço"
+        = f.input :unit, label: false,  input_html: { name: :unit,value: params[:unit] }
+        %br/
+        = f.label "Processo"
+        = f.input :assessment, label: false,  input_html: { name: :assessment,value: params[:unit] }
+        %br/
+        = f.submit "Pesquisar", name: nil, class: 'btn btn-success'
   .ms-body
     .listview.lv-message
       .lv-header-alt.bgm-white
@@ -21,8 +25,3 @@
       .lv-body{:style => "min-height: 270px"}
         .lv-item.media
           .media-body
-            = @cadastre_requeriments
-            - if @requeriments.present?
-              = render 'show_cadastre'
-            - else
-              Nenhum resultado para mostrar.

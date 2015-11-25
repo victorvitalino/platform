@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124175038) do
+ActiveRecord::Schema.define(version: 20151125150915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -369,6 +369,16 @@ ActiveRecord::Schema.define(version: 20151124175038) do
   add_index "candidate_cadastres", ["special_condition_id"], name: "index_candidate_cadastres_on_special_condition_id", using: :btree
   add_index "candidate_cadastres", ["state_id"], name: "index_candidate_cadastres_on_state_id", using: :btree
   add_index "candidate_cadastres", ["work_city_id"], name: "index_candidate_cadastres_on_work_city_id", using: :btree
+
+  create_table "candidate_checklists", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.integer  "program_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "candidate_checklists", ["program_id"], name: "index_candidate_checklists_on_program_id", using: :btree
 
   create_table "candidate_civil_states", force: :cascade do |t|
     t.string   "name"

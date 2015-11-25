@@ -1,0 +1,60 @@
+%fieldset
+  %hr/
+  .row
+    .col-md-4
+      = f.label :name
+      = f.input :name, label: false
+    .col-md-2
+      = f.label :cpf
+      = f.input :cpf, label: false
+    .col-md-2
+      = f.label 'Data de Nascimento'
+      = f.input :born, as: :string, label: false, input_html: { class: 'date', value: (f.object.born.present?) ? localize(f.object.born) :  ''}
+    .col-md-2
+      = f.label :special_condition
+      = f.association :special_condition, label: false, include_blank: false
+    .col-md-2
+      = f.label :kinship
+      = f.association :kinship, label: false, include_blank: false
+  .row
+    .col-md-2
+      = f.label :rg
+      = f.input :rg, label: false
+    .col-md-1
+      = f.label :rg_org
+      = f.input :rg_org, label: false
+    .col-md-1
+      = f.label :rg_uf_id
+      = f.input :rg_uf_id, as: :select, collection: Address::State.all.map { |key| [key.acronym, key.acronym]}, label: false, include_blank: false
+    .col-md-2
+      = f.label :place_birth
+      = f.input :place_birth, label: false
+    .col-md-2
+      = f.label :civil_state
+      = f.association :civil_state, label: false, include_blank: false
+    .col-md-2
+      = f.label :gender
+      = f.input :gender, as: :select, label: false, include_blank: false
+    .col-md-2
+      = f.label :income
+      = f.input :income, as: :string, label: false, input_html: { class:'coin_mask', value: 0.0}
+  .row
+    .col-md-2
+      = f.label :cid
+      = f.input :cid, label: false, include_blank: false
+    .col-md-2
+      = f.label :nis
+      = f.input :nis, label: false, include_blank: false
+    .col-md-2
+      = f.label :co_acquirer
+      = f.input :co_acquirer,as: :select, label: false, include_blank: false
+    .col-md-2
+      = f.label :percentage
+      = f.input :percentage, label: false, include_blank: false, input_html: { value: 0}
+  .row
+    .col-md-12
+      = f.hidden_field :_destroy
+      = link_to "excluir dependente", '#', class: "remove_fields btn btn-danger btn-sm pull-right"
+:javascript
+  $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
+  $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true,allowZero:true, thousands:'', decimal:'.', affixesStay: false});

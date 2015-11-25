@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/dependent': Dependente
+    attributes:
+      'candidate/dependent':
+        name: "Nome Completo"
+        cpf: "CPF"
+        rg: "RG"
+        rg_org: "RG ORG"
+        rg_uf_id: "RG UF"
+        gender: "Sexo"
+        born: "Data de Nascimento"
+        place_birth: "Cidade de Nascimento"
+        civil_state: "Estado Civil"
+        income: "Renda"
+        special_condition: "Condição Especial"
+        nis: "NIS"
+        cid: "CID"
+        percentage: "Porcentagem %"
+        co_acquirer: "Co-adquirente"
+        kinship: "Parentesco"

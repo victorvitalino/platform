@@ -2,14 +2,18 @@
   .col-md-12.box
     .panel.panel-default
       .panel-body
+
         .row
           .col-md-12{style: 'text-align: center !important;'}
-            %h1.title Requerimento de regularização
-            = link_to "Ver meus requerimentos ", regularization_portal.new_candidate_requeriment_path
+            %h1.title Requerimento realizado com sucesso! 
+            = link_to "Realizar novo requerimento", regularization_portal.new_requeriment_path
             |
-            = link_to " Realizar novo requerimento", regularization_portal.new_requeriment_path
+            = link_to "Ver todos meus requerimentos", regularization_portal.verification_candidate_requeriments_path
         %br/
         %hr/
+        .row
+          .col-md-12{style: 'text-align: center !important;'}
+            = image_tag '/images/codhab.png'
         .row
           .col-md-12
             %h4

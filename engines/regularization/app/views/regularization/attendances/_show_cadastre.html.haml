@@ -1,0 +1,67 @@
+.row
+  .col-md-12
+    %h3 Requerimentos
+    %hr/
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+      %thead
+        %tr
+          %th Protocolo
+          %th Data
+          %th{colspan: 2} Endereço a ser regularizado
+          %th Taxa de abertura de processo
+          %th Possuí imóvel no DF
+          %th Ações
+      %tbody
+        - @requeriments.each do |requeriment|
+          %tr
+            %td= requeriment.protocol
+            %td= requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td= requeriment.unit.city.name if requeriment.unit.city.present?
+            %td= requeriment.unit.complete_address if requeriment.unit.present?
+            %td
+            %td= requeriment.owner ? 'Sim' : 'Não'
+            %td
+              = link_to '', step_one_attendances_path(requeriment_id: requeriment), class: 'btn btn-success md md-keyboard-arrow-right', title: "Iniciar Atendimento"
+%br/
+%br/
+
+.row
+  .col-md-12
+    %h3 Atendimentos
+    %hr/
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+      %thead
+        %tr
+          %th Data
+          %th Situação
+          %th Requerimento
+          %th Ações
+      %tbody
+       
+%br/
+%br/
+.row
+  .col-md-12
+    %h3 Agendamentos
+    %hr/
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+      %thead
+        %tr
+          %th Protocolo
+          %th Agenda
+          %th CPF
+          %th Data
+          %th Horário
+          %th Status
+          %th Ações
+      %tbody
+        - @schedules.each do |schedule|
+          %tr
+            %td= schedule.protocol
+            %td= schedule.agenda.title.upcase if schedule.agenda.present?
+            %td= schedule.cpf
+            %td= schedule.hour.strftime('%H:%M')
+            %td= schedule.hour.strftime('%H:%M')
+            %td= schedule.status.humanize
+            %td
+              = link_to "Detalhar"

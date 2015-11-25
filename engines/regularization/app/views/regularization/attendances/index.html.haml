@@ -21,7 +21,6 @@
       .lv-body{:style => "min-height: 270px"}
         .lv-item.media
           .media-body
-            = @cadastre_requeriments
             - if @requeriments.present?
               = render 'show_cadastre'
             - else

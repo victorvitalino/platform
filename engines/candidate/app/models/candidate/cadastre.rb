@@ -14,6 +14,8 @@ module Candidate
     has_many :attendances
     has_many :pontuations
 
+    accepts_nested_attributes_for :dependents, allow_destroy: true
+
     scope :by_cpf, -> (cpf = nil) { where(cpf: cpf) }
 
     enum gender: ['N/D', 'masculino', 'feminino']
