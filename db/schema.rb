@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125150915) do
+ActiveRecord::Schema.define(version: 20151125162208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(version: 20151125150915) do
     t.boolean  "status",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "code"
   end
 
   create_table "candidate_attendances", force: :cascade do |t|
@@ -231,12 +232,17 @@ ActiveRecord::Schema.define(version: 20151125150915) do
     t.boolean  "status",               default: true
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "checklist_id",                                     array: true
+    t.string   "cpf"
+    t.integer  "requeriment_id"
   end
 
   add_index "candidate_attendances", ["attendance_status_id"], name: "index_candidate_attendances_on_attendance_status_id", using: :btree
   add_index "candidate_attendances", ["cadastre_id"], name: "index_candidate_attendances_on_cadastre_id", using: :btree
   add_index "candidate_attendances", ["cadastre_mirror_id"], name: "index_candidate_attendances_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_attendances", ["checklist_id"], name: "index_candidate_attendances_on_checklist_id", using: :btree
   add_index "candidate_attendances", ["convocation_id"], name: "index_candidate_attendances_on_convocation_id", using: :btree
+  add_index "candidate_attendances", ["requeriment_id"], name: "index_candidate_attendances_on_requeriment_id", using: :btree
   add_index "candidate_attendances", ["staff_id"], name: "index_candidate_attendances_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_addresses", force: :cascade do |t|

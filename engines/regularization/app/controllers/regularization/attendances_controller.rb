@@ -2,19 +2,57 @@ require_dependency 'regularization/application_controller'
 require_dependency 'candidate/cadastre'
 module Regularization
   class AttendancesController < ApplicationController
-    before_action :set_session, only: [:step_two, :create_step_two, :update_step_two, :step_three]
+    before_action :set_requeriment, except: [:index, :redirect_step]
+
     def index
+      session[:requeriment_id] = nil
+
       @requeriments = Requeriment.where(cpf: params[:cpf])
       @schedules    = Schedule::AgendaSchedule.where(cpf: params[:cpf])
+      @attendances  = Regularization::Attendance.where(cpf: params[:cpf], status: true)
+    end
+
+    def redirect_step
+
+      if params[:attendance_id].present?
+        @attendance = Regularization::Attendance.find(params[:attendance_id])
+        session[:requeriment_id] = @attendance.requeriment_id
+     
+        case @attendance.attendance_status.code
+        when 1
+          redirect_to action: 'step_one'
+        when 2
+          redirect_to action: 'step_two'
+        when 3
+          redirect_to action: 'step_three'
+        when 4
+          redirect_to action: 'step_four'
+        when 5
+        end
+
+      elsif params[:requeriment_id].present?
+        session[:requeriment_id] = params[:requeriment_id]
+        @attendance = Regularization::Attendance.where(requeriment_id: session[:requeriment_id], status: true).last
+        if @attendance.present?
+          redirect_to action: 'redirect_step', attendance_id: @attendance.id
+        else
+          redirect_to action: 'step_one'
+        end
+      else
+        redirect_to action: 'index'
+      end
+
     end
 
     def step_one
-      @requeriment  = Requeriment.find(params[:requeriment_id])
-      session[:requeriment_id] = @requeriment.id
+
+      @requeriment  = Requeriment.find(session[:requeriment_id])
+      @attendance   = Regularization::Attendance.step_one(@requeriment.cpf, @requeriment.id)
     end
 
     def step_two
-      @candidate = Cadastre.find_by_cpf(@requeriment.cpf) rescue Cadastre.new
+      @candidate    = Regularization::Cadastre.find_by_cpf(@requeriment.cpf) rescue Cadastre.new
+      @attendance   = Regularization::Attendance.step_two(@requeriment.cpf, @requeriment.id)
     end
 
     def create_step_two
@@ -36,7 +74,8 @@ module Regularization
     end
 
     def step_three
-      @checklists = Candidate::Checklist.where(program_id: 3)
+      @checklists   = Candidate::Checklist.where(program_id: 3)
+      @attendance   = Regularization::Attendance.step_three(@requeriment.cpf, @requeriment.id)
     end
 
     private
@@ -50,15 +89,19 @@ module Regularization
                                        dependents_attributes: [:name, :cpf, :rg, :rg_org, :rg_uf_id, :born, 
                                                                :gender, :place_birth, :civil_state_id, :income,
                                                                :kinship_id, :co_acquirer, :percentage, 
-                                                               :special_condition_id, :cid, :nis])
+                                                               :special_condition_id, :cid, :nis, :id, :_destroy])
     end
 
-    def set_session
-      if session[:requeriment_id].present?
-        @requeriment  = Requeriment.find(session[:requeriment_id])
-      else
-        redirect_to new_attendance_path
-      end
+    def set_requeriment
+      @requeriment  = Requeriment.find(session[:requeriment_id])
+    end
+
+    def security_step(requeriment_id, status_id)
+      @attendance = Regularization::Attendance.where(requeriment_id: session[:requeriment_id],
+                                                 attendance_status_id: status_id,
+                                                 status: true)
+
+      #redirect_to action: if @attendance.present?
     end
   end
 end
