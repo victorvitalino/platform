@@ -5,13 +5,13 @@
       .box_internal
         .post_meta
           = render_shareable :buttons=> ['twitter', 'facebook','google_plus'], :facebook=> {:send=> 'true', :url=> "#{request.original_url}"}
-          %a{:href => "https://www.facebook.com/sharer.php?u=#{request.original_url}",:style => 'float:left'}
-            Compartilhar no facebook
+          -# %a{:href => "https://www.facebook.com/sharer.php?u=#{request.original_url}",:style => 'float:left'}
+          -#   Compartilhar no facebook
           .post_date
             = @post.date.strftime('%d/%m/%Y')
         .post
           .imagem_post
-            - if @post.active_photo? && @post.photo_author?
+            - if @post.active_photo?
               = image_tag @post.thumbnail
           .author_custom
             - if @post.photo_description? && @post.photo_author?
