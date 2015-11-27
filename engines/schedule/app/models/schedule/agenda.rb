@@ -34,10 +34,10 @@ module Schedule
         lunch_start = self.lunch_start
         lunch_end   = self.lunch_end - attendance_time.minutes
   
-        time_iterate(lunch_start, lunch_end, lunch_attendants.minutes)  { |t| lunch_array.push t }
+        time_iterate(lunch_start, lunch_end, attendance_time.minutes)  { |t| lunch_array.push t.strftime('%H:%M') }
       end
       
-      time_iterate(start_hour, last_hour, attendance_time.minutes)      { |t| hour_array.push t } 
+      time_iterate(start_hour, last_hour, attendance_time.minutes)      { |t| hour_array.push t.strftime('%H:%M') } 
 
       attendance_iterate(hour_array, lunch_array, self.attendants, self.lunch_attendants, date)
     end
@@ -47,10 +47,10 @@ module Schedule
 
     def attendance_iterate(hour = [], lunch = [], attendant = 0, lunch_attendant = 0, date)
       Array.new(hour.count) do |i|
-        if lunch.include? i
-          (schedules_time(hour[i], date) >= lunch_attendant) ? 'esgotado' : hour[i].strftime('%H:%M')
+        if lunch.include? hour[i]
+          (schedules_time(hour[i], date) >= lunch_attendant) ? 'esgotado' : hour[i]
         else
-          (schedules_time(hour[i], date) >= attendant) ? 'esgotado' : hour[i].strftime('%H:%M')
+          (schedules_time(hour[i], date) >= attendant) ? 'esgotado' : hour[i]
         end
       end
     end
@@ -63,7 +63,7 @@ module Schedule
 
 
     def schedules_time(time,date)
-      agenda_schedules.where(hour: time, date: date).count
+      agenda_schedules.where(hour: time, date: date, status: 0).count
     end
 
     def lunch?

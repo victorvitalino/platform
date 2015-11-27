@@ -1,0 +1,31 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/firm_portal/tabs'
+      .row
+        .col-md-12
+          %h3
+            %b Endereços
+            %br/
+            %small
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Endereço
+                %th Área
+                %th Situação
+                %th Ações
+            %tbody
+              - @enterprise_units.each do |u|
+                %tr
+                  %td.col-md-4= u.complete_address
+                  %td.col-md-2= u.area
+                  %td.col-md-2= u.situation_unit.description if u.situation_unit_id.present?
+                  %td.col-md-3
+                    = link_to "Visualizar".html_safe, enterprise_unit_path(u), remote: true, class: " btn btn-info"
+                    - if u.situation_unit_id == 1
+                      = link_to "Reservar".html_safe, "#", class: " btn btn-primary"
+                    - if  u.situation_unit_id == 6
+                      = link_to "Liberar/Vender".html_safe, "#", class: " btn btn-success"

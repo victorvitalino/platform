@@ -4,28 +4,15 @@ module Candidate
     before_action :set_list, only: [:show, :edit, :update, :destroy]
 
     has_scope :by_income, :using => [:started_at, :ended_at], :type => :hash
+    has_scope :cpf
     
     def index
       @lists = List.all.order(:created_at)
     end
 
     def show
-      respond_to do |format|
-        format.json {
-          @candidates = apply_scopes("#{@list.view_target}".constantize).select("*, row_number() OVER (ORDER BY total DESC) AS position_x").where("#{@list.condition_sql}") 
-          render_cached_json("#{@list.view_target}:show", expires_in: 1.hour) do
-           @candidates
-          end
-        }
-        format.html {
-          @list
-          @candidates = apply_scopes("#{@list.view_target}".constantize).select("*, row_number() OVER (ORDER BY total DESC) AS position_x").where("#{@list.condition_sql}") 
-          
-          Rails.cache.fetch("#{@list.view_target}:html", {raw: true}.merge({expires_in: 1.day})) do
-            @candidates
-          end
-        }
-      end
+      @geral = "#{@list.view_target}".constantize.where("#{@list.condition_sql}")    
+      @candidates = apply_scopes(@geral).paginate(:page => params[:page], :per_page => 20)
     end
 
     def new
@@ -72,7 +59,7 @@ module Candidate
 
     def set_params
       params.require(:list).permit(:title, :condition_sql, :list_type, :view_target, :publish, :cpf_filter,
-                                   :name_filter, :income_filter)
+                                   :name_filter, :income_filter, :slug, :description)
     end
 
     def set_list

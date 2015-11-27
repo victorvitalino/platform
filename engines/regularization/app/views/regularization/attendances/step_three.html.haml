@@ -1,0 +1,28 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Terceira Etapa - Preenchimento do Checklist
+  
+  .card-body.card-padding
+    .row
+      .col-md-12
+        = simple_form_for url_for do |f|
+          %table.table.table-bordered.table-striped
+            %thead
+              %tr
+                %th #
+                %th Checagem  
+            %tbody
+              - @checklists.each do |checklist|
+                %tr
+                  %td{width: '1%'}
+                    .checkbox{style: 'margin: 0 !important;'}
+                      %label
+                        = f.check_box :checklist, name: 'checklist[]'
+                        %i.input-helper
+                  %td= checklist.name
+    %hr/
+    .row
+      .col-md-12
+        = link_to "Prosseguir com o Atendimento", step_two_attendances_path, class: 'btn btn-success'
+        = link_to "Voltar",step_two_attendances_path, class: 'btn btn-inverse'

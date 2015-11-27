@@ -4,4 +4,6 @@ HabitationPortal::Engine.routes.draw do
   get   'authenticate', path: 'verificacao', to: 'authenticate#new', as: 'new_authenticate'
   post  'authenticate', path: 'verificacao', to: 'authenticate#create', as: 'authenticate'
 
+  resources :lists, path: 'listas'
+  resources :candidates, path: 'candidato'
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113160342) do
+ActiveRecord::Schema.define(version: 20151125162208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,11 +95,13 @@ ActiveRecord::Schema.define(version: 20151113160342) do
     t.integer  "type_use_unit_id"
     t.integer  "city_id"
     t.integer  "program"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "firm_enterprise_id"
   end
 
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
+  add_index "address_units", ["firm_enterprise_id"], name: "index_address_units_on_firm_enterprise_id", using: :btree
   add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
   add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
 
@@ -217,6 +219,7 @@ ActiveRecord::Schema.define(version: 20151113160342) do
     t.boolean  "status",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "code"
   end
 
   create_table "candidate_attendances", force: :cascade do |t|
@@ -229,12 +232,17 @@ ActiveRecord::Schema.define(version: 20151113160342) do
     t.boolean  "status",               default: true
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "checklist_id",                                     array: true
+    t.string   "cpf"
+    t.integer  "requeriment_id"
   end
 
   add_index "candidate_attendances", ["attendance_status_id"], name: "index_candidate_attendances_on_attendance_status_id", using: :btree
   add_index "candidate_attendances", ["cadastre_id"], name: "index_candidate_attendances_on_cadastre_id", using: :btree
   add_index "candidate_attendances", ["cadastre_mirror_id"], name: "index_candidate_attendances_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_attendances", ["checklist_id"], name: "index_candidate_attendances_on_checklist_id", using: :btree
   add_index "candidate_attendances", ["convocation_id"], name: "index_candidate_attendances_on_convocation_id", using: :btree
+  add_index "candidate_attendances", ["requeriment_id"], name: "index_candidate_attendances_on_requeriment_id", using: :btree
   add_index "candidate_attendances", ["staff_id"], name: "index_candidate_attendances_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_addresses", force: :cascade do |t|
@@ -368,6 +376,16 @@ ActiveRecord::Schema.define(version: 20151113160342) do
   add_index "candidate_cadastres", ["state_id"], name: "index_candidate_cadastres_on_state_id", using: :btree
   add_index "candidate_cadastres", ["work_city_id"], name: "index_candidate_cadastres_on_work_city_id", using: :btree
 
+  create_table "candidate_checklists", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.integer  "program_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "candidate_checklists", ["program_id"], name: "index_candidate_checklists_on_program_id", using: :btree
+
   create_table "candidate_civil_states", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status",     default: true
@@ -471,6 +489,7 @@ ActiveRecord::Schema.define(version: 20151113160342) do
     t.string   "slug"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.text     "description"
   end
 
   add_index "candidate_lists", ["slug"], name: "index_candidate_lists_on_slug", unique: true, using: :btree
@@ -489,6 +508,7 @@ ActiveRecord::Schema.define(version: 20151113160342) do
     t.integer  "situation_status_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "position"
   end
 
   add_index "candidate_pontuations", ["cadastre_id"], name: "index_candidate_pontuations_on_cadastre_id", using: :btree
@@ -936,16 +956,27 @@ ActiveRecord::Schema.define(version: 20151113160342) do
   create_table "firm_enterprise_cadastres", force: :cascade do |t|
     t.integer  "enterprise_id"
     t.integer  "cadastre_id"
-    t.integer  "status_cadastre_id"
-    t.text     "observation"
-    t.string   "archive_path"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.boolean  "status"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "firm_enterprise_cadastres", ["cadastre_id"], name: "index_firm_enterprise_cadastres_on_cadastre_id", using: :btree
   add_index "firm_enterprise_cadastres", ["enterprise_id"], name: "index_firm_enterprise_cadastres_on_enterprise_id", using: :btree
-  add_index "firm_enterprise_cadastres", ["status_cadastre_id"], name: "index_firm_enterprise_cadastres_on_status_cadastre_id", using: :btree
+
+  create_table "firm_enterprise_statuses", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "enterprise_cadastre_id"
+    t.integer  "status_cadastre_id"
+    t.text     "observation"
+    t.string   "archive_file"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "firm_enterprise_statuses", ["cadastre_id"], name: "index_firm_enterprise_statuses_on_cadastre_id", using: :btree
+  add_index "firm_enterprise_statuses", ["enterprise_cadastre_id"], name: "index_firm_enterprise_statuses_on_enterprise_cadastre_id", using: :btree
+  add_index "firm_enterprise_statuses", ["status_cadastre_id"], name: "index_firm_enterprise_statuses_on_status_cadastre_id", using: :btree
 
   create_table "firm_enterprises", force: :cascade do |t|
     t.string   "name"
@@ -962,9 +993,10 @@ ActiveRecord::Schema.define(version: 20151113160342) do
 
   create_table "firm_status_cadastres", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "status",     default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.boolean  "status",      default: true
+    t.string   "type_status"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "firm_tipologies", force: :cascade do |t|
@@ -982,7 +1014,7 @@ ActiveRecord::Schema.define(version: 20151113160342) do
   create_table "firm_user_companies", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "login"
+    t.string   "login_user"
     t.string   "password"
     t.boolean  "admin"
     t.integer  "company_id"
@@ -1554,6 +1586,7 @@ ActiveRecord::Schema.define(version: 20151113160342) do
     t.boolean  "status",           default: true
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "local"
   end
 
   add_index "schedule_agendas", ["program_id"], name: "index_schedule_agendas_on_program_id", using: :btree

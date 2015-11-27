@@ -45,7 +45,7 @@ module Regularization
       params.require(:agenda).permit(:title, :description, :avatar, :start, :end, :disable_dates,
                                  :start_hour, :end_hour, :attendance_time, :attendants, :weekend,
                                  :lunch_time, :lunch_attendants, :lunch_start, :lunch_end, :restriction_type,
-                                 :restriction_sql, :status)
+                                 :restriction_sql, :status, :exclude_date)
 
     end
 

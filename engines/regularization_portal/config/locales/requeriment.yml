@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      'regularization/requeriment'
+    attributes:
+      'regularization/requeriment':
+        name: 'Nome Completo'
+        cpf: 'CPF'
+        rg: 'RG'
+        born: 'Data de nascimento'
+        marital_status: 'Estado Civil'
+        nationality: 'Nacionalidade'
+        gender: 'Sexo'
+        email: 'E-mail'
+        telephone: 'Telefone'
+        celphone: 'Celular'
+        spouse_name: 'Nome Conjugê'
+        spouse_cpf: 'CPF Conjugê'
+        owner: 'Possuí imóvel dentro do Distrito Federal?'

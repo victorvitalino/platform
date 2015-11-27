@@ -1,73 +1,72 @@
 .row
-  .col-md-12
-    %h1.title Requerimento de regularização
-    = link_to "Ver meus requerimentos", regularization_portal.new_candidate_requeriment_path
-    = link_to "Realizar novo requerimento", regularization_portal.new_requeriment_path
-%br/
-%hr/
-.row
-  .col-md-12
-    %h4 Dados do requerimento
-    %table.table.table-striped.table-condensed.table-bordered
-      %thead
-        %tr
-          %th Protocolo 
-          %th Endereço a ser regularizado 
-          %th Data de criação do requerimento 
-          %th Taxa de abetura de processo
-      %tbody
-        %tr
-          %td= @requeriment.protocol
-          %td= @requeriment.unit.complete_address if @requeriment.unit.present?
-          %td= @requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
-          
-.row
-  .col-md-6
-    %h4 Dados pessoais
-.row
-  .col-md-6
-    %table.table.table-striped.table-condensed.table-bordered
-      %thead
-        %tr
-          %th Nome 
-          %th CPF 
-          %th RG
-          %th Data de nascimento
-      %tbody
-        %tr
-          %td= @requeriment.name
-          %td= @requeriment.cpf
-          %td= @requeriment.rg
-          %td= @requeriment.born.strftime("%d/%m/%Y")
-  .col-md-6
-    %table.table.table-striped.table-condensed.table-bordered
-      %thead
-        %tr
-          %th Estado Civil 
-          %th Nacionalidade
-          %th Sexo
-      %tbody
-        %tr
-          %td= @requeriment.marital_status.humanize
-          %td= @requeriment.nationality
-          %td= @requeriment.gender.humanize
-.row
-  .col-md-6
-    %table.table.table-striped.table-condensed.table-bordered
-      %thead
-        %tr
-          %th E-mail
-          %th Telefone
-          %th Celular
-      %tbody
-        %tr
-          %td= @requeriment.email
-          %td= @requeriment.telephone
-          %td= @requeriment.celphone
+  .col-md-12.box
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12{style: 'text-align: center !important;'}
+            %h1.title Requerimento de regularização
+            = link_to "Ver meus requerimentos ", regularization_portal.new_candidate_requeriment_path
+            |
+            = link_to " Realizar novo requerimento", regularization_portal.new_requeriment_path
+        %br/
+        %hr/
+        .row
+          .col-md-12
+            %h4
+              %b Dados do requerimento
+            %table.table.table-striped.table-condensed.table-bordered
+              %thead
+                %tr
+                  %th Protocolo 
+                  %th Endereço a ser regularizado 
+                  %th Data de criação do requerimento 
+                  %th Taxa de abetura de processo
+              %tbody
+                %tr
+                  %td= @requeriment.protocol
+                  %td= @requeriment.unit.complete_address if @requeriment.unit.present?
+                  %td= @requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
+                  %td= link_to "Emitir Cobrança"
+                  
+        .row
+          .col-md-6
+            %h4
+              %b Dados pessoais
+        .row
+          .col-md-12
+            %table.table.table-striped.table-condensed.table-bordered
+              %thead
+                %tr
+                  %th{colspan: 3} Nome 
+                  %th CPF 
+                  %th RG
+                  %th Data de nascimento
+              %tbody
+                %tr
+                  %td{colspan: 3}= @requeriment.name
+                  %td= @requeriment.cpf
+                  %td= @requeriment.rg
+                  %td= @requeriment.born.strftime("%d/%m/%Y")
+              %thead
+                %tr
+                  %th Estado Civil 
+                  %th Nacionalidade
+                  %th Sexo
+                  %th E-mail
+                  %th Telefone
+                  %th Celular
+              %tbody
+                %tr
+                  %td.col-md-2= @requeriment.marital_status.humanize
+                  %td= @requeriment.nationality
+                  %td= @requeriment.gender.humanize
+                  %td= @requeriment.email
+                  %td= @requeriment.telephone
+                  %td= @requeriment.celphone
 
 
 
-%br/
-%br/
-%br/
-%br/
+        %br/
+        %br/
+        %br/
+        %br/

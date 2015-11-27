@@ -38,19 +38,18 @@
       = f.input :email, label: false, input_html: { placeholder: 'Preencha com um email válido'}
   %hr/
   .row
-    - if @staff.new_record?
-      = f.simple_fields_for :user do |u|
-        .row
-          .col-md-4
-            = u.label :username, class: 'fg-label'
-            = u.input :username, label: false, input_html: { placeholder: 'Preencha com uma credencial para acesso à extranet'}
-          .col-md-4
-            = u.label :password, class: 'fg-label'
-            = u.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
-          .col-md-4
-            = u.label :password_confirmation, class: 'fg-label'
-            = u.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
-      %hr/
+    = f.simple_fields_for :user do |u|
+      .row
+        .col-md-4
+          = u.label :username, class: 'fg-label'
+          = u.input :username, label: false, input_html: { placeholder: 'Preencha com uma credencial para acesso à extranet'}
+        .col-md-4
+          = u.label :password, class: 'fg-label'
+          = u.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
+        .col-md-4
+          = u.label :password_confirmation, class: 'fg-label'
+          = u.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
+    %hr/
   .row
     .col-md-4
       = f.label :sector_origin, class: 'fg-label'

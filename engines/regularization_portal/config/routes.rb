@@ -5,10 +5,10 @@ RegularizationPortal::Engine.routes.draw do
     collection do 
       get   '/address', path: 'endereco', to: 'requeriments#new_address', as: 'new_address'
       post  '/address', path: 'endereco', to: 'requeriments#set_address', as: 'set_address'
+      get   '/success', path: 'sucesso',  to: 'requeriments#success',     as: 'success'
     end
   end
 
-  resources :schedules,    path: 'agendamento'
 
   namespace :candidate, path: 'candidato' do 
     resources :requeriments,  path: 'requerimentos' do
