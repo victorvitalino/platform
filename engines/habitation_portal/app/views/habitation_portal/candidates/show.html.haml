@@ -11,7 +11,9 @@
               %h4
                 = link_to "Atualizar dados"
                 |
-                = link_to "Voltar para listas", :back
+                = link_to "Ir para listas", lists_path
+                |
+                = link_to "Pesquisar CPF", find_candidate_path
               
         %hr/
         .row
@@ -32,13 +34,13 @@
                 %tr
                   %td 
                     %span.label.label-primary
-                      = @candidate.cadastre_situations.last.situation_statuses.name 
+                      = @candidate.cadastre_situations.last.situation_statuses.name  if @candidate.cadastre_situations.present?
                   %td
                     %span.label.label-primary
-                      #{@candidate.pontuations.last.position} º
+                      = "#{@candidate.pontuations.last.position} º" if @candidate.pontuations.present?
                   %td 
                     %span.label.label-primary
-                      #{@candidate.pontuations.last.total}
+                      = "#{@candidate.pontuations.last.total}" if @candidate.pontuations.present?
         %hr/
         .row
           .col-md-12
@@ -75,7 +77,7 @@
                 %tr
                   %td.col-md-1= @candidate.gender 
                   %td.col-md-2= @candidate.civil_state.name if @candidate.civil_state.present?
-                  %td.col-md-1= @candidate.arrival_df.strftime('%d/%m/%Y')
+                  %td.col-md-1= @candidate.arrival_df.strftime('%d/%m/%Y') if @candidate.arrival_df.present?
                   %td.col-md-1= "#{@candidate.place_birth} #{@candidate.born_uf}"  
                   %td.col-md-2= @candidate.special_condition.name if @candidate.special_condition.present?
                   %td.col-md-1= @candidate.cid
@@ -107,52 +109,6 @@
                     %td.col-md-1= dependent.born.strftime('%d/%m/%Y') 
                     %td.col-md-1= "#{Date.today.year - dependent.born.year} anos"          
                     %td.col-md-2    
-        %hr/
-        .row
-          .col-md-12
-            .container
-              %h2 
-                %b Dados de Contato
-              = link_to "Atualizar meus dados de contato" 
-        .row
-          .col-md-12
-            %table#data-table-command.table.table-striped.table-vmiddle.datatable
-              %thead
-                %tr
-                  %th Telefone
-                  %th Telefone Opcional
-                  %th Celular
-                  %th E-mail
-              %tbody
-                %tr
-                  %td.col-md-1= @candidate.telephone 
-                  %td.col-md-1= @candidate.telephone_optional
-                  %td.col-md-1= @candidate.celphone
-                  %td.col-md-3= @candidate.email
-            %table#data-table-command.table.table-striped.table-vmiddle.datatable
-              %thead
-                %tr
-                  %th Cidade
-                  %th Endereço
-                  %th Complemento
-                  %th CEP
-              %tbody
-                %tr
-                  %td.col-md-2= @candidate.city.name if @candidate.city.present?
-                  %td.col-md-4= @candidate.address
-                  %td.col-md-3= @candidate.address_complement
-                  %td= @candidate.cep
-            %table#data-table-command.table.table-striped.table-vmiddle.datatable
-              %thead
-                %tr
-                  %th.col-md-6 Endereço Trabalho
-                  %th.col-md-1 Cidade Trabalho
-                  %th.col-md-3 CEP Trabalho
-              %tbody
-                %tr
-                  %td.col-md-4= @candidate.work_address
-                  %td.col-md-3= @candidate.work_city.name if @candidate.work_city.present?
-                  %td.col-md-2= @candidate.work_cep
         %hr/
         .row
           .col-md-12
