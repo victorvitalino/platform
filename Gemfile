@@ -51,6 +51,7 @@ group :test do
 end
 
 group :development do
+  gem 'rails_db'
   gem 'carrierwave'
   gem 'derailed'
   gem 'byebug'

@@ -6,4 +6,7 @@ HabitationPortal::Engine.routes.draw do
 
   resources :lists, path: 'listas'
   resources :candidates, path: 'candidato'
+
+  get   '/pesquisa-cpf',  to: 'candidates#find_candidate', as: 'find_candidate'
+  post  '/pesquisa-cpf',  to: 'candidates#show_candidate', as: 'show_candidate'
 end

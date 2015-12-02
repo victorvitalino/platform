@@ -1,0 +1,7 @@
+pt-BR:
+  activemodel:
+    models:
+      'habitation_portal/find'
+    attributes:
+      'habitation_portal/find':
+        cpf: 'CPF(somente números)'
