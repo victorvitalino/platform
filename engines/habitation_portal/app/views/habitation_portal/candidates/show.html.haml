@@ -30,17 +30,21 @@
                   %th Status do Cadastro
                   %th Posição
                   %th Última Pontuação
+                  %th Data
               %tbody
                 %tr
                   %td 
                     %span.label.label-primary
-                      = @candidate.cadastre_situations.last.situation_statuses.name  if @candidate.cadastre_situations.present?
+                      Habilitado
                   %td
                     %span.label.label-primary
-                      = "#{@candidate.pontuations.last.position} º" if @candidate.pontuations.present?
+                      = "#{@candidate.pontuations.order(:code).last.position} º" if @candidate.pontuations.present?
                   %td 
                     %span.label.label-primary
-                      = "#{@candidate.pontuations.last.total}" if @candidate.pontuations.present?
+                      = "#{@candidate.pontuations.order(:code).last.total}" if @candidate.pontuations.present?
+                  %td 
+                    %span.label.label-primary
+                      = Date.parse(@candidate.pontuations.order(:code).last.code.to_s).strftime('%d/%m/%Y')
         %hr/
         .row
           .col-md-12
@@ -87,32 +91,6 @@
         .row
           .col-md-12
             .container
-              %h2
-                %b Dependentes
-        .row
-          .col-md-12
-            %table#data-table-command.table.table-striped.table-vmiddle.datatable
-              %thead
-                %tr
-                  %th Nome Completo
-                  %th CPF
-                  %th RG
-                  %th Nascimento
-                  %th Idade
-                  %th Co-adquirente?
-              %tbody
-                - @candidate.dependents.each do |dependent|
-                  %tr
-                    %td.col-md-3= dependent.name
-                    %td.col-md-2= dependent.cpf 
-                    %td.col-md-2= dependent.rg 
-                    %td.col-md-1= dependent.born.strftime('%d/%m/%Y') 
-                    %td.col-md-1= "#{Date.today.year - dependent.born.year} anos"          
-                    %td.col-md-2    
-        %hr/
-        .row
-          .col-md-12
-            .container
               %h2 
                 %b Pontuações
               = link_to "Como funciona a pontuação?"
@@ -121,6 +99,7 @@
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
               %thead
                 %tr
+                  %th Ação
                   %th Data
                   %th Posição
                   %th Renda Familiar
@@ -130,8 +109,10 @@
                   %th Tempo de Lista
                   %th Total
               %tbody
-                - @candidate.pontuations.order(:code).each do |pontuation|
+                - @candidate.pontuations.order('code DESC').each do |pontuation|
                   %tr
+                    %td
+                      = link_to "Detalhar", "#id#{pontuation.id}", data: { toggle: 'collapse'}, expanded: false
                     %td
                       %span.label.label-success
                         %b= Date.parse(pontuation.code.to_s).strftime('%d/%m/%Y')
@@ -144,6 +125,24 @@
                     %td= pontuation.special_condition
                     %td= pontuation.timelist
                     %td= pontuation.total
+                  %tr.collapse{id: "id#{pontuation.id}"}
+                    %td
+                      Fórmula: 
+                    %td{colspan: 2}
+                      = link_to "Decreto 2012/2154654"
+                    %td
+                      RENDA FAMILIAR
+                    %td
+                      TEMPO FAMILIAR
+                    %td
+                      DEPENDENTES
+                    %td
+                      CONDICAO
+                    %td
+                      TEMPO LISTA
+                  %tr
+                    %td{colspan: 9, style: 'background-color:#DCDCDC !important'}
+
         %hr/
         .row
           .col-md-12
