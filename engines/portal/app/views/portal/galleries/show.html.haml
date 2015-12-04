@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-md-12.box
+      .box_internal
+        .post
+          .content_post
+            %h2
+              %b
+                = @gallery.title
+            %hr
+              .row{:style => 'margin-bottom:20px!important; margin-left:5px'}
+                = render_shareable :buttons=> ['twitter', 'facebook','google_plus'], :facebook=> {:send=> 'true', :url=> "#{request.original_url}"}
+              .row
+                - @gallery.photo.each do |photo|
+                  .col-md-3.portfolio-item
+                    %a.thumbnail.fancybox{:href => "#{photo}", :rel =>"ligthbox"}
+                      .thumbnail-img{:style => 'height:115px!important'}
+                        %img.img-responsive{:src => "#{photo}"}/
+              .row
+                .col-md-12
+                  = @gallery.content.html_safe
+:javascript
+  $(document).ready(function(){
+      $(".fancybox").fancybox({
+          openEffect: "none",
+          closeEffect: "none"
+      });
+  });

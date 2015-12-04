@@ -3,4 +3,5 @@
 *= require portal/css/bootstrap-datepicker.min
 *= require portal/css/custom
 *= require portal/css/bootstrap-custom
+*= require portal/css/fancy.min
 */

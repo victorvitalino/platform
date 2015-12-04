@@ -44,6 +44,7 @@
               %li= link_to "páginas", cms.pages_path   if policy(:page, namespace: Cms).index?
               %li= link_to "menu", cms.navs_path       if policy(:nav, namespace: Cms).index?
               %li= link_to "vídeos", cms.videos_path   if policy(:video, namespace: Cms).index?
+              %li= link_to "galerias", cms.galleries_path
               %li
                 %hr/
               %li= link_to "categorias de post", cms.post_categories_path   if policy(:PostCategory,  namespace: Cms).index?
@@ -80,7 +81,7 @@
               %i.md.md-business>
               Regularização
             %ul{style: ('display:block;' if params[:module] == "regularization")}
-              %li= link_to "Agendas & Agendamentos", regularization.agendas_path 
+              %li= link_to "Agendas & Agendamentos", regularization.agendas_path
               %li= link_to "Requerimentos", regularization.requeriments_path
               %li= link_to "Atendimento", regularization.attendances_path
               %hr/
