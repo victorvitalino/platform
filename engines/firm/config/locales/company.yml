@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      'firm/company': 'Empresa'
+    attributes:
+      'firm/company':
+        name: "Nome"
+        trade: "Fantasia"
+        cnpj: "CNPJ"
+        email: "Email"
+        cep: "CEP"
+        city: "Cidade"
+        address: "Endereço"
+        adjuntc_address: "Complemento"
+        telephone: "Telefone"
+        telephone_optiona: "Telefone Opcional"

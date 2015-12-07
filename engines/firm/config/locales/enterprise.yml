@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      'firm/enterprise': 'Empreendimento'
+    attributes:
+      'firm/enterprise':
+        name: "Nome"
+        value: "Valor"
+        company: "Empresa"
+        tipology: "Tipologia"
+

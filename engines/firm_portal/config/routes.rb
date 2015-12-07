@@ -12,4 +12,7 @@ FirmPortal::Engine.routes.draw do
 
   get     'enterprise_statuses/:id/:cadastre_id',  path: 'situacoes', to: 'enterprise_statuses#create',      as: 'create_enterprise_statuses'
 
+  get   'access_data', path: 'dados_acesso', to: 'sessions#edit',    as: 'edit_session'
+  put   'access_data/:id', path: 'dados_acesso', to: 'sessions#update',  as: 'session'
+
 end

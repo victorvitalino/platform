@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      'firm/tipology': 'Tipologia'
+    attributes:
+      'firm/tipology':
+        name: "Nome"
+        home_type: "Tipo de Habitação"
+        private_area: "Área Privativa"
+        income_family: "Renda Familiar"
+        initial_value: "Valor Inicial"
+        end_value: "Valor Final"
+

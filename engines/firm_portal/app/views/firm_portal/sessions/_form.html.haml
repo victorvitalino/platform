@@ -1,0 +1,14 @@
+= simple_form_for @firm, url: session_path(@firm) do |f|
+  .row
+    .col-md-3
+      = f.input :change_password, as: :hidden, input_html: { value: true }
+      = f.input :password, input_html: { placeholder: "Mínimo 8 dígitos"}
+    .col-md-3
+      = f.input :password_confirmation, input_html: { placeholder: "Confirme a senha"}
+    .col-md-3
+      = f.input :current_password, input_html: { placeholder: "Digite a senha atual"}
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
+

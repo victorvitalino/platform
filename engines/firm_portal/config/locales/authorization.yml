@@ -1,0 +1,8 @@
+pt-BR:
+  activemodel:
+    models:
+      'firm_portal/authorization': "Acesso"
+    attributes:
+      'firm_portal/authorization':
+        login_user: "Login"
+        password: "Senha"
