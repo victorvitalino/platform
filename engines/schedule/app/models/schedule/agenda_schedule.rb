@@ -1,9 +1,13 @@
 module Schedule
   class AgendaSchedule < ActiveRecord::Base
+
+    scope :by_date,   -> (date = Date.today) {where(date: Date.parse(date))}
+    scope :by_status, -> (status) {where(status: status)}
+
     belongs_to :city, class_name: "Address::City"
     belongs_to :agenda
 
-    enum status: ['agendado', 'liberado', 'cancelado', 'finalizado']
+    enum status: ['agendado', 'liberado_para_retorno', 'cancelado', 'finalizado_sem_retorno']
 
     validates :name, presence: true
     validates :cpf, cpf: true, presence: true
@@ -17,6 +21,8 @@ module Schedule
     validate :unique_schedule, on: :create
     validate :validate!, on: :create
 
+    validates :observation, :status, presence: true, on: :update
+    
     def protocol
       "AG#{self.agenda_id}#{self.id}#{self.created_at.strftime('%Y')}"
     end

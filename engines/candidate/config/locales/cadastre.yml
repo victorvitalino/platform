@@ -1,0 +1,32 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/cadastre': Cadastro
+    attributes:
+      'candidate/cadastre':
+        name: "Nome Completo"
+        cpf: "CPF"
+        rg: "RG"
+        rg_org: "RG ORG"
+        rg_uf: "RG UF"
+        gender: "Sexo"
+        born: "Data de Nascimento"
+        born_uf: "Naturalidade"
+        place_birth: "Cidade de Nascimento"
+        telephone: "Telefone"
+        celphone: "Celular"
+        email: "E-mail"
+        telephone_optional: "Telefone Opcional"
+        civil_state: "Estado Civil"
+        cep: "CEP"
+        city: "Cidade"
+        address: "Endereço"
+        address_complement: "Complemento Endereço"
+        work_city: "Cidade de Trabalho"
+        work_cep: "CEP de Trabalho"
+        work_address: "Endereço do Trabalho"
+        income: "Renda"
+        special_condition: "Condição Especial"
+        adapted_property: "Propriedade Adaptada?"
+        nis: "NIS"
+        cid: "CID"

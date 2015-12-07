@@ -1,0 +1,25 @@
+= session[:requeriment_id]
+.card
+  .card-header.ch-alt
+    %h2
+      Primeira Etapa - Verificação de Endereço
+  
+  .card-body.card-padding
+    .row
+      .col-md-12
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+            %thead
+              %tr
+                %th Cidade
+                %th Endereço
+            %tbody
+              %tr 
+                %td= @requeriment.unit.city.name if @requeriment.unit.city.present?
+                %td= @requeriment.unit.complete_address if @requeriment.unit.present? 
+ 
+    %hr/
+    .row
+      .col-md-12
+        = link_to "Prosseguir com o Atendimento", step_two_attendances_path(requeriment_id: @requeriment.id), class: 'btn btn-success'
+        = link_to "Voltar", :back, class: 'btn btn-inverse'

@@ -4,5 +4,14 @@ module Candidate
     belongs_to :civil_state
     belongs_to :kinship
     belongs_to :special_condition
+
+    validates :name, :cpf, :rg, :rg_org, :born, :gender, :place_birth,
+              :civil_state, :income, :kinship, :special_condition, presence: true
+    
+    validates :cpf, cpf: true
+    validates_date :born
+    validates :percentage, numericality: true
+
+    validates :income, numericality: {only_float: true}
   end
 end

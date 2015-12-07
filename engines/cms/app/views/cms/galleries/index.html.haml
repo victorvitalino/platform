@@ -1,0 +1,26 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Galerias
+      = link_to 'Nova Galeria', new_gallery_path,  data: { no_turbolink: true }, class: 'btn btn-success pull-right' if policy(:post, namespace: Cms).create?
+      %small Listagem de galerias
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+      %thead
+        %tr
+          %th #
+          %th Título
+          %th Publicado
+          %th Data
+          %th Ações
+
+      %tbody
+        - @galleries.each_with_index do |gallery, i|
+          %tr
+            %td= i+1
+            %td= gallery.title
+            %td= status_helper (gallery.status)
+            %td= gallery.created_at.strftime('%d-%m-%Y')
+            %td.col-md-2
+              = link_to '', edit_gallery_path(gallery),title: 'Editar', class: 'md md-edit btn btn-primary' if policy(:post, namespace: Cms).update?
+              = link_to '', gallery,title: 'Remover', :method => :delete, class: 'md md-delete btn btn-danger', :data => { :confirm => 'Are you sure?' } if policy(:post, namespace: Cms).destroy?

@@ -1,0 +1,183 @@
+/ conteudo da pagina
+.container
+  .row
+    .col-md-12.box
+      .box_internal
+        .row
+          .col-md-12
+            .container
+              %h1
+                %b Detalhe do Cadastro
+              %h4
+                = link_to "Atualizar dados"
+                |
+                = link_to "Ir para listas", lists_path
+                |
+                = link_to "Pesquisar CPF", find_candidate_path
+              
+        %hr/
+        .row
+          .col-md-12
+            .container
+              %h2 
+                %b Dados do Cadastro
+              = link_to "Quais critérios que definem esta posição e situação?" 
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Status do Cadastro
+                  %th Posição
+                  %th Última Pontuação
+                  %th Data
+              %tbody
+                %tr
+                  %td 
+                    %span.label.label-primary
+                      Habilitado
+                  %td
+                    %span.label.label-primary
+                      = "#{@candidate.pontuations.order(:code).last.position} º" if @candidate.pontuations.present?
+                  %td 
+                    %span.label.label-primary
+                      = "#{@candidate.pontuations.order(:code).last.total}" if @candidate.pontuations.present?
+                  %td 
+                    %span.label.label-primary
+                      = Date.parse(@candidate.pontuations.order(:code).last.code.to_s).strftime('%d/%m/%Y')
+        %hr/
+        .row
+          .col-md-12
+            .container
+              %h2 
+                %b Dados Pessoais
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th{colspan: 3} Nome Completo
+                  %th CPF
+                  %th RG
+                  %th Nascimento
+                  %th Idade
+              %tbody
+                %tr
+                  %td{colspan: 3}= @candidate.name 
+                  %td= @candidate.cpf 
+                  %td= @candidate.rg 
+                  %td= @candidate.born.strftime('%d/%m/%Y') 
+                  %td= "#{Date.today.year - @candidate.born.year} anos" 
+              %thead
+                %tr
+                  %th Sexo
+                  %th Estado Cívil
+                  %th Chegada ao DF
+                  %th Naturalidade
+                  %th Condição Especial
+                  %th CID
+                  %th NIS
+              %tbody
+                %tr
+                  %td.col-md-1= @candidate.gender 
+                  %td.col-md-2= @candidate.civil_state.name if @candidate.civil_state.present?
+                  %td.col-md-1= @candidate.arrival_df.strftime('%d/%m/%Y') if @candidate.arrival_df.present?
+                  %td.col-md-1= "#{@candidate.place_birth} #{@candidate.born_uf}"  
+                  %td.col-md-2= @candidate.special_condition.name if @candidate.special_condition.present?
+                  %td.col-md-1= @candidate.cid
+                  %td.col-md-1= @candidate.nis
+       
+        %hr/
+        .row
+          .col-md-12
+            .container
+              %h2 
+                %b Pontuações
+              = link_to "Como funciona a pontuação?"
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Ação
+                  %th Data
+                  %th Posição
+                  %th Renda Familiar
+                  %th Tempo de Brasília
+                  %th Dependentes
+                  %th Condição Especial
+                  %th Tempo de Lista
+                  %th Total
+              %tbody
+                - @candidate.pontuations.order('code DESC').each do |pontuation|
+                  %tr
+                    %td
+                      = link_to "Detalhar", "#id#{pontuation.id}", data: { toggle: 'collapse'}, expanded: false
+                    %td
+                      %span.label.label-success
+                        %b= Date.parse(pontuation.code.to_s).strftime('%d/%m/%Y')
+                    %td 
+                      %span.label.label-primary
+                        #{pontuation.position} º
+                    %td= pontuation.income
+                    %td= pontuation.bsb
+                    %td= pontuation.dependent
+                    %td= pontuation.special_condition
+                    %td= pontuation.timelist
+                    %td= pontuation.total
+                  %tr.collapse{id: "id#{pontuation.id}"}
+                    %td
+                      Fórmula: 
+                    %td{colspan: 2}
+                      = link_to "Decreto 2012/2154654"
+                    %td
+                      RENDA FAMILIAR
+                    %td
+                      TEMPO FAMILIAR
+                    %td
+                      DEPENDENTES
+                    %td
+                      CONDICAO
+                    %td
+                      TEMPO LISTA
+                  %tr
+                    %td{colspan: 9, style: 'background-color:#DCDCDC !important'}
+
+        %hr/
+        .row
+          .col-md-12
+            .container
+              %h2 
+                %b Atendimentos & Agendamentos
+              = link_to "Realizar agendamento"
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Status
+                  %th Convocação
+                  %th Observação
+                  %th Data
+              %tbody
+                - @candidate.attendances.order(:created_at).each do |attendance|
+                  %tr
+                    %td= attendance.attendance_status.name if attendance.attendance_status.present?
+                    %td= attendance.convocation.name if attendance.convocation.present?
+                    %td= attendance.observation
+                    %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
+        %hr/
+        .row
+          .col-md-12
+            .container
+              %h2 
+                %b Informações da Construtora
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Status
+                  %th Observação
+                  %th Data
+              %tbody

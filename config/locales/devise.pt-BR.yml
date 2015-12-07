@@ -2,6 +2,9 @@
 # pt-BR translations for Devise
 pt-BR:
   devise:
+    failure:
+      user:
+        session_limited: "Esta conta está ativa em outro computador, favor realizar somente um acesso por vez."
     confirmations:
       confirmed: 'Sua conta foi confirmada com sucesso. Você está logado.'
       send_instructions: 'Dentro de minutos, você receberá um e-mail com instruções para a confirmação da sua conta.'

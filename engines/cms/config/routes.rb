@@ -1,4 +1,5 @@
 Cms::Engine.routes.draw do
+  resources :galleries
   resources :navs
   resources :nav_categories
   resources :nav_categories

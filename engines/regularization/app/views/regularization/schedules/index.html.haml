@@ -1,31 +1,43 @@
 .card
   .card-header.ch-alt
     %h2
-      Agendamentos
+      Agendamentos | #{@agenda.title}
+      = link_to "Voltar", agendas_path, class: 'btn btn-inverse pull-right'
       %small Listagem de agendamentos
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-      %thead
-        %tr
-          %th Nome
-          %th CPF
-          %th Telefone
-          %th E-mail
-          %th Data
-          %th Hora
-          %th Status
-          %th Ações
 
-      %tbody
-        - @schedules.each_with_index do |schedule, i|
+  .row
+    = simple_form_for url_for, method: :get do |f|
+      .col-md-2
+        = f.label "Data"
+        = f.input :date, label: false, input_html: { class: 'date', name: "by_date", value: (params[:by_date].present?) ? params[:by_date] : Date.today.strftime('%d/%m/%Y')}
+      .col-md-2
+        = f.label "Status"
+        = f.input :status, label: false, as: :select, collection: Schedule::AgendaSchedule.statuses, include_blank: "Todos", selected: params[:by_status], input_html: { name: 'by_status'}
+      .col-md-2{style: 'padding-top:24px'}
+        = f.submit "Filtrar", name: nil, class: 'btn btn-primary'
+  %hr/
+  .row
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-vmiddle.datatable
+        %thead
           %tr
-            %td.col-md-3= schedule.name
-            %td.col-md-1= schedule.cpf
-            %td.col-md-1= "#{schedule.telephone}"
-            %td.col-md-1= schedule.email
-            %td.col-md-1= schedule.date.strftime('%d/%m/%Y')
-            %td.col-md-1= schedule.hour.strftime('%H:%M')
-            %td.col-md-1= schedule.status
-            %td.col-md-1
-              = link_to "", '#', class: 'md md-edit btn btn-primary'
-              = link_to "", "#", class: 'md md-edit btn btn-success md md-arrow-forward'
+            %th Protocolo
+            %th Nome
+            %th CPF
+            %th Data
+            %th Horário
+            %th Status
+            %th Ações
+        %tbody
+          - @schedules.each do |schedule|
+            %tr
+              %td= schedule.protocol
+              %td= schedule.name.upcase
+              %td= schedule.cpf
+              %td= schedule.date.strftime('%d/%m/%Y')
+              %td= schedule.hour.strftime('%H:%M')
+              %td= schedule.status.humanize
+              %td
+                = link_to "", agenda_schedule_path(agenda_id: @agenda, id: schedule), class: 'md-keyboard-arrow-right btn btn-success' 
+                = link_to "", edit_agenda_schedule_path(agenda_id: @agenda, id: schedule), class: 'md md-edit btn btn-primary'
+                = link_to "", agenda_schedule_cancel_path(agenda_id: @agenda.id, schedule_id: schedule), class: 'md  md-check btn btn-danger', method: :delete, data: {confirm: "Você realmente deseja liberar este agendamento?"}

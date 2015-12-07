@@ -1,0 +1,35 @@
+ @portal
+   ☐ visualizar meus agendamentos 
+   ☐ envio de e-mail confirmando agendamento
+   ☐ cancelamento de agendamento
+   ☐ envio de e-mail confirmando cancelamento de agendamento
+   ☐ emissão do requerimento
+   ☐ envio de email confirmando requerimento
+   ☐ visualizar meus requerimentos
+   ☐ emitir guia de pagamento (abertura de processo)
+
+@financeiro
+   ☐ emissão de guia simples para pagamento 
+   ☐ upload de retorno bancário para homologação de pagamentos
+
+@atendimento
+   ☐ pesquisa cpf e retorna todos os requerimentos, atendimentos e agendamentos do candidato 
+   ☐ visualizar quaisquer dados citados na tela
+   ☐ inicia atendimento
+   ☐ atualização cadastral
+   ☐ atualização de dependentes
+   ☐ insere situação do candidato como "em processo de regularização"
+   ☐ checklist
+   ☐ parecer do analista*
+   ☐ parecer do supervisor*
+   ☐ situação processual
+   ☐ status atendimento finalizado
+
+@assentar_candidato
+   ☐ listagem de candidatos com situação processual
+
+@ficha_descritiva 
+
+
+@cartorio
+  

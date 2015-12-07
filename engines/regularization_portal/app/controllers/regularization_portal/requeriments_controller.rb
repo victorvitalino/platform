@@ -29,6 +29,10 @@ module RegularizationPortal
       @requeriment = Regularization::Requeriment.new
     end
 
+    def success
+      @requeriment = Regularization::Requeriment.find(session[:requeriment_id])
+    end
+
     def create
       @requeriment = Regularization::Requeriment.new(set_params)
       @requeriment.unit_id = session[:address_id]
@@ -36,7 +40,7 @@ module RegularizationPortal
       if @requeriment.save
         session[:requeriment_id] = @requeriment.id
         flash[:success] = t :success
-        redirect_to @requeriment
+        redirect_to success_requeriments_path
       else
         render action: 'new'
       end

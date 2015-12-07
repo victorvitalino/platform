@@ -11,27 +11,7 @@ module Candidate
     end
 
     def show
-      params[:income] ||= 'faixa1'
-
-      case params[:income]
-      when 'faixa1'
-        @geral = Rails.cache.fetch("faixa1", :expires_in => 7.day) do
-          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income BETWEEN 0 AND 1600")
-        end
-      when 'faixa2'
-        @geral = Rails.cache.fetch("faixa2", :expires_in => 7.day) do
-          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income BETWEEN 1601 AND 3000")
-        end
-      when 'faixa3'
-        @geral = Rails.cache.fetch("faixa3", :expires_in => 7.day) do
-          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income BETWEEN 3001 AND 5000")
-        end
-      when 'faixa4'
-        @geral = Rails.cache.fetch("faixa4", :expires_in => 7.day) do
-          "#{@list.view_target}".constantize.where("#{@list.condition_sql}").where("income > 5001")
-        end
-      end
-
+      @geral = "#{@list.view_target}".constantize.where("#{@list.condition_sql}")    
       @candidates = apply_scopes(@geral).paginate(:page => params[:page], :per_page => 20)
     end
 
@@ -79,7 +59,7 @@ module Candidate
 
     def set_params
       params.require(:list).permit(:title, :condition_sql, :list_type, :view_target, :publish, :cpf_filter,
-                                   :name_filter, :income_filter)
+                                   :name_filter, :income_filter, :slug, :description)
     end
 
     def set_list

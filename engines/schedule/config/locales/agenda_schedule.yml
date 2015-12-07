@@ -1,5 +1,13 @@
 pt-BR:
   activerecord:
+    errors:
+      models:
+        'schedule/agenda_schedule':
+          attributes:
+            born:
+              invalid_date: "data inválida"
+            date:
+              invalid_date: "data inválida"
     models:
       'schedule/agenda_schedule': 'Agendamento'
     attributes:
@@ -13,3 +21,4 @@ pt-BR:
         city: "Cidade"
         date: "Data"
         hour: "Hora do agendamento"
+        born: "Data de Nascimento"

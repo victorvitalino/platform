@@ -1,0 +1,108 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Segunda Etapa - Cadastro Geral
+  
+  .card-body.card-padding
+    = simple_form_for @candidate, url: (@candidate.new_record?) ? create_step_two_attendances_path : update_step_two_attendances_path, method: (@candidate.new_record?) ? 'post' : 'put'  do |f|
+      .row
+        .col-md-12
+          = f.label :name, class: 'fg-label'
+          = f.input :name, label: false
+      .row
+        .col-md-2
+          = f.label :cpf, class: 'fg-label'
+          = f.input :cpf, label: false, input_html: { value: @requeriment.cpf, readonly: true}
+        .col-md-2
+          = f.label :rg , class: 'fg-label'
+          = f.input :rg, label: false
+        .col-md-1
+          = f.label :rg_org , class: 'fg-label'
+          = f.input :rg_org, label: false
+        .col-md-1
+          = f.label :rg_uf , class: 'fg-label'
+          = f.input :rg_uf, as: :select, collection: Address::State.all.map { |key| [key.acronym,key.acronym]}, include_blank: false, label: false
+        .col-md-2
+          = f.label :gender, class: 'fg-label'
+          = f.input :gender, as: :select, collection: Candidate::Cadastre.genders.keys.to_a, label: false, include_blank: false
+        .col-md-2
+          = f.label "Data de nascimento", class: 'fg-label'
+          = f.input :born, as: :string, label: false, input_html: { class: 'date', value: (f.object.born.present?) ? localize(f.object.born) : ''}
+        .col-md-2
+          = f.label :born_uf, class: 'fg-label'
+          = f.input :born_uf, as: :select, collection: Address::State.all.map { |key| [key.acronym,key.acronym]}, include_blank: false, label: false
+      .row
+        .col-md-2
+          = f.label :place_birth, class: 'fg-label'
+          = f.input :place_birth, label: false
+        .col-md-2
+          = f.label :telephone, class: 'fg-label'
+          = f.input :telephone, label: false
+        .col-md-2
+          = f.label :telephone_optional, class: 'fg-label'
+          = f.input :telephone_optional, label: false
+        .col-md-2
+          = f.label :celphone, class: 'fg-label'
+          = f.input :celphone, label: false
+        .col-md-2
+          = f.label :email, class: 'fg-label'
+          = f.input :email, label: false
+        .col-md-2
+          = f.label :civil_state, class: 'fg-label'
+          = f.association :civil_state, label: false, include_blank: false
+      %hr/
+      .row
+        .col-md-2
+          = f.label :cep, class: 'fg-label'
+          = f.input :cep, label: false
+        .col-md-2
+          = f.label :city, class: 'fg-label'
+          = f.association :city, collection: Address::City.federal_district, label: false, include_blank: false
+        .col-md-5
+          = f.label :address, class: 'fg-label'
+          = f.input :address, label: false
+        .col-md-3
+          = f.label :address_complement, class: 'fg-label'
+          = f.input :address_complement, label: false
+      .row
+        .col-md-2
+          = f.label :work_city, class: 'fg-label'
+          = f.association :work_city, collection: Address::City.federal_district,label: false, include_blank: false
+        .col-md-2
+          = f.label :work_cep, class: 'fg-label'
+          = f.input :work_cep, label: false
+        .col-md-5
+          = f.label :work_address, class: 'fg-label'
+          = f.input :work_address, label: false
+      %hr/
+      .row
+        .col-md-2
+          = f.label :income, class: 'fg-label'
+          = f.input :income, as: :string, label: false, input_html: { class: 'coin_mask', value: '0.00'}
+        .col-md-2
+          = f.label :special_condition, class: 'fg-label'
+          = f.association :special_condition, label: false, include_blank: false
+        .col-md-2
+          = f.label :adapted_property, class: 'fg-label'
+          = f.input :adapted_property, as: :select, label: false, include_blank: false
+        .col-md-2
+          = f.label :nis, class: 'fg-label'
+          = f.input :nis, label: false
+        .col-md-1
+          = f.label :cid, class: 'fg-label'
+          = f.input :cid, label: false
+      %hr/
+      .row
+        .col-md-12
+          %h4 Dependentes
+      %br/
+      .row
+        = f.simple_fields_for :dependents do |builder|
+          = render 'dependent_fields', f: builder
+        = link_to_add_fields "Adicionar dependente", f, :dependents
+      %hr/
+      %br/
+      .row
+        .col-md-12
+          = f.submit "Prosseguir com o Atendimento", class: 'btn btn-success'
+          = link_to "Voltar a Tela Incial", :back, class: 'btn btn-inverse'

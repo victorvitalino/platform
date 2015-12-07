@@ -70,9 +70,9 @@
             startDate: data[1],
             daysOfWeekDisabled: weekend,
             autoclose: true,
-            endDate: data[2]
+            endDate: data[2],
+            datesDisabled: data[0].disable_dates.split(';')
           });
-
           $("#description").html("<i>" + data[0].description + "</i>")
         }
       });

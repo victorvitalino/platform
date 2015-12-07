@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @gallery.title
+%p
+  %b Content:
+  = @gallery.content
+%p
+  %b Status:
+  = @gallery.status
+%p
+  %b Thumbnail:
+  = @gallery.thumbnail
+%p
+  %b Photo:
+  = @gallery.photo
+
+= link_to 'Edit', edit_gallery_path(@gallery)
+\|
+= link_to 'Back', galleries_path

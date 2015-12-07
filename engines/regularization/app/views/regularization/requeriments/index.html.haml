@@ -1,0 +1,25 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Requerimentos de Regularização
+      %small Listagem de requerimentos
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+      %thead
+        %tr
+          %th Protocolo
+          %th Nome
+          %th CPF
+          %th Endereço
+          %th Data do requerimento
+          %th Ações
+      %tbody
+        - @requeriments.each do |requeriment|
+          %tr 
+            %td= requeriment.protocol
+            %td= requeriment.name
+            %td= requeriment.cpf
+            %td= requeriment.unit.complete_address if requeriment.unit.present?
+            %td= requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td 
+              = link_to "visualizar", requeriment_path(requeriment), class: 'btn btn-primary '

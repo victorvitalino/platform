@@ -27,7 +27,7 @@ gem 'redactor-rails'
 gem 'friendly_id'
 
 gem 'has_scope'
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 
 gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
@@ -51,7 +51,8 @@ group :test do
 end
 
 group :development do
-  gem 'carrierwave'
+  gem 'rails_db'
+  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
   gem 'derailed'
   gem 'byebug'
   gem 'thin'
