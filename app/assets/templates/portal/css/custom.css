@@ -2,6 +2,23 @@ label {
     font-weight: bold !important;
 }
 
+/* ====== PANEL ========= */
+
+.panel-green { background-color: #289728 !important;}
+.panel-green h1, small{ color: white !important; }
+
+.panel-blue { background-color: #147EA1 !important;}
+.panel-blue h1, small{ color: white !important; }
+
+.input-big form input, select{
+    height: 60px !important; 
+    font-size: 20px !important; 
+}
+
+.input-big label {
+  font-size: 18px !important;
+}
+
 nav.share {display:inline-block;float: left;} /* shareable's nav tag */
 nav.share div {float:left;}
 nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */

@@ -12,6 +12,7 @@ module SchedulePortal
         @verification = Schedule::Verification.new(set_params)
         if @verification.valid?
           session[:candidate_cpf] = @verification.cpf
+          session[:candidate_expiration] = Time.now + 2.hour
           redirect_to candidate_schedules_path
         else
           render action: 'new'

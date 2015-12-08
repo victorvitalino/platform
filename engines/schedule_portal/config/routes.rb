@@ -12,7 +12,11 @@ SchedulePortal::Engine.routes.draw do
   end
 
   namespace :habitation, path: 'habitacao' do
-    resources :agenda_schedules, path: '/'
+    resources :agenda_schedules, path: '/' do 
+      collection do 
+        get 'success', path: 'sucesso'
+      end
+    end
   end 
 
   namespace :candidate, path: 'candidato' do 

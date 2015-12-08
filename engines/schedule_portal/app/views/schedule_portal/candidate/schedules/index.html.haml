@@ -1,7 +1,7 @@
 .row
-  .col-md-12
+  .col-md-12.box
     .panel.panel-default
-      .panel-body
+      .panel-heading.panel-blue
         .row
           .col-md-12
             %h1
@@ -9,10 +9,12 @@
               %small.pull-right
                 %b CPF:
                 #{@cpf}
-              %br/
-              %small
-                = link_to "Encerrar sessão", candidate_new_verification_path
-        %hr/
+      .panel-body
+        .row
+          .col-md-12
+            = link_to "Realizar novo agendamento", candidate_new_verification_path
+            |
+            = link_to "Encerrar sessão", candidate_new_verification_path
         .row
           .col-md-12
             %table.table.table-striped.table-bordered.table-hover
@@ -31,7 +33,7 @@
                     %td.col-md-5= schedule.agenda.title
                     %td.col-md-1= schedule.date.strftime('%d/%m/%Y')
                     %td.col-md-1= schedule.hour.strftime('%H:%M')
-                    %td.col-md-1= schedule.status
+                    %td.col-md-2= schedule.status.humanize
                     %td.col-md-2
                       = link_to "visualizar", candidate_schedule_path(schedule)
                       = link_to "cancelar", candidate_schedule_path(schedule), method: :delete, data: { confirm: "Tem certeza que deseja cancelar este agendamento?"}

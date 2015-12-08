@@ -1,11 +1,14 @@
 = simple_form_for @verification, url: candidate_verification_path do |f|  
   .row
+    .col-md-12
+      %h3
+        %b Informe seus dados
+  %br/
+  .row
     .col-md-2
       = f.input :cpf
     .col-md-2
       = f.input :born, as: :string, input_html: { class: 'date'}
-    .col-md-2
-      = f.input :telephone
     .col-md-4
       = f.input :email
   %hr/

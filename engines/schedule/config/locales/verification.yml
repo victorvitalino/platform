@@ -1,0 +1,17 @@
+pt-BR:
+  activemodel:
+    errors:
+      models:
+        'schedule/verification':
+          attributes:
+            born:
+              invalid_date: 'não é válido'
+
+    models:
+      'schedule/verification': 'Verficação'
+    attributes:
+      'schedule/verification':
+        born: 'Data de nascimento'
+        cpf: "CPF (somente números)"
+        email: "E-mail"
+

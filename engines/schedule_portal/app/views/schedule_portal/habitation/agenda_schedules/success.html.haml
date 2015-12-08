@@ -1,0 +1,50 @@
+.row
+  .col-md-12.box
+    .panel.panel-default
+      .panel-heading.panel-green
+        .row
+          .col-md-12
+            %h1
+              %b Habitação
+              %br/
+              %small Agendamento realizado com sucesso!
+      .panel-body
+        .row
+          .col-md-12.input-big
+            %h2
+              %b Parabéns seu agendamento foi realizado com sucesso!
+        %hr/
+        .row.input-big
+          .col-md-12
+            %h4
+              %b Agenda
+            %h4
+              = @schedule.agenda.title if @schedule.agenda.present?
+            
+        .row.input-big
+          .col-md-3
+            %h4
+              %b CPF
+            %h4
+              = @schedule.cpf
+          .col-md-3
+            %h4
+              %b Protocolo Gerado
+            %h4
+              77-152456465/12015 
+          .col-md-3
+            %h4
+              %b Data e Horário
+            %h4
+              = "#{@schedule.date.strftime('%d/%m/%Y')} às #{@schedule.hour.strftime('%H:%M')}" 
+          .col-md-3
+            %h4
+              %b Local de Atendimento
+        %hr/
+        .row
+          .col-md-9
+            %h4
+              = link_to "Clique aqui para acompanhar, cancelar ou visualizar seus agendamentos!", candidate_new_verification_path
+          .col-md-3
+            %h4
+              = link_to "Realizar novo agendamento!", new_habitation_agenda_schedule_path

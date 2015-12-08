@@ -16,8 +16,7 @@ module Schedule
     validates :email, email: true, presence: true
     validates_date :date, presence: true 
     validates :hour, presence: true
-    validates_date :born, presence: true
-
+    
     validate :unique_schedule, on: :create
     validate :validate!, on: :create
 

@@ -13,9 +13,17 @@ module SchedulePortal
 
         if @schedule.save
           session[:schedule_id] = @schedule.id
-          redirect_to action: 'show', id: @schedule.id
+          redirect_to action: 'success'
         else
           render action: 'new'
+        end
+      end
+
+      def success
+        if session[:schedule_id].present?
+          @schedule = Schedule::AgendaSchedule.find(session[:schedule_id])
+        else
+          redirect_to action: 'new'
         end
       end
 
@@ -25,13 +33,6 @@ module SchedulePortal
       def update
       end
 
-      def show
-        if session[:schedule_id].present?
-          @schedule = Schedule::AgendaSchedule.find(session[:schedule_id])
-        else
-          redirect_to action: 'new'
-        end
-      end
 
       private
 
