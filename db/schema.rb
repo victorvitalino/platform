@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203125902) do
+ActiveRecord::Schema.define(version: 20151208164519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,7 +290,6 @@ ActiveRecord::Schema.define(version: 20151203125902) do
   add_index "candidate_cadastre_mirrors", ["cadastre_id"], name: "index_candidate_cadastre_mirrors_on_cadastre_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["city_id"], name: "index_candidate_cadastre_mirrors_on_city_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["civil_state_id"], name: "index_candidate_cadastre_mirrors_on_civil_state_id", using: :btree
-  add_index "candidate_cadastre_mirrors", ["cpf"], name: "index_candidate_cadastre_mirrors_on_cpf", unique: true, using: :btree
   add_index "candidate_cadastre_mirrors", ["program_id"], name: "index_candidate_cadastre_mirrors_on_program_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["special_condition_id"], name: "index_candidate_cadastre_mirrors_on_special_condition_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["state_id"], name: "index_candidate_cadastre_mirrors_on_state_id", using: :btree
@@ -832,8 +831,23 @@ ActiveRecord::Schema.define(version: 20151203125902) do
 
   add_index "entity_cadastres", ["city_id"], name: "index_entity_cadastres_on_city_id", using: :btree
   add_index "entity_cadastres", ["cnpj"], name: "index_entity_cadastres_on_cnpj", unique: true, using: :btree
-  add_index "entity_cadastres", ["email"], name: "index_entity_cadastres_on_email", unique: true, using: :btree
-  add_index "entity_cadastres", ["reset_token"], name: "index_entity_cadastres_on_reset_token", unique: true, using: :btree
+
+  create_table "entity_candidates", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.integer  "cadastre_id"
+    t.boolean  "status"
+    t.date     "date_in"
+    t.date     "date_out"
+    t.text     "observation"
+    t.string   "document"
+    t.boolean  "accepted"
+    t.datetime "date_accepted"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "entity_candidates", ["cadastre_id"], name: "index_entity_candidates_on_cadastre_id", using: :btree
+  add_index "entity_candidates", ["candidate_id"], name: "index_entity_candidates_on_candidate_id", using: :btree
 
   create_table "entity_document_categories", force: :cascade do |t|
     t.string   "name"

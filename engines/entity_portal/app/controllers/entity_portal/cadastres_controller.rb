@@ -2,8 +2,14 @@ require_dependency 'entity_portal/application_controller'
 
 module EntityPortal
   class CadastresController < ApplicationController 
-        
+    has_scope :situation
+
     def index
+      @entities = apply_scopes(Entity::Cadastre).all.order(:name).paginate(:page => params[:page], :per_page => 20)
+    end
+
+    def show
+      @entity = Entity::Cadastre.find(params[:id])
     end
 
     def new

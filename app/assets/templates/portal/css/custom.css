@@ -10,7 +10,10 @@ label {
 .panel-blue { background-color: #147EA1 !important;}
 .panel-blue h1, small{ color: white !important; }
 
-.input-big form input, select{
+.panel-orange { background-color: #f4400a !important;}
+.panel-orange h1, small{ color: white !important; }
+
+.input-big form input > select{
     height: 60px !important; 
     font-size: 20px !important; 
 }

@@ -1,0 +1,56 @@
+.row
+  .col-md-12.box
+    .panel.panel-default
+      .panel-heading.panel-orange
+        .row
+          .col-md-12
+            %h1
+              %b= @entity.fantasy_name
+      .panel-body
+        .row
+          .col-md-12
+            = link_to "Voltar para lista de entidades", cadastres_path
+            |
+            = link_to "Acessar painel de atualização e gestão cadastral de entidades", authorization_path
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th CNPJ
+                  %th Nome
+                  %th Sigla
+              %tbody
+                %tr
+                  %td= @entity.cnpj
+                  %td= @entity.name
+                  %td= @entity.fantasy_name
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Telefone
+                  %th Telefone Opcional
+                  %th E-mail
+              %tbody
+                %tr
+                  %td= @entity.telephone
+                  %td= @entity.telephone_optional
+                  %td= @entity.email
+        %hr/
+        .row
+          .col-md-12
+            %h2
+              %b #{@entity.candidates.count} Associados 
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Nome
+                  %th CPF
+              %tbody
+                - @entity.candidates.each do |cad|
+                  %tr
+                    %td.col-md-12= cad.candidate.name if cad.candidate.present?
+                    %td.col-md-2= cad.candidate.cpf  if cad.candidate.present?
