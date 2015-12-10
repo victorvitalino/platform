@@ -2,10 +2,22 @@ module Entity
   class Cadastre < ActiveRecord::Base
 
     belongs_to :city, class_name: "Address::City"
+  
+    has_many :situations
+    has_many :situation_status, through: :situations
 
     has_many :documents
     has_many :members
-    
+    has_many :candidates
+
+    scope :situation, -> (status) {
+      Entity::Cadastre.joins(:situations)
+      .where('entity_situations.situation_status_id = (SELECT MAX(entity_situations.situation_status_id)
+              FROM entity_situations WHERE entity_situations.cadastre_id = entity_cadastres.id)')
+      .where('entity_situations.situation_status_id = ?', status)     
+    }
+
+=begin 
     attr_accessor :password_confirmation, :current_password, :change_password
 
     validates :cnpj, cnpj: true, presence: true, uniqueness: true
@@ -43,5 +55,6 @@ module Entity
 
     def set_situation
     end
+=end
   end
 end

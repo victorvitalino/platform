@@ -1,15 +1,17 @@
 .row
-  .col-md-12
+  .col-md-12.box
     .panel.panel-default
+      .panel-heading.panel-blue
+        .row
+          .col-md-12
+            %h1
+              %b Detalhamento de Agendamento
       .panel-body
         .row
           .col-md-12
-            %h2
-              %b Detalhe de Agendamento
-              %br
-              %small
-                = link_to "Voltar para meus agendamentos", candidate_schedules_path
-        %hr/
+            = link_to "Voltar para meus agendamentos", candidate_schedules_path
+            |
+            = link_to "Cancelar este agendamento"
         .row
           .col-md-12
             %table.table.table-bordered.table-striped.table-hover.table-condensed

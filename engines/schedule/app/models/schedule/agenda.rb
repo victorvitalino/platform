@@ -6,7 +6,7 @@ module Schedule
     enum restriction_type: ['nenhuma', 'existente', 'inexistente']
 
     scope :regularization,  -> { where(program: 3)}
-    scope :habitation,      -> { where(program: [1,2])}
+    scope :habitation,      -> { where(program: 1)}
 
     validates :program, :description, presence: true
     validates :attendants, :attendance_time, numericality: true, presence: true

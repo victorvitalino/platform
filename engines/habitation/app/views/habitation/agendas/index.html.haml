@@ -1,0 +1,32 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Agendas
+      = link_to 'Nova Agenda', new_agenda_path, class: 'btn btn-success pull-right'
+      %small Listagem de agendas
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+      %thead
+        %tr
+          %th Programa
+          %th Título
+          %th Período
+          %th Horário
+          %th Agendados
+          %th Status
+          %th Ações
+
+      %tbody
+        - @agendas.each_with_index do |agenda, i|
+          %tr
+            %td.col-md-1= agenda.program.name if agenda.program.present?
+            %td.col-md-3= agenda.title
+            %td.col-md-2= "#{agenda.start.strftime('%d/%m/%Y')} - #{agenda.start.strftime('%d/%m/%Y') }"
+            %td.col-md-2= "#{agenda.start_hour.strftime('%H:%M')} às #{agenda.end_hour.strftime('%H:%M') }"
+            %td.col-md-1= agenda.agenda_schedules.count
+            %td.col-md-1= agenda.status ? 'ativa' : 'inativa'
+            %td.col-md-4
+              = link_to '', agenda_schedules_path(agenda), class: 'btn btn-success md md-keyboard-arrow-right'
+              = link_to '', edit_agenda_path(agenda), class: 'md md-edit btn btn-primary'
+              = link_to '', agenda, method: :delete, data: { confirm: t(:confirm_delete) }, class: 'md md-delete btn btn-danger'
+           

@@ -6,7 +6,6 @@ module Schedule
 
     validates :cpf, cpf: true, presence: true
     validates_date :born, presence: true
-    validates :telephone, numericality: true, presence: true
     validates :email, email: true, presence: true
 
     validate :valid!, if: :born?
@@ -18,7 +17,7 @@ module Schedule
     end
 
     def valid!
-      if !Schedule::AgendaSchedule.where(cpf: self.cpf, born: self.born, email: self.email).present?
+      if !Schedule::AgendaSchedule.where(cpf: self.cpf, born: Date.parse(self.born)).present?
         errors.add(:cpf, 'Os dados informados não conforem com os vínculados a este CPF')
       end
     end

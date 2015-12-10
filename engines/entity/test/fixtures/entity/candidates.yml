@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  candidate_id: 
+  cadastre_id: 
+  status: false
+  date_in: 2015-12-08
+  date_out: 2015-12-08
+  observation: MyText
+  document: MyString
+  accepted: false
+  date_accepted: 2015-12-08 14:45:19
+
+two:
+  candidate_id: 
+  cadastre_id: 
+  status: false
+  date_in: 2015-12-08
+  date_out: 2015-12-08
+  observation: MyText
+  document: MyString
+  accepted: false
+  date_accepted: 2015-12-08 14:45:19

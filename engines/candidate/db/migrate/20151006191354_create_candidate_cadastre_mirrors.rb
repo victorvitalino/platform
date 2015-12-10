@@ -39,7 +39,7 @@ class CreateCandidateCadastreMirrors < ActiveRecord::Migration
     end
 
 
-    add_index :candidate_cadastre_mirrors, :cpf, unique: true
+    #add_index :candidate_cadastre_mirrors, :cpf, unique: true
 
   end
 end

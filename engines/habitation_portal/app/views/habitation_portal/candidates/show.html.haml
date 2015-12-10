@@ -125,23 +125,19 @@
                     %td= pontuation.special_condition
                     %td= pontuation.timelist
                     %td= pontuation.total
-                  %tr.collapse{id: "id#{pontuation.id}"}
-                    %td
-                      Fórmula: 
-                    %td{colspan: 2}
-                      = link_to "Decreto 2012/2154654"
-                    %td
-                      RENDA FAMILIAR
-                    %td
-                      TEMPO FAMILIAR
-                    %td
-                      DEPENDENTES
-                    %td
-                      CONDICAO
-                    %td
-                      TEMPO LISTA
-                  %tr
-                    %td{colspan: 9, style: 'background-color:#DCDCDC !important'}
+                  - if pontuation.cadastre_mirror.present?
+                    %tr.collapse{id: "id#{pontuation.id}"}
+                      %td{colspan: 3}
+                        %b= link_to "Critérios #{Date.parse(pontuation.code.to_s).strftime('%Y')}"
+                      %td
+                        %b= number_to_currency pontuation.cadastre_mirror.income
+                      %td
+                        %b= "#{(Date.today.strftime('%Y').to_i - pontuation.cadastre_mirror.arrival_df.strftime('%Y').to_i)} Ano(s)"
+                      %td
+                        
+                      %td
+                        %b= pontuation.cadastre_mirror.special_condition.name
+                      %td
 
         %hr/
         .row

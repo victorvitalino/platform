@@ -22,8 +22,8 @@ class CreateEntityCadastres < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :entity_cadastres, :cnpj, unique: true
-    add_index :entity_cadastres, :email, unique: true
-    add_index :entity_cadastres, :reset_token, unique: true
+    #add_index :entity_cadastres, :email, unique: true
+    #add_index :entity_cadastres, :reset_token, unique: true
 
   end
 end
