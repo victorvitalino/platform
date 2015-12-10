@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208164519) do
+ActiveRecord::Schema.define(version: 20151210131819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -250,6 +250,17 @@ ActiveRecord::Schema.define(version: 20151208164519) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "candidate_cadastre_checklists", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "attendance_id"
+    t.integer  "checklist_id",               array: true
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "candidate_cadastre_checklists", ["attendance_id"], name: "index_candidate_cadastre_checklists_on_attendance_id", using: :btree
+  add_index "candidate_cadastre_checklists", ["cadastre_id"], name: "index_candidate_cadastre_checklists_on_cadastre_id", using: :btree
+
   create_table "candidate_cadastre_mirrors", force: :cascade do |t|
     t.string   "name"
     t.string   "cpf",                    default: "", null: false
@@ -374,6 +385,22 @@ ActiveRecord::Schema.define(version: 20151208164519) do
   add_index "candidate_cadastres", ["special_condition_id"], name: "index_candidate_cadastres_on_special_condition_id", using: :btree
   add_index "candidate_cadastres", ["state_id"], name: "index_candidate_cadastres_on_state_id", using: :btree
   add_index "candidate_cadastres", ["work_city_id"], name: "index_candidate_cadastres_on_work_city_id", using: :btree
+
+  create_table "candidate_cadatre_addresses", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "cadastre_mirror_id"
+    t.integer  "unit_id"
+    t.string   "dominial_chain"
+    t.integer  "type_occurrence"
+    t.string   "observation"
+    t.integer  "type_receipt"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "candidate_cadatre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
+  add_index "candidate_cadatre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadatre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
 
   create_table "candidate_checklists", force: :cascade do |t|
     t.string   "name"
