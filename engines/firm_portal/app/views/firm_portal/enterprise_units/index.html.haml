@@ -26,6 +26,6 @@
                   %td.col-md-3
                     = link_to "Visualizar".html_safe, enterprise_unit_path(u), remote: true, class: " btn btn-info"
                     - if u.situation_unit_id == 1
-                      = link_to "Reservar".html_safe, "#", class: " btn btn-primary"
+                      = link_to "Reservar".html_safe, new_enterprise_unit_path, class: " btn btn-primary", remote:true
                     - if  u.situation_unit_id == 6
                       = link_to "Liberar/Vender".html_safe, "#", class: " btn btn-success"
