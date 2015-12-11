@@ -19,7 +19,7 @@ module FirmPortal
     private
 
     def enterprise_status_params
-      params.require(:enterprise_status).permit(:cadastre_id,:enterprise_cadastre_id,:observation, :status_cadastre_id,:archive_file,)
+      params.require(:enterprise_status).permit(:cadastre_id,:enterprise_cadastre_id,:observation, :status_cadastre_id,:archive_file)
     end
 
     def set_enterprise

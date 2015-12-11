@@ -9,5 +9,7 @@ module Firm
 
     validates_presence_of :status_cadastre
 
+
+
   end
 end

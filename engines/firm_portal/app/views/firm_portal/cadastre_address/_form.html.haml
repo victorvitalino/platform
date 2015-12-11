@@ -1,0 +1,35 @@
+.row
+ .col-md-6
+  .row
+   .col-md-12
+    Pesquisar CPF
+  .row
+   .col-md-12
+    = simple_form_for new_enterprise_unit_cadastre_address_path, :method => 'get' do |f|
+     .row
+      .col-md-5
+       = f.label :cpf, class: 'fg-label'
+       = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+     .row
+      .col-md-12
+       = f.submit 'Pesquisar', class:  'btn btn-success', input_html: { name: nil}
+ .col-md-6
+  .row
+   .col-md-12
+    -if @candidate_firm.present?
+     Candidato:
+     =@candidate.name
+     = render 'book'
+    -else
+     CPF não encontrado
+
+
+
+
+
+
+
+
+
+
+
