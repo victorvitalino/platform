@@ -5,7 +5,7 @@ module Cms
 
     extend FriendlyId
     
-    friendly_id :slug, use: :slugged
+    friendly_id :title, use: :slugged
 
     audited
     
