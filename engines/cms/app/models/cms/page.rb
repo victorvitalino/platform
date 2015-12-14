@@ -3,6 +3,10 @@ module Cms
     belongs_to :page_category
     validates_presence_of :title, :content, :page_category, :date
 
+    extend FriendlyId
+    
+    friendly_id :slug, use: :slugged
+
     audited
     
     mount_uploader :thumb, ThumbUploader

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210131819) do
+ActiveRecord::Schema.define(version: 20151214161852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,9 +246,20 @@ ActiveRecord::Schema.define(version: 20151210131819) do
   add_index "candidate_attendances", ["staff_id"], name: "index_candidate_attendances_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_addresses", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "cadastre_id"
+    t.integer  "cadastre_mirror_id"
+    t.integer  "unit_id"
+    t.string   "dominial_chain"
+    t.integer  "type_occurrence"
+    t.string   "observation"
+    t.integer  "type_receipt"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
+
+  add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
 
   create_table "candidate_cadastre_checklists", force: :cascade do |t|
     t.integer  "cadastre_id"
@@ -385,22 +396,6 @@ ActiveRecord::Schema.define(version: 20151210131819) do
   add_index "candidate_cadastres", ["special_condition_id"], name: "index_candidate_cadastres_on_special_condition_id", using: :btree
   add_index "candidate_cadastres", ["state_id"], name: "index_candidate_cadastres_on_state_id", using: :btree
   add_index "candidate_cadastres", ["work_city_id"], name: "index_candidate_cadastres_on_work_city_id", using: :btree
-
-  create_table "candidate_cadatre_addresses", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.integer  "cadastre_mirror_id"
-    t.integer  "unit_id"
-    t.string   "dominial_chain"
-    t.integer  "type_occurrence"
-    t.string   "observation"
-    t.integer  "type_receipt"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  add_index "candidate_cadatre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
-  add_index "candidate_cadatre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
-  add_index "candidate_cadatre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
 
   create_table "candidate_checklists", force: :cascade do |t|
     t.string   "name"
@@ -639,6 +634,7 @@ ActiveRecord::Schema.define(version: 20151210131819) do
     t.integer  "page_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "slug"
   end
 
   add_index "cms_pages", ["page_category_id"], name: "index_cms_pages_on_page_category_id", using: :btree
