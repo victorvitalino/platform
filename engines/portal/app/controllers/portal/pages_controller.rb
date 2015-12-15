@@ -8,7 +8,7 @@ module Portal
     end
 
     def show 
-      @page = Cms::Page.find.friendly(params[:id]) rescue Cms::Page.find(params[:id])
+      @page = Cms::Page.friendly.find(params[:id]) #@rescue Cms::Page.find(params[:id])
     end
 
   end

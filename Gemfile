@@ -101,3 +101,4 @@ gem 'schedule',                     path: 'engines/schedule'
 gem 'schedule_portal',              path: 'engines/schedule_portal'
 
 gem 'sefaz',                        path: 'engines/sefaz'
+gem 'maintenance',                  path: 'engines/maintenance'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214161852) do
+ActiveRecord::Schema.define(version: 20151214180726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -325,6 +325,7 @@ ActiveRecord::Schema.define(version: 20151214161852) do
     t.integer  "assessment_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.string   "old_process"
   end
 
   add_index "candidate_cadastre_procedurals", ["assessment_id"], name: "index_candidate_cadastre_procedurals_on_assessment_id", using: :btree

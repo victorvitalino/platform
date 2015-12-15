@@ -135,6 +135,12 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/maintenance
+  specs:
+    maintenance (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/person
   specs:
     person (0.0.1)
@@ -584,6 +590,7 @@ DEPENDENCIES
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   jquery-ui-rails
+  maintenance!
   mina
   mina-unicorn
   mini_magick

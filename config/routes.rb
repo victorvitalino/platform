@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       mount Entity::Engine                   => "/entidades",      as: 'entity',                    module: 'entity'
       mount Sefaz::Engine                    => "/sefaz",          as: 'sefaz',                     module: 'sefaz'
       mount Firm::Engine                     => "/empresa",        as: 'firm',                      module: 'firm'
+      mount Maintenance::Engine              => "/manutencao",     as: 'maintenance',               module: 'maintenance'
     end
   end
 

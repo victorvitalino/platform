@@ -5,7 +5,7 @@ require 'mina/rvm'
 require 'mina/unicorn'
 
 
-set  :domain,  ENV['HOST_PRODUCTION_SERVER']
+set  :domain,  '10.233.38.15'
 set  :user,  'sedhab'
 set  :deploy_to, '/var/www/platform'
 set  :repository, 'https://github.com/codhab/platform.git' 
