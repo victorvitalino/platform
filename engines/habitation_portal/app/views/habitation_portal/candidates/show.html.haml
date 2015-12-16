@@ -1,4 +1,9 @@
-/ conteudo da pagina
+= javascript_include_tag "//www.google.com/jsapi", "chartkick"
+
+:css 
+  .pontuation {
+    
+  }
 .container
   .row
     .col-md-12.box
@@ -9,9 +14,7 @@
               %h1
                 %b Detalhe do Cadastro
               %h4
-                = link_to "Atualizar dados"
-                |
-                = link_to "Ir para listas", lists_path
+                = link_to "Ir para listas", url_for('/pagina/43')
                 |
                 = link_to "Pesquisar CPF", find_candidate_path
               
@@ -21,7 +24,7 @@
             .container
               %h2 
                 %b Dados do Cadastro
-              = link_to "Quais critérios que definem esta posição e situação?" 
+              = link_to "Quais critérios que definem esta posição e situação?", url_for('/pagina/1')
         .row
           .col-md-12
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
@@ -94,12 +97,18 @@
               %h2 
                 %b Pontuações
               = link_to "Como funciona a pontuação?"
+        %hr/
         .row
           .col-md-12
-            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+            .container
+              %h3 Linha temporal
+            = line_chart @candidate.pontuations.map {|key| [Date.parse(key.code.to_s).strftime('%d/%m/%Y'), key.total]}
+          .col-md-12
+            .container
+              %h3 Detalhamento
+            %table.table.table-vmiddle.datatable
               %thead
                 %tr
-                  %th Ação
                   %th Data
                   %th Posição
                   %th Renda Familiar
@@ -109,16 +118,15 @@
                   %th Tempo de Lista
                   %th Total
               %tbody
-                - @candidate.pontuations.order('code DESC').each do |pontuation|
-                  %tr
+                - @candidate.pontuations.order('code DESC').each_with_index do |pontuation, index|
+                  %tr{style: 'background-color: #F1F1F1'}
                     %td
-                      = link_to "Detalhar", "#id#{pontuation.id}", data: { toggle: 'collapse'}, expanded: false
-                    %td
-                      %span.label.label-success
-                        %b= Date.parse(pontuation.code.to_s).strftime('%d/%m/%Y')
+                      %h4
+                        %span.label.label-success
+                          %b= Date.parse(pontuation.code.to_s).strftime('%d/%m/%Y')
                     %td 
-                      %span.label.label-primary
-                        #{pontuation.position} º
+                      %b= "#{pontuation.position} º"
+                    - @last_point = pontuation.position
                     %td= pontuation.income
                     %td= pontuation.bsb
                     %td= pontuation.dependent
@@ -126,18 +134,27 @@
                     %td= pontuation.timelist
                     %td= pontuation.total
                   - if pontuation.cadastre_mirror.present?
-                    %tr.collapse{id: "id#{pontuation.id}"}
-                      %td{colspan: 3}
+                    %tr.pontuation{id: "id#{pontuation.id}"}
+                      %td{colspan: 2}
                         %b= link_to "Critérios #{Date.parse(pontuation.code.to_s).strftime('%Y')}"
                       %td
                         %b= number_to_currency pontuation.cadastre_mirror.income
                       %td
                         %b= "#{(Date.today.strftime('%Y').to_i - pontuation.cadastre_mirror.arrival_df.strftime('%Y').to_i)} Ano(s)"
                       %td
+                        - pontuation.cadastre_mirror.dependent_mirrors.each do |dependent|
+                          - if dependent.masculino?
+                            %span.label.label-primary
+                              %i{class: 'fa fa-male'}
+                          - if dependent.feminino?
+                            %span.label.label-pink
+                              %i{class: 'fa fa-female'}
                         
                       %td
                         %b= pontuation.cadastre_mirror.special_condition.name
                       %td
+                    %tr
+                      %td{colspan: 9, style: 'background-color: white'}
 
         %hr/
         .row
@@ -157,11 +174,12 @@
                   %th Data
               %tbody
                 - @candidate.attendances.order(:created_at).each do |attendance|
-                  %tr
-                    %td= attendance.attendance_status.name if attendance.attendance_status.present?
-                    %td= attendance.convocation.name if attendance.convocation.present?
-                    %td= attendance.observation
-                    %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
+                  - unless attendance.attendance_status_id == 99
+                    %tr
+                      %td= attendance.attendance_status.name if attendance.attendance_status.present?
+                      %td= attendance.convocation.name if attendance.convocation.present?
+                      %td= attendance.observation
+                      %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
         %hr/
         .row
           .col-md-12
