@@ -2,7 +2,7 @@
 
 :css 
   .table {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .table th, td {
@@ -103,8 +103,8 @@
           .row
             .col-md-12{style: 'text-align: center'}
               %h4
-                %i Linha temporal de Pontuações
-              = line_chart @candidate.pontuations.map {|key| [Date.parse(key.code.to_s).strftime('%d/%m/%Y'), key.total]}
+                %i Linha temporal de Pontuação
+              = area_chart @candidate.pontuations.map {|key| [Date.parse(key.code.to_s).strftime('%Y-%m-%d'), key.total]}
             .col-md-12{style: 'text-align: center'}
               %hr/
               %h4
