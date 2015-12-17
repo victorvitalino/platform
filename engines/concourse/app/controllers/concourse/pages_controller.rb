@@ -63,7 +63,7 @@ module Concourse
       end
       # Only allow a trusted parameter "white list" through.
       def page_params
-        params.require(:page).permit(:project_id, :title, :content, :publish, :slug)
+        params.require(:page).permit(:project_id, :title, :content, :publish)
       end
   end
 end

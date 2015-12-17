@@ -6,7 +6,7 @@ module ConcoursePortal
     def index
       @projects = Concourse::Project.all
 
-      render layout: 'layouts/portal/application'
+      render layout: 'layouts/portal'
     end
     
     def show

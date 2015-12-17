@@ -2,9 +2,9 @@ require 'csv'
 
 namespace :candidate do
   desc "migração Cadastros"
-  task :mirror_2012 => :environment do
+  task :mirror_2011 => :environment do
     @index = 0
-    CSV.foreach("lib/files/cadastre_mirror_2012.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/cadastre_mirror_2011.csv", :col_sep => "#") do |row|
       @index += 1
 
         @cadastre = Candidate::CadastreMirror.new({

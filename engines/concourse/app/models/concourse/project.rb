@@ -5,7 +5,6 @@ module Concourse
   
     friendly_id :title, use: :slugged
     
-    default_scope { where('publish = true AND step <> 0' ) }
     scope :sliders, -> {where(slider: true)}
     scope :active, -> { where(status: true )}
     
@@ -33,6 +32,10 @@ module Concourse
 
     def consultation_time?
         (self.consultation_start <= Date.today && self.consultation_end >= Date.today)
+    end
+
+    def should_generate_new_friendly_id?
+        new_record?
     end
   end
 end
