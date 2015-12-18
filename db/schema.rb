@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216110544) do
+ActiveRecord::Schema.define(version: 20151218113834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1424,6 +1424,79 @@ ActiveRecord::Schema.define(version: 20151216110544) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "planning_discussion_messages", force: :cascade do |t|
+    t.integer  "author_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "planning_discussion_messages", ["author_id"], name: "index_planning_discussion_messages_on_author_id", using: :btree
+
+  create_table "planning_discussions", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "author_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "planning_discussions", ["author_id"], name: "index_planning_discussions_on_author_id", using: :btree
+  add_index "planning_discussions", ["project_id"], name: "index_planning_discussions_on_project_id", using: :btree
+
+  create_table "planning_problems", force: :cascade do |t|
+    t.string   "subject"
+    t.text     "description"
+    t.integer  "problem_type"
+    t.integer  "risk_type"
+    t.date     "identification"
+    t.date     "due"
+    t.integer  "responsible_id"
+    t.integer  "situation"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "planning_problems", ["responsible_id"], name: "index_planning_problems_on_responsible_id", using: :btree
+
+  create_table "planning_project_categories", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "planning_projects", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "level"
+    t.integer  "sector_id"
+    t.integer  "project_category_id"
+    t.boolean  "priority_visible"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "planning_projects", ["project_category_id"], name: "index_planning_projects_on_project_category_id", using: :btree
+  add_index "planning_projects", ["sector_id"], name: "index_planning_projects_on_sector_id", using: :btree
+
+  create_table "planning_tasks", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "priority"
+    t.integer  "project_id"
+    t.date     "due"
+    t.integer  "responsible_id"
+    t.integer  "order"
+    t.integer  "author_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "planning_tasks", ["author_id"], name: "index_planning_tasks_on_author_id", using: :btree
+  add_index "planning_tasks", ["project_id"], name: "index_planning_tasks_on_project_id", using: :btree
+  add_index "planning_tasks", ["responsible_id"], name: "index_planning_tasks_on_responsible_id", using: :btree
 
   create_table "protocol_allotments", force: :cascade do |t|
     t.text     "description"

@@ -107,3 +107,18 @@
               %li= link_to "Empresas", firm.companies_path
               %li= link_to "Empreendimentos", firm.enterprises_path
               %li= link_to "Tipologias", firm.tipologies_path
+        - if policy(:application, namespace: Firm).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "planning")}
+            %a{:href => ""}
+              %i.md.md-business>
+              Monitoramento
+            %ul{style: ('display:block;' if params[:module] == "planning")}
+              %li= link_to "Visão Geral"
+              %li= link_to "Reuniões"
+              %li= link_to "Projetos"
+              %li= link_to "Categorias de projeto"
+              %li= link_to "Atores"
+              %li= link_to "Visão por Setor"
+              %li= link_to "Visão por Responsável"
+              %li= link_to "Visão por Categoria"
+              %li= link_to "Visão por Ator"

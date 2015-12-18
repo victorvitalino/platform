@@ -147,6 +147,12 @@ PATH
       rails (~> 4.2.1)
 
 PATH
+  remote: engines/planning
+  specs:
+    planning (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: engines/portal
   specs:
     portal (0.0.1)
@@ -599,6 +605,7 @@ DEPENDENCIES
   nokogiri
   person!
   pg
+  planning!
   poltergeist
   portal!
   protocol!
