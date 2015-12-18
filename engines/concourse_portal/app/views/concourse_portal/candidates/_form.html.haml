@@ -1,6 +1,4 @@
 = simple_form_for [@project, @candidate] do |f|
-  %br/
-  %h5 Informações pessoais
   %hr/
   .row
     .col-md-10
@@ -15,7 +13,8 @@
     .col-md-2
       = f.input :gender, as: :select, collection: Concourse::Candidate.genders.keys.to_a, prompt: 'selecione...'
   %br/
-  %h5 Endereço e Contato
+  %h4
+    %b Endereço e Contato
   %hr/
   .row
     .col-md-3
@@ -37,7 +36,8 @@
     .col-md-3
       = f.input :celphone
   %br/
-  %h5 Dados para acesso à inscrição
+  %h4
+    %b Dados para acesso à inscrição
   %hr/
   .row
     .col-md-3
@@ -45,7 +45,8 @@
     .col-md-3
       = f.input :confirmation_password
   %br/
-  %h5 Dados pessoa jurídica
+  %h4
+    %b Dados pessoa jurídica
   %hr/
   .row
     .col-md-4
@@ -55,7 +56,8 @@
     .col-md-3
       = f.input :cnpj
   %br/
-  %h5 Informações Adicionais
+  %h4
+    %b Informações Adicionais
   %hr/
   .row
     = f.simple_fields_for :properties, OpenStruct.new(@candidate.properties) do |builder|
@@ -63,11 +65,12 @@
         .col-md-4
           = render "concourse_portal/candidates/fields/#{field.field_type}", field: field, f: builder, c: @candidate
   %br/
+  %hr/
   .row
     .col-md-12
       = f.input :terms_use
   %hr/
   .row
-    .col-md-2
-      = f.button :submit
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
       = link_to "Voltar", project_path(@project), class: 'btn btn-default'

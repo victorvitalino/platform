@@ -70,7 +70,7 @@ module Concourse
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_nav
-        @nav = @project.navs.unscoped.find(params[:id])
+        @nav = @project.navs.find(params[:id])
       end
 
       def set_project

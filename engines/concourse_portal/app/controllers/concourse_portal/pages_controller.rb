@@ -1,3 +1,4 @@
+require_dependency 'concourse_portal/application_controller'
 module ConcoursePortal
   class PagesController < ApplicationController
     before_action :set_project

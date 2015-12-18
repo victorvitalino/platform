@@ -1,3 +1,4 @@
+require_dependency 'concourse_portal/application_controller'
 module ConcoursePortal
   class PasswordsController < ApplicationController
     before_action :set_session

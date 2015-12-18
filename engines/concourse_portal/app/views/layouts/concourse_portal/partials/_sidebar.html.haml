@@ -4,11 +4,11 @@
     %li.list-group-item= link_to "Trocar minha senha", concourse_portal.project_subscribes_password_edit_path(@project) 
     %li.list-group-item= link_to "Encerrar sessão", concourse_portal.project_subscribes_logout_path(@project) 
   - else
-    = link_to "Inscrição", concourse_portal.project_subscribes_path(@project), class: "list-group-item #{(@current_nav == 'new_subscribe') ? 'active' : ''}"
+    = link_to "INSCRIÇÃO", concourse_portal.project_subscribes_path(@project), class: "list-group-item #{(@current_nav == 'new_subscribe') ? 'active' : ''}"
   - if @project.consultation && @project.consultation_time?
-    = link_to "Enviar consulta", concourse_portal.new_project_consult_path(@project), class: "list-group-item #{(@current_nav == 'new_consult') ? 'active' : ''}" 
+    = link_to "ENVIAR CONSULTA", concourse_portal.new_project_consult_path(@project), class: "list-group-item #{(@current_nav == 'new_consult') ? 'active' : ''}" 
 .list-group
-  = link_to "Início", concourse_portal.project_path(@project), class: 'list-group-item' 
+  = link_to "INÍCIO", concourse_portal.project_path(@project), class: 'list-group-item' 
   - @project.navs.each do |nav|
     - if nav.url?
       = link_to "#{nav.label}", nav.url, target: "#{nav.target}", class: "list-group-item"
