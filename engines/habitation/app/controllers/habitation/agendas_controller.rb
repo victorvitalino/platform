@@ -39,6 +39,12 @@ module Habitation
       end
     end
 
+    def destroy
+      @agenda.destroy 
+      flash[:success] =  t :success
+      redirect_to action: 'index'
+    end
+
     private
 
     def set_params

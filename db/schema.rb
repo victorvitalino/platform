@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218113834) do
+ActiveRecord::Schema.define(version: 20151228103447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1722,6 +1722,17 @@ ActiveRecord::Schema.define(version: 20151218113834) do
 
   add_index "schedule_agendas", ["program_id"], name: "index_schedule_agendas_on_program_id", using: :btree
   add_index "schedule_agendas", ["staff_id"], name: "index_schedule_agendas_on_staff_id", using: :btree
+
+  create_table "schedule_data_references", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "observation"
+    t.string   "code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "schedule_data_references", ["code"], name: "index_schedule_data_references_on_code", using: :btree
 
   create_table "sefaz_allotment_candidates", force: :cascade do |t|
     t.integer  "allotment_id"

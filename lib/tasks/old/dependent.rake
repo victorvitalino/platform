@@ -2,41 +2,54 @@ require 'csv'
 
 namespace :candidate do
   desc "migração Cadastros"
-  task :dependents => :environment do
+  task :dependent_2011 => :environment do
     @index = 0
-    CSV.foreach("lib/files/dependents_2.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/dependent_mirror_2011.csv", :col_sep => "#") do |row|
       @index += 1
 
-      #if @index > 300_000
-        @dependent = Candidate::Dependent.new({
+        @cadastre = Candidate::DependentMirror.new({
           name: row[0].to_s.strip.upcase,
-          cpf:  row[1].to_s.strip.gsub('.','').gsub('-',''),
-          income: row[3],
-          born: (Date.strptime(row[4],'%m/%d/%Y') rescue nil),
-          kinship_id: row[5],
-          cid: row[6],
-          special_condition_id: row[7],
+          kinship_id: row[1],
+          born: row[2],
+          gender: (row[3].to_i == 3) ? 2 : row[3],
+          special_condition_id: row[4],
+          special_condition_flag: row[5],
+          income: row[6],
+          cpf:  row[7].to_s.strip,
           cadastre_id: row[8],
+          created_at: Date.parse('01/08/2011')
         })
 
-        if @dependent.save
-          @mirror = Candidate::DependentMirror.new({
-            name: @dependent.name,
-            cpf:  @dependent.cpf,
-            born: @dependent.born,
-            income: @dependent.income,
-            kinship_id: @dependent.kinship_id,
-            special_condition_id: @dependent.special_condition_id,
-            cadastre_mirror_id: @dependent.cadastre_id,
-            cadastre_id: @dependent.cadastre_id,
-            dependent_id: @dependent.id,
-            cid: @dependent.cid
-          })
-
-          @mirror.save
+        begin 
+          puts @cadastre.save
+          puts @index
+        rescue
+          puts "DEU RUIM"
         end
-
-        puts @index
+      
     end
   end
+
+  task :voi => :environment do 
+    @index = 0
+    CSV.foreach("lib/files/voi_estrutural.csv", :col_sep => "#") do |row|
+      @index += 1
+
+        @cadastre = Candidate::Voi.new({
+          name: row[0].to_s.strip.upcase,
+          address: row[1],
+          cpf: row[3],
+          rg: row[4],
+        })
+
+        begin 
+          puts @cadastre.save
+          puts @index
+        rescue
+          puts "DEU RUIM"
+        end
+    end
+  end
+
+
 end
