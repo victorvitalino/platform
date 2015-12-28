@@ -64,10 +64,11 @@
         = f.label :restriction_sql, class: 'fg-label'
         = f.input :restriction_sql, label: false, as: :string
     %hr/
-    .row
-      .col-md-2
-        = f.label :status, class: 'fg-label'
-        = f.input :status, label: false, as: :select, include_blank: false
+    - if policy(:Agenda, namespace: Habitation).publish?
+      .row
+        .col-md-2
+          = f.label :status, class: 'fg-label'
+          = f.input :status, label: false, as: :select, include_blank: false
     %hr/
     .row
       .col-md-12

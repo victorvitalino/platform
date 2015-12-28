@@ -6,7 +6,7 @@ module SchedulePortal
     def all
       if params[:id].present?
         @agenda = Schedule::Agenda.find(params[:id])
-        render json: [@agenda, (Date.today + 1.day).strftime('%d/%m/%Y'), @agenda.end.strftime("%d/%m/%Y")]
+        render json: [@agenda, (@agenda.start).strftime('%d/%m/%Y'), @agenda.end.strftime("%d/%m/%Y")]
       else
         render json: 'not found'
       end

@@ -5,10 +5,12 @@ module Habitation
     before_action :set_agenda, only: [:edit, :update, :destroy, :show]
     
     def index
+      authorize :agenda, :index?
       @agendas = Schedule::Agenda.habitation
     end
   
     def new
+      authorize :create?
       @agenda = Schedule::Agenda.habitation.new
     end
 
@@ -20,6 +22,7 @@ module Habitation
     end
     
     def create
+      authorize :create?
       @agenda = Schedule::Agenda.habitation.new(set_params)
       if @agenda.save
         flash[:success] = t :success
@@ -31,6 +34,7 @@ module Habitation
     end
 
     def update
+      authorize :update?
       if @agenda.update(set_params)
         flash[:success] = t :success
         redirect_to action: 'index'
@@ -40,6 +44,7 @@ module Habitation
     end
 
     def destroy
+      authorize :destroy?
       @agenda.destroy 
       flash[:success] =  t :success
       redirect_to action: 'index'
