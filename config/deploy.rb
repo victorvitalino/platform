@@ -8,7 +8,7 @@ require 'mina/unicorn'
 set  :domain,  '10.233.38.15'
 set  :user,  'sedhab'
 set  :deploy_to, '/var/www/platform'
-set  :repository, 'https://silvaelton@:lib072771472@github.com/codhab/platform.git' 
+set  :repository, 'https://github.com/codhab/platform.git' 
 set  :branch, 'stable'
 
 set :rails_env, 'production'
