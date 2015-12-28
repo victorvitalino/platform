@@ -158,7 +158,7 @@
                                   .label.label-pink{style: 'margin: 1px'}
                                     %i{class: 'fa fa-female'}                        
                         %td
-                          %h6= pontuation.cadastre_mirror.special_condition.name
+                          %h6= pontuation.cadastre_mirror.special_condition.name if pontuation.cadastre_mirror.special_condition.present?
                         %td
                           %h6= "#{pontuation.cadastre_mirror.timelist_time(pontuation.year)} Ano(s)" 
                       %tr
@@ -188,17 +188,29 @@
                         %td= (attendance.observation.present?) ? attendance.observation : 'Informação não disponível'
                         %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
           %hr/
-          .row
-            .col-md-12
-              %h2 
-                %b Informações da Construtora
-          .row
-            .col-md-12
-              %table#data-table-command.table.table-striped.table-vmiddle.datatable
-                %thead
-                  %tr
-                    %th Status
-                    %th Observação
-                    %th Data
-                %tbody
+          - if @candidate.firm_enterprise_statuses.present?
+            .row
+              .col-md-12
+                %h2 
+                  %b Informações da Construtora
+            .row
+              .col-md-12
+
+                %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                  %thead
+                    %tr
+                      %th Empresa
+                      %th Status
+                      %th Observação
+                      %th Data
+                  %tbody
+
+                    - @candidate.firm_enterprise_statuses.order(:created_at).each do |firm| 
+                      %tr
+                        %td= firm.enterprise_cadastre.enterprise.name if firm.enterprise_cadastre.present? && firm.enterprise_cadastre.enterprise.present?
+                        %td= firm.status_cadastre.name if firm.status_cadastre.present?
+                        %td= (firm.observation.to_s.empty?) ? 'Não informado' : firm.observation
+                        %td= firm.created_at.strftime('%d/%m/%Y às %H:%M')
+
+                        
         .row

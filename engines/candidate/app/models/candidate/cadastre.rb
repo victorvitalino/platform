@@ -1,5 +1,6 @@
 module Candidate
   class Cadastre < ActiveRecord::Base
+
     belongs_to :special_condition
     belongs_to :city
     belongs_to :state
@@ -14,6 +15,7 @@ module Candidate
     has_many :attendances
     has_many :pontuations
     has_many :cadastre_checklists
+    has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 

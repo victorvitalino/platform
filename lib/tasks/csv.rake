@@ -4,17 +4,21 @@ namespace :csv do
   desc "migração csv"
   task :cadunico => :environment do
     @index = 0
-    CSV.foreach("lib/files/schedule/cadunico.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/firm.csv", :col_sep => "#") do |row|
       @index += 1
 
-        @ref = Schedule::DataReference.new({
-          name: row[0].to_s.strip.upcase,
-          cpf:  row[1].to_s.strip.gsub('.','').gsub('-',''),
-          code: 'cadunico1'
+        @ref = Firm::EnterpriseStatus.new({
+          cadastre_id: row[5],
+          enterprise_cadastre_id: row[6],
+          status_cadastre_id: row[1],
+          observation: row[2],
+          archive_file: row[3],
+          created_at: row[0]
         })
 
         begin
           puts @ref.save!
+          #puts @ref.inspect
           puts @index
         rescue Exception => e 
           puts e
