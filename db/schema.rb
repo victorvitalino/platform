@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228103447) do
+ActiveRecord::Schema.define(version: 20151229093540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -213,6 +213,61 @@ ActiveRecord::Schema.define(version: 20151228103447) do
   add_index "audits", ["created_at"], name: "index_audits_on_created_at", using: :btree
   add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
   add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
+
+  create_table "brb_categories", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.float    "default_value"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "brb_invoices", force: :cascade do |t|
+    t.integer  "category_id"
+    t.string   "barcode"
+    t.string   "barcode_with_format"
+    t.string   "bank_agency"
+    t.string   "bank_account"
+    t.string   "cpf"
+    t.string   "name"
+    t.string   "address"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.string   "cep"
+    t.integer  "type_person",              default: 0
+    t.integer  "modality",                 default: 0
+    t.integer  "type_document",            default: 0
+    t.string   "code"
+    t.date     "due"
+    t.float    "value",                    default: 0.0
+    t.text     "message"
+    t.date     "payment"
+    t.integer  "status",                   default: 0
+    t.boolean  "remittance"
+    t.text     "bank_return"
+    t.string   "wallet"
+    t.string   "sequential_without_digit"
+    t.string   "sequential_digit_one"
+    t.string   "sequential_digit_two"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "brb_invoices", ["category_id"], name: "index_brb_invoices_on_category_id", using: :btree
+  add_index "brb_invoices", ["city_id"], name: "index_brb_invoices_on_city_id", using: :btree
+  add_index "brb_invoices", ["code"], name: "index_brb_invoices_on_code", unique: true, using: :btree
+  add_index "brb_invoices", ["state_id"], name: "index_brb_invoices_on_state_id", using: :btree
+
+  create_table "brb_remittances", force: :cascade do |t|
+    t.text     "content"
+    t.text     "header_content"
+    t.integer  "invoices_id",                                 array: true
+    t.boolean  "publish",        default: false
+    t.date     "date"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
 
   create_table "candidate_attendance_statuses", force: :cascade do |t|
     t.string   "name"
