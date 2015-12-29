@@ -34,6 +34,8 @@ gem 'validates_timeliness'
 gem 'email_validator'
 
 gem 'nokogiri'
+gem 'barby'
+gem 'chunky_png'
 
 gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 gem 'signer', git: 'https://github.com/codhab/signer.git'

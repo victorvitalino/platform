@@ -566,6 +566,7 @@ DEPENDENCIES
   address!
   attendance!
   audited-activerecord (~> 4.0)
+  barby
   bootstrap-datepicker-rails
   brb!
   byebug
@@ -574,6 +575,7 @@ DEPENDENCIES
   carrierwave!
   carrierwave-ftp
   chartkick
+  chunky_png
   cms!
   codhab_billing!
   concourse!
