@@ -75,7 +75,7 @@
               %li= link_to "Insenção de ITCD/ITBI", sefaz.new_iptu_consult_path
               %li= link_to "Cancelamento de isenção", sefaz.transmissions_path
               %li= link_to "Consulta IPTU", sefaz.new_iptu_consult_path
-        - if policy(:application, namespace: Concourse).index?
+        - if policy(:application, namespace: Concourse).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
             %a{:href => ""}
               %i.md.md-assignment>

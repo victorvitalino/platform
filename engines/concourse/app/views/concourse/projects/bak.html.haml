@@ -1,0 +1,12 @@
+          %li{:class => (params[:q] == 'tipo_inscricoes') ? 'active' : ''}
+            %a{"aria-controls" => "subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#subscribes", :role => "tab"} Tipo de inscrições
+          %li{:class => (params[:q] == 'partictipos') ? 'active' : ''}
+            %a{"aria-controls" => "participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#participations", :role => "tab"} Tipo de participações
+          %li{:class => (params[:q] == 'consultas') ? 'active' : ''}
+            %a{"aria-controls" => "consults", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#consults", :role => "tab"} Consultas
+          %li{:class => (params[:q] == 'inscricoes') ? 'active' : ''}
+            %a{"aria-controls" => "candidate_subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_subscribes", :role => "tab"} Inscrições
+          %li{:class => (params[:q] == 'participacoes') ? 'active' : ''}
+            %a{"aria-controls" => "candidate_participations", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_participations", :role => "tab"} Participações
+          %li{:class => (params[:q] == 'vencedores') ? 'active' : ''}
+            %a{"aria-controls" => "winners", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#winners", :role => "tab"} Vencedores
