@@ -1,0 +1,38 @@
+= simple_form_for @invoice do |f|
+  .row
+    .col-md-3
+      = f.label :category
+      = f.association :category, label: false, include_blank: false
+    .col-md-2
+      = f.label 'Vencimento'
+      = f.input :due, as: :string, label: false, input_html: { class: 'date' }
+  .row
+    .col-md-3
+      = f.label :cpf
+      = f.input :cpf, label: false
+    .col-md-6
+      = f.label :name
+      = f.input :name, label: false
+  .row
+    .col-md-9
+      = f.label :address
+      = f.input :address, label: false
+  .row
+    .col-md-3
+      = f.label :state
+      = f.association :state, label: false, include_blank: false, input_html:{ id: 'state_id'}
+    .col-md-3
+      = f.label :city
+      = f.association :city, label: false, include_blank: "selecione o estado..", input_html:{ id: 'city_id'}
+    .col-md-3
+      = f.label :cep
+      = f.input :cep, label: false
+  .row
+    .col-md-9
+      = f.label :message
+      = f.input :message, label: false
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
+      = link_to "voltar", invoices_path, class: 'btn btn-inverse'
