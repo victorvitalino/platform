@@ -16,6 +16,7 @@ module Candidate
     has_many :pontuations
     has_many :cadastre_checklists
     has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
+    has_many :enterprise_cadastres, class_name: "Firm::EnterpriseCadastre"
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 

@@ -4,14 +4,19 @@ namespace :csv do
   desc "migração csv"
   task :cadunico => :environment do
     @index = 0
-    CSV.foreach("lib/files/renda_familiar.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/cadastro_empresas.csv", :col_sep => "#") do |row|
       @index += 1
 
-        @ref = Candidate::Cadastre.find(row[0])
+        @ref = Firm::EnterpriseCadastre.new({
+          enterprise_id: row[3],
+          cadastre_id: row[4],
+          status: true,
+          created_at: (row[0].to_s == "NULL") ? row[1] : row[0]
+        })
 
         begin
-          @ref.update(income: row[1])
-          #puts @ref.inspect
+          @ref.save
+          #@ref.inspect
           puts @index
         rescue Exception => e 
           puts e
