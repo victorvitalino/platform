@@ -28,7 +28,6 @@ module Habitation
         redirect_to agenda_schedules_path(@agenda)
       else
         render action: 'edit'
-      @agenda = Schedule::Agenda.find(params[:agenda_id])
       end
     end
 

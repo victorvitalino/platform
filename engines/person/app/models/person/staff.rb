@@ -24,7 +24,7 @@ module Person
 
     validates_uniqueness_of :code
 
-    validates :cpf, cpf: true
+    validates :cpf, cpf: true, on: :create
     validates_date :born, :before => lambda {18.years.ago}
 
     mount_uploader :avatar, Person::AvatarUploader

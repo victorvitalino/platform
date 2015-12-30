@@ -2,7 +2,7 @@
   .card-header.ch-alt
     %h2
       Agendas
-      = link_to 'Nova Agenda', new_agenda_path, class: 'btn btn-success pull-right'
+      = link_to 'Nova Agenda', new_agenda_path, class: 'btn btn-success pull-right' if policy(:Agenda, namespace: Habitation).create?
       %small Listagem de agendas
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
