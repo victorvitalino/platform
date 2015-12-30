@@ -24,35 +24,6 @@
                 |
                 = link_to "Pesquisar CPF", find_candidate_path
           %hr/
-          %br/  
-          .row
-            .col-md-12
-              %h3 
-                %b Situação do Candidato
-              = link_to "Quais critérios que definem esta posição e situação?", url_for('/pagina/1')
-          .row
-            .col-md-12
-              %table#data-table-command.table.table-striped.table-vmiddle.datatable
-                %thead
-                  %tr
-                    %th Status do Cadastro
-                    %th Posição
-                    %th Última Pontuação
-                    %th Data
-                %tbody
-                  %tr
-                    %td 
-                      %span.label.label-primary Habilitado
-                    %td
-                      %span.label.label-primary
-                        = "#{@candidate.pontuations.order(:code).last.position} º" if @candidate.pontuations.present?
-                    %td 
-                      %span.label.label-primary
-                        = "#{@candidate.pontuations.order(:code).last.total}" if @candidate.pontuations.present?
-                    %td 
-                      %span.label.label-primary
-                        = Date.parse(@candidate.pontuations.order(:code).last.code.to_s).strftime('%d/%m/%Y')
-          %hr/
           .row
             .col-md-12
               %h3 
@@ -139,7 +110,7 @@
                     - if pontuation.cadastre_mirror.present?
                       %tr.pontuation{id: "id#{pontuation.id}"}
                         %td{colspan: 2}
-                          %h5= link_to "Critérios #{pontuation.year.strftime('%Y')}"
+                          %h5= link_to "Critérios #{pontuation.year.strftime('%Y')}", portal.page_path(48)
                         %td
                           %h5= number_to_currency pontuation.cadastre_mirror.income
                         %td
