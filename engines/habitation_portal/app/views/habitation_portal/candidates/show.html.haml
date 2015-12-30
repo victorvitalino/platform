@@ -27,6 +27,33 @@
           .row
             .col-md-12
               %h3 
+                %b Situação do candidato
+          .row
+            .col-md-12
+              %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                %thead
+                  %tr
+                    %th Situação do Candidato
+                    %th Programa
+                    %th Lista
+                    %th Faixa
+                    %th Posição
+                    %th Última pontuação
+                %tbody
+                  %tr
+                    %td
+                      .label.label-success
+                        = @candidate.current_situation_name
+                        
+                    %td= program(@candidate.program_id) 
+                    %td= list(@candidate.born, @candidate.program_id, @candidate.special_condition_id) 
+                    %td= faixa(@candidate.income).upcase 
+                    %td= position(@candidate.income, @candidate.program_id, @candidate.current_situation_id, @candidate.cpf ) 
+                    %td= @candidate.pontuations.last.total 
+          %hr/
+          .row
+            .col-md-12
+              %h3 
                 %b Dados Pessoais
           .row
             .col-md-12
@@ -157,23 +184,6 @@
                         %td= (attendance.convocation.present?) ? attendance.convocation.name  : 'Informação não disponível' 
                         %td= (attendance.observation.present?) ? attendance.observation : 'Informação não disponível'
                         %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
-          %hr/
-          .row
-            .col-md-12
-              %h2 
-                %b Indicação para Construtora
-          .row
-            .col-md-12
-              %table#data-table-command.table.table-striped.table-vmiddle.datatable
-                %thead
-                  %tr
-                    %th Empresa
-                    %th Data de encaminhamento
-                %tbody
-                  - @candidate.enterprise_cadastres.each do |e|
-                    %tr
-                      %td.col-md-8= e.enterprise.name.upcase if e.enterprise.present?        
-                      %td.col-md-8= e.created_at.strftime('%d/%m/%Y')         
           %hr/
           - if @candidate.firm_enterprise_statuses.present?
             .row

@@ -25,5 +25,14 @@ module Candidate
     enum gender: ['N/D', 'masculino', 'feminino']
 
     validates :cpf, cpf: true
+
+
+    def current_situation_id
+       cadastre_situations.last.situation_status_id
+    end
+
+    def current_situation_name
+       cadastre_situations.last.situation_status.name.upcase
+    end
   end
 end
