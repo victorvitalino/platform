@@ -42,21 +42,25 @@ module HabitationPortal
     end
 
     def list(born, program, special_condition)
-      days = (Date.today - born).to_i / 365
-      if days >= 60 && special_condition == 1 || special_condition == 4
-        "LISTA DE IDOSOS"
-      elsif special_condition == 2 || special_condition == 3
-        "LISTA DE DEFICIÊNTES"
-      else
-        if program == 4
-          "LISTA DE VULNERÁVEIS"
+      if born.present?
+        days = (Date.today - born).to_i / 365
+        if days >= 60 && special_condition == 1 || special_condition == 4
+          "LISTA DE IDOSOS"
+        elsif special_condition == 2 || special_condition == 3
+          "LISTA DE DEFICIÊNTES"
         else
-          if program == 1 
-            "LISTA RII"
-          elsif program == 2
-            "LISTA RIE"
+          if program == 4
+            "LISTA DE VULNERÁVEIS"
+          else
+            if program == 1 
+              "LISTA RII"
+            elsif program == 2
+              "LISTA RIE"
+            end
           end
         end
+      else
+        "Sem informação"
       end
     end
   end

@@ -34,5 +34,7 @@ module Candidate
     def current_situation_name
        cadastre_situations.last.situation_status.name.upcase
     end
+
+  
   end
 end
