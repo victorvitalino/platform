@@ -1,5 +1,5 @@
 module Candidate
   class CadastreSituation < ActiveRecord::Base
-    has_many :situation_statuses
+    belongs_to :situation_status
   end
 end

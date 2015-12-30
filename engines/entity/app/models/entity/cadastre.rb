@@ -9,6 +9,7 @@ module Entity
     has_many :documents
     has_many :members
     has_many :candidates
+    has_many :candidate, through: :candidates
 
     scope :situation, -> (status) {
       Entity::Cadastre.joins(:situations)
