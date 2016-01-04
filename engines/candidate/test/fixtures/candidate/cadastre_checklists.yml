@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cadastre_id: 
+  attendance_id: 
+  items: 
+
+two:
+  cadastre_id: 
+  attendance_id: 
+  items: 

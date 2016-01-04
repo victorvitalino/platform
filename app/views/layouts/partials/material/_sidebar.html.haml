@@ -89,14 +89,8 @@
               Regularização
             %ul{style: ('display:block;' if params[:module] == "regularization")}
               %li= link_to "Agendas & Agendamentos", regularization.agendas_path
-              %li= link_to "Requerimentos", regularization.requeriments_path
               %li= link_to "Atendimento", regularization.attendances_path
-              %hr/
-              %li= link_to "Assentar Candidato", regularization.resettles_path
-              %hr/
-              %li= link_to "Pesquisar CPF", regularization.candidates_path
-              %li= link_to "Pesquisar Endereço", regularization.addresses_path
-              %hr/
+    
         - if policy(:application, namespace: Firm).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "firm")}
             %a{:href => ""}

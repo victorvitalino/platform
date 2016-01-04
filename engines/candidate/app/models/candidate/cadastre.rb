@@ -13,7 +13,11 @@ module Candidate
     has_many :cadastre_situations
     has_many :attendances
     has_many :pontuations
+
     has_many :enterprise_cadastre, class_name: "Firm::EnterpriseCadastre"
+
+    has_many :cadastre_checklists
+
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 

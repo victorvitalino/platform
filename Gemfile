@@ -20,6 +20,7 @@ gem 'devise'
 gem 'devise_security_extension'
 gem 'audited-activerecord', '~> 4.0'
 gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
+gem 'wicked'
 
 gem 'mini_magick'
 gem 'redactor-rails'
