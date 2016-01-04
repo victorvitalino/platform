@@ -3,7 +3,6 @@ module Person
     belongs_to :staff
     belongs_to :system_permission
 
-
     audited
   end
 end

@@ -41,7 +41,7 @@
         .row
           .col-md-12
             %h2
-              %b #{@entity.candidates.count} Associados 
+              %b #{@candidates.count} Associados 
         .row
           .col-md-12
             %table.table.table-striped.table-bordered
@@ -49,8 +49,16 @@
                 %tr
                   %th Nome
                   %th CPF
+                  %th Situação
+                  %th Pontuação
+                  %th Posição
+                  %th Ano
               %tbody
-                - @entity.candidates.each do |cad|
+                - @candidates.each_with_index do |e,i|
                   %tr
-                    %td.col-md-12= cad.candidate.name if cad.candidate.present?
-                    %td.col-md-2= cad.candidate.cpf  if cad.candidate.present?
+                    %td= e.name
+                    %td= e.cpf
+                    %td= 'inscrito'
+                    %td= e.total
+                    %td= "#{i + 1} º"
+                    %td= Date.parse(e.code.to_s).strftime('%Y')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214161852) do
+ActiveRecord::Schema.define(version: 20151229093540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -214,6 +214,61 @@ ActiveRecord::Schema.define(version: 20151214161852) do
   add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
   add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
 
+  create_table "brb_categories", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.float    "default_value"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "brb_invoices", force: :cascade do |t|
+    t.integer  "category_id"
+    t.string   "barcode"
+    t.string   "barcode_with_format"
+    t.string   "bank_agency"
+    t.string   "bank_account"
+    t.string   "cpf"
+    t.string   "name"
+    t.string   "address"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.string   "cep"
+    t.integer  "type_person",              default: 0
+    t.integer  "modality",                 default: 0
+    t.integer  "type_document",            default: 0
+    t.string   "code"
+    t.date     "due"
+    t.float    "value",                    default: 0.0
+    t.text     "message"
+    t.date     "payment"
+    t.integer  "status",                   default: 0
+    t.boolean  "remittance"
+    t.text     "bank_return"
+    t.string   "wallet"
+    t.string   "sequential_without_digit"
+    t.string   "sequential_digit_one"
+    t.string   "sequential_digit_two"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "brb_invoices", ["category_id"], name: "index_brb_invoices_on_category_id", using: :btree
+  add_index "brb_invoices", ["city_id"], name: "index_brb_invoices_on_city_id", using: :btree
+  add_index "brb_invoices", ["code"], name: "index_brb_invoices_on_code", unique: true, using: :btree
+  add_index "brb_invoices", ["state_id"], name: "index_brb_invoices_on_state_id", using: :btree
+
+  create_table "brb_remittances", force: :cascade do |t|
+    t.text     "content"
+    t.text     "header_content"
+    t.integer  "invoices_id",                                 array: true
+    t.boolean  "publish",        default: false
+    t.date     "date"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
   create_table "candidate_attendance_statuses", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status",     default: true
@@ -325,6 +380,7 @@ ActiveRecord::Schema.define(version: 20151214161852) do
     t.integer  "assessment_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.string   "old_process"
   end
 
   add_index "candidate_cadastre_procedurals", ["assessment_id"], name: "index_candidate_cadastre_procedurals_on_assessment_id", using: :btree
@@ -571,6 +627,16 @@ ActiveRecord::Schema.define(version: 20151214161852) do
     t.boolean  "status",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "candidate_vois", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "cpf"
+    t.string   "rg"
+    t.integer  "situation",  default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "cms_galleries", force: :cascade do |t|
@@ -1414,6 +1480,79 @@ ActiveRecord::Schema.define(version: 20151214161852) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "planning_discussion_messages", force: :cascade do |t|
+    t.integer  "author_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "planning_discussion_messages", ["author_id"], name: "index_planning_discussion_messages_on_author_id", using: :btree
+
+  create_table "planning_discussions", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "author_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "planning_discussions", ["author_id"], name: "index_planning_discussions_on_author_id", using: :btree
+  add_index "planning_discussions", ["project_id"], name: "index_planning_discussions_on_project_id", using: :btree
+
+  create_table "planning_problems", force: :cascade do |t|
+    t.string   "subject"
+    t.text     "description"
+    t.integer  "problem_type"
+    t.integer  "risk_type"
+    t.date     "identification"
+    t.date     "due"
+    t.integer  "responsible_id"
+    t.integer  "situation"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "planning_problems", ["responsible_id"], name: "index_planning_problems_on_responsible_id", using: :btree
+
+  create_table "planning_project_categories", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "planning_projects", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "level"
+    t.integer  "sector_id"
+    t.integer  "project_category_id"
+    t.boolean  "priority_visible"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "planning_projects", ["project_category_id"], name: "index_planning_projects_on_project_category_id", using: :btree
+  add_index "planning_projects", ["sector_id"], name: "index_planning_projects_on_sector_id", using: :btree
+
+  create_table "planning_tasks", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "priority"
+    t.integer  "project_id"
+    t.date     "due"
+    t.integer  "responsible_id"
+    t.integer  "order"
+    t.integer  "author_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "planning_tasks", ["author_id"], name: "index_planning_tasks_on_author_id", using: :btree
+  add_index "planning_tasks", ["project_id"], name: "index_planning_tasks_on_project_id", using: :btree
+  add_index "planning_tasks", ["responsible_id"], name: "index_planning_tasks_on_responsible_id", using: :btree
+
   create_table "protocol_allotments", force: :cascade do |t|
     t.text     "description"
     t.integer  "priority"
@@ -1638,6 +1777,17 @@ ActiveRecord::Schema.define(version: 20151214161852) do
 
   add_index "schedule_agendas", ["program_id"], name: "index_schedule_agendas_on_program_id", using: :btree
   add_index "schedule_agendas", ["staff_id"], name: "index_schedule_agendas_on_staff_id", using: :btree
+
+  create_table "schedule_data_references", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "observation"
+    t.string   "code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "schedule_data_references", ["code"], name: "index_schedule_data_references_on_code", using: :btree
 
   create_table "sefaz_allotment_candidates", force: :cascade do |t|
     t.integer  "allotment_id"

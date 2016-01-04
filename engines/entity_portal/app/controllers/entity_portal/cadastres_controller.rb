@@ -10,6 +10,7 @@ module EntityPortal
 
     def show
       @entity = Entity::Cadastre.find(params[:id])
+      @candidates = Candidate::View::GeneralPontuation.where(id: @entity.candidate.map(&:id).to_a, situation_status_id: 2)
     end
 
     def new

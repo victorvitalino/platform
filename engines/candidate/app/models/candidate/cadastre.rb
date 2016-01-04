@@ -1,5 +1,6 @@
 module Candidate
   class Cadastre < ActiveRecord::Base
+
     belongs_to :special_condition
     belongs_to :city
     belongs_to :state
@@ -14,6 +15,8 @@ module Candidate
     has_many :attendances
     has_many :pontuations
     has_many :cadastre_checklists
+    has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
+    has_many :enterprise_cadastres, class_name: "Firm::EnterpriseCadastre"
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 
@@ -22,5 +25,16 @@ module Candidate
     enum gender: ['N/D', 'masculino', 'feminino']
 
     validates :cpf, cpf: true
+
+
+    def current_situation_id
+       cadastre_situations.last.situation_status_id
+    end
+
+    def current_situation_name
+       cadastre_situations.last.situation_status.name.upcase
+    end
+
+  
   end
 end

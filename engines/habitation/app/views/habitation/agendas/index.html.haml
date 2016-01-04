@@ -2,7 +2,7 @@
   .card-header.ch-alt
     %h2
       Agendas
-      = link_to 'Nova Agenda', new_agenda_path, class: 'btn btn-success pull-right'
+      = link_to 'Nova Agenda', new_agenda_path, class: 'btn btn-success pull-right' if policy(:Agenda, namespace: Habitation).create?
       %small Listagem de agendas
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
@@ -26,7 +26,7 @@
             %td.col-md-1= agenda.agenda_schedules.count
             %td.col-md-1= agenda.status ? 'ativa' : 'inativa'
             %td.col-md-4
-              = link_to '', agenda_schedules_path(agenda), class: 'btn btn-success md md-keyboard-arrow-right'
-              = link_to '', edit_agenda_path(agenda), class: 'md md-edit btn btn-primary'
-              = link_to '', agenda, method: :delete, data: { confirm: t(:confirm_delete) }, class: 'md md-delete btn btn-danger'
+              = link_to '', agenda_schedules_path(agenda), class: 'btn btn-success md md-keyboard-arrow-right' if policy(:Schedule, namespace: Habitation).index?
+              = link_to '', edit_agenda_path(agenda), class: 'md md-edit btn btn-primary' if policy(:Agenda, namespace: Habitation).update?
+              = link_to '', agenda, method: :delete, data: { confirm: t(:confirm_delete) }, class: 'md md-delete btn btn-danger' if policy(:Schedule, namespace: Habitation).destroy?
            

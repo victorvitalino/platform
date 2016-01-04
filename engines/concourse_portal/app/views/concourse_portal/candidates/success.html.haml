@@ -1,99 +1,100 @@
 .row
   .col-md-12
-    .panel.panel-success
-      .panel-heading
-        %strong Minha Inscrição
-      .panel-body
-        %h5 Informações sobre a inscrição
-        %hr/
-        .row
-          .col-md-6
-            %table.table.table-striped.table-bordered
-              %thead
-                %tr
-                  %th Protocolo
-                  %th Data de inscrição
-              %tbody
-                %tr
-                  %th= @candidate.protocol_number
-                  %th= @candidate.created_at.strftime("%d/%m/%Y às %H:%M")
-          .col-md-6
-            %table.table.table-striped.table-bordered
-              %thead
-                %tr
-                  %th Status de Inscrição
-                  %th Pagamento de Inscrição
-                  %th Ações
-              %tbody
-                %tr
-                  %th= @candidate.status
-                  %th= @candidate.paid? ? 'Boleto Pago' : 'Boleto não pago'
-                  - if @candidate.paid?
-                    %th= link_to "imprimir comprovante", project_subscribes_bank_slip_path(@project), target: '_blank'
-                  - else
-                    %th= link_to "imprimir boleto", project_subscribes_bank_slip_path(@project), target: '_blank'
-      
+    %h3
+      %b Minha Inscrição
+%hr/
+.row
+  .col-md-12
+    %h4
+      %i Informações sobre sua inscrição
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Protocolo
+              %th Data de inscrição
+          %tbody
+            %tr
+              %td.col-md-8= @candidate.protocol_number
+              %td.col-md-4= @candidate.created_at.strftime("%d/%m/%Y às %H:%M")
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Status de Inscrição
+              %th Pagamento da Inscrição
+              %th Ações
+          %tbody
+            %tr
+              %td.col-md-4= @candidate.status
+              %td.col-md-4= @candidate.paid? ? 'Boleto Pago' : 'Boleto não pago'
+              %td.col-md-2
+                O Boleto ainda não está dipónivel
+    %h4
+      %i Informações de contato
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Data de Nascimento
+              %th Sexo
+          %tbody
+            %tr
+              %td= @candidate.name.upcase
+              %td= @candidate.cpf
+              %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
+              %td= @candidate.gender
 
-        %h5 Informações pessoais
-        %hr/
-        .row
-          .col-md-12
-            %table.table.table-striped.table-bordered
-              %thead
-                %tr
-                  %th Nome
-                  %th CPF
-                  %th Data de Nascimento
-                  %th Sexo
-              %tbody
-                %tr
-                  %td= @candidate.name.upcase
-                  %td= @candidate.cpf
-                  %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
-                  %td= @candidate.gender
-    
-        %h5 Informações de contato
-        %hr/
-        .row
-          .col-md-12
-            %table.table.table-striped.table-bordered
-              %thead
-                %tr
-                  %th Telefone
-                  %th Celular
-                  %th E-mail
-              %tbody
-                %tr
-                  %td= @candidate.telephone.upcase
-                  %td= @candidate.celphone
-                  %td= @candidate.email
-            %table.table.table-striped.table-bordered
-              %thead
-                %tr
-                  %th Estado
-                  %th Cidade
-                  %th Endereço
-                  %th CEP
-              %tbody
-                %tr
-                  %td= @candidate.state.name if @candidate.state.present?
-                  %td= @candidate.city
-                  %td= @candidate.address
-                  %td= @candidate.cep
-        %h5 Informações adicionais
-        %hr/
-        .row
-          .col-md-12
-            %table.table.table-striped.table-bordered
-              %thead
-                %tr
-                  - @candidate.subscribe.fields.each do |field|
-                    %th= field.label
-              %tbody
-                %tr
-                  - @candidate.subscribe.fields.each do |field|
-                    - if field.file?
-                      %td= link_to "Baixar Arquivo", "/uploads/concourse/#{@candidate.properties[field.label]}", target: '_blank'
-                    - else
-                      %td= @candidate.properties[field.label]
-      
+    %h4
+      %i Informações de contato
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Telefone
+              %th Celular
+              %th E-mail
+          %tbody
+            %tr
+              %td= @candidate.telephone.upcase
+              %td= @candidate.celphone
+              %td= @candidate.email
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Estado
+              %th Cidade
+              %th Endereço
+              %th CEP
+          %tbody
+            %tr
+              %td= @candidate.state.name if @candidate.state.present?
+              %td= @candidate.city
+              %td= @candidate.address
+              %td= @candidate.cep
+    %h4
+      %i Informações adicionais
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              - @candidate.subscribe.fields.each do |field|
+                %th= field.label
+          %tbody
+            %tr
+              - @candidate.subscribe.fields.each do |field|
+                - if field.file?
+                  %td= link_to "Baixar Arquivo", "/uploads/concourse/#{@candidate.properties[field.label]}", target: '_blank'
+                - else
+                  %td= @candidate.properties[field.label]
+  

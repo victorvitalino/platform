@@ -7,7 +7,7 @@
   .row
     .col-md-12
       = f.association :agenda, label: false, collection: Schedule::Agenda.habitation,prompt: 'selecione a agenda...'
-      = f.hint "", id: 'description'
+      #description
   %br/
   %br/
   %br/
@@ -87,7 +87,7 @@
     $.getJSON("/agendamento/info?id=" + id,function(data) {
         if(data.length > 0) {
           var weekend = "0,6"
-
+          console.log(data[1])
           // disable weekend
           if(data[0].weekend == true) { weekend = '' }
 
@@ -100,7 +100,8 @@
             endDate: data[2],
             datesDisabled: data[0].disable_dates.split(';')
           });
-          $("#description").html("<i>" + data[0].description + "</i>")
+
+          $("#description").html("<h4><i>" + data[0].description + "</i></h4>")
         }
       });
   }

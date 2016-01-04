@@ -1,0 +1,15 @@
+= simple_form_for [@agenda, @schedule], url: agenda_schedule_path(id: @schedule.id) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-4
+        = f.label :status
+        = f.input :status, as: :select, collection: Schedule::AgendaSchedule.statuses.keys.map { |key| [key.humanize, key]}, include_blank: false, label: false
+    .row
+      .col-md-12
+        = f.label :observation
+        = f.input :observation, label: false, placeholder: "Observação sobre o atendimento"
+    %hr/
+    .row
+      .col-md-12
+        = f.submit "Atualizar Agendamento", class: 'btn btn-success'
+        = link_to "Voltar", agenda_schedules_path(@agenda), class: 'btn btn-inverse'

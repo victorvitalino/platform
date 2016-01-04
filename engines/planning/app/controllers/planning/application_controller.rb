@@ -1,0 +1,4 @@
+module Planning
+  class ApplicationController < ActionController::Base
+  end
+end

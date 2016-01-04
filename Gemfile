@@ -21,10 +21,9 @@ gem 'devise_security_extension'
 gem 'audited-activerecord', '~> 4.0'
 gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
 gem 'wicked'
-
+gem 'chartkick'
 gem 'mini_magick'
 gem 'redactor-rails'
-
 gem 'friendly_id'
 
 gem 'has_scope'
@@ -34,11 +33,9 @@ gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
 gem 'email_validator'
 
-gem 'wkhtmltopdf-binary'
-gem 'wicked_pdf'
-
-gem 'axlsx', '~> 2.0.1'
 gem 'nokogiri'
+gem 'barby'
+gem 'chunky_png'
 
 gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 gem 'signer', git: 'https://github.com/codhab/signer.git'
@@ -101,3 +98,7 @@ gem 'schedule',                     path: 'engines/schedule'
 gem 'schedule_portal',              path: 'engines/schedule_portal'
 
 gem 'sefaz',                        path: 'engines/sefaz'
+gem 'maintenance',                  path: 'engines/maintenance'
+
+gem 'planning',                     path: 'engines/planning'    
+gem 'brb',                          path: 'engines/brb'

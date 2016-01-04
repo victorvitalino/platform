@@ -1,0 +1,44 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Agendamentos | #{@agenda.title}
+      = link_to "Voltar", agendas_path, class: 'btn btn-inverse pull-right'
+      %small Listagem de agendamentos
+
+  .row
+    = simple_form_for url_for, method: :get do |f|
+      .col-md-2
+        = f.label "Data"
+        = f.input :date, label: false, input_html: { class: 'date', name: "by_date", value: (params[:by_date].present?) ? params[:by_date] : Date.today.strftime('%d/%m/%Y')}
+      .col-md-2
+        = f.label "Status"
+        = f.input :status, label: false, as: :select, collection: Schedule::AgendaSchedule.statuses.map { |k,v| [k.humanize, v]}, include_blank: "Todos", selected: params[:by_status], input_html: { name: 'by_status'}
+      .col-md-2{style: 'padding-top:24px'}
+        = f.submit "Filtrar", name: nil, class: 'btn btn-primary'
+  %hr/
+  .row
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-vmiddle.datatable
+        %thead
+          %tr
+            %th Protocolo
+            %th Nome
+            %th CPF
+            %th Data
+            %th Horário
+            %th Status
+            %th Ações
+        %tbody
+          - @schedules.each do |schedule|
+            %tr
+              %td= schedule.protocol
+              %td= schedule.name.upcase
+              %td= schedule.cpf
+              %td= schedule.date.strftime('%d/%m/%Y')
+              %td= schedule.hour.strftime('%H:%M')
+              %td= schedule.status.humanize
+              %td
+                = link_to "", agenda_schedule_path(agenda_id: @agenda, id: schedule), class: 'md-keyboard-arrow-right btn btn-success', title: "Visualizar Agendamento" if policy(:Schedule, namespace: Habitation).show?
+                = link_to "", edit_agenda_schedule_path(agenda_id: @agenda, id: schedule), class: 'md md-edit btn btn-primary', title: "Editar Agendamento" if policy(:Schedule, namespace: Habitation).update?
+                - unless schedule.liberado_para_retorno?
+                  = link_to "", agenda_schedule_cancel_path(agenda_id: @agenda.id, schedule_id: schedule), class: 'md  md-check btn btn-danger', method: :delete, data: {confirm: "Você realmente deseja liberar este agendamento?"}, title: "Liberar para agendamento" if policy(:Schedule, namespace: Habitation).update?

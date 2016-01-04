@@ -2,6 +2,10 @@ label {
     font-weight: bold !important;
 }
 
+.label-pink {
+    background-color: #FF8AFB;
+}
+
 /* ====== PANEL ========= */
 
 .panel-green { background-color: #289728 !important;}

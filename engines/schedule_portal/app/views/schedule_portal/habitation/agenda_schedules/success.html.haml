@@ -27,24 +27,24 @@
               %b CPF
             %h4
               = @schedule.cpf
+          .col-md-6
+            %h4
+              %b NOME
+            %h4
+              = @schedule.name
+        .row.input-big
           .col-md-3
             %h4
               %b Protocolo Gerado
             %h4
-              77-152456465/12015 
+              = @schedule.protocol
           .col-md-3
             %h4
               %b Data e Horário
             %h4
               = "#{@schedule.date.strftime('%d/%m/%Y')} às #{@schedule.hour.strftime('%H:%M')}" 
-          .col-md-3
-            %h4
-              %b Local de Atendimento
         %hr/
         .row
-          .col-md-9
-            %h4
-              = link_to "Clique aqui para acompanhar, cancelar ou visualizar seus agendamentos!", candidate_new_verification_path
           .col-md-3
             %h4
               = link_to "Realizar novo agendamento!", new_habitation_agenda_schedule_path

@@ -19,14 +19,34 @@ module Schedule
     
     validate :unique_schedule, on: :create
     validate :validate!, on: :create
+    
+    validate :restriction!, on: :create, if: :restriction_enabled?
 
     validates :observation, :status, presence: true, on: :update
     
     def protocol
-      "AG#{self.agenda_id}#{self.id}#{self.created_at.strftime('%Y')}"
+      "AG#{self.id}/#{self.created_at.strftime('%Y')}"
     end
 
     private
+
+    def restriction_enabled?
+      agenda.existente? || agenda.inexistente?
+    end
+
+    def restriction!
+      if agenda.existente?
+        if !Schedule::AgendaSchedule.find_by_sql("#{agenda.restriction_sql} AND cpf = '#{self.cpf}'").present?
+          errors.add(:cpf, 'este CPF não tem permissão de participar desta agenda')
+        end
+      end
+
+      if agenda.inexistente?
+        if Schedule::AgendaSchedule.find_by_sql("#{agenda.restriction_sql} AND cpf = '#{self.cpf}'").present?
+          errors.add(:cpf, 'este CPF não tem permissão de participar desta agenda')
+        end
+      end
+    end
 
     def validate!
       if agenda.disable_dates.present? && agenda.disable_dates.to_s.split(';').include?(self.date.to_s)
