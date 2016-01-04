@@ -35,6 +35,8 @@ module ConcoursePortal
         if @candidate.save
           session[:candidate_id] = @candidate.id
           redirect_to project_subscribes_success_path(@project)
+        else 
+          render action: 'new'
         end
       else
         @nav = 'new_subscribe'
