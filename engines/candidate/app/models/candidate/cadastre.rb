@@ -15,11 +15,9 @@ module Candidate
     has_many :attendances
     has_many :pontuations
 
-    has_many :enterprise_cadastre, class_name: "Firm::EnterpriseCadastre"
-
     has_many :cadastre_checklists
     has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
-    has_many :enterprise_cadastres, class_name: "Firm::EnterpriseCadastre"
+    has_many :enterprise_cadastres, foreign_key: "cadastre_id", class_name: "Firm::EnterpriseCadastre"
 
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
@@ -39,6 +37,6 @@ module Candidate
        cadastre_situations.last.situation_status.name.upcase
     end
 
-  
+
   end
 end

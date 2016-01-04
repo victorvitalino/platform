@@ -27,7 +27,7 @@ module HabitationPortal
         @geral = Candidate::View::GeneralPontuation.where(sql, program, situation, 5000, 999999).map(&:cpf).find_index(cpf)
       end
 
-      "#{@geral + 1} º" 
+      "#{@geral + 1} º" if @geral.present?
     end
 
     def program(id)
@@ -52,7 +52,7 @@ module HabitationPortal
           if program == 4
             "LISTA DE VULNERÁVEIS"
           else
-            if program == 1 
+            if program == 1
               "LISTA RII"
             elsif program == 2
               "LISTA RIE"
