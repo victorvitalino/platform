@@ -87,4 +87,10 @@ Rails.application.configure do
       :port     => 22
     }
   end
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "10.230.80.51",
+    :enable_starttls_auto => false
+  }
 end

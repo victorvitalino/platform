@@ -49,7 +49,7 @@
                     %td= list(@candidate.born, @candidate.program_id, @candidate.special_condition_id) == "LISTA RII" || list(@candidate.born, @candidate.program_id, @candidate.special_condition_id)  == "LISTA RIE" ? list(@candidate.born, @candidate.program_id, @candidate.special_condition_id) : "#{program(@candidate.program_id)},  #{list(@candidate.born, @candidate.program_id, @candidate.special_condition_id)}"
                     %td= faixa(@candidate.income).upcase
                     %td= position(@candidate.income, @candidate.program_id, @candidate.current_situation_id, @candidate.cpf )
-                    %td= @candidate.pontuations.last.total
+                    %td= @candidate.pontuations.last.total if @candidate.pontuations.present?
           %hr/
           .row
             .col-md-12

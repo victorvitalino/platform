@@ -16,7 +16,8 @@ module HabitationPortal
 
     def position(income,  program, situation, cpf)
       sql = "program_id = ? AND situation_status_id = ? AND income BETWEEN ? AND ?"
-      case income
+
+      case income.to_i
       when 0..1600
         @geral = Candidate::View::GeneralPontuation.where(sql, program, situation, 0, 1600).map(&:cpf).find_index(cpf)
       when 1601..3275
@@ -27,7 +28,12 @@ module HabitationPortal
         @geral = Candidate::View::GeneralPontuation.where(sql, program, situation, 5000, 999999).map(&:cpf).find_index(cpf)
       end
 
-      "#{@geral + 1} º" if @geral.present?
+      if @geral.present?
+        "#{@geral + 1} º"
+      else
+        ""
+      end
+
     end
 
     def program(id)
