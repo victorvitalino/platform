@@ -8,7 +8,8 @@
   - if @project.consultation && @project.consultation_time?
     = link_to "Consultas", concourse_portal.new_project_consult_path(@project), class: "list-group-item #{(@current_nav == 'new_consult') ? 'active' : ''}" 
 .list-group
-  = link_to "Apresentação", concourse_portal.project_path(@project), class: 'list-group-item' 
+  = link_to "Apresentação", concourse_portal.project_path(@project), class: "list-group-item #{(@current_nav == 'home') ? 'active' : ''}"
+
   - @project.navs.each do |nav|
     - if nav.url?
       = link_to "#{nav.label}", nav.url, target: "#{nav.target}", class: "list-group-item" if nav.present?
