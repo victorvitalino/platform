@@ -4,6 +4,10 @@
     border: 1px #E8E1E1 solid;
   }
 
+  small {
+    color: black !important;
+  }
+
 
 .container
   .row
@@ -38,21 +42,18 @@
                   .row
                     - if @projects.opens.present?
                       - @projects.opens.each_with_index do |project, index| 
-                        .col-md-3
+                        .col-md-4
                           .row
-                            .col-md-7
-                              = link_to image_tag(project.image_logo, width: 150, height: 200), concourse_portal.project_path(project)
-                            .col-md-3
+                            .col-md-5
+                              = link_to image_tag(project.image_logo, width: 150), concourse_portal.project_path(project)
+                            .col-md-6
                               %h5
                                 %strong= project.title.upcase
+                                %small
+                                  %p= project.mini_description
                               %h5
-                                %span.label.label-success
+                                %span.label.label-info
                                   = project.step
-                              %h5
-                                Início
-                                %strong= project.start.strftime('%d/%m/%Y')
-                                Fim
-                                %strong= project.end.strftime('%d/%m/%Y')
                     - else
                       .col-md-12
                         Não existem concursos em andamento no momento.
@@ -73,17 +74,11 @@
                             .col-md-6
                               %h5
                                 %strong= project.title.upcase
+                                %small
+                                  %p= project.mini_description
                               %h5
                                 %span.label.label-info
                                   = project.step
-                              %h5
-                                Início
-                                %br/
-                                %strong= project.start.strftime('%d/%m/%Y')
-                                %br/
-                                Fim
-                                %br/
-                                %strong= project.end.strftime('%d/%m/%Y')
                     - else
                       .col-md-12
                         Não existem concursos previstos no momento.
@@ -98,20 +93,18 @@
                   .row
                     - if @projects.finisheds.present?
                       - @projects.finisheds.each_with_index do |project, index| 
-                        .col-md-3
+                        .col-md-4
                           .row
-                            .col-md-7
+                            .col-md-5
                               = link_to image_tag(project.image_logo, width: 150), concourse_portal.project_path(project)
-                            .col-md-3
+                            .col-md-6
                               %h5
                                 %strong= project.title.upcase
+                                %small
+                                  %p= project.mini_description
                               %h5
-                                = project.step
-                              %h5
-                                Início
-                                %strong= project.start.strftime('%d/%m/%Y')
-                                Fim
-                                %strong= project.end.strftime('%d/%m/%Y')
+                                %span.label.label-info
+                                  = project.step
                     - else
                       .col-md-12
                         Não existem concursos finalizados no momento.
