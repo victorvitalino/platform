@@ -1,15 +1,15 @@
 require_dependency 'habitation_portal/application_controller'
 
 module HabitationPortal
-  class CandidatesController < ApplicationController 
-    
+  class CandidatesController < ApplicationController
+
     def find_candidate
       @candidate = Find.new
     end
 
     def show_candidate
       @candidate = Find.new(set_params_find)
-      
+
       if @candidate.valid?
         redirect_to action: 'show', id: @candidate.cpf
       else
@@ -19,6 +19,7 @@ module HabitationPortal
 
     def show
       @candidate = Candidate::Cadastre.by_cpf(params[:id]).first
+
     end
 
     private
@@ -28,4 +29,4 @@ module HabitationPortal
     end
 
   end
-end 
+end
