@@ -28,6 +28,7 @@ module ConcoursePortal
           if field.file?
             @uploader = Concourse::FileUploader.new
             @uploader.store!(params[:candidate][:properties][field.label.to_sym])
+            puts @uploader.inspect
             @candidate.properties[field.label.to_sym] = @uploader.filename
           end
         end
