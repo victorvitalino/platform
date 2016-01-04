@@ -101,16 +101,24 @@
         - if policy(:application, namespace: Firm).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "firm")}
             %a{:href => ""}
-              %i.md.md-business>
+              %i.md.md-work>
               Empresas
             %ul{style: ('display:block;' if params[:module] == "firm")}
               %li= link_to "Empresas", firm.companies_path
               %li= link_to "Empreendimentos", firm.enterprises_path
               %li= link_to "Tipologias", firm.tipologies_path
         - if policy(:application, namespace: Firm).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
+            %a{:href => ""}
+              %i.md.md-insert-chart>
+              Financeiro
+            %ul{style: ('display:block;' if params[:module] == "finance")}
+              %li= link_to "Cobrança BRB - Boleto", brb.invoices_path
+              %li= link_to "Cobrança BRB - Convênio", brb.invoices_path
+        - if policy(:application, namespace: Firm).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "planning")}
             %a{:href => ""}
-              %i.md.md-business>
+              %i.md.md-dvr>
               Monitoramento
             %ul{style: ('display:block;' if params[:module] == "planning")}
               %li= link_to "Visão Geral"

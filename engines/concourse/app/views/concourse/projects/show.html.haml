@@ -14,6 +14,10 @@
             %a{"aria-controls" => "pages", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#pages", :role => "tab"} Páginas
           %li{:class => (params[:q] == 'menus') ? 'active' : ''}
             %a{"aria-controls" => "navs", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#navs", :role => "tab"} Menus
+          %li{:class => (params[:q] == 'tipo_inscricoes') ? 'active' : ''}
+            %a{"aria-controls" => "subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#subscribes", :role => "tab"} Tipo de inscrições  
+          %li{:class => (params[:q] == 'consultas') ? 'active' : ''}
+            %a{"aria-controls" => "consults", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#consults", :role => "tab"} Consultas
         .tab-content
           = render 'concourse/pages/index'
           = render 'concourse/navs/index'
