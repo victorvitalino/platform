@@ -5,7 +5,6 @@ module Concourse
   
     friendly_id :title, use: :slugged
     
-    default_scope { where('publish = true AND step <> 0' ) }
     scope :sliders, -> {where(slider: true)}
     scope :active, -> { where(status: true )}
     
@@ -18,6 +17,10 @@ module Concourse
 
     
     enum step: ['desenvolvimento', 'previsto', 'aberto', 'finalizado']
+
+    scope :waiting,     -> {where(step:[0,1])}
+    scope :opens,       -> {where(step: 2)}
+    scope :finisheds,    -> {where(step: 3)}
 
     validates_presence_of :title, :mini_description, :apresentation, :image_logo
     validates_date :start, before: :end, presence: true
@@ -33,6 +36,10 @@ module Concourse
 
     def consultation_time?
         (self.consultation_start <= Date.today && self.consultation_end >= Date.today)
+    end
+
+    def should_generate_new_friendly_id?
+        new_record?
     end
   end
 end

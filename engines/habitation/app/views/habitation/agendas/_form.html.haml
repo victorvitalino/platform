@@ -32,7 +32,7 @@
         = f.input :attendants, label: false, as: :string
       .col-md-2
         = f.label :attendance_time, class: 'fg-label'
-        = f.input :attendance_time, label: false, as: :select, collection: %w(15 20 30 45 60 90 120), include_blank: false
+        = f.input :attendance_time, label: false, as: :select, collection: %w(15 20 30 40 45 60 90 120), include_blank: false
     %hr/
     .row
       .col-md-12
@@ -64,10 +64,11 @@
         = f.label :restriction_sql, class: 'fg-label'
         = f.input :restriction_sql, label: false, as: :string
     %hr/
-    .row
-      .col-md-2
-        = f.label :status, class: 'fg-label'
-        = f.input :status, label: false, as: :select, include_blank: false
+    - if policy(:Agenda, namespace: Habitation).publish?
+      .row
+        .col-md-2
+          = f.label :status, class: 'fg-label'
+          = f.input :status, label: false, as: :select, include_blank: false
     %hr/
     .row
       .col-md-12

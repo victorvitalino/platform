@@ -1,5 +1,7 @@
 class Concourse::ImageUploader < CarrierWave::Uploader::Base
-  storage :file
+  storage :file if Rails.env.development? || Rails.env.test?
+  storage :sftp if Rails.env.production?
+
 
   def store_dir
     "uploads/images"

@@ -75,13 +75,20 @@
               %li= link_to "Insenção de ITCD/ITBI", sefaz.new_iptu_consult_path
               %li= link_to "Cancelamento de isenção", sefaz.transmissions_path
               %li= link_to "Consulta IPTU", sefaz.new_iptu_consult_path
-        - if policy(:application, namespace: Regularization).index?
+        - if policy(:application, namespace: Concourse).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "concourse")}
+            %a{:href => ""}
+              %i.md.md-assignment>
+              Concursos
+            %ul{style: ('display:block;' if params[:module] == "concourse")}
+              %li= link_to "concursos", concourse.projects_path
+        - if policy(:application, namespace: Habitation).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "habitation")}
             %a{:href => ""}
-              %i.md.md-business>
+              %i.md.md-home>
               Habitação
             %ul{style: ('display:block;' if params[:module] == "habitation")}
-              %li= link_to "Agendas & Agendamentos", habitation.agendas_path
+              %li= link_to "Agendas & Agendamentos", habitation.agendas_path if policy(:Agenda, namespace: Habitation).index?
         - if policy(:application, namespace: Regularization).index?
           %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
             %a{:href => ""}
@@ -94,9 +101,32 @@
         - if policy(:application, namespace: Firm).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "firm")}
             %a{:href => ""}
-              %i.md.md-business>
+              %i.md.md-work>
               Empresas
             %ul{style: ('display:block;' if params[:module] == "firm")}
               %li= link_to "Empresas", firm.companies_path
               %li= link_to "Empreendimentos", firm.enterprises_path
               %li= link_to "Tipologias", firm.tipologies_path
+        - if policy(:application, namespace: Firm).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
+            %a{:href => ""}
+              %i.md.md-insert-chart>
+              Financeiro
+            %ul{style: ('display:block;' if params[:module] == "finance")}
+              %li= link_to "Cobrança BRB - Boleto", brb.invoices_path
+              %li= link_to "Cobrança BRB - Convênio", brb.invoices_path
+        - if policy(:application, namespace: Firm).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "planning")}
+            %a{:href => ""}
+              %i.md.md-dvr>
+              Monitoramento
+            %ul{style: ('display:block;' if params[:module] == "planning")}
+              %li= link_to "Visão Geral"
+              %li= link_to "Reuniões"
+              %li= link_to "Projetos"
+              %li= link_to "Categorias de projeto"
+              %li= link_to "Atores"
+              %li= link_to "Visão por Setor"
+              %li= link_to "Visão por Responsável"
+              %li= link_to "Visão por Categoria"
+              %li= link_to "Visão por Ator"

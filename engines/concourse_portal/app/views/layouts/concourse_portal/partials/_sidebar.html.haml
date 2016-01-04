@@ -4,13 +4,14 @@
     %li.list-group-item= link_to "Trocar minha senha", concourse_portal.project_subscribes_password_edit_path(@project) 
     %li.list-group-item= link_to "Encerrar sessão", concourse_portal.project_subscribes_logout_path(@project) 
   - else
-    = link_to "Inscrição", concourse_portal.project_subscribes_path(@project), class: "list-group-item #{(@current_nav == 'new_subscribe') ? 'active' : ''}"
+    = link_to "Inscrições", concourse_portal.project_subscribes_path(@project), class: "list-group-item #{(@current_nav == 'new_subscribe') ? 'active' : ''}"
   - if @project.consultation && @project.consultation_time?
-    = link_to "Enviar consulta", concourse_portal.new_project_consult_path(@project), class: "list-group-item #{(@current_nav == 'new_consult') ? 'active' : ''}" 
+    = link_to "Consultas", concourse_portal.new_project_consult_path(@project), class: "list-group-item #{(@current_nav == 'new_consult') ? 'active' : ''}" 
 .list-group
-  = link_to "Início", concourse_portal.project_path(@project), class: 'list-group-item' 
+  = link_to "Apresentação", concourse_portal.project_path(@project), class: "list-group-item #{(@current_nav == 'home') ? 'active' : ''}"
+
   - @project.navs.each do |nav|
     - if nav.url?
-      = link_to "#{nav.label}", nav.url, target: "#{nav.target}", class: "list-group-item"
+      = link_to "#{nav.label}", nav.url, target: "#{nav.target}", class: "list-group-item" if nav.present?
     - if nav.página?
-      = link_to "#{nav.label}", concourse_portal.project_page_path(project_id: @project, id: nav.page), target: "#{nav.target}",class: "list-group-item #{(@page.present? && nav.page.present? && @page.id == nav.page.id) ? 'active' : ''}"
+      = link_to "#{nav.label}", concourse_portal.project_page_path(project_id: @project, id: nav.page), target: "#{nav.target}",class: "list-group-item #{(@page.present? && nav.page.present? && @page.id == nav.page.id) ? 'active' : ''}" if nav.page.present?

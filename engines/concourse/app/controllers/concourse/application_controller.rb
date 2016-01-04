@@ -6,5 +6,7 @@ module Concourse
     layout 'material'
 
     include Pundit
+
+    helper :application
   end
 end

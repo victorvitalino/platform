@@ -56,12 +56,12 @@ module Cms
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_page
-        @page = Page.find(params[:id])
+        @page = Page.friendly.find(params[:id]) rescue Page.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def page_params
-        params.require(:page).permit(:title, :content, :link, :author, :publish, :thumbnail, :label_link, :page_category_id, :active_photo, :photo_author, :photo_description, :thumb, :date)
+        params.require(:page).permit(:title, :content, :link, :author, :slug, :publish, :thumbnail, :label_link, :page_category_id, :active_photo, :photo_author, :photo_description, :thumb, :date)
       end
   end
 end

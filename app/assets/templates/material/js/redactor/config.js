@@ -16,6 +16,7 @@ window.init_redactor = function(){
         "fileGetJson":"/redactor_rails/documents",
         "path":"/assets/redactor-rails",
         "css":"style.css"
+
       });
 }
 

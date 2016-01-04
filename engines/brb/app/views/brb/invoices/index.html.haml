@@ -1,0 +1,35 @@
+.card
+  .card-header.ch-alt
+    %h2
+      Cobrança BRB
+      %span.pull-right
+        = link_to 'Gerar remessa', remittances_path, class: 'btn btn-inverse' 
+        = link_to 'Subir retorno', new_invoice_path, class: 'btn btn-primary' 
+        = link_to 'Nova Cobrança', new_invoice_path, class: 'btn btn-success' 
+      %small Listagem boletos gerados
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+      %thead
+        %tr
+          %th Código
+          %th Categoria
+          %th CPF
+          %th Valor
+          %th Emitido em
+          %th Vencimento
+          %th Status
+          %th Remessa
+          %th Ações
+      %tbody
+        - @invoices.each do |invoice|
+          %tr
+            %td= invoice.id
+            %td= invoice.category.name.upcase if invoice.category.present?
+            %td= invoice.cpf
+            %td= number_to_currency invoice.value
+            %td= invoice.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td= invoice.due.strftime('%d/%m/%Y')
+            %td= invoice.status
+            %td= invoice.remittance ? "enviado" : "não enviado"
+            %td.col-md-2
+              = link_to "emitir boleto", invoice_path(invoice), target: '_blank'

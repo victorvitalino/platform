@@ -29,10 +29,14 @@ module Concourse
 
 
     def paid?
-        type = self.subscribe.type_guide.id
-        cpf  = self.cpf
+        if self.subscribe.type_guide.present?
+            type = self.subscribe.type_guide.id
+            cpf  = self.cpf
 
-        Finance::PaymentGuide.where(type_guide_id: type, cpf: cpf, status: true).present?
+            Finance::PaymentGuide.where(type_guide_id: type, cpf: cpf, status: true).present?
+        else
+            false
+        end
     end
 
     def protocol_number

@@ -4,6 +4,11 @@
       .col-md-12
         = f.label :title, class: 'fg-label'
         = f.input :title, label: false, input_html: { placeholder: 'Digite um título'}
+      - if !@page.new_record?
+        .col-md-12
+          = f.label :slug, class: 'fg-label'
+          = f.input :slug, label: false, input_html: { placeholder: 'Digite o link da página'}
+
     .row
       .col-md-12
         = f.label :content, class: 'fg-label'

@@ -1,6 +1,9 @@
 Habitation::Engine.routes.draw do
 
   resources :agendas do
-    resources :schedules
+    resources :schedules do
+      delete 'cancel'
+    end
   end
+
 end

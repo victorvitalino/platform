@@ -40,4 +40,5 @@
               %td
                 = link_to "", agenda_schedule_path(agenda_id: @agenda, id: schedule), class: 'md-keyboard-arrow-right btn btn-success' 
                 = link_to "", edit_agenda_schedule_path(agenda_id: @agenda, id: schedule), class: 'md md-edit btn btn-primary'
-                = link_to "", agenda_schedule_cancel_path(agenda_id: @agenda.id, schedule_id: schedule), class: 'md  md-check btn btn-danger', method: :delete, data: {confirm: "Você realmente deseja liberar este agendamento?"}
+                - unless schedule.liberado_para_retorno?
+                  = link_to "", agenda_schedule_cancel_path(agenda_id: @agenda.id, schedule_id: schedule), class: 'md  md-check btn btn-danger', method: :delete, data: {confirm: "Você realmente deseja liberar este agendamento?"}, title: "Liberar para agendamento"
