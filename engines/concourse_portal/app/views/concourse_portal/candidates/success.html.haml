@@ -24,14 +24,13 @@
           %thead
             %tr
               %th Status de Inscrição
-              %th Pagamento da Inscrição
+              %th Pagamento de Inscrição
               %th Ações
           %tbody
             %tr
               %td.col-md-4= @candidate.status
               %td.col-md-4= @candidate.paid? ? 'Boleto Pago' : 'Boleto não pago'
-              %td.col-md-2
-                O Boleto ainda não está dipónivel
+              %th= link_to "imprimir boleto", project_subscribes_bank_slip_path(@project), target: '_blank'
     %h4
       %i Informações de contato
     %hr/
