@@ -34,7 +34,7 @@ module ConcoursePortal
       
         if @candidate.save
           session[:candidate_id] = @candidate.id
-          SubscribeMailer.success(@candidate, @project).deliver_now!
+          #SubscribeMailer.success(@candidate, @project).deliver_now!
           redirect_to project_subscribes_success_path(@project)
         end
       else
