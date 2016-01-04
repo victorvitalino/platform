@@ -28,14 +28,16 @@ module ConcoursePortal
           if field.file?
             @uploader = Concourse::FileUploader.new
             @uploader.store!(params[:candidate][:properties][field.label.to_sym])
+            puts @uploader.inspect
             @candidate.properties[field.label.to_sym] = @uploader.filename
           end
         end
       
         if @candidate.save
           session[:candidate_id] = @candidate.id
-          SubscribeMailer.success(@candidate, @project).deliver_now!
           redirect_to project_subscribes_success_path(@project)
+        else 
+          render action: 'new'
         end
       else
         @nav = 'new_subscribe'
