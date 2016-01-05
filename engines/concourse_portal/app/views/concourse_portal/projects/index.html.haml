@@ -49,8 +49,11 @@
                             .col-md-6
                               %h5
                                 %strong= project.title.upcase
-                                %small
+                                %h6
                                   %p= project.mini_description
+                              %span
+                                %p
+                                  %b Início - #{project.start.strftime('%d/%m/%Y')}
                               %h5
                                 %span.label.label-info
                                   = project.step
