@@ -72,5 +72,5 @@
   %hr/
   .row
     .col-md-12
-      = f.button :submit, class: 'btn btn-success'
+      = f.submit "Realizar Inscrição", class: 'btn btn-success', data: {disable_with: "Processando..."}
       = link_to "Voltar", project_path(@project), class: 'btn btn-default'
