@@ -4,7 +4,7 @@ namespace :csv do
   desc "migração csv"
   task :treta => :environment do
     @index = 0
-    CSV.foreach("lib/files/status_cadastro_2.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/status_cadastro_3.csv", :col_sep => "#") do |row|
       @index += 1
 
         @ref = Candidate::CadastreSituation.new({

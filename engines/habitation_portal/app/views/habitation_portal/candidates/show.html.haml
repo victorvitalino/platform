@@ -35,21 +35,21 @@
                   %tr
                     %th Situação do Candidato
                     %th Programa
-                    %th Lista(s)
                     %th Faixa
+                    %th Lista
                     %th Posição
                     %th Última pontuação
                 %tbody
-                  %tr
-                    %td
-                      .label.label-success
-                        = @candidate.current_situation_name
+                  - @candidate.list.each do |list|
+                    %tr
+                      %td= @candidate.current_situation_name
+                      %td= program(@candidate.program_id)
+                      %td= list[1][0]
+                      %td= translate_list(list[0])
+                      %td= "#{list[2]}º"
+                      %td= @candidate.pontuations.last.total if @candidate.pontuations.present?
+                      
 
-                    %td= program(@candidate.program_id)
-                    %td= list(@candidate.born, @candidate.program_id, @candidate.special_condition_id) == "LISTA RII" || list(@candidate.born, @candidate.program_id, @candidate.special_condition_id)  == "LISTA RIE" ? list(@candidate.born, @candidate.program_id, @candidate.special_condition_id) : "#{program(@candidate.program_id)},  #{list(@candidate.born, @candidate.program_id, @candidate.special_condition_id)}"
-                    %td= faixa(@candidate.income).upcase
-                    %td= position(@candidate.income, @candidate.program_id, @candidate.current_situation_id, @candidate.cpf )
-                    %td= @candidate.pontuations.last.total if @candidate.pontuations.present?
           %hr/
           .row
             .col-md-12
