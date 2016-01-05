@@ -2,21 +2,19 @@ require 'csv'
 
 namespace :csv do
   desc "migração csv"
-  task :cadunico => :environment do
+  task :treta => :environment do
     @index = 0
-    CSV.foreach("lib/files/cadastro_empresas.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/status_cadastro_2.csv", :col_sep => "#") do |row|
       @index += 1
 
-        @ref = Firm::EnterpriseCadastre.new({
-          enterprise_id: row[3],
-          cadastre_id: row[4],
-          status: true,
-          created_at: (row[0].to_s == "NULL") ? row[1] : row[0]
+        @ref = Candidate::CadastreSituation.new({
+          cadastre_id: row[1],
+          situation_status_id: row[2]
         })
 
         begin
           @ref.save
-          #@ref.inspect
+          #puts @ref.inspect
           puts @index
         rescue Exception => e 
           puts e

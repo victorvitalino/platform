@@ -30,11 +30,15 @@ module Candidate
 
 
     def current_situation_id
-       cadastre_situations.last.situation_status_id
+        if cadastre_situations.present?
+            cadastre_situations.last.situation_status_id
+        end
     end
 
     def current_situation_name
-       cadastre_situations.last.situation_status.name.upcase
+        if cadastre_situations.present? && cadastre_situations.last.situation_status.present?
+            cadastre_situations.last.situation_status.name.upcase 
+        end
     end
 
 
