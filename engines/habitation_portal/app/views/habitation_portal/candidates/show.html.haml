@@ -43,7 +43,9 @@
                   - if @candidate.list.present? 
                     - @candidate.list.each do |list|
                       %tr
-                        %td= @candidate.current_situation_name
+                        %td
+                          %span.label.label-success
+                            = @candidate.current_situation_name
                         %td= program(@candidate.program_id)
                         %td= list[1][0]
                         %td= translate_list(list[0])

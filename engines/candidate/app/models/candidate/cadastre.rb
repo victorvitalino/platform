@@ -31,7 +31,7 @@ module Candidate
 
     def current_situation_id
         if cadastre_situations.present?
-            cadastre_situations.last.situation_status_id
+            cadastre_situations.order('id ASC').last.situation_status_id
         end
     end
 
@@ -47,8 +47,12 @@ module Candidate
     end
 
     def older?
-        days = (Date.today - self.born).to_i / 365
-        (days >= 60)
+        if self.born.present?
+          days = (Date.today - self.born).to_i / 365 
+          (days >= 60)
+        else
+          false
+        end
     end
 
     def zone?
