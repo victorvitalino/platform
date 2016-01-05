@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  remote: https://github.com/carrierwaveuploader/carrierwave.git
   revision: c745a3663d5ee74f68fc52f401a3b0c492690f2f
   specs:
     carrierwave (0.10.0)
