@@ -39,6 +39,9 @@
     %div{class: (controller_name != 'home') ? 'container main' : '' }
       .container
         .row
+          .col-md-12
+            = render 'layouts/concourse_portal/partials/slider'
+        .row
           .col-md-12.box
             .box_internal
               .row
