@@ -12,7 +12,7 @@ module HabitationPortal
       when 'vulnerable'
         "VULNERÁVEL"
       when 'special'
-        "DIFICIÊNTES"
+        "DIFICIENTES"
       end
         
     end
