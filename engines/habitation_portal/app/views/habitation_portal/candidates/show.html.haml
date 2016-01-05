@@ -62,6 +62,26 @@
           .row
             .col-md-12
               %h3
+                %b Indicado ao empreendimento
+          .row
+            .col-md-12
+              - if @candidate.enterprise_cadastres.present?
+                %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                  %thead
+                    %tr
+                      %th Empreendimento
+                      %th Data de encaminhamento
+                  %tbody
+                    - @candidate.enterprise_cadastres.each do |enterprise|
+                      %tr
+                        %td= enterprise.enterprise.name if enterprise.enterprise.present?
+                        %td= enterprise.created_at.strftime("%d/%m/%Y")
+              - else
+                Informação não disponível
+          %hr/
+          .row
+            .col-md-12
+              %h3
                 %b Dados Pessoais
           .row
             .col-md-12

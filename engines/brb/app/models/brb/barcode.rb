@@ -26,7 +26,7 @@ module Brb
       ACCOUNT_BANK    = "0149304"
       BANK            = "070"
       COIN            = "9"
-      WALLET          = "1"
+      WALLET          = "2"
       DATE_CORRECTION = "03/07/2000" #Essa data é para criação do fator vencimento, capitulo 7
 
 
@@ -146,8 +146,8 @@ module Brb
         self.sequential_digit_two = value[:digit_two]
 
         "000#{self.agency}#{self.account_bank}" \
-        "#{self.wallet}#{self.sequential_without_digit}#" \
-        "{self.sequential_digit_one}#{self.sequential_digit_two}"
+        "#{self.wallet}#{self.sequential_without_digit}" \
+        "#{self.sequential_digit_one}#{self.sequential_digit_two}"
       end
 
       #formatação fator valor
