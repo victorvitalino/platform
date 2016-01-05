@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '4.2.1'
 
@@ -50,7 +50,7 @@ end
 
 
 group :development do
-  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+  gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
   gem 'rails_db'
   gem 'derailed'
   gem 'byebug'
