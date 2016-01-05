@@ -48,9 +48,10 @@ group :test do
   gem 'poltergeist'
 end
 
+
 group :development do
-  gem 'rails_db'
   gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+  gem 'rails_db'
   gem 'derailed'
   gem 'byebug'
   gem 'thin'
@@ -63,8 +64,8 @@ end
 
 group :production do
   gem 'pg'
-  gem 'unicorn'
   gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp'
+  gem 'unicorn'
 end
 
 

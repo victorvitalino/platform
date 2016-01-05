@@ -26,10 +26,10 @@ module ConcoursePortal
       if @candidate.valid?
         @candidate.subscribe.fields.each do |field|
           if field.file?
+            byebug
             @uploader = Concourse::FileUploader.new
             @uploader.store!(params[:candidate][:properties][field.label.to_sym])
-            puts @uploader.inspect
-            @candidate.properties[field.label.to_sym] = @uploader.filename
+            @candidate.properties[field.label.to_sym] = @uploader.path
           end
         end
       

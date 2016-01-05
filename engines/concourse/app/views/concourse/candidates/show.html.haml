@@ -3,11 +3,13 @@
     %h2
       Detalhamento de Inscrição
       %span.pull-right
-        = link_to "homologar", "#", class: 'btn btn-success'
+        /= link_to "homologar", "#", class: 'btn btn-success'
         = link_to "voltar", project_path(@project, q: 'inscricoes'), class: 'btn btn-inverse'
   .card-body.card-padding
     
-    %h4 Informações sobre a inscrição
+    .row
+      .col-md-12
+        %h4 Informações sobre a inscrição
     .row
       .col-md-6
         %table.table.table-striped.table-bordered
@@ -34,7 +36,9 @@
   
     %br
     %br
-    %h4 Informações pessoais
+    .row
+      .col-md-12
+        %h4 Informações pessoais
     .row
       .col-md-12
         %table.table.table-striped.table-bordered
@@ -52,7 +56,9 @@
               %td= @candidate.gender
     %br
     %br
-    %h4 Informações de contato
+    .row
+      .col-md-12
+        %h4 Informações de contato
     .row
       .col-md-12
         %table.table.table-striped.table-bordered
@@ -82,5 +88,18 @@
               %td.col-md-3= @candidate.cep
     %br
     %br
-    %h4 Informações adicionais
-   
+    .row
+      .col-md-12
+        %h4 Informações adicionais
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Descrição
+              %th Informação
+          %tbody
+            - @candidate.properties.each do |p|
+              %tr
+                %td= p[0].humanize
+                %td= link_to "Baixar Arquivo", "http://www.codhab.df.gov.br/uploads/concourse/#{p[1]}", target: '_blank'
