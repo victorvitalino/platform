@@ -66,7 +66,7 @@ module Candidate
 
     
     def special_family?
-        self.dependents.where(special_condition_id = [2,3]).present?
+        self.dependents.where(special_condition_id: [2,3]).present?
     end
 
 
