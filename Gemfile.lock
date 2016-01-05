@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/carrierwaveuploader/carrierwave.git
-  revision: c745a3663d5ee74f68fc52f401a3b0c492690f2f
-  specs:
-    carrierwave (0.10.0)
-      activemodel (>= 4.0.0)
-      activesupport (>= 4.0.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
-
-GIT
   remote: https://github.com/codhab/codhab_billing.git
   revision: cbc2290a41b01c4b1d8621729b63ae173772a211
   specs:
@@ -269,6 +259,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     carrierwave-ftp (0.2.8)
       carrierwave (>= 0.6.2)
       net-sftp (~> 2.1.2)
@@ -572,7 +567,6 @@ DEPENDENCIES
   byebug
   candidate!
   capybara
-  carrierwave!
   carrierwave-ftp
   chartkick
   chunky_png

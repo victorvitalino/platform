@@ -50,7 +50,6 @@ end
 
 
 group :development do
-  gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
   gem 'rails_db'
   gem 'derailed'
   gem 'byebug'
