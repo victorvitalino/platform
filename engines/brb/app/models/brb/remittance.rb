@@ -36,7 +36,7 @@ module Brb
         line[122]       = "1"
         line[123..135]  = "#{i.wallet}#{i.sequential_without_digit}".ljust(13)  
         line[136]       = "1"
-        line[137..144]  = i.created_at.strftime('%Y%m%d')
+        line[137..144]  = i.created_at.strftime('%d%m%Y')
         line[145..146]  = "21"
         line[147]       = "0"
         line[148]       = "0"
@@ -44,7 +44,7 @@ module Brb
         line[151..153]  = "070"
         line[154..157]  = "0208"
         line[158..187]  = I18n.transliterate(i.city.name.mb_chars.ljust(30)).upcase  
-        line[188..195]  = i.due.strftime('%Y%m%d')  
+        line[188..195]  = i.due.strftime('%d%m%Y')  
         line[196..209]  = i.value.to_i.to_s.ljust(14)  
         line[210..221]  = "#{i.wallet}#{i.sequential_without_digit}#{i.sequential_digit_one}#{i.sequential_digit_two}".ljust(12, ' ') 
         line[222..223]  = "00"
