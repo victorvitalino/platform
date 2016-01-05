@@ -1,23 +1,29 @@
 / conteudo da pagina
 :css 
-  img {
-    border: 1px #E8E1E1 solid;
-  }
 
   small {
     color: black !important;
   }
 
+  body {
+    background-color: #FFFFFF;
+  }
+
+  .box_internal {
+    box-shadow: none !important;
+  }
+
 
 .container
+  .row
+    .col-md-12
+      = render 'layouts/concourse_portal/partials/slider'
   .row
     .col-md-12.box
       .box_internal
         .row
           .col-md-12
             .container
-              %h1 
-                %b Concursos Codhab
               - if @projects.sliders.present?
                 .row
                   .col-md-12
@@ -37,7 +43,7 @@
                 .col-md-12
                   %h3
                     %b
-                      %i Em andamento 
+                      Em andamento 
                   %br/
                   .row
                     - if @projects.opens.present?
@@ -65,7 +71,7 @@
                 .col-md-12
                   %h3
                     %b
-                      %i Previstos
+                      Previstos
                   %br/
                   .row
                     - if @projects.waiting.present?
@@ -91,7 +97,7 @@
                 .col-md-12
                   %h3
                     %b
-                      %i Finalizados
+                      Finalizados
                   %br/
                   .row
                     - if @projects.finisheds.present?
