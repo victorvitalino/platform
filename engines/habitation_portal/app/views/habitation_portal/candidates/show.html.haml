@@ -62,6 +62,26 @@
           .row
             .col-md-12
               %h3
+                %b Histórico de situação
+          .row
+            .col-md-12
+              - if @candidate.list.present? 
+                %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                  %thead
+                    %tr
+                      %th Situação
+                      %th Data da situação
+                  %tbody
+                    - @candidate.cadastre_situations.order('id ASC').each do |candidate|
+                      %tr
+                        %td= candidate.situation_status.name.upcase if candidate.situation_status.present?
+                        %td= candidate.created_at.strftime('%d/%m/%Y')
+              - else
+                Informação não disponível
+          %hr/
+          .row
+            .col-md-12
+              %h3
                 %b Indicado ao empreendimento
           .row
             .col-md-12

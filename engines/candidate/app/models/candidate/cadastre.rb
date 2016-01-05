@@ -36,8 +36,8 @@ module Candidate
     end
 
     def current_situation_name
-        if cadastre_situations.present? && cadastre_situations.last.situation_status.present?
-            cadastre_situations.last.situation_status.name.upcase 
+        if cadastre_situations.present? && cadastre_situations.order('id ASC').last.situation_status.present?
+            cadastre_situations.order('id ASC').last.situation_status.name.upcase 
         end
     end
 
