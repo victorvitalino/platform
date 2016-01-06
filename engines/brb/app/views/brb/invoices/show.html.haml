@@ -133,7 +133,7 @@
             Nosso Número
             %br/
             %span.lD  
-              
+            = @invoice.our_number
         %tr
           %td
             Uso do Banco
@@ -146,7 +146,7 @@
           %td
             Carteira
             %br/
-            %span 01
+            %span 02
           %td
             Espécie
             %br/
@@ -183,20 +183,13 @@
             %br/
             %span.lD  
         %tr
-          %td
-            (-) Outros acréscimos
-            %br/
-            %span.lD  
         %tr
           %td
             (+) Juros/Multa
             %br/
             %span.lD  
         %tr
-          %td
-            (+) Outros Acréscimos
-            %br/
-            %span.lD  
+
         %tr
           %td
             (=) Valor Cobrado
@@ -229,6 +222,7 @@
             Número do Documento
             %br/
             %span.lD  
+            = @invoice.document_number
         %tr
           %td
             Data do Documento
@@ -239,7 +233,7 @@
             Data do Processamento
             %br/
             %span.lD= @invoice.created_at.strftime('%d/%m/%Y')
-      %p.aut Autenticação Mecânica - Ficha de Compensação
+      %p.aut Autenticação Mecânica - Ficha de Compensação - Número do Documento #{@invoice.document_number}
       .barra
         = image_tag "/barcodes/#{@invoice.barcode}.png"
       %hr/
