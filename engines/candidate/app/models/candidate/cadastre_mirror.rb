@@ -4,7 +4,7 @@ module Candidate
     has_many :dependent_mirrors
 
     def arrival_df_time(date)
-      date.year - self.arrival_df.strftime("%Y").to_i 
+      date.year - self.arrival_df.strftime("%Y").to_i if self.arrival_df.present?
     end
 
     def timelist_time(date)

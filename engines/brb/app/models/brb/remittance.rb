@@ -21,6 +21,7 @@ module Brb
      
        invoices.each do |i|
         white_space = "-"
+        value = sprintf('%.2f', i.value)
 
         line             = " " * 400
         
@@ -45,7 +46,7 @@ module Brb
         line[154..157]  = "0208"
         line[158..187]  = I18n.transliterate(i.city.name.mb_chars.ljust(30)).upcase  
         line[188..195]  = i.due.strftime('%d%m%Y')  
-        line[196..209]  = i.value.to_i.to_s.ljust(14)  
+        line[196..209]  = "#{'%014d' % value.to_s.gsub('.','').to_i}" 
         line[210..221]  = "#{i.our_number}".ljust(12, ' ') 
         line[222..223]  = "00"
         line[224..237]  = "0".ljust(14, '0') 
