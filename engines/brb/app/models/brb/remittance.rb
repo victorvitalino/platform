@@ -15,7 +15,7 @@ module Brb
       header[13..19] = "0149304"
       header[20..27] = Date.today.strftime('%Y%m%d')
       header[28..33] = Date.today.strftime('%H%M%S')
-      header[34..39] = (invoices.count + 1).to_s.ljust(6, '0')
+      header[34..39] = (invoices.count + 1).to_s.rjust(6, '0')
       header.slice!(0)
       
      
