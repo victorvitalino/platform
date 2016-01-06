@@ -2,7 +2,7 @@ require_dependency 'concourse_portal/application_controller'
 require 'barby'
 require 'barby/barcode/code_128'
 require 'barby/outputter/png_outputter'
-require 'codhab_billing'
+
 
 module ConcoursePortal
   class CandidatesController < ApplicationController
