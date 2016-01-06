@@ -121,7 +121,7 @@
                     %td= @candidate.cpf
                     %td= @candidate.rg
                     %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
-                    %td= "#{Date.today.year - @candidate.born.year} anos" if @candidate.born.present?
+                    %td= "#{@candidate.age} ano(s)" if @candidate.born.present?
                 %thead
                   %tr
                     %th Sexo

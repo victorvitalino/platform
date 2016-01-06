@@ -41,6 +41,9 @@ module Candidate
         end
     end
 
+    def age 
+      (Date.today - self.born).to_i / 365 
+    end
 
     def special?
         (self.special_condition_id == 2 || self.special_condition_id == 3)
@@ -48,8 +51,7 @@ module Candidate
 
     def older?
         if self.born.present?
-          days = (Date.today - self.born).to_i / 365 
-          (days >= 60)
+          (self.age >= 60)
         else
           false
         end
@@ -86,7 +88,7 @@ module Candidate
 
       array << list_rii         unless list_rii.nil? 
       array << list_rie         unless list_rie.nil? 
-      array << list_olders      unless list_vulnerables.nil? 
+      array << list_olders      unless list_olders.nil? 
       array << list_vulnerables unless list_vulnerables.nil? 
       array << list_specials    unless list_specials.nil? 
 
@@ -127,7 +129,7 @@ module Candidate
         else
             case array[0]
             when 'older'
-                sql = "extract(year from age(#{self.born})) >= 60 AND #{self.income} and situation_status_id = ? BETWEEN  ? AND ? "
+                sql = "extract(year from age(born)) >= 60 AND situation_status_id = ? AND income BETWEEN  ? AND ? "
                 @geral = Candidate::View::GeneralPontuation.where(sql, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
             when 'special'
                 sql = "(special_condition_id in (2,3) or (select COUNT(*) 
