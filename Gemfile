@@ -37,7 +37,6 @@ gem 'nokogiri'
 gem 'barby'
 gem 'chunky_png'
 
-gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 gem 'signer', git: 'https://github.com/codhab/signer.git'
 
 group :test do

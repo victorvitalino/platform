@@ -13,9 +13,9 @@ module Brb
       header[7..9] = "075"
       header[10..12] = "208"
       header[13..19] = "0149304"
-      header[20..27] = "AAAAMMDD"
-      header[28..33] = "HHMMSS"
-      header[34..39] = (invoices.count + 1).to_s.ljust(6, ' ')
+      header[20..27] = Date.today.strftime('%Y%m%d')
+      header[28..33] = Date.today.strftime('%H%M%S')
+      header[34..39] = (invoices.count + 1).to_s.ljust(6, '0')
       header.slice!(0)
       
      
@@ -34,8 +34,8 @@ module Brb
         line[112..113]   = i.state.acronym.mb_chars.upcase.ljust(2)  
         line[114..121]   = i.cep.ljust(8)     
         line[122]       = "1"
-        line[123..135]  = "#{i.wallet}#{i.sequential_without_digit}".ljust(13)  
-        line[136]       = "1"
+        line[123..135]  = "#{i.document_number}".ljust(13)  
+        line[136]       = "2"
         line[137..144]  = i.created_at.strftime('%d%m%Y')
         line[145..146]  = "21"
         line[147]       = "0"
@@ -46,7 +46,7 @@ module Brb
         line[158..187]  = I18n.transliterate(i.city.name.mb_chars.ljust(30)).upcase  
         line[188..195]  = i.due.strftime('%d%m%Y')  
         line[196..209]  = i.value.to_i.to_s.ljust(14)  
-        line[210..221]  = "#{i.wallet}#{i.sequential_without_digit}#{i.sequential_digit_one}#{i.sequential_digit_two}".ljust(12, ' ') 
+        line[210..221]  = "#{i.our_number}".ljust(12, ' ') 
         line[222..223]  = "00"
         line[224..237]  = "0".ljust(14, '0') 
         line[238..251]  = "0".ljust(14, '0') 

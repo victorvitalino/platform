@@ -9,12 +9,6 @@ GIT
       mime-types (>= 1.16)
 
 GIT
-  remote: https://github.com/codhab/codhab_billing.git
-  revision: cbc2290a41b01c4b1d8621729b63ae173772a211
-  specs:
-    codhab_billing (0.1.0)
-
-GIT
   remote: https://github.com/codhab/pundit.git
   revision: 600b9af1ef10ce846feee878ba47c49c667ba9d5
   branch: master
@@ -577,7 +571,6 @@ DEPENDENCIES
   chartkick
   chunky_png
   cms!
-  codhab_billing!
   concourse!
   concourse_portal!
   dashboard!
