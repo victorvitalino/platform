@@ -12,6 +12,24 @@
           .col-md-12
             .container
               = @list.description.to_s.html_safe
+        %hr/
+        .row
+          .container
+            - if @list.cpf_filter
+              .col-md-6
+                = simple_form_for url_for, method: :get do |f|
+                  .row
+                    .col-md-5
+                      = f.input :cpf, input_html: { name:  'cpf', value: params[:cpf]}
+                    .col-md-5{style: 'padding-top: 27px'}
+                      = f.submit 'Pesquisar', name: nil, class: 'btn btn-success', data: {  disable_with: "Pesquisando aguarde..."} 
+            .col-md-3
+            .col-md-3
+              %br/
+              %br/
+              %h4 
+                %b Total da lista: #{@geral.count} 
+                  
         .row
           .col-md-12
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
