@@ -79,7 +79,6 @@ gem 'concourse',                    path: 'engines/concourse'
 gem 'concourse_portal',             path: 'engines/concourse_portal'
 
 gem 'attendance',                   path: 'engines/attendance'
-gem 'finance',                      path: 'engines/finance'
 gem 'candidate',                    path: 'engines/candidate'
 gem 'address',                      path: 'engines/address'
 
