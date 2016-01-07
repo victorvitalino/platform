@@ -26,7 +26,7 @@ module Brb
       ACCOUNT_BANK    = "0149304"
       BANK            = "070"
       COIN            = "9"
-      WALLET          = "2"
+      WALLET          = "1"
       DATE_CORRECTION = "03/07/2000" #Essa data é para criação do fator vencimento, capitulo 7
 
 

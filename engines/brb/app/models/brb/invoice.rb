@@ -18,7 +18,7 @@ module Brb
         due: self.due,
         value: self.category.default_value,
         sequential: self.id,
-        bank_wallet: 2,
+        bank_wallet: 1,
         bank_agency: 208,
         bank_account: '0149304'
       })
