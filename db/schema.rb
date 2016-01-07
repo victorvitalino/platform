@@ -235,23 +235,21 @@ ActiveRecord::Schema.define(version: 20151229093540) do
     t.integer  "state_id"
     t.integer  "city_id"
     t.string   "cep"
-    t.integer  "type_person",              default: 0
-    t.integer  "modality",                 default: 0
-    t.integer  "type_document",            default: 0
+    t.integer  "type_person",         default: 0
+    t.integer  "modality",            default: 0
+    t.integer  "type_document",       default: 0
     t.string   "code"
     t.date     "due"
-    t.float    "value",                    default: 0.0
+    t.float    "value",               default: 0.0
     t.text     "message"
     t.date     "payment"
-    t.integer  "status",                   default: 0
+    t.integer  "status",              default: 0
     t.boolean  "remittance"
     t.text     "bank_return"
-    t.string   "wallet"
-    t.string   "sequential_without_digit"
-    t.string   "sequential_digit_one"
-    t.string   "sequential_digit_two"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "our_number"
+    t.string   "document_number"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   add_index "brb_invoices", ["category_id"], name: "index_brb_invoices_on_category_id", using: :btree

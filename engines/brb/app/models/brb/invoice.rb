@@ -15,19 +15,30 @@ module Brb
 
     def generate_invoice!
       barcode = Barcode.new({
-        deadline: self.due,
+        due: self.due,
         value: self.category.default_value,
-        sequential: self.id
+        sequential: self.id,
+        bank_wallet: 1,
+        bank_agency: 208,
+        bank_account: '0149304'
       })
+=begin
+      @bank_wallet  = options[:bank_wallet]     ||= '1'
+      @sequential   = options[:sequential]      ||= '1'
+      @bank         = options[:bank]            ||= '070'
+      @bank_agency  = options[:bank_agency]     ||= '058'
+      @bank_account = options[:bank_account]    ||= '6002006'
 
+      @due          = options[:due]             ||= '0'
+      @coin         = options[:coin]            ||= '9'
+      @value        = options[:value]           ||= 100
+=end
       self.update({
         barcode: barcode.barcode_without_format,
         barcode_with_format: barcode.barcode_with_format,
         value: self.category.default_value,
-        wallet: barcode.wallet,
-        sequential_without_digit: barcode.sequential_without_digit,
-        sequential_digit_one: barcode.sequential_digit_one,
-        sequential_digit_two: barcode.sequential_digit_two
+        our_number: barcode.our_number,
+        document_number: barcode.formated_sequential
       })
     end
   end

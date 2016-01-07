@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '4.2.1'
 
@@ -37,7 +37,6 @@ gem 'nokogiri'
 gem 'barby'
 gem 'chunky_png'
 
-gem 'codhab_billing', git: 'https://github.com/codhab/codhab_billing.git'
 gem 'signer', git: 'https://github.com/codhab/signer.git'
 
 group :test do
@@ -48,9 +47,10 @@ group :test do
   gem 'poltergeist'
 end
 
+
 group :development do
+  gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
   gem 'rails_db'
-  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
   gem 'derailed'
   gem 'byebug'
   gem 'thin'
@@ -63,8 +63,8 @@ end
 
 group :production do
   gem 'pg'
-  gem 'unicorn'
   gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp'
+  gem 'unicorn'
 end
 
 
@@ -79,7 +79,6 @@ gem 'concourse',                    path: 'engines/concourse'
 gem 'concourse_portal',             path: 'engines/concourse_portal'
 
 gem 'attendance',                   path: 'engines/attendance'
-gem 'finance',                      path: 'engines/finance'
 gem 'candidate',                    path: 'engines/candidate'
 gem 'address',                      path: 'engines/address'
 

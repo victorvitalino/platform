@@ -28,7 +28,6 @@ Rails.application.routes.draw do
       mount Protocol::Engine                 => "/protocolo",      as: 'protocol',         module: 'protocol'
       mount Attendance::Engine               => "/atendimento",    as: 'attendance',       module: 'attendance'
       mount Concourse::Engine                => "/concurso",       as: 'concourse',        module: 'concourse'
-      mount Finance::Engine                  => "/financeiro",     as: 'finance',          module: 'finance'
       mount Candidate::Engine                => "/candidatos",     as: 'candidate',        module: 'candidate'
       mount Schedule::Engine                 => "/agendamento",    as: 'schedule',         module: 'schedule'
       mount Regularization::Engine           => "/regularizacao",  as: 'regularization',   module: 'regularization'

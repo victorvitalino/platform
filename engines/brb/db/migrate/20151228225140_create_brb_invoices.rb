@@ -29,10 +29,8 @@ class CreateBrbInvoices < ActiveRecord::Migration
       t.boolean :remittance, dafault: false
       t.text :bank_return
 
-      t.string :wallet
-      t.string :sequential_without_digit
-      t.string :sequential_digit_one
-      t.string :sequential_digit_two
+      t.string :our_number
+      t.string :document_number
 
       t.timestamps null: false
     end

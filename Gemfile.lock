@@ -1,18 +1,12 @@
 GIT
-  remote: git://github.com/carrierwaveuploader/carrierwave.git
-  revision: 08d0aea29b058c1b98db1c19f4ccd37c9105e9eb
+  remote: https://github.com/carrierwaveuploader/carrierwave.git
+  revision: c745a3663d5ee74f68fc52f401a3b0c492690f2f
   specs:
     carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-
-GIT
-  remote: https://github.com/codhab/codhab_billing.git
-  revision: cbc2290a41b01c4b1d8621729b63ae173772a211
-  specs:
-    codhab_billing (0.1.0)
 
 GIT
   remote: https://github.com/codhab/pundit.git
@@ -98,18 +92,6 @@ PATH
   specs:
     entity_portal (0.0.1)
       rails (~> 4.2.1)
-
-PATH
-  remote: engines/finance
-  specs:
-    finance (0.0.1)
-      barby
-      carrierwave
-      chunky_png
-      haml-rails
-      rails (~> 4.2.1)
-      rqrcode
-      simple_form
 
 PATH
   remote: engines/firm
@@ -205,7 +187,7 @@ PATH
       rails (~> 4.2.1)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
@@ -479,8 +461,6 @@ GEM
       orm_adapter
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    rqrcode (0.7.0)
-      chunky_png
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -577,7 +557,6 @@ DEPENDENCIES
   chartkick
   chunky_png
   cms!
-  codhab_billing!
   concourse!
   concourse_portal!
   dashboard!
@@ -589,7 +568,6 @@ DEPENDENCIES
   entity_portal!
   enum_help
   factory_girl_rails
-  finance!
   firm!
   firm_portal!
   friendly_id

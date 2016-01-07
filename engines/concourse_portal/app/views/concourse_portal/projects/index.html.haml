@@ -1,23 +1,29 @@
 / conteudo da pagina
 :css 
-  img {
-    border: 1px #E8E1E1 solid;
-  }
 
   small {
     color: black !important;
   }
 
+  body {
+    background-color: #FFFFFF;
+  }
+
+  .box_internal {
+    box-shadow: none !important;
+  }
+
 
 .container
+  .row
+    .col-md-12
+      = render 'layouts/concourse_portal/partials/slider'
   .row
     .col-md-12.box
       .box_internal
         .row
           .col-md-12
             .container
-              %h1 
-                %b Concursos Codhab
               - if @projects.sliders.present?
                 .row
                   .col-md-12
@@ -37,7 +43,7 @@
                 .col-md-12
                   %h3
                     %b
-                      %i Em andamento 
+                      Em andamento 
                   %br/
                   .row
                     - if @projects.opens.present?
@@ -48,12 +54,15 @@
                               = link_to image_tag(project.image_logo, width: 150), concourse_portal.project_path(project)
                             .col-md-6
                               %h5
-                                %strong= project.title.upcase
-                                %small
-                                  %p= project.mini_description
+                                %strong= link_to project.title.upcase, concourse_portal.project_path(project)
+                                %h6
+                                  %p= link_to project.mini_description, concourse_portal.project_path(project)
+                              %span
+                                %p
+                                  %b Início - #{project.start.strftime('%d/%m/%Y')}
                               %h5
                                 %span.label.label-info
-                                  = project.step
+                                  = link_to project.step, concourse_portal.project_path(project)
                     - else
                       .col-md-12
                         Não existem concursos em andamento no momento.
@@ -62,7 +71,7 @@
                 .col-md-12
                   %h3
                     %b
-                      %i Previstos
+                      Previstos
                   %br/
                   .row
                     - if @projects.waiting.present?
@@ -70,7 +79,7 @@
                         .col-md-4
                           .row
                             .col-md-5
-                              = link_to image_tag(project.image_logo, width: 150), concourse_portal.project_path(project)
+                              = image_tag(project.image_logo, width: 150)
                             .col-md-6
                               %h5
                                 %strong= project.title.upcase
@@ -88,7 +97,7 @@
                 .col-md-12
                   %h3
                     %b
-                      %i Finalizados
+                      Finalizados
                   %br/
                   .row
                     - if @projects.finisheds.present?
@@ -96,7 +105,7 @@
                         .col-md-4
                           .row
                             .col-md-5
-                              = link_to image_tag(project.image_logo, width: 150), concourse_portal.project_path(project)
+                              = image_tag(project.image_logo, width: 150)
                             .col-md-6
                               %h5
                                 %strong= project.title.upcase

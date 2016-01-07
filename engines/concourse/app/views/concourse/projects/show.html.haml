@@ -18,6 +18,9 @@
             %a{"aria-controls" => "subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#subscribes", :role => "tab"} Tipo de inscrições  
           %li{:class => (params[:q] == 'consultas') ? 'active' : ''}
             %a{"aria-controls" => "consults", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#consults", :role => "tab"} Consultas
+          %li{:class => (params[:q] == 'inscricoes') ? 'active' : ''}
+            %a{"aria-controls" => "candidate_subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_subscribes", :role => "tab"} Inscrições
+
         .tab-content
           = render 'concourse/pages/index'
           = render 'concourse/navs/index'

@@ -29,5 +29,3 @@ module Brb
     end    
   end
 end
-
-String.class_eval { include CodhabBilling::Format }

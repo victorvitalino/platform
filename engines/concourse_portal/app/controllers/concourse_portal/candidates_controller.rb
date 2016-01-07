@@ -2,7 +2,7 @@ require_dependency 'concourse_portal/application_controller'
 require 'barby'
 require 'barby/barcode/code_128'
 require 'barby/outputter/png_outputter'
-require 'codhab_billing'
+
 
 module ConcoursePortal
   class CandidatesController < ApplicationController
@@ -28,8 +28,7 @@ module ConcoursePortal
           if field.file?
             @uploader = Concourse::FileUploader.new
             @uploader.store!(params[:candidate][:properties][field.label.to_sym])
-            puts @uploader.inspect
-            @candidate.properties[field.label.to_sym] = @uploader.filename
+            @candidate.properties[field.label.to_sym] = @uploader.path
           end
         end
       

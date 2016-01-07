@@ -21,7 +21,7 @@ module Brb
       multiplier  = options[:multiplier] ||= [2,1]
       index       = 0
 
-      self.split(//).reverse!.each do |char|
+      self.reverse.split(//).each do |char|
         value      = char.to_i * multiplier[index] 
         total_int += (value > 9) ? value  - 9 : value
         index      = (index == multiplier.count - 1) ? 0 : index + 1
@@ -34,7 +34,6 @@ module Brb
 
     def module_11(options = {})
       self.is_number?
-
       options[:multiplier] ||= [2,3,4,5,6,7]
 
       total_int   = 0
@@ -89,4 +88,3 @@ module Brb
   end
 end
 
-String.class_eval { include CodhabBilling::Calculation }
