@@ -10,6 +10,19 @@
             %small
       .row
         .col-md-12
+          = simple_form_for url_for, method: 'get' do |f|
+            .row
+              .col-md-5
+                = f.label 'Endereço', class: 'fg-label'
+                = f.input :address, label: false, input_html: { name: 'address', value: params[:address]}
+              .col-md-4
+                = f.label 'Situação do Imóvel', class: 'fg-label'
+                = f.input :status, label: false,  label_method: 'description', collection: Address::SituationUnit.all, selected: params[:status], input_html: { name: 'status'},include_blank: 'Todos'
+              .col-md-2
+                %br
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary', data: {  disable_with: "Pesquisando aguarde..."}
+      .row
+        .col-md-12
           %table#data-table-command.table.table-striped.table-vmiddle.datatable
             %thead
               %tr

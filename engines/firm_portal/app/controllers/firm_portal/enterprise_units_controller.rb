@@ -7,9 +7,12 @@ module FirmPortal
       before_action :set_enterprise_unit, only: [:show]
       before_action :set_tab
 
+      has_scope :address
+      has_scope :status
+
     def index
        @enterprise_units = Address::Unit.where(firm_enterprise_id: @enterprises)
-       @enterprise_units =  @enterprise_units.paginate(:page => params[:page], :per_page => 20)
+       @enterprise_units =  apply_scopes(@enterprise_units).paginate(:page => params[:page], :per_page => 20)
     end
 
     def new

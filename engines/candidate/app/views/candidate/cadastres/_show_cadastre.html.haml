@@ -4,19 +4,35 @@
   %table.table.table-striped.table-condensed.table-bordered
     %thead
       %tr
-        %th Nome Completo
+        %th{colspan: 3} Nome Completo
         %th CPF
-        %th Data de nascimento
+        %th Nascimento
         %th Idade
-        %th Sexo
     %tbody
       %tr
-        %td.col-md-3= @cadastre.name
-        %td.col-md-1= @cadastre.cpf
-        %td.col-md-1= @cadastre.born.strftime('%d/%m/%Y') if @cadastre.born.present?
-        %td.col-md-1
-          = "#{(Date.today.strftime('%Y').to_i - @cadastre.born.strftime('%Y').to_i)} anos" if @cadastre.born.present?
+        %td{colspan: 3}= @cadastre.name
+        %td= @cadastre.cpf
+        %td= @cadastre.born.strftime('%d/%m/%Y') if @cadastre.born.present?
+        %td= "#{@cadastre.age} ano(s)" if @cadastre.born.present?
+    %thead
+      %tr
+        %th Sexo
+        %th Estado Cívil
+        %th Chegada ao DF
+        %th Naturalidade
+        %th Condição Especial
+        %th CID
+        %th NIS
+    %tbody
+      %tr
         %td.col-md-1= @cadastre.gender
+        %td.col-md-1= @cadastre.civil_state.name if @cadastre.civil_state.present?
+        %td.col-md-1= @cadastre.arrival_df.strftime('%d/%m/%Y') if @cadastre.arrival_df.present?
+        %td.col-md-1= "#{@cadastre.place_birth} #{@cadastre.born_uf}"
+        %td.col-md-2= @cadastre.special_condition.name if @cadastre.special_condition.present?
+        %td.col-md-1= @cadastre.cid
+        %td.col-md-1= @cadastre.nis
+
 %hr/
 .row
   %h4 Informações de Contato
@@ -73,7 +89,39 @@
           %td.col-md-1= (dependent.special_condition_flag) ? "#{dependent.special_condition_id}" : "Não"
 %hr/
 .row
-  %h4 Atendimentos 
+  %h4 Histórico de situação
+.row
+  - if @cadastre.list.present?
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Situação
+          %th Data da situação
+      %tbody
+        - @cadastre.cadastre_situations.order('id ASC').each do |candidate|
+          %tr
+            %td= candidate.situation_status.name.upcase if candidate.situation_status.present?
+            %td= candidate.created_at.strftime('%d/%m/%Y')
+  - else
+    Informação não disponível
+%hr/
+.row
+  %h4 Indicado ao empreendimento
+.row
+  - if @cadastre.enterprise_cadastres.present?
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Empreendimento
+          %th Data de encaminhamento
+      %tbody
+        - @cadastre.enterprise_cadastres.each do |enterprise|
+          %tr
+            %td= enterprise.enterprise.name if enterprise.enterprise.present?
+            %td= enterprise.created_at.strftime("%d/%m/%Y")
+  - else
+    Informação não disponível
+  %h4 Atendimentos
 .row
   %table.table.table-striped.table-condensed.table-bordered
     %thead

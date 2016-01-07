@@ -38,12 +38,12 @@ module Candidate
 
     def current_situation_name
         if cadastre_situations.present? && cadastre_situations.order('id ASC').last.situation_status.present?
-            cadastre_situations.order('id ASC').last.situation_status.name.upcase 
+            cadastre_situations.order('id ASC').last.situation_status.name.upcase
         end
     end
 
-    def age 
-      (Date.today - self.born).to_i / 365 
+    def age
+      (Date.today - self.born).to_i / 365
     end
 
     def special?
@@ -71,7 +71,7 @@ module Candidate
         end
     end
 
-    
+
     def special_family?
         self.dependents.where(special_condition_id: [2,3]).present?
     end
@@ -87,13 +87,13 @@ module Candidate
       list_vulnerables  = vulnerables
       list_specials     = specials
 
-      array << list_rii         unless list_rii.nil? 
-      array << list_rie         unless list_rie.nil? 
-      array << list_olders      unless list_olders.nil? 
-      array << list_vulnerables unless list_vulnerables.nil? 
-      array << list_specials    unless list_specials.nil? 
+      array << list_rii         unless list_rii.nil?
+      array << list_rie         unless list_rie.nil?
+      array << list_olders      unless list_olders.nil?
+      array << list_vulnerables unless list_vulnerables.nil?
+      array << list_specials    unless list_specials.nil?
 
-      array.each_with_index do |a, i| 
+      array.each_with_index do |a, i|
         array[i] << position(array[i])
       end
 
@@ -120,7 +120,7 @@ module Candidate
 
     def vulnerables
       (self.program_id == 4) ? ['vulnerable', self.zone?] : nil
-    end 
+    end
 
     def position(array)
 
@@ -133,26 +133,26 @@ module Candidate
                 sql = "extract(year from age(born)) >= 60 AND situation_status_id = ? AND income BETWEEN  ? AND ? "
                 @geral = Candidate::View::GeneralPontuation.where(sql, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
             when 'special'
-                sql = "(special_condition_id in (2,3) or (select COUNT(*) 
-                        from candidate_dependents 
+                sql = "(special_condition_id in (2,3) or (select COUNT(*)
+                        from candidate_dependents
                         where special_condition_id in (2,3)
                         and cadastre_id = general_pontuations.id) > 0)
-                        and situation_status_id = ? 
+                        and situation_status_id = ?
                         and income BETWEEN ? AND ?"
 
                 @geral = Candidate::View::GeneralPontuation.where(sql, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
-            
+
             when 'vulnerable'
                 sql = "program_id = ? AND income BETWEEN ? AND ?"
                 @geral = Candidate::View::GeneralPontuation.where(sql, 4, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
-            end    
+            end
         end
 
         @geral.present? ? @geral + 1 : nil
     end
 
 
-    
+
 
     #program_id = 4 AND income BETWEEN 0 AND 1600
 

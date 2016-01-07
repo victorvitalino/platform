@@ -10,6 +10,22 @@
             %small
       .row
         .col-md-12
+          = simple_form_for  url_for, method: 'get' do |f|
+            .row
+              .col-md-3
+                = f.label 'CPF', class: 'fg-label'
+                = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+              .col-md-3
+                = f.label 'Nome', class: 'fg-label'
+                = f.input :name_candidate, label: false, input_html: { name: 'name_candidate', value: params[:name_candidate]}
+              .col-md-3
+                = f.label 'Situação do Candidato', class: 'fg-label'
+                = f.input :status, label: false,  collection: Firm::StatusCadastre.all, selected: params[:status], input_html: { name: 'status'},include_blank: 'Todos'
+              .col-md-2
+                %br
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary', data: {  disable_with: "Pesquisando aguarde..."}
+      .row
+        .col-md-12
           %table#data-table-command.table.table-striped.table-vmiddle.datatable
             %thead
               %tr

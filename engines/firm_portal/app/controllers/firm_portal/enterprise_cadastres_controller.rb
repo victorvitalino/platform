@@ -8,7 +8,8 @@ module FirmPortal
      before_action :set_tab
 
      has_scope :cpf
-
+     has_scope :name_candidate
+     has_scope :status
 
     def index
           @enterprise_cadastres = Firm::View::FirmCadastre.where(enterprise_id: @enterprises).includes(:cadastre).order(total: :desc).all
