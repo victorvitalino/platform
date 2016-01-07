@@ -36,7 +36,7 @@ module Brb
         line[114..121]   = i.cep.ljust(8)     
         line[122]       = "1"
         line[123..135]  = "#{i.document_number}".ljust(13)  
-        line[136]       = "2"
+        line[136]       = "1"
         line[137..144]  = i.created_at.strftime('%d%m%Y')
         line[145..146]  = "21"
         line[147]       = "0"
