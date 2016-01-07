@@ -10,6 +10,7 @@ module Candidate
     belongs_to :city, class_name: "Address::City"
     belongs_to :work_city, class_name: "Address::City"
 
+
     has_many :dependents
     has_many :cadastre_situations
     has_many :attendances
@@ -18,7 +19,7 @@ module Candidate
     has_many :cadastre_checklists
     has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
     has_many :enterprise_cadastres, foreign_key: "cadastre_id", class_name: "Firm::EnterpriseCadastre"
-
+    has_many :cadastre_address
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 

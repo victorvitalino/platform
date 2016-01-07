@@ -1,0 +1,16 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Atualizar Situação
+.modal-body
+  .row
+    .col-md-12
+      .row
+        .col-md-12
+          Reservado Para
+          = @candidateAddress.cadastre.name
+      .row
+        .col-md-12
+          Endereço
+          = @candidateAddress
+      %br/

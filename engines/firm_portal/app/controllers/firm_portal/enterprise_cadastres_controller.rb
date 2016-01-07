@@ -7,9 +7,12 @@ module FirmPortal
      before_action :set_cadastre, only: [:enable,  :index]
      before_action :set_tab
 
+     has_scope :cpf
+
 
     def index
-          @enterprise_cadastres = Firm::View::FirmCadastres.where(enterprise_id: @enterprises).includes(:cadastre).order(total: :desc).all
+          @enterprise_cadastres = Firm::View::FirmCadastre.where(enterprise_id: @enterprises).includes(:cadastre).order(total: :desc).all
+          @enterprise_cadastres = apply_scopes(@enterprise_cadastres).paginate(:page => params[:page], :per_page => 20)
     end
 
     def new

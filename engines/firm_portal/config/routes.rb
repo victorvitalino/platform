@@ -9,6 +9,7 @@ FirmPortal::Engine.routes.draw do
   resources :enterprise_units, path: 'enderecos' do
       resources :cadastre_address, path: 'candidato_unidade'
       post 'book', to:'cadastre_address#book', as: 'book'
+      get 'sale', to:'cadastre_address#sale', as: 'sale'
   end
   resources :user_companies, path: 'usuarios'
   get 'enable' , to: 'enterprise_cadastres#enable',      as: 'enable_enterprise_cadastres'

@@ -10,7 +10,7 @@
             %small
       .row
         .col-md-12
-          %table.table.table-condensed.table-bordered.table-hover.table-striped
+          %table#data-table-command.table.table-striped.table-vmiddle.datatable
             %thead
               %tr
                 %th Endereço
@@ -28,4 +28,8 @@
                     - if u.situation_unit_id == 1
                       = link_to "Reservar".html_safe, new_enterprise_unit_cadastre_address_path(u), class: " btn btn-primary"
                     - if  u.situation_unit_id == 6
-                      = link_to "Liberar/Vender".html_safe, "#", class: " btn btn-success"
+                      = link_to "Liberar/Vender".html_safe, enterprise_unit_sale_path(u),  remote: true, class: " btn btn-success"
+      .row
+        .col-md-6.col-md-offset-3
+          .container
+            = will_paginate @enterprise_units, renderer: BootstrapPagination::Rails

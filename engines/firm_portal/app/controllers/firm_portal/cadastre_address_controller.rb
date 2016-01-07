@@ -35,6 +35,10 @@ module FirmPortal
 
    end
 
+   def sale
+       @candidateAddress = Candidate::CadastreAddress.where(unit_id: params[:id])
+   end
+
 
 
     private
@@ -52,7 +56,7 @@ module FirmPortal
 
 
     def set_cadastre_address
-       @cadastre_address = Candidate::CadastreAddress.find(params[:id])
+       @cadastre_address = Candidate::CadastreAddress.where(params[:id])
     end
 
     def set_unit

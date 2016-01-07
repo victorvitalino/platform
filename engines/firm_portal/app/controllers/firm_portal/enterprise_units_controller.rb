@@ -9,6 +9,7 @@ module FirmPortal
 
     def index
        @enterprise_units = Address::Unit.where(firm_enterprise_id: @enterprises)
+       @enterprise_units =  @enterprise_units.paginate(:page => params[:page], :per_page => 20)
     end
 
     def new
