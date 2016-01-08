@@ -133,7 +133,7 @@
                     %td.col-md-2= "#{@candidate.place_birth} #{@candidate.born_uf}"
                     %td.col-md-2= @candidate.special_condition.name if @candidate.special_condition.present?
                     %td.col-md-2= @candidate.cid
-                    %td.col-md-2= @candidate.nis
+                    %td.col-md-2= @candidate.nis.present? ? "Possui NIS" : "Não possui NIS"
 
           %hr/
           .row
