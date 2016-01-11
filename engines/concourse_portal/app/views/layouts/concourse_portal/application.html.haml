@@ -40,7 +40,7 @@
       .container
         .row
           .col-md-12
-            = render 'layouts/concourse_portal/partials/slider'
+            = @project.slider_html.html_safe if @project.slider_html.present?
         .row
           .col-md-12.box
             .box_internal

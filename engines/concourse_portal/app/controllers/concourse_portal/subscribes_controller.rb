@@ -15,6 +15,7 @@ module ConcoursePortal
       
       if @subscribe.valid?
         session[:candidate_id] = @subscribe._id
+        session[:project_id]   = @project.id
         redirect_to project_subscribes_success_path(@project)
       else
         render action: 'index'
@@ -22,7 +23,7 @@ module ConcoursePortal
     end
 
     def remember_subscribe
-      @subscribes = Concourse::Candidate.where(cpf: params[:cpf])
+      @subscribes = Concourse::Candidate.where(cpf: params[:cpf], subscribe_id: [@project.subscribes.map(&:id)])
     end
 
     def remember_password

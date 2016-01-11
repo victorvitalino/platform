@@ -34,6 +34,11 @@
         = f.input :image_slider, as: :file,label: false, prompt: 'selecione...'
     %hr/
     .row
+      .col-md-12
+        = f.label :slider_html, class: 'fg-label'
+        = f.input :slider_html, as: :text,label: false
+    %hr/
+    .row
       .col-md-2
         .toggle-switch{"data-ts-color" => "blue"}
           %label
