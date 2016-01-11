@@ -6,7 +6,6 @@ require 'barby/outputter/png_outputter'
 
 module ConcoursePortal
   class CandidatesController < ApplicationController
-    before_action :set_project
     before_action :set_candidate, only: [:success, :bank_slip]
 
     def new

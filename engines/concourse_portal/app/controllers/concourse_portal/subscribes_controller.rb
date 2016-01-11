@@ -1,8 +1,7 @@
 require_dependency 'concourse_portal/application_controller'
 module ConcoursePortal
   class SubscribesController < ApplicationController
-    before_action :set_project 
-
+   
     def index
       @subscribe  = ConcoursePortal::Subscribe.new
       @current_nav = 'new_subscribe'
@@ -10,13 +9,16 @@ module ConcoursePortal
     end
 
     def create
+      
       @subscribe = ConcoursePortal::Subscribe.new(set_params)
       @current_nav = 'new_subscribe'
       
       if @subscribe.valid?
         session[:candidate_id] = @subscribe._id
-        session[:project_id]   = @project.id
-        redirect_to project_subscribes_success_path(@project)
+        @candidate = Concourse::Candidate.find(session[:candidate_id])
+        
+        redirect_to project_subscribes_success_path(@candidate.subscribe.project.slug)
+
       else
         render action: 'index'
       end

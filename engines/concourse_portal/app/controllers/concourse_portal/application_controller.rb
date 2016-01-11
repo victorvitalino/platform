@@ -12,7 +12,7 @@ module ConcoursePortal
     private
 
     def set_candidate
-      if session[:candidate_id].present?
+      if session[:candidate_id].present? && @project.present?
         @candidate = Concourse::Candidate.find(session[:candidate_id])
 
         unless @candidate.subscribe.project_id == @project.id
