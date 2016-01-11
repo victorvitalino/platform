@@ -1,7 +1,6 @@
 module Brb
   class Invoice < ActiveRecord::Base
     belongs_to :category
-    belongs_to :city,  class_name: "Address::City"
     belongs_to :state, class_name: "Address::State"
 
     enum status: ['não pago', 'pagamento realizado']

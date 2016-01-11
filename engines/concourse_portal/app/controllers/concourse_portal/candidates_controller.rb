@@ -61,20 +61,21 @@ module ConcoursePortal
 
     def bank_slip
 
-      @categoy = Brb::Category.find(1)
+      @category = Brb::Category.find(1)
 
-      @invoice = Invoice.new({
+      @invoice = Brb::Invoice.new({
         name: @candidate.name,
         cpf: @candidate.cpf, 
         cep: @candidate.cep,
         address: @candidate.address,
+        state_id: @candidate.state_id,
         city: @candidate.city,
         due: (@candidate.subscribe.end - 3.days).strftime('%d/%m/%Y'),
         category_id: @category.id,
-        observation: "Concursos Codhab"
+        message: "Concursos Codhab"
       })
 
-      if @invoice.save
+      if @invoice.save!
         barcode = Barby::Code128.new(@invoice.barcode)
         File.open("public/barcodes/#{barcode}.png", 'w') { |f| f.write barcode.to_png(xdim: 1,height: 50) }
     

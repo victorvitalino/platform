@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 20151229093540) do
     t.string   "name"
     t.string   "address"
     t.integer  "state_id"
-    t.integer  "city_id"
+    t.string   "city"
     t.string   "cep"
     t.integer  "type_person",         default: 0
     t.integer  "modality",            default: 0
@@ -253,7 +253,6 @@ ActiveRecord::Schema.define(version: 20151229093540) do
   end
 
   add_index "brb_invoices", ["category_id"], name: "index_brb_invoices_on_category_id", using: :btree
-  add_index "brb_invoices", ["city_id"], name: "index_brb_invoices_on_city_id", using: :btree
   add_index "brb_invoices", ["code"], name: "index_brb_invoices_on_code", unique: true, using: :btree
   add_index "brb_invoices", ["state_id"], name: "index_brb_invoices_on_state_id", using: :btree
 
@@ -302,17 +301,17 @@ ActiveRecord::Schema.define(version: 20151229093540) do
     t.integer  "cadastre_id"
     t.integer  "cadastre_mirror_id"
     t.integer  "unit_id"
-    t.integer  "dominal_chair"
-    t.integer  "type_receiving"
-    t.integer  "type_occurence"
-    t.text     "observation"
+    t.string   "dominial_chain"
+    t.integer  "type_occurrence"
+    t.string   "observation"
+    t.integer  "type_receipt"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
-  add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadastre_addresses_on_cadastre_id", using: :btree
-  add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadastre_addresses_on_cadastre_mirror_id", using: :btree
-  add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadastre_addresses_on_unit_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
 
   create_table "candidate_cadastre_checklists", force: :cascade do |t|
     t.integer  "cadastre_id"
@@ -450,22 +449,6 @@ ActiveRecord::Schema.define(version: 20151229093540) do
   add_index "candidate_cadastres", ["special_condition_id"], name: "index_candidate_cadastres_on_special_condition_id", using: :btree
   add_index "candidate_cadastres", ["state_id"], name: "index_candidate_cadastres_on_state_id", using: :btree
   add_index "candidate_cadastres", ["work_city_id"], name: "index_candidate_cadastres_on_work_city_id", using: :btree
-
-  create_table "candidate_cadatre_addresses", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.integer  "cadastre_mirror_id"
-    t.integer  "unit_id"
-    t.string   "dominial_chain"
-    t.integer  "type_occurrence"
-    t.string   "observation"
-    t.integer  "type_receipt"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  add_index "candidate_cadatre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
-  add_index "candidate_cadatre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
-  add_index "candidate_cadatre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
 
   create_table "candidate_checklists", force: :cascade do |t|
     t.string   "name"
@@ -1222,6 +1205,19 @@ ActiveRecord::Schema.define(version: 20151229093540) do
 
   add_index "person_sectors", ["father_id"], name: "index_person_sectors_on_father_id", using: :btree
   add_index "person_sectors", ["responsible_id"], name: "index_person_sectors_on_responsible_id", using: :btree
+
+  create_table "person_staff_permissions", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.integer  "system_permission_id"
+    t.integer  "system_id"
+    t.boolean  "status"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "person_staff_permissions", ["staff_id"], name: "index_person_staff_permissions_on_staff_id", using: :btree
+  add_index "person_staff_permissions", ["system_id"], name: "index_person_staff_permissions_on_system_id", using: :btree
+  add_index "person_staff_permissions", ["system_permission_id"], name: "index_person_staff_permissions_on_system_permission_id", using: :btree
 
   create_table "person_staffs", force: :cascade do |t|
     t.string   "name"

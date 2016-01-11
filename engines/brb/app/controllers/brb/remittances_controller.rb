@@ -4,7 +4,10 @@ module Brb
   class RemittancesController < ApplicationController
 
     def index
-      @remittances = Remittance.all.order('created_at DESC')
+      @remittance = Remittance.new
+      @remittance.generate
+
+      render layout: 'brb/invoice' 
     end
 
     def show
@@ -13,10 +16,6 @@ module Brb
     end
 
     def new
-      @remittance = Remittance.new
-      @remittance.generate
-
-      render layout: 'brb/invoice' 
     end
 
 
