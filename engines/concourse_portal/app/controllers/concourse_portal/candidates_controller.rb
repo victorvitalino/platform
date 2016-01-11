@@ -8,6 +8,7 @@ module ConcoursePortal
   class CandidatesController < ApplicationController
     before_action :set_project
     before_action :set_candidate, only: [:success, :bank_slip]
+
     def new
       if params[:subscribe_id].present?
         session[:subscribe_id] = params[:subscribe_id]
@@ -60,38 +61,27 @@ module ConcoursePortal
 
     def bank_slip
 
-        @guide    = Finance::TypeGuide.find(@candidate.subscribe.type_guide_id)
+      @categoy = Brb::Category.find(1)
 
+      @invoice = Invoice.new({
+        name: @candidate.name,
+        cpf: @candidate.cpf, 
+        cep: @candidate.cep,
+        address: @candidate.address,
+        city: @candidate.city,
+        due: (@candidate.subscribe.end - 3.days).strftime('%d/%m/%Y'),
+        category_id: @category.id,
+        observation: "Concursos Codhab"
+      })
 
-        @payment_guide  = Finance::PaymentGuide.new(
-            type_guide_id: @guide.id,
-            deadline: @candidate.subscribe.end - 5.days,
-            name: @candidate.name,
-            cpf: @candidate.cpf,
-            value: @guide.value,
-            observation: "#{@candidate.id} - #{@candidate.subscribe.project.title}",
-            model_guide: 1
-        )
-
-        if @payment_guide.save
-          @value = '%.2f' % @payment_guide.value
-
-          @barcode = CodhabBilling::Bills::BankSlip.new(
-              {
-                value: @value.to_s.gsub('.',''),
-                deadline: @payment_guide.deadline,
-                sequential: @payment_guide.id
-              }
-          )
-
-          @payment_guide.update(barcode: @barcode.barcode_without_format)
-        end
-
-        barcode = Barby::Code128.new(@barcode.barcode_without_format)
-        @bar_code = "#{@payment_guide.created_at.strftime('%Y%m%d')}_barcode_#{@payment_guide.cpf}#{@payment_guide.id}"
-        File.open("public/barcodes/#{@bar_code}.png", 'w'){|f| f.write barcode.to_png(xdim: 1,height: 50) }
-        
-        render layout: 'layouts/finance/show_payment', template: 'layouts/finance/templates/bankslip'
+      if @invoice.save
+        barcode = Barby::Code128.new(@invoice.barcode)
+        File.open("public/barcodes/#{barcode}.png", 'w') { |f| f.write barcode.to_png(xdim: 1,height: 50) }
+    
+        render layout: 'brb/invoice'
+      else
+        redirect_to action: :show
+      end
     end
     
     private
@@ -115,6 +105,7 @@ module ConcoursePortal
         redirect_to project_path(@project)
       end
     end
+
     def set_params
 
       dinamic_fields = @subscribe.fields.map { |field| field.label.to_sym } 

@@ -225,7 +225,7 @@
                     - unless attendance.attendance_status_id == 99
                       %tr
                         %td= (attendance.attendance_status.present?) ? attendance.attendance_status.name  : 'Informação não disponível'
-                        %td= (attendance.convocation.present?) ? attendance.convocation.name  : 'Informação não disponível'
+                        %td= (attendance.convocation.present?) ? attendance.convocation.description  : 'Informação não disponível'
                         %td= (attendance.observation.present?) ? attendance.observation : 'Informação não disponível'
                         %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
           %hr/
