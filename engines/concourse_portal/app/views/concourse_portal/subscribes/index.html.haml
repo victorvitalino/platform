@@ -10,7 +10,7 @@
             %ul.list-group
               %li.list-group-item
                 - if subscribe.fee
-                  %b= link_to "#{subscribe.title} - #{number_to_currency subscribe.type_guide.value}".html_safe, concourse_portal.new_project_candidate_path(project_id: @project, subscribe_id: subscribe)
+                  %b= link_to "#{subscribe.title} - #{number_to_currency subscribe.type_guide.default_value}".html_safe, concourse_portal.new_project_candidate_path(project_id: @project, subscribe_id: subscribe)
                 - else
                   = link_to subscribe.title, concourse_portal.new_project_candidate_path(project_id: @project, subscribe_id: subscribe)
     .col-md-1
