@@ -6,7 +6,7 @@
         = f.input :label, label: false, prompt: 'selecione...'
       .col-md-3
         = f.label :page, class: 'fg-label'
-        = f.association :page, as: :select, label: false, prompt: 'selecione...'
+        = f.association :page, collection: @project.pages, as: :select, label: false, prompt: 'selecione...'
     .row
       .col-md-4
         = f.label :url, class: 'fg-label'
