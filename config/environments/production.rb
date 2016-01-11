@@ -87,4 +87,14 @@ Rails.application.configure do
       :port     => 22
     }
   end
+
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+   :address              => "10.230.80.51",
+   :port                 => 25,
+   :authentication       => false,
+   :enable_starttls_auto => false
+  }
+  
 end
