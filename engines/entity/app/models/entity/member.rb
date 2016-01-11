@@ -12,5 +12,6 @@ module Entity
     validates :cpf, uniqueness: { scope: :cadastre_id}
 
     mount_uploader :certificate_civil_criminal, Entity::DocumentUploader
+    mount_uploader :photo, Entity::DocumentUploader
   end
 end

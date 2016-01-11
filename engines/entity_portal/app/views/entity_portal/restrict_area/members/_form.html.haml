@@ -19,8 +19,13 @@
       = f.input :celphone, as: :string
     .col-md-2
       = f.association :member_job, include_blank: false
+  %hr/
+  .row
     .col-md-4
       = f.input :certificate_civil_criminal, as: :file
+    .col-md-4
+      = f.input :photo, as: :file
+  %hr/
   .row
     .col-md-12
-      = f.submit "Cadastrar Membro", class: 'btn btn-success btn-sm'
+      = f.submit "Cadastrar Membro", class: 'btn btn-success btn-sm', data: {disable_with: "Cadastrando aguarde..."}

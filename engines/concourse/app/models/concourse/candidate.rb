@@ -15,7 +15,7 @@ module Concourse
     validates :cpf, cpf: true, presence: true
     validates_uniqueness_of :cpf, :scope => :subscribe_id, on: :create
 
-    validates :password, presence: true, length: { minimum: 6, maximum: 8}
+    validates :password, presence: true, length: { minimum: 4, maximum: 28}
     validates :confirmation_password, presence: true, length: { minimum: 6, maximum: 8}
 
     validates :telephone, numericality: true

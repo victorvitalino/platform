@@ -982,6 +982,7 @@ ActiveRecord::Schema.define(version: 20160111125047) do
     t.string   "telephone_optional"
     t.string   "celphone"
     t.string   "certificate_civil_criminal"
+    t.string   "photo"
     t.boolean  "status",                     default: true
     t.integer  "member_job_id"
     t.datetime "created_at",                                null: false
