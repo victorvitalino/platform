@@ -23,7 +23,9 @@ module ConcoursePortal
     end
 
     def set_project
-      @project = Concourse::Project.friendly.find(params[:id]) rescue nil
+      if params[:project_id].present?
+        @project = Concourse::Project.friendly.find(params[:project_id]) rescue nil
+      end
     end
   end
 end
