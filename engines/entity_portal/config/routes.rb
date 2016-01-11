@@ -17,5 +17,6 @@ EntityPortal::Engine.routes.draw do
     resources :cadastres, path: 'cadastro'
     resources :documentations, path: 'documentacao'
     resources :members, path: 'membros'
+    resources :checklists, path: 'checklist'
   end
 end

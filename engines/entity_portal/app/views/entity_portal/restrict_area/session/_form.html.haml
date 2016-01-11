@@ -6,9 +6,10 @@
     .col-md-3
       = f.input :password_confirmation, input_html: { placeholder: "Confirme a senha"}
     .col-md-3
-      = f.input :current_password, input_html: { placeholder: "Digite a senha atual"}
+      = f.input :current_password, label: "Senha atual", input_html: { placeholder: "Digite a senha atual"}
   %hr/
   .row
     .col-md-12
       = f.button :submit, class: 'btn btn-success'
+      = link_to "voltar", restrict_area_cadastres_path, class: 'btn btn-default'
       

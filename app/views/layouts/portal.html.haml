@@ -29,7 +29,7 @@
   %body
     = render 'layouts/partials/portal/top_nav'
     = render 'layouts/partials/portal/header'
-    %div{class: (controller_path == "portal/home") ? "" : "container portal-container"}
+    %div{class: (controller_path == "portal/home") ? "" : "container portal-container box"}
       = yield
     = render 'layouts/partials/portal/footer'
     #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}

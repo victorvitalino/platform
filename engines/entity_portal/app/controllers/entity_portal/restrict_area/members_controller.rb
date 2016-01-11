@@ -38,7 +38,7 @@ module EntityPortal
 
       def set_params
         params.require(:member).permit(:name, :cpf, :rg, :rg_org, :born, :telephone, :telephone_optional,
-                                       :celphone, :member_job_id, :certificate_civil_criminal)
+                                       :celphone, :member_job_id, :certificate_civil_criminal, :photo)
       end
 
       def validate_session!

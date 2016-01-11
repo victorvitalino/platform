@@ -27,6 +27,7 @@ module Entity
     validates :telephone_optional, :celphone, numericality: true, allow_blank: true
     validates :password, :password_confirmation, presence: true, length: { minimum: 6, maximum: 16}, on: :create
     validate  :unique_password, on: :create
+  
     
     validate  :update_password, if: :change_password?
 
