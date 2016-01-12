@@ -1,19 +1,4 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Remessas BRB
-      %span.pull-right
-        = link_to "Gerar remessa", new_remittance_path, class: 'btn btn-success'
-      %small Listagem remessas geradas
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-      %thead
-        %tr
-          %th Data da Remessa
-          %th Ações
-      %tbody
-        - @remittances.each do |r|
-          %tr 
-            %td= r.created_at.strftime('%d/%m/%Y às %H:%M')
-            %td
-              = link_to "baixar", remittance_path(r)
+%pre
+  = @remittance.header_content
+  %br/
+  = @remittance.content

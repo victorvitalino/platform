@@ -15,8 +15,8 @@ module Concourse
     validates :cpf, cpf: true, presence: true
     validates_uniqueness_of :cpf, :scope => :subscribe_id, on: :create
 
-    validates :password, presence: true, length: { minimum: 6, maximum: 8}
-    validates :confirmation_password, presence: true, length: { minimum: 6, maximum: 8}
+    validates :password, presence: true, length: { minimum: 4, maximum: 28}
+    validates :confirmation_password, presence: true, length: { minimum: 4, maximum: 28}
 
     validates :telephone, numericality: true
     validates :celphone, numericality: true, allow_blank: true
@@ -29,14 +29,7 @@ module Concourse
 
 
     def paid?
-        if self.subscribe.type_guide.present?
-            type = self.subscribe.type_guide.id
-            cpf  = self.cpf
-
-            Finance::PaymentGuide.where(type_guide_id: type, cpf: cpf, status: true).present?
-        else
-            false
-        end
+        false
     end
 
     def protocol_number

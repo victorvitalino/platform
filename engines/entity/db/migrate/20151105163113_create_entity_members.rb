@@ -11,6 +11,7 @@ class CreateEntityMembers < ActiveRecord::Migration
       t.string :telephone_optional
       t.string :celphone
       t.string :certificate_civil_criminal
+      t.string :photo
       t.boolean :status, default: true
       t.references :member_job, index: true
 

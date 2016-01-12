@@ -18,7 +18,6 @@ module Entity
       .where('entity_situations.situation_status_id = ?', status)     
     }
 
-=begin 
     attr_accessor :password_confirmation, :current_password, :change_password
 
     validates :cnpj, cnpj: true, presence: true, uniqueness: true
@@ -28,6 +27,7 @@ module Entity
     validates :telephone_optional, :celphone, numericality: true, allow_blank: true
     validates :password, :password_confirmation, presence: true, length: { minimum: 6, maximum: 16}, on: :create
     validate  :unique_password, on: :create
+  
     
     validate  :update_password, if: :change_password?
 
@@ -56,6 +56,5 @@ module Entity
 
     def set_situation
     end
-=end
   end
 end

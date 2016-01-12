@@ -11,7 +11,7 @@ class CreateBrbInvoices < ActiveRecord::Migration
       t.string :name
       t.string :address
       t.references :state, index: true
-      t.references :city, index: true
+      t.string :city
       t.string :cep
       t.integer :type_person, default: 0
       t.integer :modality, default: 0

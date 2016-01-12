@@ -1,11 +1,11 @@
 = simple_form_for @document, url: restrict_area_documentations_path do |f|
   .row
     .col-md-4
-      = f.association :document_category, include_blank: false
+      = f.association :document_category, collection: Entity::DocumentCategory.where.not(id: @entity.documents.map(&:document_category_id)).order(:name), include_blank: false
     .col-md-4
       = f.input :observation, as: :string
     .col-md-2
       = f.input :archive_path, as: :file
   .row
     .col-md-12
-      = f.submit "Enviar documento", class: 'btn btn-success btn-sm'
+      = f.submit "Enviar documento", class: 'btn btn-success btn-sm', data: {disable_with: "Enviando arquivo...."}

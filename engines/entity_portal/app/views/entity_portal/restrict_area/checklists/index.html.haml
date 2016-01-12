@@ -1,0 +1,59 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/entity_portal/tabs'
+      %br/
+      %br/
+      .row
+        .col-md-12
+          %h4
+            %b Geral
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-striped.table-bordered
+            %thead
+              %tr
+                %th Item
+                %th Situação
+            %tbody
+              %tr
+                %td.col-md-10 Cadastro geral completo da entidade
+                %td.col-md-2
+                  - if @entity.present? 
+                    %span.label.label-success
+                      Enviado
+                  - else
+                    %span.label.label-default
+                      Aguardando
+              %tr
+                %td.col-md-10 Cadastro da diretoria da entidade
+                %td.col-md-2
+                  - if @entity.members.count > 0 
+                    %span.label.label-success
+                      Enviado
+                  - else
+                    %span.label.label-default
+                      Aguardando
+
+      .row
+        .col-md-12
+          %h4
+            %b Documentos
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-striped.table-bordered
+            %thead
+              %tr
+                %th Item
+                %th Situação
+            %tbody
+              - Entity::DocumentCategory.all.order(:name).each do |d|
+                %tr
+                  %td.col-md-10= d.name
+                  %td.col-md-2
+                    - if @entity.documents.map(&:document_category_id).include? d.id
+                      %span.label.label-success
+                        Enviado
+                    - else
+                      %span.label.label-default
+                        Aguardando

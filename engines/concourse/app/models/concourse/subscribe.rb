@@ -1,7 +1,7 @@
 module Concourse
   class Subscribe < ActiveRecord::Base
     belongs_to :project
-    belongs_to :type_guide, class_name: "Finance::TypeGuide"
+    belongs_to :type_guide, class_name: "Brb::Category"
 
     has_many :fields
     has_many :candidates

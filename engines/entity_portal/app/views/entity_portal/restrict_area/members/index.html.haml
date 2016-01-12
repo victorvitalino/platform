@@ -28,6 +28,7 @@
                 %th RG
                 %th Data de cadastro
                 %th Certidão Negativa Civil/Criminal
+                %th Foto
                 %th Ação
             %tbody
               - @entity.members.each do |member|
@@ -38,5 +39,6 @@
                   %td= "#{member.rg} - #{member.rg_org}"
                   %td= member.created_at.strftime('%d/%m/%Y às %H:%M') if member.created_at.present?
                   %td= link_to 'visualizar', member.certificate_civil_criminal.url, target: '_blank'
+                  %td= link_to 'visualizar', member.photo.url, target: '_blank'
                   %td
                     = link_to "excluir", restrict_area_member_path(member), method: :delete, data: { confirm: t(:confirm_delete)}

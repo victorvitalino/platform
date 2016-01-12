@@ -63,7 +63,7 @@ module Concourse
         params.require(:project).permit(:title, :step, :mini_description, :apresentation,
                                         :start, :end, :publish, :status, :image_header, :image_logo,
                                         :image_footer, :image_slider, :slider, :consultation,
-                                        :consultation_start, :consultation_end, :consultation_description)
+                                        :consultation_start,:slider_html, :consultation_end, :consultation_description)
       end
   end
 end

@@ -4,7 +4,7 @@ module Brb
   class Remittance < ActiveRecord::Base
 
     def generate
-      invoices = Invoice.where(remittance: false)
+      invoices = Invoice.all.order('id ASC')
       text   = Array.new
      
       header = " " * 39 
@@ -31,7 +31,7 @@ module Brb
         line[13..26]     = i.cpf.to_s.ljust(14)
         line[27..61]     = I18n.transliterate(i.name.mb_chars.upcase.ljust(35))  
         line[62..96]     = I18n.transliterate(i.address.mb_chars.ljust(35)).upcase  
-        line[97..111]    = I18n.transliterate(i.city.name.mb_chars.ljust(15)).upcase 
+        line[97..111]    = I18n.transliterate(i.city.mb_chars.ljust(15)).upcase 
         line[112..113]   = i.state.acronym.mb_chars.upcase.ljust(2)  
         line[114..121]   = i.cep.ljust(8)     
         line[122]       = "1"
@@ -44,7 +44,7 @@ module Brb
         line[149..150]  = "02"
         line[151..153]  = "070"
         line[154..157]  = "0208"
-        line[158..187]  = I18n.transliterate(i.city.name.mb_chars.ljust(30)).upcase  
+        line[158..187]  = I18n.transliterate(i.city.mb_chars.ljust(30)).upcase  
         line[188..195]  = i.due.strftime('%d%m%Y')  
         line[196..209]  = "#{'%014d' % value.to_s.gsub('.','').to_i}" 
         line[210..221]  = "#{i.our_number}".ljust(12, ' ') 
