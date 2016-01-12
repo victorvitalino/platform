@@ -13,6 +13,9 @@
                 %a{:href => "#{portal.gallery_path(gallery)}"}
                   .thumbnail-img
                     %img.img-responsive{:title =>"#{gallery.title}",:alt => "#{gallery.title}", :src => "#{gallery.thumbnail? ? gallery.thumbnail : 'http://placehold.it/700x400'}"}/
-                %h3
+                .gallery_title
                   %a{:href => "#{portal.gallery_path(gallery)}"}
                     = gallery.title
+                  %br
+                  %span
+                    = gallery.created_at.strftime('%d/%m/%Y')
