@@ -125,12 +125,12 @@ module Candidate
     def position(array)
 
         if array[0] == 'rii' || array[0] == 'rie'
-            sql = "program_id = ? AND situation_status_id = ? AND income BETWEEN ? AND ?"
+            sql = "program_id = ? AND situation_status_id = ? AND convocation_id > 1524 AND procedural_status_id IN(14, 72) AND income BETWEEN ? AND ?"
             @geral = Candidate::View::GeneralPontuation.where(sql, self.program_id, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
         else
             case array[0]
             when 'older'
-                sql = "extract(year from age(born)) >= 60 AND situation_status_id = ? AND income BETWEEN  ? AND ? "
+                sql = "extract(year from age(born)) >= 60 AND convocation_id > 1524 AND procedural_status_id IN(14, 72) AND situation_status_id = ? AND income BETWEEN  ? AND ? "
                 @geral = Candidate::View::GeneralPontuation.where(sql, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
             when 'special'
                 sql = "(special_condition_id in (2,3) or (select COUNT(*)
@@ -138,12 +138,14 @@ module Candidate
                         where special_condition_id in (2,3)
                         and cadastre_id = general_pontuations.id) > 0)
                         and situation_status_id = ?
+                        and convocation_id > 1524
+                        and procedural_status_id IN(14, 72) 
                         and income BETWEEN ? AND ?"
 
                 @geral = Candidate::View::GeneralPontuation.where(sql, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
 
             when 'vulnerable'
-                sql = "program_id = ? AND income BETWEEN ? AND ?"
+                sql = "program_id = ? AND convocation_id > 1524 AND procedural_status_id IN(14, 72) AND income BETWEEN ? AND ?"
                 @geral = Candidate::View::GeneralPontuation.where(sql, 4, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
             end
         end
