@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     models:
-      'person/sector': Setor
+      'person/sector': 'Setor'
     attributes:
       'person/sector':
         name: "Nome"

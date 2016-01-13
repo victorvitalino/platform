@@ -1,7 +1,15 @@
 pt-BR:
   engines:
+    concourse: "Concurso"
+    entity: "Entidade"
+    finance: "Financeiro"
+    firm: "Empresa"
+    person: "Gestão de Pessoas"
     regularization: "Regularização"
   modules:
+    concourse:
+      projects: "Projetos"
+      pages: "Páginas"
     regularization:
       agendas: "Agendas"
   actions:

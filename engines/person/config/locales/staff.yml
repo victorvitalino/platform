@@ -8,7 +8,7 @@ pt-BR:
               before: "Data inválida - menor de 18 anos"
               invalid_date: "data inválida"
     models:
-      'person/staff': Usuário
+      'person/staff': 'Usuário'
     attributes:
       'person/staff':
         name: "Nome"
