@@ -115,20 +115,3 @@
                   %td= document.document_category.name if document.document_category.present?
                   %td= document.created_at.strftime('%d/%m/%Y às %H:%M')
                   %td= link_to "Visualizar", document.archive_path.url, target: "_blank"
-
-      %hr/
-      .row
-        .col-md-12
-          %h3 
-            %b Observações 
-      .row
-        .col-md-12 
-          %table.table.table-condensed.table-bordered.table-hover.table-striped
-            %thead
-              %tr
-                %th Data
-                %th Observação
-            %tbody 
-              %tr
-                %td.col-md-2= @entity.cnpj
-                %td.col-md-6= @entity.name

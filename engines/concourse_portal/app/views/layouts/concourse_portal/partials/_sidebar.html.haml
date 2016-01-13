@@ -1,7 +1,7 @@
 .list-group
   = link_to "apresentação", concourse_portal.project_path(@project), class: "list-group-item #{(@current_nav == 'home') ? 'active' : ''}"
 
-  - @project.navs.each do |nav|
+  - @project.navs.order('concourse_navs.order ASC').each do |nav|
     - if nav.url?
       = link_to "#{nav.label}", nav.url, target: "#{nav.target}", class: "list-group-item" if nav.present?
     - if nav.página?

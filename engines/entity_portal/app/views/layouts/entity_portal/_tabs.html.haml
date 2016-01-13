@@ -5,8 +5,6 @@
       %br/
       %small
         = link_to "Finalizar Sessão", destroy_authorization_path, method: :delete
-        |
-        = link_to "Alterar Dados de Acesso", restrict_area_edit_session_path
 %br/
 %br/
 %br/
@@ -19,3 +17,5 @@
         %a{:href => "#{restrict_area_documentations_path}"} Documentação
       %li{:role => "doc", :class => "#{(@tab == 'members') ? 'active' : ''}"}
         %a{:href => "#{restrict_area_members_path}"} Diretoria
+      %li{:role => "checklist", :class => "#{(@tab == 'checklists') ? 'active' : ''}"}
+        %a{:href => "#{restrict_area_checklists_path}"} Checklist

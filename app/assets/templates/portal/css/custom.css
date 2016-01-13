@@ -1,6 +1,15 @@
 label {
     font-weight: bold !important;
 }
+.gallery_title{
+display: block;
+text-align: center;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+font-size: 14px !important;
+
+}
 
 .label-pink {
     background-color: #FF8AFB;
@@ -18,8 +27,8 @@ label {
 .panel-orange h1, small{ color: white !important; }
 
 .input-big form input > select{
-    height: 60px !important; 
-    font-size: 20px !important; 
+    height: 60px !important;
+    font-size: 20px !important;
 }
 
 .input-big label {
