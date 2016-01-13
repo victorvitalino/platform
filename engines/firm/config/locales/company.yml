@@ -13,4 +13,4 @@ pt-BR:
         address: "Endereço"
         adjuntc_address: "Complemento"
         telephone: "Telefone"
-        telephone_optiona: "Telefone Opcional"
+        telephone_optional: "Telefone Opcional"

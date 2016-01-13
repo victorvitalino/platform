@@ -2,7 +2,7 @@ module Person
   class Sector < ActiveRecord::Base
 
     audited
-    
+
     default_scope { order(:name) }
 
     scope :status, -> (status = true) { where(:status => status) }

@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     models:
-      'person/branch_line': Ramal
+      'person/branch_line': 'Ramal'
     attributes:
       'person/branch_line':
         description: "Descrição"
