@@ -22,14 +22,14 @@
                     .col-md-5
                       = f.input :cpf, input_html: { name:  'cpf', value: params[:cpf]}
                     .col-md-5{style: 'padding-top: 27px'}
-                      = f.submit 'Pesquisar', name: nil, class: 'btn btn-success', data: {  disable_with: "Pesquisando aguarde..."} 
+                      = f.submit 'Pesquisar', name: nil, class: 'btn btn-success', data: {  disable_with: "Pesquisando aguarde..."}
             .col-md-3
             .col-md-3
               %br/
               %br/
-              %h4 
-                %b Total da lista: #{@geral.count} 
-                  
+              %h4
+                %b Total da lista: #{@geral.count}
+
         .row
           .col-md-12
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
@@ -42,10 +42,10 @@
                   %th Renda
               %tbody
                 - @candidates.each do |candidate|
-                  %tr    
+                  %tr
                     %td.col-md-1= @geral.map(&:cpf).find_index(candidate.cpf) + 1
                     %td= link_to candidate.name, candidate_path(candidate.cpf)
-                    %td= candidate.cpf
+                    %td= cpf_mask(candidate.cpf)
                     %td= candidate.total
                     %td= number_to_currency candidate.income
         .row
