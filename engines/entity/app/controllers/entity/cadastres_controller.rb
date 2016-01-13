@@ -12,6 +12,10 @@ module Entity
       @category = DocumentCategory.new
     end
 
+    def show
+      @cadastre = Cadastre.find(params[:id])
+    end
+
     def create
       @category = DocumentCategory.new(set_params)
 

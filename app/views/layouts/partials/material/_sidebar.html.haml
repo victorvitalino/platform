@@ -89,6 +89,13 @@
               Habitação
             %ul{style: ('display:block;' if params[:module] == "habitation")}
               %li= link_to "Agendas & Agendamentos", habitation.agendas_path if policy(:Agenda, namespace: Habitation).index?
+        - if policy(:application, namespace: Habitation).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "entity")}
+            %a{:href => ""}
+              %i.md.md-recent-actors>
+              Entidades
+            %ul{style: ('display:block;' if params[:module] == "entity")}
+              %li= link_to "Cadastro", entity.cadastres_path if policy(:Agenda, namespace: Habitation).index?
         - if policy(:application, namespace: Regularization).index?
           %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
             %a{:href => ""}

@@ -89,9 +89,12 @@ module Candidate
 
       array << list_rii         unless list_rii.nil?
       array << list_rie         unless list_rie.nil?
-      array << list_olders      unless list_olders.nil?
-      array << list_vulnerables unless list_vulnerables.nil?
-      array << list_specials    unless list_specials.nil?
+      
+      if self.current_situation_id != 2 
+        array << list_olders      unless list_olders.nil?
+        array << list_vulnerables unless list_vulnerables.nil?
+        array << list_specials    unless list_specials.nil?
+      end
 
       array.each_with_index do |a, i|
         array[i] << position(array[i])
@@ -125,8 +128,13 @@ module Candidate
     def position(array)
 
         if array[0] == 'rii' || array[0] == 'rie'
-            sql = "program_id = ? AND situation_status_id = ? AND convocation_id > 1524 AND procedural_status_id IN(14, 72) AND income BETWEEN ? AND ?"
-            @geral = Candidate::View::GeneralPontuation.where(sql, self.program_id, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
+            if self.current_situation_id == 2
+              sql = "program_id = ? AND code = 20141201"
+              @geral = Candidate::View::GeneralPontuation.where(sql, self.program_id).map(&:cpf).find_index(self.cpf)
+            else
+              sql = "program_id = ? AND situation_status_id = ? AND convocation_id > 1524 AND procedural_status_id IN(14, 72) AND income BETWEEN ? AND ?"
+              @geral = Candidate::View::GeneralPontuation.where(sql, self.program_id, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)
+            end
         else
             case array[0]
             when 'older'

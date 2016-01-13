@@ -20,8 +20,8 @@
             %td.col-md-2= cadastre.cnpj
             %td.col-md-4= cadastre.name
             %td.col-md-2= cadastre.fantasy_name
-            %td.col-md-2= cadastre.created_at.strftime('%d/%m/%Y')
-            %td.col-md-2= cadastre.updated_at.strftime('%d/%m/%Y')
+            %td.col-md-2= cadastre.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td.col-md-2= cadastre.updated_at.strftime('%d/%m/%Y às %H:%M')
             %td
             %td.col-md-1
-              = link_to "visualizar"
+              = link_to "visualizar", cadastre_path(cadastre)
