@@ -1,0 +1,34 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/entity_portal/tabs'
+      .row
+        .col-md-12
+          %h3
+            %b Cadastrar imóveis 
+      %hr/
+      .row
+        .col-md-12
+          = render 'form'
+      %hr/
+      .row
+        .col-md-12
+          %h3
+            %b Imóveis
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-bordered.table-striped
+            %thead
+              %tr
+                %th Cidade
+                %th Endereço
+                %th Situação
+                %th Ação
+            %tbody
+              - @entity.realties.each do |r|
+                %tr
+                  %td.col-md-2= r.city.name if r.city.present?
+                  %td.col-md-7= r.complete_address
+                  %td.col-md-2= r.situation
+                  %td.col-md-1
+                    = link_to "excluir", restrict_area_realty_path(r), method: :delete, data: { confirm: t(:confirm_delete) }

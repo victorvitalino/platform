@@ -14,9 +14,12 @@ EntityPortal::Engine.routes.draw do
     get   'access_data', path: 'dados_acesso', to: 'session#edit',    as: 'edit_session'
     put   'access_data/:id', path: 'dados_acesso', to: 'session#update',  as: 'session'
 
+    get   'document_categories', to: 'infos#document_categories', as: 'document_categories'
+
     resources :cadastres, path: 'cadastro'
     resources :documentations, path: 'documentacao'
     resources :members, path: 'membros'
     resources :checklists, path: 'checklist'
+    resources :realties, path: 'bens'
   end
 end

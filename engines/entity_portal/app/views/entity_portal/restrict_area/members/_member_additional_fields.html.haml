@@ -1,0 +1,12 @@
+%fieldset
+  .row
+    .col-md-2
+      = f.input :cnpj
+    .col-md-4
+      = f.input :social_reason
+    .col-md-2
+      = f.association :member_job, include_blank: "selecione..."
+    .col-md-2
+      = f.input :start,label: "início",  as: :string, input_html: { class: 'date'}
+    .col-md-2
+      = f.input :end, label: "fim", as: :string, input_html: { class: 'date'}

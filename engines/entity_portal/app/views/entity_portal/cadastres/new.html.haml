@@ -1,15 +1,16 @@
 .row
   .col-md-12.box
     .panel.panel-default
-      .panel-body
+      .panel-heading
         .row
           .col-md-12
             %h1 
-              %b Recadastramento de Entidades
+              %b.font-orange Recadastramento de Entidades
               %br/
               %small
                 1º Passo, informe os dados gerais de sua entidade
-        %hr/
+      .panel-body
+        %br/
         .row
           .col-md-12
             = render 'form'

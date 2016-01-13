@@ -6,6 +6,12 @@ class CreateEntityMembers < ActiveRecord::Migration
       t.string :cpf
       t.string :rg 
       t.string :rg_org
+      t.string :address
+      t.references :city, index: true
+      t.string :cep
+      t.string :email
+      t.date :start
+      t.date :end
       t.date :born
       t.string :telephone
       t.string :telephone_optional

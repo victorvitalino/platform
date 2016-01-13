@@ -4,6 +4,8 @@ class CreateEntityDocumentCategories < ActiveRecord::Migration
       t.string :name 
       t.text :description
       t.integer :code
+      t.boolean :required, default: false
+      t.integer :document_type, default: 0
       t.boolean :status, default: true
       t.timestamps null: false
     end

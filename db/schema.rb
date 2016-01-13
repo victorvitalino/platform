@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111125047) do
+ActiveRecord::Schema.define(version: 20160113105329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -895,6 +895,19 @@ ActiveRecord::Schema.define(version: 20160111125047) do
   add_index "concourse_subscribes", ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree
   add_index "concourse_subscribes", ["type_guide_id"], name: "index_concourse_subscribes_on_type_guide_id", using: :btree
 
+  create_table "entity_activities", force: :cascade do |t|
+    t.string   "description"
+    t.date     "start"
+    t.date     "end"
+    t.string   "observation"
+    t.integer  "situation"
+    t.integer  "cadastre_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "entity_activities", ["cadastre_id"], name: "index_entity_activities_on_cadastre_id", using: :btree
+
   create_table "entity_cadastres", force: :cascade do |t|
     t.string   "cnpj"
     t.string   "name"
@@ -940,9 +953,11 @@ ActiveRecord::Schema.define(version: 20160111125047) do
     t.string   "name"
     t.text     "description"
     t.integer  "code"
-    t.boolean  "status",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "required",      default: false
+    t.integer  "document_type", default: 0
+    t.boolean  "status",        default: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "entity_document_categories", ["code"], name: "index_entity_document_categories_on_code", unique: true, using: :btree
@@ -961,6 +976,20 @@ ActiveRecord::Schema.define(version: 20160111125047) do
   add_index "entity_documents", ["cadastre_mirror_id"], name: "index_entity_documents_on_cadastre_mirror_id", using: :btree
   add_index "entity_documents", ["document_category_id"], name: "index_entity_documents_on_document_category_id", using: :btree
 
+  create_table "entity_member_additionals", force: :cascade do |t|
+    t.string   "cnpj"
+    t.string   "social_reason"
+    t.integer  "member_job_id"
+    t.date     "start"
+    t.date     "end"
+    t.integer  "member_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "entity_member_additionals", ["member_id"], name: "index_entity_member_additionals_on_member_id", using: :btree
+  add_index "entity_member_additionals", ["member_job_id"], name: "index_entity_member_additionals_on_member_job_id", using: :btree
+
   create_table "entity_member_jobs", force: :cascade do |t|
     t.string   "name"
     t.integer  "code"
@@ -977,6 +1006,12 @@ ActiveRecord::Schema.define(version: 20160111125047) do
     t.string   "cpf"
     t.string   "rg"
     t.string   "rg_org"
+    t.string   "address"
+    t.integer  "city_id"
+    t.string   "cep"
+    t.string   "email"
+    t.date     "start"
+    t.date     "end"
     t.date     "born"
     t.string   "telephone"
     t.string   "telephone_optional"
@@ -990,8 +1025,36 @@ ActiveRecord::Schema.define(version: 20160111125047) do
   end
 
   add_index "entity_members", ["cadastre_id"], name: "index_entity_members_on_cadastre_id", using: :btree
+  add_index "entity_members", ["city_id"], name: "index_entity_members_on_city_id", using: :btree
   add_index "entity_members", ["cpf", "cadastre_id"], name: "index_entity_members_on_cpf_and_cadastre_id", unique: true, using: :btree
   add_index "entity_members", ["member_job_id"], name: "index_entity_members_on_member_job_id", using: :btree
+
+  create_table "entity_messages", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.text     "content"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "entity_messages", ["cadastre_id"], name: "index_entity_messages_on_cadastre_id", using: :btree
+
+  create_table "entity_realties", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "cadastre_mirror_id"
+    t.string   "address"
+    t.integer  "city_id"
+    t.string   "complement"
+    t.string   "number"
+    t.string   "burgh"
+    t.string   "observation"
+    t.integer  "situation"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "entity_realties", ["cadastre_id"], name: "index_entity_realties_on_cadastre_id", using: :btree
+  add_index "entity_realties", ["cadastre_mirror_id"], name: "index_entity_realties_on_cadastre_mirror_id", using: :btree
+  add_index "entity_realties", ["city_id"], name: "index_entity_realties_on_city_id", using: :btree
 
   create_table "entity_situation_statuses", force: :cascade do |t|
     t.string   "name"

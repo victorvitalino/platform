@@ -1,0 +1,21 @@
+= simple_form_for @realty, url: restrict_area_realties_path do |f|
+  .row
+    .col-md-3
+      = f.association :city, collection: Address::City.federal_district, include_blank: "selecione a cidade..."
+    .col-md-6
+      = f.input :address, as: :string
+    .col-md-3
+      = f.input :complement, as: :string
+  .row
+    .col-md-3
+      = f.input :burgh, as: :string
+    .col-md-2
+      = f.input :number, as: :string
+    .col-md-4
+      = f.input :observation, as: :string
+    .col-md-3
+      = f.input :situation, label: "Tipo", as: :select, collection: Entity::Realty.situations.keys, include_blank: "selecione..."
+  .row
+    .col-md-3
+      = f.submit "Cadastrar imóvel", class: 'btn btn-warning btn-sm'
+

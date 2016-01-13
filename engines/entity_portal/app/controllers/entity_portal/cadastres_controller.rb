@@ -22,6 +22,7 @@ module EntityPortal
       @cadastre = Entity::Cadastre.new(set_params)
       
       if @cadastre.save
+        EntityPortal::CadastreMailer.success(@cadastre.email).deliver_now!
         session[:entity_id] = @cadastre.id
         redirect_to action: 'success'
       else

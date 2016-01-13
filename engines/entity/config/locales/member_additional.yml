@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'entity/member_additional':
+          attributes:
+            start:
+              invalid_date: "data inválida"
+            end:
+              invalid_date: "data inválida"
+    models:
+      'entity/member_additional': 'Informação adicional'
+    attributes:
+      'entity/member_additional': 
+        cnpj: "CNPJ"
+        social_reason: "Razão Social"
+        member_job: "Cargo"

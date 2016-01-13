@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      'entity/realty': 'Imóvel'
+    attributes:
+      'entity/realty': 
+        city: "Cidade"
+        address: "Endereço"
+        observation: "Observação"
+        complement: "Complemento"
+        burgh: "Bairro"
+        number: "Número"
+        situation: "Situação"
+

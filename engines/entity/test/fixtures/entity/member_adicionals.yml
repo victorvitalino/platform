@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cnpj: MyString
+  social_reason: MyString
+  member_job_id: 
+  start: 2016-01-13
+  end: 2016-01-13
+  member_id: 
+
+two:
+  cnpj: MyString
+  social_reason: MyString
+  member_job_id: 
+  start: 2016-01-13
+  end: 2016-01-13
+  member_id: 

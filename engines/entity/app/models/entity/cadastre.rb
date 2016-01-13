@@ -11,6 +11,9 @@ module Entity
     has_many :candidates
     has_many :candidate, through: :candidates
 
+    has_many :realties
+    has_many :activities
+
     scope :situation, -> (status) {
       Entity::Cadastre.joins(:situations)
       .where('entity_situations.situation_status_id = (SELECT MAX(entity_situations.situation_status_id)
@@ -55,6 +58,9 @@ module Entity
     end
 
     def set_situation
+      self.situations.create({
+        situation_status_id: 1
+      })
     end
   end
 end

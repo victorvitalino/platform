@@ -1,6 +1,14 @@
 label {
     font-weight: bold !important;
 }
+
+.panel-default small {
+    color: #757575 !important;
+
+}
+
+.font-orange {   color: #818285 !important; }
+
 .gallery_title{
 display: block;
 text-align: center;
@@ -1306,4 +1314,14 @@ th {
     20px;
     text-align: left;
     vertical-align: middle
+}
+
+
+.btn-warning {
+    background-color: #F4400A !important;
+    border-color: #B93710 !important;
+}
+
+.panel-heading {
+    background-color: white !important;
 }

@@ -1,10 +1,10 @@
 .row
   .col-md-12
     %h1
-      %b Área restrita - Entidades
+      %b.font-orange Área restrita - Entidades
       %br/
       %small
-        = link_to "Finalizar Sessão", destroy_authorization_path, method: :delete
+        = link_to "finalizar sessão", destroy_authorization_path, method: :delete
 %br/
 %br/
 %br/
@@ -15,7 +15,11 @@
         %a{:href => "#{restrict_area_cadastres_path}"} Dados Gerais
       %li{:role => "doc", :class => "#{(@tab == 'docs') ? 'active' : ''}"}
         %a{:href => "#{restrict_area_documentations_path}"} Documentação
+      %li{:role => "realties", :class => "#{(@tab == 'realties') ? 'active' : ''}"}
+        %a{:href => "#{restrict_area_realties_path}"} Imóveis & Bens
       %li{:role => "doc", :class => "#{(@tab == 'members') ? 'active' : ''}"}
         %a{:href => "#{restrict_area_members_path}"} Diretoria
       %li{:role => "checklist", :class => "#{(@tab == 'checklists') ? 'active' : ''}"}
         %a{:href => "#{restrict_area_checklists_path}"} Checklist
+    %br/
+    %br/

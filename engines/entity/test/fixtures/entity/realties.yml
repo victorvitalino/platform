@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cadastre_id: 
+  cadastre_mirror_id: 
+  address: MyString
+  city_id: 
+  complement: MyString
+  number: MyString
+  burgh: MyString
+  observation: MyString
+  situation: 1
+
+two:
+  cadastre_id: 
+  cadastre_mirror_id: 
+  address: MyString
+  city_id: 
+  complement: MyString
+  number: MyString
+  burgh: MyString
+  observation: MyString
+  situation: 1

@@ -1,14 +1,15 @@
 .row
   .col-md-12
     .panel.panel-default
-      .panel-body
+      .panel-heading
         .row
           .col-md-12
             %h1 
-              %b Recadastramento de Entidades
+              %b.font-orange Recadastramento de Entidades
               %br/
               %small
                 Parabéns, você cadastrou sua entidade! Agora siga para o próximo passo.
+      .panel-body
         %hr/
         .row
           .col-md-6.col-md-offset-3
@@ -16,14 +17,12 @@
               %b 2º Passo
               %br/
               %small
-                Acesse o perfil da sua entidade e para completar o cadastro.
-        %br/
-        %br/
+                Acesse o perfil da sua entidade para completar o cadastro.
         %br/
         .row
-          .col-md-6.col-md-offset-3
+          .col-md-6.col-md-offset-4
             %h2
-              %b= link_to "Acessar o Perfil da Minha Entidade", new_authorization_path
+              %b= link_to "Acessar o Perfil da Minha Entidade", new_authorization_path, class: 'btn btn-warning'
         %br/
         %br/
         %br/

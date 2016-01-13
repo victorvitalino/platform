@@ -19,6 +19,14 @@
       = f.input :celphone, as: :string
     .col-md-2
       = f.association :member_job, include_blank: false
+
+  %hr/
+  %h4 Associado a mais de uma entidade
+  .row
+    .col-md-12
+      = f.simple_fields_for :member_additionals do |builder|
+        = render 'member_additional_fields', f: builder
+      = link_to_add_fields "Adicionar entidade", f, :member_additionals
   %hr/
   .row
     .col-md-4
@@ -28,4 +36,4 @@
   %hr/
   .row
     .col-md-12
-      = f.submit "Cadastrar Membro", class: 'btn btn-success btn-sm', data: {disable_with: "Cadastrando aguarde..."}
+      = f.submit "Cadastrar Membro", class: 'btn btn-warning btn-sm', data: {disable_with: "Cadastrando aguarde..."}
