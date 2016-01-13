@@ -40,7 +40,7 @@ module Brb
 
     def set_params
       params.require(:invoice).permit(:category_id, :due, :cpf, :name, :address,
-                                      :city_id, :state_id, :cep, :message)
+                                      :city, :state_id, :cep, :message)
     end
   end
 end
