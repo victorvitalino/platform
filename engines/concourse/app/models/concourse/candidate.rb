@@ -12,7 +12,7 @@ module Concourse
     validate   :validate_properties
 
     validates_presence_of :name, :terms_use, :state, :city, :cep, :address, :burgh,  :telephone
-    validates :cep, numericality: true
+    validates :cep, numericality: true, length: { maximum: 8}
     validates :cpf, cpf: true, presence: true
     validates_uniqueness_of :cpf, :scope => :subscribe_id, on: :create
 
