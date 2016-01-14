@@ -35,21 +35,15 @@
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
               %thead
                 %tr
-                  %th Posição
                   %th Nome
                   %th CPF
-                  %th Pontuação
-                  %th Situação
+                  %th Convocação
               %tbody
-                - @candidates.each do |candidate|
+                - @candidates.order(:name).each do |candidate|
                   %tr
-                    %td.col-md-1= @geral.map(&:cpf).find_index(candidate.cpf) + 1
-                    %td= link_to candidate.name, candidate_path(candidate.cpf), data: {disable_with: "Carregando aguarde..."}
+                    %td= link_to candidate.name, cadastre_path(candidate.cpf), data: {disable_with: "Carregando aguarde..."}
                     %td= cpf_mask(candidate.cpf)
-                    %td= candidate.total
-                    %td
-                      %span.label.label-success
-                        = candidate.cadastre.current_situation_name  if candidate.cadastre.present?
+                    %td= candidate.description
         .row
           .col-md-6.col-md-offset-3
             .container

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114110053) do
+ActiveRecord::Schema.define(version: 20160114115957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -480,6 +480,7 @@ ActiveRecord::Schema.define(version: 20160114110053) do
     t.integer  "pontuation_end",     default: 0
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "program_id"
   end
 
   add_index "candidate_convocations", ["pontuation_code_id"], name: "index_candidate_convocations_on_pontuation_code_id", using: :btree
@@ -564,6 +565,7 @@ ActiveRecord::Schema.define(version: 20160114110053) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.text     "description"
+    t.integer  "program_id"
   end
 
   add_index "candidate_lists", ["slug"], name: "index_candidate_lists_on_slug", unique: true, using: :btree

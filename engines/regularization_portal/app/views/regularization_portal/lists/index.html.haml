@@ -1,0 +1,27 @@
+/ conteudo da pagina
+.container
+  .row
+    .col-md-12.box
+      .box_internal
+        .row
+          .col-md-12
+            .container
+              %h1 
+                %b Listas Regularização
+               
+        .row
+          .col-md-12
+            .container
+              
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Nome
+                  %th Link
+              %tbody
+                - @lists.each do |list|
+                  %tr
+                    %td= list.title
+                    %td= link_to "Acessar", list_path(list)

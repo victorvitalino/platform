@@ -59,7 +59,7 @@ module Candidate
 
     def set_params
       params.require(:list).permit(:title, :condition_sql, :list_type, :view_target, :publish, :cpf_filter,
-                                   :name_filter, :income_filter, :slug, :description)
+                                   :name_filter, :income_filter, :slug, :description, :program_id)
     end
 
     def set_list

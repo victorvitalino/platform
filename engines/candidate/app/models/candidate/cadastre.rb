@@ -20,6 +20,10 @@ module Candidate
     has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
     has_many :enterprise_cadastres, foreign_key: "cadastre_id", class_name: "Firm::EnterpriseCadastre"
     has_many :cadastre_address
+    has_many :cadastre_procedurals
+
+    scope :regularization, -> {where(program_id: 3)}
+    scope :habitation, -> {where(program_id: [1,2,4,5])}
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 
