@@ -29,8 +29,8 @@
           %tbody
             %tr
               %td.col-md-4= @candidate.status
-              %td.col-md-4= @candidate.paid? ? 'Boleto Pago' : 'Boleto não pago'
-              %th= link_to "imprimir boleto", '#'
+              %td.col-md-4= @candidate.invoice_paid ? 'Boleto Pago' : 'Boleto não pago'
+              %th= link_to "imprimir boleto", project_subscribes_bank_slip_path(@project)
     %h4
       %i Informações de contato
     %hr/

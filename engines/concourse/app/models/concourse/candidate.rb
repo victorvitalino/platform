@@ -28,8 +28,8 @@ module Concourse
     validate  :validate_current_password, on: :update
 
 
-    def paid?
-        false
+    def invoice_paid
+        Brb::Invoice.where(category_id: self.subscribe.type_guide_id, cpf: self.cpf, status: 1).present?
     end
 
     def protocol_number

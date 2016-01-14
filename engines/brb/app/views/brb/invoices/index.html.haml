@@ -3,8 +3,8 @@
     %h2
       Cobrança BRB
       %span.pull-right
-        = link_to 'Gerar remessa', remittances_path, class: 'btn btn-inverse' 
-        = link_to 'Subir retorno', new_invoice_path, class: 'btn btn-primary' 
+        = link_to 'Gerar remessa', remittances_path(date: Date.today.strftime("%Y-%m-%d")), class: 'btn btn-inverse' 
+        = link_to 'Subir retorno', new_return_path, class: 'btn btn-primary' 
         = link_to 'Nova Cobrança', new_invoice_path, class: 'btn btn-success' 
       %small Listagem boletos gerados
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}

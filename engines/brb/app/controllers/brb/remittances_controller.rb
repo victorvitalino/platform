@@ -5,7 +5,7 @@ module Brb
 
     def index
       @remittance = Remittance.new
-      @remittance.generate
+      @remittance.generate(params[:date])
 
       render layout: 'brb/invoice' 
     end
