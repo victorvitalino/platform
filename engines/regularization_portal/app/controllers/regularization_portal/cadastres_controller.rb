@@ -4,7 +4,7 @@ module RegularizationPortal
   class CadastresController < ApplicationController 
     
     def show
-      @candidate = Candidate::Cadastre.find_by_cpf(params[:id])
+      @candidate = ::Candidate::Cadastre.find_by_cpf(params[:id])
     end
 
     def find_candidate

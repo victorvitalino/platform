@@ -18,7 +18,7 @@ module RegularizationPortal
 
     def set_list
       begin
-        @list = Candidate::List.portal.friendly.find(params[:id]) 
+        @list = ::Candidate::List.portal.friendly.find(params[:id]) 
       rescue 
         redirect_to '/404'
       end

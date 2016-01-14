@@ -7,7 +7,7 @@ module HabitationPortal
     has_scope :cpf
 
     def index
-      @lists = Candidate::List.all.order(:title)
+      @lists = ::Candidate::List.all.order(:title)
     end
 
     def show
@@ -19,7 +19,7 @@ module HabitationPortal
 
     def set_list
       begin
-        @list = Candidate::List.portal.friendly.find(params[:id]) 
+        @list = ::Candidate::List.portal.friendly.find(params[:id]) 
       rescue 
         redirect_to '/404'
       end
