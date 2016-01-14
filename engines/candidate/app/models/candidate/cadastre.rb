@@ -36,6 +36,12 @@ module Candidate
         end
     end
 
+    def current_situation_status
+        if cadastre_situations.present?
+            cadastre_situations.order('id ASC').last.situation_status.status
+        end
+    end
+
     def current_situation_name
         if cadastre_situations.present? && cadastre_situations.order('id ASC').last.situation_status.present?
             cadastre_situations.order('id ASC').last.situation_status.name.upcase

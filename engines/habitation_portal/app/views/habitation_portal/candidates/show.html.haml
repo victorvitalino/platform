@@ -44,8 +44,13 @@
                     - @candidate.list.each do |list|
                       %tr
                         %td
-                          %span.label.label-success
-                            = @candidate.current_situation_name
+                          - if @candidate.current_situation_status == 'ok'
+                            %span.label.label-success
+                              = @candidate.current_situation_name
+                          - else
+                            %span.label.label-warning
+                              PENDENTE - #{@candidate.current_situation_name}
+
                         %td= program(@candidate.program_id)
                         %td= list[1][0]
                         %td= translate_list(list[0])

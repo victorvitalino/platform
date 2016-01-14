@@ -44,7 +44,7 @@
                 - @candidates.each do |candidate|
                   %tr
                     %td.col-md-1= @geral.map(&:cpf).find_index(candidate.cpf) + 1
-                    %td= link_to candidate.name, candidate_path(candidate.cpf)
+                    %td= link_to candidate.name, candidate_path(candidate.cpf), data: {disable_with: "Carregando aguarde..."}
                     %td= cpf_mask(candidate.cpf)
                     %td= candidate.total
                     %td= number_to_currency candidate.income
