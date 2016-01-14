@@ -2,29 +2,6 @@ body {
   color: #000000 !important;
 }
 
-#sidebar .main-menu {
-  background-color: #3F3F3F !important;
-}
-
-#sidebar .main-menu a {
-  color: white !important;
-}
-
-#sidebar .main-menu > li > a:hover {
-  background-color: #5A5A5A;
-}
-
-#sidebar .sidebar-inner .si-inner { 
-  background-color: #FF9800;
-}
-
-#sidebar .main-menu > li.sub-menu > ul  {
-  background-color: #5F5F5F !important;
-}
-
-#sidebar .main-menu > li.sub-menu > ul > li > a {
-  color: #FFFFFF !important;
-}
 
 .breadcrumb {
   background-color: white !important;
