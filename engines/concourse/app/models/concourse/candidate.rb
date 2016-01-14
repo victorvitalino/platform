@@ -12,6 +12,7 @@ module Concourse
     validate   :validate_properties
 
     validates_presence_of :name, :terms_use, :state, :city, :cep, :address, :burgh,  :telephone
+    validates :cep, numericality: true
     validates :cpf, cpf: true, presence: true
     validates_uniqueness_of :cpf, :scope => :subscribe_id, on: :create
 
@@ -32,8 +33,8 @@ module Concourse
         Brb::Invoice.where(category_id: self.subscribe.type_guide_id, cpf: self.cpf, status: 1).present?
     end
 
-    def protocol_number
-        "#{self.id}#{self.created_at.strftime("%Y")}"
+    def protocol
+        "#{self.id}"
     end
     
     private

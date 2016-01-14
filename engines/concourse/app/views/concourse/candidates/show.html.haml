@@ -52,7 +52,7 @@
             %tr
               %td= @candidate.name.upcase
               %td= @candidate.cpf
-              %td= @candidate.born.strftime('%d/%m/%Y')
+              %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
               %td= @candidate.gender
     %br
     %br
