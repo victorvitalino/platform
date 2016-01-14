@@ -18,8 +18,8 @@
         - @cadastres.each do |cadastre|
           %tr
             %td.col-md-2= cadastre.cnpj
-            %td.col-md-4= cadastre.name
-            %td.col-md-2= cadastre.fantasy_name
+            %td.col-md-4= cadastre.name.upcase
+            %td.col-md-2= cadastre.fantasy_name.upcase
             %td.col-md-2= cadastre.created_at.strftime('%d/%m/%Y às %H:%M')
             %td.col-md-2= cadastre.updated_at.strftime('%d/%m/%Y às %H:%M')
             %td
