@@ -18,4 +18,4 @@
                     = gallery.title
                   %br
                   %span
-                    = gallery.created_at.strftime('%d/%m/%Y')
+                    = gallery.date.present? ? gallery.date.strftime('%d/%m/%Y') : gallery.created_at.strftime('%d/%m/%Y')
