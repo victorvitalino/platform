@@ -3,8 +3,8 @@ require 'csv'
 namespace :csv do
   desc "migração csv"
 
-  task :entidade => :environment do 
-    
+  task :entidade => :environment do
+
     Entity::DocumentCategory.create([
     { name: "Comprovante de inscrição e de situação cadastral CNPJ", document_type: 0, required: true, code: 1, status: true},
     { name: "Estatuto ou contrato social registrado", document_type: 0, required: true, code: 2, status: true},
@@ -23,8 +23,8 @@ namespace :csv do
 
   end
 
-  task :entidade2 => :environment do 
-    
+  task :entidade2 => :environment do
+
     Entity::DocumentCategory.create([
     { name: "Experiência em processos de autogestão ou gestão habitacional, mensurada por empreendimentos habitacionais", document_type: 1, required: true, code: 11, status: true},
     { name: "Experiência em processos de articulação de projetos habitacionais", document_type: 1, required: false, code: 12, status: true},
@@ -41,20 +41,13 @@ namespace :csv do
 
   task :treta => :environment do
     @index = 0
-    CSV.foreach("lib/files/pontuationrie.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/Statu_Final_demhab.csv", :col_sep => "#") do |row|
       @index += 1
 
-       @ref = Candidate::Pontuation.new({
+       @ref = Candidate::CadastreSituation.new({
           cadastre_id: row[0],
           cadastre_mirror_id: row[0],
-          code: row[7],
-          bsb: row[1],
-          dependent: row[2],
-          timelist: row[3],
-          special_condition: row[4],
-          income: row[5],
-          total: row[6],
-          program_id: 2
+          situation_status_id: row[1]
         })
 
         begin
