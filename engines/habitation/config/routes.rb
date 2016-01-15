@@ -6,4 +6,5 @@ Habitation::Engine.routes.draw do
     end
   end
 
+  resources :cadastres
 end

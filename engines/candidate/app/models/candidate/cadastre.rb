@@ -23,7 +23,7 @@ module Candidate
     has_many :cadastre_procedurals
 
     scope :regularization, -> {where(program_id: 3)}
-    scope :habitation, -> {where(program_id: [1,2,4,5])}
+    scope :habitation, -> {where(program_id: [1,2,4,5,6])}
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 
