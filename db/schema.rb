@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115133838) do
+ActiveRecord::Schema.define(version: 20160115174344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -660,6 +660,7 @@ ActiveRecord::Schema.define(version: 20160115133838) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.date     "date"
+    t.boolean  "private"
   end
 
   create_table "cms_nav_categories", force: :cascade do |t|
