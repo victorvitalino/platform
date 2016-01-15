@@ -301,17 +301,17 @@ ActiveRecord::Schema.define(version: 20160115133838) do
     t.integer  "cadastre_id"
     t.integer  "cadastre_mirror_id"
     t.integer  "unit_id"
-    t.string   "dominial_chain"
-    t.integer  "type_occurrence"
-    t.string   "observation"
-    t.integer  "type_receipt"
+    t.integer  "dominal_chair"
+    t.integer  "type_receiving"
+    t.integer  "type_occurence"
+    t.text     "observation"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
-  add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
-  add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
-  add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadastre_addresses_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadastre_addresses_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadastre_addresses_on_unit_id", using: :btree
 
   create_table "candidate_cadastre_checklists", force: :cascade do |t|
     t.integer  "cadastre_id"
@@ -376,6 +376,7 @@ ActiveRecord::Schema.define(version: 20160115133838) do
   add_index "candidate_cadastre_mirrors", ["cadastre_id"], name: "index_candidate_cadastre_mirrors_on_cadastre_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["city_id"], name: "index_candidate_cadastre_mirrors_on_city_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["civil_state_id"], name: "index_candidate_cadastre_mirrors_on_civil_state_id", using: :btree
+  add_index "candidate_cadastre_mirrors", ["cpf"], name: "index_candidate_cadastre_mirrors_on_cpf", unique: true, using: :btree
   add_index "candidate_cadastre_mirrors", ["program_id"], name: "index_candidate_cadastre_mirrors_on_program_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["special_condition_id"], name: "index_candidate_cadastre_mirrors_on_special_condition_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["state_id"], name: "index_candidate_cadastre_mirrors_on_state_id", using: :btree
@@ -461,6 +462,22 @@ ActiveRecord::Schema.define(version: 20160115133838) do
   add_index "candidate_cadastres", ["special_condition_id"], name: "index_candidate_cadastres_on_special_condition_id", using: :btree
   add_index "candidate_cadastres", ["state_id"], name: "index_candidate_cadastres_on_state_id", using: :btree
   add_index "candidate_cadastres", ["work_city_id"], name: "index_candidate_cadastres_on_work_city_id", using: :btree
+
+  create_table "candidate_cadatre_addresses", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "cadastre_mirror_id"
+    t.integer  "unit_id"
+    t.string   "dominial_chain"
+    t.integer  "type_occurrence"
+    t.string   "observation"
+    t.integer  "type_receipt"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "candidate_cadatre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
+  add_index "candidate_cadatre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadatre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
 
   create_table "candidate_checklists", force: :cascade do |t|
     t.string   "name"
@@ -947,6 +964,8 @@ ActiveRecord::Schema.define(version: 20160115133838) do
 
   add_index "entity_cadastres", ["city_id"], name: "index_entity_cadastres_on_city_id", using: :btree
   add_index "entity_cadastres", ["cnpj"], name: "index_entity_cadastres_on_cnpj", unique: true, using: :btree
+  add_index "entity_cadastres", ["email"], name: "index_entity_cadastres_on_email", unique: true, using: :btree
+  add_index "entity_cadastres", ["reset_token"], name: "index_entity_cadastres_on_reset_token", unique: true, using: :btree
 
   create_table "entity_candidates", force: :cascade do |t|
     t.integer  "candidate_id"
@@ -969,11 +988,9 @@ ActiveRecord::Schema.define(version: 20160115133838) do
     t.string   "name"
     t.text     "description"
     t.integer  "code"
-    t.boolean  "required",      default: false
-    t.integer  "document_type", default: 0
-    t.boolean  "status",        default: true
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "entity_document_categories", ["code"], name: "index_entity_document_categories_on_code", unique: true, using: :btree
@@ -1022,18 +1039,11 @@ ActiveRecord::Schema.define(version: 20160115133838) do
     t.string   "cpf"
     t.string   "rg"
     t.string   "rg_org"
-    t.string   "address"
-    t.integer  "city_id"
-    t.string   "cep"
-    t.string   "email"
-    t.date     "start"
-    t.date     "end"
     t.date     "born"
     t.string   "telephone"
     t.string   "telephone_optional"
     t.string   "celphone"
     t.string   "certificate_civil_criminal"
-    t.string   "photo"
     t.boolean  "status",                     default: true
     t.integer  "member_job_id"
     t.datetime "created_at",                                null: false
@@ -1041,7 +1051,6 @@ ActiveRecord::Schema.define(version: 20160115133838) do
   end
 
   add_index "entity_members", ["cadastre_id"], name: "index_entity_members_on_cadastre_id", using: :btree
-  add_index "entity_members", ["city_id"], name: "index_entity_members_on_city_id", using: :btree
   add_index "entity_members", ["cpf", "cadastre_id"], name: "index_entity_members_on_cpf_and_cadastre_id", unique: true, using: :btree
   add_index "entity_members", ["member_job_id"], name: "index_entity_members_on_member_job_id", using: :btree
 
@@ -1096,6 +1105,35 @@ ActiveRecord::Schema.define(version: 20160115133838) do
   add_index "entity_situations", ["cadastre_mirror_id"], name: "index_entity_situations_on_cadastre_mirror_id", using: :btree
   add_index "entity_situations", ["situation_status_id"], name: "index_entity_situations_on_situation_status_id", using: :btree
   add_index "entity_situations", ["staff_id"], name: "index_entity_situations_on_staff_id", using: :btree
+
+  create_table "finance_payment_guides", force: :cascade do |t|
+    t.integer  "type_guide_id"
+    t.float    "value"
+    t.date     "deadline"
+    t.date     "paid"
+    t.date     "credited"
+    t.float    "value_paid"
+    t.string   "barcode"
+    t.string   "our_number"
+    t.string   "observation"
+    t.string   "name"
+    t.string   "cpf"
+    t.boolean  "status",        default: false
+    t.integer  "model_guide",   default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "finance_payment_guides", ["type_guide_id"], name: "index_finance_payment_guides_on_type_guide_id", using: :btree
+
+  create_table "finance_type_guides", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "publish",    default: true
+    t.float    "value"
+    t.string   "code"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "firm_companies", force: :cascade do |t|
     t.string   "name"
