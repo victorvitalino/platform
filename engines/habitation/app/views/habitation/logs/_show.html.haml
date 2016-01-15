@@ -1,0 +1,9 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Histórico de Atualização
+.modal-body
+  .row
+    = @cadastre_new
+  .row
+    = @cadastre_old

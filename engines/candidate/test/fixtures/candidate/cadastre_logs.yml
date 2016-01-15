@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  staff_id: 
+  cadastre_id: 
+  cadastre_old: MyText
+
+two:
+  staff_id: 
+  cadastre_id: 
+  cadastre_old: MyText

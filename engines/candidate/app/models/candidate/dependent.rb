@@ -4,7 +4,10 @@ module Candidate
     belongs_to :civil_state
     belongs_to :kinship
     belongs_to :special_condition
+    belongs_to :rg_uf, class_name: "Address::State"
 
+    enum gender: ['N/D', 'masculino', 'feminino']
+    
     validates :name, :cpf, :rg, :rg_org, :born, :gender, :place_birth,
               :civil_state, :income, :kinship, :special_condition, presence: true
     
