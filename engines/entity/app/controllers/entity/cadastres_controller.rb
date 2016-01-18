@@ -2,7 +2,7 @@ require_dependency 'entity/application_controller'
 
 module Entity
   class CadastresController < ApplicationController
-    before_action :set_document_category, only: [:edit, :show, :update, :destroy]
+    before_action :set_document_category, only: [:edit, :update, :destroy]
     
     def index
       @cadastres = Cadastre.all.order('created_at DESC')
