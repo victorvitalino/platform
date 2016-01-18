@@ -8,5 +8,5 @@ Portal::Engine.routes.draw do
 	get 'noticias', to: 'noticias#index'
 	get 'galerias', to: 'galleries#index'
 
-	get 'galleries_private', to: 'galleries#galleries_private'
+	get 'galerias_privadas', to: 'galleries#galleries_private'
 end
