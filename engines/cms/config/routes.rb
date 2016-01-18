@@ -11,4 +11,5 @@ Cms::Engine.routes.draw do
   resources :videos
   get 'navsort', to: 'navs#sortable'
   post 'sortable', to: 'navs#sortable', as: 'sortable'
+
 end

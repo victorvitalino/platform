@@ -10,5 +10,8 @@ module Portal
       @gallery = Cms::Gallery.find(params[:id])
     end
 
+    def galleries_private
+      @galleries = Cms::Gallery.where(status:true).order(created_at: :desc)
+    end
   end
 end

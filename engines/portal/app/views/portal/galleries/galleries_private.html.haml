@@ -9,7 +9,7 @@
                 Galeria de Fotos
             %hr
             - @galleries.each do |gallery|
-              - if (gallery.private==false)
+              - if (gallery.private==true)
                 .col-md-4.portfolio-item
                   %a{:href => "#{portal.gallery_path(gallery)}"}
                     .thumbnail-img
