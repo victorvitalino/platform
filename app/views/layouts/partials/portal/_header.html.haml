@@ -90,6 +90,12 @@
                   %li.link_submenu
                     = link_to_nav l
             %li.menu-insider-li
+              %span.submenu_title Empresas
+              %ul
+                - link_each('Empresas - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
               %span.submenu_title Pregões
               %ul
                 - link_each('Pregoes - Editais') do |l|
@@ -99,12 +105,6 @@
               %span.submenu_title Convite
               %ul
                 - link_each('Convite - Editais') do |l|
-                  %li.link_submenu
-                    = link_to_nav l
-            %li.menu-insider-li
-              %span.submenu_title Empresas
-              %ul
-                - link_each('Empresas - Editais') do |l|
                   %li.link_submenu
                     = link_to_nav l
         %li.dropdown.item_menu.concursos
