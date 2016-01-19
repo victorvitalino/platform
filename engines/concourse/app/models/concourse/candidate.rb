@@ -22,7 +22,8 @@ module Concourse
     validates :telephone, numericality: true
     validates :celphone, numericality: true, allow_blank: true
     validates :email, email: true, presence: true
-    validates :cnpj, cnpj: true, presence: true, if: :juridical_person?
+    validates :cnpj, cnpj: true, presence: true
+    validates :fantasy_name, :social_reason, presence: true
     validates :current_password, presence: true, on: :update
    
     validate  :compare_password
@@ -43,10 +44,6 @@ module Concourse
       subscribe.fields.each do |field|
         errors.add :"#{field.label}", "não pode ficar em branco" if field.required && self.properties[field.label].blank?
       end
-    end
-
-    def juridical_person?
-      self.fantasy_name.present?
     end
 
     def compare_password
