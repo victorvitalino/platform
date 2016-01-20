@@ -26,7 +26,7 @@ module Concourse
     validates :fantasy_name, :social_reason, presence: true
    
     validate  :compare_password
-    validate  :validate_current_password, if: :token_present?
+    validate  :validate_current_password, on: :update, if: :token_present?
 
 
     def invoice_paid
