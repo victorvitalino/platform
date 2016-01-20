@@ -22,6 +22,7 @@
             %thead
               %tr
                 %th Número de inscrição 
+                %th Concurso
                 %th Data de inscrição
                 %th Ações
             %tbody
@@ -29,8 +30,9 @@
                 - @subscribes.each_with_index do |subscribe, index|
                   %tr
                     %td= subscribe.id
+                    %td= subscribe.subscribe.project.title if subscribe.subscribe.present? && subscribe.subscribe.project.present?
                     %td= subscribe.created_at.strftime("%d/%m/%Y às %H:%M")
-                    %td= link_to "Resetar minha senha"
+                    %td= link_to "Resetar minha senha", project_remember_password_path(@project, subscribe_id: subscribe.id)
               - else
                 %tr
                   %td{:colspan => '4'}

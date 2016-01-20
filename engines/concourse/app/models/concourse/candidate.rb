@@ -3,7 +3,7 @@ module Concourse
     belongs_to :state, class_name: "Address::State"
     belongs_to :subscribe
     
-    attr_accessor :confirmation_password, :current_password
+    attr_accessor :confirmation_password, :current_password, :token
     
     enum gender: [:masculino, :feminino]
     enum status: [:processando, :homologado, :indeferido]
@@ -24,10 +24,9 @@ module Concourse
     validates :email, email: true, presence: true
     validates :cnpj, cnpj: true, presence: true
     validates :fantasy_name, :social_reason, presence: true
-    validates :current_password, presence: true, on: :update
    
     validate  :compare_password
-    validate  :validate_current_password, on: :update
+    validate  :validate_current_password, if: :token_present?
 
 
     def invoice_paid
@@ -39,6 +38,10 @@ module Concourse
     end
     
     private
+
+    def token_present?
+        !self.token.present?
+    end
 
     def validate_properties
       subscribe.fields.each do |field|
