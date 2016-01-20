@@ -156,7 +156,7 @@
                                 / content
                                 %tr
                                   %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #666666; text-align:center; line-height: 30px;"}
-                                    Seu  formulário  de  inscrição  e  sua  documentação  para  participação  no  Concurso  Público Nacional  de  Projetos  de  Arquitetura  e  Complementares  para  Centros  de  Ensino  Infantil (CEI) no Empreendimento Parque do Riacho, na Região Administrativa do Riacho Fundo II ­  5a etapa – RA XXI foram recebidos, conforme espelho abaixo:
+                                    Seu  formulário  de  inscrição  e  sua  documentação  para  participação  no concurso #{@project.title} foram recebidos com sucesso. Para acompanhar sua inscrição, baixar o boleto e/ou visualizar espelho da sua inscrição, clique no link abaixo.
                                 / End of content
                         / Spacing
                         %tr
@@ -195,19 +195,9 @@
                           %td
                             %table.devicewidthinner{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                               %tbody
-                                / Title
-                                %tr
-                                  %td{"st-title" => "fulltext-title", :style => "font-family: Helvetica, arial, sans-serif; font-size: 30px; color: #333333; text-align:center; line-height: 30px;"}
-                                    Acompanhar sua inscrição
-                                / End of Title
-                                / spacing
-                                %tr
-                                  %td{:height => "20", :style => "font-size:1px; line-height:1px; mso-line-height-rule: exactly;", :width => "100%"}  
-                                / End of spacing
-                                / content
                                 %tr
                                   %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #666666; text-align:center; line-height: 30px;"}
-                                    LINK
+                                    = link_to "Acompanhar minha inscrição", project_subscribes_url(@project)
                                 / End of content
                         / Spacing
                         %tr
