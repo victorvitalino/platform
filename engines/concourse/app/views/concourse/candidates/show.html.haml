@@ -105,19 +105,7 @@
               %td.col-md-1= @candidate.fantasy_name.upcase
               %td.col-md-3= @candidate.cnpj
         %br/
-        %table.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th Estado
-              %th Cidade
-              %th Endereço
-              %th CEP
-          %tbody
-            %tr
-              %td.col-md-2= @candidate.state.name if @candidate.state.present?
-              %td.col-md-3= @candidate.city
-              %td.col-md-3= @candidate.address
-              %td.col-md-3= @candidate.cep
+ 
     %br
     %br
     .row
