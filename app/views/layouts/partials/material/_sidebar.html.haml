@@ -99,7 +99,7 @@
               Entidades
             %ul{style: ('display:block;' if params[:module] == "entity")}
               %li= link_to "Cadastro", entity.cadastres_path 
-        - if policy(:application, namespace: Regularization).index?
+        - if policy(:application, namespace: Regularization).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
             %a{:href => ""}
               %i.md.md-business>

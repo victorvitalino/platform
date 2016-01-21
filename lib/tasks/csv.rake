@@ -9,7 +9,7 @@ namespace :csv do
     CSV.foreach("lib/files/recanto.csv", :col_sep => "#") do |row|
       @index += 1
 
-       @ref = Schedule::DataReference.new({
+       @ref = Address::RegistryUnit.new({
           name: row[0],
           cpf: row[1].to_s.gsub('.','').gsub('-',''),
           code: 'cadunico1'
