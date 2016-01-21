@@ -5,6 +5,10 @@ module ConcoursePortal
     before_action :set_project
     layout 'layouts/concourse_portal/application'
 
+    def index
+      redirect_to action: 'new'
+    end
+
     def new
       @consult = @project.consults.new
       @current_nav = 'new_consult'
