@@ -2,21 +2,21 @@
   .col-md-12
     %h2.title_notice Últimas Notícias
   .row
-    / bloco de noticias
-    - post_each(3, 'DESC') do |p|
-      .col-sm-6.col-md-4
-        .thumbnail
-          .thumbnail-img
-            = image_tag p.thumb if p.thumb?
-          .caption.caption_notice
-            %a.link_caption
-              %b= link_to "#{(p.post_category.present?) ? p.post_category.title : ''}", post_path(p), class: 'council'
-            .link_caption_date
-              = p.date.strftime('%d/%m/%Y')
-          .link_caption_text
-            %h3
-              %b= link_to p.title, post_path(p)
-            %p
-              = p.resume.html_safe
-            %p
-              = link_to 'Leia Mais', post_path(p), class: 'btn btn-primary-mod'
+    .bxslide
+      - post_each(10, 'DESC') do |p|
+        .col-sm-6.col-md-4
+          .thumbnail
+            .thumbnail-img
+              = image_tag p.thumb if p.thumb?
+            .caption.caption_notice
+              %a.link_caption
+                %b= link_to "#{(p.post_category.present?) ? p.post_category.title : ''}", post_path(p), class: 'council'
+              .link_caption_date
+                = p.date.strftime('%d/%m/%Y')
+            .link_caption_text
+              %h3
+                %b= link_to p.title, post_path(p)
+              %p
+                = p.resume.html_safe
+              %p
+                = link_to 'Leia Mais', post_path(p), class: 'btn btn-primary-mod'

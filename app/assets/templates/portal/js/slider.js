@@ -19,6 +19,13 @@ $(document).ready(function () {
         }
     });
 
+    $('.bxslide').bxSlider({
+      slideWidth: 390,
+      minSlides: 1,
+      maxSlides: 3,
+      slideMargin: 0
+    });
+
     $('.bottomSlider .flexslider').flexslider({
         animation: "slide",
         useCSS: false,
