@@ -3,7 +3,7 @@ module Concourse
     belongs_to :state, class_name: "Address::State"
     belongs_to :subscribe
     
-    attr_accessor :confirmation_password, :current_password
+    attr_accessor :confirmation_password, :current_password, :token
     
     enum gender: [:masculino, :feminino]
     enum status: [:processando, :homologado, :indeferido]
@@ -22,11 +22,11 @@ module Concourse
     validates :telephone, numericality: true
     validates :celphone, numericality: true, allow_blank: true
     validates :email, email: true, presence: true
-    validates :cnpj, cnpj: true, presence: true, if: :juridical_person?
-    validates :current_password, presence: true, on: :update
+    validates :cnpj, cnpj: true, presence: true
+    validates :fantasy_name, :social_reason, presence: true
    
     validate  :compare_password
-    validate  :validate_current_password, on: :update
+    validate  :validate_current_password, on: :update, if: :token_present?
 
 
     def invoice_paid
@@ -39,14 +39,14 @@ module Concourse
     
     private
 
+    def token_present?
+        !self.token.present?
+    end
+
     def validate_properties
       subscribe.fields.each do |field|
         errors.add :"#{field.label}", "não pode ficar em branco" if field.required && self.properties[field.label].blank?
       end
-    end
-
-    def juridical_person?
-      self.fantasy_name.present?
     end
 
     def compare_password

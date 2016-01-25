@@ -26,11 +26,7 @@
               %td= nav.target
               %td= nav.publish ? 'publicado' : 'não publicado'
               %td.col-md-1
-                = link_to "", project_nav_change_order_path(next_nav_id: @project.navs.unscoped.order(:order).to_a[index + 1].id, project_id: @project, nav_id: nav), class: 'md-keyboard-arrow-down btn btn-warning' if index == 0 && @project.navs.unscoped.count > 1
-
-                = link_to "", project_nav_change_order_path(next_nav_id: @project.navs.unscoped.order(:order).to_a[index + 1].id, project_id: @project, nav_id: nav), class: 'md-keyboard-arrow-down btn btn-warning' if index + 1 < @project.navs.unscoped.count && index != 0
-
-                = link_to "", project_nav_change_order_path(next_nav_id: @project.navs.unscoped.order(:order).to_a[index - 1].id, project_id: @project, nav_id: nav) , class: 'md-keyboard-arrow-up btn btn-warning' if index > 0
+                = "#{nav.order} º"
               %td.col-md-2
                 = link_to "", edit_project_nav_path(project_id: @project, id: nav),class: 'md md-edit btn btn-primary'
                 = link_to "", project_nav_path(project_id: @project, id: nav), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) }

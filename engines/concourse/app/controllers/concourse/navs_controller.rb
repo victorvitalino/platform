@@ -79,7 +79,7 @@ module Concourse
 
       # Only allow a trusted parameter "white list" through.
       def nav_params
-        params.require(:nav).permit(:project_id, :label,:page_id, :url, :target, :action, :publish)
+        params.require(:nav).permit(:project_id, :label,:page_id, :url, :target, :action, :publish, :order)
       end
   end
 end

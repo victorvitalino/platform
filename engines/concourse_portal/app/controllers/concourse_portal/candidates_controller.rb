@@ -33,6 +33,7 @@ module ConcoursePortal
         end
       
         if @candidate.save
+          ConcoursePortal::SubscribeMailer.success(@candidate,@project).deliver_now!
           session[:candidate_id] = @candidate.id
           session[:project_id] = @project.id
           redirect_to project_subscribes_success_path(@project)
@@ -70,7 +71,7 @@ module ConcoursePortal
         address: @candidate.address,
         state_id: @candidate.state_id,
         city: @candidate.city,
-        due: (@candidate.subscribe.end - 3.days).strftime('%d/%m/%Y'),
+        due: (@candidate.subscribe.end + 1.days).strftime('%d/%m/%Y'),
         category_id: @category.id,
         message: "Concursos Codhab"
       })

@@ -4,7 +4,7 @@
       .col-md-6
         = f.label :label, class: 'fg-label'
         = f.input :label, label: false, prompt: 'selecione...'
-      .col-md-3
+      .col-md-4
         = f.label :page, class: 'fg-label'
         = f.association :page, collection: @project.pages, as: :select, label: false, prompt: 'selecione...'
     .row
@@ -17,6 +17,9 @@
       .col-md-2
         = f.label :action, class: 'fg-label'
         = f.input :action, as: :select, collection: Concourse::Nav.actions.keys.to_a, label: false, prompt: 'selecione...'
+      .col-md-2
+        = f.label :order, class: 'fg-label'
+        = f.input :order, label: false
     .row
       .col-md-12
         .toggle-switch{"data-ts-color" => "blue"}

@@ -99,7 +99,7 @@
               Entidades
             %ul{style: ('display:block;' if params[:module] == "entity")}
               %li= link_to "Cadastro", entity.cadastres_path 
-        - if policy(:application, namespace: Regularization).index?
+        - if policy(:application, namespace: Regularization).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "regularization")}
             %a{:href => ""}
               %i.md.md-business>
@@ -107,6 +107,13 @@
             %ul{style: ('display:block;' if params[:module] == "regularization")}
               %li= link_to "Agendas & Agendamentos", regularization.agendas_path
               %li= link_to "Atendimento", regularization.attendances_path
+              %hr/
+              %li= link_to "Assentar Candidato", "#"
+              %li= link_to "Alteração Cadastral", "#"
+              %hr/
+              %li= link_to "Pesquisar CPF", "#"
+              %li= link_to "Pesquisar Endereço", "#"
+              %hr/
     
         - if policy(:application, namespace: Firm).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "firm")}

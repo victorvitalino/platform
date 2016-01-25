@@ -1,17 +1,6 @@
 .list-group
-  = link_to "apresentação", concourse_portal.project_path(@project), class: "list-group-item #{(@current_nav == 'home') ? 'active' : ''}"
-
-  - @project.navs.order('concourse_navs.order ASC').each do |nav|
+  - Concourse::Nav.where(project_id: @project).order(:order).each do |nav|
     - if nav.url?
       = link_to "#{nav.label}", nav.url, target: "#{nav.target}", class: "list-group-item" if nav.present?
     - if nav.página?
       = link_to "#{nav.label}", concourse_portal.project_page_path(project_id: @project, id: nav.page), target: "#{nav.target}",class: "list-group-item #{(@page.present? && nav.page.present? && @page.id == nav.page.id) ? 'active' : ''}" if nav.page.present?
-.list-group
-  - if session[:candidate_id].present? && session[:project_id].present? && session[:project_id] == @project.id
-    %li.list-group-item= link_to "Minha Inscrição", concourse_portal.project_subscribes_success_path(@project) 
-    %li.list-group-item= link_to "Trocar minha senha", concourse_portal.project_subscribes_password_edit_path(@project) 
-    %li.list-group-item= link_to "Encerrar sessão", concourse_portal.project_subscribes_logout_path(@project) 
-  - else
-    = link_to "inscrições", concourse_portal.project_subscribes_path(@project), class: "list-group-item #{(@current_nav == 'new_subscribe') ? 'active' : ''}"
-  - if @project.consultation && @project.consultation_time?
-    = link_to "consultas", concourse_portal.new_project_consult_path(@project), class: "list-group-item #{(@current_nav == 'new_consult') ? 'active' : ''}" 

@@ -11,11 +11,5 @@
   %hr/
   .row
     .col-md-12
-      = f.label "Estou ciente e de acordo com todas as regras do Edital do respectivo concurso."
-    .col-md-2
-      = f.input :terms_use, label: false, as: :select, include_blank: false
-  %hr/
-  .row
-    .col-md-12
       = f.submit "Enviar Consulta", class: 'btn btn-success'
       = link_to "Voltar", project_path(@project), class: 'btn btn-default'
