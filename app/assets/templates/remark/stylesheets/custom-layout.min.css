@@ -18,6 +18,10 @@
 label {
   font-weight: bold !important;
 }
+
+.site-navbar-small .site-navbar .navbar-brand {
+    padding: 13px 20px !important;
+}
 /* Correções Boosty Gem */
 
 .app-documents .form-group .dropdown-toggle {

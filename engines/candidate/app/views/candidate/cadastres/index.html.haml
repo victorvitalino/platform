@@ -11,16 +11,17 @@
             .row
               .col-md-12
                 = f.submit "Pesquisar", name: nil, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button)}
-        %li
-          %hr/
-        %li.list-group-item
-          %a{:href => "#section-2"} Atualizar cadastro
-        %li.list-group-item
-          %a{:href => "#section-2"} Alterar CPF
-        %li.list-group-item
-          %a{:href => "#section-3"} Alterar situação
-        %li.list-group-item
-          %a{:href => "#section-3"} Alterar situação processual
+        - if @candidate.present? 
+          %li
+            %hr/
+          %li.list-group-item
+            %a{:href => "#{candidate.edit_cadastre_path(@candidate)}"} Atualizar cadastro
+          %li.list-group-item
+            %a{:href => "#section-2"} Alterar CPF
+          %li.list-group-item
+            %a{:href => "#section-3"} Alterar situação
+          %li.list-group-item
+            %a{:href => "#section-3"} Alterar situação processual
     .article-content
       %section
         %h2.bold Detalhamento

@@ -8,5 +8,9 @@ module Candidate
       @candidate = Cadastre.find_by_cpf(params[:cpf]) rescue nil
     end
 
+    def edit
+      @candidate = Cadastre.find(params[:id])
+    end
+
   end
 end

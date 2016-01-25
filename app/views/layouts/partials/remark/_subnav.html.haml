@@ -5,10 +5,19 @@
         %ul.site-menu
           %li.site-menu-category General
           %li.site-menu-item.has-sub
+            %a{"data-dropdown-toggle" => "false", :href => "#{dashboard.root_path}"}
+              %i.site-menu-icon.wb-order{"aria-hidden" => "true"}
+              %span.site-menu-title Mural
+              %span.site-menu-arrow
+
+              
+          %li.site-menu-item.has-sub
             %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}
               %i.site-menu-icon.wb-home{"aria-hidden" => "true"}
               %span.site-menu-title Habitação
               %span.site-menu-arrow
+
+
             %ul.site-menu-sub
               %li.site-menu-item.has-sub
                 %a{:href => "javascript:void(0)"}
@@ -495,3 +504,14 @@
                   %li.site-menu-item
                     %a.animsition-link{:href => "../../charts/chartjs.html"}
                       %span.site-menu-title Chart.js
+          
+          %li.site-menu-item.has-sub.pull-right
+            %a{"data-dropdown-toggle" => "false", :href => "#{helpdesk.new_ticket_path}", "data-remote" => true}
+              %i.site-menu-icon.wb-users{"aria-hidden" => "true"}
+              %span.site-menu-title Lista de ramais
+              %span.site-menu-arrow
+          %li.site-menu-item.has-sub.pull-right
+            %a{"data-dropdown-toggle" => "false", :href => "#{helpdesk.new_ticket_path}", "data-remote" => true}
+              %i.site-menu-icon.wb-help{"aria-hidden" => "true"}
+              %span.site-menu-title Abrir um chamado
+              %span.site-menu-arrow

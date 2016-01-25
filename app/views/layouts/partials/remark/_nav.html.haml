@@ -5,11 +5,16 @@
       %span.hamburger-bar
     %button.navbar-toggle.collapsed{"data-target" => "#site-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
       %i.icon.wb-more-horizontal{"aria-hidden" => "true"}
-    %a.navbar-brand.navbar-brand-center{:href => "../../index.html"}
-      %span.navbar-brand-text
-        %b Extranet
+    %a.navbar-brand.navbar-brand-center{:href => "/"}
+      %img{:alt => "...", :src => "/images/codhab_logo_white.png", width: 120}/
   .navbar-container.container-fluid
-    / Navbar Collapse
+    #site-navbar-search.collapse.navbar-search-overlap
+      %form{:role => "search"}
+        .form-group
+          .input-search
+            %i.input-search-icon.wb-search{"aria-hidden" => "true"}
+            %input.form-control{:name => "site-search", :placeholder => "Search...", :type => "text"}/
+            %button.input-search-close.icon.wb-close{"aria-label" => "Close", "data-target" => "#site-navbar-search", "data-toggle" => "collapse", :type => "button"}
     #site-navbar-collapse.collapse.navbar-collapse.navbar-collapse-toolbar
       %ul.nav.navbar-toolbar.navbar-right.navbar-toolbar-right
         %li.dropdown
@@ -87,15 +92,3 @@
                 %i.icon.wb-settings{"aria-hidden" => "true"}
               %a{:href => "javascript:void(0)", :role => "menuitem"}
                 All notifications
-
-      / End Navbar Toolbar Right
-    / End Navbar Collapse
-    / Site Navbar Seach
-    #site-navbar-search.collapse.navbar-search-overlap
-      %form{:role => "search"}
-        .form-group
-          .input-search
-            %i.input-search-icon.wb-search{"aria-hidden" => "true"}
-            %input.form-control{:name => "site-search", :placeholder => "Search...", :type => "text"}/
-            %button.input-search-close.icon.wb-close{"aria-label" => "Close", "data-target" => "#site-navbar-search", "data-toggle" => "collapse", :type => "button"}
-    / End Site Navbar Seach
