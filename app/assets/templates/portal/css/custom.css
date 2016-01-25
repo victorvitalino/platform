@@ -340,6 +340,9 @@ li {
 .topSlider .flex-caption.habitacao {
     background: rgba(29,130,16,0.9)
 }
+.topSlider .flex-caption.CODHAB {
+    background: rgba(255,203,8,0.9)
+}
 
 .topSlider .flex-caption.entidades {
     background: rgba(244,64,10,0.8)
