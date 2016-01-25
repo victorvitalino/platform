@@ -1,0 +1,33 @@
+.navbar-inverse {
+  background-color: #FFA518 !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.site-menubar {
+  z-index: 2 !important;
+}
+
+.table a {
+  text-decoration: none !important;
+}
+/* Correção de forms */
+
+label {
+  font-weight: bold !important;
+}
+/* Correções Boosty Gem */
+
+.app-documents .form-group .dropdown-toggle {
+  height: auto !important;
+  padding-left: 20px; 
+  border-color: #FFFFFF !important; 
+  border-width: 1px 0 1px 1px;
+  background-color: #F3F3F3 !important;
+}
+
+.wysihtml5-toolbar textarea {
+  min-height: 1000px !important;
+}

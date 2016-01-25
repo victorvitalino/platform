@@ -1,0 +1,79 @@
+/*
+*= require jquery-ui/autocomplete
+*= require bootsy 
+*= require remark/stylesheets/bootstrap.min
+*= require remark/stylesheets/bootstrap.extend.min
+*= require remark/stylesheets/site.min
+*= require remark/stylesheets/skin-tools.min
+*= require remark/stylesheets/web-icons.min
+*= require remark/stylesheets/brand-icons.min
+*= require remark/stylesheets/custom-layout.min
+*= require remark/stylesheets/document.min
+*= require remark/stylesheets/login.min
+*= require redactor-rails
+*= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+*/
+
+li a.btn {
+  font-weight: bold !important;
+}
+
+.redactor-editor,
+.redactor-box,
+.redactor-box textarea{z-index: 5!important;}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #dff0d8;
+  color: #4caf50;
+  font-weight: bold;
+}
+.label_order_service {
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  display: inline-block;
+}
+.input_date{
+    background-color: #FFF!important;
+}
+.custom-avatar{
+  font-size: 100px;
+  text-align: center;
+  color: #fff;
+}
+.profile-main-custom{
+  min-height: 800px!important;
+}
+
+table th {
+  font-weight: bold !important;
+}
+
+.ui-autocomplete {
+  z-index: 9999;
+}
+
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;
+  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;
+    a {
+      color: #000;
+      display: block;
+      padding: 3px;
+    }
+    a.ui-state-hover, a.ui-state-active {
+      background-color: #FFFCB2;
+    }
+  }
+}

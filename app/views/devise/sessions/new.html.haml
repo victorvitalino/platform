@@ -1,43 +1,22 @@
-%html.login-content
-  %head
-    = stylesheet_link_tag  'material', media: 'all'
 
-  %body.login-content
-    #l-login.lc-block.toggled
-      - flash.each do |key, value|
-        = content_tag(:div, value, :class => "alert alert-danger")
-      .codhab-logo
-        = image_tag('/images/codhab_footer.png')
+/[if lt IE 8]
+  <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+/ Page
+.page.animsition{"data-animsition-in" => "fade-in", "data-animsition-out" => "fade-out"}
+  .page-content
+    .page-brand-info
+      .brand
+        %img.brand-img{:alt => "...", :src => "../assets/images/logo@2x.png"}/
+    .page-login-main
+      .brand.visible-xs
+        %img.brand-img{:alt => "...", :src => "../assets/images/logo-blue@2x.png"}/
+        %h3.brand-text.font-size-40 Remark
+      %h3.font-size-24 Acesso Restrito
+      %p Extranet Codhab
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .input-group.m-b-20
-          %span.input-group-addon
-            %i.md.md-person
-          .fg-line
-            = f.input :username, required: false, label: false, autofocus: true , input_html: {placeholder: 'Credencial'}
-        .input-group.m-b-20
-          %span.input-group-addon
-            %i.md.md-lock
-          .fg-line
-            = f.input :password, required: false, label: false, autofocus: true , input_html: {placeholder: 'Senha'}
-        .clearfix
-        .checkbox
-          %label
-            = f.check_box :remember_me,  as: :boolean if devise_mapping.rememberable?
-            %i.input-helper
-            Lembrar-me
-            %br/
-        = f.button :button,  class: "btn btn-login btn-warning btn-float waves-effect waves-button waves-float" do
-          %i.md.md-arrow-forward
-    / Forgot Password
-    #l-forget-password.lc-block
-      %p.text-left Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.
-      .input-group.m-b-20
-        %span.input-group-addon
-          %i.md.md-email
-        .fg-line
-          %input.form-control{:placeholder => "Email Address", :type => "text"}
-      %a.btn.btn-login.btn-danger.btn-float.waves-effect.waves-button.waves-float{:href => ""}
-        %i.md.md-arrow-forward
-      %ul.login-navigation
-        %li.bgm-green{"data-block" => "#l-login"} Login
-        %li.bgm-red{"data-block" => "#l-register"} Register
+        = f.input :username, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua credencial'}
+        = f.input :password, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua senha'}
+        = f.submit 'Realizar acesso',  class: "btn btn-block btn-warning btn-float waves-effect waves-button waves-float" 
+      %footer.page-copyright
+        %p Companhia de Desenvolvimento Habitacional / CODHAB
+        %p #{Date.today.year}

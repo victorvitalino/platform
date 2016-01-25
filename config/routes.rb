@@ -14,11 +14,12 @@ end
 
 Rails.application.routes.draw do
 
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   mount RedactorRails::Engine => '/redactor_rails'
   devise_for :user_candidates
 
   constraints SubdomainConstraint do
-    devise_for :users, :path  => '', controllers: { registrations: 'registrations'}
+    devise_for :users, :path  => '', controllers: { sessions: 'sessions', registrations: 'registrations'}
 
     authenticate :user do
       mount Dashboard::Engine                => '/',               as: 'dashboard',        module: 'dashboard'

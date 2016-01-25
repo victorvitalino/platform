@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120163207) do
+ActiveRecord::Schema.define(version: 20160125164527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -214,6 +214,20 @@ ActiveRecord::Schema.define(version: 20160120163207) do
   add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
   add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
 
+  create_table "bootsy_image_galleries", force: :cascade do |t|
+    t.integer  "bootsy_resource_id"
+    t.string   "bootsy_resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bootsy_images", force: :cascade do |t|
+    t.string   "image_file"
+    t.integer  "image_gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "brb_categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status"
@@ -324,17 +338,21 @@ ActiveRecord::Schema.define(version: 20160120163207) do
   add_index "candidate_cadastre_checklists", ["attendance_id"], name: "index_candidate_cadastre_checklists_on_attendance_id", using: :btree
   add_index "candidate_cadastre_checklists", ["cadastre_id"], name: "index_candidate_cadastre_checklists_on_cadastre_id", using: :btree
 
-  create_table "candidate_cadastre_logs", force: :cascade do |t|
+  create_table "candidate_cadastre_events", force: :cascade do |t|
     t.integer  "staff_id"
     t.integer  "cadastre_id"
     t.text     "cadastre_old"
     t.text     "cadastre_new"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.text     "observation_staff"
+    t.text     "observation_system"
+    t.integer  "situation",          default: 0
+    t.boolean  "status",             default: true
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
-  add_index "candidate_cadastre_logs", ["cadastre_id"], name: "index_candidate_cadastre_logs_on_cadastre_id", using: :btree
-  add_index "candidate_cadastre_logs", ["staff_id"], name: "index_candidate_cadastre_logs_on_staff_id", using: :btree
+  add_index "candidate_cadastre_events", ["cadastre_id"], name: "index_candidate_cadastre_events_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_events", ["staff_id"], name: "index_candidate_cadastre_events_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_mirrors", force: :cascade do |t|
     t.string   "name"
@@ -1133,6 +1151,7 @@ ActiveRecord::Schema.define(version: 20160120163207) do
     t.boolean  "status"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "source_list"
   end
 
   add_index "firm_enterprise_cadastres", ["cadastre_id"], name: "index_firm_enterprise_cadastres_on_cadastre_id", using: :btree
@@ -1146,11 +1165,15 @@ ActiveRecord::Schema.define(version: 20160120163207) do
     t.string   "archive_file"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "user_company_id"
+    t.integer  "enterprise_id"
   end
 
   add_index "firm_enterprise_statuses", ["cadastre_id"], name: "index_firm_enterprise_statuses_on_cadastre_id", using: :btree
   add_index "firm_enterprise_statuses", ["enterprise_cadastre_id"], name: "index_firm_enterprise_statuses_on_enterprise_cadastre_id", using: :btree
+  add_index "firm_enterprise_statuses", ["enterprise_id"], name: "index_firm_enterprise_statuses_on_enterprise_id", using: :btree
   add_index "firm_enterprise_statuses", ["status_cadastre_id"], name: "index_firm_enterprise_statuses_on_status_cadastre_id", using: :btree
+  add_index "firm_enterprise_statuses", ["user_company_id"], name: "index_firm_enterprise_statuses_on_user_company_id", using: :btree
 
   create_table "firm_enterprises", force: :cascade do |t|
     t.string   "name"

@@ -1,7 +1,7 @@
+require_dependency 'dashboard/application_controller'
 module Dashboard
 	class HomeController < ApplicationController
-    layout 'layouts/material'
-		def index
+  	def index
 		end
 	end
 end

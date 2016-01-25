@@ -1,29 +1,31 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Postagens
-      = link_to 'Novo Post', new_post_path,  data: { no_turbolink: true }, class: 'btn btn-success pull-right' if policy(:post, namespace: Cms).create?
-      %small Listagem de posts
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-      %thead
-        %tr
-          %th #
-          %th Título
-          %th Categoria da Postagem
-          %th Publicado
-          %th Data
-          %th Ações
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4 
+          Lista de postagens
+          = link_to 'Nova postagem', new_post_path,  data: { no_turbolink: true }, class: 'btn btn-success btn-sm pull-right' if policy(:post, namespace: Cms).create?
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nº
+              %th Título
+              %th Categoria da Postagem
+              %th Publicado
+              %th Data
+              %th Ações
 
-      %tbody
-        - @posts.each_with_index do |post, i|
-          %tr
-            %td= i+1
-            %td= post.title
-            %td= post.post_category.title if post.post_category.present?
-            %td= status_helper (post.publish)
-            %td= post.date.strftime('%d-%m-%Y')
-            %td.col-md-2
-              = link_to '', post, title: 'Visualizar',  class: 'md md-now-wallpaper btn bgm-amber waves-effect waves-button waves-float' if policy(:post, namespace: Cms).index?
-              = link_to '', edit_post_path(post),title: 'Editar', class: 'md md-edit btn btn-primary' if policy(:post, namespace: Cms).update?
-              = link_to '', post,title: 'Remover', :method => :delete, class: 'md md-delete btn btn-danger', :data => { :confirm => 'Are you sure?' } if policy(:post, namespace: Cms).destroy?
+          %tbody
+            - @posts.order('id DESC').each_with_index do |post, i|
+              %tr
+                %td= post.id
+                %td= post.title
+                %td= post.post_category.title if post.post_category.present?
+                %td= status_helper (post.publish)
+                %td= post.date.strftime('%d/%m/%Y')
+                %td.col-md-1
+                  = link_to '', post, title: 'Visualizar',  class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs' if policy(:post, namespace: Cms).index?
+                  = link_to '', edit_post_path(post),title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:post, namespace: Cms).update?
+                  = link_to '', post,title: 'Remover', :method => :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => 'Are you sure?' } if policy(:post, namespace: Cms).destroy?

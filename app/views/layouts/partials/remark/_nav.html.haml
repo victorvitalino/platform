@@ -1,0 +1,101 @@
+%nav.site-navbar.navbar.navbar-default.navbar-fixed-top.navbar-mega.navbar-inverse{:role => "navigation"}
+  .navbar-header
+    %button.navbar-toggle.hamburger.hamburger-close.navbar-toggle-left.hided{"data-toggle" => "menubar", :type => "button"}
+      %span.sr-only Toggle navigation
+      %span.hamburger-bar
+    %button.navbar-toggle.collapsed{"data-target" => "#site-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+      %i.icon.wb-more-horizontal{"aria-hidden" => "true"}
+    %a.navbar-brand.navbar-brand-center{:href => "../../index.html"}
+      %span.navbar-brand-text
+        %b Extranet
+  .navbar-container.container-fluid
+    / Navbar Collapse
+    #site-navbar-collapse.collapse.navbar-collapse.navbar-collapse-toolbar
+      %ul.nav.navbar-toolbar.navbar-right.navbar-toolbar-right
+        %li.dropdown
+          %a.navbar-avatar.dropdown-toggle{"aria-expanded" => "false", "data-animation" => "scale-up", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %span.avatar.avatar-online
+              - if current_user.account.avatar?
+                %img{:alt => "...", :src => "#{current_user.account.avatar_url}"}/
+                %i
+              - else
+                %img{:alt => "...", :src => "/images/default-avatar.png"}/
+                %i
+            %b
+          %ul.dropdown-menu{:role => "menu", "data-no-turbolink" => true}
+            %li{:role => "presentation"}
+              %a{:href => "javascript:void(0)", :role => "menuitem"}
+                %i.icon.wb-user{"aria-hidden" => "true"}
+                Meu Perfil
+            %li{:role => "presentation"}
+              %a{:href => "javascript:void(0)", :role => "menuitem"}
+                %i.icon.wb-payment{"aria-hidden" => "true"}
+                Configurações
+            %li.divider{:role => "presentation"}
+            %li{:role => "presentation"}
+              %a{:href => "#{main_app.destroy_user_session_path}", :data => { 'method' => 'delete'}, :role => "menuitem"}
+                %i.icon.wb-power{"aria-hidden" => "true"}
+                Logout
+        %li.dropdown
+          %a{"aria-expanded" => "false", "data-animation" => "scale-up", "data-toggle" => "dropdown", :href => "javascript:void(0)", :role => "button", :title => "Notifications"}
+            %i.icon.wb-bell{"aria-hidden" => "true"}
+            %span.badge.badge-danger.up 5
+          %ul.dropdown-menu.dropdown-menu-right.dropdown-menu-media{:role => "menu"}
+            %li.dropdown-menu-header{:role => "presentation"}
+              %h5 NOTIFICATIONS
+              %span.label.label-round.label-danger New 5
+            %li.list-group{:role => "presentation"}
+              %div{"data-role" => "container"}
+                %div{"data-role" => "content"}
+                  %a.list-group-item{:href => "javascript:void(0)", :role => "menuitem"}
+                    .media
+                      .media-left.padding-right-10
+                        %i.icon.wb-order.bg-red-600.white.icon-circle{"aria-hidden" => "true"}
+                      .media-body
+                        %h6.media-heading A new order has been placed
+                        %time.media-meta{:datetime => "2015-06-12T20:50:48+08:00"} 5 hours ago
+                  %a.list-group-item{:href => "javascript:void(0)", :role => "menuitem"}
+                    .media
+                      .media-left.padding-right-10
+                        %i.icon.wb-user.bg-green-600.white.icon-circle{"aria-hidden" => "true"}
+                      .media-body
+                        %h6.media-heading Completed the task
+                        %time.media-meta{:datetime => "2015-06-11T18:29:20+08:00"} 2 days ago
+                  %a.list-group-item{:href => "javascript:void(0)", :role => "menuitem"}
+                    .media
+                      .media-left.padding-right-10
+                        %i.icon.wb-settings.bg-red-600.white.icon-circle{"aria-hidden" => "true"}
+                      .media-body
+                        %h6.media-heading Settings updated
+                        %time.media-meta{:datetime => "2015-06-11T14:05:00+08:00"} 2 days ago
+                  %a.list-group-item{:href => "javascript:void(0)", :role => "menuitem"}
+                    .media
+                      .media-left.padding-right-10
+                        %i.icon.wb-calendar.bg-blue-600.white.icon-circle{"aria-hidden" => "true"}
+                      .media-body
+                        %h6.media-heading Event started
+                        %time.media-meta{:datetime => "2015-06-10T13:50:18+08:00"} 3 days ago
+                  %a.list-group-item{:href => "javascript:void(0)", :role => "menuitem"}
+                    .media
+                      .media-left.padding-right-10
+                        %i.icon.wb-chat.bg-orange-600.white.icon-circle{"aria-hidden" => "true"}
+                      .media-body
+                        %h6.media-heading Message received
+                        %time.media-meta{:datetime => "2015-06-10T12:34:48+08:00"} 3 days ago
+            %li.dropdown-menu-footer{:role => "presentation"}
+              %a.dropdown-menu-footer-btn{:href => "javascript:void(0)", :role => "button"}
+                %i.icon.wb-settings{"aria-hidden" => "true"}
+              %a{:href => "javascript:void(0)", :role => "menuitem"}
+                All notifications
+
+      / End Navbar Toolbar Right
+    / End Navbar Collapse
+    / Site Navbar Seach
+    #site-navbar-search.collapse.navbar-search-overlap
+      %form{:role => "search"}
+        .form-group
+          .input-search
+            %i.input-search-icon.wb-search{"aria-hidden" => "true"}
+            %input.form-control{:name => "site-search", :placeholder => "Search...", :type => "text"}/
+            %button.input-search-close.icon.wb-close{"aria-label" => "Close", "data-target" => "#site-navbar-search", "data-toggle" => "collapse", :type => "button"}
+    / End Site Navbar Seach

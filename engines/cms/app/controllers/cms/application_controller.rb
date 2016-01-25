@@ -2,7 +2,7 @@ require_dependency 'application_controller'
 
 module Cms
   class ApplicationController < ApplicationController
-    layout 'layouts/material'
+    layout 'remark'
     helper ::ApplicationHelper
 
     include Pundit

@@ -6,14 +6,12 @@ namespace :csv do
 
   task :treta => :environment do
     @index = 0
-    CSV.foreach("lib/files/recanto.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/atualizar3.csv", :col_sep => "#") do |row|
       @index += 1
 
-       @ref = Address::RegistryUnit.new({
-          name: row[0],
-          cpf: row[1].to_s.gsub('.','').gsub('-',''),
-          code: 'cadunico1'
-        })
+        @ref = Candidate::Cadastre.find_by_cpf(row[0]) rescue nil
+
+        @ref.income = row[1] if @ref.present?
 
         begin
           @ref.save
