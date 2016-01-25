@@ -47,7 +47,7 @@
                   %br/
                   .row
                     - if @projects.opens.present?
-                      - @projects.opens.each_with_index do |project, index| 
+                      - @projects.opens.order(:id).each_with_index do |project, index| 
                         .col-md-4
                           .row
                             .col-md-5
@@ -60,6 +60,8 @@
                               %span
                                 %p
                                   %b Início - #{project.start.strftime('%d/%m/%Y')}
+                                %p
+                                  %b Fim - #{project.end.strftime('%d/%m/%Y')}
                               %h5
                                 %span.label.label-info
                                   = link_to project.step, concourse_portal.project_path(project)
