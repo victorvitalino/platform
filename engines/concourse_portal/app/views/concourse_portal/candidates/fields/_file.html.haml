@@ -1,5 +1,5 @@
 %div{:class => (c.errors.key?(:"#{field.label}")) ? 'has-error' : ''}
   = f.label "#{field.label}"
-  = f.input field.label.to_sym, as: :file, label: false
+  = f.input field.label.to_sym, as: :file, hint: 'máximo permitido 3 MB e formatos (JPG, PNG ou PDF)',label: false
   %span.help-block
     = c.errors.full_messages_for(:"#{field.label}")[0]
