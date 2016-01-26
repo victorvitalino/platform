@@ -90,6 +90,26 @@
     %br
     .row
       .col-md-12
+        %h4 Informações de Pessoa Jurídica
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Razão Social
+              %th Nome Fantasia
+              %th CNPJ
+          %tbody
+            %tr
+              %td.col-md-1= @candidate.social_reason.upcase
+              %td.col-md-1= @candidate.fantasy_name.upcase
+              %td.col-md-3= @candidate.cnpj
+        %br/
+ 
+    %br
+    %br
+    .row
+      .col-md-12
         %h4 Informações adicionais
     .row
       .col-md-12

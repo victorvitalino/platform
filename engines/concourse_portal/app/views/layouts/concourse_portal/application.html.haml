@@ -56,5 +56,8 @@
             .panel
               .panel-default
                 .panel-body
+                  - flash.each do |key, value|
+                    .alert{class: "alert-#{key}"}
+                      = value
                   = yield
     = render 'layouts/partials/portal/footer'

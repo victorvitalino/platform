@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-md-12.box
+      .box_internal
+        .post
+          .content_post
+            %h1
+              %b
+                Galeria de Fotos
+            %hr
+            - @galleries.each do |gallery|
+              - if (gallery.private==true)
+                .col-md-4.portfolio-item
+                  %a{:href => "#{portal.gallery_path(gallery)}"}
+                    .thumbnail-img
+                      %img.img-responsive{:title =>"#{gallery.title}",:alt => "#{gallery.title}", :src => "#{gallery.thumbnail? ? gallery.thumbnail : 'http://placehold.it/700x400'}"}/
+                  .gallery_title
+                    %a{:href => "#{portal.gallery_path(gallery)}"}
+                      = gallery.title
+                    %br
+                    %span
+                      = gallery.date.present? ? gallery.date.strftime('%d/%m/%Y') : gallery.created_at.strftime('%d/%m/%Y')

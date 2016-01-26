@@ -2,7 +2,9 @@ label {
     font-weight: bold !important;
 }
 
-
+.frexyslider .flex-viewport{
+  width:1170px!important;
+}
 .panel-default small {
     color: #757575 !important;
 
@@ -337,6 +339,9 @@ li {
 
 .topSlider .flex-caption.habitacao {
     background: rgba(29,130,16,0.9)
+}
+.topSlider .flex-caption.CODHAB {
+    background: rgba(255,203,8,0.9)
 }
 
 .topSlider .flex-caption.entidades {
@@ -712,7 +717,7 @@ p {
 
 .topSlider .custom-controls
 li {
-    width: 25%;
+    width: 16%;
     display: inline-block;
     float: left;
     overflow: hidden

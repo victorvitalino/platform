@@ -17,6 +17,21 @@
         = f.submit "Filtrar", name: nil, class: 'btn btn-primary'
   %hr/
   .row
+    %table#data-table-command.table.table-striped.table-vmiddle
+      %thead
+        %tr
+          %th Agendados
+          %th Cancelados 
+          %th Liberados para retorno
+          %th Finalizados sem retorno
+      %tbody
+        %tr
+          %td= @schedules.where(status: 0).count
+          %td= @schedules.where(status: 2).count
+          %td= @schedules.where(status: 1).count
+          %td= @schedules.where(status: 3).count
+  %hr/
+  .row
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
       %table#data-table-command.table.table-striped.table-vmiddle.datatable
         %thead
@@ -29,7 +44,7 @@
             %th Status
             %th Ações
         %tbody
-          - @schedules.each do |schedule|
+          - @schedules.order(:hour).each do |schedule|
             %tr
               %td= schedule.protocol
               %td= schedule.name.upcase

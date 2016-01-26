@@ -17,6 +17,7 @@
           %th Valor
           %th Emitido em
           %th Vencimento
+          %th Liquidação
           %th Status
           %th Remessa
           %th Ações
@@ -29,7 +30,8 @@
             %td= number_to_currency invoice.value
             %td= invoice.created_at.strftime('%d/%m/%Y às %H:%M')
             %td= invoice.due.strftime('%d/%m/%Y')
+            %td= invoice.payment.strftime('%d/%m/%Y') if invoice.payment.present?
             %td= invoice.status
             %td= invoice.remittance ? "enviado" : "não enviado"
-            %td.col-md-2
+            %td.col-md-1
               = link_to "emitir boleto", invoice_path(invoice), target: '_blank'

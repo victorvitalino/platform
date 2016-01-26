@@ -54,6 +54,12 @@
                       - else
                         %span.label.label-warning
                           PENDENTE - #{candidate.cadastre_situation.situation_status.name}
+                      %span.label.label-success
+                        - if candidate.cadastre.enterprise_cadastres.present?
+                          = "#{candidate.cadastre.current_situation_name} - INDICADO"
+                        - else
+                          = "#{candidate.cadastre.current_situation_name}"
+
         .row
           .col-md-6.col-md-offset-3
             .container

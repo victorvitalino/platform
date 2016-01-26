@@ -7,9 +7,9 @@ module Regularization
       @record = record
     end
 
-    def index?
+    def view_nav?
       return true if user.account.administrator
-      @system = Person::System.find_by_code('10')#CÓDIGO SISTEMA HELP DESK
+      @system = Person::System.find_by_code('18')#CÓDIGO SISTEMA HELP DESK
         if @system.present?
         return true if user.account.permissions.where(system_id: @system.id, status: true).present?
       end

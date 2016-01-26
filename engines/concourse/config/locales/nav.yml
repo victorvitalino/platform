@@ -10,3 +10,4 @@ pt-BR:
         target: 'Target'
         action: "Ação"
         publish: "Publicado?"
+        order: "Ordem"

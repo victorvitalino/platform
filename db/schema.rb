@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115133838) do
+ActiveRecord::Schema.define(version: 20160120163207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -660,6 +660,7 @@ ActiveRecord::Schema.define(version: 20160115133838) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.date     "date"
+    t.boolean  "private"
   end
 
   create_table "cms_nav_categories", force: :cascade do |t|
@@ -767,6 +768,17 @@ ActiveRecord::Schema.define(version: 20160115133838) do
   end
 
   add_index "concourse_candidate_messages", ["candidate_id"], name: "index_concourse_candidate_messages_on_candidate_id", using: :btree
+
+  create_table "concourse_candidate_tokens", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "secret_key"
+    t.boolean  "status",       default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "concourse_candidate_tokens", ["candidate_id"], name: "index_concourse_candidate_tokens_on_candidate_id", using: :btree
+  add_index "concourse_candidate_tokens", ["secret_key"], name: "index_concourse_candidate_tokens_on_secret_key", unique: true, using: :btree
 
   create_table "concourse_candidates", force: :cascade do |t|
     t.string   "name"

@@ -28,10 +28,9 @@ module Address
     def units
       return false unless params[:group].present?
 
-      @units = Address::Unit.joins(:registry_units)
-                            .where("address_units.city_id = ? AND address_units.block = ? AND address_units.group = ? AND address_units.program = 1", params[:city_id], params[:block], params[:group])
-                            .where("address_registry_units.situation <> ?", 2)
+      @units = Address::Unit.where("address_units.city_id = ? AND address_units.block = ? AND address_units.group = ? AND address_units.program = 1", params[:city_id], params[:block], params[:group])
                             .order(:id)
+                            #.where("address_registry_units.situation <> ?", 2)
 
       render json: @units
     end
@@ -39,9 +38,8 @@ module Address
     def show_unit
       return false unless params[:unit].present?
 
-      @unit = Address::Unit.joins(:registry_units)
-                           .where("address_units.id = ? AND program = ?", params[:unit], 1)
-                           .where("address_registry_units.situation <> ?", 2).first
+      @unit = Address::Unit.find(params[:unit])
+                           
 
 
       render json: @unit

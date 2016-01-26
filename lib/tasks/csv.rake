@@ -42,6 +42,7 @@ namespace :csv do
 
   task :treta => :environment do
     @index = 0
+
     CSV.foreach("lib/files/Indicacao.csv", :col_sep => "#") do |row|
       @index += 1
 
@@ -51,6 +52,7 @@ namespace :csv do
           status: row[0],
           created_at: row[1],
           source_list: row[4]
+
         })
 
         begin

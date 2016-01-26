@@ -5,7 +5,7 @@
       = f.input :name
   .row
     .col-md-3
-      = f.input :cpf
+      = f.input :cpf, label: "CPF (somente números)"
     .col-md-3
       = f.input :rg
     .col-md-2
@@ -32,18 +32,19 @@
     .col-md-4
       = f.input :email
     .col-md-3
-      = f.input :telephone
+      = f.input :telephone, as: :string, hint: "* somente números", input_html: { placeholder:'9900000000' }
+      
     .col-md-3
-      = f.input :celphone
+      = f.input :celphone, as: :string, hint: "* somente números", input_html: { placeholder:'9900000000' }
   %br/
   %h4
     %b Dados para acesso à inscrição
   %hr/
   .row
     .col-md-3
-      = f.input :password, hint: "mínimo 4 caracteres - máximo 8 caracteres"
+      = f.input :password, hint: "mínimo 4 caracteres - máximo 28 caracteres"
     .col-md-3
-      = f.input :confirmation_password
+      = f.input :confirmation_password, hint: "mínimo 4 caracteres - máximo 28 caracteres"
   %br/
   %h4
     %b Dados pessoa jurídica
@@ -54,7 +55,7 @@
     .col-md-3
       = f.input :social_reason
     .col-md-3
-      = f.input :cnpj
+      = f.input :cnpj, input_html: { class: 'cnpj'}
   %br/
   %h4
     %b Informações Adicionais

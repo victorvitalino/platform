@@ -85,8 +85,12 @@
                     - @candidate.cadastre_situations.order('id ASC').each do |candidate|
                       %tr
                         %td= candidate.situation_status.name.upcase if candidate.situation_status.present?
-                        %td= candidate.created_at.strftime('%d/%m/%Y')
-              - else
+                        %td
+                          - unless %w(2016-01-05 2016-01-15 2016-01-18).include? candidate.created_at.strftime('%Y-%m-%d').to_s  
+                            = candidate.created_at.strftime('%d/%m/%Y')
+                          - else 
+                            Informação não disponível
+              - else  
                 Informação não disponível
           %hr/
           .row
@@ -101,11 +105,13 @@
                     %tr
                       %th Empreendimento
                       %th Data de encaminhamento
+                      %th Situação
                   %tbody
                     - @candidate.enterprise_cadastres.each do |enterprise|
                       %tr
                         %td= enterprise.enterprise.name if enterprise.enterprise.present?
                         %td= enterprise.created_at.strftime("%d/%m/%Y")
+                        %td= enterprise.status ? "Indicação ativa" :  "Indicação inativa"
               - else
                 Informação não disponível
           %hr/
