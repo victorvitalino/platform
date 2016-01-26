@@ -17,14 +17,14 @@ module Protocol
 
 
     # QUERY DO
-    scope :find_document, -> (document_number, document_type, type, sector_id){
+    scope :find_document, -> (document_number, document_type, type, sector_id,document_current){
     where(created_at: Protocol::Conduct
               .joins(:assessment)
               .select("MAX(protocol_conducts.created_at)")
               .where("protocol_assessments.document_number = ?
                            AND protocol_assessments.document_type_id = ?
-                           AND protocol_conducts.sector_id = ?",
-                          document_number, document_type, sector_id)
+                           AND protocol_conducts.sector_id = ? AND protocol_assessments.id <> ?",
+                          document_number, document_type, sector_id,document_current)
               .group(:assessment_id), conduct_type: type)}
 
 

@@ -6,6 +6,15 @@
    = j.document_number
   %td
    = j.document_type.name if j.document_type.present?
+  %td
+   - if j.locations.present?
+    %span.label.label-success
+     Doc. com localização
+   - else
+    %span.label.label-success
+     Doc. sem localização
+   - if j.locations.present?
+    = link_to "", edit_location_path(j.locations.last.id), remote: true, title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs'
 
 
 

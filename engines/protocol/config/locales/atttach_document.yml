@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/attach_document': Anexar/Apensar
+    attributes:
+      'protocol/attach_document':
+        document_father: "Documento Pai"
+        document_child: "Documento Filho"
+    enums:
+      attach_type:
+         attach: "Anexo"
+         append: "Apenso"

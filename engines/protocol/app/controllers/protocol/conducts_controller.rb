@@ -17,7 +17,7 @@ module Protocol
             sector = current_user.account.sector_current.id
 
             #parametro 4 documento recebido pelo setor
-            @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector)
+            @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector, 0)
 
         end
 

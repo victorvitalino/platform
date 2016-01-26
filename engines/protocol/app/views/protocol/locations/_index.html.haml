@@ -1,16 +1,18 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Localização
-      %small Listagem de Documentos
-  .card-body
-    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-        %thead
-          %tr
-            %th #
-            %th Documento
-            %th Tipo de Documento
-        %tbody.index-location
-          = render 'index_location'
-    %br
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Localização
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Documento
+              %th Tipo de Documento
+              %th
+          %tbody.index-location
+            = render 'index_location'
+      %br

@@ -1,17 +1,15 @@
-.card
-  .card-header
-    %h2
-      Novo Documento
-      %small formulário de inserção de novo documento
-    %ul.lv-actions.actions
-      %li.dropdown
-        %a{"aria-expanded" => "true", "data-toggle" => "dropdown", :href => ""}
-          %i.md.md-more-vert
-        %ul.dropdown-menu.dropdown-menu-right
-          %li
-            = link_to 'Documentos', assessments_path
-          %li
-            = link_to 'Remessas', allotments_path
-  .card-body.card-padding
-    = render 'form'
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4 Novo Documento
+    .panel-body
+      .row
+        .col-md-12
+          = render 'form'
+          = render 'index'
+      .row
+        .col-md-12
+          = link_to "voltar",  assessments_path, class: 'btn btn-dark'
+
 

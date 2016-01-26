@@ -15,8 +15,9 @@ module Protocol
             sector = current_user.account.sector_current.id
             authorize :conduct,  :create?
             #parametro 4 documento recebido pelo setor
-            @attach_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector)
-
+            @attach_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector,params[:assessment_id])
+            unless @attach_result.present?
+            end
         end
 
         def add_attach
