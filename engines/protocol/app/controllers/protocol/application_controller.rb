@@ -1,6 +1,6 @@
 module Protocol
   class ApplicationController < ActionController::Base
-    layout 'layouts/material'
+    layout 'remark'
 
      helper ::ApplicationHelper
 

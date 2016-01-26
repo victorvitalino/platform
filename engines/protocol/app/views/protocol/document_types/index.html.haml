@@ -1,17 +1,19 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Tipos de Documento
-      = link_to 'novo tipo de documento', new_document_type_path, remote: true, class: 'btn btn-success pull-right'
-      %small Listagem de tipos de documentos
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-      %thead
-        %tr
-          %th #
-          %th Nome
-          %th Descrição
-          %th Status
-          %th Ações
-      %tbody.index-document_type
-        = render 'index'
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Tipos de Documento
+          = link_to 'novo tipo de documento', new_document_type_path, remote: true, class: 'btn btn-success pull-right'
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Nome
+              %th Descrição
+              %th Status
+              %th Ações
+          %tbody.index-document_type
+            = render 'index'

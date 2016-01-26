@@ -1,6 +1,6 @@
 module Protocol
     class DigitalDocumentsController < ApplicationController
-        layout 'layouts/material'
+        layout 'remark'
         before_action :set_assessment
         before_action :set_digital_documents, only: [:index, :new,:create, :destroy]
         before_action :set_digital_document, only: [:edit, :destroy]

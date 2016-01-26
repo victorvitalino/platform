@@ -1,6 +1,6 @@
 module Protocol
     class AttachDocumentsController < ApplicationController
-     layout 'layouts/material'
+      layout 'remark'
       before_action :set_assessment, except: [:add]
       before_action :set_attach_document, only:[:destroy,:show]
       before_action :set_attach_documents, only: [:index, :new,:add,:destroy]

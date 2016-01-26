@@ -14,11 +14,11 @@
   .row
     .col-md-12
       = f.label :father, class: 'fg-label'
-      = f.association :father, label: false
+      = f.association :father, label: false, prompt: 'selecione...'
   .row
     .col-md-12
       = f.label :responsible, class: 'fg-label'
-      = f.association :responsible, label: false
+      = f.association :responsible, label: false, prompt: 'selecione...'
   .row
     .col-md-3
       = f.label :status, class: 'fg-label'

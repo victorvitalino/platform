@@ -1,6 +1,6 @@
 module Protocol
     class ReportsController < ApplicationController
-     layout 'layouts/material'
+     layout 'remark'
 
         def new
            @report = Report.new

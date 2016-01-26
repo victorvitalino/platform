@@ -3,7 +3,6 @@
   = simple_form_for  @enterprise_status, url: enterprise_unit_book_path  do |f|
    = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate.id}
    = f.input :enterprise_cadastre_id, as: :hidden, input_html:{value: @candidate_firm.enterprise_id}
-   = f.input :status_cadastre_id, as: :hidden, input_html:{value: 10}
    .row
     .col-md-5
      = f.label :archive_file, as: 'file', class: 'fg-label'

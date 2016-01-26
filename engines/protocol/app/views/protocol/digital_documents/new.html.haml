@@ -1,7 +1,12 @@
-.card
-  .card-header
-    %h2
-      Novo Documento
-      %small formulário de inserção de novo documento
-  .card-body.card-padding
-    = render 'form'
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4 Novo Documento
+    .panel-body
+      .row
+        .col-md-12
+          = render 'form'
+      .row
+        .col-md-4
+          = link_to "voltar",  assessments_path, class: 'btn btn-dark'

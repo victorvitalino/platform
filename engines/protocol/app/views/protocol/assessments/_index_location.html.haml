@@ -1,27 +1,29 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Localização
-      %small Lista de Documentos
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-  %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-    %thead
-      %tr
-        %th Número
-        %th Armário
-        %th Prateleira
-        %th Caixa
-        %th Obersevação
-    %tbody
-      - @locations.each_with_index do |j, i|
-        %tr
-          %td.col-md-1
-            = i + 1
-          %td
-            = j.shelf
-          %td
-            = j.pile
-          %td
-            = j.box
-          %td
-            = j.observation
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Localização
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Número
+            %th Armário
+            %th Prateleira
+            %th Caixa
+            %th Obersevação
+        %tbody
+          - @locations.each_with_index do |j, i|
+            %tr
+              %td.col-md-1
+                = i + 1
+              %td
+                = j.shelf
+              %td
+                = j.pile
+              %td
+                = j.box
+              %td
+                = j.observation
