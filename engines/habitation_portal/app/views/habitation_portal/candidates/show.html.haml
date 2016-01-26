@@ -47,8 +47,11 @@
                           - if @candidate.current_situation_status == 'ok'
                             %span.label.label-success
                               = @candidate.current_situation_name
-                          - else
+                          - if @candidate.current_situation_status == 'pendente'
                             %span.label.label-warning
+                              PENDENTE - #{@candidate.current_situation_name}
+                          - if @candidate.current_situation_status == 'cinza'
+                            %span.label.label-default
                               PENDENTE - #{@candidate.current_situation_name}
 
                         %td= program(@candidate.program_id)

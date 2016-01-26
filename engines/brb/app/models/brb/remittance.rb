@@ -3,8 +3,11 @@ require "i18n"
 module Brb
   class Remittance < ActiveRecord::Base
 
-    def generate
-      invoices = Invoice.all.order('id ASC')
+    def generate(date)
+      date_start = "#{date} 00:00:00"
+      date_end   = "#{date} 23:59:59"
+      
+      invoices = Invoice.where(created_at: date_start..date_end).order('id ASC')
       text   = Array.new
      
       header = " " * 39 

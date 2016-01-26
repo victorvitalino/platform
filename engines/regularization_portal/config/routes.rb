@@ -1,6 +1,12 @@
 RegularizationPortal::Engine.routes.draw do
   root 'home#index'
 
+  get   '/pesquisa-cpf',  to: 'cadastres#find_candidate', as: 'find_candidate'
+  post  '/pesquisa-cpf',  to: 'cadastres#show_candidate', as: 'show_candidate'
+
+  resources :lists, path: 'listas'
+  resources :cadastres, path: 'cadastro'
+
   resources :requeriments, path: 'requerimentos' do 
     collection do 
       get   '/address', path: 'endereco', to: 'requeriments#new_address', as: 'new_address'

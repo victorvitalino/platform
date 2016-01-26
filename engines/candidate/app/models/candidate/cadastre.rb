@@ -2,9 +2,9 @@ module Candidate
   class Cadastre < ActiveRecord::Base
 
     belongs_to :special_condition
-    belongs_to :city
-    belongs_to :state
-    belongs_to :work_city
+    belongs_to :city, class_name: 'Address::City'
+    belongs_to :state, class_name: 'Address::State'
+    belongs_to :work_city, class_name: 'Address::City'
     belongs_to :civil_state
     belongs_to :program
     belongs_to :city, class_name: "Address::City"
@@ -20,6 +20,15 @@ module Candidate
     has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
     has_many :enterprise_cadastres, foreign_key: "cadastre_id", class_name: "Firm::EnterpriseCadastre"
     has_many :cadastre_address
+    has_many :cadastre_procedurals
+
+    has_many :cadastre_logs
+
+
+    scope :regularization, -> {where(program_id: 3)}
+    scope :habitation, -> {where(program_id: [1,2,4,5,6])}
+
+    attr_accessor :password_confirmation
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 
@@ -27,8 +36,18 @@ module Candidate
 
     enum gender: ['N/D', 'masculino', 'feminino']
 
-    validates :cpf, cpf: true
+   # validates :cpf, cpf: true
 
+    def save_log(old_object, new_object, staff_id)
+      @log = CadastreLog.new({
+        staff_id: staff_id,
+        cadastre_id: self.id,
+        cadastre_old: old_object.attributes,
+        cadastre_new: new_object.attributes
+      })
+
+      @log.save
+    end
 
     def current_situation_id
         if cadastre_situations.present?
@@ -95,8 +114,8 @@ module Candidate
 
       array << list_rii         unless list_rii.nil?
       array << list_rie         unless list_rie.nil?
-      
-      if self.current_situation_id != 2 
+
+      if self.current_situation_id != 2
         array << list_olders      unless list_olders.nil?
         array << list_vulnerables unless list_vulnerables.nil?
         array << list_specials    unless list_specials.nil?
@@ -153,7 +172,7 @@ module Candidate
                         and cadastre_id = general_pontuations.id) > 0)
                         and situation_status_id = ?
                         and convocation_id > 1524
-                        and procedural_status_id IN(14, 72) 
+                        and procedural_status_id IN(14, 72)
                         and income BETWEEN ? AND ?"
 
                 @geral = Candidate::View::GeneralPontuation.where(sql, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)

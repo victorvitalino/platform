@@ -39,7 +39,7 @@
                   %th Nome
                   %th CPF
                   %th Pontuação
-                  %th Renda
+                  %th Situação
               %tbody
                 - @candidates.each do |candidate|
                   %tr
@@ -54,7 +54,6 @@
                       - else
                         %span.label.label-warning
                           PENDENTE - #{candidate.cadastre_situation.situation_status.name}
-
         .row
           .col-md-6.col-md-offset-3
             .container

@@ -1,0 +1,93 @@
+= simple_form_for(@cadastre) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-2
+        = f.input :cpf, input_html: { disabled: true}
+    %hr/
+    .row
+      .col-md-6
+        = f.input :name
+      .col-md-2
+        = f.input :gender, include_blank: false
+      .col-md-2
+        = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : '' }
+      .col-md-2
+        = f.input :born_uf
+    .row
+      .col-md-2
+        = f.input :rg
+      .col-md-2
+        = f.input :rg_org
+      .col-md-2
+        = f.input :rg_uf
+      .col-md-4
+        = f.input :place_birth
+      .col-md-2
+        = f.input :arrival_df, as: :string, input_html: { class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : '' }
+    .row
+      .col-md-2
+        = f.input :telephone
+      .col-md-2
+        = f.input :telephone_optional
+      .col-md-2
+        = f.input :celphone
+      .col-md-4
+        = f.input :email
+      .col-md-2
+        = f.label :civil_state
+        = f.association :civil_state, label: false, include_blank: false
+    %hr
+    .row
+      .col-md-2
+        = f.label "Cidade"
+        = f.association :city, label: false, collection: Address::City.federal_district
+      .col-md-4
+        = f.input :address
+      .col-md-4
+        = f.input :address_complement
+      .col-md-2
+        = f.input :cep
+    %hr/
+    .row
+      .col-md-2
+        = f.input :income, as: :string
+      .col-md-2
+        = f.input :nis, as: :string
+      .col-md-2
+        = f.input :cid, as: :string
+      .col-md-2
+        = f.label :special_conditional
+        = f.association :special_condition, label: false, include_blank: false
+      .col-md-2
+        = f.label :adapted_property
+        = f.input :adapted_property, as: :select, label: false, include_blank: false
+    %hr/
+    .row
+      .col-md-2
+        = f.label :work_city
+        = f.association :work_city, label: false,include_blank: false
+      .col-md-4
+        = f.input :work_address, as: :string
+      .col-md-2
+        = f.input :work_cep
+    %hr/
+    - unless f.object.password.present?
+      .row
+        .col-md-2
+          = f.input :password
+        .col-md-2
+          = f.input :password_confirmation
+    %hr/
+    .row
+      .col-md-12
+        %h4 Dependentes  - #{@cadastre.dependents.count}
+    .row  
+      = f.simple_fields_for :dependents do |builder|
+        = render 'dependent_fields', f: builder
+      .col-md-12
+        = link_to_add_fields "adicionar dependente", f, :dependents
+    %hr/
+    .row  
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success', data: { disable_with: "Processando..." }
+        = link_to "voltar", cadastres_path(cpf: @cadastre.cpf), class: 'btn btn-inverse', data: { disable_with: "Processando..."}

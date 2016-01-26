@@ -1,0 +1,8 @@
+= simple_form_for @return do |f|
+  .row
+    .col-md-3
+      = f.input :file, as: :file
+  %hr/
+  .row
+    .col-md-3
+      = f.submit "Subir retorno", class: 'btn btn-success'

@@ -56,7 +56,7 @@ module Cms
 
       # Only allow a trusted parameter "white list" through.
       def gallery_params
-        params.require(:gallery).permit(:title, :content, :status, :thumbnail, photo: [])
+        params.require(:gallery).permit(:title,:date, :content, :status, :thumbnail, photo: [])
       end
   end
 end

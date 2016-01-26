@@ -10,7 +10,7 @@ module HabitationPortal
     private
 
     def cpf_exists?
-      errors.add(:cpf, "CPF não encontrado") unless Candidate::Cadastre.where(cpf: self.cpf).present?
+      errors.add(:cpf, "CPF não encontrado") unless Candidate::Cadastre.habitation.where(cpf: self.cpf).present?
     end
   end
 end

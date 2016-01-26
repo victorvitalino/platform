@@ -1,0 +1,144 @@
+.row
+  .col-md-12
+    %h4
+      %b Ações 
+.row
+  .col-md-12
+    = link_to "Atualizar cadastro", edit_cadastre_path(@cadastre), class: 'btn btn-success', data: {data_with: 'carregando...'}
+    = link_to "Troca de CPF","#", class: 'btn btn-success', data: {data_with: 'carregando...'}
+%hr/
+.row
+  .col-md-12
+    %h4
+      %b Dados Pessoais
+.row
+  .col-md-12
+    %table#data-table-command.table.table-striped.table-vmiddle
+      %thead
+        %tr
+          %th{colspan: 3} Nome Completo
+          %th CPF
+          %th Sexo
+          %th Estado Civil
+      %tbody
+        %tr
+          %td{colspan: 3}= @cadastre.name
+          %td= @cadastre.cpf
+          %td= @cadastre.gender
+          %td= @cadastre.civil_state.name if @cadastre.civil_state.present?
+      %thead
+        %tr
+          %th Chegada ao DF
+          %th Naturalidade
+          %th Condição Especial
+          %th CID
+          %th NIS
+      %tbody
+        %tr
+          %td.col-md-2= @cadastre.arrival_df.strftime('%d/%m/%Y') if @cadastre.arrival_df.present?
+          %td.col-md-2= "#{@cadastre.place_birth} #{@cadastre.born_uf}"
+          %td.col-md-2= @cadastre.special_condition.name if @cadastre.special_condition.present?
+          %td.col-md-2= @cadastre.cid
+          %td.col-md-2= @cadastre.nis.present? ? "Possui NIS" : "Não possui NIS"
+
+%hr/
+.row
+  .col-md-12
+    %h4
+      %b Situação do candidato
+.row
+  .col-md-12
+    %table#data-table-command.table.table-striped.table-vmiddle
+      %thead
+        %tr
+          %th Situação do Candidato
+          %th Programa
+          %th Faixa
+          %th Lista
+          %th Posição
+          %th Última pontuação
+      %tbody
+        - if @cadastre.list.present?
+          - @cadastre.list.each do |list|
+            %tr
+              %td
+                - if @cadastre.current_situation_status == 'ok'
+                  %span.label.label-success
+                    = @cadastre.current_situation_name
+                - if @cadastre.current_situation_status == 'pendente'
+                  %span.label.label-warning
+                    PENDENTE - #{@cadastre.current_situation_name}
+                - if @cadastre.current_situation_status == 'cinza'
+                  %span.label.label-default
+                    PENDENTE - #{@cadastre.current_situation_name}
+
+              %td= list[1][0]
+              %td= "#{list[2]}º"
+              %td
+              %td
+              %td= @cadastre.pontuations.last.total if @cadastre.pontuations.present?
+        - else
+
+%hr/
+.row
+  .col-md-12
+    %h4
+      %b Histórico de situação
+.row
+  .col-md-12
+    - if @cadastre.list.present?
+      %table#data-table-command.table.table-striped.table-vmiddle
+        %thead
+          %tr
+            %th Situação
+            %th Data da situação
+        %tbody
+          - @cadastre.cadastre_situations.order('id ASC').each do |c|
+            %tr
+              %td= c.situation_status.name.upcase if c.situation_status.present?
+              %td= c.created_at.strftime('%d/%m/%Y')
+    - else
+      Informação não disponível
+%hr/
+.row
+  .col-md-12
+    %h4
+      %b Indicado ao empreendimento
+.row
+  .col-md-12
+    - if @cadastre.enterprise_cadastres.present?
+      %table#data-table-command.table.table-striped.table-vmiddle
+        %thead
+          %tr
+            %th Empreendimento
+            %th Data de encaminhamento
+        %tbody
+          - @cadastre.enterprise_cadastres.each do |enterprise|
+            %tr
+              %td= enterprise.enterprise.name if enterprise.enterprise.present?
+              %td= enterprise.created_at.strftime("%d/%m/%Y")
+    - else
+      Informação não disponível
+
+%hr/
+.row
+  .col-md-12
+    %h4
+      %b Histórico de atualização
+.row
+  .col-md-12
+    - if @cadastre.cadastre_logs.present?
+      %table#data-table-command.table.table-striped.table-vmiddle
+        %thead
+          %tr
+            %th Data
+            %th Funcionário
+            %th Espelho
+        %tbody
+          - @cadastre.cadastre_logs.each do |log|
+            %tr
+              %td= log.created_at.strftime('%d/%m/%Y às %H:%M')
+              %td= log.staff.name
+              %td= link_to "visualizar", view_update_log_path(log), remote: true
+    - else
+      Informação não disponível

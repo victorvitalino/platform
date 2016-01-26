@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114110053) do
+ActiveRecord::Schema.define(version: 20160115133838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -324,6 +324,18 @@ ActiveRecord::Schema.define(version: 20160114110053) do
   add_index "candidate_cadastre_checklists", ["attendance_id"], name: "index_candidate_cadastre_checklists_on_attendance_id", using: :btree
   add_index "candidate_cadastre_checklists", ["cadastre_id"], name: "index_candidate_cadastre_checklists_on_cadastre_id", using: :btree
 
+  create_table "candidate_cadastre_logs", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.integer  "cadastre_id"
+    t.text     "cadastre_old"
+    t.text     "cadastre_new"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "candidate_cadastre_logs", ["cadastre_id"], name: "index_candidate_cadastre_logs_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_logs", ["staff_id"], name: "index_candidate_cadastre_logs_on_staff_id", using: :btree
+
   create_table "candidate_cadastre_mirrors", force: :cascade do |t|
     t.string   "name"
     t.string   "cpf",                    default: "", null: false
@@ -480,6 +492,7 @@ ActiveRecord::Schema.define(version: 20160114110053) do
     t.integer  "pontuation_end",     default: 0
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "program_id"
   end
 
   add_index "candidate_convocations", ["pontuation_code_id"], name: "index_candidate_convocations_on_pontuation_code_id", using: :btree
@@ -564,6 +577,7 @@ ActiveRecord::Schema.define(version: 20160114110053) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.text     "description"
+    t.integer  "program_id"
   end
 
   add_index "candidate_lists", ["slug"], name: "index_candidate_lists_on_slug", unique: true, using: :btree
@@ -645,6 +659,7 @@ ActiveRecord::Schema.define(version: 20160114110053) do
     t.string   "photo",      default: [],              array: true
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.date     "date"
   end
 
   create_table "cms_nav_categories", force: :cascade do |t|

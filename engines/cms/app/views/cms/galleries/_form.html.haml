@@ -18,6 +18,9 @@
           %br
           = f.check_box :status, id: 'ts4',hidden: 'hidden', type: 'checkbox'
           %label.ts-helper{:for => "ts4"}
+      .col-md-3
+        = f.label :date, as: 'string', class: 'fg-label'
+        = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@gallery.date) ? localize(f.object.date) : nil}
       .col-md-4
         = f.label :thumbnail, class: 'fg-label'
         = f.input :thumbnail,as: 'file'

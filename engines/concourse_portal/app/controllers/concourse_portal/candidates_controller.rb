@@ -61,7 +61,7 @@ module ConcoursePortal
 
     def bank_slip
 
-      @category = Brb::Category.find(1)
+      @category = Brb::Category.find(@candidate.subscribe.type_guide_id)
 
       @invoice = Brb::Invoice.new({
         name: @candidate.name,
