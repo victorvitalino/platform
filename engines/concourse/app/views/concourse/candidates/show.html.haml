@@ -6,9 +6,9 @@
       %small
         = link_to "voltar para inscrições", project_candidates_path(@project)
         |
-        = link_to "atualizar situação", project_path(@project, q: 'inscricoes')
+        = link_to "atualizar situação", edit_project_candidate_situation_path(project_id:  @project, candidate_id: @candidate), remote: true
         |
-        = link_to "inserir observação", project_path(@project, q: 'inscricoes')
+        = link_to "inserir observação",  new_project_candidate_observation_path(project_id: @project, candidate_id: @candidate), remote: true
   %hr/
   .panel-body
     .row
@@ -21,6 +21,7 @@
             %tr
               %th Número
               %th Data da inscrição
+              %th Última atualização
               %th Situação da inscrição
               %th Pagamento de Inscrição
               %th Boletos emitidos
@@ -28,7 +29,11 @@
             %tr
               %td.col-md-1= @candidate.id
               %td= @candidate.created_at.strftime("%d/%m/%Y às %H:%M")
-              %td= @candidate.status
+              %td= @candidate.updated_at.strftime("%d/%m/%Y às %H:%M")
+              %td
+                %span.label.label-info= "Processando" if @candidate.processando? 
+                %span.label.label-success= "Homologado" if @candidate.homologado? 
+                %span.label.label-danger= "Indeferido" if @candidate.indeferido? 
               %td= @candidate.invoice_paid ? 'pagamento realizado' : 'pendente'
               %td= @candidate.invoice_prints 
   
@@ -123,7 +128,7 @@
       .col-md-12
         %h4 
           Observações 
-          = link_to "nova observação", "#", class: 'pull-right'
+          = link_to "nova observação", new_project_candidate_observation_path(project_id: @project, candidate_id: @candidate), remote: true, class: 'pull-right'
     .row
       .col-md-12
         %table.table.table-striped.table-bordered
@@ -131,5 +136,7 @@
             %tr
               %th Tipo
               %th Observação
+              %th Feita por
               %th Data
-          %tbody
+          %tbody#observation-index
+            = render 'concourse/observations/index'

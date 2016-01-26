@@ -6,14 +6,12 @@
     %table.table.table-striped.table-hover.table-bordered
       %thead
         %tr.info
-          %th Nº
           %th Data de envio
           %th Status
           %th Ação
       %tbody
-        - @project.consults.each_with_index do |consult, index|
+        - @project.consults.order('id DESC').each do |consult|
           %tr
-            %td.col-md-1= index + 1
             %td.col-md-2= consult.created_at.strftime('%d/%m/%Y às %H:%M')
             %td= consult.status ? 'Leitura realizada' : 'Não lida'
             %td.col-md-1

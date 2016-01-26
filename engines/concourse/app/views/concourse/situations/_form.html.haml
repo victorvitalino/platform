@@ -1,0 +1,39 @@
+= simple_form_for @candidate, url: project_candidate_situation_path(project_id: @project.id, candidate_id: @candidate.id), remote: true do |f|
+  .row
+    .col-md-12
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Inscrição
+            %th Data de inscrição
+            %th Taxa
+        %tbody
+          %tr
+            %td.col-md-1= @candidate.id
+            %td= @candidate.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td= @candidate.invoice_paid ? 'pago' : 'não pago'
+  .row
+    .col-md-12
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Nome
+            %th CPF
+        %tbody
+          %tr
+            %td= @candidate.name.upcase
+            %td= @candidate.cpf
+     
+  %hr/
+  - if @candidate.invoice_paid
+    .row
+      .col-md-12
+        = f.input :status, include_blank: false
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button)}
+  - else
+    .row
+      .col-md-12
+        %i A inscrição do candidato só poderá ser homolgada após o pagamento da taxa de inscrição.

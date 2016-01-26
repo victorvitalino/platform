@@ -6,6 +6,9 @@
   font-weight: bold;
 }
 
+.panel-title h3 {
+  font-weight: bold;
+}
 .site-menubar {
   z-index: 2 !important;
 }

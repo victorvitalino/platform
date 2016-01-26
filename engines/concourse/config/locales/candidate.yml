@@ -22,3 +22,4 @@ pt-BR:
         password: "Senha"
         confirmation_password: "Confirmação de Senha"
         gender: "Sexo"
+        status: "Situação"

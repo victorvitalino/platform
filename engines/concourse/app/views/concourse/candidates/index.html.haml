@@ -24,9 +24,16 @@
             %td= candidate.subscribe.title if candidate.subscribe.present?
             %td= candidate.id
             %td= candidate.cpf
-            %td= candidate.invoice_paid ? "pagamento realizado" : "pendente"
+            %td
+              - if candidate.invoice_paid
+                %span.label.label-success pagamento realizado
+              - else
+                %span.label.label-warning pendente
             %td= "impresso:  #{candidate.invoice_prints}"
             %td= candidate.created_at.strftime('%d/%m/%Y às %H:%M')
-            %td= candidate.status
+            %td
+              %span.label.label-info= "Processando" if candidate.processando? 
+              %span.label.label-success= "Homologado" if candidate.homologado? 
+              %span.label.label-danger= "Indeferido" if candidate.indeferido? 
             %td
               = link_to "", project_candidate_path(project_id: @project, id: candidate), class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs', title: "visualizar"

@@ -1,0 +1,6 @@
+- if @observation.errors.any?
+  $('#modal .modal-content').html("#{escape_javascript(render 'new')}")
+- else
+  $('#observation-index').html("#{escape_javascript(render 'index')}")
+  $('#modal').modal('hide')
+  

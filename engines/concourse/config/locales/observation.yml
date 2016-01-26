@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'concourse/observation': 'Observação'
+    attributes:
+      'concourse/observation':
+        content: 'Conteúdo'
+        message_type: 'Tipo'

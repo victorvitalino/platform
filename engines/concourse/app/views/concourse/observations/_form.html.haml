@@ -1,0 +1,11 @@
+= simple_form_for @observation, url: project_candidate_observations_path(project_id: @project.id, candidate_id: @candidate.id), remote: true do |f|
+  .row
+    .col-md-12
+      = f.input :message_type, as: :select, collection: Concourse::Observation.message_types.keys, include_blank: false 
+  .row
+    .col-md-12
+      = f.input :content 
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success' 

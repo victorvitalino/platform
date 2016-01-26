@@ -1,0 +1,12 @@
+- @candidate.observations.each do |observation|
+  %tr
+    %td.col-md-1
+      - if observation.interno?
+        %span.label.label-info
+          Interna
+      - else
+        %span.label.label-success
+          Externo
+    %td= observation.content
+    %td= observation.staff.name
+    %td.col-md-2= observation.created_at.strftime('%d/%m/%Y às %H:%M')
