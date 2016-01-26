@@ -1,6 +1,6 @@
 module Protocol
     class LocationsController < ApplicationController
-        layout 'layouts/material'
+        layout 'remark'
         before_action :set_locations, only: [:create, :destroy, :update]
         before_action :set_location, only: [:edit, :destroy, :update]
         before_action :set_assessment, only: [:index,:new,:edit]

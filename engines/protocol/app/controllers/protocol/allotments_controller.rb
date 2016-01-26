@@ -1,6 +1,6 @@
 module Protocol
     class AllotmentsController < ApplicationController
-        layout 'layouts/material'
+        layout 'remark'
         before_action :set_allotments, only: [:index, :create, :destroy, :update]
         before_action :set_allotment, only: [:edit, :destroy, :update]
 

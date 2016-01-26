@@ -5,7 +5,11 @@ module Candidate
 
 
     def index
-      @cadastre = Cadastre.by_cpf(params[:cpf]).first
+      @candidate = Cadastre.find_by_cpf(params[:cpf]) rescue nil
+    end
+
+    def edit
+      @candidate = Cadastre.find(params[:id])
     end
 
   end

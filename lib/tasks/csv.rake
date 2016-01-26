@@ -42,6 +42,7 @@ namespace :csv do
 
   task :treta => :environment do
     @index = 0
+<<<<<<< HEAD
 
     CSV.foreach("lib/files/Indicacao.csv", :col_sep => "#") do |row|
       @index += 1
@@ -54,6 +55,14 @@ namespace :csv do
           source_list: row[4]
 
         })
+=======
+    CSV.foreach("lib/files/atualizar3.csv", :col_sep => "#") do |row|
+      @index += 1
+
+        @ref = Candidate::Cadastre.find_by_cpf(row[0]) rescue nil
+
+        @ref.income = row[1] if @ref.present?
+>>>>>>> 0757c30d8e5c3cf01509c25ef510142ae5af50c9
 
         begin
           @ref.save

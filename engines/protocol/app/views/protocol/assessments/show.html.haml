@@ -1,69 +1,68 @@
 .card
-  .card-header
-    %h2 Documento - #{@assessment.document_number}
-  .card-body.card-padding
-    .row
-      .col-md-12
-        .row
-          .col-md-4
-            %label Tipo de Documento:
-            = @assessment.document_type.name if @assessment.document_type.present?
-          .col-md-4
-            %label Número do Documento:
-            = @assessment.document_number
-        .row
-          .col-md-8
-            %label Unidade Solicitante:
-            = @assessment.requesting_unit
-        .row
-          .col-md-8
-            %label Orgão Destinatário:
-            = @assessment.recipient
-        .row
-          .col-md-8
-            %label Endereço:
-            = @assessment.address
-        .row
-          .col-md-4
-            %label CPF:
-            = @assessment.cpf
-          .col-md-4
-            %label CNPJ:
-            = @assessment.cnpj
-        .row
-          .col-md-8
-            %label Assunto:
-            = @assessment.subject.name if @assessment.subject.present?
-        .row
-          .col-md-8
-            %label Descrição Assunto:
-            = @assessment.description_subject
-        .row
-          .col-md-8
-            %label Assinado Por:
-            = @assessment.sign_by
-        .row
-          .col-md-8
-            %label Observação:
-            = @assessment.observation
-        .row
-          .col-md-12
-            %br
-        .row
-          .col-md-12
-            = render 'index_conduct'
-        .row
-          .col-md-12
-            = render 'index_attach'
-        .row
-          .col-md-12
-            = render 'index_digital'
-        .row
-          .col-md-12
-            = render 'index_location'
+  .card-header.ch-alt
+    .card-body.card-padding
+      .row
+        .col-md-12
+          .row
+            .col-md-4
+              %label Tipo de Documento:
+              = @assessment.document_type.name if @assessment.document_type.present?
+            .col-md-4
+              %label Número do Documento:
+              = @assessment.document_number
+          .row
+            .col-md-8
+              %label Unidade Solicitante:
+              = @assessment.requesting_unit
+          .row
+            .col-md-8
+              %label Orgão Destinatário:
+              = @assessment.recipient
+          .row
+            .col-md-8
+              %label Endereço:
+              = @assessment.address
+          .row
+            .col-md-4
+              %label CPF:
+              = @assessment.cpf
+            .col-md-4
+              %label CNPJ:
+              = @assessment.cnpj
+          .row
+            .col-md-8
+              %label Assunto:
+              = @assessment.subject.name if @assessment.subject.present?
+          .row
+            .col-md-8
+              %label Descrição Assunto:
+              = @assessment.description_subject
+          .row
+            .col-md-8
+              %label Assinado Por:
+              = @assessment.sign_by
+          .row
+            .col-md-8
+              %label Observação:
+              = @assessment.observation
+          .row
+            .col-md-12
+              %br
+          .row
+            .col-md-12
+              = render 'index_conduct'
+          .row
+            .col-md-12
+              = render 'index_attach'
+          .row
+            .col-md-12
+              = render 'index_digital'
+          .row
+            .col-md-12
+              = render 'index_location'
 
-        %br
-        %br
-        .row
-          .col-md-8
-            = link_to "voltar",  assessments_path, class: 'btn btn-inverse'
+            %br
+            %br
+            .row
+              .col-md-8
+              = link_to "voltar",  assessments_path, class: 'btn btn-inverse'

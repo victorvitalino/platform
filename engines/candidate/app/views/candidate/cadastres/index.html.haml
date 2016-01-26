@@ -1,27 +1,112 @@
-#messages-main.card.m-b-0
-  .ms-menu
-    .ms-block
-      .ms-user
-        Pesquisar Cadastro
-    .ms-block
-      = simple_form_for cadastres_path, method: :get do |f|
-        = f.label :cpf
-        = f.input :cpf, label: false,  input_html: { name: :cpf,value: params[:cpf] }
-        = f.submit "Pesquisar CPF", name: nil, class: 'btn btn-success'
-  .ms-body
-    .listview.lv-message
-      .lv-header-alt.bgm-white
-        #ms-menu-trigger
-          .line-wrap
-            .line.top
-            .line.center
-            .line.bottom
-        .lvh-label.hidden-xs
-          %span.c-black Detalhamento do Cadastro
-      .lv-body{:style => "min-height: 270px"}
-        .lv-item.media
-          .media-body
-            - if @cadastre.present?
-              = render 'show_cadastre'
-            - else
-              Nenhum resultado para mostrar.
+.page-content
+
+  .documents-wrap.article
+    #articleAffix.article-sidebar.affix-top
+      %ul.list-group.nav
+        %li.list-group-item
+          = simple_form_for url_for, method: :get do |f|
+            .row
+              .col-md-12
+                = f.input :cpf, label: false, input_html: { name: 'cpf', placeholder: "Digite o CPF", value: params[:cpf]}
+            .row
+              .col-md-12
+                = f.submit "Pesquisar", name: nil, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button)}
+        - if @candidate.present? 
+          %li
+            %hr/
+          %li.list-group-item
+            %a{:href => "#{candidate.edit_cadastre_path(@candidate)}"} Atualizar cadastro
+          %li.list-group-item
+            %a{:href => "#section-2"} Alterar CPF
+          %li.list-group-item
+            %a{:href => "#section-3"} Alterar situação
+          %li.list-group-item
+            %a{:href => "#section-3"} Alterar situação processual
+    .article-content
+      %section
+        %h2.bold Detalhamento
+      %hr/
+      %section
+        - if @candidate.present?
+          .row
+            .col-md-12
+              %h4 Dados pessoais
+              .bootstrap-table
+                %table.table.table-striped.table-bordered.table-condensed
+                  %thead{:style => "display: table-header-group;"}
+                    %tr
+                      %th Nome
+                      %th CPF
+                      %th Idade
+                  %tbody
+                    %tr
+                      %td= @candidate.name.upcase
+                      %td= @candidate.cpf
+                      %td= "#{@candidate.age} ano(s)" 
+          %hr/
+          .row
+            .col-md-12
+              %h4 Situação
+              .bootstrap-table
+                %table.table.table-striped.table-bordered.table-condensed
+                  %thead{:style => "display: table-header-group;"}
+                    %tr
+                      %th Nome
+                      %th CPF
+                      %th Idade
+                  %tbody
+                    %tr
+                      %td= @candidate.name.upcase
+                      %td= @candidate.cpf
+                      %td= "#{@candidate.age} ano(s)" 
+          %hr/
+          .row
+            .col-md-12
+              %h4 Atendimentos
+              .bootstrap-table
+                %table.table.table-striped.table-bordered.table-condensed
+                  %thead{:style => "display: table-header-group;"}
+                    %tr
+                      %th Nome
+                      %th CPF
+                      %th Idade
+                  %tbody
+                    %tr
+                      %td= @candidate.name.upcase
+                      %td= @candidate.cpf
+                      %td= "#{@candidate.age} ano(s)" 
+          %hr/
+          .row
+            .col-md-12
+              %h4 Agendamentos
+              .bootstrap-table
+                %table.table.table-striped.table-bordered.table-condensed
+                  %thead{:style => "display: table-header-group;"}
+                    %tr
+                      %th Nome
+                      %th CPF
+                      %th Idade
+                  %tbody
+                    %tr
+                      %td= @candidate.name.upcase
+                      %td= @candidate.cpf
+                      %td= "#{@candidate.age} ano(s)" 
+ 
+          %hr/
+          .row
+            .col-md-12
+              %h4 Ocorrências
+              .bootstrap-table
+                %table.table.table-striped.table-bordered.table-condensed
+                  %thead{:style => "display: table-header-group;"}
+                    %tr
+                      %th Nome
+                      %th CPF
+                      %th Idade
+                  %tbody
+                    %tr
+                      %td= @candidate.name.upcase
+                      %td= @candidate.cpf
+                      %td= "#{@candidate.age} ano(s)" 
+        - else
+          Não foram encontrados resultados para o CPF pesquisado.

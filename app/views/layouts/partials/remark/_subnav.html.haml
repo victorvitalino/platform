@@ -1,0 +1,407 @@
+.site-menubar.site-menubar-light
+  .site-menubar-body
+    %div
+      %div
+        %ul.site-menu
+          %li.site-menu-category General
+          %li.site-menu-item.has-sub
+            %a{"data-dropdown-toggle" => "false", :href => "#{dashboard.root_path}"}
+              %i.site-menu-icon.wb-order{"aria-hidden" => "true"}
+              %span.site-menu-title Mural
+              %span.site-menu-arrow
+
+
+          %li.site-menu-item.has-sub
+            %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}
+              %i.site-menu-icon.wb-home{"aria-hidden" => "true"}
+              %span.site-menu-title Habitação
+              %span.site-menu-arrow
+
+
+            %ul.site-menu-sub
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Cadastro
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{candidate.cadastres_path}"}
+                      %span.site-menu-title Pesquisa Geral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Atualização Cadastral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Troca de CPF
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Situação
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Situação Processual
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-503.html"}
+                      %span.site-menu-title Assentamento
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Publicação
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                      %span.site-menu-title Em ordem
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Indicação
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Endereço
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                      %span.site-menu-title Pesquisa Geral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Atualização
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Atendimento
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                      %span.site-menu-title Habitação
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Regularização
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Agendamento
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-503.html"}
+                      %span.site-menu-title Auditoria
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Entidades
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                      %span.site-menu-title Pesquisa Geral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Atualização Cadastral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Troca de CPF
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-503.html"}
+                      %span.site-menu-title 503
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Empresas
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                      %span.site-menu-title Pesquisa Geral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Atualização Cadastral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Troca de CPF
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-503.html"}
+                      %span.site-menu-title 503
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Listas
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                      %span.site-menu-title Pesquisa Geral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Atualização Cadastral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Troca de CPF
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-503.html"}
+                      %span.site-menu-title 503
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Sefaz
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                      %span.site-menu-title Pesquisa CPF
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Isenção ITCD/ITBI
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Relatórios
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Auditoria
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                      %span.site-menu-title Cadastro
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Atendimento
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Ações internas
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-503.html"}
+                      %span.site-menu-title Acessos
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-503.html"}
+                      %span.site-menu-title Guardião
+          %li.site-menu-item.has-sub
+            %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}
+              %i.site-menu-icon.wb-globe{"aria-hidden" => "true"}
+              %span.site-menu-title Portal
+              %span.site-menu-arrow
+            %ul.site-menu-sub
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Postagens
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{cms.new_post_path}"}
+                      %span.site-menu-title Nova
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{cms.posts_path}"}
+                      %span.site-menu-title Lista
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{cms.posts_path}"}
+                      %span.site-menu-title Pendentes
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{cms.post_categories_path}"}
+                      %span.site-menu-title Categorias
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Páginas
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                      %span.site-menu-title Nova
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-403.html"}
+                      %span.site-menu-title Lista
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-404.html"}
+                      %span.site-menu-title Pendentes
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../pages/error-500.html"}
+                      %span.site-menu-title Categorias
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Concursos
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{concourse.new_project_path}"}
+                      %span.site-menu-title Novo concurso
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{concourse.projects_path}"}
+                      %span.site-menu-title Lista
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{concourse.projects_path}"}
+                      %span.site-menu-title Inscrições
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{concourse.projects_path}"}
+                      %span.site-menu-title Pagamentos
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Layout
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{cms.navs_path}"}
+                      %span.site-menu-title Menus
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{cms.videos_path}"}
+                      %span.site-menu-title Videos
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{cms.galleries_path}"}
+                      %span.site-menu-title Galerias
+
+          %li.site-menu-item.has-sub
+            %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}
+              %i.site-menu-icon.wb-order{"aria-hidden" => "true"}
+              %span.site-menu-title Protocolo
+              %span.site-menu-arrow
+            %ul.site-menu-sub
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Autuação
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item.has-sub
+                    %a{:href => "javascript:void(0)"}
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{protocol.new_assessment_path}"}
+                      %span.site-menu-title Novo
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{protocol.assessments_path}"}
+                      %span.site-menu-title Lista
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Tramitação
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item.hidden-xs.site-tour-trigger
+                    %a{:href => "javascript:void(0)"}
+                      %span.site-menu-title Lista
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#"}
+                      %span.site-menu-title Enviar
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../advanced/highlight.html"}
+                      %span.site-menu-title Receber
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../advanced/lightbox.html"}
+                      %span.site-menu-title Cancelar
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Localização
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{protocol.new_location_path}"}
+                      %span.site-menu-title Novo
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Digitalização
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#"}
+                      %span.site-menu-title Inclusão
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Configuração
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{protocol.document_types_path}"}
+                      %span.site-menu-title Tipo de Documento
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{protocol.subjects_path}"}
+                      %span.site-menu-title Assunto
+          %li.site-menu-item.has-sub
+            %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}
+              %i.site-menu-icon.wb-grid-9{"aria-hidden" => "true"}
+              %span.site-menu-title Gestão
+              %span.site-menu-arrow
+            %ul.site-menu-sub
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Monitoramento
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../forms/general.html"}
+                      %span.site-menu-title Visão Geral
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../forms/general.html"}
+                      %span.site-menu-title Projetos
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../forms/general.html"}
+                      %span.site-menu-title Atores
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../forms/general.html"}
+                      %span.site-menu-title Categorias
+                  %li.site-menu-item
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Financeiro
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{brb.invoices_path}"}
+                      %span.site-menu-title Boletos BRB
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{brb.invoices_path}"}
+                      %span.site-menu-title Convênios BRB
+                  %li.site-menu-item
+                    %hr/
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{brb.categories_path}"}
+                      %span.site-menu-title Categorias
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Jurídico
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../charts/chartjs.html"}
+                      %span.site-menu-title Chart.js
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Wiki
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../charts/chartjs.html"}
+                      %span.site-menu-title Chart.js
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Patrîmônio
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../tables/basic.html"}
+                      %span.site-menu-title Basic Tables
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../tables/bootstrap.html"}
+                      %span.site-menu-title Bootstrap Tables
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../tables/floatthead.html"}
+                      %span.site-menu-title floatThead
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../tables/responsive.html"}
+                      %span.site-menu-title Responsive Tables
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../tables/editable.html"}
+                      %span.site-menu-title Editable Tables
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../tables/jsgrid.html"}
+                      %span.site-menu-title jsGrid
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../tables/footable.html"}
+                      %span.site-menu-title FooTable
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../tables/datatable.html"}
+                      %span.site-menu-title DataTables
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Veículos
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "../../charts/chartjs.html"}
+                      %span.site-menu-title Chart.js
+
+          %li.site-menu-item.has-sub.pull-right
+            %a{"data-dropdown-toggle" => "false", :href => "#{helpdesk.new_ticket_path}", "data-remote" => true}
+              %i.site-menu-icon.wb-users{"aria-hidden" => "true"}
+              %span.site-menu-title Lista de ramais
+              %span.site-menu-arrow
+          %li.site-menu-item.has-sub.pull-right
+            %a{"data-dropdown-toggle" => "false", :href => "#{helpdesk.new_ticket_path}", "data-remote" => true}
+              %i.site-menu-icon.wb-help{"aria-hidden" => "true"}
+              %span.site-menu-title Abrir um chamado
+              %span.site-menu-arrow

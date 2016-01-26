@@ -7,7 +7,7 @@
     .row
       .col-md-12
         = f.label :content, class: 'fg-label'
-        = f.input :content, label: false, input_html: { class: 'redactorbox'}
+        = f.input :content, label: false, as: :bootsy, editor_options: { link: true, html: true }, input_html: { style: 'min-height: 500px'}
     .row
       .col-md-12
         = f.label :post_category, class: 'fg-label'
@@ -64,9 +64,9 @@
         = f.label :link, class: 'fg-label'
         = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
     .row
-      .col-md-12{data: { no_turbolinks: true}}
-        = f.label :resume, class: 'fg-label'
-        = f.input :resume, label: false, input_html: { class: 'redactor' }
+      .col-md-12
+        = f.label :resume
+        = f.input :resume, label: false, as: :bootsy, editor_options: { link: true, html: true }, input_html: { style: 'min-height: 500px'}
     .row
       .col-md-3
         = f.label :date, as: 'string', class: 'fg-label'
@@ -77,6 +77,7 @@
       .col-md-3
         = f.label :photo_author, class: 'fg-label'
         = f.input :photo_author, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
+    %hr/
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success'

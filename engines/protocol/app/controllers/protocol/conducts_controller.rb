@@ -1,6 +1,6 @@
 module Protocol
     class ConductsController < ApplicationController
-     layout 'layouts/material'
+     layout 'remark'
       before_action :set_allotment, except: [:add,:send_conduct,:staffies,:receive,:update_docs,:return]
       before_action :set_conduct, only:[:destroy,:show]
       before_action :set_conducts, only: [:index, :new,:add,:destroy, :send_conduct]

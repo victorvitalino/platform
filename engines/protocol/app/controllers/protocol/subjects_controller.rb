@@ -1,6 +1,6 @@
 module Protocol
     class SubjectsController < ApplicationController
-        layout 'layouts/material'
+        layout 'remark'
         before_action :set_subjects, only: [:index, :create, :destroy, :update]
         before_action :set_subject, only: [:edit, :destroy, :update]
 

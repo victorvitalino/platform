@@ -3,7 +3,7 @@ require_dependency 'concourse/application_helper'
 
 module Concourse
   class ApplicationController < ActionController::Base
-    layout 'material'
+    layout 'remark'
 
     include Pundit
 

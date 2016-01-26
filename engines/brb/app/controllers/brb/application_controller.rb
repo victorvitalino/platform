@@ -2,7 +2,7 @@ require_dependency 'application_helper'
 
 module Brb
   class ApplicationController < ActionController::Base
-    layout 'material'
+    layout 'remark'
 
     helper :application
 

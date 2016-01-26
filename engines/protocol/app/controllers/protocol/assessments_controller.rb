@@ -1,6 +1,6 @@
 module Protocol
     class AssessmentsController < ApplicationController
-     layout 'layouts/material'
+      layout 'remark'
       before_action :set_assessment, only: [:show, :edit, :update, :destroy]
 
         def index
@@ -55,7 +55,8 @@ module Protocol
         def update
             authorize :assessment,  :update?
             if @assessment.update(set_assessment_params)
-                render action: 'index'
+                flash[:success] = "Documento atualizado."
+                redirect_to assessments_path
             else
                 render action: 'edit'
             end

@@ -3,7 +3,10 @@ module Address
 
     belongs_to :unit
 
+
 #    enum situation: [:no_registry, :registring, :registred]
+
+
 
   end
 end

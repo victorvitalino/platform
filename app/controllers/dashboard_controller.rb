@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
-  layout 'material'
+  layout 'remark'
+  
   def index
   end
 

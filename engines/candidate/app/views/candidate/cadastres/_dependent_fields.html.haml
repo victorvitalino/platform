@@ -1,0 +1,47 @@
+%fieldset
+  %br
+  .row
+    .col-md-4
+      = f.input :name
+    .col-md-2
+      = f.input :cpf
+    .col-md-1
+      = f.input :rg
+    .col-md-1
+      = f.input :rg_org
+    .col-md-1
+      = f.label :rg_uf
+      = f.association :rg_uf, label: false, include_blank: false
+    .col-md-2
+      = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : ''}
+  .row
+    .col-md-2
+      = f.input :gender, include_blank: false
+    .col-md-2
+      = f.input :place_birth
+    .col-md-2
+      = f.label :civil_state
+      = f.association :civil_state, label: false, include_blank: false
+    .col-md-1
+      = f.input :income, as: :string
+    .col-md-2
+      = f.label :civil_state
+      = f.association :kinship, label: false, include_blank: false
+    .col-md-2
+      = f.label :special_condition
+      = f.association :special_condition, label: false, include_blank: false
+  .row
+    .col-md-2
+      = f.label :co_acquirer
+      = f.input :co_acquirer, as: :select, label: false
+    .col-md-2
+      = f.input :percentage
+    .col-md-1
+      = f.input :cid
+    .col-md-1
+      = f.input :nis
+    .col-md-2
+      = f.hidden_field :_destroy
+      = link_to "remover", '#', class: "remove_fields btn btn-danger", style: 'margin-top: 23px'
+  %hr/
+  %br

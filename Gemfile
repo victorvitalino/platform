@@ -6,12 +6,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 
 gem 'jquery-ui-rails'
+gem 'jquery-turbolinks'
+gem 'turbolinks'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 
 gem 'simple_form'
 gem 'haml-rails'
 gem 'shareable'
+gem 'bootsy'
 
 gem 'i18n'
 gem 'enum_help'
@@ -59,11 +62,11 @@ group :development do
   gem 'guard'
   gem 'guard-rails'
   gem 'guard-livereload'
+  gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp'
 end
 
 group :production do
   gem 'pg'
-  gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp'
   gem 'unicorn'
 end
 

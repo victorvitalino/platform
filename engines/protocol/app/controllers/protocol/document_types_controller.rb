@@ -1,6 +1,6 @@
 module Protocol
     class DocumentTypesController < ApplicationController
-        layout 'layouts/material'
+       layout 'remark'
         before_action :set_document_types, only: [:index, :create, :destroy, :update]
         before_action :set_document_type, only: [:edit, :destroy, :update]
 
