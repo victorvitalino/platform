@@ -14,11 +14,11 @@
   .row
     .col-md-12
       = f.label :father, class: 'fg-label'
-      = f.association :father, label: false, prompt: 'selecione...'
+      = f.association :father, collection: Person::Sector.where(status: true).all.order(:name), label: false, prompt: 'selecione...'
   .row
     .col-md-12
       = f.label :responsible, class: 'fg-label'
-      = f.association :responsible, label: false, prompt: 'selecione...'
+      = f.association :responsible, collection: Person::Staff.where(status: true).all.order(:name), label: false, prompt: 'selecione...'
   .row
     .col-md-3
       = f.label :status, class: 'fg-label'
@@ -26,5 +26,5 @@
   %hr/
   .row
     .col-md-12
-      = f.button :submit, class: 'btn btn-success'
+      = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disbled_button)}
 

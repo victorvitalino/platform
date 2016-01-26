@@ -37,19 +37,18 @@
       = f.label :email, class: 'fg-label'
       = f.input :email, label: false, input_html: { placeholder: 'Preencha com um email válido'}
   %hr/
-  .row
-    = f.simple_fields_for :user do |u|
-      .row
-        .col-md-4
-          = u.label :username, class: 'fg-label'
-          = u.input :username, label: false, input_html: { placeholder: 'Preencha com uma credencial para acesso à extranet'}
-        .col-md-4
-          = u.label :password, class: 'fg-label'
-          = u.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
-        .col-md-4
-          = u.label :password_confirmation, class: 'fg-label'
-          = u.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
-    %hr/
+  = f.simple_fields_for :user do |u|
+    .row
+      .col-md-2
+        = u.label :username, class: 'fg-label'
+        = u.input :username, label: false, input_html: { placeholder: 'Preencha com uma credencial para acesso à extranet'}
+      .col-md-2
+        = u.label :password, class: 'fg-label'
+        = u.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
+      .col-md-2
+        = u.label :password_confirmation, class: 'fg-label'
+        = u.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
+  %hr/
   .row
     .col-md-4
       = f.label :sector_origin, class: 'fg-label'
@@ -66,35 +65,23 @@
       = f.association :branch_line, label: false, label_method: :telephone, prompt: 'selecione...'
     .col-md-2
       = f.label :date_contract, as: 'string', class: 'fg-label'
-      = f.input :date_contract, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
+      = f.input :date_contract, as: 'string', label: false, input_html: { class: 'date', value: f.object.date_contract.present? ? localize(f.object.date_contract) : ''}
     .col-md-2
       = f.label :start_hour, class: 'fg-label'
-      = f.input :start_hour,as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
+      = f.input :start_hour,as: 'string', label: false, input_html:  { class: 'hour', value: f.object.start_hour.present? ? localize(f.object.start_hour) : ''}
     .col-md-2
       = f.label :end_hour, class: 'fg-label'
-      = f.input :end_hour, as: 'string', label: false, input_html:  { class: 'hour', placeholder: '00/00/0000'}
+      = f.input :end_hour, as: 'string', label: false, input_html:  { class: 'hour', value: f.object.end_hour.present? ? localize(f.object.end_hour) : ''}
   %hr/
   .row
     .col-md-2
-      .checkbox.m-b-15
-        %label
-          = f.check_box :administrator
-          %i.input-helper
-          = f.label :administrator, class: 'fg-label'
+      = f.input :administrator, as: :select, include_blank: false
     .col-md-2
-      .checkbox.m-b-15
-        %label
-          = f.check_box :status
-          %i.input-helper
-          = f.label :status, class: 'fg-label'
-    .col-md-4
-      .checkbox.m-b-15
-        %label
-          = f.check_box :wekeend
-          %i.input-helper
-          = f.label :wekeend, class: 'fg-label'
+      = f.input :status, as: :select, include_blank: false
+    .col-md-2
+      = f.input :wekeend, as: :select, include_blank: false
   %hr/
   .row
     .col-md-12
-      = f.button :submit, class: 'btn btn-success'
-      = link_to 'Voltar', staffs_path , class: 'btn btn-inverse'
+      = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button) }
+      = link_to 'Voltar', staffs_path(status: true) , class: 'btn btn-dark', data: { disable_with: t(:disabled_button) }

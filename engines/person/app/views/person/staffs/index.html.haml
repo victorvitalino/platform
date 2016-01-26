@@ -1,30 +1,52 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Usuários
-      = link_to 'novo usuário', new_staff_path, class: 'btn btn-success pull-right' if policy(:staff, namespace: Person).create?
-      %small Listagem de Usuários
-  %hr/
-  .row
-    = simple_form_for staffs_path, method: :get do |f|
-      .col-md-3
-        = f.label "Setor"
-        = f.input :sector, as: :select, label: false, collection: Person::Sector.status.map { |key| [key.name, key.id]}, selected: params[:sector], include_blank: "Todos", input_html: { name: :sector}
-      .col-md-2
-        = f.label "Ativo?"
-        = f.input :status, as: :select, label: false, selected: params[:status], include_blank: "Todos", input_html: { name: :status}
-      .col-md-2.inline-button
-        = f.submit "Filtar", name: nil, class: 'btn btn-primary'     
-  %hr/
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table.table.table-hover.table-condensed.table-striped.datatable
-      %thead
-        %tr
-          %th Nome
-          %th Matrícula
-          %th Setor Atual
-          %th Ramal
-          %th Status
-          %th Ações
-      %tbody.index-user
-        = render 'index'
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4 
+          Funcionários / Usuários
+          = link_to 'novo usuário', new_staff_path, class: 'btn btn-success pull-right btn-sm'
+    %hr/
+    .panel-body
+      .row
+        .col-md-12
+          = simple_form_for staffs_path, method: :get do |f|
+            .col-md-3
+              = f.label "Setor"
+              = f.input :sector, as: :select, label: false, collection: Person::Sector.status.map { |key| [key.name, key.id]}, selected: params[:sector], include_blank: "Todos", input_html: { name: :sector}
+            .col-md-2
+              = f.label "Ativos?"
+              = f.input :status, as: :select, label: false, selected: params[:status], include_blank: "Todos", input_html: { name: :status}
+            .col-md-2{style: 'padding-top: 24px'}
+              = f.submit "Filtrar resultado", name: nil, class: 'btn btn-primary', data: { disable_with: t(:disabled_button)}   
+            
+      .row
+        .col-md-12
+          %hr/
+          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+            %table.table.table-hover.table-striped.table-bordered.table-condensed
+              %thead
+                %tr
+                  %th Nome
+                  %th Matrícula
+                  %th Setor Atual
+                  %th Cargo
+                  %th Ramal
+                  %th Situação
+                  %th Ações
+              %tbody
+                - @staffs.order(:name).each do |staff|
+                  %tr
+                    %td.col-md-4= staff.name.to_s.upcase
+                    %td.col-md-1= staff.code
+                    %td.col-md-1= staff.sector_current.acron if staff.sector_current.present?
+                    %td.col-md-1= staff.job.name if staff.job.present?
+                    %td.col-md-1= staff.branch_line.telephone if staff.branch_line.present?
+                    %td.col-md-1
+                      - if staff.status
+                        %span.label.label-success ativo
+                      - else
+                        %span.label.label-default inativo
+                    %td.col-sm-1
+                      = link_to "", edit_staff_path(staff), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:staff, namespace: Person).update?
+                      = link_to "", staff_staff_permissions_path(staff),  title: 'Permissões', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-share-alt btn btn-warning btn-xs ' if policy(:StaffPermission, namespace: Person).index?
+                    
