@@ -2,7 +2,6 @@ require_dependency 'person/application_controller'
 
 module Person
   class StaffsController < ApplicationController
-    layout 'layouts/material'
     before_action :set_staff,        only: [:edit, :destroy, :update]
     before_action :set_staff_status, only: [:enable, :disable]
 

@@ -3,7 +3,7 @@ require_dependency 'person/application_helper'
 
 module Person
   class ApplicationController < ApplicationController
-    layout 'material'
+    layout 'remark'
     helper ::ApplicationHelper
 
     include Pundit

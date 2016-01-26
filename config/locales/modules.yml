@@ -7,8 +7,10 @@ pt-BR:
     person: "Gestão de Pessoas"
     regularization: "Regularização"
     candidate: "Cadastro"
-    cms: "Gestão Portal"
+    cms: "Gestão Portals"
   modules:
+    person:
+      staffs: "Usuários"
     concourse:
       projects: "Projetos"
       pages: "Páginas"
