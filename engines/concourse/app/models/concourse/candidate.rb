@@ -33,8 +33,8 @@ module Concourse
         Brb::Invoice.where(category_id: self.subscribe.type_guide_id, cpf: self.cpf, status: 1).present?
     end
 
-    def protocol
-        "#{self.id}"
+    def invoice_prints
+        Brb::Invoice.where(category_id: self.subscribe.type_guide_id, cpf: self.cpf).count
     end
     
     private

@@ -1,0 +1,30 @@
+.panel
+  .panel-heading
+    .panel-title
+      %h3 
+        Menus
+        = link_to "Novo Menu", new_project_nav_path(@project), class: 'btn btn-success btn-sm pull-right'
+  .panel-body
+    %table.table.table-striped.table-bordered.table-condensed
+      %thead
+        %tr.info
+          %th Título
+          %th Tipo
+          %th URL
+          %th Target
+          %th Publicado?
+          %th Ordem
+          %th Ações
+      %tbody
+        - @project.navs.order(:order).each do |nav|
+          %tr
+            %td= nav.label
+            %td= nav.action
+            %td= nav.url
+            %td= nav.target
+            %td= nav.publish ? 'sim' : 'não'
+            %td.col-md-1
+              = "#{nav.order} º"
+            %td.col-md-1
+              = link_to "", edit_project_nav_path(project_id: @project, id: nav),class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
+              = link_to "", project_nav_path(project_id: @project, id: nav), method: :delete,class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :data => { :confirm => t(:confirm_delete) }

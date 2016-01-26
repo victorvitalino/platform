@@ -1,38 +1,36 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Detalhamento de Inscrição
-      %span.pull-right
-        /= link_to "homologar", "#", class: 'btn btn-success'
-        = link_to "voltar", project_path(@project, q: 'inscricoes'), class: 'btn btn-inverse'
-  .card-body.card-padding
-    
+.panel
+  .panel-heading
+    .panel-title
+      %h3.bold
+        Detalhamento de Inscrição - #{@candidate.id}
+      %small
+        = link_to "voltar para inscrições", project_candidates_path(@project)
+        |
+        = link_to "atualizar situação", project_path(@project, q: 'inscricoes')
+        |
+        = link_to "inserir observação", project_path(@project, q: 'inscricoes')
+  %hr/
+  .panel-body
     .row
       .col-md-12
         %h4 Informações sobre a inscrição
     .row
-      .col-md-6
+      .col-md-12
         %table.table.table-striped.table-bordered
           %thead
             %tr
-              %th Protocolo
-              %th Data de inscrição
-          %tbody
-            %tr
-              %th= @candidate.protocol
-              %th= @candidate.created_at.strftime("%d/%m/%Y às %H:%M")
-      .col-md-6
-        %table.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th Status de Inscrição
+              %th Número
+              %th Data da inscrição
+              %th Situação da inscrição
               %th Pagamento de Inscrição
-              %th Ações
+              %th Boletos emitidos
           %tbody
             %tr
-              %th= @candidate.status
-              %th
-              %th= link_to "imprimir boleto", "#"
+              %td.col-md-1= @candidate.id
+              %td= @candidate.created_at.strftime("%d/%m/%Y às %H:%M")
+              %td= @candidate.status
+              %td= @candidate.invoice_paid ? 'pagamento realizado' : 'pendente'
+              %td= @candidate.invoice_prints 
   
     %br
     %br
@@ -90,7 +88,7 @@
     %br
     .row
       .col-md-12
-        %h4 Informações de Pessoa Jurídica
+        %h4 Informações de pessoa jurídica
     .row
       .col-md-12
         %table.table.table-striped.table-bordered
@@ -101,13 +99,10 @@
               %th CNPJ
           %tbody
             %tr
-              %td.col-md-1= @candidate.social_reason.upcase
-              %td.col-md-1= @candidate.fantasy_name.upcase
-              %td.col-md-3= @candidate.cnpj
+              %td.col-md-4= @candidate.social_reason.upcase
+              %td.col-md-4= @candidate.fantasy_name.upcase
+              %td.col-md-4= @candidate.cnpj
         %br/
- 
-    %br
-    %br
     .row
       .col-md-12
         %h4 Informações adicionais
@@ -123,3 +118,18 @@
               %tr
                 %td= p[0].humanize
                 %td= link_to "Baixar Arquivo", "http://api.codhab.df.gov.br/static/#{p[1]}", target: '_blank'
+    %hr/
+    .row
+      .col-md-12
+        %h4 
+          Observações 
+          = link_to "nova observação", "#", class: 'pull-right'
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Tipo
+              %th Observação
+              %th Data
+          %tbody

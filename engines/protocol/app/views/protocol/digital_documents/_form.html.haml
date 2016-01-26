@@ -1,21 +1,20 @@
-.row
- .col-md-12
-  = simple_form_for [:assessment, @digital_document], remote: true do |f|
-   .row
-    .col-md-5
-     = f.label :page_number, class: 'fg-label'
-     = f.input :page_number, label: false, input_html: { placeholder: 'Digite uma página'}
-   .row
-    .col-md-12
-     = f.label :doc_path, as: 'file', class: 'fg-label'
-     = f.input :doc_path, as: 'file', label: false, input_html: { placeholder: 'Insira uma imagem'}
-     = image_tag @digital_document.doc_path_url, width: '150' if @digital_document.doc_path?
-   .row
-    .col-md-4
-     = f.button :submit, class: 'btn btn-success'
-     %br
-     %br
-   .row
-    .col-md-12
-     - if @digital_documents.present?
-      = render 'index'
+= simple_form_for [:assessment, @digital_document], remote: true do |f|
+  .card-body.card-padding
+    .row
+      .col-md-5
+        = f.label :page_number, class: 'fg-label'
+        = f.input :page_number, label: false, input_html: { placeholder: 'Digite uma página'}
+    .row
+      .col-md-12
+        = f.label :doc_path, as: 'file', class: 'fg-label'
+        = f.input :doc_path, as: 'file', label: false, input_html: { placeholder: 'Insira uma imagem'}
+        = image_tag @digital_document.doc_path_url, width: '150' if @digital_document.doc_path?
+    .row
+      .col-md-4
+        = f.button :submit, class: 'btn btn-success'
+        %br
+        %br
+    .row
+      .col-md-12
+        - if @digital_documents.present?
+          = render 'index'

@@ -1,29 +1,28 @@
 .modal-header
   %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
     %span{"aria-hidden" => "true"} ×
-  %h4#modal.modal-title Detalhamento de Consulta
+  %h4#modal.modal-title.bold Detalhamento de Consulta
 .modal-body
   .row
     .col-md-12
-      %h5
-        %b Conteúdo
+      %h5.bold Conteúdo
   .row
     .col-md-12
       = @consult.content
   %hr/
   .row
     .col-md-4
-      %b Realizado em
+      .bold Realizado em
       %br
       = @consult.created_at.strftime('%d/%m/%Y às %H:%M')
-    .col-md-4
-      %b Status
+    .col-md-6
+      .bold Situação
       %br
-      = @consult.status ? 'Leitura realizada' : 'Não lido'
-  %hr/
-  .row
-    .col-md-12
-      - unless @consult.status
+      = @consult.status ? "Leitura realizada em #{@consult.updated_at.strftime('%d/%m/%Y ás %H:%M')}" : 'Não lido'
+  - unless @consult.status
+    %hr/
+    .row
+      .col-md-12
         = link_to "Marcar como lido", project_consult_read_path(project_id: @project, consult_id: @consult) , class: 'btn btn-success pull-right' 
 
   %br/

@@ -1,27 +1,29 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Movimentações
-      %small Lista de Documentos
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-  %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-    %thead
-      %tr
-        %th #
-        %th Setor
-        %th Ação
-        %th Data
-        %th Descrição
-    %tbody
-      - @conduct.each_with_index do |j, i|
-        %tr
-          %td.col-md-1
-            = i + 1
-          %td
-            = j.sector.name if j.sector.present?
-          %td
-            = j.conduct_type_i18n
-          %td
-            = j.created_at.strftime('%d/%m/%Y - %H:%M')
-          %td
-            = j.description
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Movimentações
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th #
+            %th Setor
+            %th Ação
+            %th Data
+            %th Descrição
+        %tbody
+          - @conduct.each_with_index do |j, i|
+            %tr
+              %td.col-md-1
+                = i + 1
+              %td
+                = j.sector.name if j.sector.present?
+              %td
+                = j.conduct_type_i18n
+              %td
+                = j.created_at.strftime('%d/%m/%Y - %H:%M')
+              %td
+                = j.description

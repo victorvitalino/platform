@@ -26,24 +26,11 @@
         = f.input :thumbnail, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
 
       .col-md-2
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts4"}
-              = f.label :slider
-          %br
-          %br
-          = f.check_box :slider, id: 'ts4',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts4"}
-      - if policy(:Post, namespace: Cms).publish?
-        .col-md-2
-          .toggle-switch{"data-ts-color" => "blue"}
-            %label
-              .ts-label{:for => "ts5"}
-                =f.label :publish
-            %br
-            %br
-            = f.check_box :publish, id: 'ts5',hidden: 'hidden', type: 'checkbox'
-            %label.ts-helper{:for => "ts5"}
+        = f.label :slider
+        = f.input :slider, label: false, as: :select, include_blank: false
+      .col-md-2
+        = f.label :publish
+        = f.input :publish, label: false, as: :select, include_blank: false
       .col-md-2
         .toggle-switch{"data-ts-color" => "blue"}
           %label

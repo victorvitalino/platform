@@ -1,10 +1,12 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Documentos Anexos/Apensos
-      %small Lista de Documentos
-    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Documentos Anexos/Apensos
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-bordered
         %thead
           %tr
             %th Número Documento

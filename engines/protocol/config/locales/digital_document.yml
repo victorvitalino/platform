@@ -4,6 +4,5 @@ pt-BR:
       'protocol/digital_document': Documento Digital
     attributes:
       'protocol/digital_document':
-        name: "Nome"
-        description: "Descrição"
-        status: "Status"
+        page_number: "Número de página"
+        doc_path: "Documento"

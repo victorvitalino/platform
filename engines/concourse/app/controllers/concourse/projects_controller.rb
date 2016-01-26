@@ -3,10 +3,12 @@ require_dependency "concourse/application_controller"
 module Concourse
   class ProjectsController < ApplicationController
     before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+    layout 'remark', only: [:index, :new, :edit]
+    #layout 'layouts/concourse/application', only: [:show]
     # GET /projects
     def index
       @projects = Project.unscoped.all
+      
     end
 
     # GET /projects/1

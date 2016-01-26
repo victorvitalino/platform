@@ -1,0 +1,23 @@
+%ul.list-group.nav
+  %li.list-group-item
+    %a{:href => "#{concourse.project_path(@project)}"} Visão geral
+  %li.list-group-item
+    %a{:href => "#{concourse.project_pages_path(@project)}"} Páginas
+  %li.list-group-item
+    %a{:href => "#{concourse.project_navs_path(@project)}"} Menus
+  %li.list-group-item
+    %a{:href => "#"} Tipos de Inscrição
+  %li.list-group-item
+    %a{:href => "#"} Tipos de Participação
+  %li
+    %hr/
+  %li.list-group-item
+    %a{:href => "#{concourse.project_consults_path(@project)}"} Consultas
+  %li.list-group-item
+    %a{:href => "#{concourse.project_candidates_path(@project)}"} Inscrições
+  %li.list-group-item
+    %a{:href => "#"} Boletos emitidos
+  %li.list-group-item
+    %a{:href => "#"} Participações
+  %li.list-group-item
+    %a{:href => "#"} Vencedores

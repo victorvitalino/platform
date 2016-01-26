@@ -1,15 +1,17 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Digitalizações
-      %small Lista de Documentos
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-      %thead
-        %tr
-          %th #
-          %th Página
-          %th Documento
-          %th Ações
-      %tbody.index-docs
-        = render 'protocol/digital_documents/index_docs'
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Digitalizações
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Página
+              %th Documento
+              %th Ações
+          %tbody.index-docs
+            = render 'protocol/digital_documents/index_docs'

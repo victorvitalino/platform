@@ -1,0 +1,32 @@
+.panel
+  .panel-heading
+    .panel-title
+      %h3
+        Inscrições 
+      %small.bold
+        Total de inscritos: 
+        #{@project.candidates.count}
+  .panel-body
+    %table.table.table-striped.table-hover.table-bordered
+      %thead
+        %tr.info
+          %th Tipo de inscrição
+          %th Nº inscrição
+          %th CPF
+          %th Taxa de inscrição
+          %th Boletos emitidos
+          %th Data de inscrição
+          %th Status
+          %th Ação
+      %tbody
+        - @project.candidates.each_with_index do |candidate, index|
+          %tr
+            %td= candidate.subscribe.title if candidate.subscribe.present?
+            %td= candidate.id
+            %td= candidate.cpf
+            %td= candidate.invoice_paid ? "pagamento realizado" : "pendente"
+            %td= "impresso:  #{candidate.invoice_prints}"
+            %td= candidate.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td= candidate.status
+            %td
+              = link_to "", project_candidate_path(project_id: @project, id: candidate), class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs', title: "visualizar"
