@@ -6,12 +6,15 @@ namespace :csv do
 
   task :treta => :environment do
     @index = 0
-    CSV.foreach("lib/files/atualizar3.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/indicacao.csv", :col_sep => "#") do |row|
       @index += 1
 
-        @ref = Candidate::Cadastre.find_by_cpf(row[0]) rescue nil
+        @ref = Firm::EnterpriseCadastre.where(cadastre_id: row[2], enterprise_id: row[3]).last
 
-        @ref.income = row[1] if @ref.present?
+        if @ref.present?
+          @ref.status = row[0]
+          @ref.source_list = row[4]
+        end
 
         begin
           @ref.save

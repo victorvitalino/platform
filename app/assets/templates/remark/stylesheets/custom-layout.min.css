@@ -13,6 +13,14 @@
 .table a {
   text-decoration: none !important;
 }
+/* Correção de butões */
+
+.btn-dark {
+    color: #FFFFFF;
+    background-color: #67737B;
+    border-color: #67737B;
+}
+
 /* Correção de forms */
 
 label {
