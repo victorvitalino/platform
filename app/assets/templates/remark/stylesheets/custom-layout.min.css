@@ -1,3 +1,17 @@
+
+.site-menubar.site-menubar-light {
+    background: #5A5A5A !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.site-menubar-light .site-menu-item:hover>a {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(255, 165, 24) !important;
+}
+
+.site-menu-item .has-sub  {
+  color: #5A5A5A !important;
+}
 .navbar-inverse {
   background-color: #FFA518 !important;
 }
