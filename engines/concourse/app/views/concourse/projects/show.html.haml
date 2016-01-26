@@ -1,32 +1,49 @@
-.card
-  .card
-    .card-header
-      .pull-right
-        = link_to "", edit_project_path(@project), class: 'md md-edit btn btn-primary'
-        = link_to "voltar", projects_path, class: 'btn btn-inverse'
-      %h2
-        #{@project.title}
-        %small= @project.mini_description.html_safe
-    .card-body.card-padding
-      %div{:role => "tabpanel"}
-        %ul.tab-nav{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "1"}
-          %li{:class => (params[:q] == 'paginas'|| params[:q].nil?) ? 'active' : ''}
-            %a{"aria-controls" => "pages", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#pages", :role => "tab"} Páginas
-          %li{:class => (params[:q] == 'menus') ? 'active' : ''}
-            %a{"aria-controls" => "navs", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#navs", :role => "tab"} Menus
-          %li{:class => (params[:q] == 'tipo_inscricoes') ? 'active' : ''}
-            %a{"aria-controls" => "subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#subscribes", :role => "tab"} Tipo de inscrições  
-          %li{:class => (params[:q] == 'consultas') ? 'active' : ''}
-            %a{"aria-controls" => "consults", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#consults", :role => "tab"} Consultas
-          %li{:class => (params[:q] == 'inscricoes') ? 'active' : ''}
-            %a{"aria-controls" => "candidate_subscribes", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#candidate_subscribes", :role => "tab"} Inscrições
-
-        .tab-content
-          = render 'concourse/pages/index'
-          = render 'concourse/navs/index'
-          = render 'concourse/subscribes/index'
-          = render 'concourse/participations/index'
-          = render 'concourse/candidate_subscribes/index'
-          = render 'concourse/candidate_participations/index'
-          = render 'concourse/winners/index'
-          = render 'concourse/consults/index'
+.panel
+  .panel-heading
+    .panel-heading
+      .panel-title
+        %h3 Visão geral
+    %hr/
+    .panel-body
+      .row
+        .col-md-12
+          %h4 Informações Gerais
+      .row
+        .col-md-12
+          %table.table.table-striped.table-bordered
+            %thead 
+              %tr
+                %th Nome
+                %th Situação
+                %th Quant. Inscritos
+                %th Quant. Consultas
+                %th Quant. Projetos enviados
+            %tbody
+              %tr
+                %td= @project.title
+                %td= @project.step.upcase
+                %td= @project.candidates.count
+                %td= @project.consults.count
+                %td -
+      %br/
+      .row
+        .col-md-12
+          %h4 Tipo de inscrições
+      .row
+        .col-md-12
+          %table.table.table-striped.table-bordered
+            %thead 
+              %tr
+                %th Nome
+                %th Valor
+                %th Boleto Referência
+                %th Início
+                %th Fim
+            %tbody
+              - @project.subscribes.each do |sub|
+                %tr
+                  %td= sub.title 
+                  %td= number_to_currency sub.type_guide.default_value  if sub.type_guide.present?
+                  %td= sub.type_guide.name if sub.type_guide.present?
+                  %td= sub.start.strftime('%d/%m/%Y')
+                  %td= sub.end.strftime('%d/%m/%Y')

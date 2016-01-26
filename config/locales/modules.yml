@@ -12,6 +12,7 @@ pt-BR:
     concourse:
       projects: "Projetos"
       pages: "Páginas"
+      navs: "Menus"
     regularization:
       agendas: "Agendas"
     cms:

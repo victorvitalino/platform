@@ -3,6 +3,6 @@
   %li.bold
     = t("engines.#{controller_path.split('/')[0]}")
   %li.bold
-    = t("modules.#{controller_name}")
+    = t("modules.#{controller_path.split('/')[0]}.#{controller_name}")
   %li.bold.active
     = t("actions.#{action_name}")

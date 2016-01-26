@@ -13,8 +13,21 @@
 .table a {
   text-decoration: none !important;
 }
-/* Correção de butões */
+/* Correção de bootstrpa */
 
+.alert-success {
+    background-color: #5DB554 !important;
+    border-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+    font-weight: bold !important;
+}
+
+.breadcrumb {
+  background-color: #F1F4F5 !important;
+}
+.panel-title {
+  padding: 20px 17px !important;
+}
 .btn-dark {
     color: #FFFFFF;
     background-color: #67737B;

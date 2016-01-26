@@ -1,23 +1,25 @@
-.card
-  .card-header.ch-alt
-    %h2 pages
-    %small Listagem de pages
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.datatable
+.panel
+  .panel-heading
+    .panel-title
+      %h3
+        Páginas
+        = link_to "Nova página", new_project_page_path(@project), class: 'btn btn-success btn-sm pull-right'
+  .panel-body
+    %table.table.table-striped.table-bordered.table-hover
       %thead
-        %tr
-          %th Project
-          %th Title
-          %th Content
-          %th Publish
-          %th Slug
+        %tr.info
+          %th Título
+          %th Publicada?
+          %th Data
+          %th URL
+          %th Ações
       %tbody
-        - @pages.each_with_index do |page, index|
+        - @project.pages.each_with_index do |page, index|
           %tr
-            %td= page.project
-            %td= page.title
-            %td= page.content
-            %td= page.publish
-            %td= page.slug
-
-     
+            %td.col-md-2= page.title
+            %td= page.publish ? 'publicada' : 'não publicada'
+            %td= page.created_at.strftime('%d/%m/%Y')
+            %td= "/concursos/#{@project.slug}/#{page.slug}"
+            %td.col-md-1
+              = link_to "", edit_project_page_path(project_id: @project, id: page),class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
+              = link_to "", project_page_path(project_id: @project, id: page), method: :delete,class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => t(:confirm_delete) } 

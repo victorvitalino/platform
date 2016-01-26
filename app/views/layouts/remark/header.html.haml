@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Extranet
+    = stylesheet_link_tag  'remark', media: 'all'
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,300", :rel => "stylesheet", :type => "text/css"}/
+    = csrf_meta_tags
+  %body.app-documents.site-navbar-small
+    = render "layouts/partials/remark/nav" if user_signed_in?
+    = render "layouts/partials/remark/subnav"
+    .page-header
+      = render "layouts/remark/breadcrumb"
+      = render "layouts/remark/flash_message"

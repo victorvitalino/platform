@@ -21,7 +21,7 @@
               %td= "#{candidate.id}#{candidate.created_at.strftime('%d/%m/%Y')}"
               %td= candidate.id
               %td= candidate.cpf
-              %td  Pendente
+              %td= "impressos #{candidate.invoice_paid}"
               %td= candidate.created_at.strftime('%d/%m/%Y às %H:%M')
               %td= candidate.status
               %td
