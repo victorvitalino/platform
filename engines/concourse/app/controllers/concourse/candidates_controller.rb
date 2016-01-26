@@ -1,6 +1,14 @@
 module Concourse
   class CandidatesController < ApplicationController
-    before_action :set_project
+    before_action :set_project, except: [:view_all]
+
+    def view_all
+      @candidates = Concourse::Candidate.all
+      render layout: 'remark'
+    end
+
+    def index
+    end
 
     def show
       @candidate = @project.candidates.find(params[:id]) 

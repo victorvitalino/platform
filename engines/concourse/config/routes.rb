@@ -1,4 +1,7 @@
 Concourse::Engine.routes.draw do
+
+  get 'view_all', path: 'todas_inscricoes', to: 'candidates#view_all', as: 'view_all'
+  
   resources :projects do 
 
     resources :pages

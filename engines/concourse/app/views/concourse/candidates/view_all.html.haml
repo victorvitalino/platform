@@ -1,0 +1,41 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h3
+          Todas as inscrições 
+        %small
+          Total: #{@candidates.count}
+        %small.bold
+    .panel-body
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th Nº
+            %th Nome
+            %th CPF
+            %th Cidade/UF
+            %th Concurso
+            %th Situação
+            %th Taxa
+            %th Envio projeto
+            %th Colocação
+            %th Ações
+        %tbody
+          - @candidates.order('created_at DESC').each do |candidate|
+            %tr
+              %td= candidate.id
+              %td= candidate.name.humanize
+              %td= candidate.cpf
+              %td= "#{candidate.city.downcase} / #{candidate.state.acronym.upcase}"
+              %td= candidate.subscribe.project.title
+              %td= candidate.status
+              %td
+                - if candidate.invoice_paid
+                  %span.label.label-success paga
+                - else
+                  %span.label.label-warning pendente
+              %td -
+              %td -
+              %td
+                = link_to "", project_candidate_path(project_id: candidate.subscribe.project_id, id: candidate.id), class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs', title: "visualizar"

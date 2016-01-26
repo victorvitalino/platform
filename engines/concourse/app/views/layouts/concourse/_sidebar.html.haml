@@ -1,5 +1,10 @@
 %ul.list-group.nav
   %li.list-group-item
+    %a{:href => "#{concourse.projects_path}"} 
+      %span.label.label-info
+        %i.glyphicon.glyphicon-backward 
+        Voltar para lista de concursos
+  %li.list-group-item
     %a{:href => "#{concourse.project_path(@project)}"} Visão geral
   %li.list-group-item
     %a{:href => "#{concourse.project_pages_path(@project)}"} Páginas
