@@ -1,23 +1,24 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Categorias de Posts
-      = link_to 'Nova Categoria', new_post_category_path, class: 'btn btn-success pull-right' if policy(:PostCategory, namespace: Cms).create?
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-      %thead
-        %tr
-          %th #
-          %th Nome
-          %th Publicado
-          %th Ações
-
-      %tbody
-        - @post_categories.each_with_index do |post_category, i|
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4 
+          Categorias de Posts
+          = link_to 'Nova categoria', new_post_category_path, class: 'btn btn-success btn-sm pull-right'
+    %hr/
+    .panel-body
+      %table.table.table-striped.table-bordered
+        %thead
           %tr
-            %td= i+1
-            %td= post_category.title
-            %td= status_helper (post_category.status)
-            %td.col-md-2
-              = link_to '', edit_post_category_path(post_category), class: 'md md-edit btn btn-primary' if policy(:PostCategory, namespace: Cms).update?
-              = link_to '', post_category, class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' } if policy(:PostCategory, namespace: Cms).destroy?
+            %th Nome
+            %th Publicado
+            %th Ações
+
+        %tbody
+          - @post_categories.order(:title).each do |post_category|
+            %tr
+              %td= post_category.title
+              %td.col-md-1= status_helper (post_category.status)
+              %td.col-md-1
+                = link_to '', edit_post_category_path(post_category), class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
+                = link_to '', post_category, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :method => :delete, :data => { :confirm => t(:confirm_delete) } 

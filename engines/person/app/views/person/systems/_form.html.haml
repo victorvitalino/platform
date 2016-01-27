@@ -1,22 +1,16 @@
-.row
- .col-md-12
-  = simple_form_for @system, remote: true do |f|
-   .row
+= simple_form_for @system, remote: true do |f|
+  .row
     .col-md-12
-     = f.label :name, class: 'fg-label'
-     = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
-   .row
+      = f.label :name, class: 'fg-label'
+      = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+  .row
     .col-md-12
-     = f.label :code, class: 'fg-label'
-     = f.input :code, label: false, input_html: { placeholder: 'Digite um código identificador'}
-   .row
+      = f.label :code, class: 'fg-label'
+      = f.input :code, label: false, input_html: { placeholder: 'Digite um código identificador'}
+  .row
+    .col-md-3
+      = f.input :status, as: :select, include_blank: false 
+  %hr/
+  .row
     .col-md-12
-     .checkbox.m-b-15
-      %label
-       = f.check_box :status
-       %i.input-helper
-       = f.label :status, class: 'fg-label'
-   .row
-    .col-md-12
-     = f.button :submit, class: 'btn btn-success'
-   %br/
+      = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button)}

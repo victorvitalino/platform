@@ -29,7 +29,6 @@ module Cms
       @page_category = PageCategory.new(page_category_params)
       authorize @page_category
       if @page_category.save
-
         flash[:success] =  t :success
         redirect_to action: 'index'
       else
@@ -41,6 +40,7 @@ module Cms
     def update
       authorize @page_category
       if @page_category.update(page_category_params)
+        flash[:success] =  t :success
         redirect_to action: 'index'
       else
         render :edit
@@ -51,7 +51,8 @@ module Cms
     def destroy
       authorize @page_category
       @page_category.destroy
-      redirect_to page_categories_url, notice: 'Page category was successfully destroyed.'
+      flash[:success] =  t :success
+      redirect_to action: 'index'
     end
 
     private

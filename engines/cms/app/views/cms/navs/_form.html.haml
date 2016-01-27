@@ -14,26 +14,22 @@
       .col-md-3
         = f.label :target, class: 'fg-label'
         = f.input :target, as: :select, collection: Cms::Nav.targets.keys.to_a, label: false, prompt: 'selecione...'
-      .col-md-3
+      .col-md-1
         = f.label :order, class: 'fg-label'
-        = f.input :order, label: false, input_html: { placeholder: 'Ordene' }
+        = f.input :order, label: false, input_html: { placeholder: '' }
     .row
       .col-md-3
         = f.label :link_external, class: 'fg-label'
         = f.input :link_external, label: false, input_html: { placeholder: 'Digite um título'}
-      .col-md-3
+      .col-md-2
         = f.label :type_nav, class: 'fg-label'
         = f.input :type_nav, as: 'select',collection:Cms::Nav.type_navs.keys.to_a, label: false, prompt: 'Selecione...'
-      .col-md-1
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts4"}
-              = f.label :publish
-          %br
-          %br
-          = f.check_box :publish, id: 'ts4',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts4"}
+    %hr/
+    .row
+      .col-md-2
+        = f.input :publish, as: :select, include_blank: false
+    %hr/
     .row
       .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to 'Voltar',navs_path , class: 'btn btn-inverse'
+        = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button)}
+        = link_to 'Voltar',navs_path , class: 'btn btn-dark'

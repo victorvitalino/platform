@@ -2,7 +2,6 @@ require_dependency "person/application_controller"
 
 module Person
 	class SystemsController < ApplicationController
-		layout 'layouts/material'
 		before_action :set_systems, only: [:index, :create, :destroy, :update]
 		before_action :set_system, only: [:edit, :destroy, :update]
 

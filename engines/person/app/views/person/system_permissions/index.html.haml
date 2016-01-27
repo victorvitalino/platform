@@ -1,16 +1,20 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Ações do Sistema
-      = link_to 'Nova Ação', new_system_system_permission_path, remote: true, class: 'btn btn-success pull-right' if policy(:SystemPermission, namespace: Person).create?
-      %small Listagem de ações dos sistemas
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table.table.table-hover.table-bordered
-      %thead
-        %tr
-          %th #
-          %th Ação
-          %th Código
-          %th Ações
-      %tbody.index-system_permission
-        = render 'index_permission'
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4 
+          Ações do Sistema
+          %span.pull-right
+            = link_to 'Volta para sistemas', systems_path, class: 'btn btn-dark btn-sm' 
+            = link_to 'Nova Ação', new_system_system_permission_path, remote: true, class: 'btn btn-success btn-sm' 
+    %hr/
+    .panel-body
+      %table.table.table-hover.table-bordered.table-striped
+        %thead
+          %tr
+            %th #
+            %th Ação
+            %th Código
+            %th Ações
+        %tbody.index-permission
+          = render 'index'

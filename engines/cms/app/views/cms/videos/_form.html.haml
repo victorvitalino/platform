@@ -5,25 +5,17 @@
         = f.label :title, class: 'fg-label'
         = f.input :title, label: false, input_html: { placeholder: 'Digite um titulo' }
     .row
-      .col-md-12
+      .col-md-6
         = f.label :url, class: 'fg-label'
         = f.input :url, label: false, input_html: { placeholder: 'Digite a url do vídeo' }
-      .col-md-2
+      .col-md-1
         = f.label :position, class: 'fg-label'
         = f.input :position, label: false
-      - if policy(:video, namespace: Cms).publish?
-        .col-md-2
-          .toggle-switch{"data-ts-color" => "blue"}
-            %label
-              .ts-label{:for => "ts5"}
-                =f.label :publish
-            %br
-            %br
-            = f.check_box :publish, id: 'ts5',hidden: 'hidden', type: 'checkbox'
-            %label.ts-helper{:for => "ts5"}
-            %br
-            %br
+    .row
+      .col-md-2
+        = f.input :publish, as: :select, include_blank: false
+    %hr/
     .row
       .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to 'Voltar',videos_path , class: 'btn btn-inverse'
+        = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button)}
+        = link_to 'Voltar',videos_path , class: 'btn btn-dark'

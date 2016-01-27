@@ -31,6 +31,7 @@ module Cms
       @video = Video.new(video_params)
       authorize @video
       if @video.save
+        flash[:success] = t :success
         redirect_to action: 'index'
       else
         render :new
@@ -41,6 +42,7 @@ module Cms
     def update
       authorize @video
       if @video.update(video_params)
+        flash[:success] = t :success
         redirect_to action: 'index'
       else
         render :edit
@@ -51,6 +53,7 @@ module Cms
     def destroy
       authorize @video
       @video.destroy
+      flash[:success] = t :success
       redirect_to videos_url, notice: 'Post was successfully destroyed.'
     end
 

@@ -6,7 +6,7 @@ module Concourse
     has_many :observations
     
     enum gender: [:masculino, :feminino]
-    enum status: [:processando, :homologado, :indeferido]
+    enum status: [:processando, :pendente, :homologado, :indeferido]
 
     serialize  :properties, Hash 
 

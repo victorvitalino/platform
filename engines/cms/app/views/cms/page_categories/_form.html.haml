@@ -4,18 +4,15 @@
       .col-md-6
         = f.label :title, class: 'fg-label'
         = f.input :title, label: false, input_html: { placeholder: 'Digite um nome'}
+    .row
       .col-md-6
         = f.label :description, class: 'fg-label'
         = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
     .row
-      .col-md-12
-        .checkbox
-          %label
-            = f.check_box :status
-            %i.input-helper
-            Ativar
-            %br/
+      .col-md-2
+        = f.input :status, as: :select, include_blank: false
+    %hr/
     .row
       .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to 'Voltar',page_categories_path , class: 'btn btn-inverse'
+        = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button)}
+        = link_to 'Voltar',page_categories_path , class: 'btn btn-dark '

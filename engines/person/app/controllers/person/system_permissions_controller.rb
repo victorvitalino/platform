@@ -2,7 +2,6 @@ require_dependency "person/application_controller"
 
 module Person
 	class SystemPermissionsController < ApplicationController
-		layout 'layouts/material'
 		before_action :set_system
 		before_action :set_system_permissions, only: [:index, :new,:create, :destroy]
 		before_action :set_system_permission, only: [:destroy]

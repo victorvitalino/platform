@@ -10,33 +10,21 @@
         = f.input :content,  label: false, input_html: { class: 'redactorbox' }
     .row
       .col-md-2
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts4"}
-              = f.label :status
-          %br
-          %br
-          = f.check_box :status, id: 'ts4',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts4"}
+        = f.input :status, as: :select, include_blank: false
       .col-md-2
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts3"}
-              = f.label :private
-          %br
-          %br
-          = f.check_box :private, id: 'ts3',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts3"}
-      .col-md-3
+        = f.input :private, as: :select, include_blank: false
+      .col-md-1
         = f.label :date, as: 'string', class: 'fg-label'
         = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@gallery.date) ? localize(f.object.date) : nil}
+    .row
       .col-md-4
         = f.label :thumbnail, class: 'fg-label'
-        = f.input :thumbnail,as: 'file'
+        = f.input :thumbnail, label: false,as: 'file'
       .col-md-4
         = f.label :photo, class: 'fg-label'
-        = f.input :photo, as: 'file', input_html: { multiple: true }
+        = f.input :photo, as: 'file', label: false, input_html: { multiple: true }
+    %hr/
     .row
       .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to 'Voltar',posts_path , class: 'btn btn-inverse'
+        = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button)}
+        = link_to 'Voltar',posts_path , class: 'btn btn-dark'
