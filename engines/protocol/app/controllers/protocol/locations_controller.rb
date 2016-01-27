@@ -23,7 +23,7 @@ module Protocol
                     @location.staff_id = current_user.account.id
                     @location.save
                 end
-            redirect_to '/protocol/assessment/index'
+            redirect_to asessments_path
         end
 
         def edit

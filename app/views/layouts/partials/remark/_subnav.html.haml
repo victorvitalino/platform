@@ -269,16 +269,13 @@
                   %span.site-menu-arrow
                 %ul.site-menu-sub
                   %li.site-menu-item.hidden-xs.site-tour-trigger
-                    %a{:href => "javascript:void(0)"}
+                    %a.animsition-link{:href => "#{protocol.allotments_path}"}
                       %span.site-menu-title Lista
                   %li.site-menu-item
-                    %a.animsition-link{:href => "#"}
-                      %span.site-menu-title Enviar
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../advanced/highlight.html"}
+                    %a.animsition-link{:href => "#{protocol.receive_path}"}
                       %span.site-menu-title Receber
                   %li.site-menu-item
-                    %a.animsition-link{:href => "../../advanced/lightbox.html"}
+                    %a.animsition-link{:href => "#{protocol.return_path}"}
                       %span.site-menu-title Cancelar
               %li.site-menu-item.has-sub
                 %a{:href => "javascript:void(0)"}
@@ -290,12 +287,12 @@
                       %span.site-menu-title Novo
               %li.site-menu-item.has-sub
                 %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Digitalização
+                  %span.site-menu-title Relatórios
                   %span.site-menu-arrow
                 %ul.site-menu-sub
                   %li.site-menu-item
-                    %a.animsition-link{:href => "#"}
-                      %span.site-menu-title Inclusão
+                    %a.animsition-link{:href => "#{protocol.new_report_path}"}
+                      %span.site-menu-title Remessas
               %li.site-menu-item.has-sub
                 %a{:href => "javascript:void(0)"}
                   %span.site-menu-title Configuração

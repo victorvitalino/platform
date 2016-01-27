@@ -1,6 +1,7 @@
 - if @conduct_result.present?
   %span.c-black Documento Pesquisado
   %br
+  %br
   .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
     %table.table.table-hover.table-bordered
       %thead
@@ -19,4 +20,4 @@
             %td
               = a.sector.name
             %td
-              = link_to "", add_path(assessment_id: a.assessment.id, id: @conduct.allotment.id), title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'md-check btn btn-info waves-effect waves-button waves-float'
+              = link_to "", add_path(assessment_id: a.assessment.id, id: @conduct.allotment.id), title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'glyphicon glyphicon-check  btn btn-info btn-xs'
