@@ -11,11 +11,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_password
-    if current_user.present?
-      if current_user.account.password_change.nil?  
-        redirect_to main_app.edit_user_registration_path unless devise_controller?
-      end
-    end
+
   end
 
 end

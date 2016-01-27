@@ -1,4 +1,14 @@
 
+.user {
+  color: white;
+  padding-top: 12px;
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.user i {
+  font-size: 10px
+}
 .site-menubar.site-menubar-light {
     background: #5A5A5A !important;
     color: rgb(255, 255, 255) !important;

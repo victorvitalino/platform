@@ -11,7 +11,7 @@ module ConcoursePortal
     def new
       if params[:subscribe_id].present?
         session[:subscribe_id] = params[:subscribe_id]
-        @subscribe = Concourse::Subscribe.find(session[:subscribe_id])
+        @subscribe = ConcoursePortal::Subscribe.find(session[:subscribe_id])
         @current_nav = 'new_subscribe'
         @candidate = @subscribe.candidates.new
       else
@@ -20,7 +20,7 @@ module ConcoursePortal
     end
 
     def create
-      @subscribe = Concourse::Subscribe.find(session[:subscribe_id])
+      @subscribe = ConcoursePortal::Subscribe.find(session[:subscribe_id])
       @candidate = @subscribe.candidates.new(set_params)
       
       if @candidate.valid?
@@ -47,7 +47,7 @@ module ConcoursePortal
     end
 
     def show
-      @candidate = Concourse::Candidate.find(session[:candidate_id])
+      @candidate = ConcoursePortal::Candidate.find(session[:candidate_id])
     end
 
     def success
@@ -94,7 +94,7 @@ module ConcoursePortal
 
     def set_candidate
       if session[:candidate_id].present?
-        @candidate = Concourse::Candidate.find(session[:candidate_id])
+        @candidate = ConcoursePortal::Candidate.find(session[:candidate_id])
       else
         redirect_to action: 'new'
       end

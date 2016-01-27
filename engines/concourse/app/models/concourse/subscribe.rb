@@ -15,10 +15,5 @@ module Concourse
 
     accepts_nested_attributes_for :fields, allow_destroy: true
 
-    private
-
-    def fee?
-      self.fee
-    end 
   end
 end

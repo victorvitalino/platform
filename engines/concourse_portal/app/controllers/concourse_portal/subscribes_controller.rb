@@ -3,7 +3,7 @@ module ConcoursePortal
   class SubscribesController < ApplicationController
    
     def index
-      @subscribe  = ConcoursePortal::Subscribe.new
+      @subscribe  = ConcoursePortal::Session.new
       @current_nav = 'new_subscribe'
     
     end
@@ -15,7 +15,7 @@ module ConcoursePortal
       
       if @subscribe.valid?
         session[:candidate_id] = @subscribe._id
-        @candidate = Concourse::Candidate.find(session[:candidate_id])
+        @candidate = ConcoursePortal::Candidate.find(session[:candidate_id])
         
         redirect_to project_subscribes_success_path(@candidate.subscribe.project.slug)
 
@@ -25,11 +25,11 @@ module ConcoursePortal
     end
 
     def remember_subscribe
-      @subscribes = Concourse::Candidate.where(cpf: params[:cpf], subscribe_id: [@project.subscribes.map(&:id)])
+      @subscribes = ConcoursePortal::Candidate.where(cpf: params[:cpf], subscribe_id: [@project.subscribes.map(&:id)])
     end
 
     def remember_password
-      @candidate = Concourse::Candidate.find(params[:subscribe_id]) rescue nil
+      @candidate = ConcoursePortal::Candidate.find(params[:subscribe_id]) rescue nil
 
       if @candidate.present?
           token = Concourse::CandidateToken.new(candidate_id: @candidate.id)
