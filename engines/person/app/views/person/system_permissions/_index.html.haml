@@ -1,1 +1,7 @@
-= render 'index_permission'
+- @system_permissions.each_with_index do |j, i|
+  %tr
+    %td.col-md-1= i + 1
+    %td= j.action
+    %td.col-md-1= j.code
+    %td.col-md-1
+      = link_to "", system_system_permission_path(system_id:@system,id:j), method: :delete,remote:true,  class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', data: {confirm: "#{t(:confirm_delete)}"} if policy(:SystemPermission, namespace: Person).destroy?

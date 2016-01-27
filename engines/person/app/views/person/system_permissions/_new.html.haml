@@ -1,4 +1,6 @@
-.card
-  .card-header.ch-alt
-    %h4 Nova Ação do Sistema
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Nova ação
+.modal-body
   = render 'form'

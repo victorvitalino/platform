@@ -32,6 +32,10 @@
 }
 /* Correção de bootstrpa */
 
+.panel-collapse .panel-title {
+  background-color: #D8D8D8;
+}
+
 .alert-success {
     background-color: #5DB554 !important;
     border-color: #FFFFFF !important;

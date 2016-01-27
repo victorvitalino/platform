@@ -1,27 +1,25 @@
-%tr
-  %td{:colspan => "4"}
-    .panel-group{"aria-multiselectable" => "true", :role => "tablist"}
-      - @systems.each_with_index do |j, i|
-        .panel.panel-collapse
-          .panel-heading{:id => "heading#{j.id}", :role => "tab"}
-            %h4.panel-title
-              %a.collapsed{"aria-controls" => "collapse#{j.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{j.id}"}
-                .row
-                  .col-md-4
-                    = j.name
-                  .col-md-4
-          .collapse{"aria-expanded" => "false", "aria-labelledby" => "heading#{j.id}", :id => "collapse#{j.id}", :role => "tabpanel", :style => "height: 0px;"}
-            .panel-body
-              %table.table.table-striped.table-condensed.table-hover
-                %thead
-                  %tr
-                    %th Nome
-                    %th Código
-                    %th Ação
-                %tbody
-                  - j.system_permissions.each do |permission|
-                    %tr
-                      %td.col-md-6= permission.action
-                      %td.col-md-1= permission.code
-                      %td.col-md-1{ class: "tr-#{permission.code}"}
-                        = link_permission_to @staff.id, permission.code
+.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+  - @systems.order(:name).each_with_index do |j, i|
+    .panel.panel-collapse
+      .panel-heading{:id => "heading#{j.id}", :role => "tab"}
+        %h4.panel-title
+          %a.collapsed{"aria-controls" => "collapse#{j.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{j.id}"}
+            .row
+              .col-md-4
+                = j.name
+              .col-md-4
+      .collapse{"aria-expanded" => "false", "aria-labelledby" => "heading#{j.id}", :id => "collapse#{j.id}", :role => "tabpanel", :style => "height: 0px;"}
+        .panel-body
+          %table.table.table-striped.table-hover.table-bordered
+            %thead
+              %tr
+                %th Nome
+                %th Código
+                %th Ação
+            %tbody
+              - j.system_permissions.each do |permission|
+                %tr
+                  %td.col-md-6= permission.action
+                  %td.col-md-1= permission.code
+                  %td.col-md-1{ class: "tr-#{permission.code}"}
+                    = link_permission_to @staff.id, permission.code

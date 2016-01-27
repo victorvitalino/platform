@@ -4,9 +4,9 @@ module Person
 
       staff = Person::Staff.find(staff_id) rescue nil
       #array = [ação, titulo da ação, icone da ação, classe de cor do botão] 
-      button = (staff.privilege_id.to_a.include?(staff_permission_id.to_i)) ? %w(disable desativar close danger) : %w(enable ativar check success)
+      button = (staff.privilege_id.to_a.include?(staff_permission_id.to_i)) ? %w(disable desativar remove danger) : %w(enable ativar check success)
     
-      link_to "", send("staff_staff_permission_#{button[0]}_path", :staff_id => staff_id, :staff_permission_id => staff_permission_id), title: "#{button[1]}", 'data-toggle' => 'tooltip', remote: true, class: "md-#{button[2]} btn btn-#{button[3]} waves-effect waves-button waves-float"
+      link_to "", send("staff_staff_permission_#{button[0]}_path", :staff_id => staff_id, :staff_permission_id => staff_permission_id), title: "#{button[1]}", 'data-toggle' => 'tooltip', remote: true, class: "glyphicon glyphicon-#{button[2]} btn btn-xs btn-#{button[3]} "
     end
 
     def link_status_to(staff_id, status)

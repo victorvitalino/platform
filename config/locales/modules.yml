@@ -11,6 +11,8 @@ pt-BR:
   modules:
     person:
       staffs: "Usuários"
+      systems: "Sistemas"
+      staff_permissions: "Permissões"
     concourse:
       projects: "Projetos"
       pages: "Páginas"
@@ -20,6 +22,9 @@ pt-BR:
     cms:
       pages: "Páginas"
       posts: "Postagens"
+      post_categories: "Categorias de Postagem"
+      page_categories: "Categorias de Página"
+      navs: "Menus"
   actions:
     index: "Listagem"
     new: "Novo"

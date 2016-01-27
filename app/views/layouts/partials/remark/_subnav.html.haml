@@ -208,6 +208,17 @@
                       %span.site-menu-title Categorias
               %li.site-menu-item.has-sub
                 %a{:href => "javascript:void(0)"}
+                  %span.site-menu-title Galerias
+                  %span.site-menu-arrow
+                %ul.site-menu-sub
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{cms.new_gallery_path}"}
+                      %span.site-menu-title Nova
+                  %li.site-menu-item
+                    %a.animsition-link{:href => "#{cms.galleries_path}"}
+                      %span.site-menu-title Lista
+              %li.site-menu-item.has-sub
+                %a{:href => "javascript:void(0)"}
                   %span.site-menu-title Concursos
                   %span.site-menu-arrow
                 %ul.site-menu-sub
@@ -231,9 +242,7 @@
                   %li.site-menu-item
                     %a.animsition-link{:href => "#{cms.videos_path}"}
                       %span.site-menu-title Videos
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "#{cms.galleries_path}"}
-                      %span.site-menu-title Galerias
+
 
           %li.site-menu-item.has-sub
             %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}

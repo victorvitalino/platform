@@ -31,6 +31,7 @@ module Cms
       authorize @nav
 
       if @nav.save
+        flash[:success] =  t :success 
         redirect_to action: 'index'
       else
         render :new
@@ -41,6 +42,7 @@ module Cms
     def update
       authorize @nav
       if @nav.update(nav_params)
+        flash[:success] =  t :success 
         redirect_to action: 'index'
       else
         render :edit
@@ -51,6 +53,7 @@ module Cms
     def destroy
       authorize @nav
       @nav.destroy
+      flash[:success] =  t :success 
       redirect_to navs_url, notice: 'Nav was successfully destroyed.'
     end
 

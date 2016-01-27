@@ -29,6 +29,7 @@ module Cms
       @post_category = PostCategory.new(post_category_params)
       authorize @post_category
       if @post_category.save
+        flash[:success] =  t :success
         redirect_to action: 'index'
       else
         render :new
@@ -39,6 +40,7 @@ module Cms
     def update
       authorize @post_category
       if @post_category.update(post_category_params)
+        flash[:success] =  t :success
         redirect_to action: 'index'
       else
         render :edit
@@ -49,6 +51,7 @@ module Cms
     def destroy
       authorize @post_category
       @post_category.destroy
+      flash[:success] =  t :success
       redirect_to post_categories_url, notice: 'Post category was successfully destroyed.'
     end
 

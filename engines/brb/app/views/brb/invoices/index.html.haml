@@ -1,37 +1,42 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Cobrança BRB
-      %span.pull-right
-        = link_to 'Gerar remessa', remittances_path(date: Date.today.strftime("%Y-%m-%d")), class: 'btn btn-inverse' 
-        = link_to 'Subir retorno', new_return_path, class: 'btn btn-primary' 
-        = link_to 'Nova Cobrança', new_invoice_path, class: 'btn btn-success' 
-      %small Listagem boletos gerados
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle
-      %thead
-        %tr
-          %th Código
-          %th Categoria
-          %th CPF
-          %th Valor
-          %th Emitido em
-          %th Vencimento
-          %th Liquidação
-          %th Status
-          %th Remessa
-          %th Ações
-      %tbody
-        - @invoices.each do |invoice|
-          %tr
-            %td= invoice.id
-            %td= invoice.category.name.upcase if invoice.category.present?
-            %td= invoice.cpf
-            %td= number_to_currency invoice.value
-            %td= invoice.created_at.strftime('%d/%m/%Y às %H:%M')
-            %td= invoice.due.strftime('%d/%m/%Y')
-            %td= invoice.payment.strftime('%d/%m/%Y') if invoice.payment.present?
-            %td= invoice.status
-            %td= invoice.remittance ? "enviado" : "não enviado"
-            %td.col-md-1
-              = link_to "emitir boleto", invoice_path(invoice), target: '_blank'
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4 
+          Cobrança BRB
+        %small Listagem boletos gerados
+        %span.pull-right
+          = link_to 'Gerar remessa', remittances_path(date: Date.today.strftime("%Y-%m-%d")), class: 'btn btn-inverse', target: "_blank"
+          = link_to 'Subir retorno', new_return_path, class: 'btn btn-primary' 
+          = link_to 'Nova Cobrança', new_invoice_path, class: 'btn btn-success' 
+    %hr/
+    .panel-body
+      .row
+        .col-md-12
+          %table.table.table-striped.table-hover.table-bordered
+            %thead
+              %tr
+                %th Código
+                %th Categoria
+                %th Nosso Número
+                %th CPF
+                %th Valor
+                %th Emitido em
+                %th Vencimento
+                %th Liquidação
+                %th Status
+                %th Ações
+            %tbody
+              - @invoices.each do |invoice|
+                %tr
+                  %td= invoice.id
+                  %td= invoice.category.name.upcase if invoice.category.present?
+                  %td= invoice.our_number
+                  %td= invoice.cpf
+                  %td= number_to_currency invoice.value
+                  %td.col-md-2= invoice.created_at.strftime('%d/%m/%Y às %H:%M')
+                  %td.col-md-1= invoice.due.strftime('%d/%m/%Y')
+                  %td.col-md-1= invoice.payment.strftime('%d/%m/%Y') if invoice.payment.present?
+                  %td.col-md-2= invoice.status
+                  %td.col-md-1
+                    = link_to "emitir boleto", invoice_path(invoice), target: '_blank'
