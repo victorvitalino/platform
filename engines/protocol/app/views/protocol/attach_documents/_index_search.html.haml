@@ -19,5 +19,5 @@
             %td
               = a.sector.name
             %td
-              = link_to "Anexar", add_attach_path(assessment_id: a.assessment.id, id: @attach_document.document_father.id), title: 'Anexar', 'data-toggle' => 'tooltip',  class: 'btn btn-primary btn-xs'
-              = link_to "Apensar", add_append_path(assessment_id: a.assessment.id, id: @attach_document.document_father.id), title: 'Apensar', 'data-toggle' => 'tooltip',  class: 'btn btn-success btn-xs'
+              = link_to "Anexar", add_attach_path(assessment_id: a.assessment.id, id: @attach_document.document_father.id), title: 'Anexar', 'data-toggle' => 'tooltip',  class: 'btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+              = link_to "Apensar", add_append_path(assessment_id: a.assessment.id, id: @attach_document.document_father.id), title: 'Apensar', 'data-toggle' => 'tooltip',  class: 'btn btn-success btn-xs',data: {disable_with: "carregando..."}

@@ -1,7 +1,7 @@
 #closed.tab-pane{:class => (params[:q] == 'closed') ? 'active' : '', :role => "tabpanel"}
-  .card
+  .panel-body
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table.table.table-striped.table-hover.datatable
+      %table#data-table-command.table.table-striped.table-bordered
         %thead
           %tr.info
             %th.col-md-1 Nº
@@ -27,5 +27,5 @@
                 - if o.closed?
                   %span.label.label-danger fechado
               %td.col-md-2
-                = link_to "", ticket_path(id: o, q: 'closed'), class: ' md md-info btn btn-primary', title: "detalhes da solicitação"
-                = link_to "", ticket_open_path(ticket_id: o, q: 'closed'),class: 'md  md-autorenew btn btn-success', title: "abrir novamente solicitação"
+                = link_to "", ticket_path(id: o, q: 'closed'), class: 'glyphicon glyphicon-info-sign btn btn-primary btn-xs', title: "detalhes da solicitação"
+                = link_to "", ticket_open_path(ticket_id: o, q: 'closed'),class: 'glyphicon glyphicon-refresh btn btn-success btn-xs', title: "abrir novamente solicitação"

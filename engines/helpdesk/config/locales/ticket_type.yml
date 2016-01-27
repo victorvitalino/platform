@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'helpdesk/ticket_type': "Central de Serviço"
+    attributes:
+      'helpdesk/ticket_type':
+        sector: "Setor"
+        title: "Título"
+        description: "Descrição"

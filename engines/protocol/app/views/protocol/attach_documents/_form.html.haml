@@ -15,7 +15,7 @@
                 = f.input :document_type, as: 'select', collection: Protocol::DocumentType.all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
             .row
               .col-md-12
-                = f.submit 'Pesquisar', class:  'btn btn-success', input_html: { name: nil}
+                = f.submit 'Pesquisar', class:  'btn btn-success',data: {disable_with: "carregando..."}
     .article-content
       .row
         .col-md-12
@@ -29,7 +29,7 @@
                 = render 'index_result'
       .row
         .col-md-12
-          = link_to "voltar",  assessments_path, class: 'btn btn-dark'
+          = link_to "voltar",  assessments_path, class: 'btn btn-dark',data: {disable_with: "carregando..."}
 
 
 

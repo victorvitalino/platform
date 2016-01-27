@@ -3,9 +3,9 @@
     .panel-heading
       .panel-title
         %h4 Remessas
-        = link_to 'Devolver remessa', return_path, class: 'btn btn-danger btn-xs pull-right' if policy(:Conduct, namespace: Protocol).return?
-        = link_to 'Receber remessa', receive_path, class: 'btn btn-info btn-xs pull-right' if policy(:Conduct, namespace: Protocol).receive?
-        = link_to 'Nova Remessa', new_allotment_path, remote: true, class: 'btn btn-success btn-xs  pull-right' if policy(:Allotment, namespace: Protocol).create?
+        = link_to 'Devolver remessa', return_path, class: 'btn btn-danger btn-xs pull-right',data: {disable_with: "carregando..."} if policy(:Conduct, namespace: Protocol).return?
+        = link_to 'Receber remessa', receive_path, class: 'btn btn-info btn-xs pull-right',data: {disable_with: "carregando..."} if policy(:Conduct, namespace: Protocol).receive?
+        = link_to 'Nova Remessa', new_allotment_path, remote: true, class: 'btn btn-success btn-xs  pull-right',data: {disable_with: "carregando..."} if policy(:Allotment, namespace: Protocol).create?
       %br
     .panel-body
       .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}

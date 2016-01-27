@@ -1,13 +1,13 @@
 Helpdesk::Engine.routes.draw do
 
-  resources :ticket_types do 
+  resources :ticket_types do
     resources :ticket_subjects
     resources :ticket_attendants
   end
 
   resources :reports
 
-  resources :tickets do 
+  resources :tickets do
     get 'in_progress',  to: 'tickets#in_progress',  as: 'in_progress'
     get 'closed',       to: 'tickets#closed',       as: 'closed'
     get 'open',         to: 'tickets#open',         as: 'open'

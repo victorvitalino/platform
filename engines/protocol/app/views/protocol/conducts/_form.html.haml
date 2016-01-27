@@ -34,7 +34,7 @@
           - if @conducts.present?
             = render 'index_result'
             %br
-            = link_to 'Enviar Remessa', allotment_send_path(@conduct.allotment.id), remote: true, class:  'btn btn-primary btn-xs'
+            = link_to 'Enviar Remessa', allotment_send_path(@conduct.allotment.id), remote: true, class:  'btn btn-primary btn-xs',data: {disable_with: "carregando..."}
 
 
 

@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      'helpdesk/ticket_attendant': "Atendentes"
+    attributes:
+      'helpdesk/ticket_attendant':
+        staff: "Usuário"

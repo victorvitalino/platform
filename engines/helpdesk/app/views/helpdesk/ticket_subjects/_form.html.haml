@@ -10,17 +10,10 @@
         = f.input :description, label: false, input_html: { placeholder: "Descreva brevemente sobre o assunto"}
     .row
       .col-md-12
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts4"}
-              = f.label :status
-          %br
-          %br
-          = f.check_box :status, id: 'ts4',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts4"}
-  
+        = f.label :status
+        = f.input :status, id: 'ts4',hidden: 'hidden', type: 'checkbox', label: false
     %hr/
     .row
       .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to "voltar", ticket_type_ticket_subjects_path(@ticket_type), class: 'btn btn-inverse'
+        = f.button :submit, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+        = link_to "voltar", ticket_type_ticket_subjects_path(@ticket_type), class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}

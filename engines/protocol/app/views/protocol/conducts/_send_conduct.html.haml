@@ -15,7 +15,7 @@
             = f.input :staff_id, as: :select,  label: false, collection: (@conduct.sector_id.present?) ? Person::Sector.find(@conduct.sector_id.present).staffies : {}, prompt: 'selecione um usuário...'
         .row
           .col-md-4
-            = f.button :submit, class: 'btn btn-success'
+            = f.button :submit, class: 'btn btn-success',data: {disable_with: "carregando..."}
   :javascript
     $(document).ready(function(){
       $("#conduct_sector_id").on('change', function() {
