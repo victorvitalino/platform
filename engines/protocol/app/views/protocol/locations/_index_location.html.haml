@@ -14,7 +14,7 @@
     %span.label.label-success
      Doc. sem localização
    - if j.locations.present?
-    = link_to "", edit_location_path(j.locations.last.id), remote: true, title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs'
+    = link_to "", edit_location_path(j.locations.last.id), remote: true, title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}
 
 
 

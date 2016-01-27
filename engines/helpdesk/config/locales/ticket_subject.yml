@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'helpdesk/ticket_subject': "Assunto"
+    attributes:
+      'helpdesk/ticket_subject':
+        title: "Título"
+        description: "Descrição"

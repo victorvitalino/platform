@@ -4,7 +4,7 @@
       .panel-title
         %h4
           Listagem de Documentos
-          = link_to 'Novo Documento', new_assessment_path,class: 'btn btn-success pull-right mgl'  if policy(:Assessment, namespace: Protocol).create?
+          = link_to 'Novo Documento', new_assessment_path,class: 'btn btn-success pull-right mgl',data: {disable_with: "carregando..."}  if policy(:Assessment, namespace: Protocol).create?
     .panel-body
       .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
         %table#data-table-command.table.table-striped.table-bordered

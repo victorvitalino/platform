@@ -11,7 +11,7 @@
         = image_tag @digital_document.doc_path_url, width: '150' if @digital_document.doc_path?
     .row
       .col-md-4
-        = f.button :submit, class: 'btn btn-success'
+        = f.button :submit, class: 'btn btn-success',data: {disable_with: "carregando..."}
         %br
         %br
     .row

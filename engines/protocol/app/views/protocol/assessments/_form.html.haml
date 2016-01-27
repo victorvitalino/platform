@@ -44,5 +44,5 @@
     = f.input :observation, label: false, input_html: {placeholder: 'Digite uma observação'}
   .row
    .col-md-8
-    = f.submit 'salvar' , class: 'btn btn-success'
-    = link_to "voltar",  assessments_path, class: 'btn btn-dark'
+    = f.submit 'salvar' , class: 'btn btn-success',data: {disable_with: "carregando..."}
+    = link_to "voltar",  assessments_path, class: 'btn btn-dark',data: {disable_with: "carregando..."}

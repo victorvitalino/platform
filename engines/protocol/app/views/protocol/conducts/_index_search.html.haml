@@ -20,4 +20,4 @@
             %td
               = a.sector.name
             %td
-              = link_to "", add_path(assessment_id: a.assessment.id, id: @conduct.allotment.id), title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'glyphicon glyphicon-check  btn btn-info btn-xs'
+              = link_to "", add_path(assessment_id: a.assessment.id, id: @conduct.allotment.id), title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'glyphicon glyphicon-check  btn btn-info btn-xs',data: {disable_with: "carregando..."}

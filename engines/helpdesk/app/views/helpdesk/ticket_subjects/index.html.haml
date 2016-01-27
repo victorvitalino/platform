@@ -1,27 +1,28 @@
-.card
-  .card-header.ch-alt
-    %h2
-      #{@ticket_type.title.humanize} / Assuntos
-      %span.pull-right
-        = link_to "voltar", ticket_types_path, class: 'btn btn-inverse'
-        = link_to 'Novo Assunto', new_ticket_type_ticket_subject_path(@ticket_type), class: 'btn btn-success' if policy(:nav, namespace: Cms).create?
-      %small Listagem de assuntos da central #{@ticket_type.title}
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-      %thead
-        %tr
-          %th Questão
-          %th Descrição
-          %th Status
-          %th Ações
-      %tbody
-        - @ticket_subjects.each do |t|
-          %tr
-            %td= t.title
-            %td= t.description
-            %td= t.status ? "ativo" : "inativo"
-            %td.col-md-2
-              = link_to '', edit_ticket_type_ticket_subject_path(ticket_type_id: @ticket_type,id: t), class: 'md md-edit btn btn-primary'
-              = link_to '', ticket_type_ticket_subject_path(ticket_type_id: @ticket_type,id: t), class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }
-  
-       
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          #{@ticket_type.title.humanize} / Assuntos
+          %span.pull-right
+            = link_to 'Novo Assunto', new_ticket_type_ticket_subject_path(@ticket_type), class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."} if policy(:nav, namespace: Cms).create?
+            = link_to "voltar", ticket_types_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Questão
+              %th Descrição
+              %th Status
+              %th Ações
+          %tbody
+            - @ticket_subjects.each do |t|
+              %tr
+                %td= t.title
+                %td= t.description
+                %td= t.status ? "ativo" : "inativo"
+                %td.col-md-2
+                  = link_to '', edit_ticket_type_ticket_subject_path(ticket_type_id: @ticket_type,id: t), class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+                  = link_to '', ticket_type_ticket_subject_path(ticket_type_id: @ticket_type,id: t), class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :method => :delete, :data => { :confirm => t(:confirm_delete) }
+

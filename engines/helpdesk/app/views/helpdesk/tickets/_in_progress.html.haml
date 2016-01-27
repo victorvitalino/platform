@@ -1,7 +1,7 @@
 #in_progress.tab-pane{:class => (params[:q] == 'in_progress') ? 'active' : '', :role => "tabpanel"}
-  .card
+  .panel-body
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table.table.table-striped.table-hover.datatable
+      %table#data-table-command.table.table-striped.table-bordered
         %thead
           %tr.info
             %th.col-md-1 Nº
@@ -27,5 +27,5 @@
                 - if o.closed?
                   %span.label.label-danger fechado
               %td.col-md-2
-                = link_to "", ticket_path(id: o, q: 'in_progress'), class: ' md md-info btn btn-primary', title: "detalhes da solicitação"
-                = link_to "", ticket_closed_path(ticket_id: o, q: 'in_progress'), class: 'btn btn-danger  md md-done', title: "fechar solicitação"
+                = link_to "", ticket_path(id: o, q: 'in_progress'), class: 'glyphicon glyphicon-info-sign btn btn-primary btn-xs', title: "detalhes da solicitação"
+                = link_to "", ticket_closed_path(ticket_id: o, q: 'in_progress'), class: 'glyphicon glyphicon-ok-sign btn btn-danger  btn-xs', title: "fechar solicitação"

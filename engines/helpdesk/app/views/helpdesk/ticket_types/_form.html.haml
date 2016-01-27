@@ -1,7 +1,7 @@
 = simple_form_for(@ticket_type) do |f|
   .card-body.card-padding
     .row
-      .col-md-12
+      .col-md-6
         = f.label :sector, class: 'rg-label'
         = f.association :sector, as: :select, label: false, prompt: 'selecione...'
     .row
@@ -14,17 +14,10 @@
         = f.input :description, label: false, input_html: { placeholder: "Descreva brevemente sobre o serviço prestado"}
     .row
       .col-md-12
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts4"}
-              = f.label :status
-          %br
-          %br
-          = f.check_box :status, id: 'ts4',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts4"}
-  
+        = f.label :status
+        = f.input :status, id: 'ts4',hidden: 'hidden', type: 'checkbox', label: false
     %hr/
     .row
       .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to "voltar", ticket_types_path, class: 'btn btn-inverse'
+        = f.button :submit, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+        = link_to "voltar", ticket_types_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}
