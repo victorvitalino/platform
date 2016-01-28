@@ -11,6 +11,7 @@ ConcoursePortal::Engine.routes.draw do
       end
     end
     
+    
     resources :pages,           path: '/pagina'
     resources :subscribes,      path: '/inscricoes' 
     resources :candidates,      path: '/candidato'

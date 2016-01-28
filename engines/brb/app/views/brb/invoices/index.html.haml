@@ -37,6 +37,11 @@
                   %td.col-md-2= invoice.created_at.strftime('%d/%m/%Y às %H:%M')
                   %td.col-md-1= invoice.due.strftime('%d/%m/%Y')
                   %td.col-md-1= invoice.payment.strftime('%d/%m/%Y') if invoice.payment.present?
-                  %td.col-md-2= invoice.status
+                  %td.col-md-2
+                    - if invoice.status == "pagamento realizado"
+                      %span.label.label-success Pagamento realizado
+                    - else
+                      %span.label.label-default Não pago
                   %td.col-md-1
-                    = link_to "emitir boleto", invoice_path(invoice), target: '_blank'
+                    = link_to "", edit_invoice_path(invoice), target: '_blank', class: 'btn btn-primary btn-xs glyphicon glyphicon-pencil'
+                    = link_to "", invoice_path(invoice), target: '_blank', class: 'btn btn-success btn-xs glyphicon glyphicon-share-alt'

@@ -11,6 +11,20 @@ module Brb
       @invoices = Invoice.all.order('created_at DESC')
     end
 
+    def edit
+      @invoice = Invoice.find(params[:id])
+    end
+
+    def update
+      @invoice = Invoice.find(params[:id])
+      if @invoice.update(set_update_params)
+        flash[:success] =  t :success
+        redirect_to action: 'index'
+      else
+        render action: 'edit'
+      end
+    end
+    
     def show
 
       @invoice = Invoice.find(params[:id])
@@ -41,6 +55,11 @@ module Brb
     def set_params
       params.require(:invoice).permit(:category_id, :due, :cpf, :name, :address,
                                       :city, :state_id, :cep, :message)
+    end
+
+    def set_update_params
+      params.require(:invoice).permit(:category_id, :due, :cpf, :name, :address,
+                                      :city, :state_id, :cep, :message, :bank_return, :payment, :status)
     end
   end
 end

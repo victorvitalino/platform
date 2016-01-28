@@ -1,0 +1,48 @@
+= simple_form_for @invoice do |f|
+  .row
+    .col-md-3
+      = f.label :category
+      = f.association :category, label: false, include_blank: false, input_html: { disabled: true}
+    .col-md-2
+      = f.label 'Vencimento'
+      = f.input :due, as: :string, label: false, input_html: { class: 'date',disabled: true, value: f.object.due ? localize(f.object.due) : ''  }
+  .row
+    .col-md-3
+      = f.label :cpf
+      = f.input :cpf, label: false, input_html: { disabled: true}
+    .col-md-6
+      = f.label :name
+      = f.input :name, label: false, input_html: { disabled: true}
+  .row
+    .col-md-9
+      = f.label :address
+      = f.input :address, label: false, input_html: { disabled: true}
+  .row
+    .col-md-3
+      = f.label :state
+      = f.association :state, label: false, include_blank: false, input_html:{ id: 'state_id',disabled: true}
+    .col-md-3
+      = f.label :city
+      = f.input :city, label: false, input_html: { disabled: true}
+    .col-md-3
+      = f.label :cep
+      = f.input :cep, label: false, input_html: { disabled: true}
+  .row
+    .col-md-9
+      = f.label :message
+      = f.input :message, label: false
+  %hr/
+  .row
+    .col-md-2
+      = f.label 'Data do pagamento'
+      = f.input :payment, as: :string, label: false, input_html: { class: 'date', value: f.object.payment ? localize(f.object.payment) : '' }
+    .col-md-2
+      = f.input :status, include_blank: false
+  .row
+    .col-md-9
+      = f.input :bank_return, as: :string
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
+      = link_to "voltar", invoices_path, class: 'btn btn-inverse'
