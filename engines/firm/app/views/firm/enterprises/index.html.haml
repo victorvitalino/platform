@@ -26,4 +26,5 @@
                 %td.col-md-2= j.tipology.name if j.tipology.present?
                 %td.col-md-1= j.status ? 'ativo' : 'inativo'
                 %td.col-md-2
+                  = link_to "", enterprise_enterprise_cadastres_path(j), title: 'Show', 'data-toggle' => 'tooltip', class: 'md-search btn bgm-lightgreen waves-effect waves-button waves-float'
                   = link_to "", edit_enterprise_path(j),  title: 'Editar', 'data-toggle' => 'tooltip', class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float' #i  policy(:staff,              namespace: Person).update?

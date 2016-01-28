@@ -1,0 +1,28 @@
+.card
+  .card-header.ch-alt
+    .row
+      .col-md-12
+        %h2
+          Candidatos
+  %hr/
+  .row
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table.table.table-hover.table-bordered.datatable
+        %thead
+          %tr
+            %th Nome
+            %th CPF
+            %th Status
+            %th Data de Encaminhamento
+            %th Ações
+        %tbody.index-sector
+          - if @enterprise_cadastres.present?
+            - @enterprise_cadastres.each_with_index do |j, i|
+              %tr
+                %td.col-md-4= j.cadastre.name.to_s.upcase
+                %td.col-md-1= j.cadastre.cpf
+                %td.col-md-1= j.status ? 'ativo' : 'inativo'
+                %td.col-md-1= j.created_at.strftime('%d/%m/%Y')
+                %td.col-md-2
+                  = link_to "", candidate.cadastres_path(cpf: j.cadastre.cpf), title: 'Show', 'data-toggle' => 'tooltip', class: 'md-search btn bgm-lightgreen waves-effect waves-button waves-float'
+

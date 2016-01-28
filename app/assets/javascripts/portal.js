@@ -10,3 +10,4 @@
 //= require portal/js/bootstrap-datepicker.min
 //= require portal/js/bootstrap-datepicker.pt-br
 //= require portal/js/fancy.min
+//= require portal/js/jquery.bxslider.min

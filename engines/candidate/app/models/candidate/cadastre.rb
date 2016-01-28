@@ -36,7 +36,7 @@ module Candidate
 
     enum gender: ['N/D', 'masculino', 'feminino']
 
-    validates :cpf, cpf: true
+   # validates :cpf, cpf: true
 
     def save_log(old_object, new_object, staff_id)
       @log = CadastreLog.new({
@@ -114,8 +114,8 @@ module Candidate
 
       array << list_rii         unless list_rii.nil?
       array << list_rie         unless list_rie.nil?
-      
-      if self.current_situation_id != 2 
+
+      if self.current_situation_id != 2
         array << list_olders      unless list_olders.nil?
         array << list_vulnerables unless list_vulnerables.nil?
         array << list_specials    unless list_specials.nil?
@@ -172,7 +172,7 @@ module Candidate
                         and cadastre_id = general_pontuations.id) > 0)
                         and situation_status_id = ?
                         and convocation_id > 1524
-                        and procedural_status_id IN(14, 72) 
+                        and procedural_status_id IN(14, 72)
                         and income BETWEEN ? AND ?"
 
                 @geral = Candidate::View::GeneralPontuation.where(sql, self.current_situation_id, array[1][1], array[1][2]).map(&:cpf).find_index(self.cpf)

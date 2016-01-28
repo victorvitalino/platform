@@ -48,11 +48,18 @@
                     %td= cpf_mask(candidate.cpf)
                     %td= candidate.total
                     %td
+                      - if candidate.cadastre_situation.situation_status.status == 'ok'
+                        %span.label.label-success
+                          = candidate.cadastre_situation.situation_status.name
+                      - else
+                        %span.label.label-warning
+                          PENDENTE - #{candidate.cadastre_situation.situation_status.name}
                       %span.label.label-success
                         - if candidate.cadastre.enterprise_cadastres.present?
-                          = "#{candidate.cadastre.current_situation_name} - INDICADO" 
+                          = "#{candidate.cadastre.current_situation_name} - INDICADO"
                         - else
-                          = "#{candidate.cadastre.current_situation_name}" 
+                          = "#{candidate.cadastre.current_situation_name}"
+
         .row
           .col-md-6.col-md-offset-3
             .container

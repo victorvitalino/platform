@@ -8,5 +8,8 @@ module Address
     scope :address, -> (address) {where("complete_address LIKE ?", "#{address}%")}
     scope :status, -> (status) {where(situation_unit_id: status)}
 
+
+
+
   end
 end
