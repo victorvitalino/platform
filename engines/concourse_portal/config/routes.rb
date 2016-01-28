@@ -2,8 +2,6 @@ ConcoursePortal::Engine.routes.draw do
   default_url_options :host => "localhost:3000" if Rails.env.development? || Rails.env.test?
   default_url_options :host => "www.codhab.df.gov.br"  if Rails.env.production?
   
-
-
   resources :projects, path: '/' do 
 
     resources :forget, path: 'lembrar' do 
@@ -28,3 +26,4 @@ ConcoursePortal::Engine.routes.draw do
 
 
 end
+

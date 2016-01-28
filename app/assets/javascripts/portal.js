@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require portal/js/script
 //= require portal/js/bootstrap.min
 //= require portal/js/jquery.flexslider
