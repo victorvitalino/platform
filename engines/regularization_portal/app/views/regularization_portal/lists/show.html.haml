@@ -21,7 +21,9 @@
                   .row
                     .col-md-5
                       = f.input :cpf, input_html: { name:  'cpf', value: params[:cpf]}
-                    .col-md-5{style: 'padding-top: 27px'}
+                    .col-md-5
+                      = f.input :convocation, label: "Convocação", as: :select, collection: Candidate::Convocation.where(program_id: 3).order(:description).map { |k| [k.description, k.id]}, selected: params[:convocation], include_blank: "Todas", input_html: { name:  'convocation' }
+                    .col-md-2{style: 'padding-top: 27px'}
                       = f.submit 'Pesquisar', name: nil, class: 'btn btn-success', data: {  disable_with: "Pesquisando aguarde..."}
             .col-md-3
             .col-md-3
@@ -38,12 +40,16 @@
                   %th Nome
                   %th CPF
                   %th Convocação
+                  %th Situação Processual
               %tbody
                 - @candidates.order(:name).each do |candidate|
                   %tr
                     %td= link_to candidate.name, cadastre_path(candidate.cpf), data: {disable_with: "Carregando aguarde..."}
                     %td= cpf_mask(candidate.cpf)
                     %td= candidate.description
+                    %td
+                      %span.label.label-success
+                        = candidate.procedural_status.name
         .row
           .col-md-6.col-md-offset-3
             .container

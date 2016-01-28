@@ -5,6 +5,8 @@ module RegularizationPortal
     before_action :set_list, only: [:show]
 
     has_scope :cpf
+    has_scope :convocation
+    
     def index
       @lists = Candidate::List.regularization
     end
