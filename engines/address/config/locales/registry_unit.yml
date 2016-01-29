@@ -1,0 +1,13 @@
+pt-BR:
+  enums:
+    'address/registry_unit':
+      situation:
+        no_registry: "Não"
+        registring: "Em fase"
+        registred: "Sim"
+  activerecord:
+    models:
+      'address/registry_unit': Registro
+    attributes:
+      'address/registry_unit':
+
