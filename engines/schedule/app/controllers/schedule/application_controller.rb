@@ -1,6 +1,6 @@
 module Schedule
   class ApplicationController < ActionController::Base
-    layout 'material'
+    layout 'remark'
 
     include Pundit
   end

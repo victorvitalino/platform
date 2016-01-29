@@ -3,7 +3,6 @@ require 'csv'
 namespace :csv do
   desc "migração csv"
 
-
   task :entidade => :environment do
 
     Entity::DocumentCategory.create([
@@ -44,25 +43,25 @@ namespace :csv do
     @index = 0
 
 
-    CSV.foreach("lib/files/Indicacao.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/log_empresa.csv", :col_sep => "#") do |row|
       @index += 1
 
-       @ref = Firm::EnterpriseCadastre.new({
-          cadastre_id: row[2],
-          enterprise_id: row[3],
-          status: row[0],
-          created_at: row[1],
-          source_list: row[4]
+      @ref = Firm::EnterpriseStatus.new({
+        cadastre_id: row[0],
+        status_cadastre_id: row[1],
+        observation: row[3],
+        archive_file: row[4],
+        created_at: row[5],
+        enterprise_id: row[1]
+      })
 
-        })
-
-        begin
-          @ref.save
-          #puts @ref.inspect
-          puts @index
-        rescue Exception => e
-          puts e
-        end
+      begin
+        @ref.save
+        #puts @ref.inspect
+        puts @index
+      rescue Exception => e
+        puts e
+      end
 
     end
   end

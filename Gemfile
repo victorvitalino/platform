@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '4.2.1'
+gem 'rake', '10.5.0'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'

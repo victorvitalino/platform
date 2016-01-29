@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126141153) do
+ActiveRecord::Schema.define(version: 20160129124835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -321,11 +321,17 @@ ActiveRecord::Schema.define(version: 20160126141153) do
     t.integer  "type_receipt"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "situation_id"
+    t.integer  "staff_id"
+    t.integer  "user_company_id"
   end
 
   add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
   add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["situation_id"], name: "index_candidate_cadastre_addresses_on_situation_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["staff_id"], name: "index_candidate_cadastre_addresses_on_staff_id", using: :btree
   add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["user_company_id"], name: "index_candidate_cadastre_addresses_on_user_company_id", using: :btree
 
   create_table "candidate_cadastre_checklists", force: :cascade do |t|
     t.integer  "cadastre_id"
@@ -639,6 +645,14 @@ ActiveRecord::Schema.define(version: 20160126141153) do
     t.boolean  "status",      default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "candidate_situation_cadastre_addresses", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "status",      default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "candidate_situation_statuses", force: :cascade do |t|
