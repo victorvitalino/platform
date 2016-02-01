@@ -1,0 +1,22 @@
+.row
+  .col-md-5
+    %h3
+      %b Acessar minha inscrição
+%hr/
+.row
+  .col-md-12
+    = simple_form_for @session, url: project_restrict_sessions_path(@project)  do |f|
+      .row
+        .col-md-5
+          = f.label :subscribe
+          = f.input :subscribe, label: false
+          = f.hint link_to "Esqueceu seus dados de acesso? Clique aqui.", project_subscribe_candidate_remembers_path(@project)
+        .col-md-5
+          = f.label :password
+          = f.input :password, label: false
+      %hr/
+      .row
+        .col-md-12
+          = f.submit 'Realizar acesso', class: 'btn btn-inverse'
+          = link_to "Não possuo acesso, quero me inscrever.", "#", class: 'pull-right'
+  %br/

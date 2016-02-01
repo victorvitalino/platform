@@ -1,0 +1,8 @@
+.col-md-4
+  %div{:class => (c.errors.key?(:"#{field.label}")) ? 'has-error' : ''}
+    = f.label "#{field.label}"
+    = f.input field.label.to_sym, as: :file, hint: 'máximo permitido 3 MB e formatos (JPG, PNG ou PDF)',label: false
+    %span.help-block
+      = c.errors.full_messages_for(:"#{field.label}")[0]
+.col-md-4
+  = link_to "Visualizar arquivo anterior, cliquei aqui", "http://api.codhab.df.gov.br/static/#{@candidate.properties.to_a[i][1]}", target: '_blank'

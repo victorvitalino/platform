@@ -1,0 +1,10 @@
+.row
+  .col-md-10
+    %h3 
+      %b 
+        Edição de inscrição - #{@candidate.id}
+        = link_to "Voltar", project_restrict_candidates_path(@project), class: 'pull-right'
+    %hr/
+.row
+  .col-md-12
+    = render 'form'
