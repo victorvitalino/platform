@@ -1,0 +1,22 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Listagem de Endereços
+          = link_to 'Novo Endereço', new_unit_path,class: 'btn btn-success pull-right mgl',data: {disable_with: "carregando..."}
+      %hr
+      .row
+        .col-md-4
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Cidade
+              %th Endereço
+              %th Situação
+              %th Ações
+          %tbody
+            - if @units.present?
+              = render 'index'
