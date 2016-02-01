@@ -1,36 +1,52 @@
 .row
-  .container
-    .col-md-4
-      %h2
-        %b Quero me inscrever
-      %hr/
-      - @project.subscribes.each do |subscribe|
-        .row
-          .col-md-12
-            %ul.list-group
-              %li.list-group-item
-                - if subscribe.fee
-                  %b= link_to "#{subscribe.title} - #{number_to_currency subscribe.type_guide.default_value}".html_safe, concourse_portal.new_project_candidate_path(project_id: @project, subscribe_id: subscribe)
-                - else
-                  = link_to subscribe.title, concourse_portal.new_project_candidate_path(project_id: @project, subscribe_id: subscribe)
-    .col-md-1
-
-    .col-md-4
-      %h2
-        %b Visualizar minha inscrição
-      %hr/
-      = simple_form_for [@project, @subscribe] do |f|
-        .row
-          .col-md-12
-            = f.label :subscribe
-            = f.input :subscribe, label: false
-            = f.hint link_to "Esqueci meu número de inscrição", project_subscribes_remember_path(@project)
-        .row
-          .col-md-12
-            = f.label :password
-            = f.input :password, label: false
-            = f.hint link_to "Esqueci minha senha", project_subscribes_remember_path(@project)
-        .row
-          .col-md-12
-            = f.submit 'Realizar acesso', class: 'btn btn-inverse'
+  .col-md-12
+    %h2 
+      %b Inscrição
+%hr/
+%br/
+.row
+  .col-md-6
+    %h3
+      Quero me inscrever
+    .row
+      .col-md-12
+        %table.table.table-hover.table-striped.table-bordred.table-condensed
+          %thead
+            %tr
+              %th Nome
+              %th Valor
+              %th Início
+              %th Fim
+          %tbody
+            - @project.subscribes.each do |subscribe|
+              %tr
+                %td
+                  - if subscribe.start > Date.today
+                    não aberta
+                  - elsif subscribe.end < Date.today
+                    inscrições encerradas
+                  - elsif subscribe.start < Date.today && subscribe.end > Date.today
+                    = link_to subscribe.title, concourse_portal.new_project_candidate_path(project_id: @project, subscribe_id: subscribe)
+                %td= number_to_currency(subscribe.type_guide.default_value)
+                %td= subscribe.start.strftime("%d/%m/%Y")
+                %td= subscribe.end.strftime("%d/%m/%Y")
+  .col-md-1
+  .col-md-5
+    %h3
+      Acessar minha inscrição
     %br/
+    = simple_form_for [@project, @subscribe], url: project_subscribes_path(@project)  do |f|
+      .row
+        .col-md-12
+          = f.label :subscribe
+          = f.input :subscribe, label: false
+          = f.hint link_to "Esqueci meu número de inscrição", project_remember_subscribes_path(@project)
+      .row
+        .col-md-12
+          = f.label :password
+          = f.input :password, label: false
+          = f.hint link_to "Esqueci minha senha", project_remember_subscribes_path(@project)
+      .row
+        .col-md-12
+          = f.submit 'Realizar acesso', class: 'btn btn-inverse'
+  %br/

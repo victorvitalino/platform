@@ -1,0 +1,126 @@
+.row
+  .col-md-12
+    %h3
+      %b Minha Inscrição
+      %span.pull-right
+        = link_to "Enviar projeto", "#", class: 'btn btn-primary', disabled: true
+        = link_to "Editar minha inscrição", edit_project_restrict_candidate_path(project_id: @project, id: @candidate.id), class: 'btn btn-success', disabled: (@candidate.homologado? || @candidate.indeferido?)
+%hr/
+.row
+  .col-md-12
+    .row
+      .col-md-12
+        %h4 Dados Gerais
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Número de inscrição
+              %th Tipo de inscrição
+              %th Data de inscrição
+              
+          %tbody
+            %tr
+              %td.col-md-2= @candidate.id
+              %td.col-md-2= @candidate.subscribe.title
+              %td.col-md-2= @candidate.created_at.strftime("%d/%m/%Y às %H:%M")
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Situação de Inscrição
+              %th Pagamento da Inscrição
+              %th Boleto
+          %tbody
+            %tr
+              %td.col-md-4= @candidate.status
+              %td.col-md-4= @candidate.invoice_paid ? 'Boleto Pago' : 'Boleto não pago'
+              %td.col-md-4= link_to "Baixar boleto"
+    .row
+      .col-md-12
+        %h4 Observações
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Data da observação
+              %th Conteúdo
+          %tbody
+            - if @candidate.observations.present?
+              - @candidate.observations.order('created_at DESC').each do |obs|
+                %tr
+                  %td.col-md-3= obs.created_at.strftime("%d/%m/%Y às %H:%M") 
+                  %td.col-md-9= obs.content
+            - else
+              %tr
+                %td{colspan: 2} Não existem observações
+
+    %hr/
+    .row
+      .col-md-12
+        %h4 Informações do candidato
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Data de Nascimento
+              %th Sexo
+          %tbody
+            %tr
+              %td= @candidate.name.upcase
+              %td= @candidate.cpf
+              %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
+              %td= @candidate.gender
+
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Telefone
+              %th Celular
+              %th E-mail
+          %tbody
+            %tr
+              %td= @candidate.telephone.upcase
+              %td= @candidate.celphone
+              %td= @candidate.email
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Estado
+              %th Cidade
+              %th Endereço
+              %th CEP
+          %tbody
+            %tr
+              %td= @candidate.state.name if @candidate.state.present?
+              %td= @candidate.city
+              %td= @candidate.address
+              %td= @candidate.cep
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              - @candidate.subscribe.fields.each do |field|
+                %th= field.label.humanize
+          %tbody
+            %tr
+              - @candidate.subscribe.fields.each do |field|
+                - if field.file?
+                  %td= link_to "Baixar Arquivo", "http://api.codhab.df.gov.br/static/#{@candidate.properties[field.label]}", target: '_blank'
+                - else
+                  %td= @candidate.properties[field.label]
+    %hr
+    .row
+      .col-md-12
+        %h4 Arquivos de participação enviados
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Data de envio
+              %th Hash do arquivo
+          %tbody
+            %tr
+              %td{colspan: 2} Não há arquivos enviados

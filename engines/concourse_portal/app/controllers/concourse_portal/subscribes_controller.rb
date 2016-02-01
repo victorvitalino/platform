@@ -4,13 +4,11 @@ module ConcoursePortal
    
     def index
       @subscribe  = ConcoursePortal::Session.new
-      @current_nav = 'new_subscribe'
-    
     end
 
     def create
       
-      @subscribe = ConcoursePortal::Subscribe.new(set_params)
+      @subscribe = ConcoursePortal::Session.new(set_params)
       @current_nav = 'new_subscribe'
       
       if @subscribe.valid?
@@ -83,7 +81,7 @@ module ConcoursePortal
     end
 
     def set_params
-      params.require(:subscribe).permit(:subscribe, :password)
+      params.require(:session).permit(:subscribe, :password)
     end
 
   end

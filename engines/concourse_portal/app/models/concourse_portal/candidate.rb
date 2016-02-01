@@ -9,9 +9,11 @@ module ConcoursePortal
 
     validates_presence_of :name, :terms_use, :state, :city, :cep, :address, :burgh,  :telephone
     validates :cep, numericality: true, length: { maximum: 8}
-    validates :cpf, cpf: true, presence: true
+    validates :cpf, cpf: true, presence: true, on: :create
     validates_uniqueness_of :cpf, :scope => :subscribe_id, on: :create
-
+    validates_date :born, presence: true
+    validates :gender, presence: true 
+    validates :rg, presence: true
     validates :password, presence: true, length: { minimum: 4, maximum: 28}
     validates :confirmation_password, presence: true, length: { minimum: 4, maximum: 28}
 

@@ -4,25 +4,26 @@ ConcoursePortal::Engine.routes.draw do
   
   resources :projects, path: '/' do 
 
-    resources :forget, path: 'lembrar' do 
-      collection do 
-        get 'senha', to: 'forgots#password', as: 'forget_password'
-        get 'inscricao', to: 'forgots#subscribe', as: 'forget_subscribe'
+    namespace :subscribe_candidate, path: 'inscricao' do 
+      root "candidates#index"
+
+      resources :candidates, path: 'candidato' do 
+        get 'sucesso'
       end
+
+      resources :remembers
     end
-    
+
+    namespace :restrict, path: 'restrito' do 
+      root 'sessions#new'
+      
+      resources :candidates 
+      resources :sessions
+    end
     
     resources :pages,           path: '/pagina'
-    resources :subscribes,      path: '/inscricoes' 
-    resources :candidates,      path: '/candidato'
     resources :consults,        path: '/consultas'
 
-    namespace :internal, path: 'interno' do 
-      resources :candidates,      path: 'inscricao'
-      resources :passwords,       path: 'senha'
-      resources :participations,  path: 'participacao'
-      resources :sessions,        path: 'acesso'
-    end
   end
 
 
