@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'concourse_portal/candidate':
+          attributes:
+            born:
+              invalid_date: "data inválida"
