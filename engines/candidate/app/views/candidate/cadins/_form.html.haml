@@ -29,26 +29,26 @@
     = f.label :uf_born, class: 'fg-label'
     = f.input :uf_born, label: false, input_html: { placeholder: 'Preencha'}
   .row
-   .col-md-4
+   .col-md-2
     = f.label :city, class: 'fg-label'
     = f.input :city_id, as: 'select', collection: Address::City.federal_district, label: false, prompt: "Selecione..."
    .col-md-8
     = f.label :address, class: 'fg-label'
     = f.input :address, label: false, input_html: { placeholder: 'Preencha'}
   .row
-   .col-md-4
+   .col-md-2
     = f.label :espolio, class: 'fg-label'
     = f.input :espolio,  label: false, as: :select, prompt: "selecione..."
-   .col-md-4
-    = f.label :occurrence_cadin_id, class: 'fg-label'
-    = f.input :occurrence_cadin_id, label: false, input_html: {placeholder: 'Digite uma observação'}
+   .col-md-2
+    = f.label :occurrence_cadin, class: 'fg-label'
+    = f.association :occurrence_cadin, label: false, label: false, prompt: "Selecione..."
   .row
    .col-md-2
     = f.label :distribution_date,  as: 'string', class: 'fg-label'
     = f.input :distribution_date,  as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@cadin.distribution_date) ? localize(f.object.distribution_date) : nil}
    .col-md-4
-    = f.label :signed_instrument_id, class: 'fg-label'
-    = f.input :signed_instrument_id, label: false, input_html: {placeholder: 'Digite uma observação'}
+    = f.label :signed_instrument, class: 'fg-label'
+    = f.association :signed_instrument, label: false, prompt: "Selecione..."
   .row
    .col-md-6
     = f.label :observation, class: 'fg-label'

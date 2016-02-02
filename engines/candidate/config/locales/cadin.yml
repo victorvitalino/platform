@@ -1,0 +1,24 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/cadin': Cadastro Imobiliário
+    attributes:
+      'candidate/cadin':
+        name: "Nome Completo"
+        cpf: "CPF"
+        rg: "RG"
+        number_control: "Número de controle"
+        process: "Processo"
+        born: "Data de Nascimento"
+        uf_born: "UF Nascimento"
+        place_birth: "Naturalidade"
+        distribution_date: "Data de distribuição"
+        percentage: "Porcentagem"
+        espolio: "Espolio"
+        freedup: "Liberar"
+        occurrence_cadin: "Ocorrência"
+        cep: "CEP"
+        city: "Cidade"
+        address: "Endereço"
+        signed_instrument: "Instrumento firmado"
+
