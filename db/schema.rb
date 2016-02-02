@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202121259) do
+ActiveRecord::Schema.define(version: 20160202184610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -680,6 +680,12 @@ ActiveRecord::Schema.define(version: 20160202121259) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "candidate_regularization_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "candidate_signed_instruments", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -889,6 +895,7 @@ ActiveRecord::Schema.define(version: 20160202121259) do
     t.integer  "project_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.boolean  "responded"
   end
 
   add_index "concourse_consults", ["project_id"], name: "index_concourse_consults_on_project_id", using: :btree
