@@ -15,7 +15,7 @@ ConcoursePortal::Engine.routes.draw do
     end
 
     namespace :restrict, path: 'restrito' do 
-      root 'sessions#new'
+      get '/', to: 'sessions#new'
       
       resources :candidates 
       resources :sessions

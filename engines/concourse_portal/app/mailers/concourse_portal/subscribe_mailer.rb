@@ -9,6 +9,13 @@ module ConcoursePortal
       mail(to: @candidate.email, subject: "CODHAB - #{@project.title}- Inscrição Recebida")
     end
 
+    def update(candidate, project)
+      @project    = project
+      @candidate  = candidate
+      
+      mail(to: @candidate.email, subject: "CODHAB - #{@project.title}- Inscrição Recebida")
+    end
+
     def remember_password(email, candidate, project, key)
       @project    =  project 
       @candidate  =  candidate 

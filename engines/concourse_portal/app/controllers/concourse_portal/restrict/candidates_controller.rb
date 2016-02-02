@@ -13,11 +13,53 @@ module ConcoursePortal
       end
 
       def update
-        if @candidate.update(set_params)
-          flash[:success] = t :success
+     
+        if @candidate.update_attributes(set_params)
+          if params[:candidate].include?('properties')
+            @candidate.subscribe.fields.each do |field|
+              if field.file? 
+                @uploader = Concourse::FileUploader.new
+                @uploader.store!(params[:candidate][:properties][field.label.to_sym])
+                @candidate.properties[field.label.to_sym] = @uploader.path
+              end
+            end
+          end
+          
+          if @candidate.save
+            ConcoursePortal::SubscribeMailer.update(@candidate,@project).deliver_now!
+            flash[:success] = t :success
+          end
+          
           redirect_to action: :index
+         
         else
           render action: :edit
+        end
+      end
+
+      def bank_slip
+
+        @category = Brb::Category.find(@candidate.subscribe.type_guide_id)
+
+        @invoice = Brb::Invoice.new({
+          name: @candidate.name,
+          cpf: @candidate.cpf, 
+          cep: @candidate.cep,
+          address: @candidate.address,
+          state_id: @candidate.state_id,
+          city: @candidate.city,
+          due: (@candidate.subscribe.end + 1.days).strftime('%d/%m/%Y'),
+          category_id: @category.id,
+          message: "Concursos Codhab"
+        })
+
+        if @invoice.save!
+          barcode = Barby::Code128.new(@invoice.barcode)
+          File.open("public/barcodes/#{barcode}.png", 'w') { |f| f.write barcode.to_png(xdim: 1,height: 50) }
+      
+          render layout: 'brb/invoice'
+        else
+          redirect_to action: :show
         end
       end
 

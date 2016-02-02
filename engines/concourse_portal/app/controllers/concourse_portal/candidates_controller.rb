@@ -33,7 +33,6 @@ module ConcoursePortal
         end
       
         if @candidate.save
-          ConcoursePortal::SubscribeMailer.success(@candidate,@project).deliver_now!
           session[:candidate_id] = @candidate.id
           session[:project_id] = @project.id
           redirect_to project_subscribes_success_path(@project)
