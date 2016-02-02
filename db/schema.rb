@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201194328) do
+ActiveRecord::Schema.define(version: 20160202121259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -633,6 +633,12 @@ ActiveRecord::Schema.define(version: 20160201194328) do
 
   add_index "candidate_lists", ["slug"], name: "index_candidate_lists_on_slug", unique: true, using: :btree
 
+  create_table "candidate_occurrence_cadins", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "candidate_pontuations", force: :cascade do |t|
     t.integer  "cadastre_id"
     t.integer  "cadastre_mirror_id"
@@ -672,6 +678,12 @@ ActiveRecord::Schema.define(version: 20160201194328) do
     t.boolean  "status",      default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "candidate_signed_instruments", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "candidate_situation_cadastre_addresses", force: :cascade do |t|
