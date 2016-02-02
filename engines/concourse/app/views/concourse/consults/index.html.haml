@@ -8,7 +8,8 @@
         %tr.info
           %th #
           %th Data de envio
-          %th Status
+          %th Leitura
+          %th Respondida
           %th Ação
       %tbody
         - @project.consults.order('id DESC').each do |consult|
@@ -16,6 +17,8 @@
             %td.col-md-1= consult.id
             %td.col-md-2= consult.created_at.strftime('%d/%m/%Y às %H:%M')
             %td= consult.status ? 'Leitura realizada' : 'Não lida'
-            %td.col-md-1
+            %td= consult.responded ? 'Respondida' : 'Não respondida'
+            %td.col-md-2
+              = link_to "", project_consult_responded_path(project_id: @project, consult_id: consult), class: 'btn btn-warning btn-xs glyphicon glyphicon-check', title: "respondida" if consult.status && !consult.responded
               = link_to "", project_consult_read_path(project_id: @project, consult_id: consult), class: 'btn btn-success btn-xs glyphicon glyphicon-check', title: "lida" if !consult.status
               = link_to "", project_consult_path(project_id: @project, id: consult), remote: true, class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs', title: "ler"

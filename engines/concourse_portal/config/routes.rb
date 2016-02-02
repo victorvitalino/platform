@@ -11,14 +11,28 @@ ConcoursePortal::Engine.routes.draw do
         get 'sucesso'
       end
 
-      resources :remembers
+      resources :remembers, path: 'lembrar' do 
+        get 'token', path: 'enviar'
+      end
+
+      resources :passwords, path: 'senha' do 
+        collection do 
+          get 'success', path: 'sucesso'
+        end
+      end
     end
 
     namespace :restrict, path: 'restrito' do 
       get '/', to: 'sessions#new'
       
-      resources :candidates 
-      resources :sessions
+      resources :candidates, path: 'candidato' do
+        collection do 
+          get 'logout', as: 'logout'
+          get 'bank_slip', path: 'boleto', as: 'bankslip' 
+        end
+      end
+      resources :passwords, path: 'senha', only: [:edit, :update]
+      resources :sessions,  path: 'acesso'
     end
     
     resources :pages,           path: '/pagina'

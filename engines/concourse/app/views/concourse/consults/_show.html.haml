@@ -19,10 +19,5 @@
       .bold Situação
       %br
       = @consult.status ? "Leitura realizada em #{@consult.updated_at.strftime('%d/%m/%Y ás %H:%M')}" : 'Não lido'
-  - unless @consult.status
-    %hr/
-    .row
-      .col-md-12
-        = link_to "Marcar como lido", project_consult_read_path(project_id: @project, consult_id: @consult) , class: 'btn btn-success pull-right' 
 
   %br/

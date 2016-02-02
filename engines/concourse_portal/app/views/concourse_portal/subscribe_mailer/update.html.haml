@@ -156,7 +156,7 @@
                                 / content
                                 %tr
                                   %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #666666; text-align:center; line-height: 30px;"}
-                                    Seu  formulário  de  inscrição  e  sua  documentação  para  participação  no concurso #{@project.title} foram atualizados com sucesso. Para acompanhar sua inscrição, baixar o boleto e/ou visualizar a situação, #{link_to "clique aqui", project_restrict_path(@project)}
+                                    Seu  formulário  de  inscrição  e  sua  documentação  para  participação  no concurso #{@project.title} foram atualizados com sucesso. Para acompanhar sua inscrição, baixar o boleto e/ou visualizar a situação, #{link_to "clique aqui", project_restrict_url(@project)}
                                 / End of content
                         / Spacing
                         %tr
@@ -189,107 +189,132 @@
                       %tbody
                         / Spacing
                         %tr
-                          %td{:height => "20", :style => "font-size:1px; line-height:1px; mso-line-height-rule: exactly;"}  
-                        / Spacing
+                          %td{:height => "20", :style => "font-size:1px; line-height:1px; mso-line-height-rule: exactly;"}
+                        
+                        %tr
+                          %td
+                            %table.devicewidthinner{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "560"}
+                              %tr
+                                %td{"st-title" => "fulltext-heading", :style => "font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #333333; text-align:center; line-height: 30px;"}
+                                  %h Espelho da inscrição
                         %tr
                           %td
                             %table.devicewidthinner{:align => "center", :border => "1", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                               %tbody
                                 %tr
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Nº inscrição
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Tipo de inscrição
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Data de inscrição
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Situação
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Taxa
                                 %tr
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.id        
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.subscribe.title if @candidate.subscribe.present?
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.created_at.strftime('%d/%m/%Y às %H:%M')
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.status
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.invoice_paid ? "Pago" : "Não pago"
                             %br/
                             %table.devicewidthinner{:align => "center", :border => "1", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                               %tbody
                                 %tr
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Nome
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     CPF
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Data de nascimento
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Sexo
                                 %tr
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.name.upcase
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.cpf
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.gender
                             %br/
                             %table.devicewidthinner{:align => "center", :border => "1", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                               %tbody
                                 %tr
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Telefone
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Celular
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     E-mail
                                 %tr
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.telephone
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.celphone
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.email
                             %br/
                             %table.devicewidthinner{:align => "center", :border => "1", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                               %tbody
                                 %tr
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Estado
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Cidade
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Endereço
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     CEP
                                 %tr
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.state.acronym if @candidate.state.present?
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.city
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.address
-                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     = @candidate.cep
                             %br/
                             %table.devicewidthinner{:align => "center", :border => "1", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                               %tbody
                                 %tr
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
+                                    Nome Fantasia
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
+                                    Razão Social
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
+                                    CNPJ
+                                %tr
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
+                                    = @candidate.fatansy_name
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
+                                    = @candidate.social_reason
+                                  %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
+                                    = @candidate.cnpj
+                            %br/
+                            %table.devicewidthinner{:align => "center", :border => "1", :cellpadding => "0", :cellspacing => "0", :width => "560"}
+                              %tbody
+                                %tr
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Informação adicional
-                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                  %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                     Dado
                                 - @candidate.subscribe.fields.each do |field|
                                   %tr
-                                    %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
+                                    %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
                                       = field.label.humanize
-                                    %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px;"}
-                                      = @candidate.properties[field.label.to_sym]
+                                    %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}
+                                      - if field.file?
+                                        - if @candidate.properties.include? field.label.to_sym
+                                          Enviado
                         %tr
                           %td{:height => "20", :style => "font-size:1px; line-height:1px; mso-line-height-rule: exactly;"}  
                         / Spacing

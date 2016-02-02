@@ -1,4 +1,7 @@
 require 'concourse_portal/application_controller'
+require 'barby'
+require 'barby/barcode/code_128'
+require 'barby/outputter/png_outputter'
 
 module ConcoursePortal
   module Restrict
@@ -61,6 +64,11 @@ module ConcoursePortal
         else
           redirect_to action: :show
         end
+      end
+
+      def logout
+        session[:candidate_id] = nil
+        redirect_to project_restrict_path(@project)
       end
 
       private

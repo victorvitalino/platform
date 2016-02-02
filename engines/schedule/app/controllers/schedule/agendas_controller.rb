@@ -4,6 +4,9 @@ module Schedule
   class AgendasController < ApplicationController
     before_action :set_agenda, only: [:show, :update, :edit]
 
+    has_scope :by_date
+    has_scope :by_status
+    
     def info
       if params[:agenda_id].present?
         @agenda = Agenda.find(params[:agenda_id])
@@ -33,6 +36,7 @@ module Schedule
     end
 
     def show
+      @schedules = apply_scopes(@agenda.agenda_schedules)
     end
 
     def update

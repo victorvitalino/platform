@@ -20,16 +20,23 @@ module ConcoursePortal
     validates :celphone, numericality: true, allow_blank: true
     validates :email, email: true, presence: true
     validates :cnpj, cnpj: true, presence: true
+
     validates :fantasy_name, :social_reason, presence: true
    
     validates :confirmation_password, presence: true, length: { minimum: 4, maximum: 28}, on: :create
     validate  :compare_password, on: :create
-    validate  :validate_current_password, on: :create
+    validate  :unique_cnpj
+#    validate  :validate_current_password, on: :create
 
 
     
     private
 
+    def unique_cnpj
+        if ConcoursePortal::Candidate.where(cpf: self.cpf, cnpj: self.cnpj).present?
+            errors.add(:cpnj, 'este CNPJ já se encontra vínculado a uma outra inscrição')
+        end
+    end
 
     def validate_properties
       subscribe.fields.each do |field|

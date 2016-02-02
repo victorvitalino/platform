@@ -18,6 +18,19 @@ module Concourse
       end
     end
 
+    def responded
+      if params[:consult_id].present? && params[:project_id].present?
+        @consult = Consult.find(params[:consult_id])
+        @project = Project.friendly.find(params[:project_id])
+        if @consult.update(responded: true)
+          flash[:success] = t :success
+          redirect_to project_consults_path(@project)
+        else
+
+        end
+      end
+    end
+
     def show
       @project = Project.friendly.find(params[:project_id])
       @consult = Consult.find(params[:id])

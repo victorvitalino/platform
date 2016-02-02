@@ -3,6 +3,8 @@
     .panel-heading
       .panel-title
         %h3 Visão geral
+        %small
+          = link_to "editar informações concurso", edit_project_path(@project)
     %hr/
     .panel-body
       .row
@@ -39,6 +41,8 @@
                 %th Boleto Referência
                 %th Início
                 %th Fim
+                %th Boletos emitidos
+                %th Boletos pagos
             %tbody
               - @project.subscribes.each do |sub|
                 %tr
@@ -47,3 +51,5 @@
                   %td= sub.type_guide.name if sub.type_guide.present?
                   %td= sub.start.strftime('%d/%m/%Y')
                   %td= sub.end.strftime('%d/%m/%Y')
+                  %td= sub.type_guide.invoices.count
+                  %td= sub.type_guide.invoices.where(status: 1).count

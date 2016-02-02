@@ -1,10 +1,16 @@
 .row
   .col-md-12
-    %h3
-      %b Minha Inscrição
+    %h2
+      %b Minha inscrição
+      %br/
+      %small
+        = link_to "Finalizar sessão", logout_project_restrict_candidates_path(@project)
+        |
+        = link_to "Trocar minha senha", edit_project_restrict_password_path(project_id: @project, id: @candidate)
+        |
+        = link_to "Editar minha inscrição", edit_project_restrict_candidate_path(project_id: @project, id: @candidate.id), disabled: (@candidate.homologado? || @candidate.indeferido?)
       %span.pull-right
-        = link_to "Enviar projeto", "#", class: 'btn btn-primary', disabled: true
-        = link_to "Editar minha inscrição", edit_project_restrict_candidate_path(project_id: @project, id: @candidate.id), class: 'btn btn-success', disabled: (@candidate.homologado? || @candidate.indeferido?)
+        %small
 %hr/
 .row
   .col-md-12
@@ -35,7 +41,8 @@
             %tr
               %td.col-md-4= @candidate.status
               %td.col-md-4= @candidate.invoice_paid ? 'Boleto Pago' : 'Boleto não pago'
-              %td.col-md-4= link_to "Baixar boleto"
+              %td.col-md-4= link_to "Baixar boleto", bankslip_project_restrict_candidates_path(@project), target: '_blank'
+    %hr/
     .row
       .col-md-12
         %h4 Observações
@@ -98,6 +105,17 @@
               %td= @candidate.city
               %td= @candidate.address
               %td= @candidate.cep
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome fantasia
+              %th Razão social
+              %th CNPJ
+          %tbody
+            %tr
+              %td= @candidate.fantasy_name
+              %td= @candidate.social_reason
+              %td= @candidate.cnpj
     .row
       .col-md-12
         %table.table.table-striped.table-bordered

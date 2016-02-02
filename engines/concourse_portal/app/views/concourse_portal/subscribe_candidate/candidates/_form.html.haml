@@ -64,7 +64,7 @@
     = f.simple_fields_for :properties, OpenStruct.new(@candidate.properties) do |builder|
       - @candidate.subscribe.fields.each do |field|
         .col-md-4
-          = render "concourse_portal/candidates/fields/#{field.field_type}", field: field, f: builder, c: @candidate
+          = render "concourse_portal/subscribe_candidate/candidates/fields/#{field.field_type}", field: field, f: builder, c: @candidate
   %br/
   %hr/
   .row

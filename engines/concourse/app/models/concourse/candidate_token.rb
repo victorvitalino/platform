@@ -10,7 +10,7 @@ module Concourse
     private
 
     def set_secret_key
-      self.secret_key = Digest::SHA1.hexdigest("#{self.candidate.name}#{Time.now}")
+      self.secret_key = Digest::SHA1.hexdigest("#{rand(5..999)}#{self.candidate.name}#{Time.now}")
     end
 
     def set_status_key

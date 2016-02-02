@@ -1,8 +1,8 @@
 pt-BR:
   activemodel:
     models:
-      'concourse_portal/subscribe' : "Inscrição"
+      'concourse_portal/session' : "Acesso"
     attributes:
-      'concourse_portal/subscribe':
+      'concourse_portal/session':
         subscribe: 'Número de inscrição'
         password: 'Senha de acesso'

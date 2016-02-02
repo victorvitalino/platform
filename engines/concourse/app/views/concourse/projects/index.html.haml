@@ -18,7 +18,7 @@
             %th Consulta?
             %th Ações
         %tbody
-          - @projects.each_with_index do |project, index|
+          - @projects.order(:created_at).each_with_index do |project, index|
             %tr
               %td= project.title
               %td= project.start.strftime('%d/%m/%Y')

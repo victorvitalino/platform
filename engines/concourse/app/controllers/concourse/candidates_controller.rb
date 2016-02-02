@@ -1,3 +1,5 @@
+require_dependency 'concourse/application_controller'
+
 module Concourse
   class CandidatesController < ApplicationController
     before_action :set_project, except: [:view_all]

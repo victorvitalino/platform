@@ -1,8 +1,4 @@
-= simple_form_for @candidate, url: project_update_password_path(@project), method: :post do |f|
-  .row
-    .col-md-12
-      %h4 
-        %b Atualizar minha senha
+= simple_form_for @candidate, url: project_subscribe_candidate_password_path(project_id: @project, id: @token.secret_key), method: :put do |f|
   %hr/
   .row
     .col-md-6

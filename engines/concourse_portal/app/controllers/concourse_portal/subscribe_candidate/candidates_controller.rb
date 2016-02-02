@@ -27,6 +27,7 @@ module ConcoursePortal
 
           if @candidate.save 
             session[:candidate_id] = @candidate.id
+            ConcoursePortal::SubscribeMailer.success(@candidate,@project).deliver_now!
             flash[:success] =  t :success
             redirect_to project_restrict_candidates_path(@project)
           else 

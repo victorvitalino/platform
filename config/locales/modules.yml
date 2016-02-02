@@ -8,6 +8,7 @@ pt-BR:
     regularization: "Regularização"
     candidate: "Cadastro"
     cms: "Gestão Portals"
+    schedule: "Agendamento"
   modules:
     person:
       staffs: "Usuários"
@@ -25,6 +26,8 @@ pt-BR:
       post_categories: "Categorias de Postagem"
       page_categories: "Categorias de Página"
       navs: "Menus"
+    schedule:
+      agendas: "Agendas"
   actions:
     index: "Listagem"
     new: "Novo"

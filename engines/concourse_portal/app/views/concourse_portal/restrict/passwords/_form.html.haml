@@ -1,11 +1,9 @@
-= simple_form_for [@project, @candidate], url: project_subscribes_password_edit_path(@project), method: :put do |f|
+= simple_form_for [@project, :restrict, @candidate], url: project_restrict_password_path(project_id: @project, id: @candidate), method: :put do |f|
   .row
     .col-md-4
       = f.input :password, hint: 'Digite a nova senha'
-  .row
     .col-md-4
       = f.input :confirmation_password, hint: "Repita a nova senha"
-  .row
     .col-md-4
       = f.input :current_password, label: "Senha atual", hint: "Por motivos de segurança informe sua senha atual"
   %hr/

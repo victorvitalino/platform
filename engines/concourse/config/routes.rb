@@ -18,7 +18,8 @@ Concourse::Engine.routes.draw do
       resources :situations
     end
     
-    get '/read', path: 'consulta_lida', as: 'consult_read', to: 'consults#read'
+    get '/read',      path: 'consulta_lida', as: 'consult_read', to: 'consults#read'
+    get '/responded', path: 'consulta_respondida', as: 'consult_responded', to: 'consults#responded'
   
   end
 end

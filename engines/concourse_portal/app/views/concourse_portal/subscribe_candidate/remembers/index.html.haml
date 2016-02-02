@@ -30,7 +30,7 @@
                     %td= candidate.id
                     %td= candidate.subscribe.project.title 
                     %td= candidate.created_at.strftime("%d/%m/%Y às %H:%M")
-                    %td= link_to "Resetar minha senha", "#"
+                    %td= link_to "Resetar minha senha", project_subscribe_candidate_remember_token_path(remember_id: candidate.id)
               - else
                 %tr
                   %td{:colspan => '4'}
