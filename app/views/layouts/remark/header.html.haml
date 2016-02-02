@@ -4,6 +4,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Extranet
     = stylesheet_link_tag  'remark', media: 'all'
+    = javascript_include_tag 'remark', 'data-turbolinks-eval' => 'false'
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,300", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
   %body.app-documents.site-navbar-small

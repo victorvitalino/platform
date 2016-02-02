@@ -680,6 +680,12 @@ ActiveRecord::Schema.define(version: 20160202183322) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "candidate_regularization_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "candidate_signed_instruments", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
