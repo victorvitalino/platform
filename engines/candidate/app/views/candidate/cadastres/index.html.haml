@@ -14,14 +14,14 @@
         - if @candidate.present?
           %li
             %hr/
-          %li.list-group-item
-            %a{:href => "#{candidate.edit_cadastre_path(@candidate)}"} Atualizar cadastro
-          %li.list-group-item
-            %a{:href => "#section-2"} Alterar CPF
-          %li.list-group-item
-            %a{:href => "#section-3"} Alterar situação
-          %li.list-group-item
-            %a{:href => "#section-3"} Alterar situação processual
+            %li.list-group-item
+              %a{:href => "#{candidate.edit_cadastre_path(@candidate)}"} Atualizar cadastro
+            %li.list-group-item
+              %a{:href => "#section-2"} Alterar CPF
+            %li.list-group-item
+              %a{:href => "#{candidate.cadastre_cadastre_situation_path(@candidate)}"} Alterar situação
+            %li.list-group-item
+              %a{:href => "#{candidate.cadastre_cadastre_procedural_path(@candidate)}"} Alterar situação processual
     .article-content
       %section
         %h2.bold Detalhamento
@@ -176,14 +176,18 @@
                 %table.table.table-striped.table-bordered.table-condensed
                   %thead{:style => "display: table-header-group;"}
                     %tr
-                      %th Nome
-                      %th CPF
-                      %th Idade
+                      %th Status
+                      %th Convocação
+                      %th Observação
+                      %th Data
                   %tbody
-                    %tr
-                      %td= @candidate.name.upcase
-                      %td= @candidate.cpf
-                      %td= "#{@candidate.age} ano(s)"
+                    - @candidate.attendances.order(:created_at).each do |attendance|
+                      - unless attendance.attendance_status_id == 99
+                        %tr
+                          %td= (attendance.attendance_status.present?) ? attendance.attendance_status.name  : 'Informação não disponível'
+                          %td= (attendance.convocation.present?) ? attendance.convocation.description  : 'Informação não disponível'
+                          %td= (attendance.observation.present?) ? attendance.observation : 'Informação não disponível'
+                          %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
           %hr/
           .row
             .col-md-12

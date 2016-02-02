@@ -2,13 +2,17 @@ module Address
   class Unit < ActiveRecord::Base
     belongs_to :situation_unit
     belongs_to :city
+    belongs_to :enterprises, class_name: "Firm::Enterprise"
     has_many :registry_units
     has_many :cadastre_address, class_name: "Candidate::CadastreAddress"
+
 
     scope :address, -> (address) {where("complete_address LIKE ?", "#{address}%")}
     scope :status, -> (status) {where(situation_unit_id: status)}
 
-
+    scope :city, -> (city) {where(city_id: city)}
+    scope :situation_unit, -> (situation_unit) {where(situation_unit_id: situation_unit)}
+    scope :cpf, -> (cpf) {joins(cadastre_address: :cadastre).where("candidate_cadastres.cpf = ?", cpf)}
 
 
   end

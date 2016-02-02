@@ -1,0 +1,64 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Dados do endereço
+    .panel-body
+      .row
+        .col-md-12
+          .row
+            .col-md-4
+              %label Cidade:
+              = @unit.city.name if @unit.city.present?
+            .col-md-4
+              %label Endereço completo:
+              = @unit.complete_address
+          .row
+            .col-md-8
+              %label CEP:
+              = @unit.cep_unit
+          .row
+            .col-md-8
+              %label Area:
+              = @unit.area
+          .row
+            .col-md-4
+              %label Doado:
+              = @unit.donate ? "Sim" : "Não"
+            .col-md-4
+              %label Data de Doação:
+              = @unit.date_donate.strftime('%d/%m/%Y') if @unit.date_donate.present?
+          .row
+            .col-md-4
+              %label Registro de IPTU:
+              = @unit.registration_iptu
+            .col-md-4
+              %label Data de Iptu:
+              = @unit.date_iptu.strftime('%d/%m/%Y') if @unit.date_iptu.present?
+          .row
+            .col-md-8
+              %label Situação:
+              = @unit.situation_unit.description if @unit.situation_unit.present?
+          .row
+            .col-md-8
+              %label Empreendimento:
+              = @unit.enterprises.name if @unit.enterprises.present?
+          - if @unit.cadastre_address.present?
+            %hr
+            %h4
+              Dados do Morador
+            .row
+              .col-md-4
+                %label Nome:
+                = @unit.cadastre_address.last.cadastre.name
+              .col-md-4
+                %label CPF:
+                = link_to @unit.cadastre_address.last.cadastre.cpf, candidate.cadastres_path(cpf: @unit.cadastre_address.last.cadastre.cpf)
+              .col-md-4
+                %label Processo:
+                = @unit.cadastre_address.last.cadastre.cadastre_procedurals.order('created_at asc').last.old_process
+          %hr
+          .row
+            .col-md-4
+              = link_to "voltar",  units_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}

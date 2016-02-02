@@ -1,0 +1,47 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Atualização de situação
+          = link_to "voltar para pesquisa", cadastres_path(cpf: @candidate.cpf), class: 'pull-right'
+    .panel-body
+      .row
+        .col-md-12
+          - if @candidate.present?
+            .row
+              .col-md-12
+                %h4 Dados do candidato
+                .bootstrap-table
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th Nome
+                        %th CPF
+                        %th Situação
+                        %th Data da situação
+                    %tbody
+                      %tr
+                        %td= @candidate.name.upcase
+                        %td= @candidate.cpf
+                        - if @candidate.cadastre_situations.present?
+                          %td= @candidate.cadastre_procedurals.order('created_at asc').last.procedural_status.name.upcase
+                          %td= @candidate.cadastre_procedurals.order('created_at asc').last.created_at.strftime('%d-%m-%Y')
+            %hr
+            .row
+              .col-md-12
+                %h4 Alterar situação do candidato
+                = simple_form_for @cadastre_procedural, url: cadastre_cadastre_procedural_create_path  do |f|
+                  = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate.id}
+                  = f.input :convocation_id, as: :hidden,  input_html:{ value: @candidate.cadastre_procedurals.last.convocation_id  }
+                  = f.input :old_process, as: :hidden,  input_html:{ value: @candidate.cadastre_procedurals.last.old_process }
+                  = f.input :assessment_id, as: :hidden,  input_html:{ value: @candidate.cadastre_procedurals.last.assessment_id }
+                  .row
+                    .col-md-6
+                      = f.input :procedural_status_id, as: 'select', collection: Candidate::ProceduralStatus.all {|x| [x.name, x.id]}, label: false, prompt: "Selecione..."
+                  %hr
+                  .row
+                    .col-md-12
+                      = f.submit "Atualizar situação", name: nil, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button)}
+
+

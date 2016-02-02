@@ -1,0 +1,55 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Dados do cadastro imobiliário
+    .panel-body
+      .row
+        .col-md-12
+          .row
+            .col-md-4
+              %label Nome:
+              = @cadin.name
+            .col-md-4
+              %label CPF:
+              = @cadin.cpf
+          .row
+            .col-md-4
+              %label Processo:
+              = @cadin.process
+            .col-md-4
+              %label Data de Nascimento:
+              = @cadin.born
+          .row
+            .col-md-6
+              %label Endereço:
+              = @cadin.address
+            .col-md-4
+              %label Cidade:
+              = @cadin.city.name if @cadin.city.present?
+          .row
+            .col-md-4
+              %label Naturalidade:
+              = @cadin.place_birth
+            .col-md-
+              %label UF:
+              = @cadin.uf_born
+          .row
+            .col-md-8
+              %label Ocorrência:
+              = @cadin.occurrence_cadin.name if  @cadin.occurrence_cadin.present?
+          .row
+            .col-md-8
+              %label Instrumento firmado:
+              = @cadin.signed_instrument.name if @cadin.signed_instrument.present?
+          .row
+            .col-md-8
+              %label Observação:
+              = @cadin.observation
+          .row
+            .col-md-12
+              %br
+            .row
+              .col-md-4
+                = link_to "voltar",  cadins_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}

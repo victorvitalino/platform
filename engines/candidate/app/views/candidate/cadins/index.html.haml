@@ -1,0 +1,19 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Listagem de cadastro
+          = link_to 'Novo cadastro', new_cadin_path,class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Processo
+              %th Ações
+          %tbody
+            - if @cadins.present?
+              = render 'index'

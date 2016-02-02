@@ -1,0 +1,69 @@
+= simple_form_for @unit do |f|
+ .card-body.card-padding
+  .row
+   .col-md-4
+    = f.label :city, class: 'fg-label'
+    = f.input :city_id, as: 'select', collection: Address::City.federal_district, label: false, prompt: "Selecione..."
+  .row
+   .col-md-4
+    = f.label :acron_block, class: 'fg-label'
+    = f.input :acron_block, label: false, input_html: {placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :block, class: 'fg-label'
+    = f.input :block, label: false, input_html: {placeholder: 'Preencha'}
+  .row
+   .col-md-4
+    = f.label :acron_group, class: 'fg-label'
+    = f.input :acron_group, label: false, input_html: {placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :group, class: 'fg-label'
+    = f.input :group, label: false, input_html: { placeholder: 'Preencha'}
+  .row
+   .col-md-4
+    = f.label :unit, class: 'fg-label'
+    = f.input :unit, label: false, input_html: { placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :cep_unit, class: 'fg-label'
+    = f.input :cep_unit, label: false, input_html: { placeholder: 'Preencha'}
+  .row
+   .col-md-2
+    = f.label :area, class: 'fg-label'
+    = f.input :area, label: false, input_html: { placeholder: 'Preencha'}
+   .col-md-6
+    = f.label :complete_address, class: 'fg-label'
+    = f.input :complete_address, label: false, input_html: { placeholder: 'Preencha'}
+  .row
+   .col-md-4
+    = f.label :burgh, class: 'fg-label'
+    = f.input :burgh, label: false, input_html: { placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :sefaz, class: 'fg-label'
+    = f.input :sefaz,  label: false, as: :select, prompt: "selecione..."
+  .row
+   .col-md-2
+    = f.label :donate, class: 'fg-label'
+    = f.input :donate,  label: false, as: :select, prompt: "selecione..."
+   .col-md-2
+    = f.label :date_donate, as: 'string', class: 'fg-label'
+    = f.input :date_donate, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@unit.date_donate) ? localize(f.object.date_donate) : nil}
+   .col-md-2
+    = f.label :registration_iptu, class: 'fg-label'
+    = f.input :registration_iptu, label: false, input_html: { placeholder: 'Preencha'}
+   .col-md-2
+    = f.label :date_iptu, as: 'string', class: 'fg-label'
+    = f.input :date_iptu, label: false, as: 'string',  input_html: { class: 'date', placeholder: '00/00/0000', value: (@unit.date_iptu) ? localize(f.object.date_iptu) : nil}
+  .row
+   .col-md-4
+    = f.label :situation_unit, class: 'fg-label'
+    = f.association :situation_unit , label_method: :description, label: false, prompt: "Selecione..."
+   .col-md-4
+    = f.label :type_use_unit_id, class: 'fg-label'
+    = f.input :type_use_unit_id, label: false, prompt: "Selecione..."
+  .row
+   .col-md-4
+    = f.label :firm_enterprise_id, class: 'fg-label'
+    = f.input :firm_enterprise_id, as: 'select', collection: Firm::Enterprise.all, label: false, prompt: "Selecione..."
+  .row
+   .col-md-8
+    = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+    = link_to "voltar",  units_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}
