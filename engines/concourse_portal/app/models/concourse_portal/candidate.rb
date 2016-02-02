@@ -15,7 +15,6 @@ module ConcoursePortal
     validates :gender, presence: true 
     validates :rg, presence: true
     validates :password, presence: true, length: { minimum: 4, maximum: 28}
-    validates :confirmation_password, presence: true, length: { minimum: 4, maximum: 28}
 
     validates :telephone, numericality: true
     validates :celphone, numericality: true, allow_blank: true
@@ -23,16 +22,14 @@ module ConcoursePortal
     validates :cnpj, cnpj: true, presence: true
     validates :fantasy_name, :social_reason, presence: true
    
-    validate  :compare_password
-    validate  :validate_current_password, on: :update, if: :token_present?
+    validates :confirmation_password, presence: true, length: { minimum: 4, maximum: 28}, on: :create
+    validate  :compare_password, on: :create
+    validate  :validate_current_password, on: :create
 
 
     
     private
 
-    def token_present?
-        !self.token.present?
-    end
 
     def validate_properties
       subscribe.fields.each do |field|

@@ -16,20 +16,37 @@ module ConcoursePortal
       def create
         @candidate = @subscribe.candidates.new(set_params)
 
-        if @candidate.save
-          flash[:success] = t :success
-          redirect_to action: 'success'
-        else
-          render action: 'new'
-        end
-      end
+        if @candidate.valid?
+          @candidate.subscribe.fields.each do |field|
+            if field.file?
+              @uploader = Concourse::FileUploader.new
+              @uploader.store!(params[:candidate][:properties][field.label.to_sym])
+              @candidate.properties[field.label.to_sym] = @uploader.path
+            end
+          end
 
-      def success
+          if @candidate.save 
+            session[:candidate_id] = @candidate.id
+            flash[:success] =  t :success
+            redirect_to project_restrict_candidates_path(@project)
+          else 
+            render action: :new
+          end
+        else
+          render action: :new
+        end
       end
 
       private
 
       def set_params
+        dinamic_fields = @subscribe.fields.map { |field| field.label.to_sym } 
+
+        params.require(:candidate).permit(:name, :rg, :cpf, :born, 
+              :state_id, :city, :cep, :address, :burgh, :telephone,
+              :celphone, :email, :gender, :fantasy_name, :social_reason, 
+              :password, :confirmation_password, :terms_use,
+              :cnpj, :properties => dinamic_fields)
       end
 
       def set_project
