@@ -1,3 +1,4 @@
+require_dependency 'address/application_controller'
 module Address
     class UnitsController < ApplicationController
 

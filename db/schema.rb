@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202183322) do
+ActiveRecord::Schema.define(version: 20160202190049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -319,15 +319,17 @@ ActiveRecord::Schema.define(version: 20160202183322) do
     t.integer  "type_occurrence"
     t.string   "observation"
     t.integer  "type_receipt"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "situation_id"
     t.integer  "staff_id"
     t.integer  "user_company_id"
+    t.integer  "regularization_type_id"
   end
 
   add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
   add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["regularization_type_id"], name: "index_candidate_cadastre_addresses_on_regularization_type_id", using: :btree
   add_index "candidate_cadastre_addresses", ["situation_id"], name: "index_candidate_cadastre_addresses_on_situation_id", using: :btree
   add_index "candidate_cadastre_addresses", ["staff_id"], name: "index_candidate_cadastre_addresses_on_staff_id", using: :btree
   add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
