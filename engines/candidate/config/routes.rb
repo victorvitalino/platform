@@ -1,4 +1,5 @@
 Candidate::Engine.routes.draw do
+  resources :cadins
   resources :cadastres, path: 'cadastros' do
     get   'cadastre_situation/id', path: 'situacao', to: 'cadastres#cadastre_situation', as: 'cadastre_situation'
     post  'cadastre_situation_create', path: 'criar_situacao', to: 'cadastres#cadastre_situation_create', as: 'cadastre_situation_create'

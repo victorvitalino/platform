@@ -65,5 +65,5 @@
     = f.input :firm_enterprise_id, as: 'select', collection: Firm::Enterprise.all, label: false, prompt: "Selecione..."
   .row
    .col-md-8
-    = f.submit 'salvar' , class: 'btn btn-success',data: {disable_with: "carregando..."}
-    = link_to "voltar",  units_path, class: 'btn btn-dark',data: {disable_with: "carregando..."}
+    = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+    = link_to "voltar",  units_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}

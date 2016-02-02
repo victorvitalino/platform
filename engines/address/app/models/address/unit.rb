@@ -10,7 +10,9 @@ module Address
     scope :address, -> (address) {where("complete_address LIKE ?", "#{address}%")}
     scope :status, -> (status) {where(situation_unit_id: status)}
 
-
+    scope :city, -> (city) {where(city_id: city)}
+    scope :situation_unit, -> (situation_unit) {where(situation_unit_id: situation_unit)}
+    scope :cpf, -> (cpf) {joins(cadastre_address: :cadastre).where("candidate_cadastres.cpf = ?", cpf)}
 
 
   end

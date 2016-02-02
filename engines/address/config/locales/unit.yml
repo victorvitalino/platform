@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    models:
+      'address/unit': Endereço
+    attributes:
+      'address/unit':
+        city: "Cidade"
+        acron_block: "Sigla quadra"
+        block: "Quadra"
+        acron_group: "Sigla conjunto"
+        group: "Conjunto"
+        unit: "Unidade"
+        cep_unit: "CEP"
+        area: "Área"
+        complete_address: "Endereço completo"
+        burgh: "Benefiário"
+        donate: "Doado?"
+        date_donate: "Data de doação"
+        registration_iptu: "Inscrição do Iptu"
+        date_iptu: "Data do Iptu"
+        situation_unit: "Situação da unidade"
+        type_use_unit_id: "Tipo de uso"
+        firm_enterprise_id: "Empreendimento"

@@ -4,8 +4,13 @@ module Address
 
         before_action :set_unit, only: [:edit, :destroy, :update, :show]
 
-        def index
+        has_scope :situation_unit
+        has_scope :city
+        has_scope :cpf
 
+        def index
+            @units = Address::Unit.all
+            @units = apply_scopes(@units).paginate(:page => params[:page], :per_page => 20)
         end
 
         def new

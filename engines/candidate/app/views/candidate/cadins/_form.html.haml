@@ -1,0 +1,59 @@
+= simple_form_for @cadin do |f|
+ .card-body.card-padding
+  .row
+   .col-md-4
+    = f.label :number_control, class: 'fg-label'
+    = f.input :number_control, label: false, input_html: {placeholder: 'Preencha'}
+  .row
+   .col-md-8
+    = f.label :name, class: 'fg-label'
+    = f.input :name, label: false, input_html: {placeholder: 'Preencha'}
+  .row
+   .col-md-4
+    = f.label :cpf, class: 'fg-label'
+    = f.input :cpf, label: false, input_html: {placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :rg, class: 'fg-label'
+    = f.input :rg, label: false, input_html: {placeholder: 'Preencha'}
+   .col-md-2
+    = f.label :born,  as: 'string', class: 'fg-label'
+    = f.input :born, label: false,   as: 'string', input_html: { class: 'date', placeholder: '00/00/0000', value: (@cadin.born) ? localize(f.object.born) : nil}
+  .row
+   .col-md-4
+    = f.label :process, class: 'fg-label'
+    = f.input :process, label: false, input_html: { placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :place_birth, class: 'fg-label'
+    = f.input :place_birth, label: false, input_html: { placeholder: 'Preencha'}
+   .col-md-2
+    = f.label :uf_born, class: 'fg-label'
+    = f.input :uf_born, label: false, input_html: { placeholder: 'Preencha'}
+  .row
+   .col-md-4
+    = f.label :city, class: 'fg-label'
+    = f.input :city_id, as: 'select', collection: Address::City.federal_district, label: false, prompt: "Selecione..."
+   .col-md-8
+    = f.label :address, class: 'fg-label'
+    = f.input :address, label: false, input_html: { placeholder: 'Preencha'}
+  .row
+   .col-md-4
+    = f.label :espolio, class: 'fg-label'
+    = f.input :espolio,  label: false, as: :select, prompt: "selecione..."
+   .col-md-4
+    = f.label :occurrence_cadin_id, class: 'fg-label'
+    = f.input :occurrence_cadin_id, label: false, input_html: {placeholder: 'Digite uma observação'}
+  .row
+   .col-md-2
+    = f.label :distribution_date,  as: 'string', class: 'fg-label'
+    = f.input :distribution_date,  as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@cadin.distribution_date) ? localize(f.object.distribution_date) : nil}
+   .col-md-4
+    = f.label :signed_instrument_id, class: 'fg-label'
+    = f.input :signed_instrument_id, label: false, input_html: {placeholder: 'Digite uma observação'}
+  .row
+   .col-md-6
+    = f.label :observation, class: 'fg-label'
+    = f.input :observation, label: false, input_html: {placeholder: 'Digite uma observação'}
+  .row
+   .col-md-8
+    = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+    = link_to "voltar",  cadins_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}

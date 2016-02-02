@@ -4,11 +4,25 @@
       .panel-title
         %h4
           Listagem de Endereços
-          = link_to 'Novo Endereço', new_unit_path,class: 'btn btn-success pull-right mgl',data: {disable_with: "carregando..."}
+          = link_to 'Novo Endereço', new_unit_path,class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}
       %hr
-      .row
-        .col-md-4
     .panel-body
+      .row
+        .col-md-12
+          = simple_form_for  url_for, method: 'get' do |f|
+            .row
+              .col-md-3
+                = f.label 'Cidade', class: 'fg-label'
+                = f.input :city, as: 'select', collection: Address::City.federal_district, label: false, prompt: "Selecione...", input_html: { name: 'city', value: params[:city]}
+              .col-md-3
+                = f.label 'Situação do Imovel', class: 'fg-label'
+                = f.input :situation_unit, as: 'select', collection: Address::SituationUnit.all, label_method: :description, label: false, prompt: "Selecione...", input_html: { name: 'situation_unit', value: params[:situation_unit]}
+              .col-md-2
+                = f.label 'CPF', class: 'fg-label'
+                = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+              .col-md-2
+                %br
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
       .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
         %table#data-table-command.table.table-striped.table-bordered
           %thead

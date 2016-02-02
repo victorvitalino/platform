@@ -44,7 +44,21 @@
             .col-md-8
               %label Empreendimento:
               = @unit.enterprises.name if @unit.enterprises.present?
+          - if @unit.cadastre_address.present?
+            %hr
+            %h4
+              Dados do Morador
+            .row
+              .col-md-4
+                %label Nome:
+                = @unit.cadastre_address.last.cadastre.name
+              .col-md-4
+                %label CPF:
+                = link_to @unit.cadastre_address.last.cadastre.cpf, candidate.cadastres_path(cpf: @unit.cadastre_address.last.cadastre.cpf)
+              .col-md-4
+                %label Processo:
+                = @unit.cadastre_address.last.cadastre.cadastre_procedurals.order('created_at asc').last.old_process
           %hr
           .row
             .col-md-4
-              = link_to "voltar",  units_path, class: 'btn btn-dark',data: {disable_with: "carregando..."}
+              = link_to "voltar",  units_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}

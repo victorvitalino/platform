@@ -59,11 +59,8 @@
                   %span.site-menu-arrow
                 %ul.site-menu-sub
                   %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-400.html"}
+                    %a.animsition-link{:href => "#{address.units_path}"}
                       %span.site-menu-title Pesquisa Geral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-403.html"}
-                      %span.site-menu-title Atualização
               %li.site-menu-item.has-sub
                 %a{:href => "javascript:void(0)"}
                   %span.site-menu-title Atendimento
@@ -246,7 +243,7 @@
                         %a.animsition-link{:href => "#{concourse.view_all_path}"}
                           %span.site-menu-title Inscrições
 
-          - if policy(:application, namespace: Protocol).view_nav?                 
+          - if policy(:application, namespace: Protocol).view_nav?
             %li.site-menu-item.has-sub
               %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}
                 %i.site-menu-icon.wb-order{"aria-hidden" => "true"}
@@ -331,7 +328,7 @@
                     %a.animsition-link{:href => "../../forms/general.html"}
                       %span.site-menu-title Categorias
                   %li.site-menu-item
-              - if policy(:application, namespace: Person).view_nav?        
+              - if policy(:application, namespace: Person).view_nav?
                 %li.site-menu-item.has-sub
                   %a{:href => "javascript:void(0)"}
                     %span.site-menu-title Pessoas
@@ -352,7 +349,7 @@
                       %a.animsition-link{:href => "#{person.systems_path}"}
                         %span.site-menu-title Sistemas
                     %li.site-menu-item
-              - if policy(:application, namespace: Brb).view_nav?        
+              - if policy(:application, namespace: Brb).view_nav?
                 %li.site-menu-item.has-sub
                   %a{:href => "javascript:void(0)"}
                     %span.site-menu-title Financeiro
