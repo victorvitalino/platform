@@ -17,7 +17,7 @@
           .row
             .col-md-4
               %label Processo:
-              = @cadin.requesting_unit
+              = @cadin.process
             .col-md-4
               %label Data de Nascimento:
               = @cadin.born
@@ -34,11 +34,11 @@
               = @cadin.place_birth
             .col-md-
               %label UF:
-              = @cadin.uf_bron
+              = @cadin.uf_born
           .row
             .col-md-8
               %label Ocorrência:
-              = @cadin.occurence_cadin.name if  @cadin.occurence_cadin.present?
+              = @cadin.occurrence_cadin.name if  @cadin.occurrence_cadin.present?
           .row
             .col-md-8
               %label Instrumento firmado:
@@ -52,4 +52,4 @@
               %br
             .row
               .col-md-4
-                = link_to "voltar",  cadins_path, class: 'btn btn-dark',data: {disable_with: "carregando..."}
+                = link_to "voltar",  cadins_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}
