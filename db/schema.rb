@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202190049) do
+ActiveRecord::Schema.define(version: 20160204114229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1447,6 +1447,13 @@ ActiveRecord::Schema.define(version: 20160202190049) do
   add_index "person_staffs", ["sector_origin_id"], name: "index_person_staffs_on_sector_origin_id", using: :btree
   add_index "person_staffs", ["user_responsible_id"], name: "index_person_staffs_on_user_responsible_id", using: :btree
 
+  create_table "person_system_modules", force: :cascade do |t|
+    t.string   "title"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "person_system_permissions", force: :cascade do |t|
     t.string   "action"
     t.integer  "code"
@@ -1462,9 +1469,12 @@ ActiveRecord::Schema.define(version: 20160202190049) do
     t.string   "name"
     t.string   "code"
     t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "system_module_id"
   end
+
+  add_index "person_systems", ["system_module_id"], name: "index_person_systems_on_system_module_id", using: :btree
 
   create_table "planning_discussion_messages", force: :cascade do |t|
     t.integer  "author_id"

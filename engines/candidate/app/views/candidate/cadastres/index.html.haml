@@ -14,12 +14,16 @@
         - if @candidate.present?
           %li
             %hr/
+          - if policy(:cadastre, namespace: Candidate).update?
             %li.list-group-item
               %a{:href => "#{candidate.edit_cadastre_path(@candidate)}"} Atualizar cadastro
+          - if policy(:cadastre, namespace: Candidate).update_cpf?
             %li.list-group-item
               %a{:href => "#section-2"} Alterar CPF
+          - if policy(:cadastre, namespace: Candidate).update_situation?
             %li.list-group-item
               %a{:href => "#{candidate.cadastre_cadastre_situation_path(@candidate)}"} Alterar situação
+          - if policy(:cadastre, namespace: Candidate).update_procedural?
             %li.list-group-item
               %a{:href => "#{candidate.cadastre_cadastre_procedural_path(@candidate)}"} Alterar situação processual
     .article-content

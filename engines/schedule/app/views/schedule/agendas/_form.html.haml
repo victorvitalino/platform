@@ -1,75 +1,74 @@
 = simple_form_for(@agenda) do |f|
-  .card-body.card-padding
-    .row
-      .col-md-3
-        = f.label :program, class: 'fg-label'
-        = f.association :program, label: false, prompt: "selecione o programa..."
-    .row
-      .col-md-8
-        = f.label :title, class: 'fg-label'
-        = f.input :title, label: false, input_html: { placeholder: 'Digite um título'}
-    .row
-      .col-md-8
-        = f.label :description, class: 'fg-label'
-        = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
-    .row
-      .col-md-2
-        = f.label 'Data início', class: 'fg-label'
-        = f.input :start, label: false, as: :string, input_html: { class: 'date', value: (f.object.start) ? localize(f.object.start) : nil}
-      .col-md-2
-        = f.label 'Data fim', class: 'fg-label'
-        = f.input :end, label: false, as: :string, input_html: { class: 'date', value: (f.object.end) ? localize(f.object.end) : nil}
-      .col-md-2
-        = f.label 'Hora Início', class: 'fg-label'
-        = f.input :start_hour, label: false, as: :string, input_html: { class: 'hour',value: (f.object.start_hour) ? localize(f.object.start_hour, format:"%H:%M") : nil}
-      .col-md-2
-        = f.label 'Hora fim', class: 'fg-label'
-        = f.input :end_hour, label: false, as: :string, input_html: { class: 'hour',value: (f.object.end_hour) ? localize(f.object.end_hour, format:"%H:%M") : nil}
-    %hr/
-    .row
-      .col-md-2
-        = f.label :attendants, class: 'fg-label'
-        = f.input :attendants, label: false, as: :string
-      .col-md-2
-        = f.label :attendance_time, class: 'fg-label'
-        = f.input :attendance_time, label: false, as: :select, collection: %w(15 30 45 60 90 120), include_blank: false
-    %hr/
-    .row
-      .col-md-12
-        %h3 Intervalo / Almoço
-    %br/
-    .row
-      .col-md-2
-        = f.label :lunch_time, class: 'fg-label'
-        = f.input :lunch_time, label: false, as: :select, include_blank: false
-      .col-md-2
-        = f.label :lunch_attendants, class: 'fg-label'
-        = f.input :lunch_attendants, label: false, as: :string
-      .col-md-2
-        = f.label 'Hora Início', class: 'fg-label'
-        = f.input :lunch_start, label: false, as: :string, input_html: { class: 'hour',value: (f.object.lunch_start) ? localize(f.object.lunch_start format:"%H:%M") : nil}
-      .col-md-2
-        = f.label 'Hora fim', class: 'fg-label'
-        = f.input :lunch_end, label: false, as: :string, input_html: { class: 'hour',value: (f.object.lunch_end) ? localize(f.object.lunch_end, format:"%H:%M") : nil}
-    %hr/
-    .row
-      .col-md-12
-        %h3 Restrições / Validações
-    %br/
-    .row
-      .col-md-2
-        = f.label :restriction_type, class: 'fg-label'
-        = f.input :restriction_type, label: false, as: :select, include_blank: false, collection: Schedule::Agenda.restriction_types.keys.to_a
-      .col-md-6
-        = f.label :restriction_sql, class: 'fg-label'
-        = f.input :restriction_sql, label: false, as: :string
-    %hr/
-    .row
-      .col-md-2
-        = f.label :status, class: 'fg-label'
-        = f.input :status, label: false, as: :select, include_blank: false
-    %hr/
-    .row
-      .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to 'voltar', agendas_path, class: 'btn btn-inverse'
+  .row
+    .col-md-2
+      = f.label :program, class: 'fg-label'
+      = f.association :program, label: false, prompt: "selecione o programa..."
+  .row
+    .col-md-8
+      = f.label :title, class: 'fg-label'
+      = f.input :title, label: false, input_html: { placeholder: 'Digite um título'}
+  .row
+    .col-md-8
+      = f.label :description, class: 'fg-label'
+      = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
+  .row
+    .col-md-1
+      = f.label 'Data início', class: 'fg-label'
+      = f.input :start, label: false, as: :string, input_html: { class: 'date', value: (f.object.start) ? localize(f.object.start) : nil}
+    .col-md-1
+      = f.label 'Data fim', class: 'fg-label'
+      = f.input :end, label: false, as: :string, input_html: { class: 'date', value: (f.object.end) ? localize(f.object.end) : nil}
+    .col-md-1
+      = f.label 'Hora Início', class: 'fg-label'
+      = f.input :start_hour, label: false, as: :string, input_html: { class: 'hour',value: (f.object.start_hour) ? localize(f.object.start_hour, format:"%H:%M") : nil}
+    .col-md-1
+      = f.label 'Hora fim', class: 'fg-label'
+      = f.input :end_hour, label: false, as: :string, input_html: { class: 'hour',value: (f.object.end_hour) ? localize(f.object.end_hour, format:"%H:%M") : nil}
+  %hr/
+  .row
+    .col-md-2
+      = f.label :attendants, class: 'fg-label'
+      = f.input :attendants, label: false, as: :string
+    .col-md-2
+      = f.label :attendance_time, class: 'fg-label'
+      = f.input :attendance_time, label: false, as: :select, collection: %w(15 30 45 60 90 120), include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      %h3 Intervalo / Almoço
+  %br/
+  .row
+    .col-md-2
+      = f.label :lunch_time, class: 'fg-label'
+      = f.input :lunch_time, label: false, as: :select, include_blank: false
+    .col-md-2
+      = f.label :lunch_attendants, class: 'fg-label'
+      = f.input :lunch_attendants, label: false, as: :string
+    .col-md-2
+      = f.label 'Hora Início', class: 'fg-label'
+      = f.input :lunch_start, label: false, as: :string, input_html: { class: 'hour',value: (f.object.lunch_start.present?) ? localize(f.object.lunch_start, format:"%H:%M") : nil}
+    .col-md-2
+      = f.label 'Hora fim', class: 'fg-label'
+      = f.input :lunch_end, label: false, as: :string, input_html: { class: 'hour',value: (f.object.lunch_end.present?) ? localize(f.object.lunch_end, format:"%H:%M") : nil}
+  %hr/
+  .row
+    .col-md-12
+      %h3 Restrições / Validações
+  %br/
+  .row
+    .col-md-2
+      = f.label :restriction_type, class: 'fg-label'
+      = f.input :restriction_type, label: false, as: :select, include_blank: false, collection: Schedule::Agenda.restriction_types.keys.to_a
+    .col-md-6
+      = f.label :restriction_sql, class: 'fg-label'
+      = f.input :restriction_sql, label: false, as: :string
+  %hr/
+  .row
+    .col-md-2
+      = f.label :status, class: 'fg-label'
+      = f.input :status, label: false, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button)}
+      = link_to 'Voltar', agendas_path, class: 'btn btn-dark'

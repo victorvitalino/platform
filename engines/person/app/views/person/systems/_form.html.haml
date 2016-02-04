@@ -10,6 +10,9 @@
   .row
     .col-md-3
       = f.input :status, as: :select, include_blank: false 
+  .row
+    .col-md-3
+      = f.association :system_module, include_blank: false 
   %hr/
   .row
     .col-md-12

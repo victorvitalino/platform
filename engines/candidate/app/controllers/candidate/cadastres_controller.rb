@@ -5,20 +5,24 @@ module Candidate
 
 
     def index
+      authorize :cadastre, :index?
       @candidate = Cadastre.find_by_cpf(params[:cpf]) rescue nil
     end
 
     def edit
+      authorize :cadastre, :update?
       @candidate = Cadastre.find(params[:id])
     end
 
     def cadastre_situation
+      authorize :cadastre, :update_situation?
       @cadastre_situation = Candidate::CadastreSituation.new
       @candidate = Cadastre.find(params[:cadastre_id])
 
     end
 
     def cadastre_situation_create
+      authorize :cadastre, :update_situation?
       @cadastre_situation = Candidate::CadastreSituation.new(set_cadastre_situation)
       @cadastre_situation.cadastre_mirror_id = @cadastre_situation.cadastre_id
       @cadastre_situation.save
@@ -30,12 +34,14 @@ module Candidate
     end
 
     def cadastre_procedural
+      authorize :cadastre, :update_procedural?
       @cadastre_procedural = Candidate::CadastreProcedural.new
       @candidate = Cadastre.find(params[:cadastre_id])
 
     end
 
     def cadastre_procedural_create
+      authorize :cadastre, :update_procedural?
       @cadastre_procedural = Candidate::CadastreProcedural.new(set_cadastre_procedural)
       @cadastre_procedural.cadastre_mirror_id = @cadastre_procedural.cadastre_id
       @cadastre_procedural.save

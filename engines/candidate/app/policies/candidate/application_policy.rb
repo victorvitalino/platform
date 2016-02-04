@@ -1,4 +1,4 @@
-module Habitation
+module Candidate
   class ApplicationPolicy
     attr_reader :user, :record
 

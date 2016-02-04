@@ -10,167 +10,158 @@
               %span.site-menu-title Mural
               %span.site-menu-arrow
 
+          - if policy(:application, namespace: Habitation).view_nav?
+            %li.site-menu-item.has-sub
+              %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}
+                %i.site-menu-icon.wb-home{"aria-hidden" => "true"}
+                %span.site-menu-title Habitação
+                %span.site-menu-arrow
 
-          %li.site-menu-item.has-sub
-            %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}
-              %i.site-menu-icon.wb-home{"aria-hidden" => "true"}
-              %span.site-menu-title Habitação
-              %span.site-menu-arrow
 
-
-            %ul.site-menu-sub
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Cadastro
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "#{candidate.cadastres_path}"}
-                      %span.site-menu-title Pesquisa Geral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-403.html"}
-                      %span.site-menu-title Atualização Cadastral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-404.html"}
-                      %span.site-menu-title Troca de CPF
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-404.html"}
-                      %span.site-menu-title Situação
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-404.html"}
-                      %span.site-menu-title Situação Processual
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "#{candidate.cadastre_addresses_path}"}
-                      %span.site-menu-title Assentamento
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Publicação
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-400.html"}
-                      %span.site-menu-title Em ordem
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-403.html"}
-                      %span.site-menu-title Indicação
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Endereço
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "#{address.units_path}"}
-                      %span.site-menu-title Pesquisa Geral
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Cadastro Imobiliário
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "#{candidate.cadins_path}"}
-                      %span.site-menu-title Pesquisa Geral
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Atendimento
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-400.html"}
-                      %span.site-menu-title Habitação
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-403.html"}
-                      %span.site-menu-title Regularização
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "#{schedule.agendas_path}"}
-                      %span.site-menu-title Agendamento
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-503.html"}
-                      %span.site-menu-title Auditoria
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Entidades
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-400.html"}
-                      %span.site-menu-title Pesquisa Geral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-403.html"}
-                      %span.site-menu-title Atualização Cadastral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-404.html"}
-                      %span.site-menu-title Troca de CPF
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-503.html"}
-                      %span.site-menu-title 503
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Empresas
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-400.html"}
-                      %span.site-menu-title Pesquisa Geral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-403.html"}
-                      %span.site-menu-title Atualização Cadastral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-404.html"}
-                      %span.site-menu-title Troca de CPF
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-503.html"}
-                      %span.site-menu-title 503
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Listas
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-400.html"}
-                      %span.site-menu-title Pesquisa Geral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-403.html"}
-                      %span.site-menu-title Atualização Cadastral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-404.html"}
-                      %span.site-menu-title Troca de CPF
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-503.html"}
-                      %span.site-menu-title 503
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Sefaz
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-400.html"}
-                      %span.site-menu-title Pesquisa CPF
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-403.html"}
-                      %span.site-menu-title Isenção ITCD/ITBI
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-404.html"}
-                      %span.site-menu-title Relatórios
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Auditoria
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-400.html"}
+              %ul.site-menu-sub
+                - if policy(:cadastre, namespace: Candidate).view_nav?
+                  %li.site-menu-item.has-sub
+                    %a{:href => "javascript:void(0)"}
                       %span.site-menu-title Cadastro
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-403.html"}
-                      %span.site-menu-title Atendimento
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-404.html"}
-                      %span.site-menu-title Ações internas
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-503.html"}
-                      %span.site-menu-title Acessos
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../pages/error-503.html"}
-                      %span.site-menu-title Guardião
+                      %span.site-menu-arrow
+                    %ul.site-menu-sub
+                      - if policy(:cadastre, namespace: Candidate).index?
+                        %li.site-menu-item
+                          %a.animsition-link{:href => "#{candidate.cadastres_path}"}
+                            %span.site-menu-title Pesquisa Geral
+                      - if policy(:cadastre, namespace: Candidate).seat?
+                        %li.site-menu-item
+                          %a.animsition-link{:href => "#{candidate.cadastre_addresses_path}"}
+                            %span.site-menu-title Assentamento
+                %li.site-menu-item.has-sub
+                  %a{:href => "javascript:void(0)"}
+                    %span.site-menu-title Publicação
+                    %span.site-menu-arrow
+                  %ul.site-menu-sub
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-400.html"}
+                        %span.site-menu-title Em ordem
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-403.html"}
+                        %span.site-menu-title Indicação
+                %li.site-menu-item.has-sub
+                  %a{:href => "javascript:void(0)"}
+                    %span.site-menu-title Endereço
+                    %span.site-menu-arrow
+                  %ul.site-menu-sub
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "#{address.units_path}"}
+                        %span.site-menu-title Pesquisa Geral
+                %li.site-menu-item.has-sub
+                  %a{:href => "javascript:void(0)"}
+                    %span.site-menu-title Cadastro Imobiliário
+                    %span.site-menu-arrow
+                  %ul.site-menu-sub
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "#{candidate.cadins_path}"}
+                        %span.site-menu-title Pesquisa Geral
+                %li.site-menu-item.has-sub
+                  %a{:href => "javascript:void(0)"}
+                    %span.site-menu-title Atendimento
+                    %span.site-menu-arrow
+                  %ul.site-menu-sub
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-400.html"}
+                        %span.site-menu-title Habitação
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-403.html"}
+                        %span.site-menu-title Regularização
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "#{schedule.agendas_path}"}
+                        %span.site-menu-title Agendamento
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-503.html"}
+                        %span.site-menu-title Auditoria
+                %li.site-menu-item.has-sub
+                  %a{:href => "javascript:void(0)"}
+                    %span.site-menu-title Entidades
+                    %span.site-menu-arrow
+                  %ul.site-menu-sub
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-400.html"}
+                        %span.site-menu-title Pesquisa Geral
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-403.html"}
+                        %span.site-menu-title Atualização Cadastral
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-404.html"}
+                        %span.site-menu-title Troca de CPF
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-503.html"}
+                        %span.site-menu-title 503
+                %li.site-menu-item.has-sub
+                  %a{:href => "javascript:void(0)"}
+                    %span.site-menu-title Empresas
+                    %span.site-menu-arrow
+                  %ul.site-menu-sub
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-400.html"}
+                        %span.site-menu-title Pesquisa Geral
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-403.html"}
+                        %span.site-menu-title Atualização Cadastral
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-404.html"}
+                        %span.site-menu-title Troca de CPF
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-503.html"}
+                        %span.site-menu-title 503
+                %li.site-menu-item.has-sub
+                  %a{:href => "javascript:void(0)"}
+                    %span.site-menu-title Listas
+                    %span.site-menu-arrow
+                  %ul.site-menu-sub
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-400.html"}
+                        %span.site-menu-title Pesquisa Geral
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-403.html"}
+                        %span.site-menu-title Atualização Cadastral
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-404.html"}
+                        %span.site-menu-title Troca de CPF
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-503.html"}
+                        %span.site-menu-title 503
+                %li.site-menu-item.has-sub
+                  %a{:href => "javascript:void(0)"}
+                    %span.site-menu-title Sefaz
+                    %span.site-menu-arrow
+                  %ul.site-menu-sub
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-400.html"}
+                        %span.site-menu-title Pesquisa CPF
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-403.html"}
+                        %span.site-menu-title Isenção ITCD/ITBI
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-404.html"}
+                        %span.site-menu-title Relatórios
+                %li.site-menu-item.has-sub
+                  %a{:href => "javascript:void(0)"}
+                    %span.site-menu-title Auditoria
+                    %span.site-menu-arrow
+                  %ul.site-menu-sub
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-400.html"}
+                        %span.site-menu-title Cadastro
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-403.html"}
+                        %span.site-menu-title Atendimento
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-404.html"}
+                        %span.site-menu-title Ações internas
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-503.html"}
+                        %span.site-menu-title Acessos
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "../../pages/error-503.html"}
+                        %span.site-menu-title Guardião
           - if policy(:application, namespace: Cms).view_nav? || policy(:application, namespace: Concourse).view_nav?
             %li.site-menu-item.has-sub
               %a{"data-dropdown-toggle" => "false", :href => "javascript:void(0)"}

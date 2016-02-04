@@ -1,7 +1,8 @@
-- @systems.each_with_index do |j, i|
+- @systems.order(:code).each_with_index do |j, i|
   %tr
     %td= j.name
     %td= j.code
+    %td= j.system_module.title if j.system_module.present?
     %td.col-md-1
       - if j.status
         %span.label.label-success Ativo

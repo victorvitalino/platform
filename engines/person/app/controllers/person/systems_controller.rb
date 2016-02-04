@@ -38,7 +38,7 @@ module Person
 		private
 
 		def system_params
-			params.require(:system).permit(:name, :code,:status)
+			params.require(:system).permit(:name, :code,:status, :system_module_id)
 		end
 
 		def set_systems

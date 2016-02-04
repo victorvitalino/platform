@@ -17,8 +17,14 @@
           .col-md-2
             = f.label "Status"
             = f.input :status, label: false, as: :select, collection: Schedule::AgendaSchedule.statuses.map { |k,v| [k.humanize, v]}, include_blank: "Todos", selected: params[:by_status], input_html: { name: 'by_status'}
+          .col-md-2
+            = f.label "CPF"
+            = f.input :cpf, label: false, as: :string, input_html: { name: 'by_cpf', value: params[:by_cpf]}
+          .col-md-1
+            = f.label "horário"
+            = f.input :hour, label: false, as: :string, input_html: { name: 'by_hour', value: params[:by_hour], class: 'hour'}
           .col-md-2{style: 'padding-top:24px'}
-            = f.submit "Filtrar", name: nil, class: 'btn btn-primary'
+            = f.submit "Filtrar", name: nil, class: 'btn btn-primary', data: { disable_with: t(:disabled_button)}
       %hr/
       .row
         .col-md-12
@@ -28,13 +34,13 @@
                 %th Agendados
                 %th Cancelados 
                 %th Liberados para retorno
-                %th Finalizados sem retorno
+                %th Finalizados
             %tbody
               %tr
-                %td= @schedules.where(status: 0).count
-                %td= @schedules.where(status: 2).count
-                %td= @schedules.where(status: 1).count
-                %td= @schedules.where(status: 3).count
+                %td.col-md-4= @schedules.where(status: 0).count
+                %td.col-md-4= @schedules.where(status: 2).count
+                %td.col-md-4= @schedules.where(status: 1).count
+                %td.col-md-4= @schedules.where(status: 3).count
       %hr/
       .row
         .col-md-12
@@ -58,4 +64,6 @@
                     %td= schedule.date.strftime('%d/%m/%Y')
                     %td= schedule.hour.strftime('%H:%M')
                     %td= schedule.status.humanize
-                    %td
+                    %td.col-md-1
+                      = link_to "", "#", class: "glyphicon glyphicon-share-alt btn btn-primary btn-xs"
+                      = link_to "", "#", class: "glyphicon glyphicon-check btn btn-success btn-xs"                      
