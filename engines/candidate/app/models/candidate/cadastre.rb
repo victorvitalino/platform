@@ -14,7 +14,7 @@ module Candidate
     has_many :dependents
     has_many :cadastre_situations
     has_many :attendances
-    has_many :pontuations
+    has_many :pontuations , ->  { order(:id)}
 
     has_many :cadastre_checklists
     has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'

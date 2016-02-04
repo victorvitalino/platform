@@ -1,28 +1,22 @@
 module Protocol
 	class ConductPolicy < ApplicationPolicy
+		def view_nav?
+      		  self.index? || self.seat?
+    		end
 		def index?
-			allow?(4303)
-		end
-		def create?
-			allow?(4301)
-		end
-		def update?
-			allow?(4301)
-		end
-		def destroy?
-			allow?(4302)
+			allow?(31101)
 		end
 
 		def add?
-			allow?(4306)
+			allow?(31104)
 		end
 
 		def receive?
-			allow?(4305)
+			allow?(31102)
 		end
 
 		def return?
-			allow?(4304)
+			allow?(31105)
 		end
 	end
 end

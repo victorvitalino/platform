@@ -5,11 +5,12 @@ module Candidate
 
 
     def index
+      authorize :cadastre_address,  :index?
        @address = RegularizationPortal::Address.new
-       unless  params[:cpf].nil? && params[:cpf].empty?
+       if  params[:cpf].present?
         @candidate = Candidate::CadastreAddress.joins(:unit).joins(:cadastre).where('candidate_cadastres.cpf = ?', params[:cpf]).last rescue nil
        end
-       unless params[:id].nil?
+       if params[:id].present?
         @candidate = Candidate::CadastreAddress.joins(:unit).where('address_units.id = ?', params[:id]).last rescue nil
        end
     end

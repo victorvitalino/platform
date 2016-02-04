@@ -1,16 +1,19 @@
 module Protocol
 	class AssessmentPolicy < ApplicationPolicy
+		def view_nav?
+      		  self.index? || self.seat?
+    		end
 		def index?
-			allow?(4103)
+			allow?(31004)
 		end
 		def create?
-			allow?(4101)
+			allow?(31001)
 		end
 		def update?
-			allow?(4101)
+			allow?(31002)
 		end
 		def destroy?
-			allow?(4102)
+			allow?(31003)
 		end
 	end
 end

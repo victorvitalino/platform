@@ -1,19 +1,23 @@
 module Person
 	class SystemPermissionPolicy < ApplicationPolicy
+		def view_nav?
+      		  self.index? || self.seat?
+    		end
+
 		def index?
-			allow?(1503)
+			allow?(41318)
 		end
 
 		def create?
-			allow?(1501)
+			allow?(41318)
 		end
 
 		def update?
-			allow?(1501)
+			allow?(41318)
 		end
 
 		def destroy?
-			allow?(1502)
+			allow?(41318)
 		end
 	end
 end

@@ -42,6 +42,7 @@ module Protocol
 
 
         def show
+           authorize :assessment,  :index?
            @conduct = @assessment.conducts.all
            @digital_docs= @assessment.digital_documents.all
            @locations = @assessment.locations.all

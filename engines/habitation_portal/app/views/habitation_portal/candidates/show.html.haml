@@ -86,11 +86,11 @@
                       %tr
                         %td= candidate.situation_status.name.upcase if candidate.situation_status.present?
                         %td
-                          - unless %w(2016-01-05 2016-01-15 2016-01-18).include? candidate.created_at.strftime('%Y-%m-%d').to_s  
+                          - unless %w(2016-01-05 2016-01-15 2016-01-18).include? candidate.created_at.strftime('%Y-%m-%d').to_s
                             = candidate.created_at.strftime('%d/%m/%Y')
-                          - else 
+                          - else
                             Informação não disponível
-              - else  
+              - else
                 Informação não disponível
           %hr/
           .row

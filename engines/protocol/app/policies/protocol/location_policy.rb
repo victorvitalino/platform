@@ -1,16 +1,19 @@
 module Protocol
 	class LocationPolicy < ApplicationPolicy
+		def view_nav?
+      		  self.index? || self.seat?
+    		end
 		def index?
-			allow?(4603)
+			allow?(31204)
 		end
 		def create?
-			allow?(4601)
+			allow?(31201)
 		end
 		def update?
-			allow?(4601)
+			allow?(31202)
 		end
 		def destroy?
-			allow?(4602)
+			allow?(31203)
 		end
 	end
 end

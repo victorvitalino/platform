@@ -7,12 +7,11 @@ module Protocol
       @record = record
     end
 
-     def view_nav?
+    def view_nav?
       return true if user.account.administrator
-      @system = Person::System.find_by_code('4')#CÓDIGO SISTEMA HELP DESK
-        if @system.present?
-        return true if user.account.permissions.where(system_id: @system.id, status: true).present?
-      end
+      system_module = Person::SystemModule.find_by_code('31') rescue nil
+      permissions   = Person::SystemPermission.where(system_id: system_module.systems.map(&:id))
+      (user.account.privilege_id & permissions.map(&:code)).present?
     end
 
     def show?
@@ -39,17 +38,13 @@ module Protocol
       false
     end
 
-    def scope
+  def scope
       Pundit.policy_scope!(user, record.class)
     end
     #VERIFICA SE O USUÁRIO POSSUI O CÓDIGO DA PERMISSÃO
     def allow?(code)
-      return true if user.account.administrator
-      @permission = Person::SystemPermission.find_by_code(code)
-
-      if @permission.present?
-         return true if user.account.permissions.where(system_permission_id: @permission.id, status: true).present?
-      end
+      return true if user.account.administrator?
+      user.account.privilege_id.to_a.include? code.to_i
     end
 
     private

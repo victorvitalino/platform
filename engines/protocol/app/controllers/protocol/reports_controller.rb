@@ -3,6 +3,7 @@ module Protocol
      layout 'remark'
 
         def new
+            authorize :report,  :create?
            @report = Report.new
 
            if params[:search].present?

@@ -9,10 +9,12 @@ module Person
     has_scope :sector
 
     def index
+      authorize :staff,  :index?
       @staffs = apply_scopes(Staff).includes(:sector_current).all
     end
 
     def new
+      authorize :staff,  :create?
       @staff = Staff.new
       @staff.build_user
       authorize @staff
@@ -20,6 +22,7 @@ module Person
 
 
     def create
+      authorize :staff,  :create?
       @staff = Staff.new(staff_params)
       authorize @staff
       if @staff.save
@@ -34,6 +37,7 @@ module Person
     end
 
     def update
+      authorize :staff,  :update?
       authorize @staff
 
       if @staff.update(staff_update_params)
@@ -47,14 +51,17 @@ module Person
     end
 
     def enable
+      authorize :staff,  :update?
       @staff.update(status: true)
     end
 
     def disable
+      authorize :staff,  :update?
       @staff.update(status: false)
     end
 
     def destroy
+      authorize :staff,  :destroy?
       @staff.destroy
       redirect_to user_url, notice: 'User was successfully destroyed.'
     end

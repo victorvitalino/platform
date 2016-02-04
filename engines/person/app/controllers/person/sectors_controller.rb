@@ -9,17 +9,17 @@ module Person
 		has_scope :status
 
 		def index
-
+		   authorize :sector,  :index?
 		end
 
 		def new
 			@sector = Sector.new
-			authorize @sector
+			authorize :sector,  :create?
 		end
 
 		def create
 			@sector = Sector.new(sector_params)
-			authorize @sector
+			authorize :sector,  :create?
 			@sector.save
 		end
 
@@ -27,12 +27,12 @@ module Person
 		end
 
 		def update
-			authorize @sector
+			authorize :sector,  :update?
 			@sector.update(sector_params)
 		end
 
 		def destroy
-			authorize @sector
+			authorize :sector,  :destroy?
 			if @sector.destroy
 				redirect_to action: 'index'
 			end
