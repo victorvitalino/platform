@@ -4,19 +4,13 @@
 / Page
 .page.animsition{"data-animsition-in" => "fade-in", "data-animsition-out" => "fade-out"}
   .page-content
-    .page-brand-info
-      .brand
-        %img.brand-img{:alt => "...", :src => "../assets/images/logo@2x.png"}/
     .page-login-main
-      .brand.visible-xs
-        %img.brand-img{:alt => "...", :src => "../assets/images/logo-blue@2x.png"}/
-        %h3.brand-text.font-size-40 Remark
-      %h3.font-size-24 Acesso Restrito
-      %p Extranet Codhab
+      .brand
+        %img.brand-img{:alt => "logo codhab", :src => "/images/codhab_footer.png", width: 350}/
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         = f.input :username, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua credencial'}
         = f.input :password, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua senha'}
-        = f.submit 'Realizar acesso',  class: "btn btn-block btn-warning btn-float waves-effect waves-button waves-float" 
+        = f.submit 'Realizar acesso',  class: "btn btn-block btn-warning-login btn-float waves-effect waves-button waves-float" 
       %footer.page-copyright
         %p Companhia de Desenvolvimento Habitacional / CODHAB
         %p #{Date.today.year}

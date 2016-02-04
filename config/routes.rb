@@ -13,7 +13,6 @@ class DomainConstraint
 end
 
 Rails.application.routes.draw do
-
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   mount RedactorRails::Engine => '/redactor_rails'
   devise_for :user_candidates
