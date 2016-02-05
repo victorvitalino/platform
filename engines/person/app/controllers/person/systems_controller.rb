@@ -6,17 +6,17 @@ module Person
 		before_action :set_system, only: [:edit, :destroy, :update]
 
 		def index
-			authorize @systems
+			authorize :system,  :index?
 		end
 
 		def new
 			@system = System.new
-			authorize @system
+			authorize :system,  :create?
 		end
 
 		def create
 			@system = System.new(system_params)
-			authorize @system
+			authorize :system,  :create?
 			@system.save
 		end
 
@@ -24,12 +24,12 @@ module Person
 		end
 
 		def update
-			authorize @system
+			authorize :system,  :update?
 			@system.update(system_params)
 		end
 
 		def destroy
-			authorize @system
+			authorize :system,  :destroy,?
 			if @system.destroy
 				redirect_to action: 'index'
 			end

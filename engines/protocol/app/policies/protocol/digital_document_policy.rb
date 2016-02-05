@@ -1,16 +1,19 @@
 module Protocol
 	class DigitalDocumentPolicy < ApplicationPolicy
+		def view_nav?
+      		  self.index? || self.seat?
+    		end
 		def index?
-			allow?(4703)
+			allow?(31604)
 		end
 		def create?
-			allow?(4701)
+			allow?(31601)
 		end
 		def update?
-			allow?(4701)
+			allow?(31602)
 		end
 		def destroy?
-			allow?(4702)
+			allow?(31603)
 		end
 	end
 end

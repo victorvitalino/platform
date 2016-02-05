@@ -6,15 +6,18 @@ module Candidate
 
     # GET /cadins
     def index
+      authorize :cadin,  :index?
       @cadins = Cadin.all
     end
 
     # GET /cadins/1
     def show
+      authorize :cadin,  :index?
     end
 
     # GET /cadins/new
     def new
+      authorize :cadin,  :create?
       @cadin = Cadin.new
     end
 
@@ -24,10 +27,12 @@ module Candidate
 
     # POST /cadins
     def create
+      authorize :cadin,  :create?
       @cadin = Cadin.new(cadin_params)
 
       if @cadin.save
-        redirect_to @cadin, notice: 'Cadin was successfully created.'
+        flash[:success] = "Operação concluída com sucesso."
+        redirect_to @cadin
       else
         render :new
       end
@@ -35,8 +40,10 @@ module Candidate
 
     # PATCH/PUT /cadins/1
     def update
+      authorize :cadin,  :update?
       if @cadin.update(cadin_params)
-        redirect_to @cadin, notice: 'Cadin was successfully updated.'
+        flash[:success] = "Operação concluída com sucesso."
+        redirect_to @cadin
       else
         render :edit
       end
@@ -44,8 +51,10 @@ module Candidate
 
     # DELETE /cadins/1
     def destroy
+      authorize :cadin,  :destroy?
       @cadin.destroy
-      redirect_to cadins_url, notice: 'Cadin was successfully destroyed.'
+      flash[:success] = "Operação concluída com sucesso."
+      redirect_to cadins_url
     end
 
     private

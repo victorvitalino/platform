@@ -7,22 +7,26 @@ module Person
 		before_action :set_system_permission, only: [:destroy]
 
 		def index
+			authorize :system_permission,  :index?
 			authorize @system_permissions
 		end
 
 		def new
+			authorize :system_permission,  :create?
 			@system_permission = @system.system_permissions.new
 			authorize @system_permission
 		end
 
 		def create
+			authorize :system_permission,  :create?
 			@system_permission = @system.system_permissions.new(system_permission_params)
 			authorize @system_permission
-			@system_permission.save			
+			@system_permission.save
 		end
 
 
 		def destroy
+			authorize :system_permission,  :destroy?
 			authorize @system_permission
 			@system_permission.destroy
 		end

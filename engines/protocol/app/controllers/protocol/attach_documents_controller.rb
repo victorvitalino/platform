@@ -7,13 +7,13 @@ module Protocol
 
 
         def index
-            authorize :conduct,  :index?
+            authorize :attach_document,  :index?
         end
 
         def new
             @attach_document = @assessment.attach_documents.new
             sector = current_user.account.sector_current.id
-            authorize :conduct,  :create?
+            authorize :attach_document,  :create?
             #parametro 4 documento recebido pelo setor
             @attach_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector,params[:assessment_id])
             unless @attach_result.present?
@@ -21,7 +21,7 @@ module Protocol
         end
 
         def add_attach
-            authorize :conduct,  :add?
+            authorize :attach_document,  :add_attach?
             sector = current_user.account.sector_current.id
 
             @assessment= Protocol::Assessment.find(params[:id])
@@ -39,7 +39,7 @@ module Protocol
 
 
           def add_append
-            authorize :conduct,  :add?
+            authorize :attach_document,  :add_append?
             sector = current_user.account.sector_current.id
 
             @assessment= Protocol::Assessment.find(params[:id])
@@ -57,7 +57,7 @@ module Protocol
 
 
         def destroy
-            authorize :conduct,  :destroy?
+            authorize :attach_document,  :destroy?
             if @attach_document.destroy
                 redirect_to action: 'new'
             end

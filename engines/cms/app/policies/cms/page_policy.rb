@@ -1,19 +1,32 @@
 module Cms
 	class PagePolicy < ApplicationPolicy
+		def view_nav?
+      		  self.index? || self.seat?
+    		end
+
 		def index?
-			allow?(3403)
+			allow?(21016)
 		end
 
 		def create?
-			allow?(3401)
+			allow?(21011)
 		end
 
 		def update?
-			allow?(3401)
+			allow?(21012)
 		end
 
 		def destroy?
-			allow?(3402)
+			allow?(21013)
 		end
+
+		def publish?
+			allow? (21014)
+		end
+
+		def review?
+			allow? (21015)
+		end
+
 	end
 end

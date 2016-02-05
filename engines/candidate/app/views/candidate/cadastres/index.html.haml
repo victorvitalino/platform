@@ -192,38 +192,3 @@
                           %td= (attendance.convocation.present?) ? attendance.convocation.description  : 'Informação não disponível'
                           %td= (attendance.observation.present?) ? attendance.observation : 'Informação não disponível'
                           %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
-          %hr/
-          .row
-            .col-md-12
-              %h4 Agendamentos
-              .bootstrap-table
-                %table.table.table-striped.table-bordered.table-condensed
-                  %thead{:style => "display: table-header-group;"}
-                    %tr
-                      %th Nome
-                      %th CPF
-                      %th Idade
-                  %tbody
-                    %tr
-                      %td= @candidate.name.upcase
-                      %td= @candidate.cpf
-                      %td= "#{@candidate.age} ano(s)"
-
-          %hr/
-          .row
-            .col-md-12
-              %h4 Ocorrências
-              .bootstrap-table
-                %table.table.table-striped.table-bordered.table-condensed
-                  %thead{:style => "display: table-header-group;"}
-                    %tr
-                      %th Nome
-                      %th CPF
-                      %th Idade
-                  %tbody
-                    %tr
-                      %td= @candidate.name.upcase
-                      %td= @candidate.cpf
-                      %td= "#{@candidate.age} ano(s)"
-        - else
-          Não foram encontrados resultados para o CPF pesquisado.

@@ -1,16 +1,19 @@
 module Protocol
 	class DocumentTypePolicy < ApplicationPolicy
+		def view_nav?
+      		  self.index? || self.seat?
+    		end
 		def index?
-			allow?(4403)
+			allow?(31404)
 		end
 		def create?
-			allow?(4401)
+			allow?(31401)
 		end
 		def update?
-			allow?(4401)
+			allow?(31402)
 		end
 		def destroy?
-			allow?(4402)
+			allow?(31403)
 		end
 	end
 end

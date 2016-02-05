@@ -7,18 +7,18 @@ module Cms
     # GET /videos
     def index
       @videos = Video.all
-      authorize @videos
+      authorize :video, :index?
     end
 
     # GET /videos/1
     def show
-
+      authorize :video, :index?
     end
 
     # GET /videos/new
     def new
       @video = Video.new
-      authorize @video
+      authorize :video, :index?
     end
 
     # GET /videos/1/edit
@@ -29,7 +29,7 @@ module Cms
     # POST /video
     def create
       @video = Video.new(video_params)
-      authorize @video
+      authorize :video, :index?
       if @video.save
         flash[:success] = t :success
         redirect_to action: 'index'
@@ -40,7 +40,7 @@ module Cms
 
     # PATCH/PUT /videos/1
     def update
-      authorize @video
+     authorize :video, :index?
       if @video.update(video_params)
         flash[:success] = t :success
         redirect_to action: 'index'
@@ -51,7 +51,7 @@ module Cms
 
     # DELETE /posts/1
     def destroy
-      authorize @video
+      authorize :video, :index?
       @video.destroy
       flash[:success] = t :success
       redirect_to videos_url, notice: 'Post was successfully destroyed.'

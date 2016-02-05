@@ -1,16 +1,20 @@
 module Person
 	class StaffPermissionPolicy < ApplicationPolicy
 
+		def view_nav?
+      		  self.index? || self.seat?
+    		end
+
 		def index?
-			allow?(1703)
+			allow?(41305)
 		end
-		
+
 		def enable?
-			allow?(1701)
+			allow?(41305)
 		end
 
 		def disable?
-			allow?(1701)
+			allow?(41305)
 		end
 	end
 end

@@ -7,10 +7,11 @@ module Person
       @record = record
     end
 
-    def view_nav?
+      def view_nav?
       return true if user.account.administrator
-      system = Person::System.find_by_code('1') rescue nil
-      (user.account.privilege_id & system.system_permissions.map(&:code)).present?
+      system_module = Person::SystemModule.find_by_code('41') rescue nil
+      permissions   = Person::SystemPermission.where(system_id: system_module.systems.map(&:id))
+      (user.account.privilege_id & permissions.map(&:code)).present?
     end
 
     def show?

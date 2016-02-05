@@ -7,14 +7,17 @@ module Cms
     # GET /galleries
     def index
       @galleries = Gallery.all
+      authorize :gallery, :index?
     end
 
     # GET /galleries/1
     def show
+      authorize :gallery, :index?
     end
 
     # GET /galleries/new
     def new
+      authorize :gallery, :create?
       @gallery = Gallery.new
     end
 
@@ -24,6 +27,7 @@ module Cms
 
     # POST /galleries
     def create
+      authorize :gallery, :create?
       @gallery = Gallery.new(gallery_params)
 
       if @gallery.save
@@ -35,6 +39,7 @@ module Cms
 
     # PATCH/PUT /galleries/1
     def update
+      authorize :gallery, :update?
       if @gallery.update(gallery_params)
         redirect_to action: 'index'
       else
@@ -44,6 +49,7 @@ module Cms
 
     # DELETE /galleries/1
     def destroy
+      authorize :gallery, :destroy?
       @gallery.destroy
       redirect_to galleries_url, notice: 'Gallery was successfully destroyed.'
     end

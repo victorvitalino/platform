@@ -1,20 +1,22 @@
 module Person
 	class JobPolicy < ApplicationPolicy
-
+             def view_nav?
+      		  self.index? || self.seat?
+    		end
 		def index?
-			allow?(1203)
+			allow?(41313)
 		end
 
 		def create?
-			allow?(1201)
+			allow?(41310)
 		end
 
 		def update?
-			allow?(1201)
+			allow?(41311)
 		end
 
 		def destroy?
-			allow?(1202)
+			allow?(41312)
 		end
 
 	end
