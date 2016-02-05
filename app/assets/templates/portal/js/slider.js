@@ -49,4 +49,4 @@ var slider = function () {
 };
 
 $(document).ready(slider)
-$(document).on('page:load', slider)
+$(document).on('turbolinks:load', slider)
