@@ -257,9 +257,9 @@ GEM
     codemirror-rails (5.6)
       railties (>= 3.0, < 5)
     coderay (1.1.0)
-    coffee-rails (4.1.0)
+    coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.0)
+      railties (>= 4.0.0, < 5.1.x)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -383,12 +383,12 @@ GEM
       rake
     mina-unicorn (0.3.0)
     mini_magick (4.3.6)
-    mini_portile (0.6.2)
-    minitest (5.8.1)
+    mini_portile2 (2.0.0)
+    minitest (5.8.4)
     multi_json (1.11.2)
     nenv (0.2.0)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -406,7 +406,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rack (1.6.2)
+    rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -426,7 +426,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.2)
+    rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails-observers (0.1.2)
       activemodel (~> 4.0)
@@ -522,8 +522,9 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.1)
     timeliness (0.3.7)
-    turbolinks (2.5.3)
-      coffee-rails
+    turbolinks (5.0.0.beta1)
+      turbolinks-source
+    turbolinks-source (5.0.0.beta1.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -567,6 +568,7 @@ DEPENDENCIES
   chartkick
   chunky_png
   cms!
+  coffee-rails
   concourse!
   concourse_portal!
   dashboard!
@@ -622,7 +624,7 @@ DEPENDENCIES
   simple_form
   sqlite3
   thin
-  turbolinks
+  turbolinks (~> 5.0.0.beta)
   uglifier (>= 1.3.0)
   unicorn
   validates_cpf_cnpj

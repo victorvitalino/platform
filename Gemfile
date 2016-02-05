@@ -5,10 +5,11 @@ gem 'rake', '10.5.0'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem 'coffee-rails'
 
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
-gem 'turbolinks'
+gem 'turbolinks', '~> 5.0.0.beta'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 
