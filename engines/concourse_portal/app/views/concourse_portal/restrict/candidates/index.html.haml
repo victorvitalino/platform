@@ -127,7 +127,7 @@
             %tr
               - @candidate.subscribe.fields.each do |field|
                 - if field.file?
-                  %td= link_to "Baixar Arquivo", "http://api.codhab.df.gov.br/static/#{@candidate.properties[field.label]}", target: '_blank'
+                  %td= link_to "Baixar Arquivo", "/files/concourse/project/#{@candidate.properties[field.label]}", target: '_blank'
                 - else
                   %td= @candidate.properties[field.label]
     %hr
