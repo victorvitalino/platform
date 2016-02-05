@@ -10,12 +10,10 @@
 //= require material/vendors/nicescroll/jquery.nicescroll.min
 //= require material/vendors/auto-size/jquery.autosize.min
 //= require material/vendors/bootstrap-growl/bootstrap-growl.min
-//= require redactor-rails
 //= require material/js/functions
 //= require material/js/demo
 //= require material/js/datatables
 //= require mod
 //= require material/js/custom
-//= require material/js/redactor
 
 

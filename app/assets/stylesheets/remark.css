@@ -1,6 +1,5 @@
 /*
 *= require jquery-ui/autocomplete
-*= require bootsy 
 *= require remark/stylesheets/bootstrap.min
 *= require remark/stylesheets/bootstrap.extend.min
 *= require remark/stylesheets/site.min
@@ -10,7 +9,6 @@
 *= require remark/stylesheets/custom-layout.min
 *= require remark/stylesheets/document.min
 *= require remark/stylesheets/login.min
-*= require redactor-rails
 *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 */
 
