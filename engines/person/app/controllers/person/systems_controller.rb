@@ -29,7 +29,7 @@ module Person
 		end
 
 		def destroy
-			authorize :system,  :destroy,?
+			authorize :system,  :destroy?
 			if @system.destroy
 				redirect_to action: 'index'
 			end
