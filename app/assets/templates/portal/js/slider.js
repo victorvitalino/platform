@@ -1,6 +1,4 @@
-var slider = function () {
-
-    // Call fitVid before FlexSlider initializes, so the proper initial height can be retrieved.
+$(document).on('turbolinks:load', function() {
     $('.topSlider .flexslider').flexslider({
         animation: "slide",
         useCSS: false,
@@ -46,7 +44,4 @@ var slider = function () {
         }
     });
 
-};
-
-$(document).ready(slider)
-$(document).on('turbolinks:load', slider)
+});

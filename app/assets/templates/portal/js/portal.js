@@ -1,4 +1,4 @@
-jQuery(document).ready(function($){
+$(document).on('turbolinks:load', function() {
   var mes = 'Mai';
   var botao = '';
   var current = mes;
@@ -12,10 +12,8 @@ jQuery(document).ready(function($){
       current = botao;
     }
   });
-
-
-
 });
+
 
 
 jQuery(function() {
