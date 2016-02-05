@@ -243,10 +243,6 @@ GEM
     benchmark-ips (2.3.0)
     bootstrap-datepicker-rails (1.4.0)
       railties (>= 3.0)
-    bootsy (2.2.1)
-      carrierwave (~> 0.10)
-      mini_magick (~> 4.3)
-      remotipart (~> 1.2)
     builder (3.2.2)
     byebug (6.0.2)
     capybara (2.5.0)
@@ -472,7 +468,6 @@ GEM
       devise
       mime-types
       orm_adapter
-    remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec-core (3.3.2)
@@ -564,7 +559,6 @@ DEPENDENCIES
   audited-activerecord (~> 4.0)
   barby
   bootstrap-datepicker-rails
-  bootsy
   brb!
   byebug
   candidate!
