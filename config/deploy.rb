@@ -7,15 +7,21 @@ require 'mina/unicorn'
 
 set  :domain,  '10.233.38.15'
 set  :user,  'sedhab'
-set  :deploy_to, '/var/www/platform'
+
+if ENV["DEPLOY"] == "stage"
+  set  :deploy_to, '/var/www/stage/platform' 
+else
+  set  :deploy_to, '/var/www/platform' 
+end
+
 set  :repository, 'https://github.com/codhab/platform.git' 
-set  :branch, 'stable'
+set  :branch, ENV["BRANCH"] ||= 'stable'
 
 set :rails_env, 'production'
 
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
-set :shared_paths, ['config/database.yml', 'log', 'tmp']
+set :shared_paths, ['config/database.yml', 'log', 'tmp', 'public']
 
 
 task :setup => :environment do
@@ -28,6 +34,7 @@ task :setup => :environment do
   queue! %[mkdir -p "#{deploy_to}/shared/pids"]
   queue! %[mkdir -p "#{deploy_to}/shared/sockets"]
   queue! %[mkdir -p "#{deploy_to}/shared/tmp"]
+  queue! %[mkdir -p "#{deploy_to}/shared/public"]
 
   queue! %[touch "#{deploy_to}/shared/config/database.yml"]
 end

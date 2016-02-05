@@ -43,6 +43,8 @@ gem 'chunky_png'
 
 gem 'signer', git: 'https://github.com/codhab/signer.git'
 
+gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
+
 group :test do
   gem 'sqlite3'
   gem 'rspec-rails'
@@ -53,7 +55,6 @@ end
 
 
 group :development do
-  gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
   gem 'rails_db'
   gem 'derailed'
   gem 'byebug'
@@ -63,14 +64,13 @@ group :development do
   gem 'guard'
   gem 'guard-rails'
   gem 'guard-livereload'
-  gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp'
 end
 
 group :production do
   gem 'pg'
   gem 'unicorn'
+  gem 'rails_12factor'
 end
-
 
 gem 'portal',                       path: 'engines/portal'
 gem 'dashboard',                    path: 'engines/dashboard'
