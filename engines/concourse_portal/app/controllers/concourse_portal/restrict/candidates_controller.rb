@@ -17,7 +17,7 @@ module ConcoursePortal
 
       def update
      
-        if @candidate.update_attributes(set_params)
+        if @candidate.update_attributes!(set_params)
           if params[:candidate].include?('properties')
             @candidate.subscribe.fields.each do |field|
               if field.file? 
@@ -28,7 +28,7 @@ module ConcoursePortal
             end
           end
           
-          if @candidate.save
+          if @candidate.save!
             ConcoursePortal::SubscribeMailer.update(@candidate,@project).deliver_now!
             flash[:success] = t :success
           end
