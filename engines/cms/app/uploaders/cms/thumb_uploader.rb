@@ -2,11 +2,10 @@
 
 class Cms::ThumbUploader < CarrierWave::Uploader::Base
   
-  storage :file if Rails.env.development? || Rails.env.test?
-  storage :sftp if Rails.env.production?
-
+  storage :file
+  
   def store_dir
-    "content/images"
+    "files/content/images"
   end
 
 
