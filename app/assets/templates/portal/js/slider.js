@@ -1,4 +1,4 @@
-$(document).ready(function () {
+var slider = function () {
 
     // Call fitVid before FlexSlider initializes, so the proper initial height can be retrieved.
     $('.topSlider .flexslider').flexslider({
@@ -46,4 +46,7 @@ $(document).ready(function () {
         }
     });
 
-});
+};
+
+$(document).ready(slider)
+$(document).on('page:load', slider)
