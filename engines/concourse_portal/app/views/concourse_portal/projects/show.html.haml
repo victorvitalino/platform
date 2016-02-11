@@ -6,4 +6,33 @@
 .row
   .col-md-12
     = @project.apresentation.html_safe
-  
+
+  #notify.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h3 Atenção
+        .modal-body
+          - if @project.slug == "parquedoriacho-cef"
+            %p Re-Ratificação
+
+            %p Considerando a necessidade de retificação na Norma de edificação, Uso e Gabarito para NGB nº 34/2012, no Edital e seus anexos, e demais adequações técnicas contempladas nas Erratas divulgadas no site deste concurso, ampliamos o prazo do cronograma para inscrições, para Respostas às consultas, para o Envio dos Projetos, para o Julgamento e Divulgação do Resultado do Concurso. Ficam ratificadas demais regulamentações não abrangidas pelas adequações estabelecidas. Os interessados deverão acompanhar os entendimentos e esclarecimentos no site.
+
+            %p Verificar Edital, Termo de Referência e Documentos Técnicos, na página #{link_to 'Bases do concurso', 'http://www.codhab.df.gov.br/concursos/parquedoriacho-cef/pagina/bases-do-concurso-cef'}
+          - if @project.slug == "parquedoriacho-ubs"
+            %p Re-Ratificação
+
+            %p Considerando a necessidade de retificação na Norma de edificação, Uso e Gabarito para NGB nº 34/2012, no Edital e seus anexos, e demais adequações técnicas contempladas nas Erratas divulgadas no site deste concurso, ampliamos o prazo do cronograma para inscrições, para Respostas às consultas, para o Envio dos Projetos, para o Julgamento e Divulgação do Resultado do Concurso. Ficam ratificadas demais regulamentações não abrangidas pelas adequações estabelecidas. Os interessados deverão acompanhar os entendimentos e esclarecimentos no site.
+
+            %p Verificar Edital, Termo de Referência e Documentos Técnicos, na página #{link_to 'Bases do concurso', 'http://www.codhab.df.gov.br/concursos/parquedoriacho-ubs/pagina/bases-do-concurso-4f181c9f-185f-4929-8efe-3a2edf8903c0'}
+        .modal-footer
+          %button{type: 'button', class: 'btn btn-success', data: { dismiss: 'modal'}} Fechar
+
+- if @project.slug != "parquedoriacho-cei" 
+  :javascript
+
+    $(document).ready(function() {
+      $('#notify').modal('show')
+    })
+
+    $(document).on('turbolinks:load', modal)

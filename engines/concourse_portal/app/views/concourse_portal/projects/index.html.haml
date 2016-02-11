@@ -54,9 +54,9 @@
                               = link_to image_tag(project.image_logo, width: 150), concourse_portal.project_path(project)
                             .col-md-6
                               %h5
-                                %strong= link_to project.title.upcase, concourse_portal.project_path(project)
+                                %strong= link_to project.title.upcase, concourse_portal.project_path(project), data: {'turbolinks'=> false}
                                 %h6
-                                  %p= link_to project.mini_description, concourse_portal.project_path(project)
+                                  %p= link_to project.mini_description, concourse_portal.project_path(project), data: {'turbolinks'=> false}
                               %span
                                 %p
                                   %b Início - #{project.start.strftime('%d/%m/%Y')}
@@ -64,7 +64,7 @@
                                   %b Fim - #{project.end.strftime('%d/%m/%Y')}
                               %h5
                                 %span.label.label-info
-                                  = link_to project.step, concourse_portal.project_path(project)
+                                  = link_to project.step, concourse_portal.project_path(project), data: {'turbolinks'=> false}
                     - else
                       .col-md-12
                         Não existem concursos em andamento no momento.

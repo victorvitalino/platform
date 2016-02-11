@@ -32,5 +32,8 @@ module Person
     mount_uploader :curriculum, Person::CurriculumUploader
 
     
+    def account 
+        self
+    end    
   end
 end

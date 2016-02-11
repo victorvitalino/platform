@@ -14,29 +14,23 @@ end
 
 Rails.application.routes.draw do
 
-  devise_for :user_candidates
-
   constraints SubdomainConstraint do
-    devise_for :users, :path  => '', controllers: { sessions: 'sessions', registrations: 'registrations'}
-
-    authenticate :user do
-      mount Dashboard::Engine                => '/',               as: 'dashboard',        module: 'dashboard'
-      mount Cms::Engine                      => "/cms",            as: 'cms',              module: 'cms'
-      mount Person::Engine                   => "/pessoas",        as: 'person',           module: 'person'
-      mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',         module: 'helpdesk'
-      mount Protocol::Engine                 => "/protocolo",      as: 'protocol',         module: 'protocol'
-      mount Attendance::Engine               => "/atendimento",    as: 'attendance',       module: 'attendance'
-      mount Concourse::Engine                => "/concurso",       as: 'concourse',        module: 'concourse'
-      mount Candidate::Engine                => "/candidatos",     as: 'candidate',        module: 'candidate'
-      mount Schedule::Engine                 => "/agendamento",    as: 'schedule',         module: 'schedule'
-      mount Regularization::Engine           => "/regularizacao",  as: 'regularization',   module: 'regularization'
-      mount Habitation::Engine               => "/habitacao",      as: 'habitation',       module: 'habitation'
-      mount Entity::Engine                   => "/entidades",      as: 'entity',           module: 'entity'
-      mount Sefaz::Engine                    => "/sefaz",          as: 'sefaz',            module: 'sefaz'
-      mount Firm::Engine                     => "/empresa",        as: 'firm',             module: 'firm'
-      mount Maintenance::Engine              => "/manutencao",     as: 'maintenance',      module: 'maintenance'
-      mount Brb::Engine                      => "/brb",            as: 'brb',              module: 'finance'
-    end
+    mount Dashboard::Engine                => '/',               as: 'dashboard',        module: 'dashboard'
+    mount Cms::Engine                      => "/cms",            as: 'cms',              module: 'cms'
+    mount Person::Engine                   => "/pessoas",        as: 'person',           module: 'person'
+    mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',         module: 'helpdesk'
+    mount Protocol::Engine                 => "/protocolo",      as: 'protocol',         module: 'protocol'
+    mount Attendance::Engine               => "/atendimento",    as: 'attendance',       module: 'attendance'
+    mount Concourse::Engine                => "/concurso",       as: 'concourse',        module: 'concourse'
+    mount Candidate::Engine                => "/candidatos",     as: 'candidate',        module: 'candidate'
+    mount Schedule::Engine                 => "/agendamento",    as: 'schedule',         module: 'schedule'
+    mount Regularization::Engine           => "/regularizacao",  as: 'regularization',   module: 'regularization'
+    mount Habitation::Engine               => "/habitacao",      as: 'habitation',       module: 'habitation'
+    mount Entity::Engine                   => "/entidades",      as: 'entity',           module: 'entity'
+    mount Sefaz::Engine                    => "/sefaz",          as: 'sefaz',            module: 'sefaz'
+    mount Firm::Engine                     => "/empresa",        as: 'firm',             module: 'firm'
+    mount Maintenance::Engine              => "/manutencao",     as: 'maintenance',      module: 'maintenance'
+    mount Brb::Engine                      => "/brb",            as: 'brb',              module: 'finance'
   end
 
   constraints DomainConstraint do
@@ -50,5 +44,5 @@ Rails.application.routes.draw do
   end
 
   mount Address::Engine                 => "/endereco",       as: 'address'
-
+  mount Authenticate::Engine            => "/acesso",         as: 'authenticate'         
 end

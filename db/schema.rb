@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204114229) do
+ActiveRecord::Schema.define(version: 20160211123905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1424,6 +1424,10 @@ ActiveRecord::Schema.define(version: 20160204114229) do
     t.datetime "updated_at",                         null: false
     t.date     "password_change"
     t.integer  "privilege_id",                                    array: true
+    t.string   "password"
+    t.string   "token"
+    t.boolean  "token_status",        default: true
+    t.date     "last_signed_in_at"
   end
 
   add_index "person_staffs", ["branch_line_id"], name: "index_person_staffs_on_branch_line_id", using: :btree

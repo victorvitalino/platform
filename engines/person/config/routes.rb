@@ -1,4 +1,5 @@
 Person::Engine.routes.draw do
+  
   resources :jobs, path: 'cargos'
   resources :systems, path: 'sistemas' do
     resources :system_permissions, path: 'permissoes' do

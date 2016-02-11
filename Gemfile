@@ -20,8 +20,7 @@ gem 'shareable'
 gem 'i18n'
 gem 'enum_help'
 
-gem 'devise'
-gem 'devise_security_extension'
+
 gem 'audited-activerecord', '~> 4.0'
 gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
 gem 'wicked'
@@ -72,36 +71,41 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'portal',                       path: 'engines/portal'
-gem 'dashboard',                    path: 'engines/dashboard'
-gem 'person',                       path: 'engines/person'
-gem 'cms',                          path: 'engines/cms'
-gem 'helpdesk',                     path: 'engines/helpdesk'
-gem 'protocol',                     path: 'engines/protocol'
 
-gem 'concourse',                    path: 'engines/concourse'
-gem 'concourse_portal',             path: 'engines/concourse_portal'
+path 'engines' do 
 
-gem 'attendance',                   path: 'engines/attendance'
-gem 'candidate',                    path: 'engines/candidate'
-gem 'address',                      path: 'engines/address'
+  gem 'portal'                     
+  gem 'dashboard'                  
+  gem 'person'                     
+  gem 'cms'                        
+  gem 'helpdesk'                   
+  gem 'protocol'                   
+  gem 'concourse'                  
+  gem 'concourse_portal'           
+  gem 'attendance'                 
+  gem 'candidate'                  
+  gem 'address'                    
+  
+  gem 'regularization'             
+  gem 'regularization_portal'      
+  
+  gem 'habitation'                 
+  gem 'habitation_portal'         
+  
+  gem 'entity'                     
+  gem 'entity_portal'              
+  
+  gem 'firm'                       
+  gem 'firm_portal'                
 
-gem 'regularization',               path: 'engines/regularization'
-gem 'regularization_portal',        path: 'engines/regularization_portal'
-gem 'habitation',                   path: 'engines/habitation'
-gem 'habitation_portal',            path: 'engines/habitation_portal'
+  gem 'schedule'                   
+  gem 'schedule_portal'            
 
-gem 'entity',                       path: 'engines/entity'
-gem 'entity_portal',                path: 'engines/entity_portal'
+  gem 'sefaz'                      
+  gem 'maintenance'                
 
-gem 'firm',                         path: 'engines/firm'
-gem 'firm_portal',                  path: 'engines/firm_portal'
+  gem 'planning'                       
+  gem 'brb'                        
 
-gem 'schedule',                     path: 'engines/schedule'
-gem 'schedule_portal',              path: 'engines/schedule_portal'
-
-gem 'sefaz',                        path: 'engines/sefaz'
-gem 'maintenance',                  path: 'engines/maintenance'
-
-gem 'planning',                     path: 'engines/planning'    
-gem 'brb',                          path: 'engines/brb'
+  gem 'authenticate'
+end

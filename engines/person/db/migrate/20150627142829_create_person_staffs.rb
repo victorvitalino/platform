@@ -1,11 +1,14 @@
 class CreatePersonStaffs < ActiveRecord::Migration
   def change
     create_table :person_staffs do |t|
+
+      t.string :code
+
       t.string :name
       t.string :cpf
       t.string :rg
       t.string :rg_org
-      t.string :code
+     
       t.string :blood_type
       t.date   :born
       t.string :avatar
