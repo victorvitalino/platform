@@ -1,12 +1,14 @@
-require_dependency 'application_controller'
 require_dependency 'concourse/application_helper'
 
 module Concourse
   class ApplicationController < ActionController::Base
     layout 'concourse/application'
+    
+    include Authenticate::StaffService
+    helper  Authenticate::StaffHelper
+    
+    before_action :authenticate_staff?
 
     include Pundit
-
-    helper :application
   end
 end

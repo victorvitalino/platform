@@ -1,0 +1,7 @@
+= simple_form_for @staff do |f|
+  = f.input :code, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua credencial'}
+  = f.input :password, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua senha'}
+  = f.submit 'Realizar acesso',  class: "btn btn-block btn-warning-login btn-float waves-effect waves-button waves-float" 
+%footer.page-copyright
+  %p Companhia de Desenvolvimento Habitacional / CODHAB
+  %p #{Date.today.year}

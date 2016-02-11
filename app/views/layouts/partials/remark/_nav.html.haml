@@ -20,7 +20,7 @@
         %li.user
           = current_user.account.name
           %br/
-          %i= "Último acesso - #{current_user.last_sign_in_at.strftime('%d/%m/%Y às %H:%M')}"
+          %i= "Último acesso - #{current_user.last_signed_in_at.strftime('%d/%m/%Y às %H:%M')}" if current_user.last_signed_in_at.present?
         %li.dropdown
           %a.navbar-avatar.dropdown-toggle{"aria-expanded" => "false", "data-animation" => "scale-up", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             %span.avatar.avatar-online
@@ -42,6 +42,4 @@
                 Configurações
             %li.divider{:role => "presentation"}
             %li{:role => "presentation"}
-              %a{:href => "#{main_app.destroy_user_session_path}", :data => { 'method' => 'delete'}, :role => "menuitem"}
-                %i.icon.wb-power{"aria-hidden" => "true"}
-                Logout
+           

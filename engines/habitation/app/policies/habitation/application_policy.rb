@@ -48,6 +48,7 @@ module Habitation
     end
 
     private
+    
     class Scope
       attr_reader :user, :scope
 
