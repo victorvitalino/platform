@@ -28,6 +28,8 @@ module Authenticate
     def create_session(staff)
       session[:staff_id] = staff.id
       session[:staff_expiration_id] = Time.now + 4.hours
+      
+      Person::Staff.find(staff.id).update(last_signed_in_at: Time.now)
     end
   end
 end

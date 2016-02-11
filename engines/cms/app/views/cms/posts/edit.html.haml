@@ -2,7 +2,16 @@
   .panel
     .panel-heading
       .panel-title
-        %h4 Editar postagem
+        %h4
+          Editar postagem
+          %span.pull-right
+            = link_to "visualizar documentos", archive.files_path, remote: true
+            |
+            = link_to "visualizar imagens", archive.images_path, remote: true
+          %br/
+          %small
+            Formulário de edição de postagem
+    %hr/
     .panel-body
       .row
         .col-md-12

@@ -43,6 +43,7 @@ gem 'chunky_png'
 gem 'signer', git: 'https://github.com/codhab/signer.git'
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
+gem 'file_validators'
 
 group :test do
   gem 'sqlite3'
@@ -108,4 +109,5 @@ path 'engines' do
   gem 'brb'                        
 
   gem 'authenticate'
+  gem 'archive'
 end

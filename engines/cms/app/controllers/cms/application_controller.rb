@@ -1,11 +1,15 @@
-require_dependency 'application_controller'
+require_dependency 'authenticate/staff_service'
+require_dependency 'authenticate/staff_helper'
 
 module Cms
-  class ApplicationController < ApplicationController
+  class ApplicationController < ActionController::Base
     layout 'remark'
-    helper ::ApplicationHelper
-
+            
     include Pundit
-    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    include Authenticate::StaffService
+    helper  Authenticate::StaffHelper
+    
+    before_action :authenticate_staff?
+
   end
 end

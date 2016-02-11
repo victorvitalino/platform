@@ -1,0 +1,33 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4 
+          Documentos 
+          = link_to "novo documento", new_file_path, class: 'pull-right'
+          %br/
+          %small
+            Listagem de uploads de documentos 
+    %hr/
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Cod.
+              %th Nome
+              %th Link
+              %th Data de Criação
+              %th Criado por
+              %th Ações
+
+          %tbody
+            - @files.each do |file| 
+              %tr
+                %td= file.id
+                %td= file.original_name.downcase
+                %td= link_to file.file_path.to_s, file.file_path.to_s, target: '_blank'
+                %td= file.created_at.strftime('%d/%m/%Y às %H:%M')
+                %td= file.staff.name
+                %td
+                  = link_to "", file_path(file), method: :delete, data: { confirm: t(:confirm_delete)}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove'

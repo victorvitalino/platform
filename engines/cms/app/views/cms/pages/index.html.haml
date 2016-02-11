@@ -28,5 +28,5 @@
                 %td= page.created_at.strftime('%d/%m/%Y')
                 %td= page.updated_at.strftime('%d/%m/%Y')
                 %td.col-md-1
-                  = link_to '', edit_page_path(page), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs' if policy(:page, namespace: Cms).update?
+                  = link_to '', edit_page_path(page), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false} if policy(:page, namespace: Cms).update?
                   = link_to '', page, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' } if policy(:page, namespace: Cms).destroy?

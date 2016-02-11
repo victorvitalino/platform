@@ -1,0 +1,33 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4 
+          Imagens 
+          = link_to "nova imagem", new_image_path, class: 'pull-right'
+          %br/
+          %small
+            Listagem de uploads de imagens 
+    %hr/
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Cod.
+              %th Nome
+              %th Link
+              %th Data de Criação
+              %th Criado por
+              %th Ações
+
+          %tbody
+            - @images.each do |image| 
+              %tr
+                %td= image.id
+                %td= image.original_name.downcase
+                %td= link_to image.file_path.to_s, image.file_path.to_s, target: '_blank'
+                %td= image.created_at.strftime('%d/%m/%Y às %H:%M')
+                %td= image.staff.name
+                %td
+                  = link_to "", image_path(image), method: :delete, data: { confirm: t(:confirm_delete)}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove'

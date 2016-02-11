@@ -1,8 +1,11 @@
+
 $(document).ready(function(){
+ 
   $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
   $('.hour').mask("00:00", {placeholder: "00:00"});
   $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true,allowZero:true, thousands:'', decimal:'.', affixesStay: false});
 
+  
   $('form').on('click', '.remove_fields', function(event) {
     $(this).prev('input[type=hidden]').val('1');
     $(this).closest('fieldset').hide();
@@ -66,6 +69,29 @@ $(document).ready(function(){
       });
     });
 
-
-
 });
+
+var tiny = $(function() { 
+  tinymce.init({
+    selector: 'textarea',
+    height: 500,
+    language: 'pt_BR',
+    relative_urls : false,
+    document_base_url : "/",
+    plugins: [
+      'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+      'searchreplace wordcount visualblocks visualchars code fullscreen',
+      'insertdatetime media nonbreaking save table contextmenu directionality',
+      'emoticons template paste textcolor colorpicker textpattern imagetools'
+    ],
+    toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print | forecolor backcolor',
+    image_advtab: true,
+    content_css: [
+      '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+      '//www.tinymce.com/css/codepen.min.css'
+    ]
+  });
+});
+  
+$(window).on('turbolinks:load', tiny)
+  

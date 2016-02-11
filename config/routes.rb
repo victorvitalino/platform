@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     mount Firm::Engine                     => "/empresa",        as: 'firm',             module: 'firm'
     mount Maintenance::Engine              => "/manutencao",     as: 'maintenance',      module: 'maintenance'
     mount Brb::Engine                      => "/brb",            as: 'brb',              module: 'finance'
+    mount Archive::Engine                  => "/arquivos",       as: 'archive',          module: 'archive'
   end
 
   constraints DomainConstraint do

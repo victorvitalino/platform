@@ -24,6 +24,8 @@ module Plataform
     config.autoload_paths << Rails.root.join('lib','*')
     config.autoload_paths << Rails.root.join('shared','*')
 
+    config.assets.paths << File.join(Rails.root, 'vendor', 'assets', 'shared')
+    
     config.assets.paths << File.join(Rails.root, 'app', 'assets', 'templates')
     config.assets.paths << File.join(Rails.root, 'app', 'assets', 'stylesheets')
     config.assets.paths << File.join(Rails.root, 'app', 'assets', 'javascripts')

@@ -28,6 +28,8 @@ PATH
   specs:
     address (0.0.1)
       rails (~> 4.2.1)
+    archive (0.0.1)
+      rails (~> 4.2.1)
     attendance (0.0.1)
       haml-rails
       pundit
@@ -204,6 +206,9 @@ GEM
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
     ffi (1.9.10)
+    file_validators (2.0.2)
+      activemodel (>= 3.0)
+      mime-types (>= 1.0)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
     formatador (0.2.5)
@@ -459,6 +464,7 @@ PLATFORMS
 
 DEPENDENCIES
   address!
+  archive!
   attendance!
   audited-activerecord (~> 4.0)
   authenticate!
@@ -482,6 +488,7 @@ DEPENDENCIES
   entity_portal!
   enum_help
   factory_girl_rails
+  file_validators
   firm!
   firm_portal!
   friendly_id

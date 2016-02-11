@@ -241,6 +241,25 @@
                       %li.site-menu-item
                         %a.animsition-link{:href => "#{concourse.view_all_path}"}
                           %span.site-menu-title Inscrições
+                - if policy(:application, namespace: Concourse).view_nav?
+                  %li.site-menu-item.has-sub
+                    %a{:href => "javascript:void(0)"}
+                      %span.site-menu-title Arquivos
+                      %span.site-menu-arrow
+                    %ul.site-menu-sub
+                      %li.site-menu-item
+                        %a.animsition-link{:href => "#{archive.new_file_path}"}
+                          %span.site-menu-title Subir novo documento
+                      %li.site-menu-item
+                        %a.animsition-link{:href => "#{archive.files_path}"}
+                          %span.site-menu-title Visualizar documentos
+                      %li.divider
+                      %li.site-menu-item
+                        %a.animsition-link{:href => "#{archive.new_image_path}"}
+                          %span.site-menu-title Subir nova imagem
+                      %li.site-menu-item
+                        %a.animsition-link{:href => "#{archive.images_path}"}
+                          %span.site-menu-title Visualizar imagens
 
           - if policy(:application, namespace: Protocol).view_nav?
             %li.site-menu-item.has-sub

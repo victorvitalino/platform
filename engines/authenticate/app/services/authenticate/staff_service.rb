@@ -20,7 +20,7 @@ module Authenticate
     end
 
     def expired_session?
-      false
+      session[:staff_expiration_id] < Time.now
     end
   end
 end

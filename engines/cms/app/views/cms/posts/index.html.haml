@@ -5,6 +5,7 @@
         %h4 
           Lista de postagens
           = link_to 'Nova postagem', new_post_path,  data: { no_turbolink: true }, class: 'btn btn-success btn-sm pull-right' if policy(:post, namespace: Cms).create?
+    %hr/
     .panel-body
       .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
         %table#data-table-command.table.table-striped.table-bordered
@@ -26,6 +27,5 @@
                 %td= status_helper (post.publish)
                 %td= post.date.strftime('%d/%m/%Y')
                 %td.col-md-1
-                  = link_to '', post, title: 'Visualizar',  class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs' if policy(:post, namespace: Cms).index?
-                  = link_to '', edit_post_path(post),title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:post, namespace: Cms).update?
-                  = link_to '', post,title: 'Remover', :method => :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => 'Are you sure?' } if policy(:post, namespace: Cms).destroy?
+                  = link_to '', edit_post_path(post),title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs', data: {turbolinks: false} if policy(:post, namespace: Cms).update?
+                  = link_to '', post,title: 'Remover', :method => :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => 'Are you sure?' }, data: {turbolinks: false} if policy(:post, namespace: Cms).destroy?

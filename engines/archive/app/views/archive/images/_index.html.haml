@@ -1,0 +1,20 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h3 
+    %strong Últimas 20 imagens 
+.modal-body
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-bordered.table-condensed
+      %thead
+        %tr
+          %th Cod.
+          %th Nome
+          %th Link
+      %tbody
+        - @images.limit(20).each do |image| 
+          %tr
+            %td.col-md-1= image.id
+            %td.col-md-1= image.original_name.downcase
+            %td= link_to image.file_path.to_s, image.file_path.to_s, target: '_blank'
+          

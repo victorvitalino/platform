@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211123905) do
+ActiveRecord::Schema.define(version: 20160211190232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,43 @@ ActiveRecord::Schema.define(version: 20160211123905) do
   add_index "address_units", ["firm_enterprise_id"], name: "index_address_units_on_firm_enterprise_id", using: :btree
   add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
   add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
+
+  create_table "archive_files", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.integer  "sector_id"
+    t.string   "original_name"
+    t.string   "description"
+    t.string   "hash_name"
+    t.string   "file_path"
+    t.boolean  "deleted",          default: false
+    t.integer  "staff_deleted_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "archive_files", ["deleted_at"], name: "index_archive_files_on_deleted_at", using: :btree
+  add_index "archive_files", ["file_path"], name: "index_archive_files_on_file_path", unique: true, using: :btree
+  add_index "archive_files", ["hash_name"], name: "index_archive_files_on_hash_name", unique: true, using: :btree
+  add_index "archive_files", ["sector_id"], name: "index_archive_files_on_sector_id", using: :btree
+  add_index "archive_files", ["staff_deleted_id"], name: "index_archive_files_on_staff_deleted_id", using: :btree
+  add_index "archive_files", ["staff_id"], name: "index_archive_files_on_staff_id", using: :btree
+
+  create_table "archive_images", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.integer  "sector_id"
+    t.string   "original_name"
+    t.string   "description"
+    t.string   "hash_name"
+    t.string   "file_path"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "archive_images", ["file_path"], name: "index_archive_images_on_file_path", unique: true, using: :btree
+  add_index "archive_images", ["hash_name"], name: "index_archive_images_on_hash_name", unique: true, using: :btree
+  add_index "archive_images", ["sector_id"], name: "index_archive_images_on_sector_id", using: :btree
+  add_index "archive_images", ["staff_id"], name: "index_archive_images_on_staff_id", using: :btree
 
   create_table "attendance_attendants", force: :cascade do |t|
     t.integer  "staff_id"
@@ -266,6 +303,16 @@ ActiveRecord::Schema.define(version: 20160211123905) do
     t.datetime "updated_at",                     null: false
   end
 
+  create_table "candidate_activity_statuses", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "status",     default: true
+    t.integer  "code"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "candidate_activity_statuses", ["code"], name: "index_candidate_activity_statuses_on_code", unique: true, using: :btree
+
   create_table "candidate_attendance_statuses", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status",     default: true
@@ -296,6 +343,24 @@ ActiveRecord::Schema.define(version: 20160211123905) do
   add_index "candidate_attendances", ["convocation_id"], name: "index_candidate_attendances_on_convocation_id", using: :btree
   add_index "candidate_attendances", ["requeriment_id"], name: "index_candidate_attendances_on_requeriment_id", using: :btree
   add_index "candidate_attendances", ["staff_id"], name: "index_candidate_attendances_on_staff_id", using: :btree
+
+  create_table "candidate_cadastre_activities", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "staff_id"
+    t.integer  "activity_status_id"
+    t.integer  "type_activity",      default: 0
+    t.boolean  "status",             default: true
+    t.integer  "type_ocurrency",     default: 0
+    t.text     "observation"
+    t.text     "object_old"
+    t.text     "object_new"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "candidate_cadastre_activities", ["activity_status_id"], name: "index_candidate_cadastre_activities_on_activity_status_id", using: :btree
+  add_index "candidate_cadastre_activities", ["cadastre_id"], name: "index_candidate_cadastre_activities_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_activities", ["staff_id"], name: "index_candidate_cadastre_activities_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_addresses", force: :cascade do |t|
     t.integer  "cadastre_id"

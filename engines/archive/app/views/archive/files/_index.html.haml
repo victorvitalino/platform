@@ -1,0 +1,20 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h3 
+    %strong Últimos 20 documentos 
+.modal-body
+  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-bordered.table-condensed
+      %thead
+        %tr
+          %th Cod.
+          %th Nome
+          %th Link
+      %tbody
+        - @files.limit(20).each do |file| 
+          %tr
+            %td.col-md-1= file.id
+            %td.col-md-1= file.original_name.downcase
+            %td= link_to file.file_path.to_s, file.file_path.to_s, target: '_blank'
+          

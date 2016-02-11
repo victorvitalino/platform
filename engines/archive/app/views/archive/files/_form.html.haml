@@ -1,0 +1,16 @@
+= simple_form_for @file do |f|
+  .row
+    .col-md-6
+      = f.input :original_name
+  .row
+    .col-md-8
+      = f.input :description
+  %hr/
+  .row
+    .col-md-8
+      = f.input :file_path, as: :file
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Salvar arquivo", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+      = link_to "Voltar para listagem", files_path, class: 'btn btn-dark', data: { disable_with: t(:disable_with)}
