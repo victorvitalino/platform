@@ -44,40 +44,42 @@
                       %th Situação de Processo
                   %tbody
                     %tr
-                      %td= @candidate.cadastre.name
-                      %td= @candidate.cadastre.cpf
-                      %td= @candidate.cadastre.current_situation_name
-                      %td= @candidate.cadastre.cadastre_procedurals.last.procedural_status.name.upcase
-          .row
-            .col-md-12
-              .bootstrap-table
-                %table.table.table-striped.table-bordered.table-condensed
-                  %thead{:style => "display: table-header-group;"}
-                    %tr
-                      %th{:colspan => "2"} Endereço
-                      %th Cidade
-                      %th Data TCU
-                  %tbody
-                    %tr
-                      %td{:colspan => "2"}= @candidate.unit.complete_address
-                      %td= @candidate.unit.city.name
-                      %td= @candidate.created_at.strftime('%d/%m/%Y')
-                  %thead{:style => "display: table-header-group;"}
-                    %tr
-                      %th Doado
-                      %th Escriturado
-                      %th Inscrição IPTU
-                      %th Situação do Imóvel
-                  %tbody
-                    %tr
-                      %td= @candidate.unit.donate ? "Sim" : "Não"
-                      %td= @candidate.unit.registry_units.last.situation
-                      %td= @candidate.unit.registration_iptu
-                      %td= @candidate.unit.situation_unit.description
-          %hr
-          .row
-            .col-md-12
-              = link_to "Assentar", edit_cadastre_address_path(@candidate.unit.id), class: 'btn btn-warning btn-sm'
+                      - if @candidate.cadastre.present?
+                        %td= @candidate.cadastre.name
+                        %td= @candidate.cadastre.cpf
+                        %td= @candidate.cadastre.current_situation_name
+                        %td= @candidate.cadastre.cadastre_procedurals.last.procedural_status.name.upcase
+          -if @candidate.unit.present?
+            .row
+              .col-md-12
+                .bootstrap-table
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th{:colspan => "2"} Endereço
+                        %th Cidade
+                        %th Data TCU
+                    %tbody
+                      %tr
+                        %td{:colspan => "2"}= @candidate.unit.complete_address
+                        %td= @candidate.unit.city.name
+                        %td= @candidate.created_at.strftime('%d/%m/%Y')
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th Doado
+                        %th Escriturado
+                        %th Inscrição IPTU
+                        %th Situação do Imóvel
+                    %tbody
+                      %tr
+                        %td= @candidate.unit.donate ? "Sim" : "Não"
+                        %td= @candidate.unit.registry_units.last.situation
+                        %td= @candidate.unit.registration_iptu
+                        %td= @candidate.unit.situation_unit.description
+            %hr
+            .row
+              .col-md-12
+                = link_to "Assentar", edit_cadastre_address_path(@candidate.unit.id), class: 'btn btn-warning btn-sm'
 :javascript
 
   $(document).ready(function() {

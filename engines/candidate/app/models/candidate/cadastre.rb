@@ -36,7 +36,7 @@ module Candidate
 
     enum gender: ['N/D', 'masculino', 'feminino']
 
-   # validates :cpf, cpf: true
+    validates :cpf, cpf: true
 
     def save_log(old_object, new_object, staff_id)
       @log = CadastreLog.new({
