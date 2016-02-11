@@ -2,8 +2,27 @@ module Candidate
   class CadastreAddress < ActiveRecord::Base
     belongs_to :unit, class_name: "Address::Unit"
     belongs_to :cadastre
+    belongs_to :cadastre_procedural
+
+    enum status: ['reserva', 'venda', 'distrato']
+
+    scope :cpf,  -> (cpf) {joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
+    scope :process,  -> (old_process) {joins(:cadastre_procedural).where('candidate_cadastre_procedurals.old_process = ?', old_process)}
+    scope :address,  -> (id) {joins(:unit).where('address_units.id = ?', id)}
+
 
     private
+
+
+    def get_dominial_chain(unit, cadastre)
+      @cadastre_address = Candidate::CadastreAddress.where('unit_id = ? AND cadastre_id <> ?', unit, cadastre).last
+
+      if @cadastre_address.present?
+           @cadastre_address.dominial_chain + 1
+      else
+             0
+      end
+    end
 
 
     def update_tables_sale(procedural, situation, status, status_unit)
