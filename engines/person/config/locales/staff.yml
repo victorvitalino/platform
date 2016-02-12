@@ -28,4 +28,6 @@ pt-BR:
         avatar: "Foto"
         curriculum: "Currículo"
         personal_image: "Imagem pessoal"
+        password: "Senha"
+        password_confirmation: "Confirmação de senha"
 

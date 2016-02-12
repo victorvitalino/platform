@@ -6,16 +6,16 @@ module Protocol
         before_action :set_digital_document, only: [:edit, :destroy]
 
         def index
-           authorize :conduct,  :index?
+           authorize :digital_document,  :index?
         end
 
         def new
+            authorize :digital_document,  :create?
             @digital_document = @assessment.digital_documents.new
-            authorize :conduct,  :create?
         end
 
         def create
-            authorize :conduct,  :create?
+            authorize :digital_document,  :create?
             @digital_document = @assessment.digital_documents.new(digital_document_params)
             @digital_document.staff_id = current_user.account_id
 
@@ -25,7 +25,7 @@ module Protocol
         end
 
         def destroy
-            authorize :conduct,  :destroy?
+            authorize :digital_document,  :destroy?
             @digital_document.destroy
 
         end

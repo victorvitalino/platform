@@ -1,48 +1,47 @@
 = simple_form_for @assessment do |f|
- .card-body.card-padding
-  .row
-   .col-md-4
-    = f.label :document_type, class: 'fg-label'
-    = f.association :document_type, prompt: 'selecione...', label: false
-   .col-md-4
-   .col-md-4
-    = f.label :document_number, class: 'fg-label'
-    = f.input :document_number, label: false, input_html: {placeholder: 'Gerado pelo sistema', readonly: true}
-  .row
-   .col-md-4
-    = f.label :requesting_unit, class: 'fg-label'
-    = f.input :requesting_unit, label: false, input_html: {placeholder: 'Preencha'}
-   .col-md-4
-    = f.label :external_agency, class: 'fg-label'
-    = f.input :external_agency, label: false, input_html: {placeholder: 'Preencha'}
-   .col-md-4
-    = f.label :recipient, class: 'fg-label'
-    = f.input :recipient, label: false, input_html: { placeholder: 'Preencha'}
-  .row
-   .col-md-4
-    = f.label :address, class: 'fg-label'
-    = f.input :address, label: false, input_html: { placeholder: 'Preencha'}
-   .col-md-4
-    = f.label :cpf, class: 'fg-label'
-    = f.input :cpf, label: false, input_html: { placeholder: 'Preencha'}
-   .col-md-4
-   .col-md-4
-    = f.label :cnpj, class: 'fg-label'
-    = f.input :cnpj, label: false, input_html: { placeholder: 'Preencha'}
-  .row
-   .col-md-6
-    = f.label :subject, class: 'fg-label'
-    = f.association :subject, prompt: 'selecione...', label: false
-   .col-md-6
-    = f.input :description_subject, label: false, input_html: { placeholder: 'Digite um complemento do assunto'}
-  .row
-   .col-md-6
-    = f.label :sign_by, class: 'fg-label'
-    = f.input :sign_by, label: false, input_html: {placeholder: 'Assinado por'}
-   .col-md-6
-    = f.label :observation, class: 'fg-label'
-    = f.input :observation, label: false, input_html: {placeholder: 'Digite uma observação'}
-  .row
-   .col-md-8
-    = f.submit 'salvar' , class: 'btn btn-success',data: {disable_with: "carregando..."}
-    = link_to "voltar",  assessments_path, class: 'btn btn-dark',data: {disable_with: "carregando..."}
+ .row
+  .col-md-4
+   = f.label :document_type, class: 'fg-label'
+   = f.association :document_type, prompt: 'selecione...', label: false
+  .col-md-4
+  .col-md-4
+   = f.label :document_number, class: 'fg-label'
+   = f.input :document_number, label: false, input_html: {placeholder: 'Gerado pelo sistema', readonly: true}
+ .row
+  .col-md-4
+   = f.label :requesting_unit, class: 'fg-label'
+   = f.input :requesting_unit, label: false, input_html: {placeholder: 'Preencha'}
+  .col-md-4
+   = f.label :external_agency, class: 'fg-label'
+   = f.input :external_agency, label: false, input_html: {placeholder: 'Preencha'}
+  .col-md-4
+   = f.label :recipient, class: 'fg-label'
+   = f.input :recipient, label: false, input_html: { placeholder: 'Preencha'}
+ .row
+  .col-md-4
+   = f.label :address, class: 'fg-label'
+   = f.input :address, label: false, input_html: { placeholder: 'Preencha'}
+  .col-md-4
+   = f.label :cpf, class: 'fg-label'
+   = f.input :cpf, label: false, input_html: { placeholder: 'Preencha'}
+  .col-md-4
+  .col-md-4
+   = f.label :cnpj, class: 'fg-label'
+   = f.input :cnpj, label: false, input_html: { placeholder: 'Preencha'}
+ .row
+  .col-md-6
+   = f.label :subject, class: 'fg-label'
+   = f.association :subject, prompt: 'selecione...', label: false
+  .col-md-6
+   = f.input :description_subject, label: false, input_html: { placeholder: 'Digite um complemento do assunto'}
+ .row
+  .col-md-6
+   = f.label :sign_by, class: 'fg-label'
+   = f.input :sign_by, label: false, input_html: {placeholder: 'Assinado por'}
+  .col-md-6
+   = f.label :observation, class: 'fg-label'
+   = f.input :observation, as: 'text', label: false, input_html: {placeholder: 'Digite uma observação'}
+ .row
+  .col-md-8
+   = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+   = link_to "voltar",  assessments_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}

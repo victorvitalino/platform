@@ -7,10 +7,13 @@ module Person
 
     has_scope :status
     has_scope :sector
+    has_scope :name_user
+    has_scope :code
 
     def index
       authorize :staff,  :index?
-      @staffs = apply_scopes(Staff).includes(:sector_current).all
+      @staffs = apply_scopes(Staff).includes(:sector_current).all.paginate(:page => params[:page], :per_page => 40)
+
     end
 
     def new

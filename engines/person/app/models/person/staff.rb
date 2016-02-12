@@ -5,6 +5,8 @@ module Person
 
     scope :status, -> (status = true) {where(status: status)}
     scope :sector, -> sector_current_id {where(sector_current_id: sector_current_id)}
+    scope :name_user, -> (name) {where('candidate_cadastre.name like ?', "#{name}%")}
+    scope :code, -> (code) {where(code: code)}
 
     has_one :user, as: :account, dependent: :destroy
     accepts_nested_attributes_for :user
@@ -24,6 +26,10 @@ module Person
 
     validates_uniqueness_of :code
 
+    validates :password, presence: true,
+                    confirmation: true,
+                    length: {within: 6..40}
+
     validates :cpf, cpf: true, on: :create
     validates_date :born, :before => lambda {18.years.ago}
 
@@ -31,9 +37,9 @@ module Person
     mount_uploader :personal_image, Person::AvatarUploader
     mount_uploader :curriculum, Person::CurriculumUploader
 
-    
-    def account 
+
+    def account
         self
-    end    
+    end
   end
 end

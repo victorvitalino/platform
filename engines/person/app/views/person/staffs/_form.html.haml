@@ -37,17 +37,13 @@
       = f.label :email, class: 'fg-label'
       = f.input :email, label: false, input_html: { placeholder: 'Preencha com um email válido'}
   %hr/
-  = f.simple_fields_for :user do |u|
-    .row
-      .col-md-2
-        = u.label :username, class: 'fg-label'
-        = u.input :username, label: false, input_html: { placeholder: 'Preencha com uma credencial para acesso à extranet'}
-      .col-md-2
-        = u.label :password, class: 'fg-label'
-        = u.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
-      .col-md-2
-        = u.label :password_confirmation, class: 'fg-label'
-        = u.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
+  .row
+    .col-md-2
+      = f.label :password, class: 'fg-label'
+      = f.input :password, label: false, input_html: { placeholder: 'Digite uma senha'}
+    .col-md-2
+      = f.label :password_confirmation, class: 'fg-label'
+      = f.input :password_confirmation, label: false, input_html: { placeholder: 'Redigite sua senha'}
   %hr/
   .row
     .col-md-4
@@ -83,5 +79,5 @@
   %hr/
   .row
     .col-md-12
-      = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button) }
-      = link_to 'Voltar', staffs_path(status: true) , class: 'btn btn-dark', data: { disable_with: t(:disabled_button) }
+      = f.button :submit, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button) }
+      = link_to 'Voltar', staffs_path(status: true) , class: 'btn btn-dark btn-sm', data: { disable_with: t(:disabled_button) }

@@ -4,7 +4,7 @@
       .panel-title
         %h4
           Assunto
-          = link_to 'novo assunto', new_subject_path, remote: true, class: 'btn btn-success pull-right',data: {disable_with: "carregando..."}
+          = link_to 'novo assunto', new_subject_path, remote: true, class: 'btn btn-success pull-right btn-sm',data: {disable_with: "carregando..."}
     .panel-body
       .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
         %table#data-table-command.table.table-striped.table-bordered

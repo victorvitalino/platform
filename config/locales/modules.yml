@@ -9,6 +9,7 @@ pt-BR:
     candidate: "Cadastro"
     cms: "Gestão Portals"
     schedule: "Agendamento"
+    protocol: "Protocolo"
   modules:
     person:
       staffs: "Usuários"
@@ -28,6 +29,16 @@ pt-BR:
       navs: "Menus"
     schedule:
       agendas: "Agendas"
+    protocol:
+      assessments: "Autuação"
+      allotments: "Remessa"
+      conducts: "Tramitação"
+      digital_documents: "Documento digital"
+      document_types: "Tipo de documento"
+      subjects: "Assunto"
+      locations: "Localização"
+      reports: "Relatório"
+      attach_documents: "Anexar/Apensar"
   actions:
     index: "Listagem"
     new: "Novo"

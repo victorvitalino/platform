@@ -11,11 +11,11 @@ module Protocol
 
         def new
             @location = Location.new
-             authorize :conduct,  :create?
+             authorize :location,  :create?
         end
 
         def create
-            authorize :conduct,  :create?
+            authorize :location,  :create?
             @assessment = Protocol::Assessment.find(params[:assessment_ids])
                 @assessment.each do |a|
                     @location = Location.new(location_params)
@@ -30,12 +30,12 @@ module Protocol
         end
 
         def update
-            authorize :conduct,  :update?
+            authorize :location,  :update?
             @location.update(location_params)
         end
 
         def destroy
-            authorize :conduct,  :destroy?
+            authorize :location,  :destroy?
             if @location.destroy
                 redirect_to action: 'index'
             end
