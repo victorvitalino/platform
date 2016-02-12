@@ -7,7 +7,7 @@ module Candidate
     enum status: ['reserva', 'venda', 'distrato']
 
     scope :cpf,  -> (cpf) {joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
-    scope :process,  -> (old_process) {joins(:cadastre_procedural).where('candidate_cadastre_procedurals.old_process = ?', old_process)}
+    scope :old_process,  -> (old_process) { joins("inner join candidate_cadastre_procedurals on candidate_cadastre_procedurals.cadastre_id = candidate_cadastre_addresses.cadastre_id").where('candidate_cadastre_procedurals.old_process = ?', old_process)}
     scope :address,  -> (id) {joins(:unit).where('address_units.id = ?', id)}
 
 

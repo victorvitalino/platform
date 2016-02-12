@@ -1,11 +1,15 @@
-require_dependency 'application_controller'
+require_dependency 'application_helper'
+
 module Firm
   class ApplicationController < ActionController::Base
-    layout 'material'
-    helper ::ApplicationHelper
+     layout 'remark'
+
+    include Authenticate::StaffService
+    helper  Authenticate::StaffHelper
+
+    before_action :authenticate_staff?
 
     include Pundit
-    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   end
 end

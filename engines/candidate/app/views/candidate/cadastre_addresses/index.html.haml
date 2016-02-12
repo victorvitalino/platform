@@ -22,7 +22,7 @@
                 = f.input :group, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? ) ? Address::Unit.select(:group).where(city_id: @address.city, block: @address.block).distinct : {}, label_method: :group, value_method: :group, prompt: 'selecione a conjunto...', input_html: { value: @address.block}
             .row
               .col-md-12
-                = f.input :unit, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @address.city,block: @address.block, group: @address.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a unidade...', input_html: { value: @address.unit,name: 'id', selected: params[:id]}
+                = f.input :unit, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @address.city,block: @address.block, group: @address.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a unidade...', input_html: { value: @address.unit,name: 'address', selected: params[:id]}
             .row
               .col-md-12
                 = f.submit "Pesquisar", name: nil, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button)}
@@ -79,7 +79,7 @@
             %hr
             .row
               .col-md-12
-                = link_to "Assentar", edit_cadastre_address_path(@candidate.unit.id), class: 'btn btn-warning btn-sm'
+                = link_to "Assentar", new_cadastre_address_path(id: @candidate.unit.id), class: 'btn btn-warning btn-sm'
 :javascript
 
   $(document).ready(function() {

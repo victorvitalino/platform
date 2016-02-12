@@ -2,7 +2,7 @@ require_dependency "firm/application_controller"
 
 module Firm
   class TipologiesController < ApplicationController
-    layout 'layouts/material'
+
     before_action :set_tipologies, only: [:index, :create, :destroy, :update]
     before_action :set_tipology, only: [:edit, :destroy, :update, :show]
 

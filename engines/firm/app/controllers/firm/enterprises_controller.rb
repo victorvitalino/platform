@@ -2,7 +2,7 @@ require_dependency "firm/application_controller"
 
 module Firm
   class EnterprisesController < ApplicationController
-    layout 'layouts/material'
+
     before_action :set_enterprises, only: [:index, :create, :destroy, :update]
     before_action :set_enterprise, only: [:edit, :destroy, :update, :show]
 

@@ -1,30 +1,29 @@
-.card
-  .card-header.ch-alt
-    .row
-      .col-md-12
-        %h2
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
           Empresas
-          = link_to 'nova empresa', new_company_path, class: 'btn btn-success pull-right' #if policy(:sector, namespace: Person).create?
+          = link_to 'nova empresa', new_company_path, class: 'btn btn-success pull-right btn-sm' #if policy(:sector, namespace: Person).create?
           %small Listagem de empresas
-  %hr/
-  .row
-    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table.table.table-hover.table-bordered.datatable
-        %thead
-          %tr
-            %th Nome
-            %th Nome Fantasia
-            %th Telefone
-            %th Status
-            %th Ações
-        %tbody.index-sector
-          - if @companies.present?
-            - @companies.each_with_index do |j, i|
-              %tr
-                %td.col-md-4= j.name.to_s.upcase
-                %td.col-md-1= j.trade
-                %td.col-md-2= j.telephone
-                %td.col-md-1= j.status ? 'ativo' : 'inativo'
-                %td.col-md-2
-                  = link_to "", company_path(j),  title: 'Show', 'data-toggle' => 'tooltip', class: 'md-search btn bgm-lightgreen waves-effect waves-button waves-float'
-                  = link_to "", edit_company_path(j),  title: 'Editar', 'data-toggle' => 'tooltip', class: 'md-mode-edit btn btn-primary waves-effect waves-button waves-float' #i  policy(:staff,              namespace: Person).update?
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th Nome Fantasia
+              %th Telefone
+              %th Status
+              %th Ações
+          %tbody.index-sector
+            - if @companies.present?
+              - @companies.each_with_index do |j, i|
+                %tr
+                  %td.col-md-4= j.name.to_s.upcase
+                  %td.col-md-1= j.trade
+                  %td.col-md-2= j.telephone
+                  %td.col-md-1= j.status ? 'ativo' : 'inativo'
+                  %td.col-md-2
+                    = link_to "", company_path(j),  title: 'Show', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs'
+                    = link_to "", edit_company_path(j),  title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs' #i  policy(:staff,              namespace: Person).update?

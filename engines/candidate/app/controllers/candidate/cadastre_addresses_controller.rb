@@ -4,17 +4,20 @@ module Candidate
   class CadastreAddressesController < ApplicationController
 
    has_scope :cpf
-   has_scope :process
+   has_scope :old_process
    has_scope :address
 
     def index
        authorize :cadastre_address,  :index?
        @address = RegularizationPortal::Address.new
-       @candidate = apply_scopes(Candidate::CadastreAddress).last
+       @candidate = Candidate::CadastreAddress.all
+       @candidate = apply_scopes(@candidate).last
+
     end
 
 
     def new
+      @candidate = Candidate::CadastreAddress.where(unit_id: params[:id]).last
       @cadastre_address = Candidate::CadastreAddress.new
     end
 

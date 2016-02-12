@@ -1,0 +1,18 @@
+= simple_form_for ([@enterprise, @enterprise_cadastre]) do |f|
+ .row
+  .col-md-4
+   = f.label "Nome", class: 'fg-label'
+   = @enterprise_cadastre.cadastre.name
+  .col-md-4
+   = f.label "Empreendimento", class: 'fg-label'
+   = @enterprise.name
+ .row
+  .col-md-4
+   = f.label :status, class: 'fg-label'
+   = f.input :status, label: false
+  .col-md-2
+   = f.label :source_list, class: 'fg-label'
+   = f.input :source_list, label: false
+ .row
+  .col-md-8
+   = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}

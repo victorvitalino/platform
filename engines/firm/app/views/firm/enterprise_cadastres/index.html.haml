@@ -1,28 +1,47 @@
-.card
-  .card-header.ch-alt
-    .row
-      .col-md-12
-        %h2
-          Candidatos
-  %hr/
-  .row
-    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table.table.table-hover.table-bordered.datatable
-        %thead
-          %tr
-            %th Nome
-            %th CPF
-            %th Status
-            %th Data de Encaminhamento
-            %th Ações
-        %tbody.index-sector
-          - if @enterprise_cadastres.present?
-            - @enterprise_cadastres.each_with_index do |j, i|
-              %tr
-                %td.col-md-4= j.cadastre.name.to_s.upcase
-                %td.col-md-1= j.cadastre.cpf
-                %td.col-md-1= j.status ? 'ativo' : 'inativo'
-                %td.col-md-1= j.created_at.strftime('%d/%m/%Y')
-                %td.col-md-2
-                  = link_to "", candidate.cadastres_path(cpf: j.cadastre.cpf), title: 'Show', 'data-toggle' => 'tooltip', class: 'md-search btn bgm-lightgreen waves-effect waves-button waves-float'
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Empresas
+    .panel-body
+      .row
+        .col-md-12
+          = simple_form_for  url_for, method: 'get' do |f|
+            .row
+              .col-md-3
+                = f.label 'CPF', class: 'fg-label'
+                = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+              .col-md-3
+                = f.label 'Nome', class: 'fg-label'
+                = f.input :name_candidate, label: false, input_html: { name: 'name_candidate', value: params[:name_candidate]}
+              .col-md-3
+                = f.label 'Situação do Candidato', class: 'fg-label'
+                = f.input :status, as: 'select', label: false, input_html: { name: 'status'},include_blank: 'Todos'
+              .col-md-2
+                %br
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Status
+              %th Data de Encaminhamento
+              %th Ações
+          %tbody.index-sector
+            - if @enterprise_cadastres.present?
+              - @enterprise_cadastres.each_with_index do |j, i|
+                %tr
+                  %td.col-md-4= j.cadastre.name.to_s.upcase
+                  %td.col-md-1= j.cadastre.cpf
+                  %td.col-md-1= j.status ? 'ativo' : 'inativo'
+                  %td.col-md-1= j.created_at.strftime('%d/%m/%Y')
+                  %td.col-md-2
+                    = link_to "", candidate.cadastres_path(cpf: j.cadastre.cpf), title: 'Show', class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs'
+                    = link_to "", edit_enterprise_enterprise_cadastre_path(enterprise_id:j.enterprise.id, id: j), title: 'Edit', class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs'
+      .row
+        .col-md-6.col-md-offset-3
+          = will_paginate @enterprise_cadastres, renderer: BootstrapPagination::Rails
 
