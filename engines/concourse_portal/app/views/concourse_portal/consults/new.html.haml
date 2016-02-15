@@ -5,4 +5,7 @@
 %hr/
 .row
   .col-md-12
-    = render 'form'
+    - if @project.consultation_end >= Date.today
+      = render 'form'
+    - else 
+      %h2 Consultas encerradas
