@@ -1,4 +1,4 @@
-module Concourse
+module Archive
   class ApplicationPolicy
     attr_reader :user, :record
 
@@ -9,7 +9,7 @@ module Concourse
 
     def view_nav?
       return true if user.account.administrator
-      system        = Person::System.find_by_code('211') rescue nil
+      system        = Person::System.find_by_code('212') rescue nil
       permissions   = Person::SystemPermission.where(system_id: system.id)
       (user.account.privilege_id & permissions.map(&:code)).present?
     end

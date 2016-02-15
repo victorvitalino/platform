@@ -7,10 +7,10 @@ module Cms
       @record = record
     end
 
-   def view_nav?
+    def view_nav?
       return true if user.account.administrator
-      system_module = Person::SystemModule.find_by_code('21') rescue nil
-      permissions   = Person::SystemPermission.where(system_id: system_module.systems.map(&:id))
+      system        = Person::System.find_by_code('210') rescue nil
+      permissions   = Person::SystemPermission.where(system_id: system.id)
       (user.account.privilege_id & permissions.map(&:code)).present?
     end
 

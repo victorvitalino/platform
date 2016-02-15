@@ -19,6 +19,11 @@ module Authenticate
       end
     end
 
+    def logout
+      destroy_session
+      redirect_to authenticate.new_staff_path
+    end
+
     private
 
     def set_params
@@ -30,6 +35,11 @@ module Authenticate
       session[:staff_expiration_id] = Time.now + 4.hours
       
       Person::Staff.find(staff.id).update(last_signed_in_at: Time.now)
+    end
+
+    def destroy_session
+      session[:staff_id] = nil
+      session[:staff_expiration_id] = nil
     end
   end
 end

@@ -10,7 +10,7 @@ module Concourse
 
     def create
       @observation = @candidate.observations.new(set_params)
-      @observation.staff_id = current_user.account_id
+      @observation.staff_id = current_user.id
       @observation.save
     end
 

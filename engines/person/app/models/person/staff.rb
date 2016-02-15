@@ -5,7 +5,7 @@ module Person
 
     scope :status, -> (status = true) {where(status: status)}
     scope :sector, -> sector_current_id {where(sector_current_id: sector_current_id)}
-    scope :name_user, -> (name) {where('candidate_cadastre.name like ?', "#{name}%")}
+    scope :name_user, -> (name) {where('name like ?', "%#{name.upcase}%")}
     scope :code, -> (code) {where(code: code)}
 
     has_one :user, as: :account, dependent: :destroy

@@ -19,7 +19,7 @@
             %td.col-md-2= page.title
             %td= page.publish ? 'publicada' : 'não publicada'
             %td= page.created_at.strftime('%d/%m/%Y')
-            %td= "/concursos/#{@project.slug}/#{page.slug}"
+            %td= "/concursos/#{@project.slug}/pagina/#{page.slug}"
             %td.col-md-1
-              = link_to "", edit_project_page_path(project_id: @project, id: page),class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
+              = link_to "", edit_project_page_path(project_id: @project, id: page), data: { turbolinks: false} ,class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
               = link_to "", project_page_path(project_id: @project, id: page), method: :delete,class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => t(:confirm_delete) } 

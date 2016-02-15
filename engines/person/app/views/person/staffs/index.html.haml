@@ -28,33 +28,32 @@
       .row
         .col-md-12
           %hr/
-          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-            %table.table.table-hover.table-striped.table-bordered.table-condensed
-              %thead
+          %table.table.table-hover.table-striped.table-bordered.table-condensed
+            %thead
+              %tr
+                %th Nome
+                %th Matrícula
+                %th Setor Atual
+                %th Cargo
+                %th Ramal
+                %th Situação
+                %th Ações
+            %tbody
+              - @staffs.order(:name).each do |staff|
                 %tr
-                  %th Nome
-                  %th Matrícula
-                  %th Setor Atual
-                  %th Cargo
-                  %th Ramal
-                  %th Situação
-                  %th Ações
-              %tbody
-                - @staffs.order(:name).each do |staff|
-                  %tr
-                    %td.col-md-4= staff.name.to_s.upcase
-                    %td.col-md-1= staff.code
-                    %td.col-md-1= staff.sector_current.acron if staff.sector_current.present?
-                    %td.col-md-1= staff.job.name if staff.job.present?
-                    %td.col-md-1= staff.branch_line.telephone if staff.branch_line.present?
-                    %td.col-md-1
-                      - if staff.status
-                        %span.label.label-success ativo
-                      - else
-                        %span.label.label-default inativo
-                    %td.col-sm-1
-                      = link_to "", edit_staff_path(staff), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:staff, namespace: Person).update?
-                      = link_to "", staff_staff_permissions_path(staff),  title: 'Permissões', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-share-alt btn btn-warning btn-xs ' if policy(:StaffPermission, namespace: Person).index?
+                  %td.col-md-4= staff.name.to_s.upcase
+                  %td.col-md-1= staff.code
+                  %td.col-md-1= staff.sector_current.acron if staff.sector_current.present?
+                  %td.col-md-1= staff.job.name if staff.job.present?
+                  %td.col-md-1= staff.branch_line.telephone if staff.branch_line.present?
+                  %td.col-md-1
+                    - if staff.status
+                      %span.label.label-success ativo
+                    - else
+                      %span.label.label-default inativo
+                  %td.col-sm-1
+                    = link_to "", edit_staff_path(staff), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:staff, namespace: Person).update?
+                    = link_to "", staff_staff_permissions_path(staff),  title: 'Permissões', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-share-alt btn btn-warning btn-xs ' if policy(:StaffPermission, namespace: Person).index?
           .row
             .col-md-6.col-md-offset-3
               = will_paginate @staffs, renderer: BootstrapPagination::Rails

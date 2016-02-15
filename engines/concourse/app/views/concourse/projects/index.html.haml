@@ -29,5 +29,5 @@
               %td= project.consultation ? 'aberto' : 'fechado'
               %td
                 = link_to "", project_path(project),class: 'glyphicon glyphicon-share-alt  btn btn-success btn-xs'
-                = link_to "", edit_project_path(project),class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
+                = link_to "", edit_project_path(project), data: {turbolinks: false}, class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
                 

@@ -21,7 +21,7 @@
               %td= page.title
               %td= page.publish ? 'publicada' : 'não publicada'
               %td= page.created_at.strftime('%d/%m/%Y às %H:%M')
-              %td= "/concursos/#{@project.slug}/#{page.slug}"
+              %td= "/concursos/#{@project.slug}/pagina/#{page.slug}"
               %td.col-md-2
                 = link_to "", edit_project_page_path(project_id: @project, id: page),class: 'md md-edit btn btn-primary'
                 = link_to "", project_page_path(project_id: @project, id: page), method: :delete,class: 'md md-delete btn btn-danger', :data => { :confirm => t(:confirm_delete) } 

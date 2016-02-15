@@ -35,17 +35,6 @@
                             %span.site-menu-title Assentamento
                 %li.site-menu-item.has-sub
                   %a{:href => "javascript:void(0)"}
-                    %span.site-menu-title Publicação
-                    %span.site-menu-arrow
-                  %ul.site-menu-sub
-                    %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-400.html"}
-                        %span.site-menu-title Em ordem
-                    %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-403.html"}
-                        %span.site-menu-title Indicação
-                %li.site-menu-item.has-sub
-                  %a{:href => "javascript:void(0)"}
                     %span.site-menu-title Endereço
                     %span.site-menu-arrow
                   %ul.site-menu-sub
@@ -83,17 +72,8 @@
                     %span.site-menu-arrow
                   %ul.site-menu-sub
                     %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-400.html"}
-                        %span.site-menu-title Pesquisa Geral
-                    %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-403.html"}
-                        %span.site-menu-title Atualização Cadastral
-                    %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-404.html"}
-                        %span.site-menu-title Troca de CPF
-                    %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-503.html"}
-                        %span.site-menu-title 503
+                      %a.animsition-link{:href => "#"}
+                        %span.site-menu-title Cadastro
                 %li.site-menu-item.has-sub
                   %a{:href => "javascript:void(0)"}
                     %span.site-menu-title Empresas
@@ -226,34 +206,41 @@
                       %span.site-menu-title Concursos
                       %span.site-menu-arrow
                     %ul.site-menu-sub
-                      %li.site-menu-item
-                        %a.animsition-link{:href => "#{concourse.new_project_path}"}
-                          %span.site-menu-title Novo concurso
-                      %li.site-menu-item
-                        %a.animsition-link{:href => "#{concourse.projects_path}"}
-                          %span.site-menu-title Lista
-                      %li.site-menu-item
-                        %a.animsition-link{:href => "#{concourse.view_all_path}"}
-                          %span.site-menu-title Inscrições
-                - if policy(:application, namespace: Concourse).view_nav?
+                      - if policy(:project, namespace: Concourse).create?
+                        %li.site-menu-item
+                          %a.animsition-link{:href => "#{concourse.new_project_path}"}
+                            %span.site-menu-title Novo concurso
+                      - if policy(:project, namespace: Concourse).index?
+                        %li.site-menu-item
+                          %a.animsition-link{:href => "#{concourse.projects_path}"}
+                            %span.site-menu-title Lista
+                      - if policy(:candidate, namespace: Concourse).index?
+                        %li.site-menu-item
+                          %a.animsition-link{:href => "#{concourse.view_all_path}"}
+                            %span.site-menu-title Inscrições
+                - if policy(:application, namespace: Archive).view_nav?
                   %li.site-menu-item.has-sub
                     %a{:href => "javascript:void(0)"}
                       %span.site-menu-title Arquivos
                       %span.site-menu-arrow
                     %ul.site-menu-sub
-                      %li.site-menu-item
-                        %a.animsition-link{:href => "#{archive.new_file_path}"}
-                          %span.site-menu-title Subir novo documento
-                      %li.site-menu-item
-                        %a.animsition-link{:href => "#{archive.files_path}"}
-                          %span.site-menu-title Visualizar documentos
-                      %li.divider
-                      %li.site-menu-item
-                        %a.animsition-link{:href => "#{archive.new_image_path}"}
-                          %span.site-menu-title Subir nova imagem
-                      %li.site-menu-item
-                        %a.animsition-link{:href => "#{archive.images_path}"}
-                          %span.site-menu-title Visualizar imagens
+                      - if policy(:document, namespace: Archive).create?
+                        %li.site-menu-item
+                          %a.animsition-link{:href => "#{archive.new_file_path}"}
+                            %span.site-menu-title Subir novo documento
+                      - if policy(:document, namespace: Archive).index?
+                        %li.site-menu-item
+                          %a.animsition-link{:href => "#{archive.files_path}"}
+                            %span.site-menu-title Visualizar documentos
+                      - if policy(:image, namespace: Archive).create?
+                        %li.divider
+                        %li.site-menu-item
+                          %a.animsition-link{:href => "#{archive.new_image_path}"}
+                            %span.site-menu-title Subir nova imagem
+                      - if policy(:image, namespace: Archive).index?
+                        %li.site-menu-item
+                          %a.animsition-link{:href => "#{archive.images_path}"}
+                            %span.site-menu-title Visualizar imagens
 
           - if policy(:application, namespace: Protocol).view_nav?
             %li.site-menu-item.has-sub
@@ -322,24 +309,6 @@
               %span.site-menu-title Gestão
               %span.site-menu-arrow
             %ul.site-menu-sub
-              %li.site-menu-item.has-sub
-                %a{:href => "javascript:void(0)"}
-                  %span.site-menu-title Monitoramento
-                  %span.site-menu-arrow
-                %ul.site-menu-sub
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../forms/general.html"}
-                      %span.site-menu-title Visão Geral
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../forms/general.html"}
-                      %span.site-menu-title Projetos
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../forms/general.html"}
-                      %span.site-menu-title Atores
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../forms/general.html"}
-                      %span.site-menu-title Categorias
-                  %li.site-menu-item
               - if policy(:application, namespace: Person).view_nav?
                 %li.site-menu-item.has-sub
                   %a{:href => "javascript:void(0)"}
@@ -384,17 +353,10 @@
                   %span.site-menu-arrow
                 %ul.site-menu-sub
                   %li.site-menu-item
-                    %a.animsition-link{:href => "../../charts/chartjs.html"}
-                      %span.site-menu-title Novo arquivo
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../charts/chartjs.html"}
-                    %a.animsition-link{:href => "../../charts/chartjs.html"}
-                      %span.site-menu-title Arquivos
-                  %li.site-menu-item
-                    %a.animsition-link{:href => "../../charts/chartjs.html"}
-                      %span.site-menu-title Indíce
-          %li.site-menu-item.has-sub.pull-right
-            %a{"data-dropdown-toggle" => "false", :href => "#{helpdesk.new_ticket_path}", "data-remote" => true}
-              %i.site-menu-icon.wb-help{"aria-hidden" => "true"}
-              %span.site-menu-title Abrir um chamado
-              %span.site-menu-arrow
+                    %a.animsition-link{:href => "#"}
+                      %span.site-menu-title Em construção
+          /%li.site-menu-item.has-sub.pull-right
+          /  %a{"data-dropdown-toggle" => "false", :href => "#{helpdesk.new_ticket_path}", "data-remote" => true}
+          /    %i.site-menu-icon.wb-help{"aria-hidden" => "true"}
+          /    %span.site-menu-title Abrir um chamado
+          /    %span.site-menu-arrow
