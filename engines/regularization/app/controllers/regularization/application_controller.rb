@@ -1,4 +1,4 @@
-require_dependency 'application_controller'
+require_dependency 'regularization/application_controller'
 
 module Regularization
   class ApplicationController < ActionController::Base
