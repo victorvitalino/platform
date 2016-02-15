@@ -25,7 +25,6 @@ gem 'audited-activerecord', '~> 4.0'
 gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
 gem 'chartkick'
 gem 'mini_magick'
-gem 'redactor-rails'
 gem 'friendly_id'
 
 gem 'has_scope'
