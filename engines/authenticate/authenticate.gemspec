@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Authenticate::VERSION
   s.authors     = ["Elton Silva"]
   s.email       = ["elton.chrls@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Authenticate."
-  s.description = "TODO: Description of Authenticate."
+  s.homepage    = ""
+  s.summary     = "aummary of Authenticate."
+  s.description = "aescription of Authenticate."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
