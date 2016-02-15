@@ -117,17 +117,11 @@
                     %span.site-menu-arrow
                   %ul.site-menu-sub
                     %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-400.html"}
-                        %span.site-menu-title Pesquisa Geral
+                      %a.animsition-link{:href => "#{candidate.new_list_path}"}
+                        %span.site-menu-title Nova lista
                     %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-403.html"}
-                        %span.site-menu-title Atualização Cadastral
-                    %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-404.html"}
-                        %span.site-menu-title Troca de CPF
-                    %li.site-menu-item
-                      %a.animsition-link{:href => "../../pages/error-503.html"}
-                        %span.site-menu-title 503
+                      %a.animsition-link{:href => "#{candidate.lists_path}"}
+                        %span.site-menu-title Listagem
                 %li.site-menu-item.has-sub
                   %a{:href => "javascript:void(0)"}
                     %span.site-menu-title Sefaz

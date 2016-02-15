@@ -1,32 +1,35 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Listas de candidatos
-      = link_to 'Nova Lista', new_list_path,  data: { no_turbolink: true }, class: 'btn btn-success pull-right' if policy(:page, namespace: Cms).create?
-      %small Listagem de listas de candidatos
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-      %thead
-        %tr
-          %th Título
-          %th Tipo
-          %th View
-          %th Publicado?
-          %th Condição
-          %th Filtros
-          %th Ações
-      %tbody
-        - @lists.each do |list|
-          %tr
-            %td= list.title
-            %td= list.list_type
-            %td= list.view_target
-            %td.col-md-1= list.publish? ? 'sim' : 'não'
-            %td= list.condition_sql
-            %td= "#{(list.cpf_filter) ? 'CPF' : ''} #{(list.name_filter) ? 'NOME' : ''} #{(list.income_filter) ? 'RENDA' : ''}"
-            %td.col-md-2
-              = link_to '', list_path(list), class: 'md md-info btn btn-success'
-              = link_to '', edit_list_path(list), class: 'md md-edit btn btn-primary'
-              = link_to '', list_path(list), class: 'md md-delete btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) }
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Listas de candidatos
+          = link_to 'Nova Lista', new_list_path,  data: { no_turbolink: true }, class: 'btn btn-success pull-right btn-sm' if policy(:page, namespace: Cms).create?
+          %small Listagem de listas de candidatos
+      .panel-body
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table#data-table-command.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Título
+                %th Tipo
+                %th View
+                %th Publicado?
+                %th Condição
+                %th Filtros
+                %th Ações
+            %tbody
+              - @lists.each do |list|
+                %tr
+                  %td= list.title
+                  %td= list.list_type
+                  %td= list.view_target
+                  %td.col-md-1= list.publish? ? 'sim' : 'não'
+                  %td= list.condition_sql
+                  %td= "#{(list.cpf_filter) ? 'CPF' : ''} #{(list.name_filter) ? 'NOME' : ''} #{(list.income_filter) ? 'RENDA' : ''}"
+                  %td.col-md-2
+                    = link_to '', list_path(list), class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs'
+                    = link_to '', edit_list_path(list), class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs'
+                    = link_to '', list_path(list), class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :method => :delete, :data => { :confirm => t(:confirm_delete) }
 
 
