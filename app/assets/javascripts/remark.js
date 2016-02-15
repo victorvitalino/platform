@@ -3,9 +3,9 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require turbolinks
-//= require bootstrap/js/bootstrap.min
-//= require jquery/mask/jquery.maskmoney.min
-//= require jquery/mask/jquery.mask.min
-//= require tinymce/tinymce.min
+//= require vendor/bootstrap/js/bootstrap.min
+//= require vendor/jquery/mask/jquery.maskmoney.min
+//= require vendor/jquery/mask/jquery.mask.min
+//= require vendor/tinymce/tinymce.min
 //= require remark/javascripts/custom
 
