@@ -2,7 +2,7 @@ module Concourse
   class CandidatePolicy < ApplicationPolicy
 
     def index?
-      allow?(21107)
+      true
     end
 
     def create?
@@ -10,7 +10,7 @@ module Concourse
     end
 
     def update?
-      allow?(21108) || allow?(21109)
+      true
     end
 
     def destroy?

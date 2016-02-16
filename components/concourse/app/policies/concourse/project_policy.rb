@@ -2,19 +2,19 @@ module Concourse
   class ProjectPolicy < ApplicationPolicy
 
     def index?
-      allow?(21104)
+      true
     end
 
     def create?
-      allow?(21101)
+      true
     end
 
     def update?
-      allow?(21102)
+      true
     end
 
     def destroy?
-      allow?(21103)
+      true
     end
   end
 end

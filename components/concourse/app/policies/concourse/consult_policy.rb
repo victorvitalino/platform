@@ -2,19 +2,19 @@ module Concourse
   class ConsultPolicy < ApplicationPolicy
 
     def index?
-        allow?(21105)
+        true
     end
 
     def create?
-        allow?(21106)
+        true
     end
 
     def update?
-        allow?(21106)
+        true
     end
 
     def destroy?
-        allow?(21106)
+        true
     end
   end
 end
