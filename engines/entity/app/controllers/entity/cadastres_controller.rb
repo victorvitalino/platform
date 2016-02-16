@@ -3,9 +3,14 @@ require_dependency 'entity/application_controller'
 module Entity
   class CadastresController < ApplicationController
     before_action :set_document_category, only: [:edit, :update, :destroy]
-    
+
+    has_scope :cnpj
+    has_scope :name_entity
+    has_scope :fantasy_name
+
     def index
       @cadastres = Cadastre.all.order('created_at DESC')
+      @cadastres = apply_scopes(@cadastres).paginate(:page => params[:page], :per_page => 30)
     end
 
     def new
@@ -26,7 +31,7 @@ module Entity
         render action: 'new'
       end
     end
-  
+
     def edit
     end
 

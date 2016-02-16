@@ -1,29 +1,22 @@
 = simple_form_for(@category) do |f|
   .card-body.card-padding
     .row
-      .col-md-12
+      .col-md-6
         = f.label :name, class: 'fg-label'
-        = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}    
+        = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
     .row
       .col-md-12
         = f.label :description, class: 'fg-label'
         = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
     .row
-      .col-md-12
+      .col-md-4
         = f.label :code, class: 'fg-label'
         = f.input :code, label: false, input_html: { placeholder: 'Digite uma descrição'}
     .row
-      .col-md-12
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts4"}
-              = f.label :status
-          %br
-          %br
-          = f.check_box :status, id: 'ts4',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts4"}
+      .col-md-2
+        = f.input :status, as: :select, include_blank: false
     %hr/
     .row
       .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to "voltar", document_categories_path, class: 'btn btn-inverse'
+        = f.button :submit, class: 'btn btn-success btn-sm'
+        = link_to "voltar", document_categories_path, class: 'btn btn-dark btn-sm'

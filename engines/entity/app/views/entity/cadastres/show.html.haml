@@ -1,130 +1,137 @@
-.card
-  .card-header.ch-alt
-    %h2
-      %span.pull-right
-        = link_to "voltar", cadastres_path, class: 'btn btn-inverse'
-      Detalhamento de Entidade
-  .card-body
-    .row
-      .col-md-12
-        %h5 Informações gerais
-    .row
-      %table.table.table-striped.table-condensed
-        %thead
-          %tr
-            %th Nome
-            %th Sigla
-            %th CNPJ
-        %tbody
-          %tr
-            %td= @cadastre.name
-            %td= @cadastre.fantasy_name
-            %td= @cadastre.cnpj
-      %table.table.table-striped.table-condensed
-        %thead
-          %tr
-            %th Cidade
-            %th Endereço
-            %th CEP
-            %th Telefone
-            %th Telefone Opcional
-            %th Celular
-            %th E-mail
-        %tbody
-          %tr
-            %td= @cadastre.city.name if @cadastre.city.present?
-            %td= "#{@cadastre.address} - Nº #{@cadastre.number}"
-            %td= @cadastre.cep
-            %td= @cadastre.telephone
-            %td= @cadastre.telephone_optional
-            %td= @cadastre.celphone
-            %td= @cadastre.email
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          %span.pull-right
+            = link_to "voltar", cadastres_path, class: 'btn btn-dark btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+          Detalhamento de Entidade
+    .panel-body
+      .row
+        .col-md-12
+          %h5 Informações gerais
+      .row
+        .col-md-12
+          %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+            %thead
+              %tr
+                %th Nome
+                %th Sigla
+                %th CNPJ
+            %tbody
+              %tr
+                %td= @cadastre.name
+                %td= @cadastre.fantasy_name
+                %td= @cadastre.cnpj
+          %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+            %thead
+              %tr
+                %th Cidade
+                %th Endereço
+                %th CEP
+                %th Telefone
+                %th Telefone Opcional
+                %th Celular
+                %th E-mail
+            %tbody
+              %tr
+                %td= @cadastre.city.name if @cadastre.city.present?
+                %td= "#{@cadastre.address} - Nº #{@cadastre.number}"
+                %td= @cadastre.cep
+                %td= @cadastre.telephone
+                %td= @cadastre.telephone_optional
+                %td= @cadastre.celphone
+                %td= @cadastre.email
 
-    %br/
-    .row
-      .col-md-12
-        %h5 Diretoria & Membros
-    .row
-      %table.table.table-striped.table-condensed
-        %thead
-          %tr
-            %th Nome
-            %th CPF
-            %th RG
-            %th Cargo
-            %th Foto
-            %th Ação
-        %tbody
-          - if @cadastre.members.present?
-            - @cadastre.members.each do |cad|
+          %br/
+      .row
+        .col-md-12
+          %h5 Diretoria & Membros
+      .row
+        .col-md-12
+          %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+            %thead
               %tr
-                %td= cad.name
-          - else
-            %tr
-              %td{colspan:6} Nenhum registro cadastrado.
+                %th Nome
+                %th CPF
+                %th RG
+                %th Cargo
+                %th Foto
+                %th Ação
+            %tbody
+              - if @cadastre.members.present?
+                - @cadastre.members.each do |cad|
+                  %tr
+                    %td= cad.name
+              - else
+                %tr
+                  %td{colspan:6} Nenhum registro cadastrado.
 
-    %br/
-    .row
-      .col-md-12
-        %h5 Imóveis
-    .row
-      %table.table.table-striped.table-condensed
-        %thead
-          %tr
-            %th Cidade
-            %th Endereço
-            %th CEP
-            %th Situação
-        %tbody
-          - if @cadastre.realties.present?
-            - @cadastre.realties.each do |realty|
+        %br/
+      .row
+        .col-md-12
+          %h5 Imóveis
+      .row
+        .col-md-12
+          %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+            %thead
               %tr
-                %td
-          - else
-            %tr
-              %td{colspan:4} Nenhum registro cadastrado.
-    %br/
-    .row
-      .col-md-12
-        %h5 Upload de documentos | Geral
-    .row
-      %table.table.table-striped.table-condensed
-        %thead
-          %tr
-            %th Documento
-            %th Tipo
-            %th Situação
-            %th Arquivo
-            %th Data
-        %tbody
-          - if @cadastre.documents.present?
-            - @cadastre.documents.each do |realty|
+                %th Cidade
+                %th Endereço
+                %th CEP
+                %th Situação
+            %tbody
+              - if @cadastre.realties.present?
+                - @cadastre.realties.each do |realty|
+                  %tr
+                    %td
+              - else
+                %tr
+                  %td{colspan:4} Nenhum registro cadastrado.
+        %br/
+      .row
+        .col-md-12
+          %h5 Upload de documentos | Geral
+      .row
+        .col-md-12
+          %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+            %thead
               %tr
-                %td
-          - else
-            %tr
-              %td{colspan:4} Nenhum registro cadastrado.
-    %br/
-    .row
-      .col-md-12
-        %h5 Upload de documentos | Técnicos
-    .row
-      %table.table.table-striped.table-condensed
-        %thead
-          %tr
-            %th Documento
-            %th Tipo
-            %th Situação
-            %th Arquivo
-            %th Data
-        %tbody
-          - if @cadastre.documents.present?
-            - @cadastre.documents.each do |realty|
+                %th Documento
+                %th Tipo
+                %th Situação
+                %th Arquivo
+                %th Data
+            %tbody
+              - if @cadastre.documents.present?
+                - @cadastre.documents.each do |realty|
+                  %tr
+                    %td
+              - else
+                %tr
+                  %td{colspan:4} Nenhum registro cadastrado.
+        %br/
+      .row
+        .col-md-12
+          %h5 Upload de documentos | Técnicos
+      .row
+        .col-md-12
+          %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+            %thead
               %tr
-                %td
-          - else
-            %tr
-              %td{colspan:4} Nenhum registro cadastrado.
+                %th Documento
+                %th Tipo
+                %th Situação
+                %th Arquivo
+                %th Data
+            %tbody
+              - if @cadastre.documents.present?
+                - @cadastre.documents.each do |realty|
+                  %tr
+                    %td
+              - else
+                %tr
+                %td{colspan:4} Nenhum registro cadastrado.
 
 
 

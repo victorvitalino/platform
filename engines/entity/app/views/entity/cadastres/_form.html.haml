@@ -3,7 +3,7 @@
     .row
       .col-md-12
         = f.label :name, class: 'fg-label'
-        = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}    
+        = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
     .row
       .col-md-12
         = f.label :description, class: 'fg-label'
@@ -13,15 +13,8 @@
         = f.label :code, class: 'fg-label'
         = f.input :code, label: false, input_html: { placeholder: 'Digite uma descrição'}
     .row
-      .col-md-12
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts4"}
-              = f.label :status
-          %br
-          %br
-          = f.check_box :status, id: 'ts4',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts4"}
+      .col-md-2
+        = f.input :status, as: :select, include_blank: false
     %hr/
     .row
       .col-md-12

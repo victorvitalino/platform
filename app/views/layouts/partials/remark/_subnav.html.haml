@@ -72,8 +72,14 @@
                     %span.site-menu-arrow
                   %ul.site-menu-sub
                     %li.site-menu-item
-                      %a.animsition-link{:href => "#"}
+                      %a.animsition-link{:href => "#{entity.cadastres_path}"}
                         %span.site-menu-title Cadastro
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "#{entity.document_categories_path}"}
+                        %span.site-menu-title Documentos
+                    %li.site-menu-item
+                      %a.animsition-link{:href => "#{entity.member_jobs_path}"}
+                        %span.site-menu-title Cargo de Diretoria
                 %li.site-menu-item.has-sub
                   %a{:href => "javascript:void(0)"}
                     %span.site-menu-title Empresas
