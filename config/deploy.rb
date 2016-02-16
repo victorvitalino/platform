@@ -4,7 +4,7 @@ require 'mina/git'
 require 'mina/rvm'
 require 'mina/unicorn'
 
-set :term_mode, nil
+set :term_mode, true
 
 set  :domain,  '10.233.38.15'
 set  :user,  'sedhab'
