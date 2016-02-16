@@ -1,20 +1,41 @@
 $(document).on('turbolinks:load', function() {
-  var mes = 'Mai';
+  var mes = 'Jan';
+  var ano = 'segundo_ano';
   var botao = '';
+  var botao_ano = '';
   var current = mes;
-  $('#'+ mes).css('display','block');
+  var current_ano = ano;
+  $('.'+ mes).css('display','block');
 
   $('.tab-mes span').click(function(){
     botao = $(this).attr('data-mes');
     if(current!=botao){
       $('.s-info').css('display','none');
-      $('#'+ botao).css('display','block');
+      $('.'+ botao).css('display','block');
       current = botao;
     }
   });
+
+  $('.'+ ano).css('display','block');
+
+  $('.tab-ano li a span').click(function(){
+    botao_ano = $(this).attr('data-ano');
+    if(current_ano!=botao_ano){
+      $('.flip_ano').css('display','none');
+      $('.'+ botao_ano).css('display','block');
+      current_ano = botao_ano ;
+      if(current_ano == 'primeiro_ano'){
+        botao = 'Mai';
+        $('.s-info').css('display','none');
+        $('.'+ botao).css('display','block');
+      }else{
+        botao = 'Jan';
+        $('.s-info').css('display','none');
+        $('.'+ botao).css('display','block');
+      }
+    }
+  });
 });
-
-
 
 jQuery(function() {
   $('form').on('click', '.remove_fields', function(event) {
