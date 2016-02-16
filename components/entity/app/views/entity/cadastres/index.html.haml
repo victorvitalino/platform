@@ -1,27 +1,56 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Entidades Cadastradas
-      %small Listagem de entidades
-  .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
-      %thead
-        %tr
-          %th CNPJ
-          %th Nome
-          %th Sigla
-          %th Data cadastro
-          %th Última atualização
-          %th Situação
-          %th Ações
-      %tbody
-        - @cadastres.each do |cadastre|
-          %tr
-            %td.col-md-2= cadastre.cnpj
-            %td.col-md-4= cadastre.name.upcase
-            %td.col-md-2= cadastre.fantasy_name.upcase
-            %td.col-md-2= cadastre.created_at.strftime('%d/%m/%Y às %H:%M')
-            %td.col-md-2= cadastre.updated_at.strftime('%d/%m/%Y às %H:%M')
-            %td
-            %td.col-md-1
-              = link_to "visualizar", cadastre_path(cadastre)
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Entidades Cadastradas
+          %small Listagem de entidades
+    .panel-body
+      .row
+        .col-md-12
+          = simple_form_for  url_for, method: 'get' do |f|
+            .row
+              .col-md-2
+                = f.label 'CNPJ', class: 'fg-label'
+                = f.input :cnpj, label: false, input_html: { name: 'cnpj', value: params[:cnpj]}
+              .col-md-2
+                = f.label 'Nome', class: 'fg-label'
+                = f.input :name_entity, label: false, input_html: { name: 'name_entity', value: params[:name_entity]}
+              .col-md-3
+                = f.label 'Sigla', class: 'fg-label'
+                = f.input :fantasy_name, label: false, input_html: { name: 'fantasy_name', value: params[:fantasy_name]}
+              .col-md-4
+                %br
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+                = link_to 'Limpar',cadastres_path , name: nil, class:  'btn btn-warning btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+      .row
+        .col-md-12
+          %h6
+            Total de Entidades:
+            =@cadastres.count
+      .row
+        .col-md-12
+          %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
+            %thead
+              %tr
+                %th CNPJ
+                %th Nome
+                %th Sigla
+                %th Data cadastro
+                %th Última atualização
+                %th Situação
+                %th Ações
+            %tbody
+              - @cadastres.each do |cadastre|
+                %tr
+                  %td.col-md-2= cadastre.cnpj
+                  %td.col-md-4= cadastre.name.upcase
+                  %td.col-md-2= cadastre.fantasy_name.upcase
+                  %td.col-md-2= cadastre.created_at.strftime('%d/%m/%Y às %H:%M')
+                  %td.col-md-2= cadastre.updated_at.strftime('%d/%m/%Y às %H:%M')
+                  %td
+                  %td.col-md-1
+                    = link_to "visualizar", cadastre_path(cadastre), data: {  disable_with: "Pesquisando aguarde..."}
+      .row
+        .col-md-12.col-md-offset-3
+          = will_paginate @cadastres, renderer: BootstrapPagination::Rails

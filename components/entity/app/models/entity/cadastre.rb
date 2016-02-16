@@ -2,7 +2,7 @@ module Entity
   class Cadastre < ActiveRecord::Base
 
     belongs_to :city, class_name: "Address::City"
-  
+
     has_many :situations
     has_many :situation_status, through: :situations
 
@@ -18,8 +18,12 @@ module Entity
       Entity::Cadastre.joins(:situations)
       .where('entity_situations.situation_status_id = (SELECT MAX(entity_situations.situation_status_id)
               FROM entity_situations WHERE entity_situations.cadastre_id = entity_cadastres.id)')
-      .where('entity_situations.situation_status_id = ?', status)     
+      .where('entity_situations.situation_status_id = ?', status)
     }
+
+    scope :cnpj,  -> (cnpj) {where(cnpj: cnpj)}
+    scope :name_entity,  -> (name_entity) {where(name: name_entity)}
+    scope :fantasy_name,  -> (fantasy_name) {where(fantasy_name: fantasy_name)}
 
     attr_accessor :password_confirmation, :current_password, :change_password
 
@@ -30,8 +34,8 @@ module Entity
     validates :telephone_optional, :celphone, numericality: true, allow_blank: true
     validates :password, :password_confirmation, presence: true, length: { minimum: 6, maximum: 16}, on: :create
     validate  :unique_password, on: :create
-  
-    
+
+
     validate  :update_password, if: :change_password?
 
     after_create :set_situation

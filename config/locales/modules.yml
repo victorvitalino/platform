@@ -39,6 +39,10 @@ pt-BR:
       locations: "Localização"
       reports: "Relatório"
       attach_documents: "Anexar/Apensar"
+    entity:
+      cadastres: "Cadastros"
+      document_categories: "Categoria de Documentos"
+      member_jobs: "Cargo de diretoria"
   actions:
     index: "Listagem"
     new: "Novo"
