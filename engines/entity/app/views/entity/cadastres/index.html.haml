@@ -25,6 +25,11 @@
                 = link_to 'Limpar',cadastres_path , name: nil, class:  'btn btn-warning btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
       .row
         .col-md-12
+          %h6
+            Total de Entidades:
+            =@cadastres.count
+      .row
+        .col-md-12
           %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table.datatable
             %thead
               %tr
