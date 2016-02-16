@@ -27,7 +27,6 @@ Rails.application.routes.draw do
     mount Regularization::Engine           => "/regularizacao",  as: 'regularization',   module: 'regularization'
     mount Habitation::Engine               => "/habitacao",      as: 'habitation',       module: 'habitation'
     mount Entity::Engine                   => "/entidades",      as: 'entity',           module: 'entity'
-    mount Sefaz::Engine                    => "/sefaz",          as: 'sefaz',            module: 'sefaz'
     mount Firm::Engine                     => "/empresa",        as: 'firm',             module: 'firm'
     mount Maintenance::Engine              => "/manutencao",     as: 'maintenance',      module: 'maintenance'
     mount Brb::Engine                      => "/brb",            as: 'brb',              module: 'finance'

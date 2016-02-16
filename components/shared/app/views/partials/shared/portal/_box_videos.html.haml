@@ -1,0 +1,17 @@
+.homeVideoWrapper
+  .stocking-row3
+  .bottomSlider.container
+    %h2 CODHAB em Foco
+    .flexslider
+      %div{:style => "clear: both;"}
+      .flex-viewport
+        %ul.slides
+          - video_each(5) do |vid|
+            %li.clone{"aria-hidden" => "true",:style => "text-align:center;"}
+              <iframe width="760" height="550" src="#{vid.url}" frameborder="0" allowfullscreen></iframe>
+      %ol.flex-control-nav.flex-control-paging
+        - video_each(5) do |vid|
+          %li
+            %a
+              = vid.title
+    %div{:style => "clear: both;"}

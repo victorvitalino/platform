@@ -1,0 +1,30 @@
+.topSlider
+  .flex-container
+    .flexslider
+      / .slides
+      .flex-viewport
+        %ul.slides
+          - slider_each(6,'DESC') do |s|
+            - batata(s.post_category.title) do |b|
+              %li.clone{"aria-hidden" => "true"}
+                .div-image{:style => "background-image: url(#{s.thumb})"}
+                .flex-caption{ :class => "#{@sliderss}", "data-countdown-timer" => "", "data-countdown-timer-hour" => "", "data-countdown-timer-minutes" => ""}
+                  .row
+                    .col-md-7
+                      %a.explore{:href => "#"}
+                        = "##{s.post_category.title}"
+                    .latestDate.col-md-4
+                      = s.date.strftime('%d/%m/%Y')
+                  %h3
+                    = s.title
+                  .sliderp
+                    %p
+                      = link_to s.resume.html_safe, post_path(s)
+                  /  %hr
+                  /  .block-left
+                  /    = link_to "Leia Mais", content_post_path(s), class: 'sliderLink'
+    .controlWrapper
+      %ul.custom-controls
+        - slider_each(6,'DESC') do |s|
+          %li
+            = link_to "#{s.title}", post_path(s)

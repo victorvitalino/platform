@@ -23,11 +23,8 @@ module Plataform
     config.time_zone = 'Brasilia'
     config.autoload_paths << Rails.root.join('lib','*')
 
-    config.assets.paths << File.join(Rails.root, 'app', 'assets', 'templates')
-    config.assets.paths << File.join(Rails.root, 'app', 'assets', 'stylesheets')
-    config.assets.paths << File.join(Rails.root, 'app', 'assets', 'javascripts')
-    config.assets.paths << File.join(Rails.root, 'app', 'assets', 'images')
-    config.assets.paths << File.join(Rails.root, 'app', 'assets', 'fonts')
+    config.assets.paths << File.join(Rails.root, 'shared', 'assets', 'templates')
+
     
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*','**','***', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :'pt-BR'

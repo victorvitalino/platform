@@ -1,0 +1,93 @@
+.btn-warning-login {
+    color: #4A4A4A;
+    background-color: #FFCB08;
+    border-color: #FFCB08;
+}
+.user {
+  color: white;
+  padding-top: 12px;
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.user i {
+  font-size: 10px
+}
+.site-menubar.site-menubar-light {
+    background: #5A5A5A !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.site-menubar-light .site-menu-item:hover>a {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(255, 165, 24) !important;
+}
+
+.site-menu-item .has-sub  {
+  color: #5A5A5A !important;
+}
+.navbar-inverse {
+  background-color: #FFA518 !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.panel-title h3, h4 {
+  font-weight: bold;
+}
+.site-menubar {
+  z-index: 2 !important;
+}
+
+.table a {
+  text-decoration: none !important;
+}
+/* Correção de bootstrpa */
+
+.panel-collapse .panel-title {
+  background-color: #D8D8D8;
+}
+
+.alert-success {
+    background-color: #5DB554 !important;
+    border-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+    font-weight: bold !important;
+}
+
+.breadcrumb {
+  background-color: #F1F4F5 !important;
+}
+.panel-title {
+  padding: 20px 17px !important;
+}
+.btn-dark {
+    color: #FFFFFF;
+    background-color: #67737B;
+    border-color: #67737B;
+}
+
+/* Correção de forms */
+
+label {
+  font-weight: bold !important;
+}
+
+.site-navbar-small .site-navbar .navbar-brand {
+    padding: 13px 20px !important;
+}
+/* Correções Boosty Gem */
+
+.app-documents .form-group .dropdown-toggle {
+  height: auto !important;
+  padding-left: 20px; 
+  border-color: #FFFFFF !important; 
+  border-width: 1px 0 1px 1px;
+  background-color: #F3F3F3 !important;
+}
+
+.wysihtml5-toolbar textarea {
+  min-height: 1000px !important;
+}

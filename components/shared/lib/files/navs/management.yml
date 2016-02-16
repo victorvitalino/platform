@@ -1,0 +1,53 @@
+nav:
+  management:
+    info:
+      label: "Gestão"
+      code: 40
+      icon: 'wb-grid-9'
+      link: '#'
+    modules:
+      person:
+        code: 0
+        label: 'Funcionários'
+        controller: '#'
+        sub:
+          users:
+            module: 'person'
+            code: 0
+            label: 'Cadastros'
+            controller: 'person/staffs'
+          sectors:
+            module: 'person'
+            code: 0
+            label: 'Setores'
+            controller: 'person/sectors'
+          jobs:
+            module: 'person'
+            code: 0
+            label: 'Cargos'
+            controller: 'person/jobs'
+      financial:
+        code: 0
+        label: 'Financeiro'
+        controller: '#'
+        sub:
+          invoices:
+            module: 'brb'
+            code: 0
+            label: 'BRB - Boleto'
+            controller: 'brb/invoices'
+          billet_types:
+            module: 'brb'
+            code: 0
+            label: 'Tipos de cobrança'
+            controller: 'brb/categories'
+      extranet:
+        code: 0
+        label: 'Extranet'
+        controller: '#'
+        sub:
+          users:
+            module: 'person'
+            code: 0
+            label: 'Sistemas'
+            controller: 'person/systems'

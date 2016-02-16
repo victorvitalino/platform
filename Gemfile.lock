@@ -24,7 +24,7 @@ GIT
       nokogiri (>= 1.5.1)
 
 PATH
-  remote: engines
+  remote: components
   specs:
     address (0.0.1)
       rails (~> 4.2.1)
@@ -90,8 +90,7 @@ PATH
       rails (~> 4.2.1)
     schedule_portal (0.0.1)
       rails (~> 4.2.1)
-    sefaz (0.0.1)
-      carrierwave
+    shared (0.0.1)
       rails (~> 4.2.1)
 
 GEM
@@ -521,8 +520,8 @@ DEPENDENCIES
   rspec-rails
   schedule!
   schedule_portal!
-  sefaz!
   shareable
+  shared!
   signer!
   simple_form
   sqlite3

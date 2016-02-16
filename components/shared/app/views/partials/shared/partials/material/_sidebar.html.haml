@@ -1,0 +1,122 @@
+%aside#sidebar
+  .sidebar-inner
+    .si-inner
+      .profile-menu
+        %a{:href => ""}
+          .profile-info
+            .lv-avatar.bgm-orange{"style": 'margin-bottom: 20px'}
+              - if current_user.account.avatar?
+                = image_tag current_user.account.avatar_url
+              - else
+                = current_user.account.name[0]
+            %b
+              = current_user.account.name
+              %i.md.md-arrow-drop-down
+        %ul.main-menu
+          %li= link_to "<i class='md md-person'></i> Meu perfil".html_safe, person.profile_path(current_user)
+          %li= link_to "<i class='md md-settings-input-antenna'></i> Minha Conta".html_safe, main_app.edit_user_registration_path
+          %li= link_to "<i class='md md-live-help'></i> Minhas Solicitações".html_safe, helpdesk.ticket_requester_path
+          %li= link_to "<i class='md md-history'></i> Sair".html_safe, main_app.destroy_user_session_path, method: :delete
+      %ul.main-menu
+        %li{class: ('active' if params[:module] == "dashboard")}
+          = link_to "<i class='md  md-dashboard'></i> Mural".html_safe, dashboard.root_path
+        - if policy(:application, namespace: Person).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "person")}
+            %a{:href => ""}
+              %i.md.md-account-child
+              Gestão de Pessoas
+            %ul{style: ('display:block;' if params[:module] == "person")}
+              %li= link_to "cargos", person.jobs_path if policy(:job, namespace: Person).view_nav?
+              %li= link_to "usuarios", person.staffs_path(status: true) if policy(:staff, namespace: Person).view_nav?
+              %li= link_to "sistemas", person.systems_path if policy(:system, namespace: Person).view_nav?
+              %li= link_to "setores", person.sectors_path(status: true) if policy(:sector, namespace: Person).view_nav?
+              %li.divider
+              %li= link_to "helpdesk", person.sectors_path(status: true) if policy(:sector, namespace: Person).view_nav?
+        - if policy(:application, namespace: Cms).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "cms")}
+            %a{:href => ""}
+              %i.md.md-public>
+              Gestão Site
+            %ul{style: ('display:block;' if params[:module] == "cms")}
+              %li= link_to "postagens", cms.posts_path if policy(:post, namespace: Cms).index?
+              %li= link_to "páginas", cms.pages_path   if policy(:page, namespace: Cms).index?
+              %li= link_to "menu", cms.navs_path       if policy(:nav, namespace: Cms).index?
+              %li= link_to "vídeos", cms.videos_path   if policy(:video, namespace: Cms).index?
+              %li= link_to "galerias", cms.galleries_path
+              %li.divider
+              %li= link_to "categorias de post", cms.post_categories_path   if policy(:PostCategory,  namespace: Cms).index?
+              %li= link_to "categorias de página", cms.page_categories_path if policy(:PageCategory,  namespace: Cms).index?
+              %li= link_to "categorias de menu", cms.nav_categories_path    if policy(:NavCategory,   namespace: Cms).index?
+              %li.divider
+              %li= link_to "concursos", cms.nav_categories_path    if policy(:NavCategory,   namespace: Cms).index?
+        - if policy(:application, namespace: Helpdesk).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "candidate")}
+            %a{:href => ""}
+              %i.md.md-person>
+              Cadastro
+            %ul{style: ('display:block;' if params[:module] == "candidate")}
+              %li= link_to "Gestão cadastral", candidate.cadastres_path
+              %li= link_to "Publicação"
+              %li= link_to "Indicação"
+              %li= link_to "Agendamento"
+              %li= link_to "Atendimento"
+              %li.divider
+              %li= link_to "Assentar Candidato"
+              %li= link_to "Gestão de endereços"
+              %li= link_to "CADIN"
+              %li.divider
+              %li= link_to "Listas", candidate.lists_path
+              %li= link_to "Auditoria", candidate.lists_path
+              %li= link_to "Guardião", candidate.lists_path
+              %li.divider
+              %li= link_to "Consulta IPTU", candidate.lists_path
+              %li= link_to "Insenção de ITCD/ITBI", candidate.lists_path
+        - if policy(:application, namespace: Entity).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "entity")}
+            %a{:href => ""}
+              %i.md.md-recent-actors>
+              Entidades
+            %ul{style: ('display:block;' if params[:module] == "entity")}
+              %li= link_to "Gestão de cadastro", entity.cadastres_path 
+        - if policy(:application, namespace: Firm).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "firm")}
+            %a{:href => ""}
+              %i.md.md-work>
+              Empresas
+            %ul{style: ('display:block;' if params[:module] == "firm")}
+              %li= link_to "Empresas", firm.companies_path
+              %li= link_to "Empreendimentos", firm.enterprises_path
+              %li= link_to "Tipologias", firm.tipologies_path
+        - if policy(:application, namespace: Firm).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "finance")}
+            %a{:href => ""}
+              %i.md.md-insert-chart>
+              Financeiro
+            %ul{style: ('display:block;' if params[:module] == "finance")}
+              %li= link_to "Cobrança BRB - Boleto", brb.invoices_path
+              %li= link_to "Cobrança BRB - Convênio", brb.invoices_path
+        - if policy(:application, namespace: Firm).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "planning")}
+            %a{:href => ""}
+              %i.md.md-dvr>
+              Monitoramento
+            %ul{style: ('display:block;' if params[:module] == "planning")}
+              %li= link_to "Visão Geral"
+              %li= link_to "Reuniões"
+              %li= link_to "Projetos"
+              %li= link_to "Categorias de projeto"
+              %li= link_to "Atores"
+              %li= link_to "Visão por Setor"
+              %li= link_to "Visão por Responsável"
+              %li= link_to "Visão por Categoria"
+              %li= link_to "Visão por Ator"
+        - if policy(:application, namespace: Firm).view_nav?
+          %li.sub-menu{class: ('toggled active' if params[:module] == "planning")}
+            %a{:href => ""}
+              %i.md.md-dvr>
+              Wiki
+            %ul{style: ('display:block;' if params[:module] == "planning")}
+              %li= link_to "Pesquisa"
+              %li= link_to "Listas"
+              %li= link_to "Últimos arquivos"
+  

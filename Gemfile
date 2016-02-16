@@ -72,7 +72,7 @@ group :production do
 end
 
 
-path 'engines' do 
+path 'components' do 
 
   gem 'portal'                     
   gem 'dashboard'                  
@@ -101,7 +101,6 @@ path 'engines' do
   gem 'schedule'                   
   gem 'schedule_portal'            
 
-  gem 'sefaz'                      
   gem 'maintenance'                
 
   gem 'planning'                       
@@ -109,4 +108,6 @@ path 'engines' do
 
   gem 'authenticate'
   gem 'archive'
+
+  gem 'shared'
 end

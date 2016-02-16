@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Extranet
+    = stylesheet_link_tag  'shared/extranet', media: 'all'
+    = javascript_include_tag 'shared/extranet', 'data-turbolinks-eval' => 'false'
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,300", :rel => "stylesheet", :type => "text/css"}/
+    = csrf_meta_tags
+  %body.app-documents.site-navbar-small
+    = render "partials/shared/remark/nav" if user_signed_in?
+    = render "partials/shared/remark/subnav"
+    .page-header
+      = render "partials/shared/remark/breadcrumb"
+      = render "partials/shared/remark/flash_message"

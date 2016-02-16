@@ -1,0 +1,30 @@
+%aside#chat
+  %ul.tab-nav.tn-justified{:role => "tablist", :style => "overflow: hidden; outline: none;", :tabindex => "0"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "friends", "aria-expanded" => "true", "data-toggle" => "tab", :href => "#friends", :role => "tab"} Lista de Ramais
+  .chat-search
+    #buscador.fg-line
+      %form.filterform{:action => "#"}
+        %input.filterinput.form-control{:placeholder => "Pesquisar...", :type => "text"}/
+  .tab-content
+    #friends.tab-pane.fade.active.in{:role => "tabpanel"}
+      .listview
+        - users_list do |u|
+          %a.lv-item{:href => "#{person.profile_url(u)}"}
+            .media
+              .pull-left.p-relative
+                - if u.avatar?
+                  .lv-avatar
+                    = image_tag(u.avatar.url, width:35)
+                - else
+                  .lv-avatar.bgm-orange{"style": 'margin-bottom: 20px'}
+                    = u.name[0]
+              .media-body
+                .lv-title
+                  = u.name
+                %small.lv-small
+                  Setor:
+                  = u.sector_current.present? ? u.sector_current.name : '-'
+                  %br/
+                  Telefone:
+                  = u.branch_line.present? ? u.branch_line.telephone : '-'

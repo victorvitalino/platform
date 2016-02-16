@@ -13,3 +13,5 @@ Rails.application.config.assets.precompile += %w( remark.css remark.js print.css
 Rails.application.config.assets.precompile += %w( material.js portal.js )
 Rails.application.config.assets.precompile += %w( portal/img/logo_codhab.png )
 Rails.application.config.assets.precompile += %w( footer-concursos.png )
+
+Rails.application.config.assets.precompile += %w( shared/extranet.js shared/extranet.css )

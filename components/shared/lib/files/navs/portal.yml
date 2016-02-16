@@ -1,0 +1,90 @@
+nav:
+  portal:
+    info:
+      label: "Portal"
+      code: 20
+      icon: 'wb-globe'
+      link: '#'
+    modules:
+      post:
+        code: 0
+        label: 'Postagens'
+        controller: '#'
+        sub:
+          new_post:
+            module: 'cms'
+            code: 0
+            label: 'Nova postagem'
+            controller: 'cms/posts'
+            action: 'new'
+          posts:
+            module: 'cms'
+            code: 0
+            label: 'Postagens'
+            controller: 'cms/posts'
+            action: 'index'
+          post_category:
+            module: 'cms'
+            code: 0
+            label: 'Categorias'
+            controller: 'cms/post_categories'
+            action: 'index'
+      page:
+        code: 0
+        label: "Páginas"
+        controller: '#'
+        sub:
+          new_page:
+            module: 'cms'
+            code: 0
+            label: "Nova página"
+            controller: 'cms/pages'
+            action: 'new'
+          pages:
+            module: 'cms'
+            code: 0
+            label: 'Páginas'
+            controller: 'cms/pages'
+            action: 'index'
+      gallery:
+        code: 0
+        label: 'Galerias'
+        controller: '#'
+        sub:
+          new_gallery:
+            module: 'cms'
+            code: 0
+            label: 'Nova galeria'
+            controller: 'cms/galleries'
+            action: 'new'
+          galleries:
+            module: 'cms'
+            code: 0
+            label: 'Galerias'
+            controller: 'cms/galleries'
+            action: 'index'
+      concourse:
+        code: 0
+        label: 'Concursos'
+        controller: '#'
+        sub:
+          new_project:
+            module: 'concourse'
+            code: 0
+            label: 'Novo concurso'
+            controller: 'concourse/projects'
+            action: 'new'
+          project:
+            module: 'concourse'
+            code: 0
+            label: 'Concursos'
+            controller: 'concourse/projects'
+            action: 'index'
+          candidates:
+            module: 'concourse'
+            code: 0
+            label: 'Inscrições'
+            controller: 'concourse/candidates'
+            action: 'view_all'
+
+

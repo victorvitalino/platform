@@ -1,0 +1,46 @@
+%nav.site-navbar.navbar.navbar-default.navbar-fixed-top.navbar-mega.navbar-inverse{:role => "navigation"}
+  .navbar-header
+    %button.navbar-toggle.hamburger.hamburger-close.navbar-toggle-left.hided{"data-toggle" => "menubar", :type => "button"}
+      %span.sr-only Toggle navigation
+      %span.hamburger-bar
+    %button.navbar-toggle.collapsed{"data-target" => "#site-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+      %i.icon.wb-more-horizontal{"aria-hidden" => "true"}
+    %a.navbar-brand.navbar-brand-center{:href => "/"}
+      %img{:alt => "...", :src => "/images/codhab_logo_white.png", width: 120}/
+  .navbar-container.container-fluid
+    #site-navbar-search.collapse.navbar-search-overlap
+      %form{:role => "search"}
+        .form-group
+          .input-search
+            %i.input-search-icon.wb-search{"aria-hidden" => "true"}
+            %input.form-control{:name => "site-search", :placeholder => "Search...", :type => "text"}/
+            %button.input-search-close.icon.wb-close{"aria-label" => "Close", "data-target" => "#site-navbar-search", "data-toggle" => "collapse", :type => "button"}
+    #site-navbar-collapse.collapse.navbar-collapse.navbar-collapse-toolbar
+      %ul.nav.navbar-toolbar.navbar-right.navbar-toolbar-right
+        %li.user
+          = current_user.account.name
+          %br/
+          %i= "Último acesso - #{current_user.last_signed_in_at.strftime('%d/%m/%Y')}" if current_user.last_signed_in_at.present?
+        %li.dropdown
+          %a.navbar-avatar.dropdown-toggle{"aria-expanded" => "false", "data-animation" => "scale-up", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %span.avatar.avatar-online
+              - if current_user.account.avatar?
+                %img{:alt => "...", :src => "#{current_user.account.avatar_url}"}/
+                %i
+              - else
+                %img{:alt => "...", :src => "/images/default-avatar.png"}/
+                %i
+            %b
+          %ul.dropdown-menu{:role => "menu", "data-no-turbolink" => true}
+            %li{:role => "presentation"}
+              %a{:href => "javascript:void(0)", :role => "menuitem"}
+                %i.icon.wb-user{"aria-hidden" => "true"}
+                Meu Perfil
+            %li{:role => "presentation"}
+              %a{:href => "javascript:void(0)", :role => "menuitem"}
+                %i.icon.wb-payment{"aria-hidden" => "true"}
+                Configurações
+            %li.divider{:role => "presentation"}
+            %li{:role => "presentation"}
+              = link_to "Encerrar sessão", authenticate.logout_staffs_path
+           
