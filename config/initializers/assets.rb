@@ -15,3 +15,4 @@ Rails.application.config.assets.precompile += %w( portal/img/logo_codhab.png )
 Rails.application.config.assets.precompile += %w( footer-concursos.png )
 
 Rails.application.config.assets.precompile += %w( shared/extranet.js shared/extranet.css )
+Rails.application.config.assets.precompile += %w( shared/portal.js shared/portal.css )

@@ -23,8 +23,8 @@
     %title Portal Codhab
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", :rel => "stylesheet", :type => "text/css"}/
-    = stylesheet_link_tag 'portal', media: 'screen'
-    = javascript_include_tag 'portal', media: 'screen', 'data-turbolinks-eval' => 'false'
+    = stylesheet_link_tag 'shared/portal', media: 'screen'
+    = javascript_include_tag 'shared/portal', media: 'screen', 'data-turbolinks-eval' => 'false'
     = csrf_meta_tags
   %body
     = render 'partials/shared/portal/top_nav'

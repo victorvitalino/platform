@@ -65,7 +65,7 @@ module Shared
 
       permissions   = Person::SystemPermission.where(system_id: system_module.systems.map(&:id))
       (current_user.privilege_id & permissions.map(&:code)).present?
-
+      
     end
 
     def allow_nav?(code)

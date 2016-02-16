@@ -2,7 +2,7 @@ nav:
   portal:
     info:
       label: "Portal"
-      code: 20
+      code: 21
       icon: 'wb-globe'
       link: '#'
     modules:
@@ -64,25 +64,25 @@ nav:
             controller: 'cms/galleries'
             action: 'index'
       concourse:
-        code: 0
+        code: 21101
         label: 'Concursos'
         controller: '#'
         sub:
           new_project:
             module: 'concourse'
-            code: 0
+            code: '21101'
             label: 'Novo concurso'
             controller: 'concourse/projects'
             action: 'new'
           project:
             module: 'concourse'
-            code: 0
+            code: '21104'
             label: 'Concursos'
             controller: 'concourse/projects'
             action: 'index'
           candidates:
             module: 'concourse'
-            code: 0
+            code: '21107'
             label: 'Inscrições'
             controller: 'concourse/candidates'
             action: 'view_all'

@@ -1,14 +1,14 @@
 /*
 *= require jquery-ui/autocomplete
-*= require shared/remark/stylesheets/bootstrap.min
-*= require shared/remark/stylesheets/bootstrap.extend.min
-*= require shared/remark/stylesheets/site.min
-*= require shared/remark/stylesheets/skin-tools.min
-*= require shared/remark/stylesheets/web-icons.min
-*= require shared/remark/stylesheets/brand-icons.min
-*= require shared/remark/stylesheets/custom-layout.min
-*= require shared/remark/stylesheets/document.min
-*= require shared/remark/stylesheets/login.min
+*= require remark/stylesheets/bootstrap.min
+*= require remark/stylesheets/bootstrap.extend.min
+*= require remark/stylesheets/site.min
+*= require remark/stylesheets/skin-tools.min
+*= require remark/stylesheets/web-icons.min
+*= require remark/stylesheets/brand-icons.min
+*= require remark/stylesheets/custom-layout.min
+*= require remark/stylesheets/document.min
+*= require remark/stylesheets/login.min
 */
 
 li a.btn {

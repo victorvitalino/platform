@@ -24,6 +24,7 @@ module Person
       if @staff.present?
         array = @staff.privilege_id.to_a
         array = array.delete(@permission)
+        
         @staff.update(privilege_id: array)
       end
     end

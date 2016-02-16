@@ -1,1 +1,9 @@
-//= require_tree .
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui/autocomplete
+//= require turbolinks
+//= require shared/bootstrap/js/bootstrap.min
+//= require shared/jquery/mask/jquery.maskmoney.min
+//= require shared/jquery/mask/jquery.mask.min
+//= require shared/tinymce/tinymce.min
+//= require remark/javascripts/custom

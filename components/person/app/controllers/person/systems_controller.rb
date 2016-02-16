@@ -6,7 +6,7 @@ module Person
 		before_action :set_system, only: [:edit, :destroy, :update]
 
 		def index
-			authorize :system,  :index?
+#			authorize :system,  :index?
 		end
 
 		def new

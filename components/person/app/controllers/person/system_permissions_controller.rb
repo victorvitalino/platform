@@ -8,7 +8,7 @@ module Person
 
 		def index
 			authorize :system_permission,  :index?
-			authorize @system_permissions
+#			authorize @system_permissions
 		end
 
 		def new
