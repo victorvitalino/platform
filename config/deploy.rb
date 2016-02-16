@@ -57,8 +57,8 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    #invoke :'rails:assets_precompile'
-    invoke :'deploy:cleanup'
+    invoke :'rails:assets_precompile' if ENV["ASSETS"] == 1
+    invoke :'deploy:cleanup' 
     invoke :'log:unicorn:clean'
     invoke :'log:app:clean'
 
