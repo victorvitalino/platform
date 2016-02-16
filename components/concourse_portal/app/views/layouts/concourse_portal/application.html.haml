@@ -34,8 +34,8 @@
 
 
   %body
-    = render 'layouts/partials/portal/top_nav'
-    = render 'layouts/partials/portal/header'
+    = render 'partials/shared/portal/top_nav'
+    = render 'partials/shared/portal/header'
     %div{class: (controller_name != 'home') ? 'container main' : '' }
       .container
         .row
@@ -60,4 +60,4 @@
                     .alert{class: "alert-#{key}"}
                       = value
                   = yield
-    = render 'layouts/partials/portal/footer'
+    = render 'partials/shared/portal/footer'
