@@ -6,29 +6,17 @@
         Voltar para lista de concursos
   %li.list-group-item
     %a{:href => "#{concourse.project_path(@project)}"} Visão geral
-  - if policy(:page, namespace: Concourse).index?
     %li.list-group-item
       %a{:href => "#{concourse.project_pages_path(@project)}"} Páginas
-  - if policy(:nav, namespace: Concourse).index?
     %li.list-group-item
       %a{:href => "#{concourse.project_navs_path(@project)}"} Menus
-  - if policy(:project, namespace: Concourse).update?
     %li.list-group-item
       %a{:href => "#"} Tipos de Inscrição
-  - if policy(:project, namespace: Concourse).update?
     %li.list-group-item
       %a{:href => "#"} Tipos de Participação
-  - if policy(:consult, namespace: Concourse).index?
     %li
       %hr/
     %li.list-group-item
       %a{:href => "#{concourse.project_consults_path(@project)}"} Consultas
-  - if policy(:candidate, namespace: Concourse).index?
     %li.list-group-item
       %a{:href => "#{concourse.project_candidates_path(@project)}"} Inscrições
-  - if policy(:candidate, namespace: Concourse).participation?
-    %li.list-group-item
-      %a{:href => "#"} Participações
-  - if policy(:candidate, namespace: Concourse).winner?
-    %li.list-group-item
-      %a{:href => "#"} Vencedores
