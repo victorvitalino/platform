@@ -7,7 +7,10 @@
         .col-sm-6.col-md-4
           .thumbnail
             .thumbnail-img
-              = image_tag p.thumb if p.thumb?
+              - if p.thumb?
+                = image_tag p.thumb 
+              - else
+                = image_tag "http://api.codhab.df.gov.br/static/content/images/#{p.thumb.file.filename}"
             .caption.caption_notice
               %a.link_caption
                 %b= link_to "#{(p.post_category.present?) ? p.post_category.title : ''}", post_path(p), class: 'council'
