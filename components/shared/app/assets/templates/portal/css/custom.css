@@ -1280,15 +1280,16 @@ width: auto!important;
 max-width: 1355px;
 }
 /*---- teste -----*/
+/*
 .board{
     width: 35%;
 margin: 0px auto;
-/*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
+/*box-shadow: 10px 10px #ccc,-10px 20px #ddd; 
 }
 .board .nav-tabs {
     position: relative;
     /* border-bottom: 0; */
-    /* width: 80%; */
+    /* width: 80%; 
     height: 100px;
     margin: 40px auto;
     margin-bottom: 0;
@@ -1323,7 +1324,7 @@ p.narrow{
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     color: #555555;
     cursor: default;
-    /* background-color: #ffffff; */
+    /* background-color: #ffffff; 
     border: 0;
     border-bottom-color: transparent;
 }
@@ -1410,7 +1411,7 @@ li.active span.round-tabs.five{
     border-bottom-color: #fff;
     z-index: 1;
     transition:0.2s ease-in-out;
-}*/
+}
 li:after {
     content: " ";
     position: absolute;
@@ -1468,7 +1469,7 @@ padding-top: 50px;
 
 .btn.green{
     background-color:#5cb85c;
-    /*border: 2px solid #5cb85c;*/
+    /*border: 2px solid #5cb85c;
     color: #ffffff;
 }
 
@@ -1505,8 +1506,8 @@ left: 35%;
     padding:12px 20px;
     }
 }
-
-/* -------------- TABELAS SITE ------------- */
+*/
+/* -------------- TABELAS SITE -------------  */
 
 
 table {
