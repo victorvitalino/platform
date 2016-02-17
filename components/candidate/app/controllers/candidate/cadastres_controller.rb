@@ -7,6 +7,7 @@ module Candidate
     def index
       authorize :cadastre, :index?
       @candidate = Cadastre.find_by_cpf(params[:cpf]) rescue nil
+      @candidate_assessment = Protocol::Assessment.where(cpf: params[:cpf]) rescue nil
     end
 
     def edit
@@ -51,6 +52,7 @@ module Candidate
       redirect_to cadastres_path(cpf: @cadastre_procedural.cadastre.cpf)
 
     end
+
 
 
     private

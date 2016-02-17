@@ -15,6 +15,7 @@ pt-BR:
       staffs: "Usuários"
       systems: "Sistemas"
       staff_permissions: "Permissões"
+      sectors: "Setores"
     concourse:
       projects: "Projetos"
       pages: "Páginas"

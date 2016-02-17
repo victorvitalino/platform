@@ -1,5 +1,6 @@
 module Candidate
   module ApplicationHelper
+    include HabitationPortal::ApplicationHelper
     def pontuation(cpf, income)
       case income.to_i
       when 0..1600
