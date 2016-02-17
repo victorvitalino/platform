@@ -30,6 +30,7 @@
         %h2.bold Detalhamento
       %hr/
       %section
+      - if @candidate.present?
         .row
           .col-md-12
             %table.table.table-striped.table-bordered.table-condensed
@@ -69,7 +70,6 @@
                     %td
                     %td
                     %td= @candidate.pontuations.last.total if @candidate.pontuations.present?
-        - if @candidate.present?
           .row
             .col-md-12
               %h4 Dados pessoais
