@@ -117,12 +117,14 @@
           %thead
             %tr
               %th Descrição
-              %th Informação
+              %th Informação - opção 1
+              %th Informação - opção 2
           %tbody
             - @candidate.properties.each do |p|
               %tr
                 %td= p[0].humanize
-                %td= link_to "Baixar Arquivo", "http://api.codhab.df.gov.br/static/#{p[1]}", target: '_blank'
+                %td.col-md-2= link_to "Baixar Arquivo", "http://api.codhab.df.gov.br/static/#{p[1]}", target: '_blank'
+                %td.col-md-2= link_to "Baixar Arquivo", "http://www.codhab.df.gov.br/files/concourse/project/#{p[1]}", target: '_blank'
     %hr/
     .row
       .col-md-12
