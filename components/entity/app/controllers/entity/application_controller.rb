@@ -1,4 +1,4 @@
-require_dependency 'shared/applicatioN_helper'
+require_dependency 'shared/application_helper'
 
 module Entity
   class ApplicationController < ActionController::Base
