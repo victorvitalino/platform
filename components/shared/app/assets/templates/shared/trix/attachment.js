@@ -9,7 +9,7 @@
     }
   });
 
-  host = "http://extranet.localhost.df.gov.br:3000/arquivos/upload_file/";
+  host = URL_BASE + "/arquivos/upload_file/";
 
   uploadAttachment = function(attachment) {
     var file, form, key, xhr;
