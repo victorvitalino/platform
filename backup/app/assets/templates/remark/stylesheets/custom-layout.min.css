@@ -1,3 +1,7 @@
+.form-control {
+  height: 50px !important;
+  font-size: 18px !important;
+}
 .btn-warning-login {
     color: #4A4A4A;
     background-color: #FFCB08;

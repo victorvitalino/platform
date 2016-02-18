@@ -13,11 +13,14 @@
     .row
       .col-md-12
         = f.label :mini_description, class: 'fg-label'
-        = f.input :mini_description, label: false
+        = f.input :mini_description, label: false, as: :hidden, input_html: { id: 'mini_description'}
+        %trix-editor.trix-content{:input => "mini_description"}
     .row
       .col-md-12
         = f.label :apresentation, class: 'fg-label'
-        = f.input :apresentation, label: false
+        = f.input :apresentation, label: false, as: :hidden, input_html: { id: 'apresentation'}
+        %trix-editor.trix-content{:input => "apresentation"}
+
     %hr/
     .row
       .col-md-3
@@ -52,7 +55,8 @@
     .row
       .col-md-12
         = f.label :consultation_description, class: 'fg-label'
-        = f.input :consultation_description, label: false
+        = f.input :consultation_description, as: :hidden, label: false, input_html: { id:"consultation_description" }
+        %trix-editor.trix-content{:input => "consultation_description"}
     %hr/
     .row
       .col-md-2
@@ -68,6 +72,6 @@
     %hr/
     .row
       .col-md-12
-        = f.button :submit, class: 'btn btn-success'
+        = f.submit "Salver concurso", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
         = link_to "voltar", projects_path,class: 'btn btn-dark' 
 

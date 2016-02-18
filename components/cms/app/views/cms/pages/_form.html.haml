@@ -12,7 +12,8 @@
     .row
       .col-md-12
         = f.label :content, class: 'fg-label'
-        = f.input :content, label: false
+        = f.input :content, label: false, as: :hidden, input_html: { id: 'content'}
+        %trix-editor.trix-content{:input => "content"}
     %hr/
     .row
       .col-md-3

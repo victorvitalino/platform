@@ -5,5 +5,6 @@
 //= require shared/bootstrap/js/bootstrap.min
 //= require shared/jquery/mask/jquery.maskmoney.min
 //= require shared/jquery/mask/jquery.mask.min
-//= require shared/tinymce/tinymce.min
+//= require shared/trix/trix.min
+//= require shared/trix/attachment
 //= require remark/javascripts/custom

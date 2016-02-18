@@ -9,6 +9,7 @@
 *= require remark/stylesheets/custom-layout.min
 *= require remark/stylesheets/document.min
 *= require remark/stylesheets/login.min
+*= require shared/trix/trix.min.css
 */
 
 li a.btn {

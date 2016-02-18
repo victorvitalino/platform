@@ -1,30 +1,19 @@
 = simple_form_for(@post) do |f|
   .card-body.card-padding
     .row
-      .col-md-12
+      .col-md-8
         = f.label :title, class: 'fg-label'
         = f.input :title, label: false, input_html: { placeholder: 'Digite um titulo' }
-    .row
-      .col-md-12
-        = f.label :content, class: 'fg-label'
-        = f.input :content, label: false
-    .row
-      .col-md-12
+      .col-md-4
         = f.label :post_category, class: 'fg-label'
         = f.association :post_category, label: false, prompt: 'Selecione...'
     .row
-      .col-md-3
-        = f.label :thumb, as: 'file', class: 'fg-label'
-        %br
-        %br
-        = f.input :thumb, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
-
-      .col-md-3
-        = f.label :thumbnail, as: 'file', class: 'fg-label'
-        %br
-        %br
-        = f.input :thumbnail, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
-
+      .col-md-12
+        = f.label :content,  class: 'fg-label'
+        = f.input :content, as: :hidden, label: false, input_html: { id: 'content'}
+        %trix-editor.trix-content{:input => "content"}
+    %hr/
+    .row
       .col-md-2
         = f.label :slider
         = f.input :slider, label: false, as: :select, include_blank: false
@@ -32,14 +21,17 @@
         = f.label :publish
         = f.input :publish, label: false, as: :select, include_blank: false
       .col-md-2
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "ts6"}
-              = f.label :active_photo
-          %br
-          %br
-          = f.check_box :active_photo, id: 'ts6',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "ts6"}
+        = f.label :active_photo, as: :select, class: 'fg-label'
+        %br
+        = f.input :active_photo, as: :select, label: false, include_blank: false, input_html: { placeholder: 'Selecione' }
+      .col-md-2
+        = f.label :thumb, as: 'file', class: 'fg-label'
+        %br
+        = f.input :thumb, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
+      .col-md-2
+        = f.label :thumbnail, as: 'file', class: 'fg-label'
+        %br
+        = f.input :thumbnail, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
     .row
       .col-md-4
         = f.label :author, class: 'fg-label'
@@ -50,12 +42,15 @@
       .col-md-4
         = f.label :link, class: 'fg-label'
         = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
+    %hr/
     .row
       .col-md-12
         = f.label :resume
-        = f.input :resume, label: false
+        = f.input :resume,as: :hidden, label: false, input_html: { id: 'resume'}
+        %trix-editor.trix-content{:input => "resume"}
+    %hr/
     .row
-      .col-md-3
+      .col-md-2
         = f.label :date, as: 'string', class: 'fg-label'
         = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@post.date) ? localize(f.object.date) : nil}
       .col-md-3
@@ -67,5 +62,5 @@
     %hr/
     .row
       .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to 'Voltar',posts_path , class: 'btn btn-inverse'
+        = f.submit "Salvar Postagem", class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+        = link_to 'Voltar',posts_path , class: 'btn btn-dark'

@@ -21,15 +21,9 @@
         = f.label :order, class: 'fg-label'
         = f.input :order, label: false
     .row
-      .col-md-12
-        .toggle-switch{"data-ts-color" => "blue"}
-          %label
-            .ts-label{:for => "publish"}
-              = f.label :publish
-          %br
-          %br
-          = f.check_box :publish, id: 'publish',hidden: 'hidden', type: 'checkbox'
-          %label.ts-helper{:for => "publish"}
+      .col-md-2
+        = f.label :publish, class: 'fg-label'
+        = f.input :publish, as: :select, include_blank: false, label: false
     %hr/
     .row
       .col-md-12
