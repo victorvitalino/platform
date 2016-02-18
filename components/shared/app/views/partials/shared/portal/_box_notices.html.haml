@@ -9,7 +9,7 @@
             .thumbnail-img
               - if p.thumb?
                 = image_tag p.thumb 
-              - else
+              - elsif p.thumb.file.present?
                 = image_tag "http://api.codhab.df.gov.br/static/content/images/#{p.thumb.file.filename}"
             .caption.caption_notice
               %a.link_caption
