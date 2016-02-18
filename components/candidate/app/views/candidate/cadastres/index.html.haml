@@ -1,5 +1,4 @@
 .page-content
-
   .documents-wrap.article
     #articleAffix.article-sidebar.affix-top
       %ul.list-group.nav
@@ -31,7 +30,46 @@
         %h2.bold Detalhamento
       %hr/
       %section
-        - if @candidate.present?
+      - if @candidate.present?
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-condensed
+              %thead
+                %tr
+                  %th Situação do Candidato
+                  %th Programa
+                  %th Faixa
+                  %th Lista
+                  %th Posição
+                  %th Última pontuação
+              %tbody
+                - if @candidate.list.present?
+                  - @candidate.list.each do |list|
+                    %tr
+                      %td
+                        - if @candidate.current_situation_status == 'ok'
+                          %span.label.label-success
+                            = @candidate.current_situation_name
+                        - if @candidate.current_situation_status == 'pendente'
+                          %span.label.label-warning
+                            PENDENTE - #{@candidate.current_situation_name}
+                        - if @candidate.current_situation_status == 'cinza'
+                          %span.label.label-default
+                            PENDENTE - #{@candidate.current_situation_name}
+                      %td= program(@candidate.program_id)
+                      %td= list[1][0]
+                      %td= translate_list(list[0])
+                      %td= "#{list[2]}º"
+                      %td= @candidate.pontuations.last.total if @candidate.pontuations.present?
+
+                - else
+                  %tr
+                    %td= @candidate.current_situation_name
+                    %td= program(@candidate.program_id)
+                    %td
+                    %td
+                    %td
+                    %td= @candidate.pontuations.last.total if @candidate.pontuations.present?
           .row
             .col-md-12
               %h4 Dados pessoais
@@ -70,7 +108,7 @@
                       %td= @candidate.rg
                       %td= @candidate.rg_uf
                       %td= @candidate.born_uf
-                      %td renda titular
+                      %td= @candidate.income
                   %thead{:style => "display: table-header-group;"}
                     %tr
                       %th Chegada no DF
@@ -110,6 +148,30 @@
                       %td= @candidate.telephone
                       %td= @candidate.telephone_optional
                       %td= @candidate.celphone
+          %hr/
+          .row
+            .col-md-12
+              %h4 Dependentes
+              .bootstrap-table
+                %table.table.table-striped.table-bordered.table-condensed
+                  %thead{:style => "display: table-header-group;"}
+                    %tr
+                      %th Nome
+                      %th Data da Nascimento
+                      %th CPF
+                      %th Parentesco
+                      %th Sexo
+                      %th Condição Especial
+                  %tbody
+                    - @candidate.dependents.each do |deps|
+                      %tr
+                        %td= deps.name.upcase
+                        %td= deps.born.strftime('%d/%m/%Y')
+                        %td= deps.cpf
+                        %td= deps.kinship.name if deps.kinship.present?
+                        %td= deps.gender
+                        %td= deps.special_condition.name if deps.special_condition.present?
+
           %hr/
           .row
             .col-md-12
@@ -155,6 +217,28 @@
           %hr/
           .row
             .col-md-12
+              %h4 Endereço Vinculado
+              .bootstrap-table
+                - if @candidate.cadastre_address.present?
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th Cidade
+                        %th Endereço
+                        %th Doado?
+                        %th Empreendimento
+                    %tbody
+                      - @candidate.cadastre_address.each do |address|
+                        %tr
+                          %td= address.unit.city.name if address.unit.present?
+                          %td= address.unit.complete_address if address.unit.present?
+                          %td= address.unit.donate ? "Sim" : "Não" if address.unit.present?
+                          %td= address.unit.enterprises.name if address.unit.present? && address.unit.enterprises.present?
+                - else
+                  Informação não disponível
+          %hr/
+          .row
+            .col-md-12
               %h4 Indicação para empreendimento
               .bootstrap-table
                 - if @candidate.enterprise_cadastres.present?
@@ -164,12 +248,12 @@
                         %th Empreendimento
                         %th Data de encaminhamento
                         %th Situação
-                  %tbody
-                    - @candidate.enterprise_cadastres.each do |enterprise|
-                      %tr
-                        %td= enterprise.enterprise.name if enterprise.enterprise.present?
-                        %td= enterprise.created_at.strftime("%d/%m/%Y")
-                        %td= enterprise.status ? "Indicação ativa" :  "Indicação inativa"
+                    %tbody
+                      - @candidate.enterprise_cadastres.each do |enterprise|
+                        %tr
+                          %td= enterprise.enterprise.name if enterprise.enterprise.present?
+                          %td= enterprise.created_at.strftime("%d/%m/%Y")
+                          %td= enterprise.status ? "Indicação ativa" :  "Indicação inativa"
                 - else
                   Informação não disponível
           %hr/
@@ -192,3 +276,25 @@
                           %td= (attendance.convocation.present?) ? attendance.convocation.description  : 'Informação não disponível'
                           %td= (attendance.observation.present?) ? attendance.observation : 'Informação não disponível'
                           %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
+          %hr/
+          .row
+            .col-md-12
+              %h4 Documentos
+              .bootstrap-table
+                - if @candidate_assessment.present?
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th Processo
+                        %th Documento
+                        %th Assunto
+                        %th Observação
+                    %tbody
+                      - @candidate_assessment.order(:created_at).each do |assessment|
+                        %tr
+                          %td= assessment.document_number
+                          %td= assessment.document_type.name
+                          %td= assessment.subject.name
+                          %td= assessment.observation
+                - else
+                  Informação não disponível
