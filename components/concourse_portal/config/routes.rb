@@ -6,7 +6,7 @@ ConcoursePortal::Engine.routes.draw do
 
     namespace :subscribe_candidate, path: 'inscricao' do 
       root "candidates#index"
-
+      
       resources :candidates, path: 'candidato' do 
         get 'sucesso'
       end

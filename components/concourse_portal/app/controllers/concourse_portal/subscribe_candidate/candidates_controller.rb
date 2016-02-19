@@ -7,6 +7,7 @@ module ConcoursePortal
       before_action :set_subscribe, except: [:index]
 
       def index
+        session[:subscribe_id] = nil
       end
     
       def new
@@ -55,11 +56,12 @@ module ConcoursePortal
       end  
 
       def set_subscribe
+
         session[:subscribe_id] = params[:subscribe_id] unless session[:subscribe_id].present?
 
         @subscribe = ConcoursePortal::Subscribe.find(session[:subscribe_id]) rescue nil
 
-        redirect_to '/404' if @subscribe.nil?
+        redirect_to action: :index if @subscribe.nil?
       end
     end
   end
