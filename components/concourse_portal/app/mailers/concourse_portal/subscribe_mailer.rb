@@ -22,5 +22,9 @@ module ConcoursePortal
       @key        =  key
       mail(to: email, subject: "CODHAB | CONCURSOS - Atualização de senha")
     end
+
+    def checked(email)
+      mail(to: email, subject: "Concurso Público Nacional de Projetos de Arquitetura e Complementares para Centros de Ensino Infantil (CEI) – Inscrição Homologada")
+    end
   end
 end
