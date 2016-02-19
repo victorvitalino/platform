@@ -19,6 +19,10 @@
       = f.input :celphone, as: :string
     .col-md-2
       = f.association :member_job, include_blank: false
+    .col-md-2
+      = f.input :start, as: :string, input_html: { class: 'date', value: (f.object.start.present?) ? localize(f.object.start) : ''}
+    .col-md-2
+      = f.input :end, as: :string, input_html: { class: 'date', value: (f.object.end.present?) ? localize(f.object.end) : ''}
 
   %hr/
   %h4 Associado a mais de uma entidade
@@ -31,8 +35,6 @@
   .row
     .col-md-4
       = f.input :certificate_civil_criminal, as: :file
-    .col-md-4
-      = f.input :photo, as: :file
   %hr/
   .row
     .col-md-12

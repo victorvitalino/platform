@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  system_id: 
+  system_permission_id: 
+  system_module_id: 
+  staff_id: 
+
+two:
+  system_id: 
+  system_permission_id: 
+  system_module_id: 
+  staff_id: 

@@ -1,9 +1,7 @@
 = simple_form_for @document, url: restrict_area_documentations_path do |f|
   .row
-    .col-md-3
-      = f.input :document_type, label: "Tipo",as: :select, collection: Entity::DocumentCategory.document_types.map { |k, v| [k.humanize, v]}, include_blank: false, prompt: "selecione..."
-    .col-md-6
-      = f.association :document_category, collection: {}, include_blank: false, prompt: 'selecione o tipo...', hint: "Caso necessário enviar mais de um arquivo para a mesma categoria, favor criar um arquivo zipado com todos e enviar"
+    .col-md-9
+      = f.association :document_category, collection: Entity::DocumentCategory.actives.where.not(id: @entity.documents.map(&:document_category_id)), include_blank: false, prompt: 'selecione o tipo...', hint: "Caso necessário enviar mais de um arquivo para a mesma categoria, favor criar um arquivo zipado com todos e enviar"
     .col-md-2
       = f.input :archive_path, as: :file, hint: "Tamanho máximo 20 MB"
   .row
@@ -12,21 +10,3 @@
   .row
     .col-md-12
       = f.submit "Enviar documento", class: 'btn btn-warning btn-sm', data: {disable_with: "Enviando arquivo...."}
-:javascript
-
-  $(document).ready(function(){
-
-    $("#document_document_type").on('change', function() {
-      var _id   = $(this).val();
-      $.getJSON("#{restrict_area_document_categories_path}?type=" + _id, function(data) {
-        html  = ""
-        for(var i = 0; i < data.length; i++) {
-          html += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
-        }
-        if(html == "") {
-          html = "<option value>selecione um tipo...</option>"
-        }
-       $("#document_document_category_id").html(html)
-      });
-    })
-  })

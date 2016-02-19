@@ -1,6 +1,7 @@
 nav:
   management:
     info:
+      module: 'management'
       label: "Gestão"
       code: 40
       icon: 'wb-grid-9'

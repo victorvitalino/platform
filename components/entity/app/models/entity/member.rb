@@ -9,7 +9,6 @@ module Entity
     validates :telephone, presence:  true, numericality: true
     validates :telephone_optional, :celphone, numericality: true, allow_blank: true
     validates :member_job, :certificate_civil_criminal, presence: true
-    validates :photo, presence: true
     validates :cpf, uniqueness: { scope: :cadastre_id}
 
     attr_accessor :associated_entities

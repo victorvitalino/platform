@@ -13,5 +13,6 @@
     = render "partials/shared/remark/nav" if user_signed_in?
     = render "partials/shared/remark/subnav"
     .page-header
-      = render "partials/shared/remark/breadcrumb"
-      = render "partials/shared/remark/flash_message"
+      .container
+        = render "partials/shared/remark/breadcrumb"
+        = render "partials/shared/remark/flash_message"

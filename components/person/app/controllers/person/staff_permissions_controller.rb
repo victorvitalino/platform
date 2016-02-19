@@ -1,31 +1,43 @@
 require_dependency 'person/application_controller'
 module Person
   class StaffPermissionsController < ApplicationController
-    before_action :set_staff, only: [:enable, :disable, :index]
-    before_action :set_permission, only: [:enable, :disable]
+    before_action :set_staff, only: [:add, :remove, :index, :show]
+    before_action :set_permission, only: [:add, :remove]
 
     def index
-      authorize :staff_permission,  :index?
-      @systems = System.all
-      @staff_permissions = StaffPermission.all
+      @system = System.find(params[:staff_system_id])
+      @permissions = @system.system_permissions
     end
 
-    def enable
-      authorize :staff_permission,  :enable?
-      if @staff.present?
-        array = @staff.privilege_id.to_a
-        array << @permission
-        @staff.update(privilege_id: array)
+    def add
+      @system = System.find(params[:staff_system_id])
+      @permission = SystemPermission.find(params[:staff_permission_id])
+      @staff.permissions.new({
+        system_permission_id: @permission.id,
+        system_module_id: @system.system_module_id,
+        system_id: @system.id,
+      })
+
+      if @staff.save
+        flash[:success] = t :success
+        redirect_to action: :index, staff_system_id: @system.id, staff_id: @staff.id
+      else
+        flash[:danger] =  t :danger
+        redirect_to action: :index, staff_system_id: @system.id, staff_id: @staff.id
       end
     end
 
-    def disable
-      authorize :staff_permission,  :disable?
-      if @staff.present?
-        array = @staff.privilege_id.to_a
-        array = array.delete(@permission)
-        
-        @staff.update(privilege_id: array)
+    def remove
+      @system = System.find(params[:staff_system_id])
+      @permission = SystemPermission.find(params[:staff_permission_id])
+      @staff_permission = @staff.permissions.find_by_system_permission_id(@permission)
+
+      if @staff_permission.destroy
+        flash[:success] = t :success
+        redirect_to action: :index, staff_system_id: @system.id, staff_id: @staff.id
+      else
+        flash[:danger] =  t :danger
+        redirect_to action: :index, staff_system_id: @system.id, staff_id: @staff.id
       end
     end
 

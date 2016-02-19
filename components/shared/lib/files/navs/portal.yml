@@ -1,31 +1,32 @@
 nav:
   portal:
     info:
+      module: 'portal'
       label: "Portal"
       code: 21
       icon: 'wb-globe'
       link: '#'
     modules:
       post:
-        code: 0
+        code: 21004
         label: 'Postagens'
         controller: '#'
         sub:
           new_post:
             module: 'cms'
-            code: 0
+            code: 21001
             label: 'Nova postagem'
             controller: 'cms/posts'
             action: 'new'
           posts:
             module: 'cms'
-            code: 0
+            code: 21004
             label: 'Postagens'
             controller: 'cms/posts'
             action: 'index'
           post_category:
             module: 'cms'
-            code: 0
+            code: 21033
             label: 'Categorias'
             controller: 'cms/post_categories'
             action: 'index'

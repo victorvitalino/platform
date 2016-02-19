@@ -16,21 +16,21 @@ Rails.application.routes.draw do
 
   constraints SubdomainConstraint do
     mount Dashboard::Engine                => '/',               as: 'dashboard',        module: 'dashboard'
-    mount Cms::Engine                      => "/cms",            as: 'cms',              module: 'cms'
-    mount Person::Engine                   => "/pessoas",        as: 'person',           module: 'person'
-    mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',         module: 'helpdesk'
+    mount Cms::Engine                      => "/cms",            as: 'cms',              module: 'portal'
+    mount Person::Engine                   => "/pessoas",        as: 'person',           module: 'management'
+    mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',         module: 'management'
     mount Protocol::Engine                 => "/protocolo",      as: 'protocol',         module: 'protocol'
-    mount Attendance::Engine               => "/atendimento",    as: 'attendance',       module: 'attendance'
-    mount Concourse::Engine                => "/concurso",       as: 'concourse',        module: 'concourse'
-    mount Candidate::Engine                => "/candidatos",     as: 'candidate',        module: 'candidate'
-    mount Schedule::Engine                 => "/agendamento",    as: 'schedule',         module: 'schedule'
-    mount Regularization::Engine           => "/regularizacao",  as: 'regularization',   module: 'regularization'
+    mount Attendance::Engine               => "/atendimento",    as: 'attendance',       module: 'habitation'
+    mount Concourse::Engine                => "/concurso",       as: 'concourse',        module: 'portal'
+    mount Candidate::Engine                => "/candidatos",     as: 'candidate',        module: 'habitation'
+    mount Schedule::Engine                 => "/agendamento",    as: 'schedule',         module: 'habitation'
+    mount Regularization::Engine           => "/regularizacao",  as: 'regularization',   module: 'habitation'
     mount Habitation::Engine               => "/habitacao",      as: 'habitation',       module: 'habitation'
-    mount Entity::Engine                   => "/entidades",      as: 'entity',           module: 'entity'
-    mount Firm::Engine                     => "/empresa",        as: 'firm',             module: 'firm'
-    mount Maintenance::Engine              => "/manutencao",     as: 'maintenance',      module: 'maintenance'
-    mount Brb::Engine                      => "/brb",            as: 'brb',              module: 'finance'
-    mount Archive::Engine                  => "/arquivos",       as: 'archive',          module: 'archive'
+    mount Entity::Engine                   => "/entidades",      as: 'entity',           module: 'habitation'
+    mount Firm::Engine                     => "/empresa",        as: 'firm',             module: 'habitation'
+    mount Maintenance::Engine              => "/manutencao",     as: 'maintenance',      module: 'management'
+    mount Brb::Engine                      => "/brb",            as: 'brb',              module: 'management'
+    mount Archive::Engine                  => "/arquivos",       as: 'archive',          module: 'portal'
   end
 
   constraints DomainConstraint do
@@ -43,6 +43,6 @@ Rails.application.routes.draw do
     mount FirmPortal::Engine            => "/empresa",          as: 'firm_portal',            module: 'firm_portal'
   end
 
-  mount Address::Engine                 => "/endereco",       as: 'address'
+  mount Address::Engine                 => "/endereco",       as: 'address', module: 'habitation'
   mount Authenticate::Engine            => "/acesso",         as: 'authenticate'         
 end

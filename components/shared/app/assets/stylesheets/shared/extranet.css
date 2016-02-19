@@ -1,6 +1,6 @@
 /*
 *= require jquery-ui/autocomplete
-*= require remark/stylesheets/bootstrap.min
+*= require shared/bootstrap/css/united.min
 *= require remark/stylesheets/bootstrap.extend.min
 *= require remark/stylesheets/site.min
 *= require remark/stylesheets/skin-tools.min

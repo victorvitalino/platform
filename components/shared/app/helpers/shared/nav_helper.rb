@@ -4,13 +4,13 @@ module Shared
   module NavHelper
    
     def nav_link_to(system_module)
+
       file = YAML.load_file(File.join(Rails.root,"components/shared/lib/files/navs/#{system_module}.yml")) rescue nil
       
       if file.present? && view_nav?(file['nav'][system_module])
         
         @html = <<-HTML
-          <li class='site-menu-category'>MENU</li>
-          <li class='site-menu-item has-sub'>
+          <li class="site-menu-item #{(params[:module] == file['nav'][system_module]['info']['module']) ? 'has-active has-sub' : 'has-sub'}">
             <a data-dropdown-toggle=false, href="#{file['nav'][system_module]['info']['link']}">
               <i class="site-menu-icon #{file['nav'][system_module]['info']['icon']}"></i>
               <span class="site-menu-title">#{file["nav"]["#{system_module}"]["info"]["label"]}</span>
@@ -19,6 +19,7 @@ module Shared
         HTML
 
         if file["nav"]["#{system_module}"]["modules"].present?
+          
           file["nav"]["#{system_module}"]["modules"].each do |nav|
             
             if allow_nav?(nav[1]['code'])
@@ -48,8 +49,10 @@ module Shared
             end
           end
         end
+
         @html += "</li></ul></li>"
         @html.html_safe
+        
       end
     end
 

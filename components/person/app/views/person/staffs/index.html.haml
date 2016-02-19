@@ -53,7 +53,7 @@
                       %span.label.label-default inativo
                   %td.col-sm-1
                     = link_to "", edit_staff_path(staff), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:staff, namespace: Person).update?
-                    = link_to "", staff_staff_permissions_path(staff),  title: 'Permissões', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-share-alt btn btn-warning btn-xs ' if policy(:StaffPermission, namespace: Person).index?
+                    = link_to "", staff_staff_systems_path(staff),  title: 'Permissões', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-share-alt btn btn-warning btn-xs ' if policy(:StaffPermission, namespace: Person).index?
           .row
             .col-md-6.col-md-offset-3
               = will_paginate @staffs, renderer: BootstrapPagination::Rails

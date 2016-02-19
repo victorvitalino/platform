@@ -1,8 +1,10 @@
 module Person
   class StaffPermission < ActiveRecord::Base
-    belongs_to :staff
+    belongs_to :system
     belongs_to :system_permission
+    belongs_to :system_module
+    belongs_to :staff
 
-    audited
+    validates_uniqueness_of :staff, :scope => :system_permission
   end
 end

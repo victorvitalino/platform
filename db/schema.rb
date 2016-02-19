@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211190232) do
+ActiveRecord::Schema.define(version: 20160219121700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1448,16 +1448,17 @@ ActiveRecord::Schema.define(version: 20160211190232) do
   add_index "person_sectors", ["responsible_id"], name: "index_person_sectors_on_responsible_id", using: :btree
 
   create_table "person_staff_permissions", force: :cascade do |t|
-    t.integer  "staff_id"
-    t.integer  "system_permission_id"
     t.integer  "system_id"
-    t.boolean  "status"
+    t.integer  "system_permission_id"
+    t.integer  "system_module_id"
+    t.integer  "staff_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   add_index "person_staff_permissions", ["staff_id"], name: "index_person_staff_permissions_on_staff_id", using: :btree
   add_index "person_staff_permissions", ["system_id"], name: "index_person_staff_permissions_on_system_id", using: :btree
+  add_index "person_staff_permissions", ["system_module_id"], name: "index_person_staff_permissions_on_system_module_id", using: :btree
   add_index "person_staff_permissions", ["system_permission_id"], name: "index_person_staff_permissions_on_system_permission_id", using: :btree
 
   create_table "person_staffs", force: :cascade do |t|

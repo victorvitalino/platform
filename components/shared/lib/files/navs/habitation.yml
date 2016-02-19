@@ -1,6 +1,7 @@
 nav:
   habitation:
     info:
+      module: 'habitation'
       label: "Habitação"
       code: 10
       icon: 'wb-home'

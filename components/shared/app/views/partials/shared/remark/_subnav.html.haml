@@ -1,13 +1,14 @@
 .site-menubar.site-menubar-light
-  .site-menubar-body
-    %div
+  .container
+    .site-menubar-body
       %div
-        %ul.site-menu
-          = nav_link_to('dashboard')
-          = nav_link_to('habitation')
-          = nav_link_to('portal')
-          = nav_link_to('protocol')
-          = nav_link_to('management')
+        %div
+          %ul.site-menu
+            = nav_link_to('dashboard')
+            = nav_link_to('habitation')
+            = nav_link_to('portal')
+            = nav_link_to('protocol')
+            = nav_link_to('management')
 
     
           /%li.site-menu-item.has-sub.pull-right

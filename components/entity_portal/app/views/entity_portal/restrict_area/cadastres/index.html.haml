@@ -111,7 +111,8 @@
                 %th Digital
             %tbody 
               - @entity.documents.each do |document|
-                %tr
-                  %td= document.document_category.name if document.document_category.present?
-                  %td= document.created_at.strftime('%d/%m/%Y às %H:%M')
-                  %td= link_to "Visualizar", document.archive_path.url, target: "_blank"
+                - if document.document_category.present?
+                  %tr
+                    %td= document.document_category.name 
+                    %td= document.created_at.strftime('%d/%m/%Y às %H:%M')
+                    %td= link_to "Visualizar", document.archive_path.url, target: "_blank"

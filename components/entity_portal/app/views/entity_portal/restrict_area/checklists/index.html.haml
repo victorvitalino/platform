@@ -76,33 +76,7 @@
                 %th Requisito
                 %th Situação
             %tbody
-              - Entity::DocumentCategory.requireds.order(:name).each do |d|
-                %tr
-                  %td.col-md-8= d.name
-                  %td.col-md-2
-                    = d.required ? "obrigatório" : "opcional"
-                  %td.col-md-2
-                    - if @entity.documents.map(&:document_category_id).include? d.id
-                      %span.label.label-success
-                        Enviado
-                    - else
-                      %span.label.label-default
-                        Aguardando
-      %hr/
-      .row
-        .col-md-12
-          %h4
-            %b Documentos Técnicos
-      .row
-        .col-md-12
-          %table.table.table-condensed.table-striped.table-bordered
-            %thead
-              %tr
-                %th Item
-                %th Requisito
-                %th Situação
-            %tbody
-              - Entity::DocumentCategory.tecnical.order(:name).each do |d|
+              - Entity::DocumentCategory.actives.requireds.order(:name).each do |d|
                 %tr
                   %td.col-md-8= d.name
                   %td.col-md-2

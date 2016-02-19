@@ -1,6 +1,7 @@
 nav:
   protocol:
     info:
+      module: 'protocol'
       label: "Protocolo"
       code: 30
       icon: 'wb-order'
