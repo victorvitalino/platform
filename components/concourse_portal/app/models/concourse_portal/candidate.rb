@@ -26,7 +26,7 @@ module ConcoursePortal
     validates :confirmation_password, presence: true, length: { minimum: 4, maximum: 28}, on: :create
     validate  :compare_password, on: :create
     validate  :unique_cnpj
-#    validate  :validate_current_password, on: :create
+   #validate  :validate_current_password, on: :create
 
 
     
