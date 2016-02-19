@@ -34,7 +34,7 @@ module ConcoursePortal
 
     def unique_cnpj
         if self.changes[:cnpj].present? && self.changes[:cnpj][0] != self.changes[:cnpj][1]
-            if ConcoursePortal::Candidate.where(cpf: self.cpf, cnpj: self.cnpj).present?
+            if ConcoursePortal::Candidate.where(cpf: self.cpf, cnpj: self.cnpj, subscribe_id: self.subscribe_id).present?
                 errors.add(:cpnj, 'este CNPJ já se encontra vínculado a uma outra inscrição')
             end
         end

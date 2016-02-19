@@ -16,7 +16,7 @@ module ConcoursePortal
 
       def create
         @candidate = @subscribe.candidates.new(set_params)
-
+        
         if @candidate.valid?
           @candidate.subscribe.fields.each do |field|
             if field.file?
@@ -26,7 +26,7 @@ module ConcoursePortal
             end
           end
 
-          if @candidate.save 
+          if @candidate.save!
             session[:candidate_id] = @candidate.id
             ConcoursePortal::SubscribeMailer.success(@candidate,@project).deliver_now!
             flash[:success] =  t :success
