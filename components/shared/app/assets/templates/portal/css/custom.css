@@ -1252,6 +1252,14 @@ img {
   background-position: 50% 50%;
   background-size: cover;
 }
+/*carta*/
+.carta{
+  margin-top: -17px!important;
+    margin-left: 160px!important;
+  /*background-image: url('/images/carta120.jpg');*/
+  /*float: left;*/
+
+}
 
 /*slider info*/
 .tab-fundo{background-image: url('/images/estadio.png');background-repeat: no-repeat;
@@ -1281,16 +1289,15 @@ width: auto!important;
 max-width: 1355px;
 }
 /*---- teste -----*/
-/*
 .board{
     width: 35%;
 margin: 0px auto;
-/*box-shadow: 10px 10px #ccc,-10px 20px #ddd; 
+/*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
 }
-.board .nav-tabs {
+.board .nav-tabs_um {
     position: relative;
     /* border-bottom: 0; */
-    /* width: 80%; 
+    /* width: 80%; */
     height: 100px;
     margin: 40px auto;
     margin-bottom: 0;
@@ -1322,10 +1329,10 @@ p.narrow{
     z-index: 1;
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+.nav-tabs_um > li.libugada.active > a, .nav-tabs_um > li.libugada.active > a:hover, .nav-tabs_um > li.libugada.active > a:focus {
     color: #555555;
     cursor: default;
-    /* background-color: #ffffff; 
+    /* background-color: #ffffff; */
     border: 0;
     border-bottom-color: transparent;
 }
@@ -1349,7 +1356,7 @@ span.round-tabs.one{
     color: rgb(34, 194, 34);border: 2px solid rgb(34, 194, 34);
 }
 
-li.active span.round-tabs.one{
+li.libugada.active span.round-tabs.one{
     background: #fff !important;
     border: 2px solid #ddd;
     color: rgb(34, 194, 34);
@@ -1359,7 +1366,7 @@ span.round-tabs.two{
     color: #febe29;border: 2px solid #febe29;
 }
 
-li.active span.round-tabs.two{
+li.libugada.active span.round-tabs.two{
     background: #fff !important;
     border: 2px solid #ddd;
     color: #febe29;
@@ -1369,7 +1376,7 @@ span.round-tabs.three{
     color: #3e5e9a;border: 2px solid #3e5e9a;
 }
 
-li.active span.round-tabs.three{
+li.libugada.active span.round-tabs.three{
     background: #fff !important;
     border: 2px solid #ddd;
     color: #3e5e9a;
@@ -1379,7 +1386,7 @@ span.round-tabs.four{
     color: #f1685e;border: 2px solid #f1685e;
 }
 
-li.active span.round-tabs.four{
+li.libugada.active span.round-tabs.four{
     background: #fff !important;
     border: 4px solid #ddd;
     color: #f1685e;
@@ -1389,16 +1396,16 @@ span.round-tabs.five{
     color: #049ae5;border: 2px solid #049ae5;
 }
 
-li.active span.round-tabs.five{
+li.libugada.active span.round-tabs.five{
     background-color: #049ae5 !important;
     border: 4px solid #fff;
     color: #fff;
 }
 
-.nav-tabs > li.active > a span.round-tabs{
+.nav-tabs_um > li.libugada.active > a span.round-tabs{
     background: #fafafa;
 }
-.nav-tabs > li {
+.nav-tabs_um > li.libugada {
     width: 50%;
 }
 /*li.active:before {
@@ -1412,8 +1419,8 @@ li.active span.round-tabs.five{
     border-bottom-color: #fff;
     z-index: 1;
     transition:0.2s ease-in-out;
-}
-li:after {
+}*/
+.nav-tabs_um > li.libugada:after {
     content: " ";
     position: absolute;
     left: 45%;
@@ -1425,7 +1432,7 @@ li:after {
     transition:0.1s ease-in-out;
 
 }
-li.active:after {
+.nav-tabs_um > li.libugada.active:after {
     content: " ";
     position: absolute;
     left: 46%;
@@ -1436,7 +1443,7 @@ li.active:after {
     border-bottom-color: #ddd;
 
 }
-.nav-tabs > li a{
+.nav-tabs_um > li.libugada a{
    width: 70px;
    height: 70px;
    margin: 20px auto;
@@ -1445,7 +1452,7 @@ li.active:after {
    border:none!important;
 }
 
-.nav-tabs > li a:hover{
+.nav-tabs_um > li.libugada a:hover{
     background: transparent;
 }
 
@@ -1470,7 +1477,7 @@ padding-top: 50px;
 
 .btn.green{
     background-color:#5cb85c;
-    /*border: 2px solid #5cb85c;
+    /*border: 2px solid #5cb85c;*/
     color: #ffffff;
 }
 
@@ -1491,13 +1498,13 @@ line-height: 50px;
     .tab-content .head{
         font-size:20px;
         }
-    .nav-tabs > li a {
+    .nav-tabs_um > li.libugada a {
 width: 50px;
 height: 50px;
 line-height:50px;
 }
 
-li.active:after {
+.nav-tabs_um > li.libugada.active:after {
 content: " ";
 position: absolute;
 left: 35%;
@@ -1507,7 +1514,7 @@ left: 35%;
     padding:12px 20px;
     }
 }
-*/
+
 /* -------------- TABELAS SITE -------------  */
 
 
