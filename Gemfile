@@ -109,4 +109,5 @@ path 'components' do
   gem 'archive'
 
   gem 'shared'
+  gem 'profile_user'
 end
