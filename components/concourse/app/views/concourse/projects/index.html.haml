@@ -4,7 +4,7 @@
       .panel-title
         %h4 
           Concursos
-          = link_to "Novo concurso", new_project_path, class: 'btn btn-success pull-right btn-sm'
+          = link_to "Novo concurso", new_project_path, class: 'btn btn-success pull-right btn-sm' if policy(:project, namespace: Concourse).new?
     .panel-body
       %table.table.table-striped.table-condensed.table-bordered
         %thead
