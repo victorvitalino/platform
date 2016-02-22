@@ -45,7 +45,7 @@
                   %td.col-md-1= staff.code
                   %td.col-md-1= staff.sector_current.acron if staff.sector_current.present?
                   %td.col-md-1= staff.job.name if staff.job.present?
-                  %td.col-md-1= staff.branch_line.telephone if staff.branch_line.present?
+                  %td.col-md-1= staff.branch_line
                   %td.col-md-1
                     - if staff.status
                       %span.label.label-success ativo

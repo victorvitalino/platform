@@ -17,7 +17,7 @@
     .col-md-4
       %div{style:'height: 100px'}
         - if f.object.curriculum.present?
-          = link_to "Baixar Arquivo", f.object.curriculum.url.to_s, class: 'btn btn-primary', style: 'margin-top: 30px;'
+          = link_to image_tag("/images/download.png", height: 100), f.object.curriculum.url.to_s, title: 'Baixar arquivo', style: 'margin-top: 30px;'
         - else
           %i Nenhum arquivo disponível
 
