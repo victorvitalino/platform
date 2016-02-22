@@ -12,17 +12,16 @@ module Brb
         if index != 0 
               
             date = line[299..306]
-            if date.to_i != 0
-              @invoice = Invoice.find(line[92..104].to_i) rescue nil 
+            date = Date.parse("#{date[0..1]}/#{date[2..3]}/#{date[4..8]}") rescue nil
+            code = line[108..109]
 
-              if @invoice.present?
+            @invoice = Invoice.find_by_our_number(line[70..81]) rescue nil 
 
-                @invoice.payment = Date.parse("#{date[0..1]}-#{date[2..3]}-#{date[4..8]}")
-                @invoice.status = 1
-                @invoice.bank_return = line
-                
-                @invoice.save!
-              end
+            if @invoice.present? && %w(05 06 15 16).include?(code) && date.present?
+              @invoice.payment = date
+              @invoice.status = 1
+              @invoice.bank_return = line
+              @invoice.save
             end
         end
       end
