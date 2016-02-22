@@ -35,13 +35,15 @@ module Shared
                 @html += "<ul class='site-menu-sub'>"
 
                 nav[1]['sub'].each do |sub|
-                  @html += <<-HTML
-                      <li class='site-menu-item'>
-                        <a class='animsition-link' href="#{send(sub[1]['module']).url_for(controller: sub[1]['controller'], action: sub[1]['action'] )}">
-                          <span class='site-menu-title'>#{sub[1]['label']}</span>
-                        </a>
-                      </li>
-                  HTML
+                  if allow_nav?(sub[1]['code'])
+                    @html += <<-HTML
+                        <li class='site-menu-item'>
+                          <a class='animsition-link' href="#{send(sub[1]['module']).url_for(controller: sub[1]['controller'], action: sub[1]['action'] )}">
+                            <span class='site-menu-title'>#{sub[1]['label']}</span>
+                          </a>
+                        </li>
+                    HTML
+                  end
                 end
 
                 @html += "</ul>"
@@ -67,13 +69,14 @@ module Shared
       return false unless system_module.present? && system_module.systems.present?
 
       permissions   = Person::SystemPermission.where(system_id: system_module.systems.map(&:id))
-      (current_user.privilege_id & permissions.map(&:code)).present?
+      (current_user.permissions.map(&:system_permission_id) & permissions.map(&:id)).present?
       
     end
 
     def allow_nav?(code)
       return true if current_user.administrator?
-      current_user.privilege_id.to_a.include? code.to_i
+      permissions = Person::SystemPermission.where(code: code)
+      (current_user.permissions.map(&:system_permission_id) & permissions.map(&:id)).present?
     end
   end
 end

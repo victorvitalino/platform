@@ -2,19 +2,19 @@ module Concourse
   class NavPolicy < ApplicationPolicy
 
     def index?
-      true
+      allow?(21115)
     end
 
-    def create?
-      true
+    def new?
+      allow?(21114)
     end
 
-    def update?
-      true
+    def edit?
+      allow?(21114)
     end
 
     def destroy?
-      true
+      allow?(21114)
     end
   end
 end

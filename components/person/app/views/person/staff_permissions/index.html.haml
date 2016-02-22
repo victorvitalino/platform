@@ -16,7 +16,7 @@
             %th Código
             %th Ação
         %tbody
-          - @permissions.each do |permission|
+          - @permissions.order(:code).each do |permission|
             %tr
               %td= permission.action
               %td= permission.code

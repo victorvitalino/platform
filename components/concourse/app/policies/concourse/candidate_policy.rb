@@ -2,26 +2,17 @@ module Concourse
   class CandidatePolicy < ApplicationPolicy
 
     def index?
-      true
+      allow?(21107)
     end
 
-    def create?
-      false
+    def edit?
+      allow?(21109)
     end
 
-    def update?
-      true
+    def new_observation?
+      allow?(21108)
     end
 
-    def destroy?
-      false
-    end
-
-    def participation?
-    end
-
-    def winner?
-    end
 
   end
 end

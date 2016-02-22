@@ -6,14 +6,7 @@ module Cms
       @user = user
       @record = record
     end
-
-    def view_nav?
-      return true if user.account.administrator
-      system        = Person::System.find_by_code('210') rescue nil
-      permissions   = Person::SystemPermission.where(system_id: system.id)
-      (user.account.privilege_id & permissions.map(&:code)).present?
-    end
-
+   
     def show?
       scope.where(:id => record.id).exists?
     end
@@ -41,10 +34,11 @@ module Cms
     def scope
       Pundit.policy_scope!(user, record.class)
     end
-    #VERIFICA SE O USUÁRIO POSSUI O CÓDIGO DA PERMISSÃO
+   
     def allow?(code)
       return true if user.account.administrator?
-      user.account.privilege_id.to_a.include? code.to_i
+      permissions = Person::SystemPermission.where(code: code)
+      (user.permissions.map(&:system_permission_id) & permissions.map(&:id)).present?
     end
 
     private

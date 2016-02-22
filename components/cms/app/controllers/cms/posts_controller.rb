@@ -23,7 +23,7 @@ module Cms
 
     # GET /posts/1/edit
     def edit
-
+     authorize :post, :update?
     end
 
     # POST /posts

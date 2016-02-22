@@ -43,13 +43,13 @@ nav:
             label: 'Pesquisa geral'
             controller: 'candidate/cadins'
       attendant:
-        code: 0
+        code: [118103]
         label: 'Atendimento'
         controller: '#'
         sub: 
           schedule:
             module: 'schedule'
-            code: 0
+            code: 118103
             label: 'Agendamento'
             controller: 'schedule/agendas'
       entity:

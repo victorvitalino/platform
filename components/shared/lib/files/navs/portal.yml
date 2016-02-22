@@ -8,7 +8,7 @@ nav:
       link: '#'
     modules:
       post:
-        code: 21004
+        code: [21001, 201004,21033, 21004]
         label: 'Postagens'
         controller: '#'
         sub:
@@ -31,59 +31,59 @@ nav:
             controller: 'cms/post_categories'
             action: 'index'
       page:
-        code: 0
+        code: [21011, 21012, 21013, 21014, 21015, 21016]
         label: "Páginas"
         controller: '#'
         sub:
           new_page:
             module: 'cms'
-            code: 0
+            code: 21011
             label: "Nova página"
             controller: 'cms/pages'
             action: 'new'
           pages:
             module: 'cms'
-            code: 0
+            code: 21016 
             label: 'Páginas'
             controller: 'cms/pages'
             action: 'index'
       gallery:
-        code: 0
+        code: [21021,21022,21023,21024,21025,21026]
         label: 'Galerias'
         controller: '#'
         sub:
           new_gallery:
             module: 'cms'
-            code: 0
+            code: 21021
             label: 'Nova galeria'
             controller: 'cms/galleries'
             action: 'new'
           galleries:
             module: 'cms'
-            code: 0
+            code: 21026
             label: 'Galerias'
             controller: 'cms/galleries'
             action: 'index'
       concourse:
-        code: 21101
+        code: [21101,21102,21103,21104, 21107]
         label: 'Concursos'
         controller: '#'
         sub:
           new_project:
             module: 'concourse'
-            code: '21101'
+            code: 21101
             label: 'Novo concurso'
             controller: 'concourse/projects'
             action: 'new'
           project:
             module: 'concourse'
-            code: '21104'
+            code: 21104
             label: 'Concursos'
             controller: 'concourse/projects'
             action: 'index'
           candidates:
             module: 'concourse'
-            code: '21107'
+            code: 21107
             label: 'Inscrições'
             controller: 'concourse/candidates'
             action: 'view_all'

@@ -5,10 +5,12 @@
         Detalhamento de Inscrição - #{@candidate.id}
       %small
         = link_to "voltar para inscrições", project_candidates_path(@project)
-        |
-        = link_to "atualizar situação", edit_project_candidate_situation_path(project_id:  @project, candidate_id: @candidate), remote: true
-        |
-        = link_to "inserir observação",  new_project_candidate_observation_path(project_id: @project, candidate_id: @candidate), remote: true
+        - if policy(:candidate, namespace: Concourse).edit?
+          |
+          = link_to "atualizar situação", edit_project_candidate_situation_path(project_id:  @project, candidate_id: @candidate), remote: true
+        - if policy(:candidate, namespace: Concourse).new_observation?
+          |
+          = link_to "inserir observação",  new_project_candidate_observation_path(project_id: @project, candidate_id: @candidate), remote: true
   %hr/
   .panel-body
     .row
@@ -123,14 +125,14 @@
             - @candidate.properties.each do |p|
               %tr
                 %td= p[0].humanize
-                %td.col-md-2= link_to "Baixar Arquivo", "http://api.codhab.df.gov.br/static/#{p[1]}", target: '_blank'
-                %td.col-md-2= link_to "Baixar Arquivo", "http://www.codhab.df.gov.br/files/concourse/project/#{p[1]}", target: '_blank'
+                %td.col-md-3= link_to "Baixar Arquivo", "http://api.codhab.df.gov.br/static/#{p[1]}", target: '_blank'
+                %td.col-md-3= link_to "Baixar Arquivo", "http://www.codhab.df.gov.br/files/concourse/project/#{p[1]}", target: '_blank'
     %hr/
     .row
       .col-md-12
         %h4 
           Observações 
-          = link_to "nova observação", new_project_candidate_observation_path(project_id: @project, candidate_id: @candidate), remote: true, class: 'pull-right'
+          = link_to "nova observação", new_project_candidate_observation_path(project_id: @project, candidate_id: @candidate), remote: true, class: 'pull-right' if policy(:candidate, namespace: Concourse).new_observation?
     .row
       .col-md-12
         %table.table.table-striped.table-bordered

@@ -4,28 +4,27 @@ module Concourse
   class ProjectsController < ApplicationController
     before_action :set_project, only: [:show, :edit, :update, :destroy]
     layout 'shared/remark', only: [:index, :new, :edit]
-    #layout 'layouts/concourse/application', only: [:show]
-    # GET /projects
+
     def index
       @projects = Project.unscoped.all
-      
+      authorize :project, :index?
     end
 
-    # GET /projects/1
     def show
+      authorize :project, :index?
     end
 
-    # GET /projects/new
     def new
+      authorize :project, :new?
       @project = Project.new
     end
 
-    # GET /projects/1/edit
     def edit
+      authorize :project, :edit?
     end
 
-    # POST /projects
     def create
+      authorize :project, :new?
       @project = Project.new(project_params)
 
       if @project.save
@@ -36,8 +35,8 @@ module Concourse
       end
     end
 
-    # PATCH/PUT /projects/1
     def update
+      authorize :project, :edit?
       if @project.update(project_params)
         flash[:success] = t :success
         redirect_to action:'index'
@@ -46,8 +45,8 @@ module Concourse
       end
     end
 
-    # DELETE /projects/1
     def destroy
+      authorize :project, :destroy?
       if @project.destroy
         flash[:success] = t :success
         redirect_to action:'index'

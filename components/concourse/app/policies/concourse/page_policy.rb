@@ -2,19 +2,19 @@ module Concourse
   class PagePolicy < ApplicationPolicy
 
     def index?
-      true
+      allow?(21113)
     end
 
-    def create?
-      true
+    def new?
+      allow?(21110)
     end
 
-    def update?
-      true
+    def edit?
+      allow?(21110)
     end
 
     def destroy?
-      true
+      allow?(21110)
     end
   end
 end
