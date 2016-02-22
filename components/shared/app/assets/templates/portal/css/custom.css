@@ -1255,10 +1255,7 @@ img {
 /*carta*/
 .carta{
   margin-top: -17px!important;
-    margin-left: 160px!important;
-  /*background-image: url('/images/carta120.jpg');*/
-  /*float: left;*/
-
+  margin-left: 160px!important;
 }
 
 /*slider info*/
