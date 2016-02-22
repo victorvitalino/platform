@@ -1,0 +1,41 @@
+= simple_form_for @user, url: update_user_path, method: :post do |f|
+  .row
+    .col-md-4
+      - if f.object.avatar.present?
+        = image_tag f.object.avatar.url, size: '100x100', class: 'img-circle'
+      - else
+        = image_tag '/images/default-avatar.png', size: '100x100', class: 'img-circle' 
+      %hr/
+      = f.input :avatar, as: :file
+    .col-md-4
+      - if f.object.personal_image.present?
+        = image_tag f.object.personal_image.url, size: '100x100', class: 'img-circle' 
+      - else
+        = image_tag '/images/default-avatar.png', size: '100x100', class: 'img-circle' 
+      %hr/
+      = f.input :personal_image, as: :file
+    .col-md-4
+      %div{style:'height: 100px'}
+        - if f.object.curriculum.present?
+          = link_to "Baixar Arquivo", f.object.curriculum.url.to_s, class: 'btn btn-primary', style: 'margin-top: 30px;'
+        - else
+          %i Nenhum arquivo disponível
+
+      %hr/
+      = f.input :curriculum, as: :file
+  %hr/
+  .row
+    .col-md-8
+      = f.input :name
+  .row
+    .col-md-4
+      = f.input :email
+  .row
+    .col-md-2
+      = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born ? localize(f.object.born) : ''}
+    .col-md-2
+      = f.input :branch_line, as: :string, input_html: { placeholder: 'Informe seu ramal'}
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Atualizar meu dados", class: 'btn btn-lg btn-success', data:{disable_with: t(:disable_with)}

@@ -12,7 +12,7 @@
       #site-navbar-collapse.collapse.navbar-collapse.navbar-collapse-toolbar
         %ul.nav.navbar-toolbar.navbar-right.navbar-toolbar-right
           %li.user
-            = current_user.account.name
+            = "#{current_user.account.name} - #{current_user.code}"
             %br/
             %i= "Último acesso - #{current_user.last_signed_in_at.strftime('%d/%m/%Y')}" if current_user.last_signed_in_at.present?
           %li.dropdown
