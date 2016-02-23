@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219121700) do
+ActiveRecord::Schema.define(version: 20160223115228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1494,6 +1494,7 @@ ActiveRecord::Schema.define(version: 20160219121700) do
     t.string   "token"
     t.boolean  "token_status",        default: true
     t.date     "last_signed_in_at"
+    t.string   "branch_line"
   end
 
   add_index "person_staffs", ["branch_line_id"], name: "index_person_staffs_on_branch_line_id", using: :btree
@@ -1795,6 +1796,7 @@ ActiveRecord::Schema.define(version: 20160219121700) do
     t.integer  "city_id"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.string   "cnpj"
   end
 
   add_index "schedule_agenda_schedules", ["agenda_id"], name: "index_schedule_agenda_schedules_on_agenda_id", using: :btree

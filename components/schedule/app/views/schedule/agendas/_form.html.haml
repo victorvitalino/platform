@@ -12,18 +12,23 @@
       = f.label :description, class: 'fg-label'
       = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
   .row
-    .col-md-1
+    .col-md-2
       = f.label 'Data início', class: 'fg-label'
       = f.input :start, label: false, as: :string, input_html: { class: 'date', value: (f.object.start) ? localize(f.object.start) : nil}
-    .col-md-1
+    .col-md-2
       = f.label 'Data fim', class: 'fg-label'
       = f.input :end, label: false, as: :string, input_html: { class: 'date', value: (f.object.end) ? localize(f.object.end) : nil}
-    .col-md-1
+    .col-md-2
       = f.label 'Hora Início', class: 'fg-label'
       = f.input :start_hour, label: false, as: :string, input_html: { class: 'hour',value: (f.object.start_hour) ? localize(f.object.start_hour, format:"%H:%M") : nil}
-    .col-md-1
+    .col-md-2
       = f.label 'Hora fim', class: 'fg-label'
       = f.input :end_hour, label: false, as: :string, input_html: { class: 'hour',value: (f.object.end_hour) ? localize(f.object.end_hour, format:"%H:%M") : nil}
+  %hr/
+  .row
+    .col-md-8
+      = f.label 'Datas excluídas'
+      = f.input :disable_dates, label: false
   %hr/
   .row
     .col-md-2

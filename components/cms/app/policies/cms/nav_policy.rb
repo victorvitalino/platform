@@ -1,19 +1,19 @@
 module Cms
 	class NavPolicy < ApplicationPolicy
 		def index?
-			allow?(3203)
+			allow?(21031)
 		end
 
-		def create?
-			allow?(3201)
+		def new?
+			allow?(21031)
 		end
 
-		def update?
-			allow?(3201)
+		def edit?
+			allow?(21031)
 		end
 
 		def destroy?
-			allow?(3202)
+			allow?(21031)
 		end
 	end
 end

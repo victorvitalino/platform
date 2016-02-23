@@ -20,11 +20,11 @@
           .col-md-2
             = f.label "CPF"
             = f.input :cpf, label: false, as: :string, input_html: { name: 'by_cpf', value: params[:by_cpf]}
-          .col-md-1
+          .col-md-2
             = f.label "horário"
             = f.input :hour, label: false, as: :string, input_html: { name: 'by_hour', value: params[:by_hour], class: 'hour'}
           .col-md-2{style: 'padding-top:24px'}
-            = f.submit "Filtrar", name: nil, class: 'btn btn-primary', data: { disable_with: t(:disabled_button)}
+            = f.submit "Filtrar", name: nil, class: 'btn btn-primary btn-lg', data: { disable_with: t(:disabled_button)}
       %hr/
       .row
         .col-md-12
@@ -60,10 +60,9 @@
                   %tr
                     %td= schedule.protocol
                     %td= schedule.name.upcase
-                    %td= schedule.cpf
+                    %td= schedule.cpf.format_cpf
                     %td= schedule.date.strftime('%d/%m/%Y')
                     %td= schedule.hour.strftime('%H:%M')
                     %td= schedule.status.humanize
                     %td.col-md-1
-                      = link_to "", "#", class: "glyphicon glyphicon-share-alt btn btn-primary btn-xs"
-                      = link_to "", "#", class: "glyphicon glyphicon-check btn btn-success btn-xs"                      
+                      = link_to "", agenda_agenda_schedule_path(agenda_id: @agenda, id: schedule, by_date: params[:by_date]), class: "glyphicon glyphicon-share-alt btn btn-primary btn-xs" if policy(:agenda_schedule, namespace: Schedule).index?

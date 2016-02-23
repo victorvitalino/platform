@@ -5,19 +5,26 @@
         %i.glyphicon.glyphicon-backward 
         Voltar para lista de concursos
   %li.list-group-item
-    %li.list-group-item
-      %a{:href => "#{concourse.project_path(@project)}"} Visão geral
-    %li.list-group-item
-      %a{:href => "#{concourse.project_pages_path(@project)}"} Páginas
-    %li.list-group-item
-      %a{:href => "#{concourse.project_navs_path(@project)}"} Menus
-    %li.list-group-item
-      %a{:href => "#"} Tipos de Inscrição
-    %li.list-group-item
-      %a{:href => "#"} Tipos de Participação
+    - if policy(:project, namespace: Concourse).index?
+      %li.list-group-item
+        %a{:href => "#{concourse.project_path(@project)}"} Visão geral
+    - if policy(:page, namespace: Concourse).index?
+      %li.list-group-item
+        %a{:href => "#{concourse.project_pages_path(@project)}"} Páginas
+    - if policy(:nav, namespace: Concourse).index?
+      %li.list-group-item
+        %a{:href => "#{concourse.project_navs_path(@project)}"} Menus
+    - if policy(:subscribe_type, namespace: Concourse).index?
+      %li.list-group-item
+        %a{:href => "#"} Tipos de Inscrição
+    - if policy(:participation_type, namespace: Concourse).index?
+      %li.list-group-item
+        %a{:href => "#"} Tipos de Participação
     %li
       %hr/
-    %li.list-group-item
-      %a{:href => "#{concourse.project_consults_path(@project)}"} Consultas
-    %li.list-group-item
-      %a{:href => "#{concourse.project_candidates_path(@project)}"} Inscrições
+    - if policy(:consult, namespace: Concourse).index?
+      %li.list-group-item
+        %a{:href => "#{concourse.project_consults_path(@project)}"} Consultas
+    - if policy(:candidate, namespace: Concourse).index?
+      %li.list-group-item
+        %a{:href => "#{concourse.project_candidates_path(@project)}"} Inscrições

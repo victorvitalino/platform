@@ -1,40 +1,67 @@
 = simple_form_for [:regularization, @schedule] do |f|
   .row
-    .col-md-4
-      = f.association :agenda, collection: Schedule::Agenda.regularization,prompt: 'selecione a agenda...'
-      = f.hint "", id: 'description'
+    .col-md-12{style: 'text-align: center'}
+      %h2
+        %b 1. Qual tipo de agendamento você deseja realizar?
   %hr/
+  .row
+    .col-md-12
+      = f.association :agenda, label: false, collection: Schedule::Agenda.regularization.active,prompt: 'selecione a agenda...', input_html: { style: 'font-size: 20px;height: 50px;'}
+      #description
+  %br/
+  %br/
+  %br/
+  %br/
+  %br/
   #hide{style: "#{f.object.agenda.present? ? 'display: block;' : 'display: none'}"}
     .row
-      .col-md-2
+      .col-md-12{style: 'text-align: center'}
+        %h2
+          %b 2. Preencha o formulário abaixo
+    %hr/
+    .row
+      .col-md-3
         = f.input :cpf, input_html: { placeholder: "digite seu cpf"}
-      .col-md-6
+    .row
+      .col-md-12
         = f.input :name, input_html: { placeholder: 'preencha com seu nome completo'}
     %hr/
     .row
-      .col-md-2
-        = f.input :born, as: :string, input_html: { class: 'date'}
       .col-md-2
         = f.input :telephone, input_html: { placeholder: '(61) xxxx-xxxx'}
       .col-md-2
         = f.input :telephone_optional, input_html: { placeholder: '(61) xxxx-xxxx'}
       .col-md-2
         = f.input :celphone, input_html: { placeholder: '(61) xxxx-xxxx'}
-    .row
-      .col-md-4
+      .col-md-3
         = f.input :email, input_html: { placeholder: 'preencha com seu e-mail'}
-      .col-md-2
+      .col-md-3
         = f.association :city, collection: Address::City.federal_district, prompt: 'selecione...'
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    .row
+      .col-md-12{style: 'text-align: center'}
+        %h2
+          %b 3. Selecione o dia e o horário que deseja ser atendido
     %hr/
     .row
       .col-md-2
-        = f.input :date, as: :string, input_html: { class: 'datepicker', placeholder: "selecione a agenda..."}
-      .col-md-2
-        = f.input :hour, as: :select, collection: [], prompt: 'selecione...', input_html: { value: f.object.hour.present? ? f.object.hour.strftime('%H:%M') : ''}
+      .col-md-4
+        = f.input :date, as: :string, input_html: { class: 'datepicker', placeholder: "selecione a data...", style: 'height: 60px !important; font-size: 25px !important; font-weight: bold !important;'}
+      .col-md-4
+        = f.input :hour, as: :select, collection: [], prompt: 'selecione...', input_html: { value: f.object.hour.present? ? f.object.hour.strftime('%H:%M') : '', style: 'height: 60px !important; font-size: 25px !important; font-weight: bold !important;'}
+    %br/
+    %br/
+    %br/
     %hr/
     .row
       .col-md-2
-        = f.button :submit, class: 'btn btn-success'
+        = f.submit 'Realizar Agendamento', class: 'btn btn-success'
 
 :javascript
   $(document).ready(function() {
@@ -60,7 +87,7 @@
     $.getJSON("/agendamento/info?id=" + id,function(data) {
         if(data.length > 0) {
           var weekend = "0,6"
-
+          console.log(data[1])
           // disable weekend
           if(data[0].weekend == true) { weekend = '' }
 
@@ -73,14 +100,15 @@
             endDate: data[2],
             datesDisabled: data[0].disable_dates.split(';')
           });
-          $("#description").html("<i>" + data[0].description + "</i>")
+
+          $("#description").html("<h4><i>" + data[0].description + "</i></h4>")
         }
       });
   }
 
   function setHours(date, id) {
     $.getJSON("/agendamento/horario?date=" + date +"&id=" + id,function(data) {
-     hour = ""
+     hour = "<option vlaue>selecione o horário...</option>"
      for(var i = 0; i < data.length; i++) {
        hour += "<option value='"+ data[i] +"'>"+data[i]+"</option>";
      }

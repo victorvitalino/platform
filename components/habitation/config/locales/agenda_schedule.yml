@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    modules:
+      'schedule/agenda_schedule'
+    attributes:
+      'schedule/agenda_schedule':
+        status: "Situação"
+        observation: "Observação"

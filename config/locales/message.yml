@@ -2,5 +2,6 @@ pt-BR:
  success: "Operação realizada com sucesso!"
  danger: "Não foi possível realizar esta operação, tente novamente daqui instantes"
  confirm_delete: "Deseja realmente excluir?"
+ confirm: "Deseja realmente excluir?"
  disabled_button: "Carregando..."
  disable_with: "Carregando..."

@@ -4,7 +4,7 @@
       %b Nova Inscrição
 .row
   .col-md-12
-    - if @subscribe.end <= Time.now 
+    - if @subscribe.end < Date.today
       %h4 Inscrições encerradas
     - else
       = render 'form'

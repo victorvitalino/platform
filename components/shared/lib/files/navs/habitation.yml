@@ -3,7 +3,7 @@ nav:
     info:
       module: 'habitation'
       label: "Habitação"
-      code: 10
+      code: 11
       icon: 'wb-home'
       link: '#'
     modules:
@@ -43,13 +43,13 @@ nav:
             label: 'Pesquisa geral'
             controller: 'candidate/cadins'
       attendant:
-        code: 0
+        code: [118103, 118201]
         label: 'Atendimento'
         controller: '#'
         sub: 
           schedule:
             module: 'schedule'
-            code: 0
+            code: 118103
             label: 'Agendamento'
             controller: 'schedule/agendas'
       entity:

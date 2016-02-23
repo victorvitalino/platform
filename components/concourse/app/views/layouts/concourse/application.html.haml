@@ -4,7 +4,7 @@
     .panel
       .panel-body
         %h4.bold= @project.title.upcase
-        %small= @project.mini_description
+        %small= @project.mini_description.html_safe
     .documents-wrap.article
       #articleAffix.article-sidebar.affix-top
         = render 'layouts/concourse/sidebar'

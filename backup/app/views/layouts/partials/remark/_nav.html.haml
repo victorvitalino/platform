@@ -33,13 +33,13 @@
             %b
           %ul.dropdown-menu{:role => "menu", "data-no-turbolink" => true}
             %li{:role => "presentation"}
-              %a{:href => "javascript:void(0)", :role => "menuitem"}
+              %a{:href => "#{profile_user.edit_user_path}", :role => "menuitem"}
                 %i.icon.wb-user{"aria-hidden" => "true"}
                 Meu Perfil
             %li{:role => "presentation"}
-              %a{:href => "javascript:void(0)", :role => "menuitem"}
+              %a{:href => "#{profile_user.edit_password_path}", :role => "menuitem"}
                 %i.icon.wb-payment{"aria-hidden" => "true"}
-                Configurações
+                Alterar minha senha
             %li.divider{:role => "presentation"}
             %li{:role => "presentation"}
               = link_to "Encerrar sessão", authenticate.logout_staffs_path

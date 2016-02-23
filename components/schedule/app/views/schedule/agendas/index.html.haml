@@ -4,7 +4,7 @@
       .panel-title
         %h4
           Agendamento Codhab
-          = link_to 'Nova agenda', new_agenda_path, class: 'btn btn-success pull-right btn-sm'
+          = link_to 'Nova agenda', new_agenda_path, class: 'btn btn-success pull-right btn-sm' if policy(:agenda, namespace: Schedule).new?
     .panel-body
       %table.table.table-striped.table-hover.table-bordered
         %thead
@@ -23,7 +23,7 @@
               %td.col-md-1= i + 1
               %td.col-md-2= agenda.program.name if agenda.program.present?
               %td= agenda.title
-              %td.col-md-2= "#{agenda.start.strftime('%d/%m/%Y')} - #{agenda.start.strftime('%d/%m/%Y') }"
+              %td.col-md-2= "#{agenda.start.strftime('%d/%m/%Y')} - #{agenda.end.strftime('%d/%m/%Y') }"
               %td.col-md-2= "#{agenda.start_hour.strftime('%H:%M')} às #{agenda.end_hour.strftime('%H:%M') }"
               %td.col-md-1
                 - if agenda.status
@@ -31,6 +31,6 @@
                 - else
                   %span.label.label-default inativa
               %td.col-md-1
-                = link_to '', edit_agenda_path(agenda), class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
-                = link_to '', agenda_path(id: agenda, by_date: Date.today.strftime('%d/%m/%Y')), class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs'
-             
+                = link_to '', edit_agenda_path(agenda), class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:agenda, namespace: Schedule).edit?
+                = link_to '', agenda_agenda_schedules_path(agenda_id: agenda, by_date: Date.today.strftime('%d/%m/%Y')), class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs' if policy(:agenda_schedule, namespace: Schedule).index?
+                = link_to '', agenda_path(agenda), method: :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', data: { confirm: t(:confirm)} if policy(:agenda, namespace: Schedule).destroy?

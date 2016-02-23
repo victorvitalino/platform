@@ -3,7 +3,7 @@
     .panel-title
       %h3 
         Menus
-        = link_to "Novo Menu", new_project_nav_path(@project), class: 'btn btn-success btn-sm pull-right'
+        = link_to "Novo Menu", new_project_nav_path(@project), class: 'btn btn-success btn-sm pull-right' if policy(:nav, namespace: Concourse).new?
   .panel-body
     %table.table.table-striped.table-bordered
       %thead
@@ -14,7 +14,8 @@
           %th Target
           %th Publicado?
           %th Ordem
-          %th Ações
+          - if policy(:nav, namespace: Concourse).destroy? || policy(:nav, namespace: Concourse).edit? 
+            %th Ações
       %tbody
         - @project.navs.order(:order).each do |nav|
           %tr
@@ -25,6 +26,7 @@
             %td= nav.publish ? 'sim' : 'não'
             %td.col-md-1
               = "#{nav.order} º"
-            %td.col-md-1
-              = link_to "", edit_project_nav_path(project_id: @project, id: nav),class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
-              = link_to "", project_nav_path(project_id: @project, id: nav), method: :delete,class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :data => { :confirm => t(:confirm_delete) }
+            - if policy(:nav, namespace: Concourse).destroy? || policy(:nav, namespace: Concourse).edit? 
+              %td.col-md-1
+                = link_to "", edit_project_nav_path(project_id: @project, id: nav),class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:nav, namespace: Concourse).edit? 
+                = link_to "", project_nav_path(project_id: @project, id: nav), method: :delete,class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :data => { :confirm => t(:confirm_delete) } if policy(:nav, namespace: Concourse).destroy? 

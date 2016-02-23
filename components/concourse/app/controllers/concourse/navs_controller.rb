@@ -8,23 +8,28 @@ module Concourse
 
     # GET /navs
     def index
+      authorize :nav, :index?
       @navs = @project.navs
     end
 
     # GET /navs/1
     def show
+      authorize :nav, :index?
     end
 
     # GET /navs/new
     def new
+      authorize :nav, :new?
       @nav = @project.navs.new
     end
 
     # GET /navs/1/edit
     def edit
+      authorize :nav, :edit?
     end
 
     def change_order
+      authorize :nav, :edit?
       @current_nav = Nav.unscoped.find(params[:nav_id])
       @next_nav    = Nav.unscoped.find(params[:next_nav_id])
 
@@ -39,6 +44,7 @@ module Concourse
 
     # POST /navs
     def create
+      authorize :nav, :new?
       @nav = @project.navs.new(nav_params)
 
       if @nav.save
@@ -51,6 +57,7 @@ module Concourse
 
     # PATCH/PUT /navs/1
     def update
+      authorize :nav, :edit?
       if @nav.update(nav_params)
         flash[:success] =  t :success
         redirect_to project_path(id: @project, q: 'menus')
@@ -61,6 +68,7 @@ module Concourse
 
     # DELETE /navs/1
     def destroy
+      authorize :nav, :destroy?
       if @nav.destroy
         flash[:success] =  t :success
         redirect_to project_path(id: @project, q: 'menus')

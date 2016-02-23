@@ -1,3 +1,10 @@
+.orange {
+  color: #FEAA15 !important;
+}
+
+.green {
+  color: #289728 !important;
+}
 
 label {
     font-weight: bold !important;

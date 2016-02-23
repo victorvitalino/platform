@@ -3,7 +3,7 @@
     .panel-title
       %h3
         Páginas
-        = link_to "Nova página", new_project_page_path(@project), class: 'btn btn-success btn-sm pull-right'
+        = link_to "Nova página", new_project_page_path(@project), class: 'btn btn-success btn-sm pull-right' if policy(:page, namespace: Concourse).new?
   .panel-body
     %table.table.table-striped.table-bordered.table-hover
       %thead
@@ -12,7 +12,8 @@
           %th Publicada?
           %th Data
           %th URL
-          %th Ações
+          - if policy(:page, namespace: Concourse).new? || policy(:page, namespace: Concourse).edit?
+            %th Ações
       %tbody
         - @project.pages.each_with_index do |page, index|
           %tr
@@ -20,6 +21,7 @@
             %td= page.publish ? 'publicada' : 'não publicada'
             %td= page.created_at.strftime('%d/%m/%Y')
             %td= "/concursos/#{@project.slug}/pagina/#{page.slug}"
-            %td.col-md-1
-              = link_to "", edit_project_page_path(project_id: @project, id: page), data: { turbolinks: false} ,class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
-              = link_to "", project_page_path(project_id: @project, id: page), method: :delete,class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => t(:confirm_delete) } 
+            - if policy(:page, namespace: Concourse).new? || policy(:page, namespace: Concourse).edit?
+              %td.col-md-1
+                = link_to "", edit_project_page_path(project_id: @project, id: page), data: { turbolinks: false} ,class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:page, namespace: Concourse).new?
+                = link_to "", project_page_path(project_id: @project, id: page), method: :delete,class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => t(:confirm_delete) } if policy(:page, namespace: Concourse).destroy?

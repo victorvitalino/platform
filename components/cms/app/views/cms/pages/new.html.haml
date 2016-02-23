@@ -2,7 +2,11 @@
   .panel
     .panel-heading
       .panel-title
-        %h3 Nova página
+        %h4
+          Nova página
+          %span.pull-right
+            = link_to "pesquisar arquivos", archive.files_path, remote: true
+          %br/
     .panel-body
       .row
         .col-md-12

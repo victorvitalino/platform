@@ -2,7 +2,7 @@ require_dependency 'schedule/application_controller'
 
 module Schedule
   class AgendasController < ApplicationController
-    before_action :set_agenda, only: [:show, :update, :edit]
+    before_action :set_agenda, only: [:show, :update, :edit, :destroy]
 
     has_scope :by_date
     has_scope :by_status
@@ -19,14 +19,17 @@ module Schedule
     end
 
     def index
+      authorize :agenda, :index?
       @agendas = Agenda.all
     end
     
     def new
+      authorize :agenda, :new?
       @agenda = Agenda.new
     end
 
     def create
+      authorize :agenda, :new?
       @agenda = Agenda.new(set_params)
 
       if @agenda.save
@@ -37,11 +40,8 @@ module Schedule
       end
     end
 
-    def show
-      @schedules = apply_scopes(@agenda.agenda_schedules)
-    end
-
     def update
+      authorize :agenda, :edit?
       if @agenda.update(set_params)
         flash[:success] = t :success
         redirect_to action: 'index'
@@ -51,6 +51,10 @@ module Schedule
     end
 
     def destroy
+      authorize :agenda, :destroy?
+      @agenda.destroy
+      flash[:success] =  t :success
+      redirect_to action: :index
     end
 
     private

@@ -7,4 +7,7 @@
     %hr/
 .row
   .col-md-12
-    = render 'form'
+    - if @candidate.homologado?
+      Você já se encontra homologado, não é possível realizar mais alterações em seu cadastro.
+    - else
+      = render 'form'

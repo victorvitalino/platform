@@ -3,9 +3,11 @@ module Concourse
     before_action :set_project
 
     def index
+      authorize :consult, :index?
     end
 
     def read
+      authorize :consult, :edit?
       if params[:consult_id].present? && params[:project_id].present?
         @consult = Consult.find(params[:consult_id])
         @project = Project.friendly.find(params[:project_id])
@@ -19,6 +21,7 @@ module Concourse
     end
 
     def responded
+      authorize :consult, :edit?
       if params[:consult_id].present? && params[:project_id].present?
         @consult = Consult.find(params[:consult_id])
         @project = Project.friendly.find(params[:project_id])
@@ -32,6 +35,7 @@ module Concourse
     end
 
     def show
+      authorize :consult, :index?
       @project = Project.friendly.find(params[:project_id])
       @consult = Consult.find(params[:id])
     end
