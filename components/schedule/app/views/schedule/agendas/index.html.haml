@@ -31,6 +31,5 @@
                 - else
                   %span.label.label-default inativa
               %td.col-md-1
-                = link_to '', edit_agenda_path(agenda), class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
-                = link_to '', agenda_path(id: agenda, by_date: Date.today.strftime('%d/%m/%Y')), class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs'
-             
+                = link_to '', edit_agenda_path(agenda), class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:agenda, namespace: Schedule).edit?
+                = link_to '', agenda_path(id: agenda, by_date: Date.today.strftime('%d/%m/%Y')), class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs' if policy(:agenda_schedule, namespace: Schedule).index?
