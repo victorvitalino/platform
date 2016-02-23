@@ -49,7 +49,7 @@ nav:
         sub: 
           schedule:
             module: 'schedule'
-            code: 118201
+            code: 118103
             label: 'Agendamento'
             controller: 'schedule/agendas'
       entity:

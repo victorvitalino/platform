@@ -1,0 +1,49 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          %span.pull-right
+            = link_to "Voltar", agenda_agenda_schedules_path(agenda_id: @agenda, by_date: params[:by_date]), class: 'btn btn-dark btn-sm', data: {  disable_with: t(:disable_with)}
+          Detalhamento de agendamento
+    .panel-body
+      .row
+        .col-md-12
+          %h5 Informações gerais
+      .row
+        .col-md-12
+          %table.table.table-striped.table-hover.table-bordered
+            %thead
+              %tr
+                %th Agenda
+                %th Data
+                %th Horário
+                %th Situação
+            %tbody
+              %tr
+                %td= @schedule.agenda.title
+                %td= @schedule.date.strftime("%d/%m/%Y")
+                %td= @schedule.hour.strftime("%H:%M")
+                %td= @schedule.status.humanize
+            %thead
+              %tr
+                %th Nome
+                %th CPF/CNPJ
+                %th Telefone
+                %th Telefone Opcional
+                %th Celular
+            %tbody
+              %tr
+                %td= @schedule.name
+                %td= @schedule.cnpj.present? ? @schedule.cnpj :  @schedule.cpf.format_cpf
+                %td= @schedule.telephone
+                %td= @schedule.telephone_optional
+                %td= @schedule.celphone
+      - if policy(:agenda_schedule, namespace: Schedule).edit?
+        %hr/
+        .row
+          .col-md-12
+            %h5 Atualizar situação
+        .row
+          .col-md-12
+            = render 'form'

@@ -54,13 +54,15 @@
                   %th Data
                   %th Horário
                   %th Status
+                  %th Ações
               %tbody
                 - @schedules.order(:hour).each do |schedule|
                   %tr
                     %td= schedule.protocol
                     %td= schedule.name.upcase
-                    %td= schedule.cpf
+                    %td= schedule.cpf.format_cpf
                     %td= schedule.date.strftime('%d/%m/%Y')
                     %td= schedule.hour.strftime('%H:%M')
                     %td= schedule.status.humanize
-                  
+                    %td.col-md-1
+                      = link_to "", agenda_agenda_schedule_path(agenda_id: @agenda, id: schedule, by_date: params[:by_date]), class: "glyphicon glyphicon-share-alt btn btn-primary btn-xs" if policy(:agenda_schedule, namespace: Schedule).index?
