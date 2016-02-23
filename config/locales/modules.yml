@@ -30,6 +30,7 @@ pt-BR:
       navs: "Menus"
     schedule:
       agendas: "Agendas"
+      agenda_schedules: "Agendamentos"
     protocol:
       assessments: "Autuação"
       allotments: "Remessa"

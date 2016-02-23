@@ -47,6 +47,23 @@ nav:
             label: 'Páginas'
             controller: 'cms/pages'
             action: 'index'
+      nav:
+        code: 21031
+        label: "Menus"
+        controller: '#'
+        sub:
+          new_nav:
+            module: 'cms'
+            code: 21031
+            label: 'Novo menu'
+            controller: 'cms/navs'
+            action: 'new'
+          navs:
+            module: 'cms'
+            code: 21031
+            label: 'Lista'
+            controller: 'cms/navs'
+            action: 'index'
       gallery:
         code: [21021,21022,21023,21024,21025,21026]
         label: 'Galerias'
