@@ -28,6 +28,8 @@ PATH
   specs:
     address (0.0.1)
       rails (~> 4.2.1)
+    api (0.0.1)
+      rails (~> 4.2.1)
     archive (0.0.1)
       rails (~> 4.2.1)
     attendance (0.0.1)
@@ -443,6 +445,7 @@ PLATFORMS
 
 DEPENDENCIES
   address!
+  api!
   archive!
   attendance!
   audited-activerecord (~> 4.0)

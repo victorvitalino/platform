@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     mount FirmPortal::Engine            => "/empresa",          as: 'firm_portal',            module: 'firm_portal'
   end
 
+  mount Api::Engine                     => "/api",            as: 'api'         
   mount Address::Engine                 => "/endereco",       as: 'address', module: 'habitation'
   mount Authenticate::Engine            => "/acesso",         as: 'authenticate'         
 end
