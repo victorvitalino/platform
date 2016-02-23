@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    modules:
+      'archive/file'
+    attributes:
+      'archive/file':
+        original_name: "Nome original"
+        description: "Descrição"
+        file_path: "Arquivo"

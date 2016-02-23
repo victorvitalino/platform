@@ -81,6 +81,23 @@ nav:
             label: 'Galerias'
             controller: 'cms/galleries'
             action: 'index'
+      archive:
+        code: [21201, 21202]
+        label: "Arquivos"
+        controller: "#"
+        sub:
+          new_file:
+            module: "archive"
+            code: 21201
+            label: "Novo arquivo"
+            controller: "archive/files"
+            action: 'new'
+          files:
+            module: 'archive'
+            code: 21202
+            label: 'Arquivos'
+            controller: 'archive/files'
+            action: 'index'
       concourse:
         code: [21101,21102,21103,21104, 21107]
         label: 'Concursos'

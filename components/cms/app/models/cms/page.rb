@@ -9,7 +9,6 @@ module Cms
 
     audited
 
-    validates :thumb, :thumbnail
     validates :thumb, :thumbnail, file_size: { less_than_or_equal_to: 10.megabytes.to_i }
     validates :thumb, :thumbnail, file_content_type: { allow: ['image/jpeg', 'image/png'],
                                               message: 'Somente arquivos .jpg ou .png' }
