@@ -15,6 +15,6 @@
         - @files.limit(20).each do |file| 
           %tr
             %td.col-md-1= file.id
-            %td.col-md-1= file.original_name.downcase
-            %td= link_to file.file_path.to_s, file.file_path.to_s, target: '_blank'
+            %td.col-md-4= file.original_name.downcase
+            %td= "http://www.codhab.df.gov.br#{file.file_path.to_s}"
           
