@@ -7,7 +7,6 @@
         .col-sm-6.col-md-4
           .thumbnail
             .thumbnail-img
-              = p.thumb
               - if p.thumb?
                 = image_tag p.thumb 
               - elsif p.thumb.file.present?
