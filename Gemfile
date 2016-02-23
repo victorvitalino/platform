@@ -71,39 +71,39 @@ group :production do
 end
 
 
-path 'components' do 
+path 'components' do
 
-  gem 'portal'                     
-  gem 'dashboard'                  
-  gem 'person'                     
-  gem 'cms'                        
-  gem 'helpdesk'                   
-  gem 'protocol'                   
-  gem 'concourse'                  
-  gem 'concourse_portal'           
-  gem 'attendance'                 
-  gem 'candidate'                  
-  gem 'address'                    
-  
-  gem 'regularization'             
-  gem 'regularization_portal'      
-  
-  gem 'habitation'                 
-  gem 'habitation_portal'         
-  
-  gem 'entity'                     
-  gem 'entity_portal'              
-  
-  gem 'firm'                       
-  gem 'firm_portal'                
+  gem 'portal'
+  gem 'dashboard'
+  gem 'person'
+  gem 'cms'
+  gem 'helpdesk'
+  gem 'protocol'
+  gem 'concourse'
+  gem 'concourse_portal'
+  gem 'attendance'
+  gem 'candidate'
+  gem 'address'
 
-  gem 'schedule'                   
-  gem 'schedule_portal'            
+  gem 'regularization'
+  gem 'regularization_portal'
 
-  gem 'maintenance'                
+  gem 'habitation'
+  gem 'habitation_portal'
 
-  gem 'planning'                       
-  gem 'brb'                        
+  gem 'entity'
+  gem 'entity_portal'
+
+  gem 'firm'
+  gem 'firm_portal'
+
+  gem 'schedule'
+  gem 'schedule_portal'
+
+  gem 'maintenance'
+
+  gem 'planning'
+  gem 'brb'
 
   gem 'authenticate'
   gem 'archive'

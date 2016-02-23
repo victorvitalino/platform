@@ -9,8 +9,8 @@
 label {
     font-weight: bold !important;
 }
-.flex-caption p a {
-    color: inherit!important;
+.flex-caption .row .sliderp p a {
+    color: #fff!important;
     border-bottom: 1px dotted #fff!important;
 }
 .frexyslider .flex-viewport{
