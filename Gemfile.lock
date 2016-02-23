@@ -79,6 +79,8 @@ PATH
       rails (~> 4.2.1)
     portal (0.0.1)
       rails (~> 4.2.1)
+    profile_user (0.0.1)
+      rails (~> 4.2.1)
     protocol (0.0.1)
       rails (~> 4.2.1)
     regularization (0.0.1)
@@ -492,6 +494,7 @@ DEPENDENCIES
   planning!
   poltergeist
   portal!
+  profile_user!
   protocol!
   pundit!
   rails (= 4.2.1)
@@ -515,6 +518,3 @@ DEPENDENCIES
   validates_timeliness
   wicked
   will_paginate-bootstrap
-
-BUNDLED WITH
-   1.10.6
