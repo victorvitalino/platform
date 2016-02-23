@@ -1,5 +1,6 @@
 require_dependency 'authenticate/staff_service'
 require_dependency 'authenticate/staff_helper'
+require_dependency 'shared/nav_helper'
 
 module Archive
   class ApplicationController < ActionController::Base
