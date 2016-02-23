@@ -9,7 +9,7 @@
 label {
     font-weight: bold !important;
 }
-.flex-caption .row .sliderp p a {
+.sliderp div a {
     color: #fff!important;
     border-bottom: 1px dotted #fff!important;
 }
