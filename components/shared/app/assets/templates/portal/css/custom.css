@@ -1,4 +1,6 @@
-
+.orange {
+  color: #FEAA15 !important;
+}
 label {
     font-weight: bold !important;
 }

@@ -13,6 +13,10 @@ module Schedule
       allow?(118101)
     end
 
+    def destroy?
+      allow?(118102)
+    end
+
 
   end
 end
