@@ -1,0 +1,11 @@
+%ul.nav.nav-tabs
+  %li
+    %a{:href => "#{attendances_path(cpf: @mirror.cpf)}"} Voltar para detalhamento
+  %li{class: "#{(%w(edit_cadastre).include? action_name) ? 'active' : ''}"}
+    %a{:href => "#{edit_cadastre_attendances_path(@mirror)}"} Atualização cadastral
+  %li{class: "#{(%w(index_dependent).include? action_name) ? 'active' : ''}"}
+    %a{:href => "#{index_dependent_attendances_path(@mirror)}"} Atualização de dependentes
+  %li{class: "#{(%w(checklist).include? action_name) ? 'active' : ''}"}
+    %a{:href => "#{checklist_attendances_path(@mirror)}"} Preenchimento de checklist
+  %li{class: "#{(%w(finish).include? action_name) ? 'active' : ''}"}
+    %a{:href => "#{finish_attendances_path(@mirror)}"} Finalização

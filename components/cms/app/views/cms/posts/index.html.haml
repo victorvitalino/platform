@@ -5,7 +5,6 @@
         %h4 
           Lista de postagens
           = link_to 'Nova postagem', new_post_path,  data: { no_turbolink: true }, class: 'btn btn-success btn-sm pull-right' if policy(:post, namespace: Cms).create?
-    %hr/
     .panel-body
       .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
         %table#data-table-command.table.table-striped.table-bordered

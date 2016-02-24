@@ -11,7 +11,11 @@ pt-BR:
     schedule: "Agendamento"
     protocol: "Protocolo"
     archive: "Arquivos"
+    habitation: "Habitação"
+    attendances: 'Atendimento'
   modules:
+    habitation:
+      attendances: "Atendimento"
     person:
       staffs: "Usuários"
       systems: "Sistemas"

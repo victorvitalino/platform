@@ -2,11 +2,14 @@
   .panel
     .panel-heading
       .panel-title
-        %h4 Atendimento habitação
-    %hr/
+        %h3
+          Atendimento de habitação
+        %small
+          Plataforma de atendimento habitacional 
     .panel-body
       .row
-        .col-md-3.border-right
+        .col-md-3
           = render 'form_search'
-        .col-md-9
+        .col-md-8.paper-row
           = render 'show'
+      

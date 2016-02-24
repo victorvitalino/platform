@@ -1,3 +1,60 @@
+.panel-heading {
+  background-color: #EFEFEF !important;
+  border: 1px solid #D0D0D0 !important;
+  border-bottom: none !important;
+}
+
+.panel-body {
+  padding-top: 45px !important;
+  border: 1px solid #D0D0D0 !important;
+}
+.paper-row {
+  background-color: #fffae5;
+  border: 1px solid #E8E8E8;
+  padding: 40px;
+  margin-left: 50px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  position: relative;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#EAE6E6), color-stop(4%, #fffae5)) 0 4px;
+  background: -webkit-linear-gradient(top, #EAE6E6 0%, #fffae5 8%) 0 4px;
+  background: -moz-linear-gradient(top, #EAE6E6 0%, #fffae5 8%) 0 4px;
+  background: -ms-linear-gradient(top, #EAE6E6 0%, #fffae5 8%) 0 4px;
+  background: -o-linear-gradient(top, #d9eaf3 0%, #fffae5 8%) 0 4px;
+  background: linear-gradient(top, #EAE6E6 0%, #fffae5 8%) 0 4px;
+  -webkit-background-size: 100% 20px;
+  -moz-background-size: 100% 20px;
+  -ms-background-size: 100% 20px;
+  -o-background-size: 100% 20px;
+  background-size: 100% 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+
+}
+
+.paper-row h3{
+  font-weight: bold;
+}
+
+.paper-row table th {
+  border: 1px solid #D8D8D8 !important;
+  background-color: #EFEFEF;
+}
+
+.paper-row table td {
+  background-color: white;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  color: #fff;
+  background-color: #FFA518 !important;
+  border-color: transparent !important;
+  border-bottom-color: #FFA518 !important;
+}
+
 .form-block {
   margin-top: 60px;
 }

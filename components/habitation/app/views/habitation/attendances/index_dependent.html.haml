@@ -1,0 +1,27 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        = render 'layouts/habitation/tabs'
+        %br/
+        %h3 Atualização de dependentes
+    .panel-body
+      .row
+        .col-md-12
+          = link_to "Adicionar dependente", new_dependent_attendances_path(@mirror), remote: true, class: 'btn btn-success btn-sm'
+      %hr/
+      .row
+        .col-md-12
+          %table.table.tabel-hover.table-striped.table-bordered
+            %thead
+              %tr
+                %th Nome
+                %th CPF
+                %th Sexo
+                %th Nascimento
+                %th Condição Especial
+                %th Co-adquirente
+                %th Renda R$
+                %th Ação
+            %tbody.index-dependent
+              = render 'index_dependent'

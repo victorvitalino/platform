@@ -1,0 +1,12 @@
+- @mirror.dependent_mirrors.each do |mirror|
+  %tr
+    %td.col-md-2= mirror.name
+    %td.col-md-1= mirror.cpf.format_cpf
+    %td.col-md-1= mirror.gender
+    %td.col-md-1= mirror.born.strftime('%d/%m/%Y') if mirror.born.present?
+    %td.col-md-2= mirror.special_condition.name if mirror.special_condition.present?
+    %td.col-md-1= "#{(mirror.co_acquirer) ? mirror.percentage : 0} %"
+    %td.col-md-1= number_to_currency mirror.income
+    %td.col-md-1
+      = link_to "", edit_dependent_attendances_path(id: @mirror.id, dependent_id: mirror.id), remote: true, class: 'btn btn-success btn-xs glyphicon glyphicon-pencil'
+      = link_to "", destroy_dependent_attendances_path(id: @mirror.id, dependent_id: mirror.id), remote: true, method: :delete, data: { confirm: t(:confirm)},class: 'btn btn-danger btn-xs glyphicon glyphicon-remove'
