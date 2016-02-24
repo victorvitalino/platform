@@ -2,10 +2,13 @@
   .panel
     .panel-heading
       .panel-title
-        = render 'layouts/habitation/tabs'
-        %br/
         %h3 Atualização cadastral
+        %small
+          Formulário de atualização de cadastro
     .panel-body
+      .row
+        .col-md-12
+          = render 'layouts/habitation/tabs'
       .row
         .col-md-12
           = render 'form_cadastre'

@@ -70,6 +70,12 @@ nav:
             label: "Habitação"
             controller: 'habitation/attendances'
             action: 'index'
+          regularization:
+            module: 'regularization'
+            code: 0
+            label: 'Regularização'
+            controller: 'regularization/attendances'
+            action: 'index'
       entity:
         code: 0
         label: 'Entidades'

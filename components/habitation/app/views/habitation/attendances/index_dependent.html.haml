@@ -2,10 +2,14 @@
   .panel
     .panel-heading
       .panel-title
-        = render 'layouts/habitation/tabs'
-        %br/
         %h3 Atualização de dependentes
+        %small
+          Formulário de atualização de dependentes
     .panel-body
+      .row
+        .col-md-12
+          = render 'layouts/habitation/tabs'
+      %br/
       .row
         .col-md-12
           = link_to "Adicionar dependente", new_dependent_attendances_path(@mirror), remote: true, class: 'btn btn-success btn-sm'

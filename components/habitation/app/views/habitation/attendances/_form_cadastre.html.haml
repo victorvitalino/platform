@@ -2,38 +2,34 @@
   .form-block
     .row
       .col-md-2
-        %h4 Dados de pessoais
-    %hr/
-  .row
-    .col-md-2
-      = f.input :cpf, input_html: { disabled: true}
-  .row
-    .col-md-8
-      = f.input :name
-    .col-md-2
-      = f.label "Nascimento"
-      = f.input :born, as: :string, label: false, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : ''}
-    .col-md-2
-      = f.input :gender, as: :select, collection: Candidate::CadastreMirror.genders.keys, include_blank: false
-  .row
-    .col-md-2
-      = f.input :rg
-    .col-md-2
-      = f.input :rg_org
-    .col-md-2
-      = f.input :rg_uf
-    .col-md-2
-      = f.association :civil_state, include_blank: false
-    .col-md-2
-      = f.input :place_birth
-    .col-md-2
-      = f.input :born_uf
-  .row
-    .col-md-2
-      = f.label "Chegada ao DF"
-      = f.input :arrival_df, as: :string, label: false, input_html: { class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : ''}
-    .col-md-2
-      = f.input :income, as: :string, input_html: { class: 'coin_mask'}
+        = f.input :cpf, input_html: { disabled: true}
+    .row
+      .col-md-8
+        = f.input :name
+      .col-md-2
+        = f.label "Nascimento"
+        = f.input :born, as: :string, label: false, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : ''}
+      .col-md-2
+        = f.input :gender, as: :select, collection: Candidate::CadastreMirror.genders.keys, include_blank: false
+    .row
+      .col-md-2
+        = f.input :rg
+      .col-md-2
+        = f.input :rg_org
+      .col-md-2
+        = f.input :rg_uf
+      .col-md-2
+        = f.association :civil_state, include_blank: false
+      .col-md-2
+        = f.input :place_birth
+      .col-md-2
+        = f.input :born_uf
+    .row
+      .col-md-2
+        = f.label "Chegada ao DF"
+        = f.input :arrival_df, as: :string, label: false, input_html: { class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : ''}
+      .col-md-2
+        = f.input :income, as: :string, input_html: { class: 'coin_mask'}
   %hr/
   .row
     .col-md-4
@@ -44,11 +40,8 @@
       = f.input :nis
     .col-md-2
       = f.input :adapted_property, as: :select, include_blank: false
+  %hr/
   .form-block
-    .row
-      .col-md-2
-        %h4 Dados de contato
-    %hr/
     .row
       .col-md-4
         = f.input :email
@@ -58,11 +51,8 @@
         = f.input :telephone_optional
       .col-md-2
         = f.input :celphone
+  %hr/
   .form-block
-    .row
-      .col-md-2
-        %h4 Dados de localidade
-    %hr/
     .row
       .col-md-4
         = f.association :city, collection: Address::City.federal_district, include_blank: false
