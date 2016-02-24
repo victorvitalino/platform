@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223115228) do
+ActiveRecord::Schema.define(version: 20160224134406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -448,9 +448,12 @@ ActiveRecord::Schema.define(version: 20160223115228) do
     t.integer  "cadastre_type",          default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "checklist_id"
+    t.integer  "situation",              default: 0
   end
 
   add_index "candidate_cadastre_mirrors", ["cadastre_id"], name: "index_candidate_cadastre_mirrors_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_mirrors", ["checklist_id"], name: "index_candidate_cadastre_mirrors_on_checklist_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["city_id"], name: "index_candidate_cadastre_mirrors_on_city_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["civil_state_id"], name: "index_candidate_cadastre_mirrors_on_civil_state_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["program_id"], name: "index_candidate_cadastre_mirrors_on_program_id", using: :btree

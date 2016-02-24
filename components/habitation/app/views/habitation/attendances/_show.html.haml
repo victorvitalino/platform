@@ -1,0 +1,114 @@
+.row
+  .col-md-12
+    %h3 Detalhamento de candidato
+%hr/
+- if @candidate.present?
+  .row
+    .col-md-12
+      %h4 Informações básicas
+      %table.table.tabel-hover.table-striped.table-bordered
+        %thead
+          %tr
+            %th Nome
+            %th CPF
+            %th RG
+            %th Sexo
+            %th Nascimento
+        %tbody
+          %tr
+            %td= @candidate.name
+            %td= @candidate.cpf.format_cpf
+            %td= "#{@candidate.rg} - #{@candidate.rg_org}/#{@candidate.rg_uf}" 
+            %td= @candidate.gender
+            %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
+
+  %hr/
+  .row
+    .col-md-12
+      %h4
+        Atualizações cadastral
+      %h5
+        = link_to "Iniciar nova atualização", new_attendances_path(@candidate)
+      %table.table.tabel-hover.table-striped.table-bordered
+        %thead
+          %tr
+            %th Data
+            %th Situação
+            %th Pontuação
+            %th Supervisor
+            %th Ação
+        %tbody
+          - @candidate.cadastre_mirrors.order('created_at DESC').each do |mirror|
+            %tr
+              %td.col-md-1= mirror.created_at.strftime('%d/%m/%Y')
+              %td.col-md-2= mirror.situation.humanize
+              %td.col-md-3= (mirror.pontuation?) ? "Pontuado" : "Não pontuado"
+              %td.col-md-3 Fulano 2
+              %td.col-md-2
+                - if mirror.em_progresso? || mirror.pendente?
+                  = link_to "", edit_attendances_path(mirror), class: 'btn btn-danger btn-xs glyphicon glyphicon-pencil'
+                  = link_to "", "#", class: 'btn btn-danger btn-xs glyphicon glyphicon-remove'
+                - if mirror.aprovado?
+                  = link_to "", "#", class: 'btn btn-success btn-xs glyphicon glyphicon-share-alt'
+  %hr/
+  .row
+    .col-md-12
+      %h4 Agendamentos
+      %table.table.tabel-hover.table-striped.table-bordered
+        %thead
+          %tr
+            %th Data
+            %th Horário
+            %th Agenda
+            %th Situação
+            %th Ação
+        %tbody
+          - @candidate.schedules.each do |schedule|
+            %tr
+              %td.col-md-2= schedule.date
+              %td.col-md-2= schedule.hour
+              %td.col-md-2= schedule.agenda.title if schedule.agenda.present?
+              %td.col-md-3= schedule.status 
+              %td.col-md-2 Sem ação
+  %hr/
+  .row
+    .col-md-12
+      %h4 Log de atendimento
+      %table.table.tabel-hover.table-striped.table-bordered
+        %thead
+          %tr
+            %th Data
+            %th Horário
+            %th Agenda
+            %th Situação
+            %th Ação
+        %tbody
+          - @candidate.schedules.each do |schedule|
+            %tr
+              %td.col-md-2= schedule.date
+              %td.col-md-2= schedule.hour
+              %td.col-md-2= schedule.agenda.title if schedule.agenda.present?
+              %td.col-md-3= schedule.status 
+              %td.col-md-2 Sem ação
+  %hr/
+  .row
+    .col-md-12
+      %h4 Ocorrências
+      %table.table.tabel-hover.table-striped.table-bordered
+        %thead
+          %tr
+            %th Data
+            %th Horário
+            %th Agenda
+            %th Situação
+            %th Ação
+        %tbody
+          - @candidate.schedules.each do |schedule|
+            %tr
+              %td.col-md-2= schedule.date
+              %td.col-md-2= schedule.hour
+              %td.col-md-2= schedule.agenda.title if schedule.agenda.present?
+              %td.col-md-3= schedule.status 
+              %td.col-md-2 Sem ação
+- else
+  %i Nenhum dado encontrado

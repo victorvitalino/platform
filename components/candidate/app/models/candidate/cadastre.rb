@@ -10,7 +10,7 @@ module Candidate
     belongs_to :city, class_name: "Address::City"
     belongs_to :work_city, class_name: "Address::City"
 
-
+    has_many :cadastre_mirrors
     has_many :dependents
     has_many :cadastre_situations
     has_many :attendances
@@ -21,32 +21,21 @@ module Candidate
     has_many :enterprise_cadastres, foreign_key: "cadastre_id", class_name: "Firm::EnterpriseCadastre"
     has_many :cadastre_address
     has_many :cadastre_procedurals
-
     has_many :cadastre_logs
 
-
-    scope :regularization, -> {where(program_id: 3)}
-    scope :habitation, -> {where(program_id: [1,2,4,5,6])}
-
-    attr_accessor :password_confirmation
-
-    accepts_nested_attributes_for :dependents, allow_destroy: true
-
-    scope :by_cpf, -> (cpf = nil) { where(cpf: cpf) }
+    scope :regularization,  -> {where(program_id: 3)}
+    scope :habitation,      -> {where(program_id: [1,2,4,5,6])}
+    scope :by_cpf,          -> (cpf = nil) { where(cpf: cpf) }
 
     enum gender: ['N/D', 'masculino', 'feminino']
 
+    accepts_nested_attributes_for :dependents, allow_destroy: true
+
     validates :cpf, cpf: true
 
-    def save_log(old_object, new_object, staff_id)
-      @log = CadastreLog.new({
-        staff_id: staff_id,
-        cadastre_id: self.id,
-        cadastre_old: old_object.attributes,
-        cadastre_new: new_object.attributes
-      })
 
-      @log.save
+    def schedules
+      Schedule::AgendaSchedule.where(cpf: self.cpf)
     end
 
     def current_situation_id

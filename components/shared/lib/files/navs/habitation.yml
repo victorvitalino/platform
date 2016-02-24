@@ -42,16 +42,34 @@ nav:
             code: 0
             label: 'Pesquisa geral'
             controller: 'candidate/cadins'
-      attendant:
-        code: [118103, 118201]
-        label: 'Atendimento'
+      schedule:
+        code: [118103,118101]
+        label: 'Agendamento'
         controller: '#'
         sub: 
-          schedule:
+          new_schedule:
+            module: 'schedule'
+            code: 118101
+            label: 'Nova agenda'
+            controller: 'schedule/agendas'
+            action: 'new'
+          schedules:
             module: 'schedule'
             code: 118103
-            label: 'Agendamento'
+            label: 'Agendas'
             controller: 'schedule/agendas'
+            action: 'index'
+      attendant:
+        code: 0
+        label: "Atendimento"
+        controller: "#"
+        sub:
+          habitation:
+            module: 'habitation'
+            code: 0
+            label: "Habitação"
+            controller: 'habitation/attendances'
+            action: 'index'
       entity:
         code: 0
         label: 'Entidades'
