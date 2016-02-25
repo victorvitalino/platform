@@ -73,6 +73,8 @@ PATH
     helpdesk (0.0.1)
       haml-rails
       rails (~> 4.2.1)
+    juridical (0.0.1)
+      rails (~> 4.2.1)
     maintenance (0.0.1)
       rails (~> 4.2.1)
     person (0.0.1)
@@ -487,6 +489,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  juridical!
   maintenance!
   mina
   mina-unicorn
