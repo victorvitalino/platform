@@ -38,6 +38,7 @@
                 %th Data cadastro
                 %th Última atualização
                 %th Situação
+                %th Doc. Enviados
                 %th Ações
             %tbody
               - @cadastres.order(:name).each do |cadastre|
@@ -48,6 +49,7 @@
                   %td.col-md-2= cadastre.created_at.strftime('%d/%m/%Y às %H:%M')
                   %td.col-md-2= cadastre.updated_at.strftime('%d/%m/%Y às %H:%M')
                   %td
+                  %td.col-md-2= cadastre.documents.general.count
                   %td.col-md-1
                     = link_to "", cadastre_path(cadastre), class: 'btn btn-xs btn-primary glyphicon glyphicon-share-alt'
       .row
