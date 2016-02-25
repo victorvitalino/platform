@@ -23,7 +23,7 @@ module ConcoursePortal
               if field.file? 
                 @uploader = Concourse::FileUploader.new
                 @uploader.store!(params[:candidate][:properties][field.label.to_sym])
-                @candidate.properties[field.label.to_sym] = @uploader.path
+                @candidate.properties[field.label.to_sym] = @uploader.filename
               end
             end
           end
