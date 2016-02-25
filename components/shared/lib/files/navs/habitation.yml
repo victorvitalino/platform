@@ -8,38 +8,38 @@ nav:
       link: '#'
     modules:
       cadastre:
-        code: 0
+        code: [11005, 11011]
         label: 'Cadastro'
         controller: '#'
         sub:
           general_search:
             module: 'candidate'
-            code: 0
+            code: 11005
             label: 'Pesquisa geral'
             controller: 'candidate/cadastres'
           cadastre_address:
             module: 'candidate'
-            code: 0
+            code: 11011
             label: 'Assentamento'
             controller: 'candidate/cadastre_addresses'
       address:
-        code: 0
+        code: 11014
         label: 'Endereço'
         controller: '#'
         sub:
           general_search:
             module: 'address'
-            code: 0
+            code: 11014
             label: 'Pesquisa geral'
             controller: 'address/units'
       cadin:
-        code: 0
+        code: 11015
         label: 'Cadastro imobiliário'
         controller: '#'
         sub:
           general_search:
             module: 'candidate'
-            code: 0
+            code: 11015
             label: 'Pesquisa geral'
             controller: 'candidate/cadins'
       schedule:
