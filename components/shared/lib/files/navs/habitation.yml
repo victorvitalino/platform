@@ -77,12 +77,12 @@ nav:
             controller: 'regularization/attendances'
             action: 'index'
       entity:
-        code: 0
+        code: 11501
         label: 'Entidades'
         controller: '#'
         sub: 
           cadastre:
             module: 'entity'
-            code: 0
+            code: 11501
             label: 'Cadastro'
             controller: 'entity/cadastres'
