@@ -11,12 +11,11 @@
         = link_to "Editar minha inscrição", edit_project_restrict_candidate_path(project_id: @project, id: @candidate.id), disabled: (@candidate.homologado? || @candidate.indeferido?)
     %hr/
     %span
-      - if @project.start_participation <= Date.today && @project.end_participation >= Date.today
-        - if @candidate.homologado?
-          - if @candidate.candidate_participation.present?
-            = link_to "VISUALIZAR MEU PROJETO ENVIADO", project_restrict_participation_path(project_id: @project, id: @candidate.candidate_participation.last.id ), class: 'btn btn-success btn-lg'
-          - else
-            = link_to "ENVIAR MEU PROJETO", project_restrict_participations_path(project_id: @project), class: 'btn btn-primary btn-lg'
+      - if @candidate.homologado? && (@project.start_participation <= Date.today && @project.end_participation >= Date.today)
+        - if @candidate.candidate_participation.present?
+          = link_to "VISUALIZAR MEU PROJETO ENVIADO", project_restrict_participation_path(project_id: @project, id: @candidate.candidate_participation.last.id ), class: 'btn btn-success btn-lg'
+        - else
+          = link_to "ENVIAR MEU PROJETO", project_restrict_participations_path(project_id: @project), class: 'btn btn-primary btn-lg'
         %hr/
 .row
   .col-md-12

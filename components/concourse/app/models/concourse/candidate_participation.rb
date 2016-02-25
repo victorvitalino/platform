@@ -14,7 +14,7 @@ module Concourse
     validates :archive_one, :archive_two,
               :archive_three,:archive_four,:archive_five,
               file_content_type: { allow: ['application/pdf'],
-              message: 'Somente arquivos (.pdf)' }
+              message: 'Somente arquivos no formato PDF' }
    
     
     mount_uploader :archive_one, ConcoursePortal::FileUploader 
