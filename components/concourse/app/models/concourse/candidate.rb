@@ -4,6 +4,7 @@ module Concourse
     belongs_to :subscribe
     
     has_many :observations
+    has_many :candidate_participation
     
     enum gender: [:masculino, :feminino]
     enum status: [:processando, :pendente, :homologado, :indeferido]

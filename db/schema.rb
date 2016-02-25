@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224134406) do
+ActiveRecord::Schema.define(version: 20160225122714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -902,6 +902,20 @@ ActiveRecord::Schema.define(version: 20160224134406) do
 
   add_index "concourse_candidate_messages", ["candidate_id"], name: "index_concourse_candidate_messages_on_candidate_id", using: :btree
 
+  create_table "concourse_candidate_participations", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.text     "team_description"
+    t.string   "archive_one"
+    t.string   "archive_two"
+    t.string   "archive_three"
+    t.string   "archive_four"
+    t.string   "archive_five"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "concourse_candidate_participations", ["candidate_id"], name: "index_concourse_candidate_participations_on_candidate_id", using: :btree
+
   create_table "concourse_candidate_tokens", force: :cascade do |t|
     t.integer  "candidate_id"
     t.string   "secret_key"
@@ -1014,21 +1028,6 @@ ActiveRecord::Schema.define(version: 20160224134406) do
   add_index "concourse_pages", ["project_id"], name: "index_concourse_pages_on_project_id", using: :btree
   add_index "concourse_pages", ["slug"], name: "index_concourse_pages_on_slug", unique: true, using: :btree
 
-  create_table "concourse_participations", force: :cascade do |t|
-    t.integer  "project_id"
-    t.string   "title"
-    t.date     "start"
-    t.date     "end"
-    t.boolean  "publish"
-    t.text     "observation"
-    t.integer  "subscribe_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "concourse_participations", ["project_id"], name: "index_concourse_participations_on_project_id", using: :btree
-  add_index "concourse_participations", ["subscribe_id"], name: "index_concourse_participations_on_subscribe_id", using: :btree
-
   create_table "concourse_projects", force: :cascade do |t|
     t.string   "title"
     t.text     "mini_description"
@@ -1051,6 +1050,9 @@ ActiveRecord::Schema.define(version: 20160224134406) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.text     "slider_html"
+    t.date     "start_participation"
+    t.date     "end_participation"
+    t.text     "text_participation"
   end
 
   create_table "concourse_subscribes", force: :cascade do |t|

@@ -1,0 +1,29 @@
+= simple_form_for @participation, url: project_restrict_participations_path(project_id: @project) do |f|
+  .row
+    .col-md-12
+      = f.label "Membros da sua equipe"
+      = f.input :team_description, label: false, input_html: { placeholder: "Insira os nomes dos integrantes da sua equipe: Maria, Jonas, Pedro, Marcelo, Fernanda.. etc"}
+  %hr/
+  .row
+    .col-md-5
+      = f.input :archive_one, label: "Prancha A3-01 (PDF, máximo de 3MB)", as: :file
+  .row
+    .col-md-5
+      = f.input :archive_two, label: "Prancha A3-02 (PDF, máximo de 3MB)", as: :file
+  .row
+    .col-md-5
+      = f.input :archive_three, label: "Prancha A3-03 (PDF, máximo de 3MB)", as: :file
+  .row
+    .col-md-5
+      = f.input :archive_four, label: "Prancha A3-04 (PDF, máximo de 3MB)", as: :file
+  .row
+    .col-md-5
+      = f.input :archive_five, label: "Prancha síntese A2-01 (PDF, máximo de 3MB)", as: :file
+  %hr/
+  .row
+    .col-md-12
+      = @project.text_participation.html_safe
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Enviar meu projeto", class: 'btn btn-success', data: { disable_with: t(:disable_with)}

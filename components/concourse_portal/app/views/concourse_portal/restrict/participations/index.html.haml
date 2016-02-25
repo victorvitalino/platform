@@ -1,0 +1,19 @@
+.row
+  .col-md-12
+    %h2
+      %b Enviar meu projeto
+      %small.pull-right
+        = link_to "Voltar", project_restrict_candidates_path(@project)
+%hr/
+.row
+  .col-md-12
+    - if @project.start_participation >= Date.today && @project.end_participation <= Date.today
+      %h4 Não é possível enviar projetos fora do período de envio.
+    - else
+      - if @candidate.homologado?
+        - if @candidate.candidate_participation.present?
+          %h4 Você já enviou seu projeto.
+        - else
+          = render 'form'
+      - else
+        %h4 Você não tem permissão para enviar projetos.

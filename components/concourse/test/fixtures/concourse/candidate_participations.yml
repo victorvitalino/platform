@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  candidate_id: 
+  team_description: MyText
+  archive_one: MyString
+  archive_two: MyString
+  archive_three: MyString
+  archive_four: MyString
+  archive_five: MyString
+
+two:
+  candidate_id: 
+  team_description: MyText
+  archive_one: MyString
+  archive_two: MyString
+  archive_three: MyString
+  archive_four: MyString
+  archive_five: MyString

@@ -1,0 +1,47 @@
+.row
+  .col-md-12
+    %h2
+      %b Projeto enviado
+      %small.pull-right
+        = link_to "Voltar", project_restrict_candidates_path(@project)
+%hr/
+.row
+  .col-md-12
+    %h5 
+      %b Equipe
+    %i= @participation.team_description
+%hr/
+.row
+  .col-md-12
+    %table.table.table-bordered.table-hover
+      %thead
+        %tr
+          %th Tipo
+          %th Identificador
+          %th Ação
+      %tbody
+        %tr
+          %td.col-md-3 Prancha A3 01
+          %td.col-md-5= @participation.archive_one.file.original_filename
+          %td.col-md-1
+            = link_to "visualizar", @participation.archive_one.url, target:'_blank'
+        %tr
+          %td.col-md-3 Prancha A3 02
+          %td.col-md-3= @participation.archive_two.file.original_filename
+          %td.col-md-1
+            = link_to "visualizar", @participation.archive_two.url, target:'_blank'
+        %tr
+          %td.col-md-3 Prancha A3 03
+          %td.col-md-3= @participation.archive_three.file.original_filename
+          %td.col-md-1
+            = link_to "visualizar", @participation.archive_three.url, target:'_blank'
+        %tr
+          %td.col-md-3 Prancha A3 04
+          %td.col-md-3= @participation.archive_four.file.original_filename
+          %td.col-md-1
+            = link_to "visualizar", @participation.archive_four.url, target:'_blank'
+        %tr
+          %td.col-md-3 Prancha síntese A2 01
+          %td.col-md-3= @participation.archive_five.file.original_filename
+          %td.col-md-1
+            = link_to "visualizar", @participation.archive_five.url, target:'_blank'

@@ -33,6 +33,7 @@ ConcoursePortal::Engine.routes.draw do
       end
       resources :passwords, path: 'senha', only: [:edit, :update]
       resources :sessions,  path: 'acesso'
+      resources :participations, path: 'participacao'
     end
     
     resources :pages,           path: '/pagina'

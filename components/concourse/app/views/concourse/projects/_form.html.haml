@@ -60,6 +60,20 @@
     %hr/
     .row
       .col-md-2
+        = f.label 'Início das participações'
+        = f.input :start_participation,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.start_participation) ? localize(f.object.start_participation) : nil}
+      .col-md-2
+        = f.label 'Fim das participações'
+        = f.input :end_participation,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.end_participation) ? localize(f.object.end_participation) : nil}
+    .row
+      .col-md-12
+        = f.label 'Texto de descrição (formulário de participação)', class: 'fg-label'
+        = f.input :text_participation, as: :hidden, label: false, input_html: { id:"text_participation" }
+        %trix-editor.trix-content{:input => "text_participation"}
+
+    %hr/
+    .row
+      .col-md-2
         = f.label :publish
         = f.input :publish, label: false, as: :select, include_blank: false
       .col-md-2
@@ -72,6 +86,6 @@
     %hr/
     .row
       .col-md-12
-        = f.submit "Salver concurso", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+        = f.submit "Salvar concurso", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
         = link_to "voltar", projects_path,class: 'btn btn-dark' 
 

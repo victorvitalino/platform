@@ -22,7 +22,7 @@ module Concourse
     scope :opens,       -> {where(step: 2)}
     scope :finisheds,    -> {where(step: 3)}
 
-    validates_presence_of :title, :mini_description, :apresentation, :image_logo
+    validates_presence_of :title, :mini_description, :apresentation
     validates_date :start, before: :end, presence: true
     validates_date :end, after: :start, presence: true
     
