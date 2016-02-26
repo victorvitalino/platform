@@ -1,6 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery.turbolinks
 //= require portal/js/script
 //= require portal/js/bootstrap.min
 //= require portal/js/jquery.flexslider
@@ -12,4 +11,4 @@
 //= require portal/js/bootstrap-datepicker.pt-br
 //= require portal/js/fancy.min
 //= require portal/js/jquery.bxslider.min
-//= require turbolinks
+
