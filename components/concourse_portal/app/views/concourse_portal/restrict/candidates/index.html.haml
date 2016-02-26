@@ -46,6 +46,7 @@
             %tr
               %td.col-md-4= @candidate.status
               %td.col-md-4= @candidate.invoice_paid ? 'Boleto Pago' : 'Boleto não pago'
+              %td.col-md-4= link_to "Baixar boleto", bankslip_project_restrict_candidates_path(@project), target: '_blank'
     %hr/
     .row
       .col-md-12
