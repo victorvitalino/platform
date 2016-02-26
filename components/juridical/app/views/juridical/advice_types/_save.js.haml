@@ -1,0 +1,4 @@
+- if @advice_type.errors.any?
+  $('#modal .modal-content').html("#{escape_javascript(render 'new')}")
+- else
+  window.location.reload(true);

@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  process_number: MyString
+  agency: MyString
+  lawsuit_id: 
+  lawsuit_value: 9.99
+  instancy_place_id: 
+  housing_program_id: 
+  document_type_id: 
+  responsible_lawyer_id: 
+  complement: MyText
+  status: false
+  start_date: 2016-02-25
+  end_date: 2016-02-25
+  process_type: false
+  staff_id_id: 
+
+two:
+  process_number: MyString
+  agency: MyString
+  lawsuit_id: 
+  lawsuit_value: 9.99
+  instancy_place_id: 
+  housing_program_id: 
+  document_type_id: 
+  responsible_lawyer_id: 
+  complement: MyText
+  status: false
+  start_date: 2016-02-25
+  end_date: 2016-02-25
+  process_type: false
+  staff_id_id: 

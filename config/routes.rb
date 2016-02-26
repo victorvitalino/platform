@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     mount Person::Engine                   => "/pessoas",        as: 'person',           module: 'management'
     mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',         module: 'management'
     mount Protocol::Engine                 => "/protocolo",      as: 'protocol',         module: 'protocol'
+    mount Juridical::Engine                 => "/juridico",      as: 'juridical',         module: 'juridical'
     mount Attendance::Engine               => "/atendimento",    as: 'attendance',       module: 'habitation'
     mount Concourse::Engine                => "/concurso",       as: 'concourse',        module: 'portal'
     mount Candidate::Engine                => "/candidatos",     as: 'candidate',        module: 'habitation'
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
     mount FirmPortal::Engine            => "/empresa",          as: 'firm_portal',            module: 'firm_portal'
   end
 
-  mount Api::Engine                     => "/api",            as: 'api'         
+  mount Api::Engine                     => "/api",            as: 'api'
   mount Address::Engine                 => "/endereco",       as: 'address', module: 'habitation'
-  mount Authenticate::Engine            => "/acesso",         as: 'authenticate'         
+  mount Authenticate::Engine            => "/acesso",         as: 'authenticate'
 end
