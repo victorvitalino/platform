@@ -11,7 +11,9 @@ module Archive
                                        message: "Arquivo não pode exceder 60 MB" }
     validates :file_path, file_content_type: { allow: ['application/pdf',   'application/docx',
                                                        'application/doc',   'application/xls',
-                                                       'application/xlsx',  'application/ppt',
+                                                       'application/vnd.ms-excel',
+                                                       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                                       'application/ppt',
                                                        'application/pptx',  'application/zip'],
                                               message: 'Somente arquivos (.doc, .docx, .xls, .xlsx, .ppt. .pptx ou .zip)' }
     mount_uploader :file_path, Archive::FileUploader 

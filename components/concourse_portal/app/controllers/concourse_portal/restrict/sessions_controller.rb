@@ -15,7 +15,8 @@ module ConcoursePortal
         
         if @session.valid?
           session[:candidate_id] = @session._id
-          redirect_to project_restrict_candidates_path(@project)
+          @candidate = Concourse::Candidate.find(@session._id)
+          redirect_to project_restrict_candidates_path(@candidate.subscribe.project.slug)
         else
           render action: :new
         end

@@ -56,13 +56,14 @@ module ConcoursePortal
           message: "Concursos Codhab"
         })
 
-        if @invoice.save!
+        if @invoice.save
           barcode = Barby::Code128.new(@invoice.barcode)
           File.open("public/barcodes/#{barcode}.png", 'w') { |f| f.write barcode.to_png(xdim: 1,height: 50) }
       
           render layout: 'brb/invoice'
         else
-          redirect_to action: :show
+          flash[:danger] = "Não é possível realizar a emissão de boleto fora do período especificado no edital"
+          redirect_to action: :index
         end
       end
 
