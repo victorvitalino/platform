@@ -23,8 +23,11 @@ module ConcoursePortal
       mail(to: email, subject: "CODHAB | CONCURSOS - Atualização de senha")
     end
 
-    def checked(email)
-      mail(to: email, subject: "Concurso Público Nacional de Projetos de Arquitetura e Complementares para Centros de Ensino Infantil (CEI) – Inscrição Homologada")
+    def checked(email, number)
+      @email = email 
+      @number = number
+      mail(to: email, subject: "Concurso Público Nacional de Projetos de Arquitetura e Complementares para Centros de Ensino Infantil (CEI) – Inscrição Homologada - Nº #{number}")
     end
+
   end
 end
