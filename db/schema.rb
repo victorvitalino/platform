@@ -1429,9 +1429,9 @@ ActiveRecord::Schema.define(version: 20160225202948) do
 
   create_table "juridical_complements", force: :cascade do |t|
     t.integer  "document_type_id"
-    t.integer  "lawsuit_type_id"
+    t.integer  "lawsuit_id"
     t.integer  "instancy_place_id"
-    t.date     "distribuition_date"
+    t.date     "distribution_date"
     t.date     "deadline"
     t.integer  "days"
     t.date     "end_date"
@@ -1440,21 +1440,21 @@ ActiveRecord::Schema.define(version: 20160225202948) do
     t.integer  "advice_type_id"
     t.string   "file_path"
     t.boolean  "status"
-    t.integer  "complement_father_id_id"
-    t.integer  "legal_advice_id_id"
-    t.integer  "staff_id_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "complement_father_id"
+    t.integer  "legal_advice_id"
+    t.integer  "staff_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_index "juridical_complements", ["advice_type_id"], name: "index_juridical_complements_on_advice_type_id", using: :btree
-  add_index "juridical_complements", ["complement_father_id_id"], name: "index_juridical_complements_on_complement_father_id_id", using: :btree
+  add_index "juridical_complements", ["complement_father_id"], name: "index_juridical_complements_on_complement_father_id", using: :btree
   add_index "juridical_complements", ["document_type_id"], name: "index_juridical_complements_on_document_type_id", using: :btree
   add_index "juridical_complements", ["instancy_place_id"], name: "index_juridical_complements_on_instancy_place_id", using: :btree
-  add_index "juridical_complements", ["lawsuit_type_id"], name: "index_juridical_complements_on_lawsuit_type_id", using: :btree
-  add_index "juridical_complements", ["legal_advice_id_id"], name: "index_juridical_complements_on_legal_advice_id_id", using: :btree
+  add_index "juridical_complements", ["lawsuit_id"], name: "index_juridical_complements_on_lawsuit_id", using: :btree
+  add_index "juridical_complements", ["legal_advice_id"], name: "index_juridical_complements_on_legal_advice_id", using: :btree
   add_index "juridical_complements", ["responsible_lawyer_id"], name: "index_juridical_complements_on_responsible_lawyer_id", using: :btree
-  add_index "juridical_complements", ["staff_id_id"], name: "index_juridical_complements_on_staff_id_id", using: :btree
+  add_index "juridical_complements", ["staff_id"], name: "index_juridical_complements_on_staff_id", using: :btree
 
   create_table "juridical_housing_programs", force: :cascade do |t|
     t.string   "name"

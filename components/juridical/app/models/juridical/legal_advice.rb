@@ -10,7 +10,7 @@ module Juridical
     belongs_to :responsible_lawyer, foreign_key: "staff_id", class_name: "Person::Staff"
     belongs_to :staff_id, class_name: "Person::Staff"
 
-    has_many :complements
+    has_many :complement
 
     scope :process,  -> (process) {where(process_number: process)}
     scope :lawyer,  -> (lawyer) {where(responsible_lawyer: lawyer)}

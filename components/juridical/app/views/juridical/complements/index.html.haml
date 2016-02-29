@@ -1,0 +1,34 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Listar processos
+          = link_to 'Novo complemento', new_legal_advice_complement_path(@legal_advice),class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}  #if policy(:Assessment, namespace: Protocol).create?
+    .panel-body
+      .row
+        .col-md-12
+          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+            %table#data-table-command.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th
+                  %th Processo
+                  %th Tipo de Ação
+                  %th Advogado Responsável
+                  %th Ações
+              %tbody
+                - if @complements.present?
+                  - @complements.each do |a|
+                    %tr
+                      %td
+                      %td
+                        = a.document_type.name if a.document_type.present?
+                      %td
+                        = a.lawsuit.name if a.lawsuit.present?
+                      %td
+                        = a.responsible_lawyer.name if a.responsible_lawyer.present?
+                      %td.col-md-2
+                        = link_to "", legal_advice_complement_path(a.legal_advice_id, a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}                   #if policy(:Assessment, namespace: Protocol).index?
+                        = link_to "", edit_legal_advice_complement_path(a.legal_advice_id,a), title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}                                     #if policy(:Assessment, namespace: Protocol).updat                  e?
+                        = link_to "", legal_advice_complement_path(a.legal_advice_id,a), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger                   btn-xs',data: {disable_with: "carregando..."} #if policy(:Assessment, namespace: Protocol).destroy?

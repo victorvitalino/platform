@@ -1,4 +1,4 @@
-= simple_form_for [:legal_advice, @complement] do |f|
+= simple_form_for [@legal_advice, @complement] do |f|
  .row
   .col-md-4
    = f.label :document_type, class: 'fg-label'
@@ -12,7 +12,7 @@
    = f.input :instancy, as: :select, collection: Juridical::Instancy.all, label: false, prompt: 'selecione...',input_html: { name: 'instancy'}
   .col-md-4
    = f.label :instancy_place, class: 'fg-label'
-   = f.association :instancy_place, label:false, as: :select, collection: (@legal_advice.instancy.present?) ? Juridical::InstancyPlace.where(instancy_id: @legal_advice.instancy).distinct : {}, label_method: :instancy_place, value_method: :instancy_place, prompt: 'selecione o local de instância...', input_html: { value: @legal_advice.instancy}
+   = f.association :instancy_place, label:false, as: :select, collection: (@complement.instancy.present?) ? Juridical::InstancyPlace.where(instancy_id: @complement.instancy).distinct : {}, label_method: :instancy_place, value_method: :instancy_place, prompt: 'selecione o local de instância...', input_html: { value: @complement.instancy}
  .row
   .col-md-2
    = f.label :distribution_date, class: 'fg-label'
@@ -50,7 +50,7 @@
 
   $(document).ready(function() {
 
-    $("#legal_advice_instancy").on('change', function(){
+    $("#complement_instancy").on('change', function(){
 
       $.getJSON("#{instancy_places_path}?instancy_id=" + $(this).val(), function(data) {
 
@@ -64,7 +64,7 @@
         } else {
           html = "<option value>Não foram encontrados locais</option>"
         }
-          $("#legal_advice_instancy_place_id").html(html)
+          $("#complement_instancy_place_id").html(html)
       });
     });
   });
