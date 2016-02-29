@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  document_type_id: 
+  lawsuit_type_id: 
+  instancy_place_id: 
+  distribuition_date: 2016-02-25
+  deadline: 2016-02-25
+  days: 1
+  end_date: 2016-02-25
+  complement: MyText
+  responsible_lawyer_id: 
+  advice_type_id: 
+  file_path: MyString
+  status: false
+  complement_father_id_id: 
+  legal_advice_id_id: 
+  staff_id_id: 
+
+two:
+  document_type_id: 
+  lawsuit_type_id: 
+  instancy_place_id: 
+  distribuition_date: 2016-02-25
+  deadline: 2016-02-25
+  days: 1
+  end_date: 2016-02-25
+  complement: MyText
+  responsible_lawyer_id: 
+  advice_type_id: 
+  file_path: MyString
+  status: false
+  complement_father_id_id: 
+  legal_advice_id_id: 
+  staff_id_id: 

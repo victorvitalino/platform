@@ -1,0 +1,22 @@
+.row
+ .col-md-12
+  = simple_form_for @lawsuit, remote: true do |f|
+   .row
+    .col-md-12
+     = f.label :name, class: 'fg-label'
+     = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+   .row
+    .col-md-12
+     = f.label :description, class: 'fg-label'
+     = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
+   .row
+    .col-md-12
+     .checkbox.m-b-15
+      %label
+       = f.check_box :status
+       %i.input-helper
+       = f.label :status, class: 'fg-label'
+   .row
+    .col-md-12
+     = f.button :submit, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+   %br/

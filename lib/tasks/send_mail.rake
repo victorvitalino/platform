@@ -8,7 +8,7 @@ namespace :send_mail do
     
     @candidates.each do |candidate|
       puts candidate.email
-      ConcoursePortal::SubscribeMailer.checked(candidate.email).deliver_now!
+      ConcoursePortal::SubscribeMailer.checked(candidate.email, candidate.id).deliver_now!
     end
   end
 end

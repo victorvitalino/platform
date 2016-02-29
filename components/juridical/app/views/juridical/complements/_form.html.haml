@@ -1,0 +1,70 @@
+= simple_form_for [:legal_advice, @complement] do |f|
+ .row
+  .col-md-4
+   = f.label :document_type, class: 'fg-label'
+   = f.association :document_type, prompt: 'selecione...', label: false
+  .col-md-4
+   = f.label :lawsuit, class: 'fg-label'
+   = f.association :lawsuit, prompt: 'selecione...', label: false
+ .row
+  .col-md-4
+   = f.label :instancy, class: 'fg-label'
+   = f.input :instancy, as: :select, collection: Juridical::Instancy.all, label: false, prompt: 'selecione...',input_html: { name: 'instancy'}
+  .col-md-4
+   = f.label :instancy_place, class: 'fg-label'
+   = f.association :instancy_place, label:false, as: :select, collection: (@legal_advice.instancy.present?) ? Juridical::InstancyPlace.where(instancy_id: @legal_advice.instancy).distinct : {}, label_method: :instancy_place, value_method: :instancy_place, prompt: 'selecione o local de instância...', input_html: { value: @legal_advice.instancy}
+ .row
+  .col-md-2
+   = f.label :distribution_date, class: 'fg-label'
+   = f.input :distribution_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@complement.distribution_date) ? localize(f.object.distribution_date) : nil}
+  .col-md-2
+   = f.label :end_date, class: 'fg-label'
+   = f.input :end_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@complement.end_date) ? localize(f.object.end_date) : nil}
+  .col-md-2
+   = f.label :days, class: 'fg-label'
+   = f.input :days, label: false, input_html: { placeholder: 'Quantidade de dias'}
+ .row
+  .col-md-8
+   = f.label :complement, class: 'fg-label'
+   = f.input :complement, as: 'text', label: false, input_html: { placeholder: 'Complementos'}
+ .row
+  .col-md-4
+   = f.label :responsible_lawyer, class: 'fg-label'
+   = f.association :responsible_lawyer, prompt: 'selecione...', label: false
+  .col-md-4
+   = f.label :advice_type, class: 'fg-label'
+   = f.association :advice_type, prompt: 'selecione...', label: false
+ .row
+  .col-md-4
+   = f.label :status, class: 'fg-label'
+   = f.input :status, prompt: 'selecione...', label: false
+  .col-md-4
+   = f.label :file_path, class: 'fg-label'
+   = f.input :file_path, as: 'file',  label: false
+ .row
+  .col-md-8
+   = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+   = link_to "voltar",  legal_advices_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}
+
+:javascript
+
+  $(document).ready(function() {
+
+    $("#legal_advice_instancy").on('change', function(){
+
+      $.getJSON("#{instancy_places_path}?instancy_id=" + $(this).val(), function(data) {
+
+        html = "<option value>selecione...</option>"
+        if(data.length > 0) {
+          console.log(data)
+          for(var i = 0; i < data.length; i++) {
+            html += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+          }
+
+        } else {
+          html = "<option value>Não foram encontrados locais</option>"
+        }
+          $("#legal_advice_instancy_place_id").html(html)
+      });
+    });
+  });

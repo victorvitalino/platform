@@ -1,0 +1,39 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          local da Instância
+          = link_to 'novo programa habitacional', new_instancy_instancy_place_path(@instancy), remote: true, class: 'btn btn-success pull-right btn-sm',data: {disable_with: "carregando..."}
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Nome
+              %th Descrição
+              %th Status
+              %th Instância
+              %th Ações
+          %tbody.index-advice_type
+            -if @instancy_places.present?
+              - @instancy_places.each_with_index do |j, i|
+                %tr
+                  %td.col-md-1
+                    = i + 1
+                  %td
+                    = j.name
+                  %td
+                    = j.description
+                  %td
+                    = j.status ? "Ativo" : "Inativo"
+                  %td
+                    = j.instancy.name if j.instancy.present?
+                  %td.col-md-2
+                    = link_to "", edit_instancy_instancy_place_path(@instancy, j), remote: true, class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+                    = link_to "", instancy_instancy_place_path(@instancy, j), method: :delete, class: 'glyphicon glyphicon-remove btn btn btn-danger btn-xs', data: {confirm: "#{t(:confirm_delete)}"}
+      .row
+        .col-md-12
+          = link_to 'voltar', instancies_path,  class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}
+

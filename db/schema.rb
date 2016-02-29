@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225122714) do
+ActiveRecord::Schema.define(version: 20160225202948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1418,6 +1418,104 @@ ActiveRecord::Schema.define(version: 20160225122714) do
   add_index "helpdesk_tickets", ["sector_id"], name: "index_helpdesk_tickets_on_sector_id", using: :btree
   add_index "helpdesk_tickets", ["ticket_subject_id"], name: "index_helpdesk_tickets_on_ticket_subject_id", using: :btree
   add_index "helpdesk_tickets", ["ticket_type_id"], name: "index_helpdesk_tickets_on_ticket_type_id", using: :btree
+
+  create_table "juridical_advice_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "juridical_complements", force: :cascade do |t|
+    t.integer  "document_type_id"
+    t.integer  "lawsuit_type_id"
+    t.integer  "instancy_place_id"
+    t.date     "distribuition_date"
+    t.date     "deadline"
+    t.integer  "days"
+    t.date     "end_date"
+    t.text     "complement"
+    t.integer  "responsible_lawyer_id"
+    t.integer  "advice_type_id"
+    t.string   "file_path"
+    t.boolean  "status"
+    t.integer  "complement_father_id_id"
+    t.integer  "legal_advice_id_id"
+    t.integer  "staff_id_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "juridical_complements", ["advice_type_id"], name: "index_juridical_complements_on_advice_type_id", using: :btree
+  add_index "juridical_complements", ["complement_father_id_id"], name: "index_juridical_complements_on_complement_father_id_id", using: :btree
+  add_index "juridical_complements", ["document_type_id"], name: "index_juridical_complements_on_document_type_id", using: :btree
+  add_index "juridical_complements", ["instancy_place_id"], name: "index_juridical_complements_on_instancy_place_id", using: :btree
+  add_index "juridical_complements", ["lawsuit_type_id"], name: "index_juridical_complements_on_lawsuit_type_id", using: :btree
+  add_index "juridical_complements", ["legal_advice_id_id"], name: "index_juridical_complements_on_legal_advice_id_id", using: :btree
+  add_index "juridical_complements", ["responsible_lawyer_id"], name: "index_juridical_complements_on_responsible_lawyer_id", using: :btree
+  add_index "juridical_complements", ["staff_id_id"], name: "index_juridical_complements_on_staff_id_id", using: :btree
+
+  create_table "juridical_housing_programs", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "juridical_instancies", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "juridical_instancy_places", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status"
+    t.integer  "instancy_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "juridical_instancy_places", ["instancy_id"], name: "index_juridical_instancy_places_on_instancy_id", using: :btree
+
+  create_table "juridical_lawsuits", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "juridical_legal_advices", force: :cascade do |t|
+    t.string   "process_number"
+    t.string   "agency"
+    t.integer  "lawsuit_id"
+    t.decimal  "lawsuit_value"
+    t.integer  "instancy_place_id"
+    t.integer  "housing_program_id"
+    t.integer  "document_type_id"
+    t.integer  "responsible_lawyer_id"
+    t.text     "complement"
+    t.boolean  "status"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "process_type"
+    t.integer  "staff_id_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "juridical_legal_advices", ["document_type_id"], name: "index_juridical_legal_advices_on_document_type_id", using: :btree
+  add_index "juridical_legal_advices", ["housing_program_id"], name: "index_juridical_legal_advices_on_housing_program_id", using: :btree
+  add_index "juridical_legal_advices", ["instancy_place_id"], name: "index_juridical_legal_advices_on_instancy_place_id", using: :btree
+  add_index "juridical_legal_advices", ["lawsuit_id"], name: "index_juridical_legal_advices_on_lawsuit_id", using: :btree
+  add_index "juridical_legal_advices", ["responsible_lawyer_id"], name: "index_juridical_legal_advices_on_responsible_lawyer_id", using: :btree
+  add_index "juridical_legal_advices", ["staff_id_id"], name: "index_juridical_legal_advices_on_staff_id_id", using: :btree
 
   create_table "person_branch_lines", force: :cascade do |t|
     t.string   "telephone"
