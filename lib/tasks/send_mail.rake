@@ -11,6 +11,18 @@ namespace :send_mail do
       ConcoursePortal::SubscribeMailer.checked(candidate.email, candidate.id).deliver_now!
     end
   end
+
+  desc 'participacao'
+  task :project => :environment do 
+    @candidates = Concourse::CandidateParticipation.all
+
+    @candidates.each do |proj|
+      @candidate = Concourse::Candidate.find(proj.candidate_id)
+      if ConcoursePortal::SubscribeMailer.project_send(@candidate.email,@candidate.id, @candidate.subscribe.project_id).deliver_now
+        puts @candidate.email
+      end
+    end
+  end
 end
 
 =begin 
