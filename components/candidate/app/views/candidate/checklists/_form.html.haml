@@ -1,0 +1,16 @@
+= simple_form_for @checklist, remote: true do |f|
+  .row
+    .col-md-12
+      = f.input :name, input_html: { placeholder: "Digite o nome do item"}
+  .row
+    .col-md-6
+      = f.input :code, input_html: { placeholder: "Digite um código"}
+    .col-md-6
+      = f.association :program, include_blank: false
+  .row
+    .col-md-6
+      = f.input :status, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-4
+      = f.submit "Salvar item", class: 'btn btn-success', data: { disable_with: t(:disable_with) }

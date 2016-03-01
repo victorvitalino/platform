@@ -23,10 +23,22 @@ module ConcoursePortal
       mail(to: email, subject: "CODHAB | CONCURSOS - Atualização de senha")
     end
 
-    def checked(email, number)
-      @email = email 
-      @number = number
-      mail(to: email, subject: "Concurso Público Nacional de Projetos de Arquitetura e Complementares para Centros de Ensino Infantil (CEI) – Inscrição Homologada - Nº #{number}")
+    def checked(email, number, project_id)
+      @email    = email 
+      @number   = number
+      @project  = Concourse::Project.find(project_id)
+
+      mail(to: email, subject: "Concurso Público Nacional de Projetos de Arquitetura e Complementares – Inscrição Homologada - Nº #{number}")
+    end
+
+
+    def project_send(email, number, project_id)
+      @email    = email 
+      @number   = number
+      @project  = Concourse::Project.find(project_id)
+      @participation = Concourse::CandidateParticipation.find_by_candidate_id(number)
+
+      mail(to: email, subject: "Concurso Público Nacional de Projetos de Arquitetura e Complementares – Projeto Recebido - Inscrição Nº #{number}")
     end
 
   end

@@ -1,8 +1,6 @@
 module Candidate
   class CadastreChecklist < ActiveRecord::Base
-    belongs_to :cadastre
-    belongs_to :attendance
-
-    has_many :checklist
+    belongs_to :cadastre_mirror
+    belongs_to :checklist
   end
 end

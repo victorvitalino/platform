@@ -147,7 +147,7 @@
                                 / Title
                                 %tr
                                   %td{"st-title" => "fulltext-heading", :style => "font-family: Helvetica, arial, sans-serif; font-size: 30px; color: #333333; text-align:left; line-height: 30px;"}
-                                    %b Inscrição Homologada
+                                    %b Projeto Recebido
                                 / End of Title
                                 / spacing
                                 %tr
@@ -157,18 +157,7 @@
                                 %tr
                                   %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #666666; text-align:left; line-height: 30px;"}
                                     %p Prezado senhor (a), 
-
-                                    %p Sua inscrição para participação no Concurso Público Nacional de Projetos de Arquitetura e Complementares para #{@project.title}, foi homologada.
-                                    %br/
-                                    %p Em conformidade com o Edital, encaminhamos o seu número de inscrição para que possa efetuar o envio do seu projeto. O seu número de inscrição é #{@number}.
-
-                                    %br/
-                                    %p Para garantir sua participação, você deve enviar o seu Estudo Preliminar, em formato digital, pelo site oficial do Concurso (http://www.codhab.df.gov.br/concursos/#{@project.slug}), conforme regras estabelecidas no Edital. O envio deverá ocorrer no período de 00h00min do dia #{@project.start_participation.strftime('%d/%m/%Y')} até às 23h59min do dia #{@project.end_participation.strftime('%d/%m/%Y')} (horário de Brasília/DF), e dar-se-á de acordo com os seguintes passos:
-
-
-
-                                / End of content
-                        / Spacing
+                                    %p Seu formulário de envio do Estudo Preliminar e seus arquivos para participação no Concurso Público Nacional de Projetos de Arquitetura e Complementares para #{@project.title} foram recebidos, conforme espelho abaixo:
                         %tr
                           %td{:height => "20", :style => "font-size:1px; line-height:1px; mso-line-height-rule: exactly;"}  
                         / Spacing
@@ -206,16 +195,24 @@
                             %table.devicewidthinner{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                               %tr
                                 %td{"st-title" => "fulltext-heading", :style => "font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #333333; text-align:left; line-height: 30px;"}
-                                  %p 1 - Acessar o site (http://www.codhab.df.gov.br/concursos/#{@project.slug}) no período acima especificado;
-                                  %p 2 - Na aba de menu “inscrições”, clicar em "Acessar minha inscrição" e após acessar, inserir seu número de inscrição e senha de acesso;
-                                  %p 3 - Após ter acesso ao status de sua inscrição, clique em “Enviar meu Projeto";
-                                  %p 4 - Ao visualizar o formulário, nomeie a equipe completa do projeto (autores, colaboradores, consultores, demais membros da equipe);
-                                  %p 5 - Realize o upload do Estudo Preliminar: 04 (quatro) pranchas no formato A3 e a 01 (uma) prancha A2, que apresente a síntese do projeto, cada uma em um arquivo individual em formato PDF, com tamanho máximo de 3 MB (três megabytes) cada. As pranchas poderão receber o nome que melhor convier, uma vez que o sistema renomeará os arquivos, seguindo um algoritmo aleatório para garantia do sigilo;
-                                  %p 6- Clique em enviar.
-                                    
+                                  %p Prancha A3-01 (PDF, máximo de 3 MB)
+                                  %p= link_to "visualizar", "http://www.codhab.df.gov.br/#{@participation.archive_one.url}"
+                                  %br/
+                                  %p Prancha A3-02 (PDF, máximo de 3 MB)
+                                  %p= link_to "visualizar", "http://www.codhab.df.gov.br/#{@participation.archive_two.url}"
+                                  %br/
+                                  %p Prancha A3-03 (PDF, máximo de 3 MB)
+                                  %p= link_to "visualizar", "http://www.codhab.df.gov.br/#{@participation.archive_three.url}"
+                                  %br/
+                                  %p Prancha A3-04 (PDF, máximo de 3 MB)
+                                  %p= link_to "visualizar", "http://www.codhab.df.gov.br/#{@participation.archive_four.url}"
+                                  %br/
+                                  %p Prancha síntese A2-01 (PDF, máximo de 3 MB)
+                                  %p= link_to "visualizar", "http://www.codhab.df.gov.br/#{@participation.archive_five.url}"
+                                  %br/
                                   %br/ 
                                   
-                                  %p Contamos com a sua participação e nos colocamos a disposição para qualquer esclarecimento.
+                                  %p Aguarde o julgamento e a divulgação dos resultados, a ser realizada em ato público, no dia 04 de março de 2016, na sala de Audiências da Presidência da CODHAB, no Setor Comercial Sul Quadra 06 Nº 13/14 Bloco A Ed. SEDHAB, 2º andar, em Brasília/DF, às 18h. Os resultados serão, após divulgação no ato público, publicados no site oficial do Concurso (www.codhab.df.gov.br/concursos/#{@project.slug}).
 
                                   %br/
                                    

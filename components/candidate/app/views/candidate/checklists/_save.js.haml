@@ -1,0 +1,5 @@
+- if @checklist.errors.any?
+  $('#modal .modal-body').html("#{escape_javascript(render 'form')}")
+- else
+  $(".index-checklist").html("#{escape_javascript(render 'index')}")
+  $("#modal").modal('hide')

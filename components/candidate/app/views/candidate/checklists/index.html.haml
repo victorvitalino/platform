@@ -1,0 +1,30 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Listagem de itens do checklist
+          = link_to 'Adicionar item', new_checklist_path, remote: true, class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}
+    .panel-body
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        .row.form-filter
+          .col-md-12
+            = simple_form_for :url_for, method: :get do |f|
+              .row
+                .col-md-4
+                  = f.input :program, label: "Programa", as: :select, include_blank: 'Todos', collection: Candidate::Program.all.order(:name), input_html: { name: 'by_program'}, selected: params[:by_program]
+                .col-md-4
+                  = f.submit "Filtar pesquisa", name:nil, data: { disable_with: t(:disable_with)}, class: 'btn btn-primary btn-sm'
+        %hr/
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Programa
+                  %th Nome
+                  %th Código
+                  %th Situação
+                  %th Ações
+              %tbody.index-checklist
+                = render 'index'

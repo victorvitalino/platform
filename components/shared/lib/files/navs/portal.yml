@@ -16,19 +16,19 @@ nav:
             module: 'cms'
             code: 21001
             label: 'Nova postagem'
-            controller: 'cms/posts'
+            controller: '/cms/posts'
             action: 'new'
           posts:
             module: 'cms'
             code: 21004
             label: 'Postagens'
-            controller: 'cms/posts'
+            controller: '/cms/posts'
             action: 'index'
           post_category:
             module: 'cms'
             code: 21033
             label: 'Categorias'
-            controller: 'cms/post_categories'
+            controller: '/cms/post_categories'
             action: 'index'
       page:
         code: [21011, 21012, 21013, 21014, 21015, 21016]
@@ -39,13 +39,13 @@ nav:
             module: 'cms'
             code: 21011
             label: "Nova página"
-            controller: 'cms/pages'
+            controller: '/cms/pages'
             action: 'new'
           pages:
             module: 'cms'
             code: 21016 
             label: 'Páginas'
-            controller: 'cms/pages'
+            controller: '/cms/pages'
             action: 'index'
       nav:
         code: 21031
@@ -56,13 +56,13 @@ nav:
             module: 'cms'
             code: 21031
             label: 'Novo menu'
-            controller: 'cms/navs'
+            controller: '/cms/navs'
             action: 'new'
           navs:
             module: 'cms'
             code: 21031
             label: 'Lista'
-            controller: 'cms/navs'
+            controller: '/cms/navs'
             action: 'index'
       gallery:
         code: [21021,21022,21023,21024,21025,21026]
@@ -73,13 +73,13 @@ nav:
             module: 'cms'
             code: 21021
             label: 'Nova galeria'
-            controller: 'cms/galleries'
+            controller: '/cms/galleries'
             action: 'new'
           galleries:
             module: 'cms'
             code: 21026
             label: 'Galerias'
-            controller: 'cms/galleries'
+            controller: '/cms/galleries'
             action: 'index'
       archive:
         code: [21201, 21202]
@@ -90,13 +90,13 @@ nav:
             module: "archive"
             code: 21201
             label: "Novo arquivo"
-            controller: "archive/files"
+            controller: "/archive/files"
             action: 'new'
           files:
             module: 'archive'
             code: 21202
             label: 'Arquivos'
-            controller: 'archive/files'
+            controller: '/archive/files'
             action: 'index'
       concourse:
         code: [21101,21102,21103,21104, 21107]
@@ -107,19 +107,19 @@ nav:
             module: 'concourse'
             code: 21101
             label: 'Novo concurso'
-            controller: 'concourse/projects'
+            controller: '/concourse/projects'
             action: 'new'
           project:
             module: 'concourse'
             code: 21104
             label: 'Concursos'
-            controller: 'concourse/projects'
+            controller: '/concourse/projects'
             action: 'index'
           candidates:
             module: 'concourse'
             code: 21107
             label: 'Inscrições'
-            controller: 'concourse/candidates'
+            controller: '/concourse/candidates'
             action: 'view_all'
 
 

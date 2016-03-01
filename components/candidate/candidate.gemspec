@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Candidate::VERSION
   s.authors     = ["Elton Silva"]
   s.email       = ["elton.chrls@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/codhab/plataform"
   s.summary     = ": Summary of Candidate."
   s.description = ": Description of Candidate."
   s.license     = "MIT"

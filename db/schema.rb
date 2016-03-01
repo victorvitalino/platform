@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225202948) do
+ActiveRecord::Schema.define(version: 20160229131530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -387,15 +387,17 @@ ActiveRecord::Schema.define(version: 20160225202948) do
   add_index "candidate_cadastre_addresses", ["user_company_id"], name: "index_candidate_cadastre_addresses_on_user_company_id", using: :btree
 
   create_table "candidate_cadastre_checklists", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.integer  "attendance_id"
-    t.integer  "checklist_id",               array: true
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "cadastre_mirror_id"
+    t.integer  "checklist_id"
+    t.boolean  "document_authenticate"
+    t.string   "document_file"
+    t.text     "description"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  add_index "candidate_cadastre_checklists", ["attendance_id"], name: "index_candidate_cadastre_checklists_on_attendance_id", using: :btree
-  add_index "candidate_cadastre_checklists", ["cadastre_id"], name: "index_candidate_cadastre_checklists_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_checklists", ["cadastre_mirror_id"], name: "index_candidate_cadastre_checklists_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadastre_checklists", ["checklist_id"], name: "index_candidate_cadastre_checklists_on_checklist_id", using: :btree
 
   create_table "candidate_cadastre_events", force: :cascade do |t|
     t.integer  "staff_id"
@@ -448,12 +450,10 @@ ActiveRecord::Schema.define(version: 20160225202948) do
     t.integer  "cadastre_type",          default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "checklist_id"
     t.integer  "situation",              default: 0
   end
 
   add_index "candidate_cadastre_mirrors", ["cadastre_id"], name: "index_candidate_cadastre_mirrors_on_cadastre_id", using: :btree
-  add_index "candidate_cadastre_mirrors", ["checklist_id"], name: "index_candidate_cadastre_mirrors_on_checklist_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["city_id"], name: "index_candidate_cadastre_mirrors_on_city_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["civil_state_id"], name: "index_candidate_cadastre_mirrors_on_civil_state_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["program_id"], name: "index_candidate_cadastre_mirrors_on_program_id", using: :btree
@@ -572,6 +572,7 @@ ActiveRecord::Schema.define(version: 20160225202948) do
   create_table "candidate_checklists", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status",     default: true
+    t.string   "code"
     t.integer  "program_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -1429,9 +1430,9 @@ ActiveRecord::Schema.define(version: 20160225202948) do
 
   create_table "juridical_complements", force: :cascade do |t|
     t.integer  "document_type_id"
-    t.integer  "lawsuit_type_id"
+    t.integer  "lawsuit_id"
     t.integer  "instancy_place_id"
-    t.date     "distribuition_date"
+    t.date     "distribution_date"
     t.date     "deadline"
     t.integer  "days"
     t.date     "end_date"
@@ -1440,21 +1441,21 @@ ActiveRecord::Schema.define(version: 20160225202948) do
     t.integer  "advice_type_id"
     t.string   "file_path"
     t.boolean  "status"
-    t.integer  "complement_father_id_id"
-    t.integer  "legal_advice_id_id"
-    t.integer  "staff_id_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "complement_father_id"
+    t.integer  "legal_advice_id"
+    t.integer  "staff_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_index "juridical_complements", ["advice_type_id"], name: "index_juridical_complements_on_advice_type_id", using: :btree
-  add_index "juridical_complements", ["complement_father_id_id"], name: "index_juridical_complements_on_complement_father_id_id", using: :btree
+  add_index "juridical_complements", ["complement_father_id"], name: "index_juridical_complements_on_complement_father_id", using: :btree
   add_index "juridical_complements", ["document_type_id"], name: "index_juridical_complements_on_document_type_id", using: :btree
   add_index "juridical_complements", ["instancy_place_id"], name: "index_juridical_complements_on_instancy_place_id", using: :btree
-  add_index "juridical_complements", ["lawsuit_type_id"], name: "index_juridical_complements_on_lawsuit_type_id", using: :btree
-  add_index "juridical_complements", ["legal_advice_id_id"], name: "index_juridical_complements_on_legal_advice_id_id", using: :btree
+  add_index "juridical_complements", ["lawsuit_id"], name: "index_juridical_complements_on_lawsuit_id", using: :btree
+  add_index "juridical_complements", ["legal_advice_id"], name: "index_juridical_complements_on_legal_advice_id", using: :btree
   add_index "juridical_complements", ["responsible_lawyer_id"], name: "index_juridical_complements_on_responsible_lawyer_id", using: :btree
-  add_index "juridical_complements", ["staff_id_id"], name: "index_juridical_complements_on_staff_id_id", using: :btree
+  add_index "juridical_complements", ["staff_id"], name: "index_juridical_complements_on_staff_id", using: :btree
 
   create_table "juridical_housing_programs", force: :cascade do |t|
     t.string   "name"

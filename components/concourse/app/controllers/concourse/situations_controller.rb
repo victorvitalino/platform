@@ -10,6 +10,15 @@ module Concourse
     def update
       @candidate.status = params[:candidate][:status]
       @candidate.save!
+
+      if @candidate.homologado? 
+        project_id  = @candidate.subscribe.project_id 
+        email       = @candidate.email
+        id          = @candidate.id
+
+        ConcoursePortal::SubscribeMailer.checked(email, id, project_id).deliver_now rescue nil
+      end
+
     end
 
     private

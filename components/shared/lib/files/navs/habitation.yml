@@ -16,12 +16,12 @@ nav:
             module: 'candidate'
             code: 11005
             label: 'Pesquisa geral'
-            controller: 'candidate/cadastres'
+            controller: '/candidate/cadastres'
           cadastre_address:
             module: 'candidate'
             code: 11011
             label: 'Assentamento'
-            controller: 'candidate/cadastre_addresses'
+            controller: '/candidate/cadastre_addresses'
       address:
         code: 11014
         label: 'Endereço'
@@ -31,7 +31,7 @@ nav:
             module: 'address'
             code: 11014
             label: 'Pesquisa geral'
-            controller: 'address/units'
+            controller: '/address/units'
       cadin:
         code: 11015
         label: 'Cadastro imobiliário'
@@ -41,7 +41,7 @@ nav:
             module: 'candidate'
             code: 11015
             label: 'Pesquisa geral'
-            controller: 'candidate/cadins'
+            controller: '/candidate/cadins'
       schedule:
         code: [118103,118101]
         label: 'Agendamento'
@@ -51,13 +51,13 @@ nav:
             module: 'schedule'
             code: 118101
             label: 'Nova agenda'
-            controller: 'schedule/agendas'
+            controller: '/schedule/agendas'
             action: 'new'
           schedules:
             module: 'schedule'
             code: 118103
             label: 'Agendas'
-            controller: 'schedule/agendas'
+            controller: '/schedule/agendas'
             action: 'index'
       attendant:
         code: 0
@@ -68,13 +68,19 @@ nav:
             module: 'habitation'
             code: 0
             label: "Habitação"
-            controller: 'habitation/attendances'
+            controller: 'habitation/attendance/attendances'
             action: 'index'
           regularization:
             module: 'regularization'
             code: 0
             label: 'Regularização'
-            controller: 'regularization/attendances'
+            controller: '/regularization/attendances'
+            action: 'index'
+          checklist:
+            module: 'candidate'
+            code: 0
+            label: "Gestão de checklist"
+            controller: '/candidate/checklists'
             action: 'index'
       entity:
         code: 11501
@@ -85,4 +91,4 @@ nav:
             module: 'entity'
             code: 11501
             label: 'Cadastro'
-            controller: 'entity/cadastres'
+            controller: '/entity/cadastres'

@@ -16,17 +16,17 @@ nav:
             module: 'person'
             code: 0
             label: 'Cadastros'
-            controller: 'person/staffs'
+            controller: '/person/staffs'
           sectors:
             module: 'person'
             code: 0
             label: 'Setores'
-            controller: 'person/sectors'
+            controller: '/person/sectors'
           jobs:
             module: 'person'
             code: 0
             label: 'Cargos'
-            controller: 'person/jobs'
+            controller: '/person/jobs'
       financial:
         code: 0
         label: 'Financeiro'
@@ -36,12 +36,12 @@ nav:
             module: 'brb'
             code: 0
             label: 'BRB - Boleto'
-            controller: 'brb/invoices'
+            controller: '/brb/invoices'
           billet_types:
             module: 'brb'
             code: 0
             label: 'Tipos de cobrança'
-            controller: 'brb/categories'
+            controller: '/brb/categories'
       extranet:
         code: 0
         label: 'Extranet'
@@ -51,4 +51,4 @@ nav:
             module: 'person'
             code: 0
             label: 'Sistemas'
-            controller: 'person/systems'
+            controller: '/person/systems'

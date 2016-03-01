@@ -16,13 +16,13 @@ nav:
             module: 'protocol'
             code: 0
             label: 'Nova'
-            controller: 'protocol/assessments'
+            controller: '/protocol/assessments'
             action: 'new'
           assessments:
             module: 'protocol'
             code: 0
             label: 'Lista'
-            controller: 'protocol/assessments'
+            controller: '/protocol/assessments'
             action: 'index'
       processing:
         code: 0
@@ -33,19 +33,19 @@ nav:
             module: 'protocol'
             code: 0
             label: 'Lista'
-            controller: 'protocol/allotments'
+            controller: '/protocol/allotments'
             action: 'index'
           receive:
             module: 'protocol'
             code: 0
             label: 'Receber'
-            controller: 'protocol/conducts'
+            controller: '/protocol/conducts'
             action: 'receive'          
           return:
             module: 'protocol'
             code: 0
             label: 'Cancelar'
-            controller: 'protocol/conducts'
+            controller: '/protocol/conducts'
             action: 'return' 
       location:
         code: 0
@@ -56,7 +56,7 @@ nav:
             module: 'protocol'
             code: 0
             label: 'Nova'
-            controller: 'protocol/locations'
+            controller: '/protocol/locations'
             action: 'new'
       report:
         code: 0
@@ -67,7 +67,7 @@ nav:
             module: 'protocol'
             code: 0
             label: 'Remessas'
-            controller: 'protocol/reports'
+            controller: '/protocol/reports'
             action: 'new'
       config:
         code: 0
@@ -78,13 +78,13 @@ nav:
             module: 'protocol'
             code: 0
             label: 'Tipo de documento'
-            controller: 'protocol/document_types'
+            controller: '/protocol/document_types'
             action: 'index'
           subjects:
             module: 'protocol'
             code: 0
             label: 'Assuntos'
-            controller: 'protocol/subjects'
+            controller: '/protocol/subjects'
             action: 'index'
 
 

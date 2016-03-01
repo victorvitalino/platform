@@ -1,0 +1,9 @@
+- @checklists.each do |checklist|
+  %tr
+    %td.col-md-1= checklist.program.name if checklist.program.present?
+    %td= checklist.name
+    %td.col-md-1= checklist.code
+    %td.col-md-1= checklist.status ? 'ativo' : 'inativo'
+    %td.col-md-1
+      = link_to "", edit_checklist_path(checklist), remote: true, class: 'btn btn-primary btn-xs glyphicon glyphicon-pencil'
+      = link_to "", checklist_path(checklist), remote: true, method: :delete, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove'

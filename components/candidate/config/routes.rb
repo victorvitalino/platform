@@ -10,6 +10,8 @@ Candidate::Engine.routes.draw do
   end
   resources :cadastre_addresses, path: 'enderecos'
   resources :lists
+  resources :checklists
+
 
 
 end
