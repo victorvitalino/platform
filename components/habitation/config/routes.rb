@@ -11,6 +11,7 @@ Habitation::Engine.routes.draw do
     resources :checklists
     resources :dependents
     resources :attendances
+    resources :conclusions
   end
   
   resources :cadastres

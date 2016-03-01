@@ -21,7 +21,6 @@ module Habitation
       end
 
       def edit
-
       end
 
       def update

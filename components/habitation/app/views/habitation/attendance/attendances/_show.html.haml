@@ -37,10 +37,14 @@
           - @candidate.cadastre_mirrors.order('created_at DESC').each do |mirror|
             %tr
               %td.col-md-1= mirror.created_at.strftime('%d/%m/%Y')
-              %td.col-md-2= mirror.situation.humanize
-              %td.col-md-3= (mirror.pontuation?) ? "Pontuado" : "Não pontuado"
-              %td.col-md-3 Fulano 2
-              %td.col-md-2
+              %td.col-md-1= mirror.situation.humanize
+              %td.col-md-1= mirror.pontuation.present? ? "Pontuado" : "Não pontuado"
+              %td.col-md-1 Fulano 2
+              %td.col-sm-2 
+                = link_to "", attendance_checklists_path(id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-check', title: "Checklist"
+                = link_to "", edit_attendance_cadastre_path(mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-pencil', title: "Atualização cadastral"
+                = link_to "", attendance_dependents_path(mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-user', title: "Atualização dependentes"
+                = link_to "", edit_attendance_conclusion_path(mirror.id), class: 'btn btn-success btn-xs glyphicon glyphicon-ok', title: "Finalizar atendimento"
 
   %br/
   .row
