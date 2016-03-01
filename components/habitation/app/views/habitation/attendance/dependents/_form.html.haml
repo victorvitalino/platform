@@ -1,4 +1,4 @@
-= simple_form_for @dependent, url: attendance_dependents_path(mirror_id: @mirror), method: :post, remote: true do |f|
+= simple_form_for @dependent, url: attendance_dependents_path(mirror_id: @mirror), remote: true do |f|
   .row
     .col-md-4
       = f.input :cpf

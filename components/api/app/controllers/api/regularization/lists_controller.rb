@@ -6,7 +6,7 @@ module Api
 
       def index
         @list = ::Candidate::View::GeneralRegularization.joins(:cadastre).where(conv_id:params[:id])
-        render json: @list
+        render json: {data: @list}
       end
 
     end

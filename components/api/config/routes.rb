@@ -7,7 +7,7 @@ Api::Engine.routes.draw do
   end
 
   namespace :regularization, path: 'regularizacao' do
-      resources :lists, path: 'lista', only: :index
+    resources :lists, path: 'lista', only: :index
   end
 
 end
