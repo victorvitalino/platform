@@ -8,34 +8,67 @@
           Total: #{@candidates.count}
         %small.bold
     .panel-body
-      %table.table.table-striped.table-bordered.table-hover
-        %thead
-          %tr
-            %th Nº
-            %th Nome
-            %th CPF
-            %th Cidade/UF
-            %th Concurso
-            %th Situação
-            %th Taxa
-            %th Envio projeto
-            %th Colocação
-            %th Ações
-        %tbody
-          - @candidates.order('created_at DESC').each do |candidate|
-            %tr
-              %td= candidate.id
-              %td= candidate.name.humanize
-              %td= candidate.cpf
-              %td= "#{candidate.city.downcase} / #{candidate.state.acronym.upcase}"
-              %td= candidate.subscribe.project.title
-              %td= candidate.status
-              %td
-                - if candidate.invoice_paid
-                  %span.label.label-success paga
-                - else
-                  %span.label.label-warning pendente
-              %td -
-              %td -
-              %td
-                = link_to "", project_candidate_path(project_id: candidate.subscribe.project_id, id: candidate.id), class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs', title: "visualizar"
+      .row.form-filter
+        = simple_form_for url_for, method: :get do |f|
+          .col-md-4
+            = f.input :concourse, as: :select, collection: Concourse::Project.all.order(:id), input_html: { name: 'by_concourse'}, selected: params[:by_concourse], include_blank: "Todos"
+          .col-md-2
+            = f.input :by_status, as: :select, collection: Concourse::Candidate.statuses.map {|k,v| [k,v]}, input_html: { name: 'by_status'}, selected: params[:by_status], include_blank: "Todos"
+
+          .col-md-3
+            = f.submit "Filtar pesquisa", name: nil, class: 'btn btn-primary btn-sm', data: { disable_with: t(:disable_with)}
+      %hr/
+      .row
+        .col-md-12
+          Total listado: #{@candidates.count}
+      %hr/
+      .row
+        .col-md-12
+          %table.table.table-striped.table-bordered.table-hover.table-condensed
+            %thead
+              %tr
+                %th Nº
+                %th Nome
+                %th CPF
+                %th Cidade/UF
+                %th Concurso
+                %th Situação
+                %th Taxa
+                %th Envio projeto
+                %th Ações
+            %tbody
+              - @candidates.order('created_at DESC').each do |candidate|
+                %tr
+                  %td= candidate.id
+                  %td= candidate.name.humanize
+                  %td= candidate.cpf
+                  %td= "#{candidate.city.downcase} / #{candidate.state.acronym.upcase}"
+                  %td= candidate.subscribe.project.title
+                  %td
+                    - if candidate.processando?
+                      %span.label.label-warning
+                        Processando
+                    - if candidate.pendente?
+                      %span.label.label-danger
+                        Pendente
+                    - if candidate.indeferido?
+                      %span.label.label-danger
+                        Indeferido
+                    - if candidate.homologado?
+                      %span.label.label-success
+                        Homologado
+                  %td
+                    - if candidate.invoice_paid
+                      %span.label.label-success paga
+                    - else
+                      %span.label.label-warning pendente
+                  %td
+                    - if candidate.candidate_participation.present?
+                      %span.label.label-success
+                        Enviado
+                    - else
+                      %span.label.label-warning
+                        Pendente
+
+                  %td
+                    = link_to "", project_candidate_path(project_id: candidate.subscribe.project_id, id: candidate.id), class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs', title: "visualizar"

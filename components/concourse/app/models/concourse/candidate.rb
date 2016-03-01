@@ -6,6 +6,9 @@ module Concourse
     has_many :observations
     has_many :candidate_participation
     
+    scope :by_concourse, -> (concourse) { joins(:subscribe).where('concourse_subscribes.project_id = ?', concourse)}
+    scope :by_status, -> (status) { where(status: status)}
+
     enum gender: [:masculino, :feminino]
     enum status: [:processando, :pendente, :homologado, :indeferido]
 

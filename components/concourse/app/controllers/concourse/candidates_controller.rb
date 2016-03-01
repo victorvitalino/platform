@@ -4,10 +4,13 @@ module Concourse
   class CandidatesController < ApplicationController
     before_action :set_project, except: [:view_all]
 
+    has_scope :by_concourse
+    has_scope :by_status
+
     def view_all
       authorize :candidate, :index?
       
-      @candidates = Concourse::Candidate.all
+      @candidates = apply_scopes(Concourse::Candidate).all
       render layout: 'shared/remark'
     end
 
