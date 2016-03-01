@@ -7,7 +7,7 @@
     %hr/
 .row
   .col-md-12
-    - if @candidate.homologado?
-      Você já se encontra homologado, não é possível realizar mais alterações em seu cadastro.
+    - if @candidate.homologado? || @candidate.indeferido?
+      Sua inscrição já foi finalizada, não é possível realizar mais alterações em seu cadastro. Verifique seu status.
     - else
       = render 'form'
