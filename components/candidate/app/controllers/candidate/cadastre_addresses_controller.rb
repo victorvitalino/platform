@@ -19,6 +19,7 @@ module Candidate
     def new
       @candidate = Candidate::CadastreAddress.where(unit_id: params[:id]).last
       @cadastre_address = Candidate::CadastreAddress.new
+      @address = Candidate::CadastreAddress.where(unit_id: params[:id])
     end
 
     def create

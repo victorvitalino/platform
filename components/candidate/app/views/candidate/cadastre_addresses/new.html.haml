@@ -72,14 +72,18 @@
                     %table.table.table-striped.table-bordered.table-condensed
                       %thead{:style => "display: table-header-group;"}
                         %tr
-                          %th{:colspan => "2"} Endereço
-                          %th Cidade
-                          %th Data TCU
+                          %th{:colspan => "2"} Nome
+                          %th CPF
+                          %th Cadeia Dominial
+                          %th Data
                       %tbody
-                        %tr
-                          %td{:colspan => "2"}= @candidate.unit.complete_address
-                          %td= @candidate.unit.city.name
-                          %td= @candidate.created_at.strftime('%d/%m/%Y')
+                        - if @address.present?
+                          - @address.each do |a|
+                            %tr
+                              %td{:colspan => "2"}= a.cadastre.name if a.cadastre.present?
+                              %td= a.cadastre.cpf if a.cadastre.present?
+                              %td= a.dominial_chain
+                              %td= a.created_at.strftime('%d/%m/%Y')
               .row
                 .col-md-12
                   = simple_form_for @cadastre_address  do |f|
