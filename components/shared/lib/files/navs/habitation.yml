@@ -68,7 +68,7 @@ nav:
             module: 'habitation'
             code: 0
             label: "Habitação"
-            controller: 'habitation/attendance/attendances'
+            controller: '/habitation/attendance/attendances'
             action: 'index'
           regularization:
             module: 'regularization'
