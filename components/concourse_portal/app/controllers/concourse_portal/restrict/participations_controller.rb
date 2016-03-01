@@ -17,12 +17,7 @@ module ConcoursePortal
       def create
         @participation = @candidate.candidate_participation.new(set_params)
         if @participation.save
-          begin 
-            ConcoursePortal::SubscribeMailer.send_project(@candidate.email,@candidate.id, @candidate.subscribe.project_id).deliver_now
-          rescue 
-            nil
-          end
-          
+          ConcoursePortal::SubscribeMailer.project_send(@candidate.email,@candidate.id, @candidate.subscribe.project_id).deliver_now
           redirect_to action: :show, project_id: @project.slug, id: @participation.id
         else
           render action: :index

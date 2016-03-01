@@ -6,6 +6,8 @@ module Concourse
     validates :team_description, :archive_one, :archive_two,
               :archive_three,:archive_four,:archive_five, presence: true
 
+    validates :candidate, uniqueness: true 
+
     validates :archive_one, :archive_two,
               :archive_three,:archive_four,:archive_five,
               file_size: { less_than_or_equal_to: 3.megabytes.to_i,

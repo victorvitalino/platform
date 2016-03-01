@@ -12,6 +12,7 @@ module Concourse
     has_many :navs
     has_many :subscribes
     has_many :candidates, through: :subscribes
+    has_many :candidate_participations, through: :candidates
     has_many :participations
     has_many :consults
 

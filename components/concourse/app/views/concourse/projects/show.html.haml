@@ -1,55 +1,54 @@
 .panel
   .panel-heading
-    .panel-heading
-      .panel-title
-        %h3 Visão geral
-        %small
-          = link_to "editar informações concurso", edit_project_path(@project)
-    %hr/
-    .panel-body
-      .row
-        .col-md-12
-          %h4 Informações Gerais
-      .row
-        .col-md-12
-          %table.table.table-striped.table-bordered
-            %thead 
+    .panel-title
+      %h3 Visão geral
+      %small
+        = link_to "editar informações concurso", edit_project_path(@project)
+      %hr/
+  .panel-body
+    .row
+      .col-md-12
+        %h4 Informações Gerais
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead 
+            %tr
+              %th Nome
+              %th Situação
+              %th Quant. Inscritos
+              %th Quant. Consultas
+              %th Quant. Projetos enviados
+          %tbody
+            %tr
+              %td= @project.title
+              %td= @project.step.upcase
+              %td= @project.candidates.count
+              %td= @project.consults.count
+              %td= @project.candidate_participations.count
+    %br/
+    .row
+      .col-md-12
+        %h4 Tipo de inscrições
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead 
+            %tr
+              %th Nome
+              %th Valor
+              %th Boleto Referência
+              %th Início
+              %th Fim
+              %th Boletos emitidos
+              %th Boletos pagos
+          %tbody
+            - @project.subscribes.each do |sub|
               %tr
-                %th Nome
-                %th Situação
-                %th Quant. Inscritos
-                %th Quant. Consultas
-                %th Quant. Projetos enviados
-            %tbody
-              %tr
-                %td= @project.title
-                %td= @project.step.upcase
-                %td= @project.candidates.count
-                %td= @project.consults.count
+                %td= sub.title 
+                %td= number_to_currency sub.type_guide.default_value  if sub.type_guide.present?
+                %td= sub.type_guide.name if sub.type_guide.present?
+                %td= sub.start.strftime('%d/%m/%Y')
+                %td= sub.end.strftime('%d/%m/%Y')
                 %td -
-      %br/
-      .row
-        .col-md-12
-          %h4 Tipo de inscrições
-      .row
-        .col-md-12
-          %table.table.table-striped.table-bordered
-            %thead 
-              %tr
-                %th Nome
-                %th Valor
-                %th Boleto Referência
-                %th Início
-                %th Fim
-                %th Boletos emitidos
-                %th Boletos pagos
-            %tbody
-              - @project.subscribes.each do |sub|
-                %tr
-                  %td= sub.title 
-                  %td= number_to_currency sub.type_guide.default_value  if sub.type_guide.present?
-                  %td= sub.type_guide.name if sub.type_guide.present?
-                  %td= sub.start.strftime('%d/%m/%Y')
-                  %td= sub.end.strftime('%d/%m/%Y')
-                  %td -
-                  %td -
+                %td -
