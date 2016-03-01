@@ -7,11 +7,13 @@ Habitation::Engine.routes.draw do
   end
 
   namespace :attendance do
-    resources :cadastres
-    resources :checklists
-    resources :dependents
-    resources :attendances
-    resources :conclusions
+    resources :mirror do 
+      resources :cadastres
+      resources :checklists
+      resources :dependents
+      resources :attendances
+      resources :conclusions
+    end
   end
   
   resources :cadastres
