@@ -11,6 +11,8 @@ module Candidate
     belongs_to :cadastre
 
     has_many :dependent_mirrors
+    has_one :pontuation
+
 
     enum situation: ['em_progresso','pendente', 'aprovado']
     enum gender: ['N/D', 'masculino', 'feminino']

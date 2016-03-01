@@ -2,7 +2,7 @@ require_dependency 'habitation/application_controller'
 
 module Habitation
   module Attendance
-    class CadastresController < ApplicationController
+    class CadastreMirrorsController < ApplicationController
       before_action :set_cadastre, only: [:new]
       before_action :set_cadastre_mirror, except: [:new]
 
@@ -21,10 +21,16 @@ module Habitation
       end
 
       def edit
-
       end
 
       def update
+        if @mirror.update(set_params)
+          flash[:success] =  t :success
+          redirect_to action: :edit
+        else
+          flash[:danger] =  t :danger
+          render action: :edit
+        end
       end
 
       private

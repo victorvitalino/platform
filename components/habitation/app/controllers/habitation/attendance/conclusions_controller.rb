@@ -2,7 +2,7 @@ require_dependency 'habitation/application_controller'
 
 module Habitation
   module Attendance
-    class ChecklistsController < ApplicationController
+    class ConclusionsController < ApplicationController
       
       def edit
       end
