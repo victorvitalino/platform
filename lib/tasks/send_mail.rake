@@ -23,6 +23,17 @@ namespace :send_mail do
       end
     end
   end
+
+  desc 'treta'
+  task :crazy => :environment do 
+    @candidates = Concourse::Candidate.where(status: 2, subscribe_id: 2)
+
+    @candidates.each do |candidate|
+      if ConcoursePortal::SubscribeMailer.crazy(candidate.email).deliver_now
+        puts candidate.email
+      end
+    end
+  end
 end
 
 =begin 
