@@ -47,6 +47,39 @@
             .col-md-8
               %label Empreendimento:
               = @unit.enterprises.name if @unit.enterprises.present?
+          - if @unit.notary_office.present?
+            - @offices = @unit.notary_office
+            %hr
+            %h4
+              Dados do cartório
+            .row
+              .col-md-4
+                %label Matrícula da Unidade:
+                = @offices.unit_code
+              .col-md-4
+                %label Cartório:
+                = @offices.office
+            .row
+              .col-md-4
+                %label Data da Matrícula:
+                = @offices.date_code.strftime('%d/%m/%Y') if @offices.date_code.present?
+              .col-md-4
+                %label Data da Assinatura:
+                = @offices.date_signature.strftime('%d/%m/%Y') if @offices.date_signature.present?
+            .row
+              .col-md-4
+                %label Matrícula do contrato:
+                = @offices.code_contract
+              .col-md-4
+                %label Data da Anoreg:
+                = @offices.date_anoreg.strftime('%d/%m/%Y') if @offices.date_anoreg.present?
+            .row
+              .col-md-4
+                %label Ato declaratório:
+                = @offices.declaratory_act_number
+              .col-md-4
+                %label Data da Ato:
+                = @offices.date_act_declaratory.strftime('%d/%m/%Y') if @offices.date_act_declaratory.present?
           - if @unit.cadastre_address.present?
             %hr
             - @cadastre = @unit.cadastre_address.order('created_at asc').last.cadastre

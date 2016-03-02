@@ -4,6 +4,7 @@ module Address
     belongs_to :city
     belongs_to :enterprises, class_name: "Firm::Enterprise", foreign_key: 'firm_enterprise_id'
     has_many :registry_units
+    has_one :notary_office
     has_many :cadastre_address, class_name: "Candidate::CadastreAddress"
 
 
