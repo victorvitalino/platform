@@ -1,12 +1,13 @@
 pt-BR:
   engines:
+    address: "Endereços"
     concourse: "Concurso"
     entity: "Entidade"
     finance: "Financeiro"
     firm: "Empresa"
     person: "Gestão de Pessoas"
     regularization: "Regularização"
-    candidate: "Cadastro"
+    candidate: "Candidato"
     cms: "Gestão Portal"
     schedule: "Agendamento"
     protocol: "Protocolo"
@@ -14,8 +15,13 @@ pt-BR:
     habitation: "Habitação"
     attendances: 'Atendimento'
   modules:
+    address:
+      units: "Unidades"
     habitation:
       attendances: "Atendimento"
+    candidate:
+      cadastre_addresses: "Cadastro endereço"
+      cadastres: "Cadastro"
     person:
       staffs: "Usuários"
       systems: "Sistemas"

@@ -10,9 +10,10 @@ module Candidate
     def index
        authorize :cadastre_address,  :index?
        @address = RegularizationPortal::Address.new
-       @candidate = Candidate::CadastreAddress.all
-       @candidate = apply_scopes(@candidate).last
-
+       if params[:cpf].present? || params[:old_process].present? || params[:address].present?
+        @candidate = Candidate::CadastreAddress.all
+        @candidate = apply_scopes(@candidate).last
+       end
     end
 
 

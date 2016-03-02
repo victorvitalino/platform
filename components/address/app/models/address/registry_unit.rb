@@ -4,7 +4,7 @@ module Address
     belongs_to :unit
 
 
-    enum situation: [:no_registry, :registring, :registred]
+    enum situation: [:não, :em_fase, :sim]
 
 
 

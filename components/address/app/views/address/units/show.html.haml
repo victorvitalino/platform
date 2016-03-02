@@ -37,27 +37,39 @@
               %label Data de Iptu:
               = @unit.date_iptu.strftime('%d/%m/%Y') if @unit.date_iptu.present?
           .row
-            .col-md-8
+            .col-md-4
               %label Situação:
               = @unit.situation_unit.description if @unit.situation_unit.present?
+            .col-md-4
+              %label Escriturado?:
+              = @unit.registry_units.last.situation if @unit.registry_units.present?
           .row
             .col-md-8
               %label Empreendimento:
               = @unit.enterprises.name if @unit.enterprises.present?
           - if @unit.cadastre_address.present?
             %hr
-            %h4
-              Dados do Morador
-            .row
-              .col-md-4
-                %label Nome:
-                = @unit.cadastre_address.last.cadastre.name
-              .col-md-4
-                %label CPF:
-                = link_to @unit.cadastre_address.last.cadastre.cpf, candidate.cadastres_path(cpf: @unit.cadastre_address.last.cadastre.cpf)
-              .col-md-4
-                %label Processo:
-                = @unit.cadastre_address.last.cadastre.cadastre_procedurals.order('created_at asc').last.old_process
+            - @cadastre = @unit.cadastre_address.order('created_at asc').last.cadastre
+            - if @cadastre.present?
+              %h4
+                Dados do Morador
+              .row
+                .col-md-4
+                  %label Nome:
+                  = @cadastre.name
+                .col-md-4
+                  %label CPF:
+                  = link_to @cadastre.cpf, candidate.cadastres_path(cpf: @cadastre.cpf)
+                .col-md-4
+                  %label Processo:
+                  = @cadastre.cadastre_procedurals.last.old_process if @cadastre.cadastre_procedurals.present?
+              .row
+                .col-md-4
+                  %label Situação candidato:
+                  = @cadastre.cadastre_situations.last.situation_status.name if @cadastre.cadastre_situations.present?
+                .col-md-4
+                  %label situação de processo:
+                  = @cadastre.cadastre_procedurals.last.procedural_status.name if @cadastre.cadastre_procedurals.present?
           %hr
           .row
             .col-md-4
