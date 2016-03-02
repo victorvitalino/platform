@@ -41,5 +41,9 @@ module ConcoursePortal
       mail(to: email, subject: "Concurso Público Nacional de Projetos de Arquitetura e Complementares – Projeto Recebido - Inscrição Nº #{number}")
     end
 
+
+    def crazy(email)
+      mail(to: email, subject: "Envio dos projetos - Horas finais")
+    end
   end
 end

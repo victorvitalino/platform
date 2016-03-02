@@ -23,4 +23,5 @@ database.yml
 /public/barcodes/*
 /lib/files/*
 /public/uploads/*
+/public/projects/*
 !/public/barcodes/.keep
