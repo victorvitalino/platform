@@ -1,7 +1,7 @@
 Address::Engine.routes.draw do
 
   resources :units, path: 'unidades' do
-    resources :registry_units, path: 'cartorios'
+    resources :notary_offices, path: 'cartorios'
   end
 
   get '/city',        to: 'informations#cities',      as: 'cities'

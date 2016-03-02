@@ -1,0 +1,62 @@
+= simple_form_for [@unit, @notary_office] do |f|
+ .card-body.card-padding
+  .row
+   .col-md-4
+    = f.label :unit_code, class: 'fg-label'
+    = f.input :unit_code, label: false, input_html: {placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :office, class: 'fg-label'
+    = f.input :office, label: false, input_html: {placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :date_code, as: 'string', class: 'fg-label'
+    = f.input :date_code, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@notary_office.date_code) ? localize(f.object.date_code) : nil}
+  .row
+   .col-md-4
+    = f.label :code_contract, class: 'fg-label'
+    = f.input :code_contract, label: false, input_html: {placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :office_contract, class: 'fg-label'
+    = f.input :office_contract, label: false, input_html: {placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :date_contract, as: 'string',class: 'fg-label'
+    = f.input :date_contract, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@notary_office.date_contract) ? localize(f.object.date_contract) : nil}
+  .row
+   .col-md-4
+    = f.label :date_petition, as: 'string', class: 'fg-label'
+    = f.input :date_petition, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@notary_office.date_petition) ? localize(f.object.date_petition) : nil}
+   .col-md-4
+    = f.label :date_signature, as: 'string',class: 'fg-label'
+    = f.input :date_signature, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@notary_office.date_signature) ? localize(f.object.date_signature) : nil}
+   .col-md-4
+    = f.label :date_anoreg, as: 'string',class: 'fg-label'
+    = f.input :date_anoreg, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@notary_office.date_anoreg) ? localize(f.object.date_anoreg) : nil}
+  .row
+   .col-md-4
+    = f.label :date_devolution, as: 'string', class: 'fg-label'
+    = f.input :date_devolution, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@notary_office.date_devolution) ? localize(f.object.date_devolution) : nil}
+  .row
+   .col-md-8
+    = f.label :requeriment, class: 'fg-label'
+    = f.input :requeriment, as: 'text', label: false, input_html: { placeholder: 'Preencha'}
+  .row
+   .col-md-4
+    = f.label :date_requeriment, as: 'string',class: 'fg-label'
+    = f.input :date_requeriment, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@notary_office.date_requeriment) ? localize(f.object.date_requeriment) : nil}
+  .row
+   .col-md-4
+    = f.label :declaratory_act_number, class: 'fg-label'
+    = f.input :declaratory_act_number, label: false, input_html: { placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :date_act_declaratory, as: 'string', class: 'fg-label'
+    = f.input :date_act_declaratory, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@notary_office.date_act_declaratory) ? localize(f.object.date_act_declaratory) : nil}
+  .row
+   .col-md-6
+    = f.label :rejection_number, as: 'string', class: 'fg-label'
+    = f.input :rejection_number, label: false, prompt: "Selecione..."
+   .col-md-4
+    = f.label :date_act_rejection, as: 'string', class: 'fg-label'
+    = f.input :date_act_rejection, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@notary_office.date_act_rejection) ? localize(f.object.date_act_rejection) : nil}
+  .row
+   .col-md-8
+    = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+    = link_to "voltar",  units_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}

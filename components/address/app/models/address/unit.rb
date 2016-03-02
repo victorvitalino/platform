@@ -4,7 +4,7 @@ module Address
     belongs_to :city
     belongs_to :enterprises, class_name: "Firm::Enterprise", foreign_key: 'firm_enterprise_id'
     has_many :registry_units
-    has_one :notary_office
+    has_many :notary_offices
     has_many :cadastre_address, class_name: "Candidate::CadastreAddress"
 
 
@@ -14,6 +14,7 @@ module Address
     scope :city, -> (city) {where(city_id: city)}
     scope :situation_unit, -> (situation_unit) {where(situation_unit_id: situation_unit)}
     scope :cpf, -> (cpf) {joins(cadastre_address: :cadastre).where("candidate_cadastres.cpf = ?", cpf)}
+    scope :name_candidate, -> (name_candidate) {joins(cadastre_address: :cadastre).where("candidate_cadastres.name LIKE ?","#{name_candidate}%")}
 
 
   end
