@@ -27,7 +27,6 @@ gem 'wicked'
 gem 'chartkick'
 gem 'mini_magick'
 gem 'friendly_id'
-
 gem 'has_scope'
 gem 'will_paginate-bootstrap'
 
