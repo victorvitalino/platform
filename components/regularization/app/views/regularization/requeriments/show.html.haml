@@ -1,54 +1,57 @@
-.card
-  .card-header.ch-alt
-    %h2
-      Detalhamento de Requerimento - #{@requeriment.protocol}
-      = link_to "voltar", requeriments_path, class: 'btn btn-inverse pull-right'
-      %small Listagem de requerimentos
-    %hr/
-    %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
-      %thead
-        %tr
-          %th Protocolo
-          %th Data
-          %th{colspan: 2} Endereço a ser regularizado
-          %th Cidade
-          %th Taxa de abertura de processo
-          %th Possuí imóvel no DF
-      %tbody
-        %tr 
-          %td= @requeriment.protocol
-          %td= @requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
-          %td{colspan: 2}= @requeriment.unit.complete_address if @requeriment.unit.present?
-          %td= @requeriment.unit.city.name if @requeriment.unit.city.present? && @requeriment.unit.present?
-          %td
-          %td= @requeriment.owner? ? 'Sim' : 'Não'
-      %thead
-        %tr
-          %th{colspan: 2} Nome
-          %th CPF
-          %th Data de Nascimento
-          %th Sexo
-          %th Estado Civil
-          %th Nacionalidade
-      %tbody
-        %tr
-          %td{colspan: 2}= @requeriment.name.upcase
-          %td= @requeriment.cpf
-          %td= @requeriment.born.strftime("%d/%m/%Y")
-          %td= @requeriment.gender  
-          %td= @requeriment.marital_status
-          %td= @requeriment.nationality
-      %thead
-        %tr
-          %th{colspan: 2} E-mail
-          %th Telefone
-          %th Celular
-          %th{colspan: 2} Nome Conjugê
-          %th CPF Conjugê
-      %tbody
-        %tr
-          %td{colspan: 2}= @requeriment.email
-          %td= @requeriment.telephone
-          %td= @requeriment.celphone
-          %td{colspan: 2}= @requeriment.spouse_name
-          %td= @requeriment.spouse_cpf
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Detalhamento de Requerimento - #{@requeriment.protocol}
+          = link_to "voltar", requeriments_path, class: 'btn btn-dark pull-right'
+          %small Listagem de requerimentos
+    .panel-body
+      %hr/
+      %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+        %thead
+          %tr
+            %th Protocolo
+            %th Data
+            %th{colspan: 2} Endereço a ser regularizado
+            %th Cidade
+            %th Taxa de abertura de processo
+            %th Possuí imóvel no DF
+        %tbody
+          %tr
+            %td= @requeriment.protocol
+            %td= @requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td{colspan: 2}= @requeriment.unit.complete_address if @requeriment.unit.present?
+            %td= @requeriment.unit.city.name if @requeriment.unit.city.present? && @requeriment.unit.present?
+            %td
+            %td= @requeriment.owner? ? 'Sim' : 'Não'
+        %thead
+          %tr
+            %th{colspan: 2} Nome
+            %th CPF
+            %th Data de Nascimento
+            %th Sexo
+            %th Estado Civil
+            %th Nacionalidade
+        %tbody
+          %tr
+            %td{colspan: 2}= @requeriment.name.upcase
+            %td= @requeriment.cpf
+            %td= @requeriment.born.strftime("%d/%m/%Y")
+            %td= @requeriment.gender
+            %td= @requeriment.marital_status
+            %td= @requeriment.nationality
+        %thead
+          %tr
+            %th{colspan: 2} E-mail
+            %th Telefone
+            %th Celular
+            %th{colspan: 2} Nome Conjugê
+            %th CPF Conjugê
+        %tbody
+          %tr
+            %td{colspan: 2}= @requeriment.email
+            %td= @requeriment.telephone
+            %td= @requeriment.celphone
+            %td{colspan: 2}= @requeriment.spouse_name
+            %td= @requeriment.spouse_cpf

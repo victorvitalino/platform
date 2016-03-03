@@ -8,8 +8,12 @@ module Address
         has_scope :situation_unit
         has_scope :city
         has_scope :cpf
+        has_scope :block
+        has_scope :group_address
+        has_scope :unit
 
         def index
+            @unit = Unit.new
             @units = Address::Unit.all
             @units = apply_scopes(@units).paginate(:page => params[:page], :per_page => 20)
         end

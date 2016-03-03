@@ -7,6 +7,11 @@ module Candidate
     def index
       authorize :cadastre, :index?
       @candidate = Cadastre.find_by_cpf(params[:cpf]) rescue nil
+      if params[:cpf].present?
+        unless @candidate.present?
+          flash[:warning] = "O CPF: #{params[:cpf]} não foi encontrado."
+        end
+      end
       @candidate_assessment = Protocol::Assessment.where(cpf: params[:cpf]) rescue nil
     end
 
