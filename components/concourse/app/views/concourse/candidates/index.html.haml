@@ -11,7 +11,6 @@
       %thead
         %tr
           %th Tipo de inscrição
-          %th Nº inscrição
           %th CPF
           %th Taxa de inscrição
           %th Boletos emitidos
@@ -22,7 +21,6 @@
         - @project.candidates.each_with_index do |candidate, index|
           %tr
             %td= candidate.subscribe.title if candidate.subscribe.present?
-            %td= candidate.id
             %td= candidate.cpf
             %td
               - if candidate.invoice_paid
