@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160229131530) do
     t.date     "date_code"
     t.date     "date_contract"
     t.string   "code_contract"
-    t.date     "office_contract"
+    t.string     "office_contract"
     t.date     "date_petition"
     t.date     "date_signature"
     t.date     "date_anoreg"

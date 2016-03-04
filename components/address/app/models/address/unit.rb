@@ -19,7 +19,7 @@ module Address
 
     scope :situation_unit, -> (situation_unit) {where(situation_unit_id: situation_unit)}
     scope :cpf, -> (cpf) {joins(cadastre_address: :cadastre).where("candidate_cadastres.cpf = ?", cpf)}
-    scope :name_candidate, -> (name_candidate) {joins(cadastre_address: :cadastre).where("candidate_cadastres.name LIKE ?","#{name_candidate}%")}
+    scope :name_candidate, -> (name_candidate) {joins(cadastre_address: :cadastre).where("candidate_cadastres.name ILIKE ?","#{name_candidate}%")}
 
 
   end

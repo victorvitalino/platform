@@ -9,6 +9,9 @@ Candidate::Engine.routes.draw do
 
   end
   resources :cadastre_addresses, path: 'enderecos'
+  get   'unallocate/id', path: 'desassenta', to: 'cadastre_addresses#unallocate', as: 'unallocate'
+  post  'deallocate', path: 'desassentar', to: 'cadastre_addresses#deallocate', as: 'deallocate'
+
   resources :lists
   resources :checklists
 

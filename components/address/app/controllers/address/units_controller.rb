@@ -11,6 +11,7 @@ module Address
         has_scope :block
         has_scope :group_address
         has_scope :unit
+        has_scope :name_candidate
 
         def index
             @unit = Unit.new
