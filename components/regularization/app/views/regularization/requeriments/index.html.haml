@@ -4,7 +4,7 @@
       .panel-title
         %h4
           Requerimentos de Regularização
-          %small Listagem de requerimentos
+        %small Listagem de requerimentos
     .panel-body
       .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
         %table#data-table-command.table.table-striped.table-bordered
@@ -26,4 +26,4 @@
                 %td= requeriment.unit.complete_address if requeriment.unit.present?
                 %td= requeriment.created_at.strftime('%d/%m/%Y às %H:%M')
                 %td
-                  = link_to "visualizar", requeriment_path(requeriment), class: 'btn btn-primary '
+                  = link_to "", requeriment_path(requeriment), class: 'btn btn-xs btn-primary glyphicon glyphicon-share-alt', title: "Detalhar"

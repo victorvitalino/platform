@@ -4,11 +4,10 @@
       .panel-title
         %h4
           Detalhamento de Requerimento - #{@requeriment.protocol}
-          = link_to "voltar", requeriments_path, class: 'btn btn-dark pull-right'
-          %small Listagem de requerimentos
+          = link_to "Voltar para listagem", requeriments_path, class: 'btn btn-dark pull-right'
+        %small Listagem de requerimentos
     .panel-body
-      %hr/
-      %table#data-table-command.table.table-striped.table-vmiddle.bootgrid-table
+      %table#data-table-command.table.table-striped.table-bordered
         %thead
           %tr
             %th Protocolo
