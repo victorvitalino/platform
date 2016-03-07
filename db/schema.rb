@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229131530) do
+ActiveRecord::Schema.define(version: 20160307190435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "dblink"
 
   create_table "address_cities", force: :cascade do |t|
     t.string   "name"
@@ -32,7 +33,6 @@ ActiveRecord::Schema.define(version: 20160229131530) do
     t.date     "date_code"
     t.date     "date_contract"
     t.string   "code_contract"
-    t.string     "office_contract"
     t.date     "date_petition"
     t.date     "date_signature"
     t.date     "date_anoreg"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160229131530) do
     t.date     "date_act_rejection"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "office_contract"
   end
 
   add_index "address_notary_offices", ["unit_id"], name: "index_address_notary_offices_on_unit_id", using: :btree
@@ -1067,6 +1068,7 @@ ActiveRecord::Schema.define(version: 20160229131530) do
     t.text     "observation"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.date     "date_payment"
   end
 
   add_index "concourse_subscribes", ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree

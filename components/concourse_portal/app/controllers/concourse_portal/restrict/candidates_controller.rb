@@ -51,7 +51,7 @@ module ConcoursePortal
           address: @candidate.address,
           state_id: @candidate.state_id,
           city: @candidate.city,
-          due: (@candidate.subscribe.end + 1.days).strftime('%d/%m/%Y'),
+          due: @candidate.subscribe.date_payment.strftime('%d/%m/%Y'),
           category_id: @category.id,
           message: "Concursos Codhab"
         })
