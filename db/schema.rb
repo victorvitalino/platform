@@ -1074,6 +1074,17 @@ ActiveRecord::Schema.define(version: 20160307190435) do
   add_index "concourse_subscribes", ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree
   add_index "concourse_subscribes", ["type_guide_id"], name: "index_concourse_subscribes_on_type_guide_id", using: :btree
 
+  create_table "dashboard_warnings", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.text     "resume"
+    t.boolean  "publish"
+    t.date     "data"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "entity_activities", force: :cascade do |t|
     t.string   "description"
     t.date     "start"
