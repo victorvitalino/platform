@@ -10,7 +10,7 @@
       = link_to "", unit_path(a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
       = link_to "", edit_unit_path(a), title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}
       - if a.notary_offices.present?
-        = link_to "", edit_unit_notary_office_path(a,a.notary_offices.last.id), title: "editar",  class: 'glyphicon glyphicon-folder-open btn btn-dark btn-xs',data: {disable_with: "carregando..."}
+        = link_to "", edit_unit_notary_office_path(a,a.notary_offices.last.id), title: "Cartorio",  class: 'glyphicon glyphicon-briefcase btn btn-dark btn-xs',data: {disable_with: "carregando..."}
       -else
-        = link_to "", new_unit_notary_office_path(a), title: "Cartorio",  class: 'glyphicon glyphicon-folder-open btn btn-info btn-xs',data: {disable_with: "carregando..."}
+        = link_to "", new_unit_notary_office_path(a), title: "Cartorio",  class: 'glyphicon glyphicon-briefcase btn btn-info btn-xs',data: {disable_with: "carregando..."}
       = link_to "", unit_path(a), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."}

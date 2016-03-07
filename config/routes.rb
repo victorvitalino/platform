@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     mount Brb::Engine                      => "/brb",            as: 'brb',              module: 'management'
     mount Archive::Engine                  => "/arquivos",       as: 'archive',          module: 'portal'
     mount ProfileUser::Engine              => "/usuario",        as: 'profile_user',     module: 'dashboard'
+    mount Address::Engine                  => "/enderecos",      as: 'address',          module: 'address'
   end
 
   constraints DomainConstraint do
@@ -46,6 +47,5 @@ Rails.application.routes.draw do
   end
 
   mount Api::Engine                     => "/api",            as: 'api'
-  mount Address::Engine                 => "/endereco",       as: 'address',                  module: 'habitation'
   mount Authenticate::Engine            => "/acesso",         as: 'authenticate'
 end

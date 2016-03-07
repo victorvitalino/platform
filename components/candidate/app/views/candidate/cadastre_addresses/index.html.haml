@@ -88,6 +88,8 @@
                     .row
                       .col-md-12
                         = link_to "Assentar", new_cadastre_address_path(id: @candidate.unit.id), class: 'btn btn-warning btn-sm'
+                        = link_to "Ficha descritiva", address.descriptive_path(id: @candidate.cadastre.id), target: "_blank", class: 'btn btn-primary btn-sm'
+                        = link_to "Emitir TCU", address.descriptive_path(id: @candidate.cadastre.id), target: "_blank", class: 'btn btn-info btn-sm'
 :javascript
 
   $(document).ready(function() {

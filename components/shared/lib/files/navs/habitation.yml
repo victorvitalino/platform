@@ -61,26 +61,31 @@ nav:
             action: 'index'
       attendant:
         code: 0
-        label: "Atendimento"
+        label: "Habitação"
         controller: "#"
         sub:
           habitation:
             module: 'habitation'
             code: 0
-            label: "Habitação"
+            label: "Atendimento"
             controller: '/habitation/attendance/attendances'
-            action: 'index'
-          regularization:
-            module: 'regularization'
-            code: 0
-            label: 'Regularização'
-            controller: '/regularization/attendances'
             action: 'index'
           checklist:
             module: 'candidate'
             code: 0
             label: "Gestão de checklist"
             controller: '/candidate/checklists'
+            action: 'index'
+      regularization:
+        code: 119110
+        label: "Regularização"
+        controller: '#'
+        sub:
+          requeriment:
+            module: 'regularization'
+            code: 119110
+            label: "Requerimentos geral"
+            controller: "/regularization/requeriments"
             action: 'index'
       entity:
         code: 11501

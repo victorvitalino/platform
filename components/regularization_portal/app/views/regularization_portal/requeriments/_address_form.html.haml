@@ -7,14 +7,9 @@
     .col-md-3
       = f.input :group, as: :select, collection: (@address.city.present? &&  @address.block.present? ) ? Address::Unit.select(:group).where(city_id: @address.city, block: @address.block).distinct : {}, label_method: :group, value_method: :group, prompt: 'selecione a cidade...', input_html: { value: @address.block}
     .col-md-2
-      = f.input :unit, as: :select, collection: (@address.city.present? &&  @address.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @address.city,block: @address.block, group: @address.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a cidade...', input_html: { value: @address.unit}
+      = f.input :unit, as: :select, collection: (@address.city.present? &&  @address.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @address.city,block: @address.block, group: @address.group).joins(:registry_units).where("address_registry_units.situation <> ?", 2).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a cidade...', input_html: { value: @address.unit}
     .col-md-2
       = f.input :id, as: :hidden
-  %hr/
-  .row
-    .col-md-12
-      %h6
-        %strong Mensagem sobre endereços em regularização
   %hr/
   .row
     .col-md-12
@@ -26,7 +21,7 @@
 
     $("#address_city").on('change', function(){
 
-      $.getJSON("#{address.blocks_path}?city_id=" + $(this).val(), function(data) {
+      $.getJSON("#{api.blocks_address_units_path}?city_id=" + $(this).val(), function(data) {
 
         html = "<option value>selecione...</option>"
         if(data.length > 0) {
@@ -48,7 +43,7 @@
 
 
     $("#address_block").on('change', function(){
-      $.getJSON("#{address.groups_path}?block="
+      $.getJSON("#{api.groups_address_units_path}?block="
                 + $(this).val() +"&city_id="
                 + $("#address_city").val(), function(data) {
 
@@ -70,7 +65,7 @@
 
 
     $("#address_group").on('change', function(){
-      $.getJSON("#{address.all_units_path}?"
+      $.getJSON("#{api.units_address_units_path}?"
                 + "block=" + $("#address_block").val()
                 + "&city_id=" + $("#address_city").val()
                 + "&group=" + $(this).val(),function(data) {
@@ -94,7 +89,7 @@
 
 
     $("#address_unit").on('change', function(){
-      $.getJSON("#{address.show_unit_path}?unit=" + $(this).val(),function(data) {
+      $.getJSON("#{api.address_units_path}?unit_id=" + $(this).val(),function(data) {
           $("#address_id").val(data.id)
       });
     });

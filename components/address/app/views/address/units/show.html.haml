@@ -47,8 +47,8 @@
             .col-md-8
               %label Empreendimento:
               = @unit.enterprises.name if @unit.enterprises.present?
-          - if @unit.notary_office.present?
-            - @offices = @unit.notary_office
+          - if @unit.notary_offices.present?
+            - @offices = @unit.notary_offices.last
             %hr
             %h4
               Dados do cartório
@@ -103,6 +103,24 @@
                 .col-md-4
                   %label situação de processo:
                   = @cadastre.cadastre_procedurals.last.procedural_status.name if @cadastre.cadastre_procedurals.present?
+            %hr
+            .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+              %table#data-table-command.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Nome
+                    %th CPF
+                    %th Cadeia Dominial
+                    %th Data
+                    %th Recebimento
+                %tbody
+                  - @unit.cadastre_address.each do |a|
+                    %tr
+                      %td= a.cadastre.name if a.cadastre.present?
+                      %td= a.cadastre.cpf if a.cadastre.present?
+                      %td= a.dominial_chain
+                      %td= a.created_at.strftime('%d/%m/%Y')
+                      %td= a.type_receipt
           %hr
           .row
             .col-md-4

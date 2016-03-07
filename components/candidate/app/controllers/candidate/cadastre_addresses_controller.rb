@@ -31,6 +31,21 @@ module Candidate
       @cadastre_address.save
     end
 
+    def unallocate
+      @candidate = Candidate::CadastreAddress.joins("inner join address_registry_units on candidate_cadastre_addresses.unit_id = address_registry_units.unit_id")
+                                                                       .where("address_registry_units.situation <> 2 AND candidate_cadastre_addresses.unit_id = ?", params[:id])
+
+       unless  @candidate.present?
+          redirect_to address.units_path
+       end
+
+      @address = Candidate::CadastreAddress.where(unit_id: params[:id])
+    end
+
+    def deallocate
+
+    end
+
      private
 
        def set_cadastre_address_params

@@ -12,9 +12,14 @@ module Address
     scope :status, -> (status) {where(situation_unit_id: status)}
 
     scope :city, -> (city) {where(city_id: city)}
+    scope :block, -> (block) {where(block: block)}
+    scope :group_address, -> (group_address) {where(group: group_address)}
+    scope :unit, -> (unit) {where(unit: unit)}
+
+
     scope :situation_unit, -> (situation_unit) {where(situation_unit_id: situation_unit)}
     scope :cpf, -> (cpf) {joins(cadastre_address: :cadastre).where("candidate_cadastres.cpf = ?", cpf)}
-    scope :name_candidate, -> (name_candidate) {joins(cadastre_address: :cadastre).where("candidate_cadastres.name LIKE ?","#{name_candidate}%")}
+    scope :name_candidate, -> (name_candidate) {joins(cadastre_address: :cadastre).where("candidate_cadastres.name ILIKE ?","#{name_candidate}%")}
 
 
   end

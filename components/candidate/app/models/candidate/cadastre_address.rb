@@ -11,6 +11,8 @@ module Candidate
     scope :address,  -> (id) {joins(:unit).where('address_units.id = ?', id)}
 
 
+
+
     private
 
 
@@ -23,6 +25,8 @@ module Candidate
              0
       end
     end
+
+
 
 
     def update_tables_sale(procedural, situation, status, status_unit)

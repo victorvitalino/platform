@@ -2,9 +2,14 @@ require_dependency 'regularization/application_controller'
 
 module Regularization
   class ApplicationController < ActionController::Base
-    layout 'material'
-    include Pundit
+     layout 'shared/remark'
 
-    helper :application
+    include Authenticate::StaffService
+    helper  Authenticate::StaffHelper
+    helper  Shared::NavHelper
+
+    before_action :authenticate_staff?
+
+    include Pundit
   end
 end
