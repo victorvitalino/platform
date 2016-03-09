@@ -1,4 +1,4 @@
-require_dependency "Dashboard/application_controller"
+require_dependency "dashboard/application_controller"
 
 module Dashboard
   class WarningController < ApplicationController
