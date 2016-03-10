@@ -1,0 +1,15 @@
+- if @winner.errors.any?
+  $(".form-base").html("#{escape_javascript(render 'form')}") 
+- else
+  $('body').fadeOut('slow', function() {
+  $("body").html("#{escape_javascript(render 'success')}") 
+  $("body").fadeIn('slow')
+  });
+
+
+  setTimeout(function() {
+  $('body').fadeOut('slow', function() {
+  $("body").html("#{escape_javascript(render 'show')}") 
+  $("body").fadeIn('slow')
+  });
+  }, 6000);

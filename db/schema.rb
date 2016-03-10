@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307190435) do
+ActiveRecord::Schema.define(version: 20160310120557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1073,6 +1073,22 @@ ActiveRecord::Schema.define(version: 20160307190435) do
 
   add_index "concourse_subscribes", ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree
   add_index "concourse_subscribes", ["type_guide_id"], name: "index_concourse_subscribes_on_type_guide_id", using: :btree
+
+  create_table "concourse_winners", force: :cascade do |t|
+    t.integer  "participation_id"
+    t.integer  "candidate_id"
+    t.integer  "position"
+    t.integer  "project_id"
+    t.integer  "subscribe_id"
+    t.integer  "winner_type",      default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "concourse_winners", ["candidate_id"], name: "index_concourse_winners_on_candidate_id", using: :btree
+  add_index "concourse_winners", ["participation_id"], name: "index_concourse_winners_on_participation_id", using: :btree
+  add_index "concourse_winners", ["project_id"], name: "index_concourse_winners_on_project_id", using: :btree
+  add_index "concourse_winners", ["subscribe_id"], name: "index_concourse_winners_on_subscribe_id", using: :btree
 
   create_table "dashboard_warnings", force: :cascade do |t|
     t.string   "title"

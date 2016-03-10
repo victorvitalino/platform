@@ -1,0 +1,12 @@
+= simple_form_for [@project, @winner], remote: true do |f|
+  .row  
+    .col-md-5
+      = f.input :winner_type, label: "Posição", as: :select, collection: Concourse::Winner.winner_types.map { |k,v| [k.humanize, k]}, include_blank: false
+    .col-md-2
+      = f.input :participation_id, as: :string, label: "Nº da Pasta"
+  %br/
+  %br/
+  %br/
+  .row
+    .col-md-2
+      = f.submit "Revelar candidato", class: 'btn btn-success btn-lg'

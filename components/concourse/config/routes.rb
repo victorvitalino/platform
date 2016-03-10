@@ -9,6 +9,7 @@ Concourse::Engine.routes.draw do
       get 'change_order'
     end
 
+    resources :winners
     resources :subscribes
     resources :participations
     resources :consults

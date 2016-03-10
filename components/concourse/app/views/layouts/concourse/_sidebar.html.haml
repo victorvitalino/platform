@@ -28,3 +28,6 @@
     - if policy(:candidate, namespace: Concourse).index?
       %li.list-group-item
         %a{:href => "#{concourse.project_candidates_path(@project)}"} Inscrições
+    - if policy(:candidate, namespace: Concourse).winners?
+      %li.list-group-item
+        %a{:href => "#{concourse.new_project_winner_path(@project)}"} Vencedores

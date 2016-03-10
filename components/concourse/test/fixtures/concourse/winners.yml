@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participation_id: 
+  candidate_id: 
+  position: 1
+  project_id: 
+  subscribe_id: 
+  winner_type: 1
+
+two:
+  participation_id: 
+  candidate_id: 
+  position: 1
+  project_id: 
+  subscribe_id: 
+  winner_type: 1

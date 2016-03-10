@@ -12,6 +12,11 @@ module Concourse
     def new_observation?
       allow?(21108)
     end
+    
+
+    def winners?
+      allow?(21133)
+    end
 
 
   end
