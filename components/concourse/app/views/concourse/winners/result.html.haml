@@ -1,0 +1,46 @@
+:css
+  table th {
+    background-color: white;
+  }
+
+  table td {
+    background-color: #F1F1F1;
+  }
+
+  table td {
+    font-size: 18px
+  }
+.winner-white
+  .container
+    .row
+      .col-md-2{style: 'text-align: center;'}
+        %h1
+          %b= image_tag "http://www.codhab.df.gov.br#{@project.image_header.url}", width: 350
+      .col-md-10{style: 'text-align: center;'}
+        %br/
+        %h1
+          %b RESULTADO DO CONCURSO
+%br/
+%br/
+%br/
+%br/
+%br/
+.container
+  .row
+    .col-md-12
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th Posição
+            %th Nº inscrição
+            %th Nome
+            %th Cidade/UF
+        %tbody
+          - @project.winners.where('winner_type <> 0').order('winner_type DESC').each do |winner|
+            %tr
+              %td.col-md-1
+                %span.label.label-success
+                  = winner.winner_type.humanize
+              %td.col-md-1= winner.participation.candidate_id
+              %td.col-md-3= winner.participation.candidate.name.downcase
+              %td.col-md-2 #{winner.participation.candidate.city} / #{winner.participation.candidate.state.acronym}

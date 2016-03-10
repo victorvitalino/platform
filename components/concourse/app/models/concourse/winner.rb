@@ -5,20 +5,34 @@ module Concourse
     belongs_to :project
     belongs_to :subscribe
 
-    enum winner_type: ['menção_honorosa', 'terceiro_lugar', 'segundo_lugar', 'primeiro_lugar']
+    enum winner_type: ['menção_honrosa', 'terceiro_lugar', 'segundo_lugar', 'primeiro_lugar']
     
     validate :project_exists?
+    validate :position?
 
     def self.winner_custom_types(project_id)
-      self.winner_types.map do |k, v|
-        [k,v]
+      @keys = Array.new
+      
+      self.winner_types.map do |key, value|
+        winner = Concourse::Winner.where(project_id: project_id, winner_type: value)
+
+        @keys.push key if !winner.present? || value == 0
       end
+      
+      @keys
     end
 
     private
 
+    def position?
+      type = Concourse::Winner.winner_types[self.winner_type]
+      return true if type == 0
+      
+      @position = Concourse::Winner.where(project_id: self.project_id, winner_type: type)
+      errors.add(:winner_type, 'Já noemado um candidato para essa posição') if @position.present?
+    end
 
-    def project_exists?
+    def project_exists? 
       @participation = Concourse::CandidateParticipation.find(self.participation_id) rescue nil
 
       if @participation.nil?
