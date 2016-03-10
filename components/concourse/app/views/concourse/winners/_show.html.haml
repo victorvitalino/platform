@@ -11,24 +11,29 @@
 .row
   .col-md-12{style: 'text-align: center;'}
     %h1.type= @winner.winner_type.humanize
-    %br/
+    %hr/
     %h1.name= @winner.participation.candidate.name
+    %p
+      %h2
+        %i= @winner.participation.team_description
 %hr/
+%br/
+%br/
+%br/
 .container
-  .row 
-    .col-md-12{style: 'text-align: center'}
-      = link_to image_tag('/images/pdf_flat.png', widht: '200'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_five.url}", target: '_blank'
-  %hr/
-  .row{style: 'text-align: center'}
-    .col-md-3
-      = link_to image_tag('/images/pdf_flat.png', widht: '200'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_one.url}", target: '_blank'
-    .col-md-3
-      = link_to image_tag('/images/pdf_flat.png', widht: '200'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_two.url}", target: '_blank'
-    .col-md-3
-      = link_to image_tag('/images/pdf_flat.png', widht: '200'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_three.url}", target: '_blank'
-    .col-md-3
-      = link_to image_tag('/images/pdf_flat.png', widht: '200'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_four.url}", target: '_blank'
+  .row
+    .col-md-1
+    .col-md-2
+      = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_one.url}", target: '_blank'
+    .col-md-2
+      = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_two.url}", target: '_blank'
+    .col-md-2
+      = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_three.url}", target: '_blank'
+    .col-md-2
+      = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_four.url}", target: '_blank'
+    .col-md-2
+      = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/#{@winner.participation.archive_five.url}", target: '_blank'
   %hr/
   .row
-    .col-md-12
-      = link_to "Voltar", new_project_winner_path(@project)
+    .col-md-12{style: 'text-align: center'}
+      = link_to "Voltar para nomeação", new_project_winner_path(@project)

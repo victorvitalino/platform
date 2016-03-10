@@ -1,17 +1,24 @@
-require_dependency 'concourse/application_controller'
-
 module Concourse
   class WinnersController < ApplicationController
     layout 'concourse/winner'
     
+    include Authenticate::StaffService
+    include Pundit
+    
+    helper  Authenticate::StaffHelper
+    helper  Shared::NavHelper
+    
+    before_action :authenticate_staff?
     before_action :set_project
 
+
     def new
-      @winner = @project.winners.new
+      @winner = Winner.new
     end
 
     def create
-      @winner = @project.winners.new(set_params)
+      @winner = Winner.new(set_params)
+      @winner.project_id = @project.id
       @winner.save
     end
 

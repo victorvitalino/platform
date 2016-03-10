@@ -1,8 +1,8 @@
 = simple_form_for [@project, @winner], remote: true do |f|
   .row  
-    .col-md-5
+    .col-md-9
       = f.input :winner_type, label: "Posição", as: :select, collection: Concourse::Winner.winner_types.map { |k,v| [k.humanize, k]}, include_blank: false
-    .col-md-2
+    .col-md-3
       = f.input :participation_id, as: :string, label: "Nº da Pasta"
   %br/
   %br/

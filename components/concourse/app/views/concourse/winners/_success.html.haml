@@ -1,18 +1,17 @@
-.row
-  .col-md-12{style: 'text-align: center;'}
-    %h1
-      %b= @project.title
-
-.row{style: 'margin-top: 170px'}
-  .col-md-6
-    .panel.panel-default
-      .panel-body{style: 'text-align: center;'}
-        %h1
-          %b Número do projeto
-        %h1{style: 'font-size: 350px; font-align: center;'}= @winner.participation_id
-  .col-md-6
-    .panel
-      .panel-body{style: 'text-align: center;'}
-        %h1 
-          %b Nº Inscrição 
-        %h1{style: 'font-size: 350px; font-align: center;'}= @winner.participation.candidate_id
+.winner-body
+  .container
+    .row{style: 'margin-top: 140px'}
+      .col-md-6
+        .panel.panel-default
+          .panel-body{style: 'text-align: center;'}
+            %h1
+              %b Número do projeto
+            %h1{style: 'font-size: 350px; font-align: center;'}= @winner.participation_id
+      .col-md-6
+        .panel
+          .panel-body{style: 'text-align: center;'}
+            %h1 
+              %b Nº Inscrição 
+            %h1{style: 'font-size: 350px; font-align: center;'}= @winner.participation.candidate_id
+    .row{style: 'margin-top: 140px'}
+    .row{style: 'margin-top: 140px'}

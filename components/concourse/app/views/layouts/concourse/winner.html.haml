@@ -4,7 +4,6 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Extranet
     = stylesheet_link_tag  'shared/minimal', media: 'all'
-    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,300", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
     :javascript
       URL_BASE = "#{request.original_url}"
@@ -18,11 +17,24 @@
       label {
         font-weight: bold !important;
         font-size: 30px !important;
+        color: white;
       }
 
       .btn {
         font-size: 35px !important;
         padding: 35px !important
+      }
+
+      .winner-body {
+        background-color: #2F2F2F;
+      }
+
+      .white {
+        color: white;
+      }
+
+      .row {
+        margin-right: 0 !important;
       }
   %body
     = yield
