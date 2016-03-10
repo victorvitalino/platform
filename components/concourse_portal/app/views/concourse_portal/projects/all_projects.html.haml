@@ -1,0 +1,39 @@
+.row
+  .col-md-12
+    %h1 
+      %b Todas as participações
+.row
+  .col-md-12  
+    - if Time.now > '2016-03-11 18:00:00 -0300' && @project.id == 4
+      - @project.candidate_participations.each do |participation|
+        .row
+          .col-md-12
+            %p
+              %h3 #{participation.candidate.name} - Nº de inscrição: #{participation.candidate_id}
+            %p
+              %h4
+                %i= participation.team_description
+        %hr/
+        .row  
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{participation.id}/01.pdf", target: '_blank'
+            %p Prancha 01
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{participation.id}/02.pdf", target: '_blank'
+            %p Prancha 02
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{participation.id}/03.pdf", target: '_blank'
+            %p Prancha 03
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{participation.id}/04.pdf", target: '_blank'
+            %p Prancha 04
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{participation.id}/05.pdf", target: '_blank'
+            %p Prancha síntese
+        %hr/
+    - else
+      .row
+        .col-md-12
+          %p
+            %h4 A divulgação de todos os projetos enviados ainda não está disponível
+

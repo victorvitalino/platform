@@ -4,5 +4,38 @@
       %b Vencedores
 .row
   .col-md-12  
-    - @project.winners.where('winner_type <> 0').each do |winner|
-      = winner
+    - if Time.now > '2016-03-11 18:00:00 -0300' && @project.id == 4
+      - @project.winners.order('winner_type DESC').each do |winner|
+        .row
+          .col-md-12
+            %p
+              %h2
+                %b= winner.winner_type.humanize
+            %p
+              %h3 #{winner.participation.candidate.name} - Nº de inscrição: #{winner.participation.candidate_id}
+            %p
+              %h4
+                %i= winner.participation.team_description
+        %hr/
+        .row  
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{winner.participation.id}/01.pdf", target: '_blank'
+            %p Prancha 01
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{winner.participation.id}/02.pdf", target: '_blank'
+            %p Prancha 02
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{winner.participation.id}/03.pdf", target: '_blank'
+            %p Prancha 03
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{winner.participation.id}/04.pdf", target: '_blank'
+            %p Prancha 04
+          .col-md-2{style: 'text-align: center'}
+            = link_to image_tag('/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/concourse/original/#{winner.participation.id}/05.pdf", target: '_blank'
+            %p Prancha síntese
+        %hr/
+    - else
+      .row
+        .col-md-12
+          %p
+            %h4 Os vencedores deste concurso ainda não estão disponíveis.

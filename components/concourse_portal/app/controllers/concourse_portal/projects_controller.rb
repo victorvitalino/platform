@@ -16,5 +16,8 @@ module ConcoursePortal
 
     def result
     end
+
+    def all_projects
+    end
   end
 end
