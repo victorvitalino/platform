@@ -1,7 +1,8 @@
 require_dependency "dashboard/application_controller"
 
 module Dashboard
-  class WarningController < ApplicationController
+  class WarningsController < ApplicationController
+    before_action :set_warning, only: [:show, :edit, :update, :destroy]
     def index
       @warnings = Warning.all
     end
@@ -30,6 +31,10 @@ module Dashboard
       end
     end
 
+    def edit
+
+    end
+
     def destroy
       @warning.destroy
       redirect_to warnings_url, notice: 'Warning was successfully destroyed.'
@@ -42,7 +47,7 @@ module Dashboard
     end
 
     def warning_params
-      params.require(:warning).permit(:title, :content, :resume, :date, :publish)
+      params.require(:warning).permit(:title, :content, :resume, :data, :publish)
     end
   end
 end
