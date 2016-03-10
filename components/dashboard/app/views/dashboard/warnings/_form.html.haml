@@ -1,0 +1,31 @@
+= simple_form_for(@warning) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-8
+        = f.label :title, class: 'fg-label'
+        = f.input :title, label: false, input_html: { placeholder: 'Digite um titulo' }
+    .row
+      .col-md-12
+        = f.label :content,  class: 'fg-label'
+        = f.input :content, as: :hidden, label: false, input_html: { id: 'content'}
+        %trix-editor.trix-content{:input => "content"}
+
+    %hr/
+    .row
+      .col-md-12
+        = f.label :resume
+        = f.input :resume,as: :hidden, label: false, input_html: { id: 'resume'}
+        %trix-editor.trix-content{:input => "resume"}
+    %hr/
+    .row
+      .col-md-2
+        = f.label :data, as: 'string', class: 'fg-label'
+        = f.input :data, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@warning.data) ? localize(f.object.data) : nil}
+      .col-md-2
+        = f.label :publish
+        = f.input :publish, label: false, as: :select, include_blank: false
+    %hr/
+    .row
+      .col-md-12
+        = f.submit "Salvar Postagem", class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+        = link_to 'Voltar',warnings_path , class: 'btn btn-dark'

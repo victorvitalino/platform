@@ -23,10 +23,10 @@
                       = f.input :city, as: :select, collection: Address::City.federal_district, label: false, prompt: 'selecione a cidade...',input_html: { name: 'city', selected: params[:city]}
                   .row
                     .col-md-12
-                      = f.input :block, as: :select, label: false, collection: (@address.city.present?) ? Address::Unit.select(:block).where(city_id: @address.city).distinct : {}, label_method: :block, value_method: :block, prompt: 'selecione a quadra...', input_html: { value: @address.city}
+                      = f.input :block, as: :select, label: false, collection: (@address.city.present?) ? Address::Unit.select(:block).where(city_id: @address.city).distinct : {}, label_method: :block, value_method: :block, prompt: 'selecione a quadra...', input_html: {name: 'block',  value: @address.city}
                   .row
                     .col-md-12
-                      = f.input :group, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? ) ? Address::Unit.select(:group).where(city_id: @address.city, block: @address.block).distinct : {}, label_method: :group, value_method: :group, prompt: 'selecione a conjunto...', input_html: { value: @address.block}
+                      = f.input :group_address, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? ) ? Address::Unit.select(:group).where(city_id: @address.city, block: @address.block).distinct : {}, label_method: :group_address, value_method: :group_address, prompt: 'selecione a conjunto...', input_html: {name: 'group_address', value: @address.block}
                   .row
                     .col-md-12
                       = f.input :unit, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @address.city,block: @address.block, group: @address.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a unidade...', input_html: { value: @address.unit,name: 'address', selected: params[:id]}
@@ -96,7 +96,7 @@
 
     $("#_candidatos_enderecos_city").on('change', function(){
 
-      $.getJSON("#{address.blocks_path}?city_id=" + $(this).val(), function(data) {
+      $.getJSON("#{api.blocks_address_units_path}?city_id=" + $(this).val(), function(data) {
 
         html = "<option value>selecione...</option>"
         if(data.length > 0) {
@@ -110,7 +110,7 @@
         }
 
         $("#_candidatos_enderecos_unit").html("<option value>selecione...</option>")
-        $("#_candidatos_enderecos_group").html("<option value>selecione...</option>")
+        $("#_candidatos_enderecos_group_address").html("<option value>selecione...</option>")
         $("#_candidatos_enderecos_block").html(html)
 
       });
@@ -118,7 +118,7 @@
 
 
     $("#_candidatos_enderecos_block").on('change', function(){
-      $.getJSON("#{address.groups_path}?block="
+      $.getJSON("#{api.groups_address_units_path}?block="
                 + $(this).val() +"&city_id="
                 + $("#_candidatos_enderecos_city").val(), function(data) {
 
@@ -133,14 +133,14 @@
           html = "<option value>Não foram encontrados conjuntos</option>"
         }
 
-        $("#_candidatos_enderecos_group").html(html)
+        $("#_candidatos_enderecos_group_address").html(html)
 
       });
     });
 
 
-    $("#_candidatos_enderecos_group").on('change', function(){
-      $.getJSON("#{address.all_units_path}?"
+    $("#_candidatos_enderecos_group_address").on('change', function(){
+      $.getJSON("#{api.units_address_units_path}?"
                 + "block=" + $("#_candidatos_enderecos_block").val()
                 + "&city_id=" + $("#_candidatos_enderecos_city").val()
                 + "&group=" + $(this).val(),function(data) {
@@ -164,7 +164,7 @@
 
 
     $("#_candidatos_enderecos_unit").on('change', function(){
-      $.getJSON("#{address.show_unit_path}?unit=" + $(this).val(),function(data) {
+      $.getJSON("#{api.address_units_path}?unit=" + $(this).val(),function(data) {
           $("#_candidatos_enderecos_id").val(data.id)
       });
     });
