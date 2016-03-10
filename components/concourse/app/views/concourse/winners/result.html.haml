@@ -36,11 +36,11 @@
             %th Nome
             %th Cidade/UF
         %tbody
-          - @project.winners.where('winner_type <> 0').order('winner_type DESC').each do |winner|
+          - @project.winners.order('winner_type DESC').each do |winner|
             %tr
               %td.col-md-1
-                %span.label.label-success
+                %span.label{class: (winner.winner_type == 'menção_honrosa') ? 'label-primary' : 'label-success'}
                   = winner.winner_type.humanize
               %td.col-md-1= winner.participation.candidate_id
               %td.col-md-3= winner.participation.candidate.name.downcase
-              %td.col-md-2 #{winner.participation.candidate.city} / #{winner.participation.candidate.state.acronym}
+              %td.col-md-2 #{winner.participation.candidate.city.downcase} / #{winner.participation.candidate.state.acronym}

@@ -13,5 +13,8 @@ module ConcoursePortal
       @project = Concourse::Project.friendly.find(params[:id])
       @current_nav = "home"
     end
+
+    def result
+    end
   end
 end

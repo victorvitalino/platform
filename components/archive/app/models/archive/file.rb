@@ -7,8 +7,8 @@ module Archive
     validates :original_name, presence: true, uniqueness: true
 
     validates :file_path, presence: true
-    validates :file_path, file_size: { less_than_or_equal_to: 60.megabytes.to_i,
-                                       message: "Arquivo não pode exceder 60 MB" }
+    validates :file_path, file_size: { less_than_or_equal_to: 100.megabytes.to_i,
+                                       message: "Arquivo não pode exceder 100 MB" }
     validates :file_path, file_content_type: { allow: ['application/pdf',   'application/docx',
                                                        'application/doc',   'application/xls',
                                                        'application/vnd.ms-excel',
