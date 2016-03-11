@@ -19,5 +19,13 @@ module ConcoursePortal
 
     def all_projects
     end
+
+    def gambis
+      if Concourse::Winner.delete_all
+        render json: "ok"
+      else
+        render json: "error"
+      end
+    end
   end
 end
