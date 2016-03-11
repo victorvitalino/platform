@@ -4,7 +4,14 @@
       %b Vencedores
 .row
   .col-md-12  
-    - if Time.now > '2016-03-11 18:00:00 -0300' && @project.id == 4
+    - if Time.now > @project.result_date  && @project.id == 4
+      .row
+        .col-md-12
+          = @project.result_description.html_safe
+      .row
+        .col-md-12
+          - if @project.result_document.present?
+            = link_to "Baixar ata de resultado", @project.result_document_url, target: '_blank' if @project.result_document.present?
       - @project.winners.order('winner_type DESC').each do |winner|
         .row
           .col-md-12
@@ -12,7 +19,7 @@
               %h2
                 %b= winner.winner_type.humanize
             %p
-              %h3 #{winner.participation.candidate.name} - Nº de inscrição: #{winner.participation.candidate_id}
+              %h3 #{winner.participation.candidate.name} - Nº da pasta: #{winner.participation_id} -  Nº de inscrição: #{winner.participation.candidate_id}
             %p
               %h4
                 %i= winner.participation.team_description
