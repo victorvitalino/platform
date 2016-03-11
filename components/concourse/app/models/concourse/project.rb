@@ -2,7 +2,9 @@ module Concourse
   class Project < ActiveRecord::Base
 
     extend FriendlyId
-  
+    
+    audited
+    
     friendly_id :title, use: :slugged
     
     scope :sliders, -> {where(slider: true)}
