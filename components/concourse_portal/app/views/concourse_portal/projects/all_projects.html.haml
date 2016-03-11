@@ -4,7 +4,7 @@
       %b Todas as participações
 .row
   .col-md-12  
-    - if Time.now > @project.result_date && @project.id == 4
+    - if @project.result_date.present? && Time.now > @project.result_date
       - @project.candidate_participations.each do |participation|
         .row
           .col-md-12
