@@ -1,0 +1,57 @@
+.page-content
+ .panel
+  .panel-heading
+   .panel-title
+    %h4 Transferencia
+  .panel-body
+   .row
+    .col-md-12
+     -if @candidate.present?
+      .bootstrap-table
+       %table.table.table-striped.table-bordered.table-condensed
+        %thead{:style => "display: table-header-group;"}
+         %tr
+          %th{:colspan => "2"} Cedente
+          %th CPF
+          %th Processo
+        %tbody
+         %tr
+          %td{:colspan => "2"}= @candidate.last.cadastre.name
+          %td= @candidate.last.cadastre.cpf
+          %td= @candidate.last.cadastre.cadastre_procedurals.last.old_process
+      .bootstrap-table
+       %table.table.table-striped.table-bordered.table-condensed
+        %thead{:style => "display: table-header-group;"}
+         %tr
+          %th{:colspan => "2"} Endereço
+          %th Cidade
+          %th Data TCU
+        %tbody
+         %tr
+          %td{:colspan => "2"}= @candidate.last.unit.complete_address
+          %td= @candidate.last.unit.city.name
+          %td= @candidate.last.created_at.strftime('%d/%m/%Y')
+   .row
+    .col-md-6
+     .row
+      .col-md-12
+       Pesquisar CPF do cessionário
+     .row
+      .col-md-12
+       = simple_form_for url_for, :method => 'get' do |f|
+        .row
+         .col-md-5
+          = f.label :cpf, class: 'fg-label'
+          = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+        .row
+         .col-md-12
+          = f.submit 'Pesquisar', class:  'btn btn-success', input_html: { name: nil}
+    .col-md-6
+     .row
+      .col-md-12
+       -if @assignee.present?
+        Candidato:
+        =@assignee.name
+        = render 'assignee'
+       -else
+        CPF não encontrado

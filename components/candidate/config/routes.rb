@@ -12,6 +12,8 @@ Candidate::Engine.routes.draw do
   get   'unallocate/id', path: 'desassenta', to: 'cadastre_addresses#unallocate', as: 'unallocate'
   post  'deallocate', path: 'desassentar', to: 'cadastre_addresses#deallocate', as: 'deallocate'
 
+  get   'transfer/id', path: 'transferencia', to: 'cadastre_addresses#transfer', as: 'transfer'
+
   resources :lists
   resources :checklists
 

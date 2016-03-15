@@ -7,6 +7,8 @@ module Candidate
    has_scope :old_process
    has_scope :address
 
+   before_action :set_cadastre_address , only: [:unallocate, :transfer]
+
     def index
        authorize :cadastre_address,  :index?
        @address = RegularizationPortal::Address.new
@@ -32,18 +34,19 @@ module Candidate
     end
 
     def unallocate
-      @candidate = Candidate::CadastreAddress.joins("inner join address_registry_units on candidate_cadastre_addresses.unit_id = address_registry_units.unit_id")
-                                                                       .where("address_registry_units.situation <> 2 AND candidate_cadastre_addresses.unit_id = ?", params[:id])
 
        unless  @candidate.present?
           redirect_to address.units_path
        end
-
       @address = Candidate::CadastreAddress.where(unit_id: params[:id])
     end
 
     def deallocate
+        redirect_to cadastre_address_path
+    end
 
+    def transfer
+      @assignee = Candidate::Cadastre.find_by_cpf(params[:cpf])
     end
 
      private
@@ -51,6 +54,11 @@ module Candidate
        def set_cadastre_address_params
             params.require(:cadastre_address).permit(:cadastre_id, :unit_id, :observation,:created_at,:regularization_type_id)
        end
+
+      def set_cadastre_address
+         @candidate = Candidate::CadastreAddress.joins("inner join address_registry_units on candidate_cadastre_addresses.unit_id = address_registry_units.unit_id")
+                                                                       .where("address_registry_units.situation <> 2 AND candidate_cadastre_addresses.unit_id = ?", params[:id])
+      end
 
 
   end

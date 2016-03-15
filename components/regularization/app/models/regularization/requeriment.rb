@@ -6,6 +6,9 @@ module Regularization
     enum marital_status: ['união_estável', 'solteiro']
     enum gender: [:masculino, :feminino]
 
+    scope :name_candidate, -> (name_candidate) {where(name: name_candidate)}
+    scope :cpf, -> (cpf) {where(cpf: cpf)}
+
     validates_presence_of :name, :marital_status, :gender, :cpf, :rg, :born, :telephone,:nationality, :email
     validates_date :born, before: Time.now - 18.years
     validates :email, email: true
@@ -17,9 +20,9 @@ module Regularization
     validate :verify_spouse_cpf
 
     def protocol; "REG#{self.id}#{self.created_at.strftime('%Y')}"; end;
-    
+
     private
-    
+
     def union?
       self.marital_status == 'união_estável'
     end

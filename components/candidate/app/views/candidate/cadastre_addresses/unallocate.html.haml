@@ -86,7 +86,9 @@
                               %td= a.created_at.strftime('%d/%m/%Y')
               .row
                 .col-md-12
-                  = simple_form_for deallocate_path  do |f|
+                  = simple_form_for url_for deallocate_path  do |f|
+                    = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate.id}
+                    = f.input :unit_id, as: :hidden,  input_html:{ value: @address.unit_id}
                     .row
                       .col-md-5
                         = f.label :observation, class: 'fg-label'
