@@ -1,16 +1,16 @@
-.container
-  .row
-    .col-md-2{style: 'text-align: center;'}
-      %h1
-        %b= image_tag "http://www.codhab.df.gov.br#{@project.image_header.url}", width: 350
-    .col-md-10{style: 'text-align: center;'}
-      %br/
-      %h1
-        %b RESULTADO DO CONCURSO
-.winner-body
+.winner-white
   .container
-    .row{style: 'margin-top: 200px'}
-      .col-md-12
-        .form-base
-          = render 'form'
-    .row{style: 'margin-top: 400px'}
+    .row
+      .col-md-2{style: 'text-align: center;'}
+        %h1
+          %b= image_tag "http://www.codhab.df.gov.br#{@project.image_header.url}", width: 350
+      .col-md-10{style: 'text-align: center;'}
+        %br/
+        %h1
+          %b RESULTADO DO CONCURSO
+.container
+  .row{style: 'margin-top: 200px'}
+    .col-md-12
+      .form-base
+        = render 'form'
+  .row{style: 'margin-top: 400px'}

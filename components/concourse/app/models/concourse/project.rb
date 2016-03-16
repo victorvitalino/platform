@@ -2,7 +2,9 @@ module Concourse
   class Project < ActiveRecord::Base
 
     extend FriendlyId
-  
+    
+    audited
+    
     friendly_id :title, use: :slugged
     
     scope :sliders, -> {where(slider: true)}
@@ -35,6 +37,7 @@ module Concourse
     mount_uploader :image_header, ImageUploader
     mount_uploader :image_footer, ImageUploader
     mount_uploader :image_slider, ImageUploader
+    mount_uploader :result_document, FileUploader
 
     def consultation_time?
         (self.consultation_start <= Date.today && self.consultation_end >= Date.today)

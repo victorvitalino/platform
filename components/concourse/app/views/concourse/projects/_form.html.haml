@@ -65,6 +65,19 @@
       .col-md-2
         = f.label 'Fim das participações'
         = f.input :end_participation,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.end_participation) ? localize(f.object.end_participation) : nil}
+      .col-md-3
+        = f.label 'Data/Horário de abertura dos resultados'
+        = f.input :result_date, as: :string, label: false, prompt: 'selecione...'
+      .col-md-4
+        = f.label 'Ata de resultados'
+        = f.input :result_document, as: :file, label: false, prompt: 'selecione...'
+        = f.hint link_to "visualizar arquivo atual", f.object.result_document_url, target: '_blank' if f.object.result_document.present?
+    .row
+      .col-md-8
+        = f.label 'Texto de introdução aos resultados'
+        = f.input :result_description, as: :hidden, label: false, input_html: { id:"result_description" }
+        %trix-editor.trix-content{:input => "result_description"}
+    %hr/
     .row
       .col-md-12
         = f.label 'Texto de descrição (formulário de participação)', class: 'fg-label'

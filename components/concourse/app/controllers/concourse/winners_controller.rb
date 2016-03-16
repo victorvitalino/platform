@@ -26,6 +26,9 @@ module Concourse
       @winner = @project.winners.find_by_participation_id(params[:id])
     end
 
+    def result
+    end
+
     private
 
     def set_params

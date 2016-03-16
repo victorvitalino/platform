@@ -5,20 +5,17 @@ namespace :csv do
   task :treta => :environment do
 
     @index = 0
-    CSV.foreach("lib/files/cadastre_address.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/cadastre_addresses_novo.csv", :col_sep => "#") do |row|
 
-      @index += 1
-
-      if row[1].to_s != "NULL"
         @address = Candidate::CadastreAddress.new({
-          cadastre_id: row[1],
-          unit_id: row[9],
-          dominial_chain: row[4],
-          type_occurrence: row[6],
-          type_receipt: row[5],
-          created_at: row[8],
-          situation_id: row[7],
-          regularization_type_id: row[0]
+          cadastre_id: row[1].to_i,
+          unit_id:  row[7],
+          dominial_chain: row[2],
+          type_occurrence: row[3],
+          type_receipt: row[4],
+          created_at: row[5],
+          situation_id: row[8],
+          regularization_type_id: row[6]
         })
 
         begin 
@@ -28,10 +25,7 @@ namespace :csv do
         rescue
           puts "#{@index}------------------------------------------------------------------------------------------------------------------"
         end
-      else
-        puts "#{@index} NULLLLLLLLLLLLLLLLLLLLl------------------------------------------------------------------------------------------------------------------"
-      end
-
+     
       @index += 1
 
     end

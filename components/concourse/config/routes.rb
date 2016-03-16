@@ -9,7 +9,12 @@ Concourse::Engine.routes.draw do
       get 'change_order'
     end
 
-    resources :winners
+    resources :winners, path: 'vencedores' do 
+      collection do 
+        get 'result', path: 'resultado'
+      end
+    end
+
     resources :subscribes
     resources :participations
     resources :consults

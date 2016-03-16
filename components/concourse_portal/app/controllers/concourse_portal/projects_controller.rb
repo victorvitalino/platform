@@ -13,5 +13,19 @@ module ConcoursePortal
       @project = Concourse::Project.friendly.find(params[:id])
       @current_nav = "home"
     end
+
+    def result
+    end
+
+    def all_projects
+    end
+
+    def gambis
+      if Concourse::Winner.delete_all
+        render json: "ok"
+      else
+        render json: "error"
+      end
+    end
   end
 end
