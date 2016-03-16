@@ -3,11 +3,13 @@ require_dependency "candidate/application_controller"
 module Candidate
   class CadinsController < ApplicationController
     before_action :set_cadin, only: [:show, :edit, :update, :destroy]
-
+    has_scope :name_candidate
+    has_scope :cpf
     # GET /cadins
     def index
       authorize :cadin,  :index?
       @cadins = Cadin.all
+      @cadins = apply_scopes(@cadins).paginate(:page => params[:page], :per_page => 20)
     end
 
     # GET /cadins/1

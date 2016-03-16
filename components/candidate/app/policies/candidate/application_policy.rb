@@ -9,7 +9,7 @@ module Candidate
 
     def view_nav?
       return true if user.account.administrator
-      system_module = Person::SystemModule.find_by_code('11') rescue nil 
+      system_module = Person::SystemModule.find_by_code('11') rescue nil
       permissions   = Person::SystemPermission.where(system_id: system_module.systems.map(&:id))
       (user.account.privilege_id & permissions.map(&:code)).present?
     end
@@ -44,7 +44,8 @@ module Candidate
     #VERIFICA SE O USUÁRIO POSSUI O CÓDIGO DA PERMISSÃO
     def allow?(code)
       return true if user.account.administrator?
-      user.account.privilege_id.to_a.include? code.to_i
+      permissions = Person::SystemPermission.where(code: code)
+      (user.permissions.map(&:system_permission_id) & permissions.map(&:id)).present?
     end
 
     private

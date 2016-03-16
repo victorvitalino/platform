@@ -41,9 +41,10 @@ module Brb
       Pundit.policy_scope!(user, record.class)
     end
     #VERIFICA SE O USUÁRIO POSSUI O CÓDIGO DA PERMISSÃO
-    def allow?(code)
+     def allow?(code)
       return true if user.account.administrator?
-      user.account.privilege_id.to_a.include? code.to_i
+      permissions = Person::SystemPermission.where(code: code)
+      (user.permissions.map(&:system_permission_id) & permissions.map(&:id)).present?
     end
 
     private

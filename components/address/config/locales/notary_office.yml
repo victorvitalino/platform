@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      'address/notary_office': Cartório
+    attributes:
+      'address/notary_office':
+        unit_code: "Matrícula da Unidade"
+        office: "Cartório"
+        date_code: "Data da Matrícula"
+        code_contract: "Matrícula do contrato"
+        office_contract: "Cartório do contrato"
+        date_contract: "Data do contrato"
+        date_petition: "Data da Petição"
+        date_signature: "Data da Assinatura"
+        date_anoreg: "Data da anoreg"
+        date_devolution: "Data da devolução"
+        requeriment: "Exigência"
+        date_requeriment: "Data da exigência"
+        declaratory_act_number: "Número do Ato Declaratório"
+        date_act_declaratory: "Data do Ato Declaratório"
+        rejection_number: "Número do Ato de Indeferimento"
+        date_act_rejection: "Data do Ato de Indeferimento"
