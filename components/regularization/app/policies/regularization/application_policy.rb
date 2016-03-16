@@ -44,12 +44,9 @@ module Regularization
     end
     #VERIFICA SE O USUÁRIO POSSUI O CÓDIGO DA PERMISSÃO
     def allow?(code)
-      return true if user.account.administrator
-      @permission = Person::SystemPermission.find_by_code(code)
-
-      if @permission.present?
-         return true if user.account.permissions.where(system_permission_id: @permission.id, status: true).present?
-      end
+      return true if user.account.administrator?
+      permissions = Person::SystemPermission.where(code: code)
+      (user.permissions.map(&:system_permission_id) & permissions.map(&:id)).present?
     end
 
     private

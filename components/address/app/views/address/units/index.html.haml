@@ -64,9 +64,9 @@
 
   $(document).ready(function() {
 
-    $("#_endereco_unidades_city").on('change', function(){
+    $("#_enderecos_unidades_city").on('change', function(){
 
-      $.getJSON("#{address.blocks_path}?city_id=" + $(this).val(), function(data) {
+      $.getJSON("#{api.blocks_address_units_path}?city_id=" + $(this).val(), function(data) {
 
         html = "<option value>selecione...</option>"
         if(data.length > 0) {
@@ -79,18 +79,18 @@
           html = "<option value>Não foram encontradas quadras</option>"
         }
 
-        $("#_endereco_unidades_unit").html("<option value>selecione...</option>")
-        $("#_endereco_unidades_group_address").html("<option value>selecione...</option>")
-        $("#_endereco_unidades_block").html(html)
+        $("#_enderecos_unidades_unit").html("<option value>selecione...</option>")
+        $("#_enderecos_unidades_group_address").html("<option value>selecione...</option>")
+        $("#_enderecos_unidades_block").html(html)
 
       });
     });
 
 
-    $("#_endereco_unidades_block").on('change', function(){
-      $.getJSON("#{address.groups_path}?block="
+    $("#_enderecos_unidades_block").on('change', function(){
+      $.getJSON("#{api.groups_address_units_path}?block="
                 + $(this).val() +"&city_id="
-                + $("#_endereco_unidades_city").val(), function(data) {
+                + $("#_enderecos_unidades_city").val(), function(data) {
 
         html = "<option value>selecione...</option>"
         if(data.length > 0) {
@@ -103,16 +103,16 @@
           html = "<option value>Não foram encontrados conjuntos</option>"
         }
 
-        $("#_endereco_unidades_group_address").html(html)
+        $("#_enderecos_unidades_group_address").html(html)
 
       });
     });
 
 
-    $("#_endereco_unidades_group_address").on('change', function(){
-      $.getJSON("#{address.all_units_path}?"
+    $("#_enderecos_unidades_group_address").on('change', function(){
+      $.getJSON("#{api.units_address_units_path}?"
                 + "block=" + $("#_endereco_unidades_block").val()
-                + "&city_id=" + $("#_endereco_unidades_city").val()
+                + "&city_id=" + $("#_enderecos_unidades_city").val()
                 + "&group=" + $(this).val(),function(data) {
 
         html = "<option value>selecione...</option>"
@@ -126,7 +126,7 @@
           html = "<option value>Não foram encontrados conjuntos</option>"
         }
 
-        $("#_endereco_unidades_unit").html(html)
+        $("#_enderecos_unidades_unit").html(html)
 
       });
     });

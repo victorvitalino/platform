@@ -120,7 +120,12 @@
                       %td= a.cadastre.cpf if a.cadastre.present?
                       %td= a.dominial_chain
                       %td= a.created_at.strftime('%d/%m/%Y')
-                      %td= a.type_receipt
+                      - if a.type_receipt == 1
+                        %td= "Transferência"
+                      - elsif a.type_receipt == 0
+                        %td= "SEDUH/CODHAB"
+                      - else
+                        %td= ""
           %hr
           .row
             .col-md-4

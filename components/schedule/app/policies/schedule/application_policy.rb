@@ -6,7 +6,7 @@ module Schedule
       @user = user
       @record = record
     end
-   
+
     def show?
       scope.where(:id => record.id).exists?
     end
@@ -34,8 +34,8 @@ module Schedule
     def scope
       Pundit.policy_scope!(user, record.class)
     end
-   
-    def allow?(code)
+
+   def allow?(code)
       return true if user.account.administrator?
       permissions = Person::SystemPermission.where(code: code)
       (user.permissions.map(&:system_permission_id) & permissions.map(&:id)).present?
