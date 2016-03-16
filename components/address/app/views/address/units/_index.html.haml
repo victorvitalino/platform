@@ -9,7 +9,8 @@
     %td.col-md-2
       = link_to "", unit_path(a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
       = link_to "", edit_unit_path(a), title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}
-      = link_to "", candidate.transfer_path(id:a), title: "Transferencia",  class: 'glyphicon glyphicon-transfer btn btn-info btn-xs',data: {disable_with: "carregando..."}
+      - if a.situation_unit_id == 3
+        = link_to "", candidate.transfer_path(id:a), title: "Transferencia",  class: 'glyphicon glyphicon-transfer btn btn-info btn-xs',data: {disable_with: "carregando..."}
       - if a.notary_offices.present?
         = link_to "", edit_unit_notary_office_path(a,a.notary_offices.last.id), title: "Cartorio",  class: 'glyphicon glyphicon-briefcase btn btn-dark btn-xs',data: {disable_with: "carregando..."}
       -else

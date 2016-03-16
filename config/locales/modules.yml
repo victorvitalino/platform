@@ -17,11 +17,13 @@ pt-BR:
   modules:
     address:
       units: "Unidades"
+      notary_offices: "Cartório"
     habitation:
       attendances: "Atendimento"
     candidate:
       cadastre_addresses: "Cadastro endereço"
       cadastres: "Cadastro"
+      cadins: "Cadastro imobiliário"
     person:
       staffs: "Usuários"
       systems: "Sistemas"

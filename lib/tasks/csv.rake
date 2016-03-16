@@ -5,26 +5,33 @@ namespace :csv do
   task :treta => :environment do
 
     @index = 0
-    CSV.foreach("lib/files/cartorio.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/cadin.csv", :col_sep => "#") do |row|
 
-        @address = Address::NotaryOffice.new({
-          unit_code: row[1],
-          office:  row[2],
-          date_code: row[3],
-          date_contract: row[4],
-          code_contract: row[5],
-          date_petition: row[6],
-          date_signature: row[7],
-          date_anoreg: row[8],
-          date_devolution: row[9],
-          requeriment: row[10],
-          date_requeriment: row[11],
-          declaratory_act_number: row[12],
-          rejection_number: row[14],
-          unit_id: row[16],
-          date_act_declaratory: (row[12].to_s != 'NULL') ? row[13] : "",
-          date_act_rejection: (row[14].to_s != 'NULL') ? row[13] : "",
-          office_contract: row[15],
+        cpf = ''
+        if row[11].to_s.strip.present?
+         cpf = row[11].to_s.gsub('.','')
+         cpf = cpf.gsub('-','')
+        end
+
+        @address = Candidate::Cadin.new({
+          number_control: row[0],
+          name:  row[1].to_s.strip,
+          born: row[2],
+          process: row[3],
+          occurrence_cadin_id: row[4],
+          signed_instrument_id: row[5],
+          place_birth: row[6].to_s.strip,
+          uf_born: row[7].to_s.strip,
+          address: row[8].to_s.strip,
+          cep: row[9],
+          city_id: row[10],
+          cpf: cpf,
+          rg: row[12].to_s.strip,
+          distribution_date: row[13],
+          percentage: row[14],
+          observation: row[15],
+          espolio: row[16],
+          freedup: row[17],
         })
 
         begin
