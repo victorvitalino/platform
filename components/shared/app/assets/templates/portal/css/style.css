@@ -1169,6 +1169,9 @@ h2 {
 .main-content.concursos h1.post-header {
     color: #83847B
 }
+.main-content.producao h1.post-header {
+    color: #c9155c
+}
 
 .main-content
 iframe {
@@ -1410,6 +1413,10 @@ ul {
 .submenu {
     background: #83847B
 }
+#main-menu li.producao
+.submenu {
+    background: #c9155c
+}
 
 #main-menu .submenu>li>a {
     font-size: 16px !important;
@@ -1632,6 +1639,9 @@ a {
 #main-menu .main-link.concursos>a {
     color: #83847b
 }
+#main-menu .main-link.producao>a {
+    color: #c9155c
+}
 #main-menu .main-link.regularizacao>a {
     color: #feaa15
 }
@@ -1665,6 +1675,9 @@ a {
 #main-menu .main-link.concursos>a:hover {
     background: #83847b
 }
+#main-menu .main-link.producao>a:hover {
+    background: #c9155c
+}
 .main-link.regularizacao:hover, #main-menu .main-link.regularizacao.active {
 background: #feaa15
 }
@@ -1687,6 +1700,9 @@ background: #feaa15
 .main-link.concursos:hover, #main-menu .main-link.concursos.active {
     background: #83847b
 }
+.main-link.producao:hover, #main-menu .main-link.producao.active {
+    background: #c9155c
+}
 
 #main-menu .main-link.editais.active a,
 #main-menu .main-link.regularizacao.active a,
@@ -1694,6 +1710,7 @@ background: #feaa15
 #main-menu .main-link.habitacao.active a,
 #main-menu .main-link.entidades.active a,
 #main-menu .main-link.concursos.active
+#main-menu .main-link.producao.active
 a {
     color: #fff
 }
@@ -1720,6 +1737,9 @@ a {
 }
 
 #main-menu .main-link.concursos .submenu>li>a {
+    color: #fff
+}
+#main-menu .main-link.producao .submenu>li>a {
     color: #fff
 }
 #main-menu .main-link.regularizacao .submenu>li>a {
@@ -1818,6 +1838,11 @@ h5.editais {
 h3 {
     color: #83847b
 }
+.sidebar h5.producao,
+.whats-on-sidebar
+h3 {
+    color:#c9155c
+}
 
 .sidebar h5.your-council {
     color: #012942
@@ -1853,6 +1878,9 @@ color: #feaa15 !important
 
 .sidebar-menu.concursos li.here>a {
     color: #F4400A !important
+}
+.sidebar-menu.producao li.here>a {
+    color: #c9155c !important
 }
 
 .sidebar-menu li
@@ -1907,6 +1935,7 @@ a {
 .sidebar-menu.servicos .submenu a,
 .sidebar-menu.editais .submenu a,
 .sidebar-menu.concursos .submenu a,
+.sidebar-menu.proudcao .submenu a,
 .sidebar-menu .submenu
 a {
     padding-left: 44px;
@@ -2774,6 +2803,9 @@ li {
 .topSlider .flex-caption.concursos {
     background: rgba(105,105,105,0.9)
 }
+.topSlider .flex-caption.producao {
+    background: rgba(105,105,105,0.9)
+}
 
 .topSlider .flex-caption
 h3 {
@@ -3142,6 +3174,7 @@ img {
 
 .exploreWrapper span.exploreHeading.entidades,
 .exploreWrapper span.exploreHeading.concursos,
+.exploreWrapper span.exploreHeading.producao,
 .exploreWrapper span.exploreHeading.editais,
 .exploreWrapper span.exploreHeading.habitacao,
 .exploreWrapper span.exploreHeading.regularizacao,
@@ -3156,6 +3189,10 @@ span.exploreHeading.servicos {
 .exploreWrapper
 span.exploreHeading.concursos {
     color: #83847B
+}
+.exploreWrapper
+span.exploreHeading.producao {
+    color: #c9155c
 }
 
 .exploreWrapper
@@ -3271,6 +3308,7 @@ a.searchName:hover {
 .largeLinksWrapper.regularizacao ul li,
 .largeLinksWrapper.entidades ul li ,
 .largeLinksWrapper.editais ul li ,
+.largeLinksWrapper.producao ul li ,
 .largeLinksWrapper.concursos ul
 li {
     /*background: url(http://stage.acc.bl.ms/common/acc/images/sidebararrow_lightblue.png) no-repeat scroll 3% 50% rgba(0, 0, 0, 0);*/
@@ -3715,6 +3753,11 @@ iframe {
         /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-grey-mobile.jpg) no-repeat right 10px / 32px 32px;*/
         min-height: 32px
     }
+    .container .landingSmall .five.columns
+    h3.producao {
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-grey-mobile.jpg) no-repeat right 10px / 32px 32px;*/
+        min-height: 32px
+    }
 
     .container .landingSmall .five.columns
     h3.editais {
@@ -3741,6 +3784,11 @@ iframe {
     }
 
     .largeLinksWrapper.concursos ul
+    li {
+        /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-grey-mobile.jpg) no-repeat 0px -12px / 32px 32px;*/
+        min-height: 32px
+    }
+    .largeLinksWrapper.producao ul
     li {
         /*background: url(http://stage.acc.bl.ms/common/acc/images/landing-arrow-small-grey-mobile.jpg) no-repeat 0px -12px / 32px 32px;*/
         min-height: 32px
@@ -6337,6 +6385,10 @@ span.label {
     #main-menu .main-link.concursos.opened-parent {
         background: #83847b
     }
+    #main-menu .main-link.producao:hover a,
+    #main-menu .main-link.producao.opened-parent {
+        background: #c9155c
+    }
 
     #main-menu .main-link.habitacao:hover a,
     #main-menu .main-link.habitacao.opened-parent {
@@ -6452,7 +6504,8 @@ span.label {
     #main-menu .main-link.editais .submenu > li > a,
     #main-menu .main-link.servicos .submenu > li > a,
     #main-menu .main-link.entidades .submenu > li > a,
-    #main-menu .main-link.concursos .submenu>li>a {
+    #main-menu .main-link.concursos .submenu>li>a,
+    #main-menu .main-link.producao .submenu>li>a {
         color: #fff !important
     }
 
@@ -6767,6 +6820,9 @@ span.label {
     }
 
     .topSlider .flexslider li .flex-caption.concursos {
+        background: rgba(105,105,105,1.0) !important
+    }
+    .topSlider .flexslider li .flex-caption.producao {
         background: rgba(105,105,105,1.0) !important
     }
 
@@ -9394,4 +9450,3 @@ a {
     filter: Alpha(Opacity=30);
     border-radius: 8px
 }
-
