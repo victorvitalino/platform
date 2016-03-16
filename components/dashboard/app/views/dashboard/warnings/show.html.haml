@@ -1,0 +1,10 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          = @warning.title
+    .panel-body
+      .panel-image
+        = image_tag(@warning.thumbnail)
+      = @warning.content.html_safe

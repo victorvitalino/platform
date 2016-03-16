@@ -8,3 +8,4 @@
 //= require shared/trix/trix.min
 //= require shared/trix/attachment
 //= require remark/javascripts/custom
+//= require portal/js/jquery.bxslider.min

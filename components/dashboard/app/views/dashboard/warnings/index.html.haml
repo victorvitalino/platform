@@ -22,7 +22,7 @@
                 %td= warning.id
                 %td= warning.title
                 %td= status_helper(warning.publish)
-                %td= warning.data
+                %td= warning.date
                 %td.col-md-1
                   = link_to '', edit_warning_path(warning),title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs', data: {turbolinks: false} if policy(:post, namespace: Cms).update?
                   = link_to '', warning,title: 'Remover', :method => :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => 'Are you sure?' }, data: {turbolinks: false} if policy(:post, namespace: Cms).destroy?

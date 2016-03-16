@@ -47,7 +47,7 @@ module Dashboard
     end
 
     def warning_params
-      params.require(:warning).permit(:title, :content, :resume, :data, :publish)
+      params.require(:warning).permit(:title, :content, :resume, :date, :publish, :color, :category, :thumbnail)
     end
   end
 end

@@ -1095,8 +1095,11 @@ ActiveRecord::Schema.define(version: 20160310120557) do
     t.text     "content"
     t.text     "resume"
     t.boolean  "publish"
-    t.date     "data"
+    t.date     "date"
     t.boolean  "status"
+    t.integer  "category"
+    t.integer  "color"
+    t.string   "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

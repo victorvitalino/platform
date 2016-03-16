@@ -5,9 +5,11 @@ class CreateDashboardWarnings < ActiveRecord::Migration
       t.text :content
       t.text :resume
       t.boolean :publish
-      t.date :data
+      t.date :date
       t.boolean :status
-
+      t.integer :category
+      t.integer :color
+      t.string :thumbnail
       t.timestamps null: false
     end
   end
