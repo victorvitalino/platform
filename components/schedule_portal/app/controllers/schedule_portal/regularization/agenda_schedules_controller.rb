@@ -3,7 +3,14 @@ require_dependency 'schedule_portal/application_controller'
 module SchedulePortal
   module Regularization
     class AgendaSchedulesController < ApplicationController
-      
+    
+      include Pundit
+      include Authenticate::StaffService
+      helper  Authenticate::StaffHelper
+      helper  Shared::NavHelper
+    
+      before_action :authenticate_staff?
+    
       def index
         redirect_to action: :new
       end
