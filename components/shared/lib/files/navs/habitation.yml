@@ -23,30 +23,30 @@ nav:
             label: 'Assentamento'
             controller: '/candidate/cadastre_addresses'
       address:
-        code: 11014
+        code: 11204
         label: 'Endereço'
         controller: '#'
         sub:
           general_search:
             module: 'address'
-            code: 11014
+            code: 11204
             label: 'Pesquisa geral'
             controller: '/address/units'
       cadin:
-        code: 11015
+        code: 11304
         label: 'Cadastro imobiliário'
         controller: '#'
         sub:
           general_search:
             module: 'candidate'
-            code: 11015
+            code: 11304
             label: 'Pesquisa geral'
             controller: '/candidate/cadins'
       schedule:
         code: [118103,118101]
         label: 'Agendamento'
         controller: '#'
-        sub: 
+        sub:
           new_schedule:
             module: 'schedule'
             code: 118101
@@ -91,7 +91,7 @@ nav:
         code: 11501
         label: 'Entidades'
         controller: '#'
-        sub: 
+        sub:
           cadastre:
             module: 'entity'
             code: 11501
