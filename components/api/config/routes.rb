@@ -10,12 +10,13 @@ Api::Engine.routes.draw do
     resources :lists, path: 'lista', only: :index
   end
 
-  namespace :address, path: 'endereco' do 
-    resources :units, path: 'unidade' do 
-      collection do 
+  namespace :address, path: 'endereco' do
+    resources :units, path: 'unidade' do
+      collection do
         get 'blocks'
         get 'groups'
         get 'units'
+        get 'all_units'
         get 'show'
       end
     end
