@@ -24,5 +24,6 @@
               = @post.title
             %p.post-post
               = @post.content.html_safe
+              = @post.flickr.html_safe if @post.flickr.present?
             %a.button_back{"arial-label" => "back to top", :href => "#"} VOLTAR AO TOPO
     = render('partials/shared/portal/sidebar')

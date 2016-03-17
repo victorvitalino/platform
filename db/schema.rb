@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315124011) do
+ActiveRecord::Schema.define(version: 20160316194204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -882,6 +882,7 @@ ActiveRecord::Schema.define(version: 20160315124011) do
     t.string   "label_link"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "flickr"
   end
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
