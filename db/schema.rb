@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20160316194204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "dblink"
 
   create_table "address_cities", force: :cascade do |t|
     t.string   "name"
@@ -33,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160316194204) do
     t.date     "date_code"
     t.date     "date_contract"
     t.string   "code_contract"
+    t.string   "office_contract"
     t.date     "date_petition"
     t.date     "date_signature"
     t.date     "date_anoreg"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20160316194204) do
     t.date     "date_act_rejection"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "office_contract"
   end
 
   add_index "address_notary_offices", ["unit_id"], name: "index_address_notary_offices_on_unit_id", using: :btree
@@ -369,10 +368,10 @@ ActiveRecord::Schema.define(version: 20160316194204) do
     t.integer  "cadastre_id"
     t.integer  "cadastre_mirror_id"
     t.integer  "unit_id"
-    t.string   "dominial_chain"
-    t.integer  "type_occurrence"
-    t.string   "observation"
-    t.integer  "type_receipt"
+    t.integer  "dominal_chair"
+    t.integer  "type_receiving"
+    t.integer  "type_occurence"
+    t.text     "observation"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "situation_id"
@@ -381,12 +380,12 @@ ActiveRecord::Schema.define(version: 20160316194204) do
     t.integer  "regularization_type_id"
   end
 
-  add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
-  add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["cadastre_id"], name: "index_candidate_cadastre_addresses_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadastre_addresses_on_cadastre_mirror_id", using: :btree
   add_index "candidate_cadastre_addresses", ["regularization_type_id"], name: "index_candidate_cadastre_addresses_on_regularization_type_id", using: :btree
   add_index "candidate_cadastre_addresses", ["situation_id"], name: "index_candidate_cadastre_addresses_on_situation_id", using: :btree
   add_index "candidate_cadastre_addresses", ["staff_id"], name: "index_candidate_cadastre_addresses_on_staff_id", using: :btree
-  add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
+  add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadastre_addresses_on_unit_id", using: :btree
   add_index "candidate_cadastre_addresses", ["user_company_id"], name: "index_candidate_cadastre_addresses_on_user_company_id", using: :btree
 
   create_table "candidate_cadastre_checklists", force: :cascade do |t|
@@ -544,6 +543,22 @@ ActiveRecord::Schema.define(version: 20160316194204) do
   add_index "candidate_cadastres", ["special_condition_id"], name: "index_candidate_cadastres_on_special_condition_id", using: :btree
   add_index "candidate_cadastres", ["state_id"], name: "index_candidate_cadastres_on_state_id", using: :btree
   add_index "candidate_cadastres", ["work_city_id"], name: "index_candidate_cadastres_on_work_city_id", using: :btree
+
+  create_table "candidate_cadatre_addresses", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "cadastre_mirror_id"
+    t.integer  "unit_id"
+    t.string   "dominial_chain"
+    t.integer  "type_occurrence"
+    t.string   "observation"
+    t.integer  "type_receipt"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "candidate_cadatre_addresses", ["cadastre_id"], name: "index_candidate_cadatre_addresses_on_cadastre_id", using: :btree
+  add_index "candidate_cadatre_addresses", ["cadastre_mirror_id"], name: "index_candidate_cadatre_addresses_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadatre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
 
   create_table "candidate_cadins", force: :cascade do |t|
     t.string   "number_control"
@@ -1604,11 +1619,11 @@ ActiveRecord::Schema.define(version: 20160316194204) do
   add_index "person_staff_permissions", ["system_permission_id"], name: "index_person_staff_permissions_on_system_permission_id", using: :btree
 
   create_table "person_staffs", force: :cascade do |t|
+    t.string   "code"
     t.string   "name"
     t.string   "cpf"
     t.string   "rg"
     t.string   "rg_org"
-    t.string   "code"
     t.string   "blood_type"
     t.date     "born"
     t.string   "avatar"
@@ -1984,42 +1999,6 @@ ActiveRecord::Schema.define(version: 20160316194204) do
   end
 
   add_index "schedule_data_references", ["code"], name: "index_schedule_data_references_on_code", using: :btree
-
-  create_table "sefaz_transmission_candidates", force: :cascade do |t|
-    t.integer  "transmission_id"
-    t.string   "sector"
-    t.string   "exemption_type"
-    t.string   "organization"
-    t.string   "cnpj"
-    t.string   "name"
-    t.string   "cpf"
-    t.string   "city"
-    t.string   "address"
-    t.string   "unit_code"
-    t.string   "unit_value"
-    t.integer  "status",          default: 0
-    t.string   "declaratory_act"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
-
-  add_index "sefaz_transmission_candidates", ["transmission_id"], name: "index_sefaz_transmission_candidates_on_transmission_id", using: :btree
-
-  create_table "sefaz_transmissions", force: :cascade do |t|
-    t.integer  "staff_id"
-    t.string   "sector"
-    t.string   "exemption_type"
-    t.integer  "quantity",       default: 0
-    t.integer  "status",         default: 0
-    t.string   "csv"
-    t.string   "xml"
-    t.string   "sefaz_protocol"
-    t.datetime "sent_in"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  add_index "sefaz_transmissions", ["staff_id"], name: "index_sefaz_transmissions_on_staff_id", using: :btree
 
   create_table "user_candidates", force: :cascade do |t|
     t.string   "username",               default: "", null: false

@@ -12,5 +12,12 @@ module Portal
     def show
       @post = Cms::Post.find(params[:id])
     end
+
+    private
+
+    def search
+
+    
+    end
   end
 end
