@@ -6,18 +6,22 @@ module Address
         before_action :set_notary_office, only: [:edit, :update]
 
         def new
+            authorize :notary_office, :create?
             @notary_office = @unit.notary_offices.new
         end
 
         def create
+            authorize :notary_office, :create?
             @notary_office = @unit.notary_offices.new(notary_office_params)
             @notary_office.save
         end
 
         def edit
+            authorize :notary_office, :update?
         end
 
         def update
+            authorize :notary_office, :update?
             @notary_office.update(notary_office_params)
         end
 
