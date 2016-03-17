@@ -4,8 +4,7 @@
       .panel-title
         %h4
           Listagem de Endereços
-          = link_to 'Novo Endereço', new_unit_path,class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}
-      %hr
+          = link_to 'Novo Endereço', new_unit_path,class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: t(:disable_with)}
     .panel-body
       .row.form-filter
         .col-md-12
@@ -34,11 +33,8 @@
               .col-md-4
                 = f.label 'Nome', class: 'fg-label'
                 = f.input :name_candidate, label: false, input_html: { name: 'name_candidate', value: params[:name_candidate] }
-              .col-md-2
-                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
-              .col-md-2
-                %br
-                = link_to 'Limpar', units_path,class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}
+              .col-md-1
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with:  t(:disable_with)}
       %br
       .row
         .col-md-4
