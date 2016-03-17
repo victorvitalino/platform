@@ -39,6 +39,7 @@
      .row
       .col-md-12
        = simple_form_for url_for, :method => 'get' do |f|
+        = f.input :id, as: :hidden, input_html: {name: 'id', value: @candidate.last.unit_id}
         .row
          .col-md-5
           = f.label :cpf, class: 'fg-label'
@@ -50,7 +51,7 @@
      .row
       .col-md-12
        -if @assignee.present?
-        Candidato:
+        Cessionário:
         =@assignee.name
         = render 'assignee'
        -else

@@ -14,32 +14,38 @@ module Address
         has_scope :name_candidate
 
         def index
+            authorize :unit, :index?
             @unit = Unit.new
             @units = Address::Unit.all
             @units = apply_scopes(@units).paginate(:page => params[:page], :per_page => 20)
         end
 
         def new
+            authorize :unit, :create?
             @unit = Unit.new
 
         end
 
         def create
+            authorize :unit, :create?
             @unit = Unit.new(unit_params)
             @unit.save
         end
 
         def edit
+             authorize :unit, :update?
         end
 
         def show
         end
 
         def update
+             authorize :unit, :update?
             @unit.update(unit_params)
         end
 
         def destroy
+            authorize :unit, :destroy?
             if @unit.destroy
                 redirect_to action: 'index'
             end
