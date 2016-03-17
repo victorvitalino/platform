@@ -59,6 +59,9 @@
       .col-md-3
         = f.label :photo_author, class: 'fg-label'
         = f.input :photo_author, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
+      .col-md-3
+        = f.label :flickr, class: 'fg-label'
+        = f.input :flickr, label: false, input_html: { placeholder: 'Digite o link do album' }
     %hr/
     .row
       .col-md-12
