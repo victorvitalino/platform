@@ -110,8 +110,8 @@
 
 
     $("#_enderecos_unidades_group_address").on('change', function(){
-      $.getJSON("#{api.units_address_units_path}?"
-                + "block=" + $("#_endereco_unidades_block").val()
+      $.getJSON("#{api.all_units_address_units_path}?"
+                + "block=" + $("#_enderecos_unidades_block").val()
                 + "&city_id=" + $("#_enderecos_unidades_city").val()
                 + "&group=" + $(this).val(),function(data) {
 
@@ -119,7 +119,7 @@
         if(data.length > 0) {
 
           for(var i = 0; i < data.length; i++) {
-            html += "<option value='"+data[i].id+"'>"+data[i].unit+"</option>"
+            html += "<option value='"+data[i].unit+"'>"+data[i].unit+"</option>"
           }
 
         } else {
@@ -128,6 +128,12 @@
 
         $("#_enderecos_unidades_unit").html(html)
 
+      });
+    });
+
+    $("#_enderecos_unidades_unit").on('change', function(){
+      $.getJSON("#{api.address_units_path}?unit_id=" + $(this).val(),function(data) {
+          $("#_enderecos_unidades_unit").val(data.id)
       });
     });
   });

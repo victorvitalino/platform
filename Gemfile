@@ -110,6 +110,6 @@ path 'components' do
   gem 'shared'
   gem 'profile_user'
   gem 'api'
-  
+
   gem 'juridical'
 end
