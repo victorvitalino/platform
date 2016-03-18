@@ -8,7 +8,7 @@
   .row
     .col-md-12
       = simple_form_for :url_for, method: :get do |f|
-        = f.input :title, label: false, placeholder: "Digite os termos de sua busca aqui", input_html: { name: 'by_title'}
+        = f.input :title, label: false, placeholder: "Digite os termos de sua busca aqui", input_html: { name: 'by_title', style: 'height: 60px; font-size: 20px;', value: params[:by_title]}
         = f.submit "Realizar pesquisar", name: nil, class: 'btn btn-success'
   .row
     .col-md-12.box

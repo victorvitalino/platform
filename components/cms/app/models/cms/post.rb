@@ -7,7 +7,7 @@ module Cms
 
     audited
 
-    scope :by_title, -> (title) { where("title LIKE '%#{title}%'")}
+    scope :by_title, -> (title) { where("title LIKE concat('%', ?, '%')", title)}
 
 
     validates :thumb, :thumbnail, file_size: { less_than_or_equal_to: 10.megabytes.to_i }
