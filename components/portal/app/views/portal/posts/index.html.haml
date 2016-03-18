@@ -1,0 +1,14 @@
+/ conteudo da pagina
+.container.box.box_internal
+  .row
+    .col-md-12
+      = simple_form_for :url_for, method: :get do |f|
+        = f.input :title, label: false, placeholder: "Digite os termos de sua busca aqui", input_html: { name: 'by_title'}
+        = f.submit "Pesquisar"
+  .row
+    .col-md-12.box
+      - @posts.each do |post|
+        .row
+          .col-md-12
+            = link_to post.title, post
+            = post.date.strftime('%d/%m/%Y')
