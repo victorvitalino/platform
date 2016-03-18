@@ -2,13 +2,26 @@
 .container.box.box_internal
   .row
     .col-md-12
+      %h1 
+        %b Pesquisar postagens
+  %hr/
+  .row
+    .col-md-12
       = simple_form_for :url_for, method: :get do |f|
         = f.input :title, label: false, placeholder: "Digite os termos de sua busca aqui", input_html: { name: 'by_title'}
-        = f.submit "Pesquisar"
+        = f.submit "Realizar pesquisar", name: nil, class: 'btn btn-success'
   .row
     .col-md-12.box
-      - @posts.each do |post|
+      - if @posts.present?
         .row
           .col-md-12
-            = link_to post.title, post
-            = post.date.strftime('%d/%m/%Y')
+            %h4 Total postagens encontradas: #{@posts.count} 
+        %hr/
+      - @posts.order('created_at DESC').each do |post|
+        .row
+          .col-md-12
+            .panel.panel-default{style:'border-width: 1px !important;'}
+              .panel-body
+                %h4= link_to post.title, post, target: '_blank'
+                %small
+                  %b= post.date.strftime('%d/%m/%Y')

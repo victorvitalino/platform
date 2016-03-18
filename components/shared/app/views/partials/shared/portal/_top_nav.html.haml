@@ -108,5 +108,5 @@
               %li
                 %a.link_submenu_top 162
       %li.bug-bugado
-        = simple_form_for url_for, url: posts_path, method: :get, html: { class: 'inline-form top_search'} do |f|
+        = simple_form_for url_for, url: portal.posts_path, method: :get, html: { class: 'inline-form top_search'} do |f|
           = f.input :title,label: false, input_html: { name: 'by_title'}, placeholder: 'Pesquise aqui...'
