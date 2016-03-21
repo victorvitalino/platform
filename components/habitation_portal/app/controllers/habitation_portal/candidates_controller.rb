@@ -19,7 +19,10 @@ module HabitationPortal
 
     def show
       @candidate = Candidate::Cadastre.by_cpf(params[:id]).first
+    end
 
+    def detail
+      @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
     end
 
     private

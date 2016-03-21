@@ -1,0 +1,57 @@
+:css
+  .table {
+    font-size: 14px !important;
+  }
+
+  .table th, td {
+    padding: 6 !important;
+    vertical-align: baseline !important;
+  }
+
+.container
+  .row.box
+    .col-md-12
+      .box_internal
+        .col-md-12
+          .row
+            .col-md-12
+              %h1
+                %b Detalhamento do Candidato
+              %h4
+                = link_to "Ir para listas", url_for('/pagina/43')
+                |
+                = link_to "Pesquisar CPF", find_candidate_path
+          %hr/
+          .row
+            .col-md-12
+              %h3
+                %b Histórico
+          .row
+            .col-md-12
+              %table.table
+                %thead
+                  %tr
+                    %th Data
+                    %th Lista
+                    %th Faixa
+                    %th Posição
+                    %th Cod. Pontuação
+                    %th Habilitados  dia
+                    %th Contemplados dia
+                    %th Indeferidos  dia
+                    %th Mudança de faixa
+                %tbody
+                  - @candidate.positions.each do |position|
+                    %tr
+                      %td= position.created_at.strftime('%d/%m/%Y')
+                      %td= position.program.name
+                      %td= position.zone
+                      %td= position.position
+                      %td= position.pontuation_id
+                      %td 0
+                      %td 0
+                      %td 0
+                      %td 0
+        .row
+
+
