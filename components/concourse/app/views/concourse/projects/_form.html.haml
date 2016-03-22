@@ -95,7 +95,7 @@
     .row
       .col-md-12
         = f.label "Conteúdo Pop-up"
-        = f.input :popup_content, label: false,placeholder: "Digite o conteúdo", input_html: { id:"popup_content" }
+        = f.input :popup_content, as: :hidden, label: false,placeholder: "Digite o conteúdo", input_html: { id:"popup_content" }
         %trix-editor.trix-content{:input => "popup_content"}
 
     %hr/
