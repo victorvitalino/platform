@@ -6,11 +6,15 @@ module Brb
     enum status: ['não pago', 'pagamento realizado']
 
     validates :due, :cpf, :name, :address, :state, :city, :cep, presence: true
-    validates_date :due, after: Date.today + 1.day , on: :create
+    validates_date :due, after: :due_validate , on: :create
     
     after_create :generate_invoice!
 
     private
+
+    def due_validate
+      Date.today - 1.day
+    end
 
     def generate_invoice!
       barcode = Barcode.new({
