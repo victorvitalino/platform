@@ -7,32 +7,21 @@
   .col-md-12
     = @project.apresentation.html_safe
 
+- if @project.popup_publish
   #notify.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
     .modal-dialog
       .modal-content
         .modal-header
           %h3 Atenção
         .modal-body
-          - if @project.slug == "parquedoriacho-cef"
-            %p ATENÇÃO: VENCIMENTO DO BOLETO 
-
-            %p Conforme edital, o prazo de vencimento do boleto para participação no Concurso Centros de Ensino Fundamental (CEF)  será dia 09 de março de 2016 (quarta-feira). Caso ainda não tenha efetuado o pagamento da sua taxa de inscrição ou tenha emitido o boleto com data anterior a citada acima e queira garantir a sua participação no certame, basta que acesse o seu status de inscrição e emita um novo boleto.
-
-          - if @project.slug == "parquedoriacho-ubs"
-            %p ATENÇÃO: PRAZO PARA INSCRIÇÕES PRORROGADO
-
-            %p A Companhia de Desenvolvimento Habitacional do Distrito Federal (CODHAB/DF) informa que concede provimento ao pedido de impugnação do concurso nº 03/2016, da Unidade Básica de Saúde, proposta pelo Conselho Regional de Engenharia e Agronomia do Distrito Federal (CREA-DF). Deste modo, o prazo para inscrições neste certame será prorrogado até às 23h59min do dia 21 de março de 2016. Quanto aos prazos referentes às demais etapas do concurso, nesta segunda-feira (14 de março 2016), no site oficial do certame, será disponibilizado o cronograma atualizado. 
-
-          - if @project.slug == "parquedoriacho-cei"
-            %p
-              %b DIVULGAÇÃO DO CONCURSO
-
-            %p Na última sexta-feira (11 de março de 2016), a Companhia de Desenvolvimento Habitacional do Distrito Federal (CODHAB/DF) anunciou o resultado do Concurso Público Nacional de Projetos de Arquitetura e Complementares para Centros de Ensino Infantil (CEI) no Empreendimento Parque do Riacho, na Região Administrativa do Riacho Fundo II - 5ª etapa – RA XXI. A solenidade aconteceu no Salão Branco do Palácio do Buriti, em Brasília/DF, na presença da coordenação do certame e dos membros da Comissão Julgadora. 
-        .modal-footer
+          %p
+            %b= @project.popup_title 
+          = @project.popup_content.html_safe
+                  .modal-footer
           %button{type: 'button', class: 'btn btn-success', data: { dismiss: 'modal'}} Fechar
 
-:javascript
-  $(document).ready(function() {
-    $('#notify').modal('show')
-  })
-  $(document).on('turbolinks:load', modal)
+  :javascript
+    $(document).ready(function() {
+      $('#notify').modal('show')
+    })
+    $(document).on('turbolinks:load', modal)
