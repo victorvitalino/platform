@@ -6,7 +6,7 @@ module Brb
     enum status: ['não pago', 'pagamento realizado']
 
     validates :due, :cpf, :name, :address, :state, :city, :cep, presence: true
-    validates_date :due, after: Date.today, on: :create
+    validates_date :due, after: Date.today + 1.day , on: :create
     
     after_create :generate_invoice!
 

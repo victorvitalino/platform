@@ -2,10 +2,10 @@ require 'csv'
 
 namespace :csv do
   desc "migração csv"
-  task :treta => :environment do
+  task :renda => :environment do
 
     @index = 0
-    CSV.foreach("lib/files/renda.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/renda_22_03_2016.csv", :col_sep => "#") do |row|
 
         
         @candidate = Candidate::Cadastre.find_by_cpf(row[1]) rescue nil
