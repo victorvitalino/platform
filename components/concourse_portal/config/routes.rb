@@ -6,7 +6,6 @@ ConcoursePortal::Engine.routes.draw do
 
     get 'result', path: 'resultado', to: 'projects#result' 
     get 'all_projects', path: 'todos_projetos', to: 'projects#all_projects' 
-    get 'gambis', to: 'projects#gambis'
 
     namespace :subscribe_candidate, path: 'inscricao' do 
       root "candidates#index"
