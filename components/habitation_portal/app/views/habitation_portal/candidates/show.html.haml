@@ -161,6 +161,8 @@
                 %i Linha temporal de Pontuação
               = area_chart @candidate.pontuations.map {|key| [Date.parse(key.code.to_s).strftime('%Y-%m-%d'), key.total]}
             .col-md-12{style: 'text-align: center'}
+              #line-example
+            .col-md-12{style: 'text-align: center'}
               %hr/
               %h4
                 %i Detalhamento
@@ -267,3 +269,26 @@
                 Informação não disponível
           .row
         .row
+:javascript
+  function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    data = [];
+
+    for (i = 1; i <= 31; i++){
+      data.push({y:'2012-06-'+i,a:getRandomInt(399000,400000),nome:'victor Fernandes'});
+    }
+    //console.log(data);
+
+    Morris.Line({
+    element: 'line-example',
+    data: data,
+    xkey: 'y',
+    pointSize: 0,
+    hoverCallback: function(index, options, content) {
+          var data = options.data[index];
+          $(".morris-hover").html("<div>Custom label: " + data.y + "</div><br/><a href='http://www.google.com'> teste feliz</a>");
+      },
+    ykeys: ['a', 'b'],
+    labels: ['asdfadsf', 'Ssdfdsaf']
+  });
