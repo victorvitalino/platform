@@ -70,7 +70,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 1,
           zone: income[2],
-          created_at: Date.parse('24/03/2016')
+          created_at: Date.parse('27/03/2016')
         })
         @position.save
 
@@ -98,7 +98,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 2,
           zone: income[2],
-          created_at: Date.parse('24/03/2016')
+          created_at: Date.parse('27/03/2016')
         })
         @position.save
 
@@ -129,7 +129,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 5,
           zone: income[2],
-          created_at: Date.parse('24/03/2016')
+          created_at: Date.parse('27/03/2016')
         })
         @position.save
 
@@ -157,7 +157,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 7,
           zone: income[2],
-          created_at: Date.parse('24/03/2016')
+          created_at: Date.parse('27/03/2016')
         })
         @position.save
 
@@ -184,7 +184,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 4,
           zone: income[2],
-          created_at: Date.parse('24/03/2016')
+          created_at: Date.parse('27/03/2016')
         })
         @position.save
 
