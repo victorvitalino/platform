@@ -23,7 +23,7 @@ nav:
             label: 'Assentamento'
             controller: '/candidate/cadastre_addresses'
       address:
-        code: [11204, 11205]
+        code: [11204, 11207]
         label: 'Endereço'
         controller: '#'
         sub:
@@ -34,7 +34,7 @@ nav:
             controller: '/address/units'
           index_attendent:
             module: 'address'
-            code: 11205
+            code: 11207
             label: 'Pesquisa Atendentes'
             controller: '/address/units'
             action: 'index_attendent'
