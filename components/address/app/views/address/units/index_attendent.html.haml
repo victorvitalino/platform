@@ -1,0 +1,143 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Listagem de Endereços
+    .panel-body
+      .row.form-filter
+        .col-md-12
+          = simple_form_for  url_for, method: 'get' do |f|
+            .row
+              .col-md-3
+                = f.label 'Cidade', class: 'fg-label'
+                = f.input :city, as: 'select', collection: Address::City.federal_district, label: false, prompt: "Selecione...", selected: params[:city], input_html: { name: 'city', value: params[:city],}
+              .col-md-3
+                = f.input :block, as: :select, collection: (@unit.city.present?) ? Address::Unit.select(:block).where(city_id: @unit.city).distinct : {}, label_method: :block, value_method: :block, prompt: 'selecione a quadra...', input_html: { name: 'block', value: @unit.city}
+              .col-md-3
+                = f.input :group_address, as: :select, collection: (@unit.city.present? &&  @unit.block.present? ) ? Address::Unit.select(:group).where(city_id: @unit.city, block: @unit.block).distinct : {}, label_method: :group_address, value_method: :group_address, prompt: 'selecione a conjunto...', input_html: { name: 'group_address', value: @unit.block}
+              .col-md-3
+                = f.input :unit, as: :select, collection: (@unit.city.present? &&  @unit.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @unit.city,block: @unit.block, group: @unit.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a unidade...', input_html: {name: 'unit', value: @unit.unit}
+            .row
+              .col-md-3
+                = f.label 'Situação do Imóvel', class: 'fg-label'
+                = f.input :situation_unit, as: 'select', collection: Address::SituationUnit.all, label_method: :description, label: false, prompt: "Selecione...", input_html: { name: 'situation_unit', value: params[:situation_unit] }
+              .col-md-3
+                = f.label 'CPF', class: 'fg-label'
+                = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf] }
+              .col-md-3
+                = f.label 'Processo', class: 'fg-label'
+                = f.input :process_number, label: false, input_html: { name: 'process_number', value: params[:process_number] }
+            .row
+              .col-md-4
+                = f.label 'Nome', class: 'fg-label'
+                = f.input :name_candidate, label: false, input_html: { name: 'name_candidate', value: params[:name_candidate] }
+              .col-md-1
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with:  t(:disable_with)}
+      %br
+      .row
+        .col-md-4
+          Total de Registros:
+          = @units.count
+      %br
+      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+        %table#data-table-command.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Cidade
+              %th Endereço
+              %th Situação
+              %th Ações
+          %tbody
+            - if @units.present?
+              - @units.each do |a|
+                %tr
+                  %td
+                    = a.city.name if a.city.present?
+                  %td
+                    = a.complete_address
+                  %td
+                    = a.situation_unit.description if a.situation_unit.present?
+                  %td.col-md-2
+                    = link_to "", unit_path(a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
+      .row
+        .col-md-6.col-md-offset-3
+          = will_paginate @units, renderer: BootstrapPagination::Rails
+
+:javascript
+
+  $(document).ready(function() {
+
+    $("#_enderecos_unidades_city").on('change', function(){
+
+      $.getJSON("#{api.blocks_address_units_path}?city_id=" + $(this).val(), function(data) {
+
+        html = "<option value>selecione...</option>"
+        if(data.length > 0) {
+          console.log(data)
+          for(var i = 0; i < data.length; i++) {
+            html += "<option value='"+data[i].block+"'>"+data[i].block+"</option>"
+          }
+
+        } else {
+          html = "<option value>Não foram encontradas quadras</option>"
+        }
+
+        $("#_enderecos_unidades_unit").html("<option value>selecione...</option>")
+        $("#_enderecos_unidades_group_address").html("<option value>selecione...</option>")
+        $("#_enderecos_unidades_block").html(html)
+
+      });
+    });
+
+
+    $("#_enderecos_unidades_block").on('change', function(){
+      $.getJSON("#{api.groups_address_units_path}?block="
+                + $(this).val() +"&city_id="
+                + $("#_enderecos_unidades_city").val(), function(data) {
+
+        html = "<option value>selecione...</option>"
+        if(data.length > 0) {
+
+          for(var i = 0; i < data.length; i++) {
+            html += "<option value='"+data[i].group+"'>"+data[i].group+"</option>"
+          }
+
+        } else {
+          html = "<option value>Não foram encontrados conjuntos</option>"
+        }
+
+        $("#_enderecos_unidades_group_address").html(html)
+
+      });
+    });
+
+
+    $("#_enderecos_unidades_group_address").on('change', function(){
+      $.getJSON("#{api.all_units_address_units_path}?"
+                + "block=" + $("#_enderecos_unidades_block").val()
+                + "&city_id=" + $("#_enderecos_unidades_city").val()
+                + "&group=" + $(this).val(),function(data) {
+
+        html = "<option value>selecione...</option>"
+        if(data.length > 0) {
+
+          for(var i = 0; i < data.length; i++) {
+            html += "<option value='"+data[i].unit+"'>"+data[i].unit+"</option>"
+          }
+
+        } else {
+          html = "<option value>Não foram encontrados conjuntos</option>"
+        }
+
+        $("#_enderecos_unidades_unit").html(html)
+
+      });
+    });
+
+    $("#_enderecos_unidades_unit").on('change', function(){
+      $.getJSON("#{api.address_units_path}?unit_id=" + $(this).val(),function(data) {
+          $("#_enderecos_unidades_unit").val(data.id)
+      });
+    });
+  });

@@ -32,6 +32,12 @@ nav:
             code: 11204
             label: 'Pesquisa geral'
             controller: '/address/units'
+          index_attendent:
+            module: 'address'
+            code: 11205
+            label: 'Pesquisa Atendentes'
+            controller: '/address/units'
+            action: 'index_attendent'
       cadin:
         code: 11304
         label: 'Cadastro imobiliário'
