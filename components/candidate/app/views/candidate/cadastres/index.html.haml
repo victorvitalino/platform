@@ -4,7 +4,6 @@
       .panel-title
         %h4
           Consulta cadastro
-      %hr
     .panel-body
       .page-content
         .documents-wrap.article
@@ -282,25 +281,45 @@
                                 %td= (attendance.convocation.present?) ? attendance.convocation.description  : 'Informação não disponível'
                                 %td= (attendance.observation.present?) ? attendance.observation : 'Informação não disponível'
                                 %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
-                %hr/
-                .row
-                  .col-md-12
-                    %h4 Documentos
-                    .bootstrap-table
-                      - if @candidate_assessment.present?
-                        %table.table.table-striped.table-bordered.table-condensed
-                          %thead{:style => "display: table-header-group;"}
-                            %tr
-                              %th Processo
-                              %th Documento
-                              %th Assunto
-                              %th Observação
-                          %tbody
-                            - @candidate_assessment.order(:created_at).each do |assessment|
-                              %tr
-                                %td= assessment.document_number
-                                %td= assessment.document_type.name
-                                %td= assessment.subject.name
-                                %td= assessment.observation
-                      - else
-                        Informação não disponível
+            %hr/
+            .row
+              .col-md-12
+                %h4 Documentos
+                .bootstrap-table
+                  - if @candidate_assessment.present?
+                    %table.table.table-striped.table-bordered.table-condensed
+                      %thead{:style => "display: table-header-group;"}
+                        %tr
+                          %th Processo
+                          %th Documento
+                          %th Assunto
+                          %th Observação
+                      %tbody
+                        - @candidate_assessment.order(:created_at).each do |assessment|
+                          %tr
+                            %td= assessment.document_number
+                            %td= assessment.document_type.name
+                            %td= assessment.subjects.name
+                            %td= assessment.observation
+                  - else
+                    Informação não disponível
+            %hr/
+            .row
+              .col-md-12
+                %h4 Cadastro imobiliário
+                .bootstrap-table
+                  - if @cadin.present?
+                    %table.table.table-striped.table-bordered.table-condensed
+                      %thead{:style => "display: table-header-group;"}
+                        %tr
+                          %th Nome
+                          %th CPF
+                          %th Processo
+                      %tbody
+                        - @cadin.order(:created_at).each do |c|
+                          %tr
+                            %td= c.name
+                            %td= c.cpf
+                            %td= c.process
+                  - else
+                    Informação não disponível

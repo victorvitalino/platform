@@ -1,7 +1,7 @@
 module Person
   class Staff < ActiveRecord::Base
 
-    audited
+    #audited
 
     scope :status, -> (status = true) {where(status: status)}
     scope :sector, -> sector_current_id {where(sector_current_id: sector_current_id)}
@@ -36,22 +36,22 @@ module Person
 
     validates :avatar, :personal_image, file_size: { less_than_or_equal_to: 10.megabytes.to_i }
     validates :avatar, :personal_image, file_content_type: { allow: ['image/jpeg', 'image/png'],
-                                              message: 'Somente arquivos .jpg ou .png' }
- 
+                                             message: 'Somente arquivos .jpg ou .png' }
+
 
 
     validates :curriculum, file_size: { less_than_or_equal_to: 60.megabytes.to_i,
-                                       message: "Arquivo não pode exceder 60 MB" }
+                                      message: "Arquivo não pode exceder 60 MB" }
     validates :curriculum, file_content_type: { allow: ['application/pdf',   'application/docx',
                                                        'application/doc',   'application/xls',
                                                        'application/xlsx',  'application/ppt',
                                                        'application/pptx',  'application/zip'],
                                               message: 'Somente arquivos (.doc, .docx, .xls, .xlsx, .ppt. .pptx ou .zip)' }
 
-    mount_uploader :avatar, Archive::ImageUploader 
-    mount_uploader :personal_image, Archive::ImageUploader 
-    mount_uploader :curriculum, Archive::FileUploader 
-    
+    mount_uploader :avatar, Archive::ImageUploader
+    mount_uploader :personal_image, Archive::ImageUploader
+    mount_uploader :curriculum, Archive::FileUploader
+
 
     def account
         self
