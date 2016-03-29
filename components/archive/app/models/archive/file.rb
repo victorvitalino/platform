@@ -9,13 +9,7 @@ module Archive
     validates :file_path, presence: true
     validates :file_path, file_size: { less_than_or_equal_to: 100.megabytes.to_i,
                                        message: "Arquivo não pode exceder 100 MB" }
-    validates :file_path, file_content_type: { allow: ['application/pdf',   'application/docx',
-                                                       'application/doc',   'application/xls',
-                                                       'application/vnd.ms-excel',
-                                                       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                                                       'application/ppt',
-                                                       'application/pptx',  'application/zip'],
-                                              message: 'Somente arquivos (.doc, .docx, .xls, .xlsx, .ppt. .pptx ou .zip)' }
+   
     mount_uploader :file_path, Archive::FileUploader 
     
   end
