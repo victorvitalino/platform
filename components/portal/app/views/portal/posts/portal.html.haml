@@ -1,0 +1,37 @@
+%html
+  %head
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-7024614-9']);
+      _gaq.push(['_trackPageview']);
+
+      (function () {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    - if controller_name == "posts"
+      %meta{:content => "#{@post.title}", :property => "og:title"}/
+      %meta{:content => "#{@post.thumbnail}", :property => "og:image"}/
+      %meta{:content => "#{request.url}", :property => "og:url"}
+    - if (controller_name == 'galleries' && action_name == 'show')
+      %meta{:content => "#{@gallery.title}", :property => "og:title"}/
+      %meta{:content => "#{@gallery.thumbnail}", :property => "og:image"}/
+      %meta{:content => "#{request.url}", :property => "og:url"}
+    %title Portal Codhab
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag 'shared/portal', media: 'screen'
+    = javascript_include_tag 'shared/portal', media: 'screen', 'data-turbolinks-eval' => 'false'
+    = csrf_meta_tags
+  %body
+    = render 'partials/shared/portal/top_nav'
+    = render 'partials/shared/portal/header'
+    %div{class: (controller_path == "portal/home") ? "" : "container portal-container box"}
+      = yield
+    = render 'partials/shared/portal/footer'
+    #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content

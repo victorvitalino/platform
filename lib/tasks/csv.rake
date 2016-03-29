@@ -2,9 +2,10 @@ require 'csv'
 
 namespace :csv do
   desc "migração csv"
-  task :treta => :environment do
+  task :renda => :environment do
 
     @index = 0
+
     CSV.foreach("lib/files/localizacao.csv", :col_sep => "#") do |row|
 
         #cpf = ''
@@ -24,12 +25,12 @@ namespace :csv do
           observation: row[6],
         })
 
-        begin
-          @address.save
-          #puts @address.inspect
+
+        if !@candidate.nil?
+          @candidate.income = row[0]
+          #@candidate.save
+          #puts @candidate.inspect
           puts @index
-        rescue
-          puts "#{@index}------------------------------------------------------------------------------------------------------------------"
         end
 
       @index += 1

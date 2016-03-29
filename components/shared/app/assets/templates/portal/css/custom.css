@@ -20,7 +20,13 @@ label {
     color: #757575 !important;
 
 }
-
+.top_search input{
+  height: 25px;
+  margin-top: -3px;
+}
+.bug-bugado{
+  height: 30px;
+}
 .font-orange {   color: #818285 !important; }
 
 .gallery_title{

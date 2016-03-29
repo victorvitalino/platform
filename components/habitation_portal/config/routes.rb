@@ -5,7 +5,9 @@ HabitationPortal::Engine.routes.draw do
   post  'authenticate', path: 'verificacao', to: 'authenticate#create', as: 'authenticate'
 
   resources :lists, path: 'listas'
-  resources :candidates, path: 'candidato'
+  resources :candidates, path: 'candidato' do 
+    get 'detail', path: 'detalhe'
+  end
 
   get   '/pesquisa-cpf',  to: 'candidates#find_candidate', as: 'find_candidate'
   post  '/pesquisa-cpf',  to: 'candidates#show_candidate', as: 'show_candidate'

@@ -10,6 +10,7 @@
     %table.table.table-striped.table-hover.table-bordered
       %thead
         %tr
+          %th Nº
           %th Tipo de inscrição
           %th CPF
           %th Taxa de inscrição
@@ -20,6 +21,7 @@
       %tbody
         - @project.candidates.each_with_index do |candidate, index|
           %tr
+            %td= candidate.id
             %td= candidate.subscribe.title if candidate.subscribe.present?
             %td= candidate.cpf
             %td

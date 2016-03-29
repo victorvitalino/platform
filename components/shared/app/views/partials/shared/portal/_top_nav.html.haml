@@ -64,7 +64,7 @@
       %li
         %a.link_top_esquecido{:href => "http://www.codhab.df.gov.br/pagina/16"} Legislação
       %li
-        %a.link_top_esquecido{:href => "http://www.codhab.df.gov.br/pagina/16"} TAC
+        %a.link_top_esquecido{:href => "http://www.codhab.df.gov.br/pagina/74"} TAC
       %li.item-menu-top
         Fale Conosco
         %ul.dropdown-menu-top
@@ -107,5 +107,6 @@
               %li.submenu_title_top_fone Telefone
               %li
                 %a.link_submenu_top 162
-      %li
-        %input{:name => "search", :placeholder => "Pesquisar", :type => "text", :class => "search_top", :method => "get"}/
+      %li.bug-bugado
+        = simple_form_for url_for, url: portal.posts_path, method: :get, html: { class: 'inline-form top_search'} do |f|
+          = f.input :title,label: false, input_html: { name: 'by_title'}, placeholder: 'Pesquise aqui...'

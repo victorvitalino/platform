@@ -56,7 +56,7 @@ module ConcoursePortal
           message: "Concursos Codhab"
         })
 
-        if @invoice.save
+        if @invoice.save!
           barcode = Barby::Code128.new(@invoice.barcode)
           File.open("public/barcodes/#{barcode}.png", 'w') { |f| f.write barcode.to_png(xdim: 1,height: 50) }
       

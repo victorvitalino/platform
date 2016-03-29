@@ -3,9 +3,12 @@ require_dependency 'portal/application_controller'
 module Portal
   class PostsController < ApplicationController
 
-    # GET /posts
+    has_scope :by_title
+
     def index
-      @post = Post.all
+      @posts = apply_scopes(Cms::Post).all
+
+      render layout: 'shared/slim_portal'
     end
 
     # GET /posts/1
@@ -17,7 +20,7 @@ module Portal
 
     def search
 
-    
+
     end
   end
 end
