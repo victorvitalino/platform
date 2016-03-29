@@ -5,8 +5,12 @@ module Address
       self.index? || self.seat?
     end
 
- def index?
+    def index?
       allow?(11204)
+    end
+
+     def index_attendent?
+      allow?(11207)
     end
 
     def create?

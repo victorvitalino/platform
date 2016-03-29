@@ -6,6 +6,7 @@ Address::Engine.routes.draw do
   resources :documents, path: 'documentos'
   get '/descriptive',        to: 'documents#descriptive',      as: 'descriptive'
 
+  get '/index_attendent',        to: 'units#index_attendent',      as: 'index_attendent'
   get '/city',        to: 'informations#cities',      as: 'cities'
   get '/blocks',      to: 'informations#blocks',      as: 'blocks'
   get '/groups',      to: 'informations#groups',      as: 'groups'

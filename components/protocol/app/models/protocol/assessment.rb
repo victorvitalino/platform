@@ -12,9 +12,10 @@ module Protocol
     has_many :attach_documents, foreign_key: "document_father_id"
 
     scope :process,  -> (process) {where(document_number: process)}
-    scope :doc_type,  -> (doc_type) {where(document_number: doc_type)}
+    scope :doc_type,  -> (doc_type) {where(document_type_id: doc_type)}
     scope :cpf,  -> (cpf) {where(cpf: cpf)}
-
+    scope :sector,  -> (sector) {where(sector_id: sector)}
+    scope :subject,  -> (subject) {where(subject_id: subject)}
 
 
     before_validation :set_number

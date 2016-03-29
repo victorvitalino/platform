@@ -7,14 +7,21 @@ module Protocol
     has_scope :cpf
     has_scope :doc_type
     has_scope :process
+    has_scope :subject
+    has_scope :sector
 
 
     def index
         #TA ERRADO
         #@assessments = Conduct.find_sector(current_user.account.sector_current.id, 4).asse
         if current_user.account.sector_current.present?
-            @assessments = Assessment.where(sector_id: current_user.account.sector_current.id)
-            @assessments = apply_scopes(@assessments).paginate(:page => params[:page], :per_page => 20)
+            unless params[:cpf].present? || params[:doc_type].present? || params[:process].present? || params[:sector].present? || params[:subject].present?
+              @assessments = Assessment.where(sector_id: current_user.account.sector_current.id)
+              @assessments = @assessments.paginate(:page => params[:page], :per_page => 20)
+            else
+              @assessments = Assessment.all
+              @assessments = apply_scopes(@assessments).paginate(:page => params[:page], :per_page => 20)
+            end
         else
             @assessments = nil
         end

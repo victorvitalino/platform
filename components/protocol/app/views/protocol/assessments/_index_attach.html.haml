@@ -9,11 +9,11 @@
       %table#data-table-command.table.table-striped.table-bordered
         %thead
           %tr
+            %th
             %th Número Documento
             %th Tipo de Documento
-            %th
+            %th Tipo
             %th Data
-            %th Descrição
         %tbody
           - @attach_document.each_with_index do |j, i|
             %tr
@@ -24,6 +24,6 @@
               %td
                 = j.document_child.document_type.name if j.document_child.present?
               %td
-                = j.attach_type
+                = j.attach_type_i18n
               %td
                 = j.created_at.strftime('%d/%m/%Y - %H:%M')

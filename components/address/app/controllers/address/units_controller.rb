@@ -20,6 +20,13 @@ module Address
             @units = apply_scopes(@units).paginate(:page => params[:page], :per_page => 20)
         end
 
+        def index_attendent
+            authorize :unit, :index_attendent?
+            @unit = Unit.new
+            @units = Address::Unit.where.not(situation_unit_id: 1)
+            @units = apply_scopes(@units).paginate(:page => params[:page], :per_page => 20)
+        end
+
         def new
             authorize :unit, :create?
             @unit = Unit.new

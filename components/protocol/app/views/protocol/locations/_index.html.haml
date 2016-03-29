@@ -15,4 +15,7 @@
               %th
           %tbody.index-location
             = render 'index_location'
+      .row
+        .col-md-6.col-md-offset-3
+          = will_paginate @assessments, renderer: BootstrapPagination::Rails
       %br
