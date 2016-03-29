@@ -1,4 +1,9 @@
 pt-BR:
+  enums:
+    'protocol/attach_document':
+      attach_type:
+        attach: "Anexo"
+        append: "Apenso"
   activerecord:
     models:
       'protocol/attach_document': Anexar/Apensar
@@ -6,7 +11,4 @@ pt-BR:
       'protocol/attach_document':
         document_father: "Documento Pai"
         document_child: "Documento Filho"
-    enums:
-      attach_type:
-         attach: "Anexo"
-         append: "Apenso"
+

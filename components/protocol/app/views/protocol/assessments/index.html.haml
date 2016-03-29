@@ -6,7 +6,7 @@
           Listagem de Documentos
           = link_to 'Novo Documento', new_assessment_path,class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}  if policy(:Assessment, namespace: Protocol).create?
     .panel-body
-      .row
+      .row.form-filter
         .col-md-12
           = simple_form_for  url_for, method: 'get' do |f|
             .row
@@ -19,20 +19,28 @@
               .col-md-3
                 = f.label 'Tipo de Documento', class: 'fg-label'
                 = f.input :doc_type, as: :select, collection: Protocol::DocumentType.all, label: false, prompt: 'selecione a cidade...',input_html: { name: 'doc_type', selected: params[:doc_type]}
+            .row
+              .col-md-4
+                = f.label 'Assunto', class: 'fg-label'
+                = f.input :subject, as: :select, collection: Protocol::Subject.all, label: false, prompt: 'selecione a cidade...',input_html: { name: 'subject', selected: params[:subject]}
+              .col-md-4
+                = f.label 'Setor', class: 'fg-label'
+                = f.input :sector, as: :select, collection: Person::Sector.where(status: true), label: false, prompt: 'selecione a cidade...',input_html: { name: 'sector', selected: params[:sector]}
               .col-md-2
-                %br
                 = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-        %table#data-table-command.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th Número
-              %th Tipo de Documento
-              %th Setor
-              %th Ações
-          %tbody
-            - if @assessments.present?
-              = render 'index'
+      .row
+        .col-md-12
+          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+            %table#data-table-command.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Número
+                  %th Tipo de Documento
+                  %th Setor
+                  %th Ações
+              %tbody
+                - if @assessments.present?
+                  = render 'index'
       .row
         .col-md-6.col-md-offset-3
           = will_paginate @assessments, renderer: BootstrapPagination::Rails
