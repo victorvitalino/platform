@@ -1,29 +1,4 @@
-:css
-  .table {
-    font-size: 14px !important;
-  }
-
-  .table th, td {
-    padding: 6 !important;
-    vertical-align: baseline !important;
-  }
-  .morris-hover{
-    position:absolute;z-index:1000;
-  }
-  .morris-hover.morris-default-style{
-    border-radius:10px;padding:6px;color:#666;background:rgba(255,255,255,0.8);
-    border:solid 2px rgba(230,230,230,0.8);
-    font-family:sans-serif;
-    font-size:12px;
-    text-align:center;
-  }
-  .morris-hover.morris-default-style .morris-hover-row-label{
-    font-weight:bold;
-    margin:0.25em 0;
-  }
-  .morris-hover.morris-default-style .morris-hover-point{
-    white-space:nowrap;margin:0.1em 0;
-  }
+= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick"
 
 .container
   .row.box
@@ -40,8 +15,17 @@
                 = link_to "Pesquisar CPF", find_candidate_path
           %hr/
           .row
+            .col-md-12
+              %h3
+                %b Detalhamento de posição
+          %br/
+          %br/
+          .row
             .col-md-12{style: 'text-align: center'}
-              #line-example
+              = area_chart Candidate::Position.where(cadastre_id: @candidate.id).pluck(:program_id).uniq.map {|c|{name: Candidate::Program.find(c).name, data: Candidate::Position.where(cadastre_id: @candidate.id, program_id: c).map {|p| [p.created_at.strftime("%B %d, %Y"), p.position]}}}, ytitle: "Posições", library: { tooltip: {  pointFormat: 'Posição: <b>{point.y}º</b>'}}
+
+
+          .row
             .col-md-12
               %h3
                 %b Histórico
@@ -72,35 +56,4 @@
                       %td 0
                       %td 0
         .row
-          = debug(@candidate.positions)
-:javascript
-jQuery(document).ready(function(){
 
-    $.getJSON('http://localhost:3000/habitacao/candidato/18493130320/detalhe.json', function (data) {
-        data_final = [];
-        console.log(data);
-        $.each(data, function(index, data){
-            date = Date.parse(data.updated_at, "dd/mm/yy");
-            console.log(date);
-            if(data.program_id == 7){
-              data_final.push({y:date,a:data.position,b:'30',program_id:data.program_id});
-            }
-          });
-          Morris.Line({
-          element: 'line-example',
-          data: data_final,
-          xkey: 'y',
-          hoverCallback: function(index, options, content) {
-                var data_final = options.data[index];
-                $(".morris-hover").html("<div>Data: " + data_final.y + "<br/> Posição " + data_final.a + "<br/> Programa " + data_final.program_id + "</div><br/>");
-            },
-          ykeys: ['a','b'],
-          labels: ['asdfadsf']
-        });
-      });
-
-  function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
-});
