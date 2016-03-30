@@ -31,6 +31,14 @@ module HabitationPortal
       end
     end
 
+    def update_positions
+      @day      = params[:by_date].present? ? params[:by_date] : Date.today.strftime('%d/%m/%Y') 
+      @zone     = params[:by_zone].present? ? params[:by_zone] : 1
+      @program  = params[:by_program].present? ? params[:by_program] : 1
+
+      @positions = Candidate::Position.update_by_day(@day, @zone, @program, params[:page])
+    end
+
     private
 
     def set_params_find

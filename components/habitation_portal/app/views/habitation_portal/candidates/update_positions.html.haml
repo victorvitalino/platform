@@ -1,0 +1,60 @@
+= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick"
+
+.container
+  .row.box
+    .col-md-12
+      .box_internal
+        .col-md-12
+          .row
+            .col-md-12
+              %h3
+                %b Alterações de lista
+          %hr/
+          .row
+            = simple_form_for url_for, method: :get do |f|
+              .col-md-2
+                = f.input :date, label: "Data", input_html: { name: 'by_date', class: 'date', value: @day}
+              .col-md-2
+                = f.input :zone, label: "Faixa", as: :select, collection: {'faixa 1': 1, 'faixa 2': 2, 'faixa 3': 3,'faixa 4': 4}, selected: @zone, input_html: { name: 'by_zone'}
+              .col-md-3
+                = f.input :program, label: "Programa", as: :select, collection: Candidate::Program.all, selected: @program, input_html: { name: 'by_program'}
+              .col-md-5{style: 'padding-top: 25px'}
+                = f.submit "Filtrar por data", class: 'btn btn-success', name: nil, data: { disable_with: t(:disable_with)}
+          .row
+            .col-md-12
+              %table.table
+                %thead
+                  %tr
+                    %th Data
+                    %th CPF
+                    %th Lista do anterior
+                    %th Lista do dia
+                    %th Faixa
+                    %th Posição anterior
+                    %th Posição do dia
+                    %th Situação
+                %tbody
+                  - @positions.each do |position|
+                    %tr
+                      %td.col-md-1= position.created_at.strftime('%d/%m/%Y')
+                      %td.col-md-1= position.cadastre.cpf.format_cpf
+                      %td.col-md-1= position.old_program
+                      %td.col-md-1= position.current_program
+                      %td.col-md-1= position.zone
+                      %td.col-md-2= "#{position.position_before} º"
+                      %td.col-md-1= "#{position.position} º"
+                      %td.col-md-1
+                        - if position.position_before < position.position
+                          %span.label.label-danger
+                            %i{class: 'fa fa-arrow-down'}
+                        - elsif position.position_before == position.position
+                          %span.label.label-primary
+                            %i{class: 'fa fa-arrows-h'}
+                        - else
+                          %span.label.label-success
+                            %i{class: 'fa fa-arrow-up'}
+
+                      
+        .row
+          .col-md-7.col-md-offset-3
+            = will_paginate @positions, renderer: BootstrapPagination::Rails

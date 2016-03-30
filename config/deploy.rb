@@ -57,10 +57,10 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    #invoke :'rails:assets_precompile'
+    invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup' 
-    invoke :'log:unicorn:clean'
-    invoke :'log:app:clean'
+   # invoke :'log:unicorn:clean'
+   # invoke :'log:app:clean'
 
     to :launch do
       invoke :'unicorn:restart'
