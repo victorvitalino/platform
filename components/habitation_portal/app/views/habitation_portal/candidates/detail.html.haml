@@ -22,7 +22,7 @@
           %br/
           .row
             .col-md-12{style: 'text-align: center'}
-              = area_chart Candidate::Position.where(cadastre_id: @candidate.id).pluck(:program_id).uniq.map {|c|{name: Candidate::Program.find(c).name, data: Candidate::Position.where(cadastre_id: @candidate.id, program_id: c).map {|p| [p.created_at.strftime("%B %d, %Y"), p.position]}}}, ytitle: "Posições", library: { tooltip: {  pointFormat: 'Posição: <b>{point.y}º</b>'}}
+              = line_chart Candidate::Position.where(cadastre_id: @candidate.id).pluck(:program_id).uniq.map {|c|{name: Candidate::Program.find(c).name, data: Candidate::Position.where(cadastre_id: @candidate.id, program_id: c).map {|p| [p.created_at.strftime("%B %d, %Y"), p.position]}}}, ytitle: "Posições", library: { tooltip: {  pointFormat: 'Posição: <b>{point.y}º</b>'}}
 
 
           .row
