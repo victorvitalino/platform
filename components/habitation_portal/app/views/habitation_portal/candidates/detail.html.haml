@@ -1,12 +1,4 @@
-:css
-  .table {
-    font-size: 14px !important;
-  }
-
-  .table th, td {
-    padding: 6 !important;
-    vertical-align: baseline !important;
-  }
+= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick"
 
 .container
   .row.box
@@ -22,6 +14,17 @@
                 |
                 = link_to "Pesquisar CPF", find_candidate_path
           %hr/
+          .row
+            .col-md-12
+              %h3
+                %b Detalhamento de posição
+          %br/
+          %br/
+          .row
+            .col-md-12{style: 'text-align: center'}
+              = line_chart Candidate::Position.where(cadastre_id: @candidate.id).pluck(:program_id).uniq.map {|c|{name: Candidate::Program.find(c).name, data: Candidate::Position.where(cadastre_id: @candidate.id, program_id: c).map {|p| [p.created_at.strftime("%B %d, %Y"), p.position]}}}, ytitle: "Posições", library: { tooltip: {  pointFormat: 'Posição: <b>{point.y}º</b>'}}
+
+
           .row
             .col-md-12
               %h3
@@ -53,5 +56,4 @@
                       %td 0
                       %td 0
         .row
-
 
