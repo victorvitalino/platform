@@ -10,6 +10,7 @@
           %hr/
           %section
             - if @candidate.present?
+              - @candidate_last = @candidate.last
               .row
                 .col-md-12
                   .bootstrap-table
@@ -22,10 +23,10 @@
                           %th Situação de Processo
                       %tbody
                         %tr
-                          %td= @candidate.cadastre.name
-                          %td= @candidate.cadastre.cpf
-                          %td= @candidate.cadastre.current_situation_name
-                          %td= @candidate.cadastre.cadastre_procedurals.last.procedural_status.name.upcase
+                          %td= @candidate_last.cadastre.name
+                          %td= @candidate_last.cadastre.cpf
+                          %td= @candidate_last.cadastre.current_situation_name
+                          %td= @candidate_last.cadastre.cadastre_procedurals.last.procedural_status.name.upcase
               .row
                 .col-md-12
                   .bootstrap-table
@@ -37,9 +38,9 @@
                           %th Data TCU
                       %tbody
                         %tr
-                          %td{:colspan => "2"}= @candidate.unit.complete_address
-                          %td= @candidate.unit.city.name
-                          %td= @candidate.created_at.strftime('%d/%m/%Y')
+                          %td{:colspan => "2"}= @candidate_last.unit.complete_address
+                          %td= @candidate_last.unit.city.name
+                          %td= @candidate_last.created_at.strftime('%d/%m/%Y')
                       %thead{:style => "display: table-header-group;"}
                         %tr
                           %th Doado
@@ -48,10 +49,10 @@
                           %th Situação do Imóvel
                       %tbody
                         %tr
-                          %td= @candidate.unit.donate ? "Sim" : "Não"
-                          %td= @candidate.unit.registry_units.last.situation
-                          %td= @candidate.unit.registration_iptu
-                          %td= @candidate.unit.situation_unit.description
+                          %td= @candidate_last.unit.donate ? "Sim" : "Não"
+                          %td= @candidate_last.unit.registry_units.last.situation
+                          %td= @candidate_last.unit.registration_iptu
+                          %td= @candidate_last.unit.situation_unit.description
               .row
                 .col-md-12
                   .bootstrap-table
@@ -63,9 +64,9 @@
                           %th Data TCU
                       %tbody
                         %tr
-                          %td{:colspan => "2"}= @candidate.unit.complete_address
-                          %td= @candidate.unit.city.name
-                          %td= @candidate.created_at.strftime('%d/%m/%Y')
+                          %td{:colspan => "2"}= @candidate_last.unit.complete_address
+                          %td= @candidate_last.unit.city.name
+                          %td= @candidate_last.created_at.strftime('%d/%m/%Y')
               .row
                 .col-md-12
                   .bootstrap-table
@@ -77,8 +78,8 @@
                           %th Cadeia Dominial
                           %th Data
                       %tbody
-                        - if @address.present?
-                          - @address.each do |a|
+                        - if @candidate.present?
+                          - @candidate.each do |a|
                             %tr
                               %td{:colspan => "2"}= a.cadastre.name if a.cadastre.present?
                               %td= a.cadastre.cpf if a.cadastre.present?
@@ -87,8 +88,8 @@
               .row
                 .col-md-12
                   = simple_form_for @cadastre_address  do |f|
-                    = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate.id}
-                    = f.input :unit_id, as: :hidden,  input_html:{ value: @candidate.unit.id}
+                    = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate_last.id}
+                    = f.input :unit_id, as: :hidden,  input_html:{ value: @candidate_last.unit.id}
                     .row
                       .col-md-2
                         = f.label  "Data de Distribuição", as: 'string',  class: 'fg-label'

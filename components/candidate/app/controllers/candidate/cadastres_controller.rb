@@ -7,7 +7,6 @@ module Candidate
     def index
       authorize :cadastre, :index?
       @candidate = Cadastre.find_by_cpf(params[:cpf]) rescue nil
-      @candidate_assessment = Protocol::Assessment.where(cpf: params[:cpf]) rescue nil
       @cadin = Candidate::Cadin.where(cpf: params[:cpf]) rescue nil
       if params[:cpf].present?
         unless @candidate.present? && @candidate_assessment.present? && @cadin.present?
