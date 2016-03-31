@@ -13,7 +13,8 @@ pt-BR:
     protocol: "Protocolo"
     archive: "Arquivos"
     habitation: "Habitação"
-    attendances: 'Atendimento'
+    attendances: "Atendimento"
+    juridical: "Jurídico"
   modules:
     address:
       units: "Unidades"
@@ -60,7 +61,14 @@ pt-BR:
       document_categories: "Categoria de Documentos"
       member_jobs: "Cargo de diretoria"
     archive:
-      files: 'arquivos'
+      files: "arquivos"
+    juridical:
+      legal_advices: "Acompanhamentos"
+      complements: "Complementos"
+      instancies: "Instâncias"
+      advices_types: "Tipos de acompanhamentos"
+      lawsuits: "Tipo de ação"
+      housing_programs: "Programas habitacionais"
   actions:
     index: "Listagem"
     new: "Novo"

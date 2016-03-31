@@ -2,11 +2,11 @@ require 'csv'
 
 namespace :csv do
   desc "migração csv"
-  task :renda => :environment do
+  task :treta => :environment do
 
     @index = 0
 
-    CSV.foreach("lib/files/localizacao.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/indicacao_30_03_16.csv", :col_sep => "#") do |row|
 
         #cpf = ''
         #if row[2].to_s.strip.present?
@@ -14,27 +14,27 @@ namespace :csv do
          #cpf = cpf.gsub('-','')
         #end
 
-        @address = Protocol::Location.new({
-          assessment_id:  row[10],
-          staff_id:  row[9],
-          sector_id:  row[8],
-          shelf: row[3],
-          pile: row[4],
-          created_at: row[2],
-          box: row[5],
-          observation: row[6],
+       @address = Firm::EnterpriseCadastre.new({
+          enterprise_id:  row[3],
+          cadastre_id:  row[0],
+          status:  row[4],
+          source_list: row[2],
+          created_at: row[1],
+
         })
+        #if row[2].to_i != 0
 
+          #@assessment = Protocol::Assessment.find(row[2].to_i)
 
-        if !@candidate.nil?
-          @candidate.income = row[0]
-          #@candidate.save
-          #puts @candidate.inspect
-          puts @index
-        end
+          #if !@address.nil?
+            #@assessment.address = row[1]
+            @address.save
+            #puts @address.inspect
+            puts @index
+          #end
 
-      @index += 1
-
+          @index += 1
+       #end
     end
   end
 end

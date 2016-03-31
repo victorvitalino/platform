@@ -26,9 +26,6 @@ module Candidate
       end
     end
 
-
-
-
     def update_tables_sale(procedural, situation, status, status_unit)
          @cadastre_procedural = Candidate::CadastreProcedural.where(cadastre_id: self.cadastre_id).last
 

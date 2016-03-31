@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      'juridical/advice_type': 'Acompanhamento'
+    attributes:
+      'juridical/advice_type':
+        process_number: "Número de processo"
+        agency: "Orgão"
+        lawsuit: "Tipo de ação"
+        lawsuit_value: "Valor da ação"
+        instancy: "Instância"
+        instancy_place: "Local da instância"
+        housing_program: "Programa habitacional"
+        process_type: "Tipo de processo"

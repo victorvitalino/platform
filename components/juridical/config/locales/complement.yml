@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      'juridical/complement': 'Complemento'
+    attributes:
+      'juridical/complement':
+        document_type: "Tipo de documento"
+        lawsuit: "Tipo de ação"
+        lawsuit_value: "Valor da ação"
+        instancy: "Instância"
+        instancy_place: "Local da instância"
+        days: "Dias"
+        responsible_lawyer: "Advogado responsável"
+        advice_type: "Tipo de acompanhamento"
+        file_path: "Arquivo"

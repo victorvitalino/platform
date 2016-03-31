@@ -26,11 +26,23 @@ module Candidate
     end
 
     def create
-      @cadastre_address = Candidate::CadastreAddress.new(set_cadastre_address_params)
-      @cadastre_address = get_dominial_chain(@cadastre_address.unit.id)
-      @cadastre_address.type_receipt = 0
-      @cadastre_address.situation_id = 1
-      @cadastre_address.save
+
+      @last_status = Candidate::CadastreProcedural.where(cadastre_id:@candidate.id).last
+
+      if @last_status.present?
+
+         @cadastre_address = Candidate::CadastreAddress.new(set_cadastre_address_params)
+          @cadastre_address = get_dominial_chain(@cadastre_address.unit.id)
+          @cadastre_address.type_receipt = 0
+          @cadastre_address.situation_id = 1
+          @cadastre_address.save
+
+          Candidate::CadastreProcedural.create_procedural(@candidate.id,@candidate.id,4,@last_status.convocation_id,@last_status.assessment_id, @old_process)
+          Candidate::CadastreStatus.create_status(@candidate.id,@candidate.id,7)
+          Address::Unit.update_situation(@address.id,3)
+
+      end
+
     end
 
     def unallocate

@@ -6,7 +6,7 @@
           Listar processos
           = link_to 'Novo acompanhamento', new_legal_advice_path,class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}  #if policy(:Assessment, namespace: Protocol).create?
     .panel-body
-      .row
+      .row.form-filter
         .col-md-12
           = simple_form_for  url_for, method: 'get' do |f|
             .row
@@ -20,7 +20,6 @@
                 = f.label 'Situação', class: 'fg-label'
                 = f.input :status, label: false, input_html: { name: 'status', value: params[:status]}
               .col-md-2
-                %br
                 = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
       .row
         .col-md-12

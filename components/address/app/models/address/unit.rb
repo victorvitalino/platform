@@ -21,6 +21,13 @@ module Address
     scope :cpf, -> (cpf) {joins(cadastre_address: :cadastre).where("candidate_cadastres.cpf = ?", cpf)}
     scope :name_candidate, -> (name_candidate) {joins(cadastre_address: :cadastre).where("candidate_cadastres.name ILIKE ?","#{name_candidate}%")}
 
+   private
+
+   def self.update_situation(unit,status)
+       @unit = Address::Unit.find(sunit)
+       @unit.update(situation_unit_id: status)
+   end
+
 
   end
 end
