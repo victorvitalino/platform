@@ -24,7 +24,7 @@ module HabitationPortal
     def detail
 
       @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
-      
+
       respond_to do |format|
         format.json { render json: @candidate.positions}
         format.html { @candidate }
@@ -32,7 +32,7 @@ module HabitationPortal
     end
 
     def update_positions
-      @day      = params[:by_date].present? ? params[:by_date] : Date.today.strftime('%d/%m/%Y') 
+      @day      = params[:by_date].present? ? params[:by_date] : Date.today.strftime('%d/%m/%Y')
       @zone     = params[:by_zone].present? ? params[:by_zone] : 1
       @program  = params[:by_program].present? ? params[:by_program] : 1
 

@@ -1,5 +1,5 @@
 = javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick"
-
+#container{:style => "min-width: 310px; height: 400px; margin: 0 auto"}
 .container
   .row.box
     .col-md-12
@@ -22,9 +22,7 @@
           %br/
           .row
             .col-md-12{style: 'text-align: center'}
-              = line_chart Candidate::Position.where(cadastre_id: @candidate.id).pluck(:program_id).uniq.map {|c|{name: Candidate::Program.find(c).name, data: Candidate::Position.where(cadastre_id: @candidate.id, program_id: c).map {|p| [p.created_at.strftime("%B %d, %Y"), p.position]}}}, ytitle: "Posições", library: { tooltip: {  pointFormat: 'Posição: <b>{point.y}º</b>'}}
-
-
+              = line_chart Candidate::Position.where(cadastre_id: @candidate.id).pluck(:program_id).uniq.map {|c|{name: Candidate::Program.find(c).name, data: Candidate::Position.where(cadastre_id: @candidate.id, program_id: c).map {|p| [p.created_at.strftime("%B %d, %Y"), p.position]}}}, ytitle: "Posições", library: { tooltip: {  pointFormat: 'Posição: <b>{point.y}º</b><br/><b>TOTAL DE REGISTROS ATUALIZADOS</b><br/><b>Idosos:</b>45<br/><b>RII:</b>45<br/><b>DEFICIENTES:</b>86'}}
           .row
             .col-md-12
               %h3
@@ -56,4 +54,72 @@
                       %td 0
                       %td 0
         .row
+:javascript
+jQuery(document).ready(function(){
+  $(function () {
+      $.getJSON('http://localhost:3000/habitacao/candidato/24792101115/detalhe.json', function (data) {
+          console.log(data);
+          var ex = [];
+          var ey = [Date.UTC(2013,5,2),0.7695];
+          $.each(data,function(index){
+              ex.push(Date.parse(data[index].created_at), data[index].position);
+          });
+          console.log(ex);
+          $('#container').highcharts({
+              chart: {
+                  zoomType: 'x'
+              },
+              title: {
+                  text: 'Posição diaria'
+              },
+              subtitle: {
+                  text: document.ontouchstart === undefined ?
+                          'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+              },
+              xAxis: {
+                  type: 'datetime'
+              },
+              yAxis: {
+                  title: {
+                      text: 'Posição'
+                  }
+              },
+              legend: {
+                  enabled: false
+              },
+              plotOptions: {area: {
+                      fillColor: {
+                          linearGradient: {
+                              x1: 0,
+                              y1: 0,
+                              x2: 0,
+                              y2: 1
+                          },
+                          stops: [
+                              [0, Highcharts.getOptions().colors[0]],
+                              [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                          ]
+                      },
+                      marker: {
+                          radius: 0
+                      },
+                      lineWidth: 1,
+                      states: {
+                          hover: {
+                              lineWidth: 1
+                          }
+                      },
+                      threshold: null
+                  },
 
+              },
+              series: [{
+                  type: 'area',
+                  name: 'Posição',
+                  myData: 'coisa',
+                  data:ey
+              }]
+          });
+      });
+  });
+});
