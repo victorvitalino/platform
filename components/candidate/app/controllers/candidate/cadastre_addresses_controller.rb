@@ -20,9 +20,8 @@ module Candidate
 
 
     def new
-      @candidate = Candidate::CadastreAddress.where(unit_id: params[:id]).last
+      @candidate = Candidate::CadastreAddress.where(unit_id: params[:id])
       @cadastre_address = Candidate::CadastreAddress.new
-      @address = Candidate::CadastreAddress.where(unit_id: params[:id])
     end
 
     def create
@@ -41,6 +40,8 @@ module Candidate
           Candidate::CadastreStatus.create_status(@candidate.id,@candidate.id,7)
           Address::Unit.update_situation(@address.id,3)
 
+          redirect_to candidate.cadastre_path(cpf: @candidate.cpf)
+
       end
 
     end
@@ -55,6 +56,11 @@ module Candidate
 
     def deallocate
         redirect_to cadastre_address_path
+        Candidate::CadastreProcedural.create_procedural(@candidate.id,@candidate.id,4,@last_status.convocation_id,@last_status.assessment_id, @old_process)
+        Candidate::CadastreStatus.create_status(@candidate.id,@candidate.id,4)
+        Address::Unit.update_situation(@address.id,1)
+
+          redirect_to candidate.cadastre_path(cpf: @candidate.cpf)
     end
 
     def transfer
