@@ -16,13 +16,16 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'simple_form'
 gem 'haml-rails'
 gem 'shareable'
+gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
 
 gem 'i18n'
 gem 'enum_help'
 
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
+gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 
 gem 'audited-activerecord', '~> 4.0'
-gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
 gem 'wicked'
 gem 'chartkick'
 gem 'groupdate', '~> 2.1.1'
@@ -39,8 +42,6 @@ gem 'email_validator'
 gem 'nokogiri'
 gem 'barby'
 gem 'chunky_png'
-
-gem 'signer', git: 'https://github.com/codhab/signer.git'
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'file_validators'

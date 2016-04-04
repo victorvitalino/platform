@@ -1,0 +1,42 @@
+%nav.navbar.navbar-inverse
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#{dashboard.root_path}"}
+        %img{:alt => "...", :src => "/images/codhab_logo_white.png", width: 100}/
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        
+      %ul.nav.navbar-nav.navbar-right
+        %li.user-last-signed
+          = "#{current_user.account.name} - #{current_user.code}"
+          %br/
+          %i= "Último acesso - #{current_user.last_signed_in_at.strftime('%d/%m/%Y')}" if current_user.last_signed_in_at.present?
+        %li
+          %a.navbar-avatar.dropdown-toggle{"aria-expanded" => "false", "data-animation" => "scale-up", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %span.avatar.avatar-online
+              - if current_user.account.avatar?
+                %img{:alt => "...", :src => "#{current_user.account.avatar_url}", :class => 'img-circle'}/
+                %i
+              - else
+                %img{:alt => "...", :src => "/images/default-avatar.png", :width => 30, :class => 'img-circle'}/
+                %i
+            %b
+          %ul.dropdown-menu{:role => "menu", "data-no-turbolink" => true}
+            %li{:role => "presentation"}
+              %a{:href => "#{profile_user.edit_user_path}", :role => "menuitem"}
+                %i.icon.wb-user{"aria-hidden" => "true"}
+                Meu Perfil
+            %li{:role => "presentation"}
+              %a{:href => "#{profile_user.edit_password_path}", :role => "menuitem"}
+                %i.icon.wb-payment{"aria-hidden" => "true"}
+                Alterar minha senha
+            %li.divider{:role => "presentation"}
+            %li{:role => "presentation"}
+              = link_to "Encerrar sessão", authenticate.logout_staffs_path
+           

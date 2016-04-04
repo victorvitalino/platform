@@ -10,12 +10,12 @@ module Shared
       if file.present? && view_nav?(file['nav'][system_module])
         
         @html = <<-HTML
-          <li class="site-menu-item #{(params[:module] == file['nav'][system_module]['info']['module']) ? 'has-active has-sub' : 'has-sub'}">
-            <a data-dropdown-toggle=false, href="#{file['nav'][system_module]['info']['link']}">
-              <i class="site-menu-icon #{file['nav'][system_module]['info']['icon']}"></i>
-              <span class="site-menu-title">#{file["nav"]["#{system_module}"]["info"]["label"]}</span>
+          <li class="dropdown #{(params[:module] == file['nav'][system_module]['info']['module']) ? 'has-active has-sub' : 'has-sub'}">
+            <a aria-expanded="true" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+              #{file["nav"]["#{system_module}"]["info"]["label"]}
+              <span class="caret"></span>
             </a>
-            <ul class='site-menu-sub'>
+            <ul class='dropdown-menu'> 
         HTML
 
         if file["nav"]["#{system_module}"]["modules"].present?
@@ -24,15 +24,14 @@ module Shared
             
             if allow_nav?(nav[1]['code'])
               @html += <<-HTML
-                <li class='site-menu-item has-sub'>
-                  <a href= 'javascript:void(0)'>
-                    <span class='site-menu-title'> #{nav[1]['label']} </span>
-                    <span class="site-menu-arrow"></span>
+                <li class='dropdown dropdown-submenu'>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    #{nav[1]['label']} 
                   </a>
               HTML
 
               if nav[1]['sub'].count > 0
-                @html += "<ul class='site-menu-sub'>"
+                @html += "<ul class='dropdown-menu'>"
 
                 nav[1]['sub'].each do |sub|
                   if allow_nav?(sub[1]['code'])

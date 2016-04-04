@@ -1,32 +1,31 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 
-          Páginas
-          = link_to 'Nova Página', new_page_path,  data: { no_turbolink: true }, class: 'btn btn-success btn-sm pull-right' 
-    .panel-body
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-        %table#data-table-command.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th #
-              %th Título
-              %th Publicado
-              %th Categoria
-              %th Data de Criação
-              %th Última Atualização
-              %th Ações
+.panel
+  .panel-heading
+    .panel-title
+      %h4 
+        Páginas
+        = link_to 'Nova Página', new_page_path,  data: { no_turbolink: true }, class: 'btn btn-success btn-sm pull-right' 
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th #
+            %th Título
+            %th Publicado
+            %th Categoria
+            %th Data de Criação
+            %th Última Atualização
+            %th Ações
 
-          %tbody
-            - @pages.order('id DESC').each do |page|
-              %tr
-                %td= page.id
-                %td= page.title
-                %td= status_helper (page.publish)
-                %td= page.page_category.title
-                %td= page.created_at.strftime('%d/%m/%Y')
-                %td= page.updated_at.strftime('%d/%m/%Y')
-                %td.col-md-1
-                  = link_to '', edit_page_path(page), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false} if policy(:page, namespace: Cms).update?
-                  = link_to '', page, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' } if policy(:page, namespace: Cms).destroy?
+        %tbody
+          - @pages.order('id DESC').each do |page|
+            %tr
+              %td= page.id
+              %td= page.title
+              %td= status_helper (page.publish)
+              %td= page.page_category.title
+              %td= page.created_at.strftime('%d/%m/%Y')
+              %td= page.updated_at.strftime('%d/%m/%Y')
+              %td.col-md-1
+                = link_to '', edit_page_path(page), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false} if policy(:page, namespace: Cms).update?
+                = link_to '', page, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' } if policy(:page, namespace: Cms).destroy?

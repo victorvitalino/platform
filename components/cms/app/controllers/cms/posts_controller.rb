@@ -4,9 +4,12 @@ module Cms
   class PostsController < ApplicationController
     before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-    # GET /posts
+    has_scope :by_title
+    has_scope :by_category
+    has_scope :by_publish
+
     def index
-      @posts = Post.all
+      @posts = apply_scopes(Post).paginate(:page => params[:page], :per_page => 20)
       authorize :post, :index?
     end
 

@@ -6,35 +6,31 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/indicacao_30_03_16.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/inscrito_entidade.csv", :col_sep => "#") do |row|
 
-        #cpf = ''
-        #if row[2].to_s.strip.present?
-         #cpf = row[2].to_s.gsub('.','')
-         #cpf = cpf.gsub('-','')
-        #end
+      @cadastre = Candidate::Cadastre.find_by_cpf(row[0].to_s.gsub('.','').gsub('-','')) rescue nil
+      @entity   = Entity::Old.find_by_cnpj(row[1]) rescue nil
 
-       @address = Firm::EnterpriseCadastre.new({
-          enterprise_id:  row[3],
-          cadastre_id:  row[0],
-          status:  row[4],
-          source_list: row[2],
-          created_at: row[1],
+      if @cadastre.present? && @entity.present?
 
+        @old = Entity::OldCandidate.new({
+          cadastre_id: @cadastre.id,
+          old_id: @entity.id
         })
-        #if row[2].to_i != 0
+        
+        begin 
+          @old.save
+          #puts @old.inspect
+          puts @index
+        rescue e => Exception
+          puts e
+        end
 
-          #@assessment = Protocol::Assessment.find(row[2].to_i)
+        @index += 1
 
-          #if !@address.nil?
-            #@assessment.address = row[1]
-            @address.save
-            #puts @address.inspect
-            puts @index
-          #end
-
-          @index += 1
-       #end
+      else
+        puts 'não encontrado'
+      end
     end
   end
 end

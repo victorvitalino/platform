@@ -1,10 +1,16 @@
+.panel{:style => "margin-top: 30%"}
+  .panel-body
+    .row
+      .col-sm-12{style: 'text-align: center; color: #818285'}
+        %h1
+          Acesso restrito
+        %small versão 2.1
+    %hr/
+    .row
+      .col-sm-5
+        %img{:alt => "PatternFly Enterprise Application", :src => "/images/codhab_footer.png", :width => 300}/
+      .col-sm-7.details
+        %br/
+        = render 'form'
+    
 
-/[if lt IE 8]
-  <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-/ Page
-.page.animsition{"data-animsition-in" => "fade-in", "data-animsition-out" => "fade-out"}
-  .page-content
-    .page-login-main
-      .brand
-        %img.brand-img{:alt => "logo codhab", :src => "/images/codhab_footer.png", width: 350}/
-      = render 'form'

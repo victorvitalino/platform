@@ -1,0 +1,8 @@
+nav:
+  dashboard:
+    info:
+      module: 'dashboard'
+      label: "Mural"
+      code: 0
+      icon: 'wb-order'
+      link: '/'

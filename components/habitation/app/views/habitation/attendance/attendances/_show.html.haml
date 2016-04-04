@@ -17,20 +17,17 @@
             %td= "#{@candidate.rg} - #{@candidate.rg_org}/#{@candidate.rg_uf}" 
             %td= @candidate.gender
             %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
-
-  %br/
   .row
     .col-md-12
       %h4
         Atualizações cadastral
-      %h5
-        = link_to "Iniciar nova atualização", new_attendance_cadastre_mirror_path(id: @candidate)
       %table.table.tabel-hover.table-bordered
         %thead
           %tr
             %th Data
             %th Situação
             %th Pontuação
+            %th Atendente
             %th Supervisor
             %th Ação
         %tbody
@@ -40,14 +37,18 @@
               %td.col-md-1= mirror.situation.humanize
               %td.col-md-1= mirror.pontuation.present? ? "Pontuado" : "Não pontuado"
               %td.col-md-1 Fulano 2
+              %td.col-md-1 Fulano 2
               %td.col-sm-2 
                 = link_to "", edit_attendance_cadastre_mirror_path(mirror), class: 'btn btn-primary btn-xs glyphicon glyphicon-pencil', title: "Atualização cadastral" if !mirror.aprovado?
+                
                 = link_to "", attendance_mirror_dependents_path(mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-user', title: "Atualização dependentes" if !mirror.aprovado?
+                
                 = link_to "", new_attendance_mirror_checklist_path(mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-check', title: "Checklist" if !mirror.aprovado?
-                = link_to "", new_attendance_mirror_checklist_path(mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-remove', title: "Cancelar" if !mirror.aprovado?
-                = link_to "", attendance_mirror_dependents_path(mirror_id: mirror.id), class: 'btn btn-success btn-xs glyphicon glyphicon-ok', title: "Finalizar atendimento"
+                
+                = link_to "", attendance_attendance_path(mirror.id), method: :delete, data: { confirm: t(:confirm)}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove', title: "Cancelar" if !mirror.aprovado?
+                
+                = link_to "", '#', class: 'btn btn-success btn-xs glyphicon glyphicon-ok', title: "Finalizar atendimento" if !mirror.aprovado?
 
-  %br/
   .row
     .col-md-12
       %h4 Agendamentos
@@ -70,7 +71,7 @@
                 %td.col-md-2 Sem ação
       - else
         %i Nenhum agendamento encontrado neste CPF
-  %br/
+
   .row
     .col-md-12
       %h4 Log de atendimento
@@ -93,7 +94,7 @@
                 %td.col-md-2 Sem ação
       - else
         %i Nenhum log vínculado a este CPF
-  %br/
+
   .row
     .col-md-12
       %h4 Ocorrências

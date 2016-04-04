@@ -1,15 +1,9 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 
-          Nova postagem
-          %span.pull-right
-            = link_to "pesquisar arquivos", archive.files_path, remote: true
-          %br/
-          %small
-            Formulário de inserção de nova postagem
-    .panel-body
-      .row
-        .col-md-12
-          = render 'form'
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Nova postagem
+      = link_to "pesquisar arquivos", archive.files_path, remote: true, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        = render 'form'

@@ -1,8 +1,0 @@
-= simple_form_for url_for, method: :get do |f|
-  .row
-    .col-md-12
-      %label CPF (Somente números)
-      = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
-  .row
-    .col-md-12
-      = f.submit "Pesquisar CPF", name: nil, class: 'btn btn-success btn-lg', data: { disable_with: t(:disable_with)}

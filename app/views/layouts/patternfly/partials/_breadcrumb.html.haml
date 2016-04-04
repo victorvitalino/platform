@@ -1,0 +1,9 @@
+%h1
+  %b= t("engines.#{controller_path.split('/')[0]}")
+%ol.breadcrumb{:style => "margin-bottom: 5px;"}
+  %li.bold
+    = t("engines.#{controller_path.split('/')[0]}")
+  %li.bold
+    = t("modules.#{controller_path.split('/')[0]}.#{controller_name}")
+  %li.bold.active
+    = t("actions.#{action_name}")

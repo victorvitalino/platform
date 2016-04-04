@@ -1,0 +1,105 @@
+nav:
+  habitation:
+    info:
+      module: 'habitation'
+      label: "Habitação"
+      code: 11
+      icon: 'wb-home'
+      link: '#'
+    modules:
+      attendant:
+        code: 0
+        label: "Habitação"
+        controller: "#"
+        sub:
+          habitation:
+            module: 'habitation'
+            code: 0
+            label: "Atendimento"
+            controller: '/habitation/attendance/attendances'
+            action: 'index'
+          checklist:
+            module: 'candidate'
+            code: 0
+            label: "Gestão de checklist"
+            controller: '/candidate/checklists'
+            action: 'index'
+      regularization:
+        code: 119110
+        label: "Regularização"
+        controller: '#'
+        sub:
+          requeriment:
+            module: 'regularization'
+            code: 119110
+            label: "Requerimentos geral"
+            controller: "/regularization/requeriments"
+            action: 'index'
+      entity:
+        code: 11501
+        label: 'Entidades'
+        controller: '#'
+        sub:
+          cadastre:
+            module: 'entity'
+            code: 11501
+            label: 'Cadastro'
+            controller: '/entity/cadastres'
+      cadastre:
+        code: [11005, 11011]
+        label: 'Cadastro'
+        controller: '#'
+        sub:
+          general_search:
+            module: 'candidate'
+            code: 11005
+            label: 'Pesquisa geral'
+            controller: '/candidate/cadastres'
+          cadastre_address:
+            module: 'candidate'
+            code: 11011
+            label: 'Assentamento'
+            controller: '/candidate/cadastre_addresses'
+      address:
+        code: [11204, 11207]
+        label: 'Endereço'
+        controller: '#'
+        sub:
+          general_search:
+            module: 'address'
+            code: 11204
+            label: 'Pesquisa geral'
+            controller: '/address/units'
+          index_attendent:
+            module: 'address'
+            code: 11207
+            label: 'Pesquisa Atendentes'
+            controller: '/address/units'
+            action: 'index_attendent'
+      cadin:
+        code: 11304
+        label: 'Cadastro imobiliário'
+        controller: '#'
+        sub:
+          general_search:
+            module: 'candidate'
+            code: 11304
+            label: 'Pesquisa geral'
+            controller: '/candidate/cadins'
+      schedule:
+        code: [118103,118101]
+        label: 'Agendamento'
+        controller: '#'
+        sub:
+          new_schedule:
+            module: 'schedule'
+            code: 118101
+            label: 'Nova agenda'
+            controller: '/schedule/agendas'
+            action: 'new'
+          schedules:
+            module: 'schedule'
+            code: 118103
+            label: 'Agendas'
+            controller: '/schedule/agendas'
+            action: 'index'

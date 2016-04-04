@@ -3,8 +3,10 @@
     .panel-heading
       .panel-title
         %h4
-          Atualização cadastral
-          = link_to "voltar para pesquisa", cadastres_path(cpf: @candidate.cpf), class: 'pull-right'
+          Atualização de dados de contato
+          = link_to "voltar para pesquisa", cadastres_path(cpf: @candidate.cpf), class: 'btn btn-inverse pull-right'
+        %small
+          Formulário de atualização de dados de contato
     .panel-body
       .row
         .col-md-12

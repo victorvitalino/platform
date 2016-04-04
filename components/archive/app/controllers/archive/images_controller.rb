@@ -24,15 +24,21 @@ module Archive
     end
 
     def upload_file
-      @image = Archive::Image.new(set_params)
-      
+      @image = Archive::Image.new
+      @image.file_path = params[:file]
+      @image.staff_id  = current_user.id
+
       if @image.save
-        render json: @image.file_path.url, status: 200
+         render json: {
+            image: {
+              url: @image.file_path.url
+            }
+          }, content_type: "text/html"
       else
         render json: false
       end 
-
-    end
+  
+  end
 
     def destroy
     end

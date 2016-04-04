@@ -1,80 +1,71 @@
 = simple_form_for [:attendance, @mirror] do |f|
-  .form-block
-    .row
-      .col-md-2
-        = f.input :cpf, input_html: { disabled: true}
-    .row
-      .col-md-8
-        = f.input :name
-      .col-md-2
-        = f.label "Nascimento"
-        = f.input :born, as: :string, label: false, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : ''}
-      .col-md-2
-        = f.input :gender, as: :select, collection: Candidate::CadastreMirror.genders.keys, include_blank: false
-    .row
-      .col-md-2
-        = f.input :rg
-      .col-md-2
-        = f.input :rg_org
-      .col-md-2
-        = f.input :rg_uf
-      .col-md-2
-        = f.association :civil_state, include_blank: false
-      .col-md-2
-        = f.input :place_birth
-      .col-md-2
-        = f.input :born_uf
-    .row
-      .col-md-2
-        = f.label "Chegada ao DF"
-        = f.input :arrival_df, as: :string, label: false, input_html: { class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : ''}
-      .col-md-2
-        = f.input :income, as: :string, input_html: { class: 'coin_mask'}
+  .row
+    .col-md-2
+      = f.input :cpf, input_html: { disabled: true}
+    .col-md-6
+      = f.input :name
+    .col-md-2
+      = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : ''}
+    .col-md-2
+      = f.input :gender, as: :select, collection: Candidate::CadastreMirror.genders.keys, include_blank: false
+  .row
+    .col-md-2
+      = f.input :rg
+    .col-md-1
+      = f.input :rg_org
+    .col-md-1
+      = f.input :rg_uf, as: :select, collection: Address::State.order(:name), label_method: :acronym, include_blank: false
+    .col-md-1
+      = f.input :born_uf, as: :select, collection: Address::State.order(:name), label_method: :acronym, include_blank: false
+    .col-md-3
+      = f.input :place_birth
+    .col-md-2
+      = f.association :civil_state, include_blank: false
+    .col-md-2
+      = f.input :arrival_df, as: :string, input_html: { class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : ''}
   %hr/
   .row
-    .col-md-4
-      = f.association :special_condition, include_blank: false
     .col-md-2
+      = f.input :income, as: :string, input_html: { class: 'coin_mask'}
+    .col-md-3
+      = f.association :special_condition, include_blank: false
+    .col-md-3
+      = f.input :adapted_property, as: :select, include_blank: false
+    .col-sm-2
       = f.input :cid
     .col-md-2
       = f.input :nis
+  %hr/
+  .row
+    .col-md-5
+      = f.input :email
     .col-md-2
-      = f.input :adapted_property, as: :select, include_blank: false
+      = f.input :telephone
+    .col-md-2
+      = f.input :telephone_optional
+    .col-md-2
+      = f.input :celphone
   %hr/
   .form-block
     .row
-      .col-md-4
-        = f.input :email
       .col-md-2
-        = f.input :telephone
-      .col-md-2
-        = f.input :telephone_optional
-      .col-md-2
-        = f.input :celphone
-  %hr/
-  .form-block
-    .row
+        = f.input :cep
       .col-md-4
         = f.association :city, collection: Address::City.federal_district, include_blank: false
       .col-md-2
-        = f.input :cep
-    .row
-      .col-md-4
-        = f.input :address
-      .col-md-4
-        = f.input :address_complement
-    %hr/
-    .row
+        = f.input :work_cep
       .col-md-4
         = f.association :work_city, collection: Address::City.federal_district, include_blank: false
-      .col-md-2
-        = f.input :work_cep
+    .row
+      .col-md-6
+        = f.input :address
+      .col-md-6
+        = f.input :work_address
+    .row
+      .col-md-6
+        = f.input :address_complement
+  %hr
   .row
     .col-md-8
-      = f.input :work_address
-  %hr
-  .form-block
-    .row
-      .col-md-8
-        = f.submit "Atualizar cadastro", class: 'btn btn-success btn-lg'
-        = link_to "Voltar para detalhamento", '#', class: 'btn btn-dark btn-lg'
+      = f.submit "Atualizar cadastro", class: 'btn btn-success btn-lg'
+      = link_to "Voltar para detalhamento", '#', class: 'btn btn-default btn-lg'
