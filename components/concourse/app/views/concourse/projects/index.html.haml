@@ -1,33 +1,33 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 
-          Concursos
-          = link_to "Novo concurso", new_project_path, class: 'btn btn-success pull-right btn-sm' if policy(:project, namespace: Concourse).new?
-    .panel-body
-      %table.table.table-striped.table-condensed.table-bordered
-        %thead
-          %tr
-            %th Titulo
-            %th Ìnício
-            %th Fim
-            %th Publicado?
-            %th Status
-            %th Etapa
-            %th Consulta?
-            %th Ações
-        %tbody
-          - @projects.order(:created_at).each_with_index do |project, index|
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title 
+      Concursos
+      = link_to "Novo concurso", new_project_path, class: 'pull-right' if policy(:project, namespace: Concourse).new?
+  .panel-body
+    .row
+      .col-md-12
+        %table.table.table-striped.table-condensed.table-bordered
+          %thead
             %tr
-              %td= project.title
-              %td= project.start.strftime('%d/%m/%Y')
-              %td= project.end.strftime('%d/%m/%Y')
-              %td= project.publish ? 'publicado' : 'não publicado'
-              %td= project.status ? 'ativo' : 'inativo'
-              %td= project.step
-              %td= project.consultation ? 'aberto' : 'fechado'
-              %td
-                = link_to "", project_path(project),class: 'glyphicon glyphicon-share-alt  btn btn-success btn-xs' if policy(:project, namespace: Concourse).index?
-                = link_to "", edit_project_path(project), data: {turbolinks: false}, class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:project, namespace: Concourse).edit?
-                
+              %th Titulo
+              %th Ìnício
+              %th Fim
+              %th Publicado?
+              %th Status
+              %th Etapa
+              %th Consulta?
+              %th Ações
+          %tbody
+            - @projects.order(:created_at).each_with_index do |project, index|
+              %tr
+                %td= project.title
+                %td= project.start.strftime('%d/%m/%Y')
+                %td= project.end.strftime('%d/%m/%Y')
+                %td= project.publish ? 'publicado' : 'não publicado'
+                %td= project.status ? 'ativo' : 'inativo'
+                %td= project.step
+                %td= project.consultation ? 'aberto' : 'fechado'
+                %td
+                  = link_to "", project_path(project),class: 'glyphicon glyphicon-share-alt  btn btn-success btn-xs' if policy(:project, namespace: Concourse).index?
+                  = link_to "", edit_project_path(project), data: {turbolinks: false}, class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:project, namespace: Concourse).edit?
+                  

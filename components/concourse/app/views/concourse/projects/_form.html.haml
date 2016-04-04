@@ -2,102 +2,84 @@
   .card-body.card-padding
     .row
       .col-md-8
-        = f.label :title, class: 'fg-label'
-        = f.input :title, label: false, prompt: 'selecione...'
+        = f.input :title, prompt: 'Digite um título...'
       .col-md-2
-        = f.label 'Início do Concurso', class: 'fg-label'
-        = f.input :start,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.start) ? localize(f.object.start) : nil}
+        = f.input :start,as: :string, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.start) ? localize(f.object.start) : nil}
       .col-md-2
-        = f.label 'Fim do Concurso', class: 'fg-label'
-        = f.input :end, as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date', value: (@project.end) ? localize(f.object.end) : nil }
+        = f.input :end, as: :string, prompt: 'selecione...', input_html: { class: 'date', value: (@project.end) ? localize(f.object.end) : nil }
     .row
       .col-md-12
-        = f.label :mini_description, class: 'fg-label'
-        = f.input :mini_description, label: false, as: :hidden, input_html: { id: 'mini_description'}
-        %trix-editor.trix-content{:input => "mini_description"}
+        = f.input :mini_description, input_html: { id: 'content', class: 'tinymce', rows: 10, cols: 80 }
     .row
       .col-md-12
-        = f.label :apresentation, class: 'fg-label'
-        = f.input :apresentation, label: false, as: :hidden, input_html: { id: 'apresentation'}
-        %trix-editor.trix-content{:input => "apresentation"}
-
+        = f.input :apresentation, input_html: { id: 'apresentation', class: 'tinymce', rows: 10, cols: 80 }
     %hr/
     .row
       .col-md-3
-        = f.label :image_header, class: 'fg-label'
-        = f.input :image_header, as: :file, label: false, prompt: 'selecione...'
+        = f.input :image_header, as: :file
+        = f.hint link_to "Visualizar arquivo atual", f.object.image_header.url, target: '_blank' if !f.object.image_header.to_s.empty?
       .col-md-3
-        = f.label :image_logo, class: 'fg-label'
-        = f.input :image_logo, as: :file, label: false, prompt: 'selecione...'
+        = f.input :image_logo, as: :file
+        = f.hint link_to "Visualizar arquivo atual", f.object.image_logo.url, target: '_blank' if !f.object.image_logo.to_s.empty?
       .col-md-3
-        = f.label :image_footer, class: 'fg-label'
-        = f.input :image_footer, as: :file,label: false, prompt: 'selecione...'
+        = f.input :image_footer, as: :file
+        = f.hint link_to "Visualizar arquivo atual", f.object.image_footer.url, target: '_blank' if !f.object.image_footer.to_s.empty?
       .col-md-3
-        = f.label :image_slider, class: 'fg-label'
-        = f.input :image_slider, as: :file,label: false, prompt: 'selecione...'
+        = f.input :image_slider, as: :file
+        = f.hint link_to "Visualizar arquivo atual", f.object.image_slider.url, target: '_blank' if !f.object.image_slider.to_s.empty?
     %hr/
     .row
       .col-md-12
-        = f.label :slider_html, class: 'fg-label'
-        = f.input :slider_html, as: :text,label: false
+        %h2 Consultas
     %hr/
     .row
       .col-md-2
-        = f.label :consultation
-        = f.input :consultation, label: false, as: :select, include_blank: false
+        = f.input :consultation, as: :select, include_blank: false
       .col-md-2
-        = f.label 'Início de consultas', class: 'fg-label'
-        = f.input :consultation_start,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.consultation_start) ? localize(f.object.consultation_start) : nil}
+        = f.input :consultation_start,as: :string, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.consultation_start) ? localize(f.object.consultation_start) : nil}
       .col-md-2
-        = f.label 'Fim de consultas', class: 'fg-label'
-        = f.input :consultation_end,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.consultation_end) ? localize(f.object.consultation_end) : nil}
+        = f.input :consultation_end,as: :string, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.consultation_end) ? localize(f.object.consultation_end) : nil}
     %br/
     .row
       .col-md-12
-        = f.label :consultation_description, class: 'fg-label'
-        = f.input :consultation_description, as: :hidden, label: false, input_html: { id:"consultation_description" }
-        %trix-editor.trix-content{:input => "consultation_description"}
+        = f.input :consultation_description, input_html: { id:"consultation_description", class: 'tinymce', rows: 10, cols: 80 }
+    %hr/
+    .row
+      .col-md-12
+        %h2 Participação
     %hr/
     .row
       .col-md-2
-        = f.label 'Início das participações'
-        = f.input :start_participation,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.start_participation) ? localize(f.object.start_participation) : nil}
+        = f.input :start_participation,as: :string, input_html: { class: 'date' ,value: (@project.start_participation) ? localize(f.object.start_participation) : nil}
       .col-md-2
-        = f.label 'Fim das participações'
-        = f.input :end_participation,as: :string, label: false, prompt: 'selecione...', input_html: { class: 'date' ,value: (@project.end_participation) ? localize(f.object.end_participation) : nil}
+        = f.input :end_participation,as: :string, input_html: { class: 'date' ,value: (@project.end_participation) ? localize(f.object.end_participation) : nil}
       .col-md-3
-        = f.label 'Data/Horário de abertura dos resultados'
-        = f.input :result_date, as: :string, label: false, prompt: 'selecione...'
+        = f.input :result_date, as: :string
       .col-md-4
-        = f.label 'Ata de resultados'
-        = f.input :result_document, as: :file, label: false, prompt: 'selecione...'
+        = f.input :result_document, as: :file
         = f.hint link_to "visualizar arquivo atual", f.object.result_document_url, target: '_blank' if f.object.result_document.present?
     .row
-      .col-md-8
-        = f.label 'Texto de introdução aos resultados'
-        = f.input :result_description, as: :hidden, label: false, input_html: { id:"result_description" }
-        %trix-editor.trix-content{:input => "result_description"}
+      .col-md-12
+        = f.input :result_description, input_html: { id:"result_description", class: 'tinymce', rows: 10, cols: 80  }
     %hr/
     .row
       .col-md-12
-        = f.label 'Texto de descrição (formulário de participação)', class: 'fg-label'
-        = f.input :text_participation, as: :hidden, label: false, input_html: { id:"text_participation" }
-        %trix-editor.trix-content{:input => "text_participation"}
+        = f.input :text_participation, input_html: { id:"text_participation", class: 'tinymce', rows: 10, cols: 80  }
 
+    %hr/
+    .row
+      .col-md-12
+        %h2 POP-UP
     %hr/
     .row
       .col-md-4
-        = f.label "Título pop-up"
-        = f.input :popup_title, label: false,placeholder: "Digite um título"
+        = f.input :popup_title, placeholder: "Digite um título"
       .col-md-2
-        = f.label "Pop-up ativo?"
-        = f.input :popup_publish, as: :select,label: false, include_blank: false
+        = f.input :popup_publish, as: :select, include_blank: false
     .row
       .col-md-12
-        = f.label "Conteúdo Pop-up"
-        = f.input :popup_content, as: :hidden, label: false,placeholder: "Digite o conteúdo", input_html: { id:"popup_content" }
-        %trix-editor.trix-content{:input => "popup_content"}
-
+        = f.input :popup_content,placeholder: "Digite o conteúdo", input_html: { id:"popup_content", class: 'tinymce', rows: 10, cols: 80  }
+        
     %hr/
     .row
       .col-md-2
@@ -113,6 +95,6 @@
     %hr/
     .row
       .col-md-12
-        = f.submit "Salvar concurso", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
-        = link_to "voltar", projects_path,class: 'btn btn-dark' 
+        = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+        = link_to t(:button_back), projects_path,class: 'btn btn-default' 
 

@@ -1,7 +1,7 @@
 .panel
   .panel-heading
     .panel-title
-      %h3.bold
+      %h2
         Detalhamento de Inscrição - #{@candidate.id}
       %small
         = link_to "voltar para inscrições", project_candidates_path(@project)
@@ -35,7 +35,7 @@
                 %span.label.label-info= "Processando" if @candidate.processando? 
                 %span.label.label-success= "Homologado" if @candidate.homologado? 
                 %span.label.label-danger= "Indeferido" if @candidate.indeferido? 
-              %td= @candidate.invoice_paid ? 'pagamento realizado' : 'pendente'
+              %td= @candidate.invoice_paid ? 'Pagamento realizado' : 'pendente'
               %td= @candidate.invoice_prints 
   
     %br
@@ -73,9 +73,9 @@
               %th E-mail
           %tbody
             %tr
-              %td.col-md-1= @candidate.telephone.upcase
-              %td.col-md-1= @candidate.celphone
-              %td.col-md-3= @candidate.email
+              %td.col-md-2= @candidate.telephone.upcase
+              %td.col-md-2= @candidate.celphone
+              %td.col-md-4= @candidate.email
         %br/
         %table.table.table-striped.table-bordered
           %thead
@@ -87,9 +87,9 @@
           %tbody
             %tr
               %td.col-md-2= @candidate.state.name if @candidate.state.present?
-              %td.col-md-3= @candidate.city
-              %td.col-md-3= @candidate.address
-              %td.col-md-3= @candidate.cep
+              %td.col-md-2= @candidate.city
+              %td.col-md-7= @candidate.address
+              %td.col-md-1= @candidate.cep
     %br
     %br
     .row
@@ -105,9 +105,9 @@
               %th CNPJ
           %tbody
             %tr
-              %td.col-md-4= @candidate.social_reason.upcase
-              %td.col-md-4= @candidate.fantasy_name.upcase
-              %td.col-md-4= @candidate.cnpj
+              %td.col-md-8= @candidate.social_reason.upcase
+              %td.col-md-2= @candidate.fantasy_name.upcase
+              %td.col-md-2= @candidate.cnpj.format_cnpj
         %br/
     .row
       .col-md-12

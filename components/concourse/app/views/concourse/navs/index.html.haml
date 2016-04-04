@@ -1,10 +1,10 @@
-.panel
-  .panel-heading
-    .panel-title
-      %h3 
-        Menus
-        = link_to "Novo Menu", new_project_nav_path(@project), class: 'btn btn-success btn-sm pull-right' if policy(:nav, namespace: Concourse).new?
-  .panel-body
+.row
+  .col-md-12
+    %h2 Menus
+    = link_to "Criar novo menu", new_project_nav_path(@project) if policy(:nav, namespace: Concourse).new?
+%hr/
+.row
+  .col-md-12
     %table.table.table-striped.table-bordered
       %thead
         %tr

@@ -1,33 +1,17 @@
-%ul.list-group.nav
-  %li.list-group-item
-    %a{:href => "#{concourse.projects_path}"} 
-      %span.label.label-info
-        %i.glyphicon.glyphicon-backward 
-        Voltar para lista de concursos
-  %li.list-group-item
-    - if policy(:project, namespace: Concourse).index?
-      %li.list-group-item
-        %a{:href => "#{concourse.project_path(@project)}"} Visão geral
-    - if policy(:page, namespace: Concourse).index?
-      %li.list-group-item
-        %a{:href => "#{concourse.project_pages_path(@project)}"} Páginas
-    - if policy(:nav, namespace: Concourse).index?
-      %li.list-group-item
-        %a{:href => "#{concourse.project_navs_path(@project)}"} Menus
-    - if policy(:subscribe_type, namespace: Concourse).index?
-      %li.list-group-item
-        %a{:href => "#"} Tipos de Inscrição
-    - if policy(:participation_type, namespace: Concourse).index?
-      %li.list-group-item
-        %a{:href => "#"} Tipos de Participação
-    %li
-      %hr/
-    - if policy(:consult, namespace: Concourse).index?
-      %li.list-group-item
-        %a{:href => "#{concourse.project_consults_path(@project)}"} Consultas
-    - if policy(:candidate, namespace: Concourse).index?
-      %li.list-group-item
-        %a{:href => "#{concourse.project_candidates_path(@project)}"} Inscrições
-    - if policy(:candidate, namespace: Concourse).winners?
-      %li.list-group-item
-        %a{:href => "#{concourse.new_project_winner_path(@project)}"} Vencedores
+%ul.nav.nav-tabs
+  - if policy(:project, namespace: Concourse).index?
+    %li{class: (controller_name == 'projects' ? 'active' : '')}
+      %a{:href => "#{concourse.project_path(@project)}"} Visão geral
+  - if policy(:page, namespace: Concourse).index?
+    %li{class: (controller_name == 'pages' ? 'active' : '')}
+      %a{:href => "#{concourse.project_pages_path(@project)}"} Páginas
+  - if policy(:nav, namespace: Concourse).index?
+    %li{class: (controller_name == 'navs' ? 'active' : '')}
+      %a{:href => "#{concourse.project_navs_path(@project)}"} Menus
+  - if policy(:consult, namespace: Concourse).index?
+    %li{class: (controller_name == 'consults' ? 'active' : '')}
+      %a{:href => "#{concourse.project_consults_path(@project)}"} Consultas
+  - if policy(:candidate, namespace: Concourse).index?
+    %li{class: (controller_name == 'candidates' ? 'active' : '')}
+      %a{:href => "#{concourse.project_candidates_path(@project)}"} Inscrições
+ 

@@ -2,7 +2,10 @@ module Concourse
   class ConsultsController < ApplicationController
     before_action :set_project
 
+    has_scope :by_status
+
     def index
+      @consults = apply_scopes(Concourse::Consult).all.paginate(:page => params[:page], :per_page => 20)
       authorize :consult, :index?
     end
 

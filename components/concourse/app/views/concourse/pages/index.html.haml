@@ -1,10 +1,10 @@
-.panel
-  .panel-heading
-    .panel-title
-      %h3
-        Páginas
-        = link_to "Nova página", new_project_page_path(@project), class: 'btn btn-success btn-sm pull-right' if policy(:page, namespace: Concourse).new?
-  .panel-body
+.row
+  .col-md-12
+    %h2 Páginas
+    = link_to "Criar nova página", new_project_page_path(@project) if policy(:page, namespace: Concourse).new?
+%hr/
+.row
+  .col-md-12
     %table.table.table-striped.table-bordered.table-hover
       %thead
         %tr

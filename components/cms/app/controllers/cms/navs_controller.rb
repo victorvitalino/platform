@@ -4,9 +4,13 @@ module Cms
   class NavsController < ApplicationController
     before_action :set_nav, only: [:show, :edit, :update, :destroy]
 
-    # GET /navs
+
+    has_scope :by_title
+    has_scope :by_category
+    has_scope :by_publish
+    
     def index
-      @navs = Nav.all
+      @navs = apply_scopes(Nav).paginate(:page => params[:page], :per_page => 20)
       authorize :nav, :index?
     end
 

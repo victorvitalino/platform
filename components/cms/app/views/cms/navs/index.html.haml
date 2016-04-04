@@ -2,8 +2,21 @@
   .panel-heading
     %h4.panel-title 
       Menus
-      = link_to 'Novo menu', new_nav_path, class: 'btn btn-success btn-sm pull-right' if policy(:nav, namespace: Cms).new?
+      = link_to 'Novo menu', new_nav_path, class: 'pull-right' if policy(:nav, namespace: Cms).new?
   .panel-body
+    .row
+      .col-md-12
+        .row
+          = simple_form_for url_for, method: :get do |f|
+            .col-md-5
+              = f.input :by_title, label: "Título", input_html: { name: 'by_title', value: params[:by_title]}
+            .col-md-2
+              = f.input :by_category, label: "Categoria", as: :select, selected: params[:by_category], collection: Cms::NavCategory.all, include_blank: 'Todas', input_html: { name: 'by_category'}
+            .col-md-2
+              = f.input :by_publish, label: "Publicada?", as: :select, selected: params[:by_publish], include_blank: 'Todas', input_html: { name: 'by_publish'}
+            .col-md-2
+              = f.submit t(:filter_button), name: nil, class: 'btn btn-primary filter-button'
+    %br/
     .row
       .col-md-12
         %table.table.table-bordered.table-striped
@@ -22,3 +35,6 @@
                 %td.col-md-1
                   = link_to '', edit_nav_path(nav), class: 'glyphicon glyphicon-pencil btn-xs btn-primary btn' if policy(:nav, namespace: Cms).edit?
                   = link_to '', nav, class: 'glyphicon glyphicon-remove btn-xs btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) } if policy(:nav, namespace: Cms).destroy?
+    .row
+      .col-md-12.paginate
+        = will_paginate @navs, renderer: BootstrapPagination::Rails

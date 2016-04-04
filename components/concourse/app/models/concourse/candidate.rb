@@ -8,6 +8,9 @@ module Concourse
     
     scope :by_concourse, -> (concourse) { joins(:subscribe).where('concourse_subscribes.project_id = ?', concourse)}
     scope :by_status, -> (status) { where(status: status)}
+    scope :by_situation, -> (status) { where(status: status)}
+    scope :by_cpf, -> (cpf) { where(cpf: cpf)}
+    scope :by_id, -> (id) { where(id: id)}
 
     enum gender: [:masculino, :feminino]
     enum status: [:processando, :pendente, :homologado, :indeferido]
