@@ -5,7 +5,10 @@ module Concourse
     before_action :set_project, except: [:view_all]
 
     has_scope :by_concourse
+    has_scope :by_situation
     has_scope :by_status
+    has_scope :by_cpf
+    has_scope :by_id
 
     def view_all
       authorize :candidate, :index?
@@ -15,6 +18,7 @@ module Concourse
     end
 
     def index
+      @candidates = apply_scopes(Concourse::Candidate).paginate(:page => params[:page], :per_page => 20)
       authorize :candidate, :index?
     end
 

@@ -5,6 +5,7 @@ module Concourse
 
     has_many :fields
     has_many :candidates
+    has_many :candidate_participations, foreign_key: 'subscribe_id'
 
     validates_presence_of :title
 

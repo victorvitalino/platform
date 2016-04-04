@@ -1,35 +1,26 @@
 = simple_form_for(@nav) do |f|
   .card-body.card-padding
     .row
-      .col-md-12
-        = f.label :name, class: 'fg-label'
-        = f.input :name, label: false, input_html: { placeholder: 'Digite um título'}
+      .col-md-11
+        = f.input :name, input_html: { placeholder: 'Digite um título'}
     .row
       .col-md-3
-        = f.label :link_page, class: 'fg-label'
-        = f.association :link_page, label_method: :title_concat, label: false, prompt: 'Selecione...'
+        = f.association :link_page, label_method: :title_concat, prompt: 'Selecione...'
       .col-md-3
-        = f.label :category, class: 'fg-label'
-        = f.association :category, label: false, prompt: 'Selecione...'
-      .col-md-3
-        = f.label :target, class: 'fg-label'
-        = f.input :target, as: :select, collection: Cms::Nav.targets.keys.to_a, label: false, prompt: 'selecione...'
-      .col-md-1
-        = f.label :order, class: 'fg-label'
-        = f.input :order, label: false, input_html: { placeholder: '' }
-    .row
-      .col-md-3
-        = f.label :link_external, class: 'fg-label'
-        = f.input :link_external, label: false, input_html: { placeholder: 'Digite um título'}
+        = f.association :category, prompt: 'Selecione...'
       .col-md-2
-        = f.label :type_nav, class: 'fg-label'
-        = f.input :type_nav, as: 'select',collection:Cms::Nav.type_navs.keys.to_a, label: false, prompt: 'Selecione...'
-    %hr/
+        = f.input :target, as: :select, collection: Cms::Nav.targets.keys.to_a, prompt: 'selecione...'
+      .col-md-1
+        = f.input :order, input_html: { placeholder: '' }
+      .col-md-2
+        = f.input :type_nav, as: 'select',collection:Cms::Nav.type_navs.keys.to_a, prompt: 'Selecione...'
     .row
+      .col-md-6
+        = f.input :link_external, input_html: { placeholder: 'Digite um título'}
       .col-md-2
         = f.input :publish, as: :select, include_blank: false
     %hr/
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button)}
-        = link_to 'Voltar',navs_path , class: 'btn btn-dark'
+        = link_to t(:button_back),navs_path , class: 'btn btn-default'

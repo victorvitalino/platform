@@ -1,9 +1,9 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 Novo menu
-    .panel-body
-      .row
-        .col-md-12
-          = render 'form'
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Novo menu
+      = link_to "Voltar para listagem", navs_path, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        = render 'form'

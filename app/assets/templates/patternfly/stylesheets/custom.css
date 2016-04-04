@@ -2,6 +2,9 @@ body {
   background-color: #FFF9F0  !important;
 }
 
+.nav-tabs > li {
+  margin-bottom: -2px !important; 
+}
 .label {
   border-radius: 3px !important;
   font-size: 100% !important; 

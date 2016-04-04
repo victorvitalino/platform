@@ -1,18 +1,32 @@
-.panel
-  .panel-heading
-    .panel-title
-      %h3 Consultas
-  .panel-body
+.row
+  .col-md-12
+    %h2 Consultas
+%br/
+.row
+  .col-md-12
+    .row
+      = simple_form_for url_for, method: :get do |f|
+        .col-md-2
+          = f.input :by_status, label: "Lido?", as: :select, selected: params[:by_status], include_blank: 'Todas', input_html: { name: 'by_status'}
+        .col-md-2
+          = f.input :by_responded, label: "Respondido?", as: :select, selected: params[:by_responded], include_blank: 'Todas', input_html: { name: 'by_responded'}
+        .col-md-2
+          = f.input :by_date, label: "Por data", as: :select, selected: params[:by_date], include_blank: 'Todas', input_html: { name: 'by_date'}
+        .col-md-2
+          = f.submit t(:filter_button), name: nil, class: 'btn btn-primary filter-button', data: { disable_with: t(:disable_with)}  
+%hr/
+.row
+  .col-md-12
     %table.table.table-striped.table-hover.table-bordered
       %thead
-        %tr.info
+        %tr
           %th #
           %th Data de envio
           %th Leitura
           %th Respondida
           %th Ação
       %tbody
-        - @project.consults.order('id DESC').each do |consult|
+        - @consults.order('id DESC').each do |consult|
           %tr
             %td.col-md-1= consult.id
             %td.col-md-2= consult.created_at.strftime('%d/%m/%Y às %H:%M')
@@ -23,3 +37,8 @@
                 = link_to "", project_consult_responded_path(project_id: @project, consult_id: consult), class: 'btn btn-warning btn-xs glyphicon glyphicon-check', title: "respondida" if consult.status && !consult.responded
                 = link_to "", project_consult_read_path(project_id: @project, consult_id: consult), class: 'btn btn-success btn-xs glyphicon glyphicon-check', title: "lida" if !consult.status
               = link_to "", project_consult_path(project_id: @project, id: consult), remote: true, class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs', title: "ler"
+
+.row
+  .col-md-12.paginate
+    = will_paginate @consults, renderer: BootstrapPagination::Rails
+

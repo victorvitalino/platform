@@ -5,7 +5,10 @@ module Cms
     belongs_to :category,  class_name: "Cms::NavCategory"
 
     scope :active, -> {where(publish: true)}
-
+    scope :by_title, -> (title) { where("name ILIKE concat('%', ?, '%')", title)}
+    scope :by_category, -> (category) { where(category_id: category)}
+    scope :by_publish,  -> (publish) { where(publish: publish)}
+    
     audited
     
     validates_presence_of :name

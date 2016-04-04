@@ -3,7 +3,7 @@ require_dependency "concourse/application_controller"
 module Concourse
   class ProjectsController < ApplicationController
     before_action :set_project, only: [:show, :edit, :update, :destroy]
-    layout 'shared/remark', only: [:index, :new, :edit]
+    layout 'patternfly/application', only: [:index, :new, :edit]
 
     def index
       @projects = Project.unscoped.all

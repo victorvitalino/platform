@@ -3,6 +3,8 @@ module Brb
     belongs_to :category
     belongs_to :state, class_name: "Address::State"
 
+    scope :paids, -> { where(status: 1)}
+
     enum status: ['não pago', 'pagamento realizado']
 
     validates :due, :cpf, :name, :address, :state, :city, :cep, presence: true
