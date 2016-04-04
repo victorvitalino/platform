@@ -6,7 +6,7 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/indicacao_30_03_16.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/situation_04_04_2016.csv", :col_sep => "#") do |row|
 
         #cpf = ''
         #if row[2].to_s.strip.present?
@@ -14,12 +14,10 @@ namespace :csv do
          #cpf = cpf.gsub('-','')
         #end
 
-       @address = Firm::EnterpriseCadastre.new({
-          enterprise_id:  row[3],
+       @address = Candidate::CadastreSituation.new({
           cadastre_id:  row[0],
-          status:  row[4],
-          source_list: row[2],
-          created_at: row[1],
+          situation_status_id:  row[1],
+          created_at: row[2],
 
         })
         #if row[2].to_i != 0
