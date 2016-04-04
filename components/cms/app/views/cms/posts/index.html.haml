@@ -41,7 +41,7 @@
                   %td= post.date.strftime('%d/%m/%Y')
                   %td.col-md-1
                     = link_to '', edit_post_path(post),title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs', data: {turbolinks: false} if policy(:post, namespace: Cms).update?
-                    = link_to '', post,title: 'Remover', :method => :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => 'Are you sure?' }, data: {turbolinks: false} if policy(:post, namespace: Cms).destroy?
+                    = link_to '', post,title: 'Remover', :method => :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => t(:confirm) } if policy(:post, namespace: Cms).destroy?
     .row
       .col-md-12.paginate
         = will_paginate @posts, renderer: BootstrapPagination::Rails

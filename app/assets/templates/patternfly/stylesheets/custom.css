@@ -2,6 +2,12 @@ body {
   background-color: #FFF9F0  !important;
 }
 
+.label {
+  border-radius: 3px !important;
+  font-size: 100% !important; 
+  padding: .1em .6em .1em !important;
+}
+
 .panel-default h4 a {
   color: #009DDB;
 }

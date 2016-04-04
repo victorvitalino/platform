@@ -1,13 +1,12 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Nova página
-          %span.pull-right
-            = link_to "pesquisar arquivos", archive.files_path, remote: true
-          %br/
-    .panel-body
-      .row
-        .col-md-12
-          = render 'form'
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Nova página
+      %span.pull-right
+        = link_to "Voltar para listagem", pages_path
+        |
+        = link_to "Pesquisar arquivos", archive.files_path, remote: true
+  .panel-body
+    .row
+      .col-md-12
+        = render 'form'
