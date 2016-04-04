@@ -1,7 +1,12 @@
 = simple_form_for @staff do |f|
-  = f.input :code, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua credencial'}
-  = f.input :password, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua senha'}
-  = f.submit 'Realizar acesso',  class: "btn btn-block btn-warning-login btn-float waves-effect waves-button waves-float" 
-%footer.page-copyright
-  %p Companhia de Desenvolvimento Habitacional / CODHAB
-  %p #{Date.today.year}
+  .form-group
+    .col-sm-12
+      = f.input :code, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua credencial'}
+  .form-group
+    .col-sm-10.col-md-12
+      = f.input :password, required: false, label: false, autofocus: true , input_html: {placeholder: 'Digite sua senha'}
+  .form-group
+    .col-xs-8.col-sm-offset-2.col-sm-6.col-md-offset-2.col-md-6
+    .col-sm-12
+      %button.btn.btn-warning.btn-lg{:tabindex => "4", :type => "submit"} Relizar o acesso
+/ /.col-*

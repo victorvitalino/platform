@@ -1,0 +1,61 @@
+.container
+  .row.box
+    .col-md-12
+      .box_internal
+        .col-md-12
+          .row
+            .col-md-12
+              %h3
+                %b
+                  = @old.fantasy_name
+          %hr/
+          .row
+            .col-md-12
+              %h5
+                %b Dados Gerais da Cooperativa
+          .row
+            .col-md-12
+              %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                %thead
+                  %tr
+                    %th Nome Fantasia
+                    %th Nome
+                %tbody
+                  %tr
+                    %td= @old.fantasy_name
+                    %td= @old.name
+                %thead
+                  %tr
+                    %th CNPJ
+                    %th Presidente
+                %tbody
+                  %tr
+                    %td= @old.cnpj
+                    %td= @old.president_name
+          %hr
+          .row
+            .col-md-12
+              %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                %thead
+                  %tr
+                    %th Nome
+                    %th Situação
+                %tbody
+                - if @old_candidate.present?
+                  - @old_candidate.each do |a|
+                    %tr
+                      %td= link_to a.cadastre.name, habitation_portal.candidate_path(a.cadastre.cpf)
+                      %td
+                        - if a.cadastre.current_situation_status == 'ok'
+                          %span.label.label-success
+                            = a.cadastre.current_situation_name
+                        - if a.cadastre.current_situation_status == 'pendente'
+                          %span.label.label-warning
+                            PENDENTE - #{a.cadastre.current_situation_name}
+                        - if a.cadastre.current_situation_status == 'cinza'
+                          %span.label.label-default
+                            PENDENTE - #{a.cadastre.current_situation_name}
+
+
+        .row
+      .row

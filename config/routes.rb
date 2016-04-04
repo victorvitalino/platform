@@ -15,6 +15,9 @@ end
 Rails.application.routes.draw do
 
   constraints SubdomainConstraint do
+    
+    post '/tinymce_assets' => 'archive/images#upload_file'
+
     mount Dashboard::Engine                => '/',               as: 'dashboard',        module: 'dashboard'
     mount Cms::Engine                      => "/cms",            as: 'cms',              module: 'portal'
     mount Person::Engine                   => "/pessoas",        as: 'person',           module: 'management'

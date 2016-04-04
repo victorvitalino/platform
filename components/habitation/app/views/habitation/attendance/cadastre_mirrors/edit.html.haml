@@ -1,11 +1,13 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h3 1º Passo - Atualização cadastral
-        %small
-          Formulário de atualização de cadastro
-    .panel-body
-      .row
-        .col-md-12
-          = render 'form'
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Atendimento - Atualização cadastral
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-12
+            = render 'layouts/habitation/attendance_tabs'
+        .row
+          .col-md-12
+            = render 'form'

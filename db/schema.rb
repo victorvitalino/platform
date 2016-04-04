@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322195456) do
+ActiveRecord::Schema.define(version: 20160404130534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -586,6 +586,52 @@ ActiveRecord::Schema.define(version: 20160322195456) do
   create_table "candidate_civil_states", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "candidate_comunids", force: :cascade do |t|
+    t.string   "code"
+    t.string   "block"
+    t.string   "group"
+    t.string   "unit"
+    t.string   "condominium"
+    t.string   "sector"
+    t.integer  "seal"
+    t.string   "code_letter"
+    t.string   "condition_interview"
+    t.string   "outher_condition"
+    t.string   "main_name"
+    t.string   "main_rg"
+    t.string   "main_cpf"
+    t.string   "main_born"
+    t.string   "main_uf_born"
+    t.string   "main_telephone"
+    t.string   "telephone_type"
+    t.string   "main_nationality"
+    t.integer  "total_family"
+    t.string   "interviewed"
+    t.string   "interviewed_rg"
+    t.string   "interviewed_position"
+    t.string   "residence_time"
+    t.string   "residence_time_cond"
+    t.string   "special_needs"
+    t.string   "name_single_spouse"
+    t.string   "residence_use"
+    t.string   "construction_type"
+    t.string   "number_floor"
+    t.string   "rent_value"
+    t.string   "water_supply"
+    t.string   "water_box"
+    t.string   "sewer"
+    t.string   "bath_condition"
+    t.string   "celeta_garbage"
+    t.string   "eletrical_energy"
+    t.string   "energy_standart"
+    t.string   "energy_standart_situation"
+    t.string   "flood"
+    t.string   "mail_receive"
+    t.string   "mail_box"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -1269,6 +1315,26 @@ ActiveRecord::Schema.define(version: 20160322195456) do
   end
 
   add_index "entity_messages", ["cadastre_id"], name: "index_entity_messages_on_cadastre_id", using: :btree
+
+  create_table "entity_old_candidates", force: :cascade do |t|
+    t.integer  "old_id"
+    t.integer  "cadastre_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "entity_old_candidates", ["cadastre_id"], name: "index_entity_old_candidates_on_cadastre_id", using: :btree
+  add_index "entity_old_candidates", ["old_id"], name: "index_entity_old_candidates_on_old_id", using: :btree
+
+  create_table "entity_olds", force: :cascade do |t|
+    t.string   "name"
+    t.string   "fantasy_name"
+    t.string   "cnpj"
+    t.string   "president_name"
+    t.string   "president_cpf"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "entity_realties", force: :cascade do |t|
     t.integer  "cadastre_id"

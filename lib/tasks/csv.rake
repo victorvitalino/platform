@@ -8,31 +8,25 @@ namespace :csv do
 
     CSV.foreach("lib/files/situation_04_04_2016.csv", :col_sep => "#") do |row|
 
-        #cpf = ''
-        #if row[2].to_s.strip.present?
-         #cpf = row[2].to_s.gsub('.','')
-         #cpf = cpf.gsub('-','')
-        #end
-
        @address = Candidate::CadastreSituation.new({
           cadastre_id:  row[0],
           situation_status_id:  row[1],
           created_at: row[2],
 
-        })
-        #if row[2].to_i != 0
 
-          #@assessment = Protocol::Assessment.find(row[2].to_i)
+        begin
+          @old.save
+          #puts @old.inspect
+          puts @index
+        rescue e => Exception
+          puts e
+        end
 
-          #if !@address.nil?
-            #@assessment.address = row[1]
-            @address.save
-            #puts @address.inspect
-            puts @index
-          #end
+        @index += 1
 
-          @index += 1
-       #end
+      else
+        puts 'não encontrado'
+      end
     end
   end
 end

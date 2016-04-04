@@ -39,6 +39,8 @@
                   %th Nome
                   %th CPF
                   %th Pontuação
+                  - if @candidates.first.program_id == 2
+                    %th Sigla
                   %th Situação
               %tbody
                 - @candidates.each do |candidate|
@@ -47,6 +49,8 @@
                     %td= link_to candidate.name, candidate_path(candidate.cpf), data: {disable_with: "Carregando aguarde..."}
                     %td= cpf_mask(candidate.cpf)
                     %td= candidate.total
+                    - if @candidates.first.program_id == 2
+                      %td= candidate.fantasy_name
                     %td
                       %span.label.label-success
                         - if candidate.cadastre.enterprise_cadastres.present?

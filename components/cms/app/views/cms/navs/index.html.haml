@@ -1,25 +1,24 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 
-          Menus
-          = link_to 'Novo menu', new_nav_path, class: 'btn btn-success btn-sm pull-right' if policy(:nav, namespace: Cms).new?
-    %hr/
-    .panel-body
-      %table.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th Título
-            %th Categoria
-            %th Publicado
-            %th Ações
-        %tbody
-          - @navs.order(:name).each do |nav|
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title 
+      Menus
+      = link_to 'Novo menu', new_nav_path, class: 'btn btn-success btn-sm pull-right' if policy(:nav, namespace: Cms).new?
+  .panel-body
+    .row
+      .col-md-12
+        %table.table.table-bordered.table-striped
+          %thead
             %tr
-              %td= nav.name
-              %td= nav.category.name if nav.category.present?
-              %td.col-md-1= status_helper (nav.publish)
-              %td.col-md-1
-                = link_to '', edit_nav_path(nav), class: 'glyphicon glyphicon-pencil btn-xs btn-primary btn' if policy(:nav, namespace: Cms).edit?
-                = link_to '', nav, class: 'glyphicon glyphicon-remove btn-xs btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) } if policy(:nav, namespace: Cms).destroy?
+              %th Título
+              %th Categoria
+              %th Publicado
+              %th Ações
+          %tbody
+            - @navs.order(:name).each do |nav|
+              %tr
+                %td= nav.name
+                %td= nav.category.name if nav.category.present?
+                %td.col-md-1= status_helper (nav.publish)
+                %td.col-md-1
+                  = link_to '', edit_nav_path(nav), class: 'glyphicon glyphicon-pencil btn-xs btn-primary btn' if policy(:nav, namespace: Cms).edit?
+                  = link_to '', nav, class: 'glyphicon glyphicon-remove btn-xs btn btn-danger', :method => :delete, :data => { :confirm => t(:confirm_delete) } if policy(:nav, namespace: Cms).destroy?

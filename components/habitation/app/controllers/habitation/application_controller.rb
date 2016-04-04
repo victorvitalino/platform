@@ -1,13 +1,13 @@
-require_dependency 'application_helper'
+require_dependency 'navigation_helper'
 
 module Habitation
   class ApplicationController < ActionController::Base
-    layout 'shared/remark'
+    layout 'patternfly/application'
 
     include Pundit
     include Authenticate::StaffService
     helper  Authenticate::StaffHelper
-    helper  Shared::NavHelper
+    helper  ::NavigationHelper
 
     before_action :authenticate_staff?
     

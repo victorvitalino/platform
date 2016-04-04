@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  fantasy_name: MyString
+  cnpj: MyString
+  president_name: MyString
+  president_cpf: MyString
+
+two:
+  name: MyString
+  fantasy_name: MyString
+  cnpj: MyString
+  president_name: MyString
+  president_cpf: MyString

@@ -1,0 +1,13 @@
+%ul.nav.nav-tabs
+  %li
+    %a{:href => "#{attendance_attendances_path(cpf: @mirror.cpf)}"} Voltar para Detalhamento
+  %li{class: (controller_name == "cadastre_mirrors") ? 'active' : ''}
+    %a{:href => "#"} Atualização cadastral
+  %li{class: (controller_name == "dependents") ? 'active' : ''}
+    %a{:href => "#{attendance_mirror_dependents_path(@mirror)}"} Atualização de Dependentes
+  %li
+    %a{:href => "#{new_attendance_mirror_checklist_path(@mirror)}"} Preenchimento de Checklist
+  %li
+    %a{:href => "#"} Finalização de atendimento
+%br/
+%br/

@@ -3,17 +3,15 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Extranet
-    = stylesheet_link_tag  'shared/extranet', media: 'all'
+    = stylesheet_link_tag  'patternfly', media: 'all'
     = csrf_meta_tags
-    
-    :css
-      body {
-        background-color: white !important;
-      }
-      .page-content {
-        background-image: url(/images/bg#{rand(1..4)}.jpg);
-        background-size: cover;
-        height: 100%;
-      }
-  %body.page-login-v2.layout-full.page-dark
-    = yield
+  
+  :css
+    body {
+      background-color: #ECECEC !important;
+    }
+
+  %body
+    .container
+      .col-md-7.col-md-offset-2
+        = yield

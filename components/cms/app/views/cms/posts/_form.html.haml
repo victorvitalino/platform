@@ -1,69 +1,62 @@
 = simple_form_for(@post) do |f|
-  .card-body.card-padding
-    .row
-      .col-md-8
-        = f.label :title, class: 'fg-label'
-        = f.input :title, label: false, input_html: { placeholder: 'Digite um titulo' }
-      .col-md-4
-        = f.label :post_category, class: 'fg-label'
-        = f.association :post_category, label: false, prompt: 'Selecione...'
-    .row
-      .col-md-12
-        = f.label :content,  class: 'fg-label'
-        = f.input :content, as: :hidden, label: false, input_html: { id: 'content'}
-        %trix-editor.trix-content{:input => "content"}
-    %hr/
-    .row
-      .col-md-2
-        = f.label :slider
-        = f.input :slider, label: false, as: :select, include_blank: false
-      .col-md-2
-        = f.label :publish
-        = f.input :publish, label: false, as: :select, include_blank: false
-      .col-md-2
-        = f.label :active_photo, as: :select, class: 'fg-label'
-        %br
-        = f.input :active_photo, as: :select, label: false, include_blank: false, input_html: { placeholder: 'Selecione' }
-      .col-md-2
-        = f.label :thumb, as: 'file', class: 'fg-label'
-        %br
-        = f.input :thumb, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
-      .col-md-2
-        = f.label :thumbnail, as: 'file', class: 'fg-label'
-        %br
-        = f.input :thumbnail, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
-    .row
-      .col-md-4
-        = f.label :author, class: 'fg-label'
-        = f.input :author, label: false, input_html: { placeholder: 'Ex: CODHAB' }
-      .col-md-4
-        = f.label 'Titulo do link', class: 'fg-label'
-        = f.input :label_link, label: false, input_html: { placeholder: 'Digite o rótulo do link' }
-      .col-md-4
-        = f.label :link, class: 'fg-label'
-        = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
-    %hr/
-    .row
-      .col-md-12
-        = f.label :resume
-        = f.input :resume,as: :hidden, label: false, input_html: { id: 'resume'}
-        %trix-editor.trix-content{:input => "resume"}
-    %hr/
-    .row
-      .col-md-2
-        = f.label :date, as: 'string', class: 'fg-label'
-        = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@post.date) ? localize(f.object.date) : nil}
-      .col-md-3
-        = f.label :photo_description, class: 'fg-label'
-        = f.input :photo_description, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
-      .col-md-3
-        = f.label :photo_author, class: 'fg-label'
-        = f.input :photo_author, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
-      .col-md-3
-        = f.label :flickr, class: 'fg-label'
-        = f.input :flickr, label: false, input_html: { placeholder: 'Digite o link do album' }
-    %hr/
-    .row
-      .col-md-12
-        = f.submit "Salvar Postagem", class: 'btn btn-success', data: {disable_with: t(:disable_with)}
-        = link_to 'Voltar',posts_path , class: 'btn btn-dark'
+  .row
+    .col-md-6
+      = f.label :title, class: 'fg-label'
+      = f.input :title, label: false, input_html: { placeholder: 'Digite um titulo' }
+    .col-md-4
+      = f.label :post_category, class: 'fg-label'
+      = f.association :post_category, label: false, prompt: 'Selecione...'
+    .col-md-2
+      = f.label :publish
+      = f.input :publish, label: false, as: :select, include_blank: false
+  .row
+    .col-md-12
+      = f.label :content,  class: 'fg-label'
+      = f.input :content, label: false, input_html: { id: 'content', class: 'tinymce', rows: 20, cols: 80}
+  %hr/
+  .row
+    .col-md-2
+      = f.input :thumbnail, as: :file
+      = link_to "visualizar arquivo atual", f.object.thumbnail.url, target: '_blank' if !f.object.thumbnail.to_s.empty?
+    .col-md-2
+      = f.input :active_photo, as: :select, include_blank: false
+    .col-md-4
+      = f.input :photo_author, input_html: { placeholder: 'Digite a descrição da foto' }
+    .col-md-4
+      = f.input :photo_description, input_html: { placeholder: 'Digite a descrição da foto' }
+  %hr/
+  .row
+    .col-md-2
+      = f.input :thumb, as: :file
+      = link_to "visualizar arquivo atual", f.object.thumb.url, target: '_blank' if !f.object.thumb.to_s.empty?
+
+    .col-md-2
+      = f.input :slider, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.label :flickr, class: 'fg-label'
+      = f.input :flickr, label: false, input_html: { placeholder: 'Digite o link do album' }
+  %hr/
+  .row
+    .col-md-12
+      = f.label :resume
+      = f.input :resume, label: false, input_html: { id: 'resume', class: 'tinymce', rows: 10, cols: 80}
+  %hr/
+  .row
+    .col-md-2
+      = f.label :date, as: 'string', class: 'fg-label'
+      = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@post.date) ? localize(f.object.date) : nil}
+    .col-md-4
+      = f.input :author, input_html: { placeholder: 'Ex: CODHAB' }
+    .col-md-3
+      = f.label 'Titulo do link', class: 'fg-label'
+      = f.input :label_link, label: false, input_html: { placeholder: 'Digite o rótulo do link' }
+    .col-md-3
+      = f.label :link, class: 'fg-label'
+      = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+      = link_to t(:button_back),posts_path , class: 'btn btn-default'

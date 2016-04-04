@@ -4,9 +4,13 @@ module Cms
   class PagesController < ApplicationController
     before_action :set_page, only: [:show, :edit, :update, :destroy]
 
-    # GET /pages
+    has_scope :by_title
+    has_scope :by_category
+    has_scope :by_publish
+
+
     def index
-      @pages = Page.all
+      @pages = apply_scopes(Page).paginate(:page => params[:page], :per_page => 20)
       authorize :page, :index?
     end
 

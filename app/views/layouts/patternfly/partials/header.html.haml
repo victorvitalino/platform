@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Extranet
+    = stylesheet_link_tag  'patternfly', media: 'all'
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,300", :rel => "stylesheet", :type => "text/css"}/
+    = csrf_meta_tags
+    :javascript
+      URL_BASE = "#{request.original_url}"
+    = javascript_include_tag 'patternfly', 'data-turbolinks-eval' => 'false'
+    :javascript
+      tinyMCE.init({
+        selector: 'textarea.tinymce',
+        language: 'pt_BR',
+        plugins : 'advlist autolink link uploadimage image lists charmap print preview'
+      });
+  %body
+    = render "layouts/patternfly/partials/top" if user_signed_in?
+    = render "layouts/patternfly/partials/subnav"
+    .container
+      = render "layouts/patternfly/partials/breadcrumb"
+      = render "partials/shared/remark/flash_message"

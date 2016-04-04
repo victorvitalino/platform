@@ -1,15 +1,12 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Editar postagem
-          %span.pull-right
-            = link_to "pesquisar arquivos", archive.files_path, remote: true
-          %br/
-          %small
-            Formulário de edição de postagem
-    .panel-body
-      .row
-        .col-md-12
-          = render 'form'
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Nova postagem
+      %span.pull-right
+        = link_to "voltar a listagem", posts_path
+        |
+        = link_to "pesquisar arquivos", archive.files_path, remote: true
+  .panel-body
+    .row
+      .col-md-12
+        = render 'form'

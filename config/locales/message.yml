@@ -5,3 +5,5 @@ pt-BR:
  confirm: "Deseja realmente excluir?"
  disabled_button: "Carregando..."
  disable_with: "Carregando..."
+ button_back: "Voltar"
+ filter_button: "Filtrar pesquisa"

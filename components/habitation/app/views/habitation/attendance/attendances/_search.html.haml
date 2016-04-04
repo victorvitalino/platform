@@ -4,5 +4,17 @@
       %label CPF (Somente números)
       = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
   .row
+    .col-md-2
+      = f.submit "Pesquisar CPF", name: nil, class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+  .row
     .col-md-12
-      = f.submit "Pesquisar CPF", name: nil, class: 'btn btn-success btn-lg', data: { disable_with: t(:disable_with)}
+      %ul.list-group.nav
+        - if @candidate.present?
+          %li
+            %hr/
+          - if policy(:cadastre, namespace: Candidate).update?
+            %li
+              %a{:href => "#{new_attendance_cadastre_mirror_path(id: @candidate)}", class: 'btn btn-default'} Iniciar novo atendimento
+          - if policy(:cadastre, namespace: Candidate).update_situation?
+            %li
+              %a{:href => "#{candidate.cadastre_cadastre_situation_path(@candidate)}", class: 'btn btn-default'} Auditor de atendimentos

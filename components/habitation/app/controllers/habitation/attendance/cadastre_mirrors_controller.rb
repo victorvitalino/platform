@@ -14,9 +14,10 @@ module Habitation
           @mirror = @cadastre.cadastre_mirrors.new
           @mirror.set_clone(@cadastre.attributes)
           @mirror.save
-          @mirror.set_clone_dependent
+          #@mirror.set_clone_dependent
 
-          redirect_to action: :edit, id: @mirror.id
+          flash[:success] = t :success
+          redirect_to attendance_attendances_path(cpf: @cadastre.cpf)
         end
       end
 
@@ -36,6 +37,7 @@ module Habitation
       private
 
       def set_params
+        params.require(:cadastre_mirror).permit(:cpf)
       end
 
       def set_cadastre_mirror

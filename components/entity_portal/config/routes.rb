@@ -1,10 +1,12 @@
 EntityPortal::Engine.routes.draw do
 
-  resources :cadastres, path: 'cadastros' do 
-    collection do 
+  resources :cadastres, path: 'cadastros' do
+    collection do
       get 'success', path: 'sucesso', as: 'success'
     end
   end
+
+  resources :olds, path: 'entidades_anteriores'
 
   get     'authorization',  path: 'acesso', to: 'authorization#new',      as: 'new_authorization'
   post    'authorization',  path: 'acesso', to: 'authorization#create',   as: 'authorization'

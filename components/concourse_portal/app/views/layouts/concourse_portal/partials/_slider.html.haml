@@ -2,12 +2,30 @@
   / Indicators
   %ol.carousel-indicators
     %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "3", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "4", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "5", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "6", "data-target" => "#carousel-example-generic"}
   / Wrapper for slides
   .carousel-inner{:role => "listbox"}
     .item.active
-      %img{:alt => "...", :src => "/concourse/ubs_slider_01.png"}/
-  / Controls
+      %img{:alt => "...", :src => "/concourse/cef_1.png"}
+    .item
+      %img{:alt => "...", :src => "/concourse/ubs_1.png"}
+    .item
+      %img{:alt => "...", :src => "/concourse/cei_1.png"}
+    .item
+      %img{:alt => "...", :src => "/concourse/cei_2.png"}
+    .item
+      %img{:alt => "...", :src => "/concourse/cei_3.png"}
+    .item
+      %img{:alt => "...", :src => "/concourse/cei_4.png"}
+
   %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
-    %span.sr-only 
+    %span{"aria-hidden" => "true"}
+    %span.sr-only Previous
   %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
-    %span.sr-only 
+    %span{"aria-hidden" => "true"}
+    %span.sr-only Next

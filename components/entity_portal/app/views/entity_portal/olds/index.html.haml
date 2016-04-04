@@ -1,0 +1,61 @@
+.container
+  .row.box
+    .col-md-12
+      .box_internal
+        .col-md-12
+          .row
+            .col-md-12
+              %h1
+                %b Lista Por Entidade
+          %hr/
+          .row
+            .col-md-12
+              = simple_form_for  url_for, method: 'get' do |f|
+                .row
+                  .col-md-4
+                    = f.label 'Nome', class: 'fg-label'
+                    = f.input :name_entity, label: false, input_html: { name: 'name_entity', value: params[:name_entity]}
+                  .col-md-2
+                    = f.label 'Sigla', class: 'fg-label'
+                    = f.input :code, label: false, input_html: { name: 'code', value: params[:code]}
+                  .col-md-2
+                    = f.label 'CNPJ', class: 'fg-label'
+                    = f.input :cnpj, label: false, input_html: { name: 'cnpj', value: params[:cnpj]}
+                  .col-md-2{style: 'padding-top: 25px'}
+                    = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+          .row
+            .col-md-12
+              %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                %thead
+                  %tr
+                    %th Sigla
+                    %th Nome
+                    %th CNPJ
+                    %th Status
+                %tbody
+                  - if @old.present?
+                    - @old.each do |list|
+                      %tr
+                        %td
+                          %b
+                            = list.fantasy_name
+                        %td= list.name
+                        %td= link_to list.cnpj, old_path(list.id)
+                        %td
+                          - if list.status == 'Credenciada'
+                            %span.label.label-success
+                              = list.status
+                          - if list.status == 'Descredenciada'
+                            %span.label.label-danger
+                              = list.status
+                          - if list.status == 'Não Credenciada'
+                            %span.label.label-warning
+                              = list.status
+                          - if list.status == 'Sobrestado'
+                            %span.label.label-default
+                              = list.status
+          .row
+            .col-md-7.col-md-offset-3
+              = will_paginate @old, renderer: BootstrapPagination::Rails
+          .row
+        .row

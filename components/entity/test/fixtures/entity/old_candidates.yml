@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  old_id: 
+  cadastre_id: 
+
+two:
+  old_id: 
+  cadastre_id: 

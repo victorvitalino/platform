@@ -1,39 +1,28 @@
 = simple_form_for(@page) do |f|
   .card-body.card-padding
     .row
-      .col-md-12
-        = f.label :title, class: 'fg-label'
-        = f.input :title, label: false, input_html: { placeholder: 'Digite um título'}
-      - if !@page.new_record?
-        .col-md-12
-          = f.label :slug, class: 'fg-label'
-          = f.input :slug, label: false, input_html: { placeholder: 'Digite o link da página'}
-
-    .row
-      .col-md-12
-        = f.label :content, class: 'fg-label'
-        = f.input :content, label: false, as: :hidden, input_html: { id: 'content'}
-        %trix-editor.trix-content{:input => "content"}
-    %hr/
-    .row
+      .col-md-7
+        = f.input :title, input_html: { placeholder: 'Digite um título'}
       .col-md-3
-        = f.label :thumbnail, as: 'file', class: 'fg-label'
-        = f.input :thumbnail, as: 'file', label: false, input_html: { placeholder: 'Selecione' }
-      .col-md-8
-        - if f.object.thumbnail?
-          = image_url f.object.thumbnail.url
-    %hr/
-    .row
-      .col-md-2
-        = f.label :page_category, class: 'fg-label'
-        = f.association :page_category, label: false, prompt: 'Selecione...'
+        = f.association :page_category, prompt: 'Selecione...'
       .col-md-2
         = f.label :publish
         = f.input :publish, as: :select, label: false, include_blank: false
-
+    .row
+      .col-md-12
+        = f.label :content, class: 'fg-label'
+        = f.input :content, label: false, input_html: { id: 'content', class: 'tinymce', rows: 20, cols: 80}
+    %hr/
+    .row
       .col-md-2
-        = f.label :active_photo, for: 'check2'
-        = f.input :active_photo, as: :select, label: false, include_blank: false
+        = f.input :active_photo, as: :select, include_blank: false
+      .col-md-2
+        = f.input :thumbnail, as: :file, input_html: { placeholder: 'Selecione' }
+      .col-md-4
+        = f.input :photo_author, input_html: { placeholder: 'Digite a descrição da foto' }
+      .col-md-4
+        = f.input :photo_description, input_html: { placeholder: 'Digite a descrição da foto' }
+    %hr/
     .row
       .col-md-4
         = f.label :author, class: 'fg-label'
@@ -44,18 +33,13 @@
       .col-md-4
         = f.label :link, class: 'fg-label'
         = f.input :link, label: false, input_html: { placeholder: 'Ex: http://www.codhab.df.gov.br' }
+    %hr/
     .row
-      .col-md-4
-        = f.label :photo_description, class: 'fg-label'
-        = f.input :photo_description, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
-      .col-md-4
-        = f.label :photo_author, class: 'fg-label'
-        = f.input :photo_author, label: false, input_html: { placeholder: 'Digite a descrição da foto' }
-      .col-md-4
+      .col-md-2
         = f.label :date, as: 'string', class: 'fg-label'
         = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@page.date) ? localize(f.object.date) : nil}
     %hr/
     .row
       .col-md-12
         = f.button :submit, class: 'btn btn-success', data: {disable_with: t(:disable_with)}
-        = link_to 'Voltar',pages_path , class: 'btn btn-dark'
+        = link_to t(:button_back) ,pages_path , class: 'btn btn-default'

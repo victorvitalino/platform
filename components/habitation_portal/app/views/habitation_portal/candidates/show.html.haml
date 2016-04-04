@@ -67,6 +67,26 @@
                       %td
                       %td
                       %td= @candidate.pontuations.last.total if @candidate.pontuations.present?
+          -if @candidate.old_candidates.present?
+            .row
+              .col-md-12
+                %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                  %thead
+                    %tr
+                      %th Nome Fantasia
+                      %th Nome
+                  %tbody
+                    %tr
+                      %td= @candidate.old_candidates.last.old.fantasy_name
+                      %td= @candidate.old_candidates.last.old.name
+                  %thead
+                    %tr
+                      %th CNPJ
+                      %th Presidente
+                  %tbody
+                    %tr
+                      %td= @candidate.old_candidates.last.old.cnpj
+                      %td= @candidate.old_candidates.last.old.president_name
           %hr/
           .row
             .col-md-12

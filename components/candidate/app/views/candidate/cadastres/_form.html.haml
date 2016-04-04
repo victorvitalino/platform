@@ -2,9 +2,8 @@
   .row
     .col-md-2
       = f.input :cpf, input_html: { disabled: true}
-  .row
-    .col-md-12
-      = f.input :name
+    .col-md-10
+      = f.input :name, input_html: { disabled: true}
   .row
     .col-md-2
       = f.input :rg
@@ -13,11 +12,7 @@
     .col-md-1
       = f.input :rg_uf
     .col-md-2
-      = f.input :born, as: :string, input_html: {class: 'date', value: f.object.born.present? ? localize(f.object.born) : ''}
-    .col-md-2
       = f.input :place_birth
-    .col-md-2
-      = f.input :gender, include_blank: false
   .row
     .col-md-2
       = f.input :telephone
@@ -44,20 +39,6 @@
   %hr/
   .row
     .col-md-2
-      = f.input :income, as: :string
-    .col-md-2
-      = f.input :nis, as: :string
-    .col-md-2
-      = f.input :cid, as: :string
-    .col-md-2
-      = f.label :special_conditional
-      = f.association :special_condition, label: false, include_blank: false
-    .col-md-2
-      = f.label :adapted_property
-      = f.input :adapted_property, as: :select, label: false, include_blank: false
-  %hr/
-  .row
-    .col-md-2
       = f.label :work_city
       = f.association :work_city, label: false,include_blank: false
     .col-md-4
@@ -65,20 +46,7 @@
     .col-md-2
       = f.input :work_cep
   %hr/
-  - unless f.object.password.present?
-    .row
-      .col-md-2
-        = f.input :password
-      .col-md-2
-        = f.input :password_confirmation
-  %hr/
   .row
     .col-md-12
-      %h4.bold Dependentes
-      .row  
-        = f.simple_fields_for :dependents do |builder|
-          .col-md-12
-            = render 'dependent_fields', f: builder
-            
-        = link_to_add_fields "adicionar dependente", f, :dependents
-    %hr/
+      = f.submit "Atualizar cadastro", class: 'btn btn-success'
+      = link_to "Voltar para detalhamento", cadastres_path(cpf: @candidate.cpf), class: 'btn btn-default'
