@@ -24,9 +24,10 @@ module HabitationPortal
     def detail
 
       @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
+      @positions = @candidate.positions.where(program_id: params[:program_id]).map { |key| [key.position, [key.created_at.year, key.created_at.month, key.created_at.day]]}
 
       respond_to do |format|
-        format.json { render json: @candidate.positions}
+        format.json { render json: @positions}
         format.html { @candidate }
       end
     end
