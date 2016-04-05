@@ -6,9 +6,9 @@ module Address
         
     include Authenticate::StaffService
     helper  Authenticate::StaffHelper
-    helper  Shared::NavHelper
+    helper  ::NavigationHelper
     
-    #before_action :authenticate_staff?
+    before_action :authenticate_staff?
     
     include Pundit
 

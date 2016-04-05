@@ -1,15 +1,14 @@
 require_dependency 'authenticate/staff_service'
 require_dependency 'authenticate/staff_helper'
-require_dependency 'shared/nav_helper'
 
 module Archive
   class ApplicationController < ActionController::Base
-    layout 'shared/remark'
+    layout 'patternfly/application'
     
     include Pundit
     include Authenticate::StaffService
     helper  Authenticate::StaffHelper
-    helper  Shared::NavHelper
+    helper  ::NavigationHelper
     
     before_action :authenticate_staff?
 

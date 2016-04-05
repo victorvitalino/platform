@@ -21,7 +21,7 @@
           %a.navbar-avatar.dropdown-toggle{"aria-expanded" => "false", "data-animation" => "scale-up", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             %span.avatar.avatar-online
               - if current_user.account.avatar?
-                %img{:alt => "...", :src => "#{current_user.account.avatar_url}", :class => 'img-circle'}/
+                %img{:alt => "...", :src => "#{current_user.account.avatar_url}", :width => 30, :class => 'img-circle'}/
                 %i
               - else
                 %img{:alt => "...", :src => "/images/default-avatar.png", :width => 30, :class => 'img-circle'}/

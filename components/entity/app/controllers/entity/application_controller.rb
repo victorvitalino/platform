@@ -2,12 +2,11 @@ require_dependency 'shared/application_helper'
 
 module Entity
   class ApplicationController < ActionController::Base
-    layout 'shared/remark'
+    layout 'patternfly/application'
 
     include Authenticate::StaffService
     helper  Authenticate::StaffHelper
-    helper  Shared::ApplicationHelper
-    helper  Shared::NavHelper
+    helper  ::NavigationHelper
 
     before_action :authenticate_staff?
 
