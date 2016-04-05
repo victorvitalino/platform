@@ -3,52 +3,52 @@ nav:
     info:
       module: 'protocol'
       label: "Protocolo"
-      code: 30
+      code: 310
       icon: 'wb-order'
       link: '#'
     modules:
       assessments:
-        code: 0
+        code: 31004
         label: 'Autuação'
         controller: '#'
         sub:
           new_assessments:
             module: 'protocol'
-            code: 0
+            code: 31001
             label: 'Nova'
             controller: '/protocol/assessments'
             action: 'new'
           assessments:
             module: 'protocol'
-            code: 0
+            code: 31004
             label: 'Lista'
             controller: '/protocol/assessments'
             action: 'index'
       processing:
-        code: 0
+        code: 311
         label: 'Tramitação'
         controller: '#'
         sub:
           allotments:
             module: 'protocol'
-            code: 0
+            code: 31004
             label: 'Lista'
             controller: '/protocol/allotments'
             action: 'index'
           receive:
             module: 'protocol'
-            code: 0
+            code: 31102
             label: 'Receber'
             controller: '/protocol/conducts'
-            action: 'receive'          
+            action: 'receive'
           return:
             module: 'protocol'
-            code: 0
+            code: 31105
             label: 'Cancelar'
             controller: '/protocol/conducts'
-            action: 'return' 
+            action: 'return'
       location:
-        code: 0
+        code: 31201
         label: 'Localização'
         controller: '#'
         sub:
@@ -59,30 +59,30 @@ nav:
             controller: '/protocol/locations'
             action: 'new'
       report:
-        code: 0
+        code: 31301
         label: 'Relatórios'
         controller: '#'
         sub:
           locations:
             module: 'protocol'
-            code: 0
+            code: 31301
             label: 'Remessas'
             controller: '/protocol/reports'
             action: 'new'
       config:
-        code: 0
+        code: 314
         label: 'Configuração'
         controller: '#'
         sub:
           document_types:
             module: 'protocol'
-            code: 0
+            code: 31404
             label: 'Tipo de documento'
             controller: '/protocol/document_types'
             action: 'index'
           subjects:
             module: 'protocol'
-            code: 0
+            code: 31408
             label: 'Assuntos'
             controller: '/protocol/subjects'
             action: 'index'
