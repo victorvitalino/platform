@@ -13,12 +13,12 @@ module Concourse
     def view_all
       authorize :candidate, :index?
       
-      @candidates = apply_scopes(Concourse::Candidate).paginate(:page => params[:page], :per_page => 20)
+      @candidates = apply_scopes(Concourse::Candidate).all
       render layout: 'shared/remark'
     end
 
     def index
-      @candidates = apply_scopes(Concourse::Candidate).paginate(:page => params[:page], :per_page => 20)
+      @candidates = @project.candidates
       authorize :candidate, :index?
     end
 
