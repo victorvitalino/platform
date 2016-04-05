@@ -1,10 +1,10 @@
 module Schedule
   class ApplicationController < ActionController::Base
-    layout 'shared/remark'
+    layout 'patternfly/application'
 
     include Authenticate::StaffService
     helper  Authenticate::StaffHelper
-    helper  Shared::NavHelper
+    helper  ::NavigationHelper
 
     include Pundit
   end

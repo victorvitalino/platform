@@ -2,12 +2,12 @@ require_dependency 'authenticate/staff_service'
 
 module Brb
   class ApplicationController < ActionController::Base
-    layout 'shared/remark'
+    layout 'patternfly/application'
 
     include Pundit
     include Authenticate::StaffService
     helper  Authenticate::StaffHelper
-    helper  Shared::NavHelper
+    helper  ::NavigationHelper
 
     before_action :authenticate_staff?
   end

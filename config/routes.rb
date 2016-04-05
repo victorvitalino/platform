@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     mount Dashboard::Engine                => '/',               as: 'dashboard',        module: 'dashboard'
     mount Cms::Engine                      => "/cms",            as: 'cms',              module: 'portal'
     mount Person::Engine                   => "/pessoas",        as: 'person',           module: 'management'
-    mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',         module: 'management'
+    #mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',         module: 'management'
     mount Protocol::Engine                 => "/protocolo",      as: 'protocol',         module: 'protocol'
     mount Juridical::Engine                => "/juridico",      as: 'juridical',         module: 'juridical'
     mount Attendance::Engine               => "/atendimento",    as: 'attendance',       module: 'habitation'

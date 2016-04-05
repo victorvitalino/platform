@@ -79,7 +79,7 @@ path 'components' do
   gem 'dashboard'
   gem 'person'
   gem 'cms'
-  gem 'helpdesk'
+  #gem 'helpdesk'
   gem 'protocol'
   gem 'concourse'
   gem 'concourse_portal'
