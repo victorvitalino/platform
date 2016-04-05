@@ -6,19 +6,6 @@
 %hr/
 .row
   .col-md-12
-    .row
-      = simple_form_for url_for, method: :get do |f|
-        .col-md-2
-          = f.input :by_id, label: "Nº inscrição", input_html: { name: 'by_id', value: params[:by_id]}
-        .col-md-2
-          = f.input :by_cpf, label: "CPF", input_html: { name: 'by_cpf', value: params[:by_cpf]}
-        .col-md-2
-          = f.input :by_situation, label: "Situação", as: :select, collection: Concourse::Candidate.statuses.map { |k,v| [k.humanize, v]}, selected: params[:by_situation], include_blank: 'Todas', input_html: { name: 'by_situation'}
-        .col-md-2
-          = f.submit t(:filter_button), name: nil, class: 'btn btn-primary filter-button', data: { disable_with: t(:disable_with)}
-%hr/
-.row
-  .col-md-12
     Total listado: #{@candidates.count}
 %hr/
 .row
@@ -35,7 +22,7 @@
           %th Status
           %th Ação
       %tbody
-        - @candidates.order(:id).each_with_index do |candidate, index|
+        - @project.candidates.order(:id).each_with_index do |candidate, index|
           %tr
             %td= candidate.id
             %td= candidate.subscribe.title if candidate.subscribe.present?
@@ -53,6 +40,3 @@
               %span.label.label-danger= "Indeferido" if candidate.indeferido? 
             %td
               = link_to "", project_candidate_path(project_id: @project, id: candidate), class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs', title: "visualizar"
-.row
-  .col-md-12.paginate
-    = will_paginate @candidates, renderer: BootstrapPagination::Rails

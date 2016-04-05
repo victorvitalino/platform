@@ -6,9 +6,9 @@
     .row.form-filter
       = simple_form_for url_for, method: :get do |f|
         .col-md-4
-          = f.input :concourse, as: :select, collection: Concourse::Project.all.order(:id), input_html: { name: 'by_concourse'}, selected: params[:by_concourse], include_blank: "Todos"
+          = f.input :concourse, as: :select, label: "por concurso", collection: Concourse::Project.all.order(:id), input_html: { name: 'by_concourse'}, selected: params[:by_concourse], include_blank: "Todos"
         .col-md-2
-          = f.input :by_status, as: :select, collection: Concourse::Candidate.statuses.map {|k,v| [k,v]}, input_html: { name: 'by_status'}, selected: params[:by_status], include_blank: "Todos"
+          = f.input :by_status, label: "por status", as: :select, collection: Concourse::Candidate.statuses.map {|k,v| [k,v]}, input_html: { name: 'by_status'}, selected: params[:by_status], include_blank: "Todos"
 
         .col-md-3
           = f.submit "Filtar pesquisa", name: nil, class: 'btn btn-primary btn-sm', data: { disable_with: t(:disable_with)}
@@ -67,6 +67,3 @@
 
                 %td
                   = link_to "", project_candidate_path(project_id: candidate.subscribe.project_id, id: candidate.id), class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs', title: "visualizar"
-    .row
-      .col-md-12.paginate
-        = will_paginate @posts, renderer: BootstrapPagination::Rails
