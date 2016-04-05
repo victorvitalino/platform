@@ -40,6 +40,7 @@
                   %tr
                     %th Nome
                     %th CPF
+                    %th Pontuação
                     %th Situação
                 %tbody
                 - if @old_candidate.present?
@@ -47,10 +48,14 @@
                     %tr
                       %td= link_to a.cadastre.name, habitation_portal.candidate_path(a.cadastre.cpf)
                       %td= a.cadastre.cpf.format_obfuscator_cpf
+                      %td= a.cadastre.pontuations.last.total
                       %td
                         - if a.cadastre.current_situation_status == 'ok'
                           %span.label.label-success
-                            = a.cadastre.current_situation_name
+                            - if a.cadastre.enterprise_cadastres.present? && a.cadastre.current_situation_name == "HABILITADO"
+                              = "#{a.cadastre.current_situation_name} - INDICADO"
+                            -  else
+                              = "#{a.cadastre.current_situation_name}"
                         - if a.cadastre.current_situation_status == 'pendente'
                           %span.label.label-warning
                             PENDENTE - #{a.cadastre.current_situation_name}
