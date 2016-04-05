@@ -6,6 +6,7 @@ module EntityPortal
     has_scope :name_entity
     has_scope :code
     has_scope :cnpj
+    has_scope :status
 
     def index
         @old = Entity::Old.order(:name).all

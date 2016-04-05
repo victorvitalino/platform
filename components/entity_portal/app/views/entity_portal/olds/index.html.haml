@@ -18,9 +18,13 @@
                   .col-md-2
                     = f.label 'Sigla', class: 'fg-label'
                     = f.input :code, label: false, input_html: { name: 'code', value: params[:code]}
-                  .col-md-2
+                .row
+                  .col-md-3
                     = f.label 'CNPJ', class: 'fg-label'
                     = f.input :cnpj, label: false, input_html: { name: 'cnpj', value: params[:cnpj]}
+                  .col-md-3
+                    = f.label 'Status', class: 'fg-label'
+                    = f.input :status, as: :select, collection: Entity::Old.select(:old).distinct, label: false, label_method: :old, value_method: :old, prompt: 'selecione um status...',input_html:  { name: 'status', value: params[:status]}
                   .col-md-2{style: 'padding-top: 25px'}
                     = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
           .row
@@ -42,18 +46,18 @@
                         %td= list.name
                         %td= link_to list.cnpj, old_path(list.id)
                         %td
-                          - if list.status == 'Credenciada'
+                          - if list.old == 'Credenciada'
                             %span.label.label-success
-                              = list.status
-                          - if list.status == 'Descredenciada'
+                              = list.old
+                          - if list.old == 'Descredenciada'
                             %span.label.label-danger
-                              = list.status
-                          - if list.status == 'Não Credenciada'
+                              = list.old
+                          - if list.old == 'Não Credenciada'
                             %span.label.label-warning
-                              = list.status
-                          - if list.status == 'Sobrestado'
+                              = list.old
+                          - if list.old == 'Sobrestado'
                             %span.label.label-default
-                              = list.status
+                              = list.old
           .row
             .col-md-7.col-md-offset-3
               = will_paginate @old, renderer: BootstrapPagination::Rails
