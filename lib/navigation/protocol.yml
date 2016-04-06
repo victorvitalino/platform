@@ -3,7 +3,7 @@ nav:
     info:
       module: 'protocol'
       label: "Protocolo"
-      code: 310
+      code: 31
       icon: 'wb-order'
       link: '#'
     modules:
