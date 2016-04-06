@@ -57,15 +57,15 @@
 :javascript
 jQuery(document).ready(function(){
   $(function () {
-      $.getJSON('http://localhost:3000/habitacao/candidato/24792101115/detalhe.json', function (data) {
-          console.log(data);
+      $.getJSON("http://www.codhab.df.gov.br/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=1", function (data) {
+
           var ex = [];
-          var ey = [Date.UTC(2013,5,2),0.7695];
           $.each(data,function(index){
-              ex.push(Date.parse(data[index].created_at), data[index].position);
+              ex.push([Date.UTC(data[index][1][0],data[index][1][1]-1,data[index][1][2]),data[index][0],data[index][2]]);
           });
-          console.log(ex);
+            console.log(ex);
           $('#container').highcharts({
+
               chart: {
                   zoomType: 'x'
               },
@@ -85,7 +85,7 @@ jQuery(document).ready(function(){
                   }
               },
               legend: {
-                  enabled: false
+                  enabled: true
               },
               plotOptions: {area: {
                       fillColor: {
@@ -93,7 +93,7 @@ jQuery(document).ready(function(){
                               x1: 0,
                               y1: 0,
                               x2: 0,
-                              y2: 1
+                              y2: 2
                           },
                           stops: [
                               [0, Highcharts.getOptions().colors[0]],
@@ -116,9 +116,30 @@ jQuery(document).ready(function(){
               series: [{
                   type: 'area',
                   name: 'Posição',
-                  myData: 'coisa',
-                  data:ey
-              }]
+                  myData: ex[2],
+                  data:ex
+              }],
+              tooltip: {
+                useHTML: true,
+                formatter: function() {
+                var serie = this.series;
+                //console.log (serie);
+                var s = '<b>' + Highcharts.dateFormat('%a, %b %e, %Y', this.x) + '</b><br>';
+                s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Mudança de Faixa</span>: <b>' + serie.options.myData[2].change_zone + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Contemplados no dia</span>: <b>' + serie.options.myData[2].contemplateds_day + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Habilitados no dia</span>: <b>' + serie.options.myData[2].enables_day + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Sobrestado</span>: <b>' + serie.options.myData[2].halted + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Tempo de lista</span>: <b>' + serie.options.myData[2].time_list + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Chegada no DF</span>: <b>' + serie.options.myData[2].update_arrival_df + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Atualização de dados</span>: <b>' + serie.options.myData[2].update_data + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Atualização de dependentes</span>: <b>' + serie.options.myData[2].update_dependents + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Atualização de renda</span>: <b>' + serie.options.myData[2].update_incomes + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Atualização de idoso</span>: <b>' + serie.options.myData[2].update_old + '</b><br/>';
+                s += '<span style="color:' + serie.color + '">Atualização de condições especiais</span>: <b>' + serie.options.myData[2].update_special_conditions + '</b><br/>';
+                return s;
+                }
+            }
           });
       });
   });
