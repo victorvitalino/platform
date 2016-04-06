@@ -43,7 +43,7 @@ module ConcoursePortal
 
 
     def crazy(email)
-      mail(to: email, subject: "CODHAB - Vencimento de boleto CEF (09 de março)")
+      mail(to: email, subject: "CODHAB - Envio dos projetos - CEF")
     end
   end
 end
