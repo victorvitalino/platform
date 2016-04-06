@@ -26,8 +26,8 @@ namespace :send_mail do
 
   desc 'treta'
   task :crazy => :environment do 
-    @candidates = Concourse::Candidate.where(subscribe_id: 3)
-
+    @candidates = Concourse::Candidate.where(subscribe_id: 3, status: 2)
+    puts @candidates.count
     @candidates.each do |candidate|
       if ConcoursePortal::SubscribeMailer.crazy(candidate.email).deliver_now
         puts candidate.email

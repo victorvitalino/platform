@@ -150,7 +150,7 @@
                 %tbody
                   %tr
                     %td{colspan: 3}= @candidate.name
-                    %td= cpf_mask(@candidate.cpf)
+                    %td= @candidate.cpf.format_obfuscator_cpf
                     %td= @candidate.gender
                     %td= @candidate.civil_state.name if @candidate.civil_state.present?
                 %thead

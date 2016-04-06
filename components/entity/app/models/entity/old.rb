@@ -7,5 +7,7 @@ module Entity
     scope :code,  -> (code) {where(fantasy_name: code)}
     scope :cnpj,  -> (cnpj) {where(cnpj: cnpj)}
     scope :status,  -> (status) {where(old: status)}
+
+
   end
 end

@@ -47,7 +47,7 @@
                   %tr
                     %td.col-md-1= @geral.map(&:cpf).find_index(candidate.cpf) + 1
                     %td= link_to candidate.name, candidate_path(candidate.cpf), data: {disable_with: "Carregando aguarde..."}
-                    %td= cpf_mask(candidate.cpf)
+                    %td= candidate.cpf.format_obfuscator_cpf
                     %td= candidate.total
                     - if @candidates.first.program_id == 2
                       %td= candidate.fantasy_name
