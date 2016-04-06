@@ -4,7 +4,7 @@ module Habitation
   module Attendance
     class ChecklistsController < ApplicationController
       
-      def edit
+      def index
       end
 
       def update

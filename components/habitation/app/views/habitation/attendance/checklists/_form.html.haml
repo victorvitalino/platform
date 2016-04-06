@@ -1,0 +1,14 @@
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Item
+      %th Descrição
+      %th Autenticado
+      %th Checado
+  %tbody
+    - Candidate::Checklist.where(program_id: 2).each do |check|
+      %tr
+        %td= check.name
+        %td= check.id
+        %td.col-md-2= link_to "Não autenticado"
+        %td.col-md-2= link_to "Não checado"
