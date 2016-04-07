@@ -22,7 +22,6 @@
           %br/
           .row
             .col-md-12{style: 'text-align: center'}
-              #container{:style => "min-width: 310px; height: 400px; margin: 0 auto"}
               #container_zueira
           .row
             .col-md-12
@@ -59,92 +58,98 @@
 jQuery(document).ready(function(){
   $(function () {
       var url_json = "http://www.codhab.df.gov.br/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=";
-        for (x = 1; x <= 7;x++){
+        function get_json(y){
+          $.getJSON(url_json+y, function (data) {
+                  if(data.length > 0){
+                      var ex = [];
+                      $.each(data,function(index){
+                          ex.push([Date.UTC(data[index][1][0],data[index][1][1]-1,data[index][1][2]),data[index][0],data[index][2]]);
+                      });
+                      $('.container_grafico_'+y).highcharts({
 
-        }
-      $.getJSON("/teste.json", function (data) {
-
-          var ex = [];
-          $.each(data,function(index){
-              ex.push([Date.UTC(data[index][1][0],data[index][1][1]-1,data[index][1][2]),data[index][0],data[index][2]]);
-          });
-          $('#container').highcharts({
-
-              chart: {
-                  zoomType: 'x'
-              },
-              title: {
-                  text: 'Posição diaria'
-              },
-              subtitle: {
-                  text: document.ontouchstart === undefined ?
-                          'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-              },
-              xAxis: {
-                  type: 'datetime'
-              },
-              yAxis: {
-                  title: {
-                      text: 'Posição'
-                  }
-              },
-              legend: {
-                  enabled: true
-              },
-              plotOptions: {area: {
-                      fillColor: {
-                          linearGradient: {
-                              x1: 0,
-                              y1: 0,
-                              x2: 0,
-                              y2: 2
+                          chart: {
+                              zoomType: 'x'
                           },
-                          stops: [
-                              [0, Highcharts.getOptions().colors[0]],
-                              [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                          ]
-                      },
-                      marker: {
-                          radius: 0
-                      },
-                      lineWidth: 1,
-                      states: {
-                          hover: {
-                              lineWidth: 1
-                          }
-                      },
-                      threshold: null
-                  },
+                          title: {
+                              text: 'Posição diaria'
+                          },
+                          subtitle: {
+                              text: document.ontouchstart === undefined ?
+                                      'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                          },
+                          xAxis: {
+                              type: 'datetime'
+                          },
+                          yAxis: {
+                              title: {
+                                  text: 'Posição'
+                              }
+                          },
+                          legend: {
+                              enabled: true
+                          },
+                          plotOptions: {area: {
+                                  fillColor: {
+                                      linearGradient: {
+                                          x1: 0,
+                                          y1: 0,
+                                          x2: 0,
+                                          y2: 2
+                                      },
+                                      stops: [
+                                          [0, Highcharts.getOptions().colors[0]],
+                                          [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                      ]
+                                  },
+                                  marker: {
+                                      radius: 0
+                                  },
+                                  lineWidth: 1,
+                                  states: {
+                                      hover: {
+                                          lineWidth: 1
+                                      }
+                                  },
+                                  threshold: null
+                              },
 
-              },
-              series: [{
-                  type: 'line',
-                  name: 'Posição',
-                  myData: ex[2],
-                  data:ex
-              }],
-              tooltip: {
-                useHTML: true,
-                formatter: function() {
-                var serie = this.series;
-                //console.log (serie);
-                var s = '<b>' + Highcharts.dateFormat('%a, %b %e, %Y', this.x) + '</b><br>';
-                s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Mudança de Faixa</span>: <b>' + serie.options.myData[2].change_zone + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Contemplados no dia</span>: <b>' + serie.options.myData[2].contemplateds_day + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Habilitados no dia</span>: <b>' + serie.options.myData[2].enables_day + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Sobrestado</span>: <b>' + serie.options.myData[2].halted + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Tempo de lista</span>: <b>' + serie.options.myData[2].time_list + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Chegada no DF</span>: <b>' + serie.options.myData[2].update_arrival_df + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Atualização de dados</span>: <b>' + serie.options.myData[2].update_data + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Atualização de dependentes</span>: <b>' + serie.options.myData[2].update_dependents + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Atualização de renda</span>: <b>' + serie.options.myData[2].update_incomes + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Atualização de idoso</span>: <b>' + serie.options.myData[2].update_old + '</b><br/>';
-                s += '<span style="color:' + serie.color + '">Atualização de condições especiais</span>: <b>' + serie.options.myData[2].update_special_conditions + '</b><br/>';
-                return s;
-                }
-            }
+                          },
+                          series: [{
+                              type: 'line',
+                              name: 'Posição',
+                              myData: ex[2],
+                              data:ex
+                          }],
+                          tooltip: {
+                            useHTML: true,
+                            formatter: function() {
+                            var serie = this.series;
+                            //console.log (serie);
+                            var s = '<b>' + Highcharts.dateFormat('%a, %b %e, %Y', this.x) + '</b><br>';
+                            s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Mudança de Faixa</span>: <b>' + serie.options.myData[2].change_zone + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Contemplados no dia</span>: <b>' + serie.options.myData[2].contemplateds_day + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Habilitados no dia</span>: <b>' + serie.options.myData[2].enables_day + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Sobrestado</span>: <b>' + serie.options.myData[2].halted + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Tempo de lista</span>: <b>' + serie.options.myData[2].time_list + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Chegada no DF</span>: <b>' + serie.options.myData[2].update_arrival_df + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Atualização de dados</span>: <b>' + serie.options.myData[2].update_data + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Atualização de dependentes</span>: <b>' + serie.options.myData[2].update_dependents + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Atualização de renda</span>: <b>' + serie.options.myData[2].update_incomes + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Atualização de idoso</span>: <b>' + serie.options.myData[2].update_old + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Atualização de condições especiais</span>: <b>' + serie.options.myData[2].update_special_conditions + '</b><br/>';
+                            return s;
+                            }
+                        }
+                      });
+
+                    }
           });
-      });
+      }
+
+        for (x = 1; x <= 7;x++){
+          $("<div class='container_grafico_"+ x +"'></div>").appendTo('#container_zueira');
+            get_json(x);
+          }
   });
 });
