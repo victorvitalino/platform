@@ -10,9 +10,10 @@ module Candidate
     belongs_to :work_city, class_name: "Address::City"
     belongs_to :cadastre
 
-    has_many :dependent_mirrors
-    has_one :pontuation
+    has_many :dependent_mirrors, dependent: :destroy
+    has_many :attendance_logs
 
+    has_one :pontuation
 
     enum situation: ['em_progresso','pendente', 'aprovado']
     enum gender: ['N/D', 'masculino', 'feminino']
@@ -30,12 +31,21 @@ module Candidate
       end
     end
 
-    def set_clone_dependent
-      @dependents = self.cadastre.dependents 
-      @dependents.each do |dependent|
-        @dependent = self.dependent_mirrors.new(dependent.attributes)
-        @dependent.save
+    def set_clone_dependent(dependents = {})
+      
+      dependents.each do |dependent|
+
+        @new_dependent = self.dependent_mirrors.new 
+
+        dependent.attributes.each do |key, value|
+          unless %w(id created_at updated_at).include? key 
+            @new_dependent[key] = value
+          end
+        end
+
+        @new_dependent.save!
       end
+
     end
 
     def arrival_df_time(date)
@@ -45,5 +55,20 @@ module Candidate
     def timelist_time(date)
       date.year - self.created_at.year
     end
+
+
+    # => logs
+
+    def attendance_log!(content, user_id)
+      cadastre = Candidate::Cadastre.find(self.cadastre_id)
+
+      cadastre.attendance_logs.create({
+        cadastre_id: cadastre.id,
+        cadastre_mirror_id: self.id,
+        content: content,
+        user_id: user_id
+      })
+    end
+
   end
 end

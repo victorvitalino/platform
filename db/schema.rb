@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404203732) do
+ActiveRecord::Schema.define(version: 20160407141220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -315,6 +315,19 @@ ActiveRecord::Schema.define(version: 20160404203732) do
   end
 
   add_index "candidate_activity_statuses", ["code"], name: "index_candidate_activity_statuses_on_code", unique: true, using: :btree
+
+  create_table "candidate_attendance_logs", force: :cascade do |t|
+    t.integer  "cadastre_mirror_id"
+    t.integer  "cadastre_id"
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "candidate_attendance_logs", ["cadastre_id"], name: "index_candidate_attendance_logs_on_cadastre_id", using: :btree
+  add_index "candidate_attendance_logs", ["cadastre_mirror_id"], name: "index_candidate_attendance_logs_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_attendance_logs", ["user_id"], name: "index_candidate_attendance_logs_on_user_id", using: :btree
 
   create_table "candidate_attendance_statuses", force: :cascade do |t|
     t.string   "name"
@@ -1631,12 +1644,14 @@ ActiveRecord::Schema.define(version: 20160404203732) do
     t.integer  "staff_id_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.integer  "old_id"
   end
 
   add_index "juridical_legal_advices", ["document_type_id"], name: "index_juridical_legal_advices_on_document_type_id", using: :btree
   add_index "juridical_legal_advices", ["housing_program_id"], name: "index_juridical_legal_advices_on_housing_program_id", using: :btree
   add_index "juridical_legal_advices", ["instancy_place_id"], name: "index_juridical_legal_advices_on_instancy_place_id", using: :btree
   add_index "juridical_legal_advices", ["lawsuit_id"], name: "index_juridical_legal_advices_on_lawsuit_id", using: :btree
+  add_index "juridical_legal_advices", ["old_id"], name: "index_juridical_legal_advices_on_old_id", using: :btree
   add_index "juridical_legal_advices", ["responsible_lawyer_id"], name: "index_juridical_legal_advices_on_responsible_lawyer_id", using: :btree
   add_index "juridical_legal_advices", ["staff_id_id"], name: "index_juridical_legal_advices_on_staff_id_id", using: :btree
 

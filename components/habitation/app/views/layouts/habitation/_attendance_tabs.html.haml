@@ -2,12 +2,12 @@
   %li
     %a{:href => "#{attendance_attendances_path(cpf: @mirror.cpf)}"} Voltar para Detalhamento
   %li{class: (controller_name == "cadastre_mirrors") ? 'active' : ''}
-    %a{:href => "#"} Atualização cadastral
+    %a{:href => "#{edit_attendance_cadastre_mirror_path(@mirror)}"} Atualização cadastral
   %li{class: (controller_name == "dependents") ? 'active' : ''}
     %a{:href => "#{attendance_mirror_dependents_path(@mirror)}"} Atualização de Dependentes
-  %li
-    %a{:href => "#{new_attendance_mirror_checklist_path(@mirror)}"} Preenchimento de Checklist
-  %li
-    %a{:href => "#"} Finalização de atendimento
+  %li{class: (controller_name == "checklists") ? 'active' : ''}
+    %a{:href => "#{attendance_mirror_checklists_path(@mirror)}"} Preenchimento de Checklist
+  %li{class: (controller_name == "conclusions") ? 'active' : ''}
+    %a{:href => "#{attendance_mirror_conclusions_path(@mirror)}"} Finalização de atendimento
 %br/
 %br/

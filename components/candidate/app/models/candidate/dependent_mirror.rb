@@ -8,7 +8,7 @@ module Candidate
 
     enum gender: ['N/D', 'masculino', 'feminino']
 
-    validates :name, :born, :gender, :civil_state, :kinship, :special_condition, presence: true 
+    validates :name, :born, :kinship, :special_condition, presence: true 
     validates :cpf, :rg, presence: true, if: :major?
     validates_uniqueness_of :cpf, cpf: true, scope: :cadastre_mirror, if: :major?
     validates :percentage, presence: true, if: :co_acquirer?

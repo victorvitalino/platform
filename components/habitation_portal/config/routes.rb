@@ -8,6 +8,7 @@ HabitationPortal::Engine.routes.draw do
   resources :candidates, path: 'candidato' do 
     collection do 
       get 'update_positions', path: 'lista_alteracao'
+      get 'programs', path: 'programs'
     end
 
     get 'detail', path: 'detalhe'

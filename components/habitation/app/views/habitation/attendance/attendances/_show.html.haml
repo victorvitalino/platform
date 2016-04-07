@@ -45,7 +45,7 @@
                 
                 = link_to "", new_attendance_mirror_checklist_path(mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-check', title: "Checklist" if !mirror.aprovado?
                 
-                = link_to "", attendance_attendance_path(mirror.id), method: :delete, data: { confirm: t(:confirm)}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove', title: "Cancelar" if !mirror.aprovado?
+                = link_to "", attendance_cadastre_mirror_path(mirror.id), method: :delete, data: { confirm: t(:confirm)}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove', title: "Cancelar" if !mirror.aprovado?
                 
                 = link_to "", '#', class: 'btn btn-success btn-xs glyphicon glyphicon-ok', title: "Finalizar atendimento" if !mirror.aprovado?
 
@@ -75,23 +75,21 @@
   .row
     .col-md-12
       %h4 Log de atendimento
-      - if @candidate.schedules.present?
+      - if @candidate.attendance_logs.present?
         %table.table.tabel-hover.table-bordered
           %thead
             %tr
               %th Data
               %th Horário
-              %th Agenda
-              %th Situação
               %th Ação
+              %th Usuário
           %tbody
-            - @candidate.schedules.each do |schedule|
+            - @candidate.attendance_logs.each do |log|
               %tr
-                %td.col-md-2= schedule.date
-                %td.col-md-2= schedule.hour
-                %td.col-md-2= schedule.agenda.title if schedule.agenda.present?
-                %td.col-md-3= schedule.status 
-                %td.col-md-2 Sem ação
+                %td.col-md-2= log.created_at.strftime("%d/%M/%Y")
+                %td.col-md-2= log.created_at.strftime("%H:%M")
+                %td.col-md-4= log.content.humanize
+                %td.col-md-4= log.user.code.humanize
       - else
         %i Nenhum log vínculado a este CPF
 
