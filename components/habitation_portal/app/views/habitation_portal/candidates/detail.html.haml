@@ -1,5 +1,5 @@
-= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick"
-#container{:style => "min-width: 310px; height: 400px; margin: 0 auto"}
+= javascript_include_tag "http://code.highcharts.com/highcharts.js"
+
 .container
   .row.box
     .col-md-12
@@ -22,7 +22,8 @@
           %br/
           .row
             .col-md-12{style: 'text-align: center'}
-              = line_chart Candidate::Position.where(cadastre_id: @candidate.id).pluck(:program_id).uniq.map {|c|{name: Candidate::Program.find(c).name, data: Candidate::Position.where(cadastre_id: @candidate.id, program_id: c).map {|p| [p.created_at.strftime("%B %d, %Y"), p.position]}}}, ytitle: "Posições", library: { tooltip: {  pointFormat: 'Posição: <b>{point.y}º</b><br/><b>TOTAL DE REGISTROS ATUALIZADOS</b><br/><b>Idosos:</b>45<br/><b>RII:</b>45<br/><b>DEFICIENTES:</b>86'}}
+              #container{:style => "min-width: 310px; height: 400px; margin: 0 auto"}
+              #container_zueira
           .row
             .col-md-12
               %h3
@@ -57,13 +58,16 @@
 :javascript
 jQuery(document).ready(function(){
   $(function () {
-      $.getJSON("http://www.codhab.df.gov.br/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=1", function (data) {
+      var url_json = "http://www.codhab.df.gov.br/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=";
+        for (x = 1; x <= 7;x++){
+
+        }
+      $.getJSON("/teste.json", function (data) {
 
           var ex = [];
           $.each(data,function(index){
               ex.push([Date.UTC(data[index][1][0],data[index][1][1]-1,data[index][1][2]),data[index][0],data[index][2]]);
           });
-            console.log(ex);
           $('#container').highcharts({
 
               chart: {
@@ -114,7 +118,7 @@ jQuery(document).ready(function(){
 
               },
               series: [{
-                  type: 'area',
+                  type: 'line',
                   name: 'Posição',
                   myData: ex[2],
                   data:ex
