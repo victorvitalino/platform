@@ -6,26 +6,25 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/entiades_status.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/localInsancia.csv", :col_sep => "#") do |row|
 
-       @address = Entity::Old.where(cnpj: row[0]).first
+       @address = Juridical::InstancyPlace.new(
+       name: row[0],
+       description: row[1],
+       status: true,
+       instancy_id: row[2]
+       )
 
-        if @address.present?
-          @address.old = row[1]
+      begin
+        @address.save
+        #puts @address.inspect
+        puts @index
+      rescue e => Exception
+        puts e
+      end
 
-          begin
-            @address.save
-            #puts @address.inspect
-            puts @index
-          rescue e => Exception
-            puts e
-          end
+      @index += 1
 
-          @index += 1
-
-      else
-        puts 'não encontrado'
-     end
     end
   end
 end

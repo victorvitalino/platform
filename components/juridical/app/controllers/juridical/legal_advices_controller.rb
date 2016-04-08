@@ -34,6 +34,18 @@ module Juridical
 
     def show
 
+      begin
+        doc = Nokogiri::HTML(open("http://tjdf19.tjdft.jus.br/cgi-bin/tjcgi1?NXTPGM=tjhtml105&SELECAO=1&ORIGEM=INTER&CIRCUN=1&CDNUPROC=20110110541696"))
+         @data = []
+          doc.css('//tr').each_with_index do |link, index|
+            @data[index] =  []
+            link.css('td').each_with_index do |a, i|
+              @data[index][i] = a.children.content
+            end
+          end
+      rescue
+        flash[:danger] = "Problemas de comunicação com TJDFT."
+      end
     end
 
     def edit

@@ -52,3 +52,13 @@ nav:
             code: 0
             label: 'Sistemas'
             controller: '/person/systems'
+      juridical:
+        code: 0
+        label: 'Jurídico'
+        controller: '#'
+        sub:
+          legal_advice:
+            module: 'juridical'
+            code: 0
+            label: 'Acompanhamento'
+            controller: '/juridical/legal_advices'

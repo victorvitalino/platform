@@ -1,10 +1,10 @@
 module Juridical
   class ApplicationController < ActionController::Base
-     layout 'shared/remark'
+    layout 'patternfly/application'
 
     include Authenticate::StaffService
     helper  Authenticate::StaffHelper
-    helper  Shared::NavHelper
+    helper  ::NavigationHelper
 
     before_action :authenticate_staff?
 
