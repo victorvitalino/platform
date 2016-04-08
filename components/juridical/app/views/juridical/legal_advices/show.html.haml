@@ -1,0 +1,48 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title Acompanhamento de Processo
+  .panel-body
+    .row
+      .col-md-4
+        %label Número do Processo:
+        = @legal_advice.process_number
+      .col-md-4
+        %label Orgão:
+        = @legal_advice.agency
+    .row
+      .col-md-4
+        %label Tipo de Ação:
+        = @legal_advice.lawsuit.name
+      .col-md-4
+        %label Valor da Ação:
+        = @legal_advice.lawsuit_value
+    .row
+      .col-md-4
+        %label Instância:
+        = @legal_advice.instancy
+      .col-md-4
+        %label Local da Instância:
+        = @legal_advice.instancy_place.name
+    .row
+      .col-md-4
+        %label Programa Habitacional:
+        = @legal_advice.housing_program.name
+      .col-md-4
+        %label Tipo de Processo:
+        = @legal_advice.process_type == true ? "Normal" : "Eletrônico"
+    %hr
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Data
+              %th Descrição
+              %th Complemento
+          %tbody
+            - @data.each_with_index do |data, index|
+              - if index > 2
+                %tr
+                  %td= data[0]
+                  %td= data[1]
+                  %td= data[2]
