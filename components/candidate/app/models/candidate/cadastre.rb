@@ -18,6 +18,7 @@ module Candidate
     has_many :positions
 
     has_many :cadastre_checklists
+    has_many :attendance_logs
     has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
     has_many :enterprise_cadastres, foreign_key: "cadastre_id", class_name: "Firm::EnterpriseCadastre"
     has_many :cadastre_address

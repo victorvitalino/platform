@@ -57,6 +57,10 @@ module HabitationPortal
       @positions = Candidate::Position.update_by_day(@day, @zone, @program, params[:page])
     end
 
+    def programs
+      render json: ['RII', 'RIE', 'DEFICIÊNTES', 'VULNERÁVEL', 'IDOSOS']
+    end
+
     private
 
     def set_params_find

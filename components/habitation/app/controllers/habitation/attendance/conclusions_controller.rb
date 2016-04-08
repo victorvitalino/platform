@@ -3,13 +3,17 @@ require_dependency 'habitation/application_controller'
 module Habitation
   module Attendance
     class ConclusionsController < ApplicationController
-      
-      def edit
+      before_action :set_mirror
+
+      def index
+      end
+        
+      private
+
+      def set_mirror
+        @mirror = Candidate::CadastreMirror.find(params[:mirror_id])
       end
 
-      def update
-      end
-      
     end
   end
 end
