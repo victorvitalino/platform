@@ -14,8 +14,10 @@ class CreateJuridicalLegalAdvices < ActiveRecord::Migration
       t.date :start_date
       t.date :end_date
       t.boolean :process_type
+      t.string :suitor
       t.references :staff, index: true#, foreign_key: true
-
+      t.references :old, index: true
+      
       t.timestamps null: false
     end
   end
