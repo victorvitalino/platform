@@ -5,6 +5,7 @@
         %h4
           Listar processos
           = link_to 'Novo complemento', new_legal_advice_complement_path(@legal_advice),class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}  #if policy(:Assessment, namespace: Protocol).create?
+
     .panel-body
       .row
         .col-md-12
@@ -32,3 +33,6 @@
                         = link_to "", legal_advice_complement_path(a.legal_advice_id, a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}                   #if policy(:Assessment, namespace: Protocol).index?
                         = link_to "", edit_legal_advice_complement_path(a.legal_advice_id,a), title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}                                     #if policy(:Assessment, namespace: Protocol).updat                  e?
                         = link_to "", legal_advice_complement_path(a.legal_advice_id,a), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger                   btn-xs',data: {disable_with: "carregando..."} #if policy(:Assessment, namespace: Protocol).destroy?
+      .row
+        .col-md-4
+          = link_to "voltar",  legal_advices_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}

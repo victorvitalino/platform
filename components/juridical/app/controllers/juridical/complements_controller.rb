@@ -4,7 +4,7 @@ module Juridical
     class ComplementsController < ApplicationController
         before_action :set_legal_advice
         before_action :set_complements, only: [:index, :create, :destroy, :update]
-        before_action :set_complement, only: [:edit, :destroy, :update]
+        before_action :set_complement, only: [:edit, :destroy, :update, :show]
 
 
         def index

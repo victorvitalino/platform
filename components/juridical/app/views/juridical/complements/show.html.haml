@@ -1,0 +1,47 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title Complemento do acompanhamento de processo
+  .panel-body
+    .row
+      .col-md-4
+        %label Número do processo:
+        = @legal_advice.process_number
+      .col-md-4
+        %label Tipo de Documento:
+        = @complement.document_type.name if @complement.document_type.present?
+    .row
+      .col-md-4
+        %label Tipo de Ação:
+        = @complement.lawsuit.name if @complement.lawsuit.present?
+      .col-md-4
+        %label Tipo de acompanhamento:
+        = @complement.advice_type.name if @complement.advice_type.present?
+    .row
+      .col-md-8
+        %label Complemento:
+        = @complement.complement
+    .row
+      .col-md-4
+        %label Instância:
+        = @complement.instancy_place.instancy.name  if @complement.instancy_place.present?
+      .col-md-4
+        %label Local da Instância:
+        = @complement.instancy_place.name  if @complement.instancy_place.present?
+    .row
+      .col-md-4
+        %label Data de distribuição:
+        = @complement.distribution_date.strftime("%d/%m/%Y")
+      .col-md-4
+        %label Prazo final:
+        = @complement.deadline.strftime("%d/%m/%Y")
+    .row
+      .col-md-4
+        %label Data de inclusão:
+        = @complement.created_at.strftime("%d/%m/%Y %H:%M:%S")
+      .col-md-4
+        %label Status:
+        = @complement.status == true ? "Aberto" : "Fechado"
+    %br
+    .row
+      .col-md-2
+        = link_to "voltar",  legal_advice_complements_path(@legal_advice), class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}
