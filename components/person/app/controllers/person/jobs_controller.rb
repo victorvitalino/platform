@@ -2,7 +2,6 @@ require_dependency "person/application_controller"
 
 module Person
 	class JobsController < ApplicationController
-		layout 'layouts/material'
 		before_action :set_jobs, only: [:index, :create, :destroy, :update]
 		before_action :set_job, only: [:edit, :destroy, :update]
 

@@ -1,9 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      'juridical/advice_type': 'Acompanhamento'
+      'juridical/legal_advice': 'Acompanhamento'
     attributes:
-      'juridical/advice_type':
+      'juridical/legal_advice':
         process_number: "Número de processo"
         agency: "Orgão"
         lawsuit: "Tipo de ação"

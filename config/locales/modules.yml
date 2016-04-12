@@ -30,6 +30,7 @@ pt-BR:
       systems: "Sistemas"
       staff_permissions: "Permissões"
       sectors: "Setores"
+      jobs: "Cargos"
     concourse:
       projects: "Projetos"
       pages: "Páginas"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407141220) do
+ActiveRecord::Schema.define(version: 20160408150613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1636,15 +1636,16 @@ ActiveRecord::Schema.define(version: 20160407141220) do
     t.integer  "housing_program_id"
     t.integer  "document_type_id"
     t.integer  "responsible_lawyer_id"
-    t.text     "complement"
+    t.text     "description_complement"
     t.boolean  "status"
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "process_type"
-    t.integer  "staff_id_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "suitor"
+    t.integer  "staff_id"
     t.integer  "old_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "juridical_legal_advices", ["document_type_id"], name: "index_juridical_legal_advices_on_document_type_id", using: :btree
@@ -1653,7 +1654,7 @@ ActiveRecord::Schema.define(version: 20160407141220) do
   add_index "juridical_legal_advices", ["lawsuit_id"], name: "index_juridical_legal_advices_on_lawsuit_id", using: :btree
   add_index "juridical_legal_advices", ["old_id"], name: "index_juridical_legal_advices_on_old_id", using: :btree
   add_index "juridical_legal_advices", ["responsible_lawyer_id"], name: "index_juridical_legal_advices_on_responsible_lawyer_id", using: :btree
-  add_index "juridical_legal_advices", ["staff_id_id"], name: "index_juridical_legal_advices_on_staff_id_id", using: :btree
+  add_index "juridical_legal_advices", ["staff_id"], name: "index_juridical_legal_advices_on_staff_id", using: :btree
 
   create_table "person_branch_lines", force: :cascade do |t|
     t.string   "telephone"
