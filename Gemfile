@@ -115,4 +115,5 @@ path 'components' do
   gem 'api'
 
   gem 'juridical'
+  gem 'actions_portal'
 end

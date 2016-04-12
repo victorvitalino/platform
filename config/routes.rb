@@ -15,7 +15,7 @@ end
 Rails.application.routes.draw do
 
   constraints SubdomainConstraint do
-    
+
     post '/tinymce_assets' => 'archive/images#upload_file'
 
     mount Dashboard::Engine                => '/',               as: 'dashboard',        module: 'dashboard'
@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     mount SchedulePortal::Engine        => '/agendamento',      as: 'shedule_portal',         module: 'schedule_portal'
     mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',       module: 'concourse_portal'
     mount FirmPortal::Engine            => "/empresa",          as: 'firm_portal',            module: 'firm_portal'
+    mount ActionsPortal::Engine         => "/acoes",            as: 'actions_portal',         module: 'actions_portal'
   end
 
   mount Api::Engine                     => "/api",            as: 'api'
