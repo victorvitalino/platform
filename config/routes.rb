@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     mount Archive::Engine                  => "/arquivos",       as: 'archive',          module: 'portal'
     mount ProfileUser::Engine              => "/usuario",        as: 'profile_user',     module: 'dashboard'
     mount Address::Engine                  => "/enderecos",      as: 'address',          module: 'address'
+    mount Action::Engine                   => "/acao",           as: 'action',           module: 'action'
   end
 
   constraints DomainConstraint do
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
     mount SchedulePortal::Engine        => '/agendamento',      as: 'shedule_portal',         module: 'schedule_portal'
     mount ConcoursePortal::Engine       => "/concursos",        as: 'concourse_portal',       module: 'concourse_portal'
     mount FirmPortal::Engine            => "/empresa",          as: 'firm_portal',            module: 'firm_portal'
+    mount ActionPortal::Engine          => "/acao",             as: 'action_portal',          module: 'action_portal'
   end
 
   mount Api::Engine                     => "/api",            as: 'api'

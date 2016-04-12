@@ -27,7 +27,7 @@ module Candidate
     has_many :old_candidates, class_name: 'Entity::OldCandidate'
 
     scope :regularization,  -> {where(program_id: 3)}
-    scope :habitation,      -> {where(program_id: [1,2,4,5,6])}
+    scope :habitation,      -> {where(program_id: [1,2,4,5,6,7,8])}
     scope :by_cpf,          -> (cpf = nil) { where(cpf: cpf) }
 
     enum gender: ['N/D', 'masculino', 'feminino']
