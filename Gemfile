@@ -18,6 +18,8 @@ gem 'haml-rails'
 gem 'shareable'
 gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
 
+gem 'rails-erd'
+
 gem 'i18n'
 gem 'enum_help'
 
@@ -115,5 +117,9 @@ path 'components' do
   gem 'api'
 
   gem 'juridical'
-  gem 'actions_portal'
+
+
+  gem 'action'
+  gem 'action_portal'
+
 end
