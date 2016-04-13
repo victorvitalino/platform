@@ -16,6 +16,24 @@ $(document).ready(function() {
             }
         }
     });
+    $('.topSlider_action .flexslider').flexslider({
+        animation: "slide",
+        useCSS: false,
+        animationLoop: true,
+        controlNav: false,
+        smoothHeight: true,
+        manualControls: '.custom-controls li a',
+        controlsContainer: '.flex-container',
+        start: function (slider) {
+            $('body').removeClass('loading');
+        },
+        before: function (slider) {
+            try {
+                $f(player).api('pause');
+            } catch (ex) {
+            }
+        }
+    });
 
     $('.bxslide').bxSlider({
       slideWidth: 390,
