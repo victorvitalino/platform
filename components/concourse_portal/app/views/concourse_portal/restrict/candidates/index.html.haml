@@ -135,15 +135,3 @@
                   %td= link_to "Baixar Arquivo", "/files/concourse/project/#{@candidate.properties[field.label]}", target: '_blank'
                 - else
                   %td= @candidate.properties[field.label]
-    %hr
-    .row
-      .col-md-12
-        %h4 Arquivos de participação enviados
-        %table.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th Data de envio
-              %th Hash do arquivo
-          %tbody
-            %tr
-              %td{colspan: 2} Não há arquivos enviados

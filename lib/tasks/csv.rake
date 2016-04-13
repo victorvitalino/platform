@@ -3,11 +3,11 @@ require "open-uri"
 
 namespace :csv do
   desc "migração csv"
-  task :participation => :environment do
+  task :renda => :environment do
 
+=begin
     @candidates = Concourse::Candidate.where(subscribe_id: 3)
     @projects   = Concourse::CandidateParticipation.where(candidate_id: @candidates)
-
 <<<<<<< HEAD
     @projects.each do |participation|
 
@@ -30,36 +30,24 @@ namespace :csv do
 
     end  
 =======
-    CSV.foreach("lib/files/complemento.csv", :col_sep => "#") do |row|
+=end
+    @index = 0
 
-       @address = Juridical::Complement.new(
-       complement: row[0],
-       distribution_date: row[6],
-       legal_advice_id: row[3],
-       deadline: row[8],
-       lawsuit_id: row[13],
-       instancy_place_id: row[5],
-       days: row[7],
-       document_type_id: row[4],
-       responsible_lawyer_id: row[9],
-       status: row[10],
-       advice_type_id: row[12],
-       staff_id: row[1].to_i,
-       created_at: row[2],
-       updated_at: row[11],
-       )
+    CSV.foreach("lib/files/renda.csv", :col_sep => "#") do |row|
 
-      begin
-        @address.save
-        #puts @address.inspect
-        puts @index
-      rescue e => Exception
-        puts e
+      @candidate = Candidate::Cadastre.find_by_cpf(row[0]) rescue nil
+
+      if @candidate.present?
+        @candidate.update(income: row[1])
+        #puts @candidate.income
+      else
+        puts "RETORNOU NIL"
       end
 
       @index += 1
 
+      puts @index
+
     end
->>>>>>> 2f1cfb931ca085585164c2eeeec832945a753424
   end
 end
