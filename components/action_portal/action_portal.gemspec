@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = ActionPortal::VERSION
   s.authors     = ["Elton Silva"]
   s.email       = ["elton.chrls@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ActionPortal."
-  s.description = "TODO: Description of ActionPortal."
+  s.homepage    = ""
+  s.summary     = "Summary of ActionPortal."
+  s.description = "Description of ActionPortal."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
