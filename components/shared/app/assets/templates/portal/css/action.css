@@ -79,3 +79,6 @@ font-size: 40px;
   margin:0 auto;
   margin-top: 20px;
 }
+.no_padding{
+  padding:0px;
+}
