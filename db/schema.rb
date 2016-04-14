@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408150613) do
+ActiveRecord::Schema.define(version: 20160414154429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1137,6 +1137,8 @@ ActiveRecord::Schema.define(version: 20160408150613) do
     t.boolean  "popup_publish"
     t.string   "popup_title"
     t.text     "popup_content"
+    t.date     "result_day"
+    t.time     "result_hour"
   end
 
   create_table "concourse_subscribes", force: :cascade do |t|

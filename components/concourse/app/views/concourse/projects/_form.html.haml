@@ -50,13 +50,15 @@
     %hr/
     .row
       .col-md-2
-        = f.input :start_participation,as: :string, input_html: { class: 'date' ,value: (@project.start_participation) ? localize(f.object.start_participation) : nil}
+        = f.input :start_participation,as: :string, label: "Início", input_html: { class: 'date' ,value: (@project.start_participation) ? localize(f.object.start_participation) : nil}
       .col-md-2
-        = f.input :end_participation,as: :string, input_html: { class: 'date' ,value: (@project.end_participation) ? localize(f.object.end_participation) : nil}
-      .col-md-3
-        = f.input :result_date, as: :string
+        = f.input :end_participation,as: :string, label: "Fim",input_html: { class: 'date' ,value: (@project.end_participation) ? localize(f.object.end_participation) : nil}
+      .col-md-2
+        = f.input :result_day, label: "Dia do resultado", as: :string, input_html: { class: 'date', value: f.object.result_day.present? ? localize(f.object.result_day) : ''}
+      .col-md-2
+        = f.input :result_hour, label: "Hora do resultado", as: :string, input_html: { class: 'hour', value: f.object.result_hour.present? ? localize(f.object.result_hour, format:"%H:%M") : ''}
       .col-md-4
-        = f.input :result_document, as: :file
+        = f.input :result_document, label: "Ata do resultado", as: :file
         = f.hint link_to "visualizar arquivo atual", f.object.result_document_url, target: '_blank' if f.object.result_document.present?
     .row
       .col-md-12

@@ -1,0 +1,37 @@
+.row
+  .col-md-12
+    %h2 Vencedores
+    - if @project.result_day.present? && @project.result_hour.present?
+      - if @project.result_day <= Date.today && @project.result_hour <= Time.now.to_formatted_s(:time)
+        = link_to "Nomear vencedores", new_project_winner_path(@project) if policy(:page, namespace: Concourse).new?
+      - else
+    - else
+
+%hr/
+.row
+  .col-md-12
+    %table.table.table-striped.table-bordered.table-hover
+      %thead
+        %tr
+          %th Colocação
+          %th Nº da Pasta
+          %th Nº de inscrição
+          %th Prancha 1
+          %th Prancha 2
+          %th Prancha 3
+          %th Prancha 4
+          %th Prancha 5
+          %th Ações
+      %tbody
+        - @winners.order('id DESC').each do |winner|
+          %tr
+            %td= winner.winner_type.humanize
+            %td= winner.participation_id
+            %td= link_to winner.participation.candidate_id, project_candidate_path(id: winner.participation.candidate_id), target: '_blank'
+            %td= link_to "Baixar arquivo", winner.participation.archive_one.url, target: '_blank'
+            %td= link_to "Baixar arquivo", winner.participation.archive_two.url, target: '_blank'
+            %td= link_to "Baixar arquivo", winner.participation.archive_three.url, target: '_blank'
+            %td= link_to "Baixar arquivo", winner.participation.archive_four.url, target: '_blank'
+            %td= link_to "Baixar arquivo", winner.participation.archive_five.url, target: '_blank'
+            %td
+              = link_to "remover", project_winner_path(project_id: @project, id: winner), method: :delete,  class: 'btn btn-danger '

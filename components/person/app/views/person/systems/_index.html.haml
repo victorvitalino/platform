@@ -8,7 +8,7 @@
         %span.label.label-success Ativo
       - else
         %span.label.label-success Inativo
-    %td.col-md-1
+    %td.col-md-2
       = link_to "", system_system_permissions_path(j),title: 'Nova Ação', 'data-toggle' => 'tooltip',  class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs'
       = link_to "", edit_system_path(j), remote: true, class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
       = link_to "", system_path(j), method: :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', data: {confirm: t(:confirm_delete)}
