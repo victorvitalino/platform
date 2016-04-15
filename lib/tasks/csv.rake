@@ -6,23 +6,11 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/complemento.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/vinculo_entidade.csv", :col_sep => "#") do |row|
 
-       @address = Juridical::Complement.new(
-       complement: row[0],
-       distribution_date: row[6],
-       legal_advice_id: row[3],
-       deadline: row[8],
-       lawsuit_id: row[13],
-       instancy_place_id: row[5],
-       days: row[7],
-       document_type_id: row[4],
-       responsible_lawyer_id: row[9],
-       status: row[10],
-       advice_type_id: row[12],
-       staff_id: row[1].to_i,
-       created_at: row[2],
-       updated_at: row[11],
+       @address = Entity::OldCandidate.new(
+       old_id: row[1],
+       cadastre_id: row[0],
        )
 
       begin

@@ -34,13 +34,17 @@ module Juridical
 
     def show
 
+       process = @legal_advice.process_number.gsub('.','').gsub('-','')
+       url = "http://tjdf19.tjdft.jus.br/cgi-bin/tjcgi1?NXTPGM=tjhtml105&SELECAO=1&ORIGEM=INTER&CIRCUN=1&CDNUPROC=#{process}"
 
-        doc = Nokogiri::HTML(open("http://tjdf19.tjdft.jus.br/cgi-bin/tjcgi1?NXTPGM=tjhtml105&SELECAO=1&ORIGEM=INTER&CIRCUN=1&CDNUPROC=20110110541696"))
+        doc = Nokogiri::HTML(open(url))
          @data = []
-          doc.css('//tr').each_with_index do |link, index|
+          doc.xpath('//tr').each_with_index do |link, index|
             @data[index] =  []
             link.css('td').each_with_index do |a, i|
-              @data[index][i] = a.content
+              #@teste = a.inner_html
+              @data[index][i] = a.text
+
             end
           end
 

@@ -48,7 +48,7 @@
                     %tr
                       %td= link_to a.cadastre.name, habitation_portal.candidate_path(a.cadastre.cpf)
                       %td= a.cadastre.cpf.format_obfuscator_cpf
-                      %td= a.cadastre.pontuations.last.total
+                      %td= a.cadastre.pontuations.last.total if a.cadastre.pontuations.present?
                       %td
                         - if a.cadastre.current_situation_status == 'ok'
                           %span.label.label-success
