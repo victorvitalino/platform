@@ -63,7 +63,7 @@ namespace :csv do
 
       puts @index
 
-=end
     end
+=end
   end
 end
