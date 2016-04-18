@@ -14,4 +14,7 @@
   - if policy(:candidate, namespace: Concourse).index?
     %li{class: (controller_name == 'candidates' ? 'active' : '')}
       %a{:href => "#{concourse.project_candidates_path(@project)}"} Inscrições
+  - if policy(:candidate, namespace: Concourse).index?
+    %li{class: (controller_name == 'winners' ? 'active' : '')}
+      %a{:href => "#{concourse.project_winners_path(@project)}"} Vencedores
  

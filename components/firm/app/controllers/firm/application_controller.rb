@@ -4,12 +4,13 @@ module Firm
   class ApplicationController < ActionController::Base
    layout 'patternfly/application'
 
-    include Authenticate::StaffService
-    helper  Authenticate::StaffHelper
+   include Authenticate::StaffService
+   helper  Authenticate::StaffHelper
+   helper  ::NavigationHelper
 
-    before_action :authenticate_staff?
+   before_action :authenticate_staff?
 
-    include Pundit
+   include Pundit
 
   end
 end

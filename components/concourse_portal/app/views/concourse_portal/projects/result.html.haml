@@ -4,7 +4,7 @@
       %b Vencedores
 .row
   .col-md-12  
-    - if @project.result_date.present? && Time.now > @project.result_date
+    - if (@project.result_day.present? && @project.result_hour.present?) &&  (@project.result_day <= Date.today && @project.result_hour <= Time.now.to_formatted_s(:time)) 
       .row
         .col-md-12
           = @project.result_description.html_safe

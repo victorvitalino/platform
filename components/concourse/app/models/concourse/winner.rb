@@ -5,6 +5,8 @@ module Concourse
     belongs_to :project
     belongs_to :subscribe
 
+    audited 
+    
     enum winner_type: ['menção_honrosa', 'terceiro_lugar', 'segundo_lugar', 'primeiro_lugar']
     
     validate :project_exists?
@@ -33,7 +35,8 @@ module Concourse
     end
 
     def project_exists? 
-      @participation = Concourse::CandidateParticipation.find(self.participation_id) rescue nil
+      @project = Concourse::Project.find(self.project_id) rescue nil
+      @participation  = @project.candidate_participations.find(self.participation_id) rescue nil
 
       if @participation.nil?
         errors.add(:participation_id, "Projeto não existe") 
@@ -42,7 +45,7 @@ module Concourse
         errors.add(:participation_id, "Projeto já classificado") if @winner.present?  
       end
 
-      errors.add(:winner_type, 'já noemado') if self.winner_type == nil
+      errors.add(:winner_type, 'já nomeado') if self.winner_type == nil
     end
 
   end

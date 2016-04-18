@@ -1269,11 +1269,7 @@ img {
   background-position: 50% 50%;
   background-size: cover;
 }
-/*carta*/
-.carta{
-  margin-top: -17px!important;
-  margin-left: 55px!important;
-}
+
 
 /*slider info*/
 .tab-fundo{background-image: url('/images/estadio.png');background-repeat: no-repeat;

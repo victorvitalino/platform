@@ -54,7 +54,7 @@ namespace :candidate do
 
   task :rii => :environment do
     
-    %w(0_1600_1 1601_3275_2 3276_5000_3 5001_99999_4).each do |w|
+    %w(0_1600_1 1601_3275_2 3276_5000_3 5001_99999_4).each do  |w|
       income = w.underline_array
       sql = "program_id =  1 AND situation_status_id = 4 
             AND convocation_id > 1524 
@@ -70,7 +70,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 1,
           zone: income[2],
-          created_at: Date.parse('30/03/2016')
+          created_at: Date.parse('13/04/2016')
         })
         @position.save
 
@@ -98,7 +98,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 2,
           zone: income[2],
-          created_at: Date.parse('30/03/2016')
+          created_at: Date.parse('13/04/2016')
         })
         @position.save
 
@@ -129,7 +129,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 5,
           zone: income[2],
-          created_at: Date.parse('30/03/2016')
+          created_at: Date.parse('13/04/2016')
         })
         @position.save
 
@@ -157,7 +157,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 7,
           zone: income[2],
-          created_at: Date.parse('30/03/2016')
+          created_at: Date.parse('13/04/2016')
         })
         @position.save
 
@@ -184,7 +184,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 4,
           zone: income[2],
-          created_at: Date.parse('30/03/2016')
+          created_at: Date.parse('13/04/2016')
         })
         @position.save
 

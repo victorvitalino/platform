@@ -1,0 +1,32 @@
+.row
+  .action_title_home.col-md-12
+    %p
+      seja um parceiro e
+      %br
+      colabore para transformar as áreas de interesse
+      %br
+      social do Distrito Federal
+  .action_areabuttons_home.col-md-12
+    .col-md-6.action_cadastre
+      = link_to 'cadastre-se', 'http://www.google.com', class:"action_button"
+      %span
+        e receba convites e informações
+        %br
+        sobre nossas ações!
+    .col-md-6.action_participo
+      = link_to 'já participo', 'http://www.google.com', class:"action_button"
+      %span
+        altere seus dados, acesse suas atividades
+        %br
+        e emita certificados
+.row
+  .col-md-12.no_padding
+    = render 'partials/slider_fhome'
+.row
+  .col-md-12
+    %h3
+      inscrições abertas para voluntários
+  .col-md-4.action_home_inscription
+    .action_thumb
+    = link_to 'inscreva-se', 'http://www.google.com',class:"action_inscription_button"
+    .action_inscription_title

@@ -9,7 +9,7 @@ module SchedulePortal
       helper  Authenticate::StaffHelper
       helper  Shared::NavHelper
     
-      before_action :authenticate_staff?
+      #before_action :authenticate_staff?
     
       def index
         redirect_to action: :new

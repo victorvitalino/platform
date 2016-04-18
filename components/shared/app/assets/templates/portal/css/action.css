@@ -1,0 +1,84 @@
+/*action page*/
+.flexslider_mod{
+  border:none;
+  margin:0;
+}
+.about_action{
+  height: 500px;
+  background-color:#79b792;
+}
+.about_action_text{
+  background-color:#de3859;
+  height: 500px;
+}
+.about_action_title{
+  font-size: 55px;
+  font-weight: bold;
+  color: #fff;
+  display: block;
+  margin-top: 170px;
+  transform: rotate(-90deg)!important;
+
+/* Safari */
+-webkit-transform: rotate(-90deg)!important;
+
+/* Firefox */
+-moz-transform: rotate(-90deg)!important;
+
+/* IE */
+-ms-transform: rotate(-90deg)!important;
+
+/* Opera */
+-o-transform: rotate(-90deg)!important;
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+.about_action_text p{
+  font-size: 25px;
+  color:#fff;
+  margin-top: 70px;
+}
+.action_title_home{
+  background-color:#f49649;
+  height: 180px;
+  color:#fff;
+  padding-left: 100px;
+font-size: 40px;
+}
+.action_cadastre{
+  background-color: #bb328a;
+  height: 180px;
+
+}
+.action_participo{
+  background-color: #7e5fa5;
+  height: 180px;
+
+}
+.action_areabuttons_home{
+  padding: 0;
+    color: #fff!important;
+    font-size: 20px;
+
+
+}
+.action_areabuttons_home span{
+  display: block;
+      margin: 0 auto;
+      width: 370px;
+}
+.action_button{
+  border: 2px solid #fff;
+  font-size: 47px;
+  font-weight: bold;
+  padding: 7px 60px;
+  width: 372px;
+  color: #fff!important;
+  display: block;
+  margin:0 auto;
+  margin-top: 20px;
+}
+.no_padding{
+  padding:0px;
+}

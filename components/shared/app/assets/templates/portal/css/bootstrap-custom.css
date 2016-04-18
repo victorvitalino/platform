@@ -428,7 +428,7 @@ color: #fff;
   padding: 8px 30px 8px 0px;
 }
 .navbar-nav>li>a{
-  padding-top: 25px!important;
+  padding-top: 25px;
 }
 .item_menu{
   height: 75px;
@@ -621,6 +621,31 @@ width:80%;
 }
 body{
   background-color: #EBECF0;
+}
+/*carta*/
+.bloco_de_logos a{
+  position: absolute;
+}
+.carta{
+  top: 0px!important;
+  margin-left: 55px!important;
+  background-image: url('/images/carta90.jpg');
+  background-repeat: no-repeat;
+  padding: 0px!important;
+  padding-top: 0px!important;
+  width: 110px;
+  height: 39px;
+}
+.carta2{
+  top: 40px!important;
+  margin-left: 59px!important;
+  background-image: url('/images/sinj-df.jpg');
+  background-repeat: no-repeat;
+  padding: 0px!important;
+  padding-top: 0px!important;
+  width: 110px;
+  height: 39px;
+  clear: both;
 }
 /* Portrait and Landscape iphone4*/
 @media only screen

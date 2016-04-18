@@ -66,7 +66,7 @@ module Concourse
                                         :image_footer, :popup_publish, :popup_title, :popup_content, :image_slider, :slider, :consultation,
                                         :consultation_start,:slider_html, :consultation_end, :consultation_description,
                                         :start_participation, :end_participation, :text_participation, :result_document,
-                                        :result_description, :result_date)
+                                        :result_description, :result_date, :result_day, :result_hour)
       end
   end
 end
