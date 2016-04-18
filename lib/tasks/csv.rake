@@ -30,7 +30,6 @@ namespace :csv do
 
     end  
 =======
-=end
     @index = 0
 
 <<<<<<< HEAD
@@ -64,6 +63,7 @@ namespace :csv do
 
       puts @index
 
+=end
     end
   end
 end
