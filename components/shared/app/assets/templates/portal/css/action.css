@@ -82,3 +82,85 @@ font-size: 40px;
 .no_padding{
   padding:0px;
 }
+.titulo_home{
+  font-size: 75px;
+}
+#action_thumb_1 {
+
+  }
+#action_thumb_2 {
+
+  }
+#action_thumb_3 {
+
+  }
+.action_thumb{
+height: 355px;
+background-color: #000;
+}
+.action_inscription_button{
+  color: #fff;
+font-size: 43px;
+width: 100%;
+display: block;
+text-align: center;
+margin-top: 20px;
+
+}
+.action_inscription_title{
+  color:#000;
+  font-size: 33px;
+}
+.action_inscription_sub_title{
+  color: #8b8b8c;
+    font-size: 33px;
+}
+.action_inscription_button:hover{
+  color:#fff;
+}
+#action_inscription_button_1{
+  background-color: #de3859;
+}
+#action_inscription_button_2{
+  background-color: #79b792;
+}
+#action_inscription_button_3{
+  background-color: #f49649;
+}
+.users_back_ground{
+  background-color: #8b8b8c;
+  padding: 20px 0;
+}
+.action_thumbnail_users_home{
+  width: 185px;
+  height: 185px;
+  background-color: black;
+  border-radius: 120px;
+  margin:0 auto;
+
+}
+.action_user_title{
+  color: #fff;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: center;
+}
+.action_user_text{
+  color:#fff;
+  font-size:20px;
+  text-align: justify;
+}
+.action_footer{
+  padding: 75px 0;
+text-align: center;
+}
+.action_footer a{
+  font-weight: bold;
+  color:#fff;
+  font-size: 35px;
+  padding: 155px 0;
+}
+#action_footer_diferent{background-color: #81c5e0;}
+#action_footer_contact{background-color: #fecb0d;}
+#action_footer_gallery{background-color: #de3859;}
