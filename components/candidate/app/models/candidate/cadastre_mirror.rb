@@ -12,12 +12,15 @@ module Candidate
 
     has_many :dependent_mirrors, dependent: :destroy
     has_many :attendance_logs
+    has_many :cadastre_checklists
+    has_many :cadastre_procedurals
 
     has_one :pontuation
 
     enum situation: ['em_progresso','pendente', 'aprovado']
     enum gender: ['N/D', 'masculino', 'feminino']
 
+    FAMILY_INCOME = 880 * 12
 
     def pontuation?
       Candidate::Pontuation.where(cadastre_mirror_id: self.id).present?  
@@ -56,6 +59,13 @@ module Candidate
       date.year - self.created_at.year
     end
 
+    def supervisor_step?
+      self.cadastre_procedurals.present?
+    end
+
+    def attendant_step?
+      !self.cadastre_procedurals.present?
+    end
 
     # => logs
 
@@ -70,5 +80,51 @@ module Candidate
       })
     end
 
+
+    # => validações do mundo legal
+
+    def check_arrival_df
+      (Date.today - self.born).to_i / 365
+
+      date = Date.parse(self.arrival_df) rescue nil
+
+      if date.present?
+        ((Date.today - date).to_i / 365) < 5
+      else
+        false
+      end
+    end
+
+    def check_cadin
+      Candidate::Cadin.find_by_cpf(self.cpf).present?      
+    end
+
+
+    def check_dependent
+      Candidate::Dependent.where(cpf: self.cpf).present?
+    end
+
+    def check_family_income
+      income_dep = self.dependent_mirrors.sum(:income)
+
+      (income_dep + self.income) > FAMILY_INCOME
+    end
+
+    # => functions
+
+    def finish_attendance!(staff_id, observation, situation)
+
+      # => criação de ordem processual
+      @procedural = Candidate::CadastreProcedural.new({
+        cadastre_mirror_id: self.id,
+        cadastre_id: self.cadastre_id,
+        staff_id: staff_id,
+        observation: observation,
+        assessment_id: 1,
+        procedural_status_id: situation
+      })
+
+      @procedural.save
+    end
   end
 end

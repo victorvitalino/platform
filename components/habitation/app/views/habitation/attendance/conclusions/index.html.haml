@@ -10,3 +10,120 @@
             = render 'layouts/habitation/attendance_tabs'
         .row
           .col-md-12
+
+            .row
+              .col-md-12
+                %h2 Atualizações
+                %table.table.table-striped.table-hover.table-bordered
+                  %thead
+                    %tr
+                      %th Item
+                      %th Data e hora
+                  %tbody
+                    %tr
+                      %td Inicio do atendimento
+                      %td= @mirror.created_at.strftime("%d/%m/%Y às %H:%M") 
+                    %tr
+                      %td Atualização cadastral
+                      %td= @mirror.updated_at.strftime("%d/%m/%Y às %H:%M") 
+                    %tr
+                      %td Atualização dependentes
+                      %td= @mirror.dependent_mirrors.order(:updated_at).last.updated_at.strftime("%d/%m/%Y às %H:%M") 
+            .row
+              .col-md-12
+                %h2 Checklist
+                %table.table.table-striped.table-hover.table-bordered
+                  %thead
+                    %tr
+                      %th Item
+                      %th Autenticado?
+                      %th Checado?
+                  %tbody
+                    - @checklists.each do |check|
+                      %tr
+                        %td.col-md-10= check.name
+                        %td
+                          - if @mirror.cadastre_checklists.authenticate?(check)
+                            %span.label.label-success
+                              Autenticado
+                          - else
+                            %span.label.label-default
+                              Não autenticado 
+                        %td
+                          - if @mirror.cadastre_checklists.checked?(check)
+                            %span.label.label-success
+                              Checado
+                          - else
+                            %span.label.label-default
+                              Não checado 
+
+            .row
+              .col-md-12
+                %h2 Verificações
+                %table.table.table-striped.table-hover.table-bordered
+                  %thead
+                    %tr
+                      %th Item
+                      %th Descrição
+                      %th Situação
+                  %tbody
+                    %tr
+                      %td Cadastro Imobiliário
+                      %td.col-md-6
+                      %td.col-md-2
+                        - if @mirror.check_cadin
+                          %span.label.label-danger
+                            Tempo menor que 5 anos
+                        - else
+                          %span.label.label-success
+                            Válido
+                    %tr
+                      %td IPTU
+                      %td.col-md-6
+                      %td.col-md-2
+                    %tr
+                      %td Cadastro vínculado como dependente
+                      %td.col-md-6
+                      %td.col-md-2
+                        - if @mirror.check_dependent
+                          %span.label.label-danger
+                            Tempo menor que 5 anos
+                        - else
+                          %span.label.label-success
+                            Válido
+                    %tr
+                      %td Renda familiar
+                      %td.col-md-6
+                        A renda familiar não pode exceder 12 salários minímos
+                      %td.col-md-2
+                        - if @mirror.check_family_income
+                          %span.label.label-danger
+                            Renda familiar maior que o permitido
+                        - else
+                          %span.label.label-success
+                            Válido
+                    %tr
+                      %td Tempo de brasília
+                      %td.col-md-6
+                        Tempo de brasília deverá ser maior que 5 anos
+                      %td.col-md-2
+                        - if @mirror.check_arrival_df
+                          %span.label.label-danger
+                            Tempo menor que 5 anos
+                        - else
+                          %span.label.label-success
+                            Válido
+
+            .row
+              .col-md-12
+                %h2 Parecer do Analista
+                = simple_form_for attendance_cadastre_mirror_conclusions_path(@mirror), method: :post do |f|
+                  .row
+                    .col-md-4
+                      = f.input :situation, label: "Parecer", as: :select, collection: {:indeferido => 11, :deferido => 7} ,include_blank: false, input_html: { name: 'attendance[situation_attendance]'}
+                    .col-md-12
+                      = f.input :observation, as: :text, input_html: { name: 'attendance[observation_attendance]'}
+                  .row
+                    .col-md-12
+                      = f.submit "Finalizar atendimento", class: 'btn btn-success'
+                             

@@ -11,10 +11,36 @@ module Habitation
       def update
       end
       
+      def check
+        @checklist = Candidate::Checklist.find(params[:checklist_id])
+        @mirror_check = @mirror.cadastre_checklists.new
+        @mirror_check.checklist_id = @checklist.id
+        @mirror_check.save
+      end
+
+      def uncheck
+        @checklist = Candidate::Checklist.find(params[:checklist_id])
+        @mirror_check = @mirror.cadastre_checklists.find_by_checklist_id(@checklist.id)
+        @mirror_check.destroy
+      end
+
+      def auth
+        @checklist = Candidate::Checklist.find(params[:checklist_id])
+        @mirror_check = @mirror.cadastre_checklists.find_by_checklist_id(@checklist.id)
+        @mirror_check.update(document_authenticate: true)
+      end
+
+      def unauth
+        @checklist = Candidate::Checklist.find(params[:checklist_id])
+        @mirror_check = @mirror.cadastre_checklists.find_by_checklist_id(@checklist.id)
+        @mirror_check.update(document_authenticate: false)
+      end
+
       private
 
       def set_mirror
-        @mirror = Candidate::CadastreMirror.find(params[:mirror_id])
+        @type = Candidate::ChecklistType.find_by_name('morar_bem')
+        @mirror = Candidate::CadastreMirror.find(params[:cadastre_mirror_id])
       end
     end
   end

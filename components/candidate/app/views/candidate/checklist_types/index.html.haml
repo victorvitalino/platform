@@ -2,29 +2,29 @@
   .panel.panel-default
     .panel-heading
       %h4.panel-title
-        Listagem de itens do checklist
+        Listagem de tipos de checklist
     .panel-body
       .row
         .col-md-12
-          = link_to 'Adicionar item', new_checklist_path, remote: true, class: 'btn btn-success ',data: {disable_with: "carregando..."}
+          = link_to 'Adicionar tipo', new_checklist_type_path, remote: true, class: 'btn btn-success',data: {disable_with: "carregando..."}
       %br/
       .row
         .col-md-12
           = simple_form_for :url_for, method: :get do |f|
             .row
               .col-md-4
-                = f.input :by_type, label: "Por tipo", as: :select, include_blank: 'Todos', collection: Candidate::ChecklistType.all.order(:name), input_html: { name: 'by_type'}, selected: params[:by_type]
+                = f.input :program, label: "Programa", as: :select, include_blank: 'Todos', collection: Candidate::Program.all.order(:name), input_html: { name: 'by_program'}, selected: params[:by_program]
               .col-md-4
                 = f.submit "Filtar pesquisa", name:nil, data: { disable_with: t(:disable_with)}, class: 'btn btn-primary btn-sm filter-button'
+        %hr/
       .row
         .col-md-12
           %table#data-table-command.table.table-striped.table-bordered
             %thead
               %tr
-                %th Tipo
+                %th Programa
                 %th Nome
-                %th Código
                 %th Situação
                 %th Ações
-            %tbody.index-checklist
+            %tbody.index-checklist-type
               = render 'index'

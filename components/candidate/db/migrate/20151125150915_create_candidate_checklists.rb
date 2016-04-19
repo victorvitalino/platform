@@ -4,7 +4,7 @@ class CreateCandidateChecklists < ActiveRecord::Migration
       t.string :name
       t.boolean :status, default: true
       t.string  :code
-      t.references :program, index: true
+      t.references :checklist_type, index: true
 
       t.timestamps null: false
     end

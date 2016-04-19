@@ -1,10 +1,10 @@
 module Candidate
   class Checklist < ActiveRecord::Base
-    belongs_to :program
+    belongs_to :checklist_type
+  
+    scope :by_type, -> (type) { where(checklist_type_id: type)}
 
-    scope :by_program, -> (program) {where(program_id: program)}
-    
-    validates :name, :code, :program, presence: true
-    validates :name, :code, uniqueness: true
+    validates :name, :code, :checklist_type, presence: true
+    validates_uniqueness_of :name, scope: :checklist_type
   end
 end

@@ -10,9 +10,12 @@ module Candidate
 
     validates :name, :born, :kinship, :special_condition, presence: true 
     validates :cpf, :rg, presence: true, if: :major?
+    validates :cpf, cpf: true, if: :major?
     validates_uniqueness_of :cpf, cpf: true, scope: :cadastre_mirror, if: :major?
     validates :percentage, presence: true, if: :co_acquirer?
     validates :income, presence:true, numericality: {only_float: true}
+
+    validate  :unique_cpf, :major?
 
     def age
       return false unless self.born.present?
@@ -25,6 +28,10 @@ module Candidate
     
     private
     
+    def unique_cpf
+      errors.add(:cpf, 'já está vínculado ao títular') if self.cadastre_mirror.cpf == self.cpf
+    end
+
     def co_acquirer?
       (self.co_acquirer)
     end
