@@ -24,6 +24,13 @@ module ConcoursePortal
         end
       end
 
+      def destroy
+        @participation = @candidate.candidate_participation.last
+        @participation.destroy
+        flash[:success] =  "Projeto cancelado com sucesso!"
+        redirect_to action: :index
+      end
+
       private
 
       def set_project

@@ -4,6 +4,7 @@
       %b Projeto enviado
       %small.pull-right
         = link_to "Voltar", project_restrict_candidates_path(@project)
+        = link_to "Excluir e Re-enviar meu projeto", project_restrict_participation_path(project_id: @project, id: @participation.id), method: :delete, data: { confirm: "Tem certeza que deseja excluir seu projeto?"}
 %hr/
 .row
   .col-md-12
