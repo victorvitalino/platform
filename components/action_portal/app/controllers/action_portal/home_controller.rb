@@ -5,5 +5,8 @@ module ActionPortal
   class HomeController < ApplicationController
     def index
     end
+
+    def serfm
+    end
   end
 end

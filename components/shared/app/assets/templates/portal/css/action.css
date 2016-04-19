@@ -161,6 +161,9 @@ text-align: center;
   font-size: 35px;
   padding: 155px 0;
 }
-#action_footer_diferent{background-color: #81c5e0;}
-#action_footer_contact{background-color: #fecb0d;}
-#action_footer_gallery{background-color: #de3859;}
+#action_footer_diferent, .bloco_azul{background-color: #81c5e0;}
+#action_footer_contact, .bloco_amarelo{background-color: #fecb0d;}
+#action_footer_gallery, .bloco_rosa{background-color: #de3859;}
+.bloco_laranja {background-color: #ea563f;}
+.texto-gigante{ color:#fff; font-size: 45px;}
+.texto-bold{font-weight: bold;}
