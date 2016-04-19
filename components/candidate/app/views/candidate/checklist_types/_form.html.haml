@@ -4,10 +4,7 @@
       = f.input :name, input_html: { placeholder: "Digite o nome do item"}
   .row
     .col-md-6
-      = f.input :code, input_html: { placeholder: "Digite um código"}
-    .col-md-6
-      = f.association :checklist_type, include_blank: false
-  .row
+      = f.association :program, include_blank: false
     .col-md-6
       = f.input :status, as: :select, include_blank: false
   %hr/

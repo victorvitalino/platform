@@ -10,9 +10,15 @@ Habitation::Engine.routes.draw do
     resources :attendances
     resources :cadastre_mirrors
     
-    resources :mirror do 
-      resources :checklists
-      resources :dependents
+    resources :cadastre_mirror do 
+      resources :checklists do 
+        get 'check'
+        get 'uncheck'
+
+        get 'auth'
+        get 'unauth'
+      end
+      resources :dependent_mirrors
       resources :conclusions
     end
   end

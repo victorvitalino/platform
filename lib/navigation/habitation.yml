@@ -18,12 +18,6 @@ nav:
             label: "Atendimento"
             controller: '/habitation/attendance/attendances'
             action: 'index'
-          checklist:
-            module: 'candidate'
-            code: 0
-            label: "Gestão de checklist"
-            controller: '/candidate/checklists'
-            action: 'index'
       regularization:
         code: 119110
         label: "Regularização"
@@ -60,6 +54,16 @@ nav:
             code: 11011
             label: 'Assentamento'
             controller: '/candidate/cadastre_addresses'
+          checklist:
+            module: 'candidate'
+            code: 11011
+            label: 'Gestão de checklists'
+            controller: '/candidate/checklists'
+          checklist_type:
+            module: 'candidate'
+            code: 11011
+            label: 'Gestão de tipos de checklist'
+            controller: '/candidate/checklist_types'
       address:
         code: [11204, 11207]
         label: 'Endereço'

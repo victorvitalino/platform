@@ -2,8 +2,9 @@ require_dependency 'habitation/application_controller'
 
 module Habitation
   module Attendance
-    class DependentsController < ApplicationController
+    class DependentMirrorsController < ApplicationController
       before_action :set_mirror
+      before_action :set_dependent, only: [:edit, :update, :destroy]
 
       def new
         @dependent = @mirror.dependent_mirrors.new 
@@ -15,19 +16,21 @@ module Habitation
       end
         
       def edit
-        @dependent = @mirror.dependent_mirrors.find(params[:id])
       end
 
       def update
-        @dependent = @mirror.dependent_mirrors.update(set_params)
+        @dependent.update(set_params)
       end  
 
       def destroy
-        @dependent = @mirror.dependent_mirrors.find(params[:id])
         @dependent.destroy
       end
       
       private
+
+      def set_dependent
+        @dependent = @mirror.dependent_mirrors.find(params[:id])
+      end
 
       def set_params
         params.require(:dependent_mirror).permit(:cpf, :rg, :rg_org, :name, :born, :gender, :civil_state_id,
@@ -36,7 +39,7 @@ module Habitation
       end
 
       def set_mirror
-        @mirror = Candidate::CadastreMirror.find(params[:mirror_id])
+        @mirror = Candidate::CadastreMirror.find(params[:cadastre_mirror_id])
       end
     end
   end

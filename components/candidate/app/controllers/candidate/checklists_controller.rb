@@ -5,7 +5,7 @@ module Candidate
     before_action :set_checklists
     before_action :set_checklist, only: [:edit, :update, :destroy]
 
-    has_scope :by_program
+    has_scope :by_type
 
     def index
     end
@@ -33,7 +33,7 @@ module Candidate
     private
 
     def set_params
-      params.require(:checklist).permit(:name, :code, :status, :program_id)
+      params.require(:checklist).permit(:name, :code, :status, :checklist_type_id)
     end
 
     def set_checklist

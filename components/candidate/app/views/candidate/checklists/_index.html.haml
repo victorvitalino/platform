@@ -1,6 +1,6 @@
 - @checklists.each do |checklist|
   %tr
-    %td.col-md-1= checklist.program.name if checklist.program.present?
+    %td.col-md-3= checklist.checklist_type.name if checklist.checklist_type.present?
     %td= checklist.name
     %td.col-md-1= checklist.code
     %td.col-md-1= checklist.status ? 'ativo' : 'inativo'

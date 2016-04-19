@@ -20,10 +20,10 @@ module Protocol
 
     #before_validation :set_number
 
-   # validates_presence_of :document_type, :subject, :requesting_unit
-    #validates :document_number, uniqueness: true, presence: true
+    validates_presence_of :document_type, :subject, :requesting_unit
+    validates :document_number, uniqueness: true, presence: true
 
-    #after_create :set_conduct
+    after_create :set_conduct
 
     def set_conduct
         current_user = User.find_by_account_id(self.staff_id)
@@ -41,9 +41,8 @@ module Protocol
         self.staff_id = staff_id
     end
 
-    private
 
-    def set_number
+    def self.set_number
         current_user = User.find_by_account_id(self.staff_id)
         if  current_user.account.sector_current.present?
 
@@ -65,6 +64,7 @@ module Protocol
         end
     end
 
+    private
 
 
     def format_document_number

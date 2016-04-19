@@ -9,5 +9,12 @@
           .col-md-12
             = render 'layouts/habitation/attendance_tabs'
         .row
-          .col-md-12
-            = render 'form'
+          .col-md-12   
+            %table.table.table-striped.table-bordered.table-hover
+              %thead
+                %tr
+                  %th Item
+                  %th Autenticado
+                  %th Checado
+              %tbody.checklist-index
+                = render 'index'

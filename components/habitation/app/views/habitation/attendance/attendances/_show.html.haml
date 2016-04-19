@@ -39,15 +39,15 @@
               %td.col-md-1 Fulano 2
               %td.col-md-1 Fulano 2
               %td.col-sm-2 
-                = link_to "", edit_attendance_cadastre_mirror_path(mirror), class: 'btn btn-primary btn-xs glyphicon glyphicon-pencil', title: "Atualização cadastral" if !mirror.aprovado?
+                = link_to "", edit_attendance_cadastre_mirror_path(mirror), class: 'btn btn-primary btn-xs glyphicon glyphicon-pencil', title: "Atualização cadastral" if mirror.attendant_step?
                 
-                = link_to "", attendance_mirror_dependents_path(mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-user', title: "Atualização dependentes" if !mirror.aprovado?
+                = link_to "", attendance_cadastre_mirror_dependent_mirrors_path(cadastre_mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-user', title: "Atualização dependentes" if mirror.attendant_step?
                 
-                = link_to "", new_attendance_mirror_checklist_path(mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-check', title: "Checklist" if !mirror.aprovado?
+                = link_to "", new_attendance_cadastre_mirror_checklist_path(cadastre_mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-check', title: "Checklist" if mirror.attendant_step?
                 
-                = link_to "", attendance_cadastre_mirror_path(mirror.id), method: :delete, data: { confirm: t(:confirm)}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove', title: "Cancelar" if !mirror.aprovado?
+                = link_to "", attendance_cadastre_mirror_path(mirror.id), method: :delete, data: { confirm: t(:confirm)}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove', title: "Cancelar" if mirror.attendant_step?
                 
-                = link_to "", '#', class: 'btn btn-success btn-xs glyphicon glyphicon-ok', title: "Finalizar atendimento" if !mirror.aprovado?
+                = link_to "", '#', class: 'btn btn-success btn-xs glyphicon glyphicon-ok', title: "Finalizar atendimento" if mirror.supervisor_step?
 
   .row
     .col-md-12

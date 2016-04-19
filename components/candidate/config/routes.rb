@@ -16,6 +16,7 @@ Candidate::Engine.routes.draw do
 
   resources :lists
   resources :checklists
+  resources :checklist_types
 
 
 
