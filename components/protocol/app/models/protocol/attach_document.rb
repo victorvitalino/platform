@@ -14,9 +14,9 @@ module Protocol
    def set_attach(user, assessment,type)
       @assesstment = Protocol::Assessment.find(assessment)
 
-      self.sector_id = user.account.sector_current.id
+      self.sector_id = user.sector_current.id
       self.document_child_id = @assesstment.id
-      self.staff_id = user.account_id
+      self.staff_id = user.id
       self.attach_type = type
 
     end

@@ -12,14 +12,13 @@ module Protocol
 
 
     def index
-        #TA ERRADO
-        #@assessments = Conduct.find_sector(current_user.account.sector_current.id, 4).asse
-        if current_user.account.sector_current.present?
+
+        if current_user.sector_current.present?
             unless params[:cpf].present? || params[:doc_type].present? || params[:process].present? || params[:sector].present? || params[:subject].present?
-              @assessments = Assessment.where(sector_id: current_user.account.sector_current.id)
+              @assessments = Assessment.where(sector_id: current_user.sector_current.id).order(created_at: :desc)
               @assessments = @assessments.paginate(:page => params[:page], :per_page => 20)
             else
-              @assessments = Assessment.all
+              @assessments = Assessment.all.order(created_at: :desc)
               @assessments = apply_scopes(@assessments).paginate(:page => params[:page], :per_page => 20)
             end
         else
@@ -38,9 +37,9 @@ module Protocol
     end
     def create
         authorize :assessment,  :create?
-        if current_user.account.sector_current.present?
+        if current_user.sector_current.present?
           @assessment = Assessment.new(set_assessment_params)
-          @assessment.set_staff(current_user.account_id)
+          @assessment.set_staff(current_user.id)
 
           if @assessment.save!
               redirect_to action: 'index'
@@ -57,7 +56,7 @@ module Protocol
 
     def show
        authorize :assessment,  :index?
-       @conduct = @assessment.conducts.all
+       @conduct = @assessment.conducts.all.order(created_at: :desc)
        @digital_docs= @assessment.digital_documents.all
        @locations = @assessment.locations.all
        @attach_document = @assessment.attach_documents.all

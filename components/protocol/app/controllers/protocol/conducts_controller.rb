@@ -12,10 +12,10 @@ module Protocol
         end
 
         def new
-
+            authorize :conduct, :add?
             @conduct = @allotment.conducts.new
-            authorize :conduct, :create?
-            sector = current_user.account.sector_current.id
+
+            sector = current_user.sector_current.id
 
             #parametro 4 documento recebido pelo setor
             @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector, 0)
@@ -24,7 +24,7 @@ module Protocol
 
         def add
             authorize :conduct,  :add?
-            sector = current_user.account.sector_current.id
+            sector = current_user.sector_current.id
 
             @allotment = Protocol::Allotment.find(params[:id])
             @conduct = @allotment.conducts.new
@@ -42,28 +42,28 @@ module Protocol
         def receive
             authorize :conduct,  :receive?
             @conduct = Protocol::Conduct.new
-            @conduct_receive = Protocol::Conduct.find_sector(current_user.account.sector_current.id,1)
+            @conduct_receive = Protocol::Conduct.find_sector(current_user.sector_current.id,1)
         end
 
         def return
             @conduct = Protocol::Conduct.new
-            @conduct_receive = Protocol::Conduct.find_sector(current_user.account.sector_current.id,1)
+            @conduct_receive = Protocol::Conduct.find_sector(current_user.sector_current.id,1)
         end
 
          def update_docs
-            authorize :conduct,  :update?
+            authorize :conduct,  :receive?
             @assessment = Protocol::Assessment.find(params[:assessment_ids])
                 @assessment.each do |a|
                     @conduct = Protocol::Conduct.new
-                    allotment = Protocol::Conduct.where(assessment_id: a.id).last
+                    allotment = Protocol::Conduct.where(assessment_id: a.id).order('created_at DESC').first
                     @conduct.allotment_id = allotment.allotment_id
                     @conduct.conduct_type = params[:type].to_i
                     @conduct.assessment_id = a.id
-                    @conduct.sector_id = current_user.account.sector_current.id
-                    @conduct.staff_id = current_user.account.id
+                    @conduct.sector_id = current_user.sector_current.id
+                    @conduct.staff_id = current_user.id
                     @conduct .save
                 end
-            redirect_to allotments_path
+            redirect_to receive_path
         end
 
 
@@ -84,7 +84,7 @@ module Protocol
 
         def create
 
-            @allotment_conduct = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.account.sector_current.id)
+            @allotment_conduct = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.sector_current.id)
            authorize :conduct,  :create?
              @allotment_conduct.each do |lote|
                 @conduct = Protocol::Conduct.new(set_conduct_params)
@@ -107,7 +107,11 @@ module Protocol
         def destroy
             #authorize @conduct
             if @conduct.destroy
-                redirect_to action: 'new'
+                flash[:danger] = "Documento excluído da remessa"
+                redirect_to new_allotment_conduct_path(@allotment)
+            else
+                flash[:danger] = t :error
+                redirect_to new_allotment_conduct_path(@allotment)
             end
         end
 

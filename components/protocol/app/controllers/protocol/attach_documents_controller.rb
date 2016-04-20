@@ -14,7 +14,7 @@ module Protocol
 
         def new
             @attach_document = @assessment.attach_documents.new
-            sector = current_user.account.sector_current.id
+            sector = current_user.sector_current.id
 
             #parametro 4 documento recebido pelo setor
             @attach_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector,params[:assessment_id])
@@ -24,7 +24,7 @@ module Protocol
 
         def add_attach
             authorize :attach_document,  :add_attach?
-            sector = current_user.account.sector_current.id
+            sector = current_user.sector_current.id
 
             @assessment= Protocol::Assessment.find(params[:id])
             @attach_document = @assessment.attach_documents.new
@@ -42,7 +42,7 @@ module Protocol
 
           def add_append
             authorize :attach_document,  :add_append?
-            sector = current_user.account.sector_current.id
+            sector = current_user.sector_current.id
 
             @assessment= Protocol::Assessment.find(params[:id])
             @attach_document = @assessment.attach_documents.new

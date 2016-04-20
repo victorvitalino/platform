@@ -1,44 +1,33 @@
-.page-content
-  .documents-wrap.article
-    #articleAffix.article-sidebar.affix-top
-      %ul.list-group.nav
-        %li.list-group-item
-          Pesquisar Documento
-          = simple_form_for  new_allotment_conduct_path, :method => 'get' do |f|
-            .lv-item.media
-              .media-body
-                .lv-title
-                  = f.label :document, class: 'fg-label'
-                .lv-small
-                  = f.input :document, label: false, input_html: { name: 'document', value: params[:document]}
-            .lv-item.media
-              .media-body
-                .lv-title
-                  = f.label :document_type, class: 'fg-label'
-                .lv-small
-                  = f.input :document_type, as: 'select', collection: Protocol::DocumentType.all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
-            .lv-item.media
-              .media-body
-                .lv-small
-                  = f.submit 'Pesquisar', class:  'btn btn-success btn-sm', input_html: { name: nil},data: {disable_with: "carregando..."}
-    .article-content
-      .row
-        .col-md-12
-          %h4 Remessa
-      .row
-        .col-md-12
-          = render 'index_search'
-      .row
-        .col-md-12
-          = flash_message.html_safe
-          - if @conducts.present?
-            = render 'index_result'
-            %br
-            = link_to 'Enviar Remessa', allotment_send_path(@conduct.allotment.id), remote: true, class:  'btn btn-primary btn-xs',data: {disable_with: "carregando..."}
-
-
-
-
-
-
-
+.col-md-3
+  Pesquisar Documento
+  = simple_form_for  new_allotment_conduct_path, :method => 'get' do |f|
+    .lv-item.media
+      .media-body
+        .lv-title
+          = f.label :document, class: 'fg-label'
+        .lv-small
+          = f.input :document, label: false, input_html: { name: 'document', value: params[:document]}
+    .lv-item.media
+      .media-body
+        .lv-title
+          = f.label :document_type, class: 'fg-label'
+        .lv-small
+          = f.input :document_type, as: 'select', collection: Protocol::DocumentType.all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
+    .lv-item.media
+      .media-body
+        .lv-small
+          = f.submit 'Pesquisar', class:  'btn btn-success btn-sm', input_html: { name: nil},data: {disable_with: "carregando..."}
+.col-md-9
+  .row
+    .col-md-12
+      %h5 Remessa
+  .row
+    .col-md-12
+      = render 'index_search'
+  .row
+    .col-md-12
+      = flash_message.html_safe
+      - if @conducts.present?
+        = render 'index_result'
+        %br
+        = link_to 'Enviar Remessa', allotment_send_path(@conduct.allotment.id), remote: true, class:  'btn btn-primary btn-xs',data: {disable_with: "carregando..."}

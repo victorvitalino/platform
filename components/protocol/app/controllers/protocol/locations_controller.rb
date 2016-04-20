@@ -21,7 +21,7 @@ module Protocol
                 @assessment.each do |a|
                     @location = Location.new(location_params)
                     @location.assessment_id = a.id
-                    @location.staff_id = current_user.account.id
+                    @location.staff_id = current_user.id
                     @location.save
                 end
             redirect_to asessments_path
@@ -53,8 +53,8 @@ module Protocol
         end
 
          def set_assessment
-            if  current_user.account.sector_current.present?
-             @assessments = Protocol::Assessment.where(sector_id: current_user.account.sector_current.id).paginate(:page => params[:page], :per_page => 20)
+            if  current_user.sector_current.present?
+             @assessments = Protocol::Assessment.where(sector_id: current_user.sector_current.id).paginate(:page => params[:page], :per_page => 20)
             else
                 flash[:danger] = "Usuário não está alocado em um setor."
                 redirect_to '/'

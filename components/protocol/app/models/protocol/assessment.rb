@@ -18,22 +18,26 @@ module Protocol
     scope :subject,  -> (subject) {where(subject_id: subject)}
 
 
-    #before_validation :set_number
+    before_validation :set_number
 
     validates_presence_of :document_type, :subject, :requesting_unit
     validates :document_number, uniqueness: true, presence: true
 
     after_create :set_conduct
 
+
+
+
     def set_conduct
-        current_user = User.find_by_account_id(self.staff_id)
+        current_user = Person::Staff.find(self.staff_id)
         @conduct  = Protocol::Conduct.new
         @conduct.conduct_type = 4
         @conduct.assessment_id = self.id
-        @conduct.staff_id = current_user.account_id
-        @conduct.sector_id = current_user.account.sector_current.id
+        @conduct.staff_id = current_user.id
+        @conduct.sector_id = current_user.sector_current.id
         @conduct.save
     end
+
 
 
 
@@ -41,17 +45,18 @@ module Protocol
         self.staff_id = staff_id
     end
 
+    private
 
-    def self.set_number
-        current_user = User.find_by_account_id(self.staff_id)
-        if  current_user.account.sector_current.present?
+    def set_number
+        current_user = Person::Staff.find(self.staff_id)
+        if  current_user.sector_current.present?
 
-           self.staff_id      =   current_user.account_id
-           self.sector_id   =   current_user.account.sector_current.id
+           self.staff_id    =   current_user.id
+           self.sector_id   =   current_user.sector_current.id
 
            document_type = Protocol::DocumentType.find(self.document_type_id)
 
-           self.prefex = (!document_type.prefex.nil?) ? document_type.prefex  : current_user.account.sector_current.prefex
+           self.prefex = (!document_type.prefex.nil?) ? document_type.prefex  : current_user.sector_current.prefex
            self.year = Time.now.year
 
            documents = Assessment.where(sector_id: self.sector_id, document_type_id:  self.document_type_id, year: self.year).last
@@ -64,7 +69,7 @@ module Protocol
         end
     end
 
-    private
+
 
 
     def format_document_number

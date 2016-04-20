@@ -26,8 +26,10 @@
               .col-md-4
                 = f.label 'Setor', class: 'fg-label'
                 = f.input :sector, as: :select, collection: Person::Sector.where(status: true), label: false, prompt: 'selecione a cidade...',input_html: { name: 'sector', selected: params[:sector]}
-              .col-md-2
+              .col-md-1
                 = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+              .col-md-1
+                = link_to "Limpar pesquisa",  assessments_path, class: 'btn btn-warning btn-sm',data: {disable_with: "carregando..."}
       .row
         .col-md-12
           .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}

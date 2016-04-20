@@ -10,15 +10,17 @@ module Protocol
         end
 
         def new
-            @allotment = Allotment.new
             authorize :allotment,  :create?
+            @allotment = Allotment.new
+
         end
 
         def create
+            authorize :allotment,  :create?
             @allotment = Allotment.new(allotment_params)
-            @allotment.staff_id = current_user.account_id
-            @allotment.sector_id = current_user.account.sector_current.id
-            authorize @allotment
+            @allotment.staff_id = current_user.id
+            @allotment.sector_id = current_user.sector_current.id
+
             @allotment.save
         end
 
@@ -44,8 +46,8 @@ module Protocol
         end
 
         def set_allotments
-            if  current_user.account.sector_current.present?
-              @allotments =   Allotment.where(:sector_id => current_user.account.sector_current.id, status: false)
+            if  current_user.sector_current.present?
+              @allotments =   Allotment.where(:sector_id => current_user.sector_current.id, status: false)
             else
                 flash[:danger] = "Usuário não está alocado em um setor."
                 redirect_to '/'

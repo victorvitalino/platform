@@ -18,7 +18,7 @@ module Protocol
         def create
             authorize :digital_document,  :create?
             @digital_document = @assessment.digital_documents.new(digital_document_params)
-            @digital_document.staff_id = current_user.account_id
+            @digital_document.staff_id = current_user.id
 
             @digital_document.save
 
