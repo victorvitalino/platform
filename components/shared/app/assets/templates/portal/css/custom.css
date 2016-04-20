@@ -6,7 +6,8 @@
   color: #289728 !important;
 }
 
-
+.sliderp p a{color: #fff!important;}
+.flex-caption p a{ color:#fff!important;}
 label {
     font-weight: bold !important;
 }
