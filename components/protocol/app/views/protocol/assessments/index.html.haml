@@ -18,14 +18,14 @@
                 = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
               .col-md-3
                 = f.label 'Tipo de Documento', class: 'fg-label'
-                = f.input :doc_type, as: :select, collection: Protocol::DocumentType.all, label: false, prompt: 'selecione a cidade...',input_html: { name: 'doc_type', selected: params[:doc_type]}
+                = f.input :doc_type, as: :select, collection: Protocol::DocumentType.all, label: false, prompt: 'selecione...',input_html: { name: 'doc_type', selected: params[:doc_type]}
             .row
               .col-md-4
                 = f.label 'Assunto', class: 'fg-label'
-                = f.input :subject, as: :select, collection: Protocol::Subject.all, label: false, prompt: 'selecione a cidade...',input_html: { name: 'subject', selected: params[:subject]}
+                = f.input :subject, as: :select, collection: Protocol::Subject.all, label: false, prompt: 'selecione...',input_html: { name: 'subject', selected: params[:subject]}
               .col-md-4
                 = f.label 'Setor', class: 'fg-label'
-                = f.input :sector, as: :select, collection: Person::Sector.where(status: true), label: false, prompt: 'selecione a cidade...',input_html: { name: 'sector', selected: params[:sector]}
+                = f.input :sector, as: :select, collection: Person::Sector.where(status: true), label: false, prompt: 'selecione...',input_html: { name: 'sector', selected: params[:sector]}
               .col-md-1
                 = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
               .col-md-1
