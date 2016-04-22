@@ -7,7 +7,7 @@ module Concourse
 
     audited 
     
-    enum winner_type: ['menção_honrosa', 'terceiro_lugar', 'segundo_lugar', 'primeiro_lugar']
+    enum winner_type: ['menção_honrosa', 'menção_honrosa_com_destaque', 'terceiro_lugar', 'segundo_lugar', 'primeiro_lugar']
     
     validate :project_exists?
     validate :position?
