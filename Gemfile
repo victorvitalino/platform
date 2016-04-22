@@ -122,4 +122,6 @@ path 'components' do
   gem 'action'
   gem 'action_portal'
 
+  gem 'candidate_attendance'
+
 end

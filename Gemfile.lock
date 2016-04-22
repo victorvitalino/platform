@@ -41,6 +41,8 @@ PATH
       simple_form
     candidate (0.0.1)
       rails (~> 4.2.1)
+    candidate_attendance (0.0.1)
+      rails (~> 4.2.1)
     cms (0.0.1)
       haml-rails
       rails (~> 4.2.1)
@@ -472,6 +474,7 @@ DEPENDENCIES
   brb!
   byebug
   candidate!
+  candidate_attendance!
   capybara
   carrierwave!
   chartkick

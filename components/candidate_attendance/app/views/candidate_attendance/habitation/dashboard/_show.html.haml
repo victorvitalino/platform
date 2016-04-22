@@ -1,0 +1,84 @@
+- if @candidate.present?
+  .row
+    .col-md-12
+      %h4 Informações básicas
+      %table.table.tabel-hover.table-bordered
+        %thead
+          %tr
+            %th Nome
+            %th CPF
+            %th RG
+            %th Sexo
+            %th Nascimento
+        %tbody
+          %tr
+            %td= @candidate.name
+            %td= @candidate.cpf.format_cpf
+            %td= "#{@candidate.rg} - #{@candidate.rg_org}/#{@candidate.rg_uf}" 
+            %td= @candidate.gender
+            %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
+  .row
+    .col-md-12
+      %h4
+        Atendimentos
+      %table.table.tabel-hover.table-bordered
+        %thead
+          %tr
+            %th Data
+            %th Situação
+            %th Pontuação
+            %th Atendente
+            %th Supervisor
+            %th Ação
+        %tbody
+          - @candidate.cadastre_attendances.order('created_at DESC').each do |attendance|
+            %tr
+              %td= attendance.created_at.strftime("%d/%m/%Y") 
+              %td= attendance.attendance_status.name if attendance.attendance_status.present?
+
+    .col-md-12
+      %h4 Agendamentos
+      - if @candidate.schedules.present?
+        %table.table.tabel-hover.table-bordered
+          %thead
+            %tr
+              %th Data
+              %th Horário
+              %th Agenda
+              %th Situação
+              %th Ação
+          %tbody
+            - @candidate.schedules.each do |schedule|
+              %tr
+                %td.col-md-2= schedule.date
+                %td.col-md-2= schedule.hour
+                %td.col-md-2= schedule.agenda.title if schedule.agenda.present?
+                %td.col-md-3= schedule.status 
+                %td.col-md-2 Sem ação
+      - else
+        %i Nenhum agendamento encontrado neste CPF
+
+  .row
+    .col-md-12
+      %h4 Ocorrências
+      - if @candidate.schedules.present?
+        %table.table.tabel-hover.table-bordered
+          %thead
+            %tr
+              %th Data
+              %th Horário
+              %th Agenda
+              %th Situação
+              %th Ação
+          %tbody
+            - @candidate.schedules.each do |schedule|
+              %tr
+                %td.col-md-2= schedule.date
+                %td.col-md-2= schedule.hour
+                %td.col-md-2= schedule.agenda.title if schedule.agenda.present?
+                %td.col-md-3= schedule.status 
+                %td.col-md-2 Sem ação
+      - else
+        %i Nenhuma ocorrência encontrada neste CPF
+- else
+  %i Nenhum dado encontrado.
