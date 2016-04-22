@@ -20,7 +20,7 @@
   .row
     .col-md-12
       %h4
-        Atualizações cadastral
+        Atendimentos
       %table.table.tabel-hover.table-bordered
         %thead
           %tr
@@ -31,25 +31,11 @@
             %th Supervisor
             %th Ação
         %tbody
-          - @candidate.cadastre_mirrors.order('created_at DESC').each do |mirror|
+          - @candidate.cadastre_attendances.order('created_at DESC').each do |attendance|
             %tr
-              %td.col-md-1= mirror.created_at.strftime('%d/%m/%Y')
-              %td.col-md-1= mirror.situation.humanize
-              %td.col-md-1= mirror.pontuation.present? ? "Pontuado" : "Não pontuado"
-              %td.col-md-1 Fulano 2
-              %td.col-md-1 Fulano 2
-              %td.col-sm-2 
-                = link_to "", edit_attendance_cadastre_mirror_path(mirror), class: 'btn btn-primary btn-xs glyphicon glyphicon-pencil', title: "Atualização cadastral" if mirror.attendant_step?
-                
-                = link_to "", attendance_cadastre_mirror_dependent_mirrors_path(cadastre_mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-user', title: "Atualização dependentes" if mirror.attendant_step?
-                
-                = link_to "", new_attendance_cadastre_mirror_checklist_path(cadastre_mirror_id: mirror.id), class: 'btn btn-primary btn-xs glyphicon glyphicon-check', title: "Checklist" if mirror.attendant_step?
-                
-                = link_to "", attendance_cadastre_mirror_path(mirror.id), method: :delete, data: { confirm: t(:confirm)}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove', title: "Cancelar" if mirror.attendant_step?
-                
-                = link_to "", '#', class: 'btn btn-success btn-xs glyphicon glyphicon-ok', title: "Finalizar atendimento" if mirror.supervisor_step?
+              %td= attendance.created_at.strftime("%d/%m/%Y") 
+              %td= attendance.attendance_status.name if attendance.attendance_status.present?
 
-  .row
     .col-md-12
       %h4 Agendamentos
       - if @candidate.schedules.present?
