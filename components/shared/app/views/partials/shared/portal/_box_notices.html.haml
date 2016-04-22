@@ -7,8 +7,8 @@
         .col-sm-6.col-md-4
           .thumbnail
             .thumbnail-img
-              - if p.thumb?
-                = image_tag p.thumb
+              - if p.thumbnail?
+                = image_tag p.thumbnail
               - else
                 = image_tag '/images/codhab.png'
             .caption.caption_notice
