@@ -2,7 +2,7 @@ pt-BR:
   activerecord:
     errors:
       models:
-        'person/staff':
+        'person/staff': 
           attributes:
             born:
               before: "Data inválida - menor de 18 anos"
@@ -30,4 +30,3 @@ pt-BR:
         personal_image: "Imagem pessoal"
         password: "Senha"
         password_confirmation: "Confirmação de senha"
-

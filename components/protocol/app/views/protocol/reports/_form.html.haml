@@ -18,6 +18,4 @@
             %td= a.external_agency
             %td= a.subject_name
             %td= a.requesting_unit
-  = link_to "Excell", new_report_path({format: "csv"}.merge( search:{date_start: @date_start, date_end:@date_end}))
-
-
+  = link_to "Excell", new_report_path({format: "csv"}.merge(date_start: @date_start, date_end:@date_end))

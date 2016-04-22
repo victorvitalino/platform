@@ -3,28 +3,28 @@ nav:
     info:
       module: 'management'
       label: "Gestão"
-      code: 40
+      code: 41
       icon: 'wb-grid-9'
       link: '#'
     modules:
       person:
-        code: 0
+        code: [41304,41309,41313]
         label: 'Funcionários'
         controller: '#'
         sub:
           users:
             module: 'person'
-            code: 0
+            code: 41304
             label: 'Cadastros'
             controller: '/person/staffs'
           sectors:
             module: 'person'
-            code: 0
+            code: 41309
             label: 'Setores'
             controller: '/person/sectors'
           jobs:
             module: 'person'
-            code: 0
+            code: 41313
             label: 'Cargos'
             controller: '/person/jobs'
       financial:

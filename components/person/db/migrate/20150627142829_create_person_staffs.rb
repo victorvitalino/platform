@@ -8,12 +8,12 @@ class CreatePersonStaffs < ActiveRecord::Migration
       t.string :cpf
       t.string :rg
       t.string :rg_org
-     
+
       t.string :blood_type
       t.date   :born
       t.string :avatar
       t.string :personal_image
-      
+
       t.string :curriculum
       t.string :email, null: false, default: ""
       t.time :start_hour
@@ -22,7 +22,7 @@ class CreatePersonStaffs < ActiveRecord::Migration
       t.date :date_shutdown
       t.boolean :wekeend
       t.boolean :status, default: true
-      t.boolean :administrator, default: true
+      t.boolean :administrator, default: false
       t.integer :gender, default: 0
       t.date :date_shutdown
 
