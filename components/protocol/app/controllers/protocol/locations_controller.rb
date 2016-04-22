@@ -5,6 +5,9 @@ module Protocol
         before_action :set_locations, only: [:create, :destroy, :update]
         before_action :set_location, only: [:edit, :destroy, :update]
         before_action :set_assessment, only: [:index,:new,:edit]
+        has_scope :doc_type
+        has_scope :process
+
         def index
            authorize :conduct,  :index?
 
@@ -54,7 +57,8 @@ module Protocol
 
          def set_assessment
             if  current_user.sector_current.present?
-             @assessments = Protocol::Assessment.where(sector_id: current_user.sector_current.id).paginate(:page => params[:page], :per_page => 20)
+             @assessments = Protocol::Assessment.where(sector_id: current_user.sector_current.id)
+             @assessments = apply_scopes(@assessments).paginate(:page => params[:page], :per_page => 20)
             else
                 flash[:danger] = "Usuário não está alocado em um setor."
                 redirect_to '/'
