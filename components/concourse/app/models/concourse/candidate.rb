@@ -5,6 +5,7 @@ module Concourse
     
     has_many :observations
     has_many :candidate_participation
+    has_many :attendances
     
     scope :by_concourse, -> (concourse) { joins(:subscribe).where('concourse_subscribes.project_id = ?', concourse)}
     scope :by_status, -> (status) { where(status: status)}

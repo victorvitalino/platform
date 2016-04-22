@@ -16,6 +16,7 @@ module Candidate
     has_many :attendances
     has_many :pontuations , ->  { order(:id)}
     has_many :positions
+    has_many :cadastre_attendances
 
     has_many :cadastre_checklists
     has_many :attendance_logs

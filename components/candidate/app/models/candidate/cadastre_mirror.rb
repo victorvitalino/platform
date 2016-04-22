@@ -14,6 +14,7 @@ module Candidate
     has_many :attendance_logs
     has_many :cadastre_checklists
     has_many :cadastre_procedurals
+    has_many :attendaces, class_name: "Candidate::Attendance"
 
     has_one :pontuation
 
@@ -111,6 +112,14 @@ module Candidate
     end
 
     # => functions
+
+    def attendance_under_review? 
+      self.attendaces.where(attendance_status_id: 4).present? 
+    end
+
+    def supervisor_under_review?
+      attendance_under_review?  && self.cadastre_procedurals.where(procedural_status_id: [76, 7]).present?
+    end
 
     def finish_attendance!(staff_id, observation, situation)
 

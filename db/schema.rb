@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419141717) do
+ActiveRecord::Schema.define(version: 20160422141214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -401,6 +401,20 @@ ActiveRecord::Schema.define(version: 20160419141717) do
   add_index "candidate_cadastre_addresses", ["staff_id"], name: "index_candidate_cadastre_addresses_on_staff_id", using: :btree
   add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
   add_index "candidate_cadastre_addresses", ["user_company_id"], name: "index_candidate_cadastre_addresses_on_user_company_id", using: :btree
+
+  create_table "candidate_cadastre_attendances", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "cadastre_mirror_id"
+    t.integer  "attendance_status_id", default: 4
+    t.integer  "staff_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "candidate_cadastre_attendances", ["attendance_status_id"], name: "index_candidate_cadastre_attendances_on_attendance_status_id", using: :btree
+  add_index "candidate_cadastre_attendances", ["cadastre_id"], name: "index_candidate_cadastre_attendances_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_attendances", ["cadastre_mirror_id"], name: "index_candidate_cadastre_attendances_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadastre_attendances", ["staff_id"], name: "index_candidate_cadastre_attendances_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_checklists", force: :cascade do |t|
     t.integer  "cadastre_mirror_id"
