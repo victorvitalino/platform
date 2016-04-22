@@ -71,13 +71,14 @@
   %hr/
   .row
     .col-md-2
-      = f.input :administrator, as: :select, include_blank: false
+      = f.input :administrator, as: :select, include_blank: false, selected: false
     .col-md-2
       = f.input :status, as: :select, include_blank: false
     .col-md-2
-      = f.input :wekeend, as: :select, include_blank: false
+      = f.input :wekeend, as: :select, include_blank: false, selected: false
+    .col-md-2
   %hr/
   .row
     .col-md-12
       = f.button :submit, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button) }
-      = link_to 'Voltar', staffs_path(status: true) , class: 'btn btn-dark btn-sm', data: { disable_with: t(:disabled_button) }
+      = link_to 'Voltar', staffs_path(status: true) , class: 'btn btn-default btn-sm', data: { disable_with: t(:disabled_button) }

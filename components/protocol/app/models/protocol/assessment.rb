@@ -21,12 +21,9 @@ module Protocol
     before_validation :set_number
 
     validates_presence_of :document_type, :subject, :requesting_unit
-    validates :document_number, uniqueness: true, presence: true
+    validates :document_number, uniqueness: { scope: [:document_type] }, presence: true
 
     after_create :set_conduct
-
-
-
 
     def set_conduct
         current_user = Person::Staff.find(self.staff_id)
@@ -48,15 +45,14 @@ module Protocol
     private
 
     def set_number
-        current_user = Person::Staff.find(self.staff_id)
-        if  current_user.sector_current.present?
 
-           self.staff_id    =   current_user.id
-           self.sector_id   =   current_user.sector_current.id
+      current_user = Person::Staff.find(self.staff_id)
+        if  current_user.sector_current.present?
+           self.staff_id    =  current_user.id
 
            document_type = Protocol::DocumentType.find(self.document_type_id)
 
-           self.prefex = (!document_type.prefex.nil?) ? document_type.prefex  : current_user.sector_current.prefex
+           self.prefex = (!document_type.prefex.nil?) ? document_type.prefex  : self.sector.prefex
            self.year = Time.now.year
 
            documents = Assessment.where(sector_id: self.sector_id, document_type_id:  self.document_type_id, year: self.year).last
@@ -64,8 +60,6 @@ module Protocol
            self.number = (documents.present?) ? documents.number + 1 :  1
 
            format_document_number
-        else
-            errors.add(:document_number, "Setor não encontrado")
         end
     end
 

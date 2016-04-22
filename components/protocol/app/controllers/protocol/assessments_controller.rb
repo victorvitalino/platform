@@ -15,8 +15,14 @@ module Protocol
 
         if current_user.sector_current.present?
             unless params[:cpf].present? || params[:doc_type].present? || params[:process].present? || params[:sector].present? || params[:subject].present?
-              @assessments = Assessment.where(sector_id: current_user.sector_current.id).order(created_at: :desc)
-              @assessments = @assessments.paginate(:page => params[:page], :per_page => 20)
+              if current_user.sector_current.prefex == "110"
+                arr = [2,3]
+              else
+                arr = current_user.sector_current.id
+              end
+                @assessments = Assessment.where(sector_id: arr).order(created_at: :desc)
+                @assessments = @assessments.paginate(:page => params[:page], :per_page => 20)
+
             else
               @assessments = Assessment.all.order(created_at: :desc)
               @assessments = apply_scopes(@assessments).paginate(:page => params[:page], :per_page => 20)

@@ -4,6 +4,11 @@
    = f.label :document_type, class: 'fg-label'
    = f.association :document_type, prompt: 'selecione...', label: false
   .col-md-4
+   -if current_user.sector_current.prefex == '110'
+    = f.label :sector, class: 'fg-label'
+    = f.association :sector, label:false, collection: Person::Sector.where(prefex: [100,110]), prompt: 'selecione...'
+   -else
+    = f.input :sector_id, as: :hidden,  input_html:{ value: current_user.sector_current.id}
   .col-md-4
    = f.label :document_number, class: 'fg-label'
    = f.input :document_number, label: false, input_html: {placeholder: 'Gerado pelo sistema', readonly: true}

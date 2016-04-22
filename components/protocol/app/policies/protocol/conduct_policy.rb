@@ -11,6 +11,10 @@ module Protocol
 			allow?(31104)
 		end
 
+		def cancel?
+			allow?(31103)
+		end
+
 		def receive?
 			allow?(31102)
 		end
