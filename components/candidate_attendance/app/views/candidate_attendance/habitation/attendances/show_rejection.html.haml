@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Folha de Inabilitação</title>
+    
+    <style type="text/css">
+        .EstiloForm
+        {
+            height: 117px;
+            
+        }
+        .style3
+        {
+            width: 14%;
+        }
+        p.MsoNormal
+  {margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family:"Times New Roman","serif";
+          margin-left: 0cm;
+            margin-right: 0cm;
+            margin-top: 0cm;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div style="border: black solid 0px; width: 800px">
+               <div style="width: 800px;">
+            <table width="800px" border="0" cellpadding="0" cellspacing="0" >
+                <tr>
+                    <td style="width: 1%;">
+                        <img src="../../HabilitaEntidade/../common/imagem_sis/logo_codhab.jpg" width="90px" style="margin-left:5px"
+                            alt="" />
+                    </td>
+                    <td style="font-weight: bold; font-size: 13px;" >
+                        <div style="text-align: center;">
+                            GOVERNO DO DISTRITO FEDERAL
+                            <br />
+                            Secretaria de Estado de Habitação
+                            Regularização e Desenvolvimento Urbano
+                            <br />
+                           Companhia de Desenvolvimento Habitacional do Distrito Federal
+                            <br />
+                            <br />
+                            Diretoria Imobiliária
+                           
+                        </div>
+                    </td>
+                    <td class="style3">
+                        &nbsp;<img src="../../common/imagem_sis/Logo_GDF_2011.png" style="width: 87px" alt="" />
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+         <br />
+            <table width="700px" border="0" cellpadding="0" cellspacing="0" align="center">
+                <tr>
+                    <td style="font-weight: normal; font-size: 13px;" colspan="2">
+                    
+                        <p align="center" class="MsoNormal">
+                            <b><span style="font-size:12.0pt;line-height:150%">COMUNICADO<o:p></o:p></span></b></p>
+                        <p>
+                            No dia <asp:Label ID="lblDataAnalise" runat="server"></asp:Label>, <asp:Label ID="lblNomeConvocado" runat="server"></asp:Label>, convocado pelo Edital nº 17/2012, 
+                            publicado no DODF nº 68/2012, de 04/04/2012, compareceu a esta Companhia de 
+                            Desenvolvimento Habitacional do Distrito Federal – CODHAB/DF para comprovação de 
+                            dados declarados em sua inscrição no Programa Morar Bem e formalização de 
+                            processo com vistas à habilitação e manifestação de interesse por projetos em 
+                            oferta pela CODHAB/DF.</p>
+                        <p>
+                            Após análise da documentação apresentada verificou-se que o(a) interessado(a) 
+                            não atendeu aos requisitos estabelecidos na Lei nº 3.877/2006, abaixo descritos:</p>
+                        <p>
+                        
+                        <p style="font-weight: bold; font-size: 14px;line-height:20px;">
+                            
+                            <asp:Label ID="lblMotivos" runat="server"></asp:Label>
+
+                        </p>
+                        
+
+                        <p>
+                            Dessa forma, fica determinado o prazo de até 10 dias corridos, a contar da 
+                            presente data, para que o(a) interessado(a) apresente os documentos 
+                            comprobatórios de atendimento aos requisitos da Lei nº 3.877/2006, em conjunto com todos os documentos apresentados na data de seu comparecimento. <o:p></o:p>
+                        </p>
+                        <p>
+                            <o:p>&nbsp;</o:p></p>
+                        <p align="center" class="MsoNormal">
+                            <span style="font-size:12.0pt;line-height:150%">Brasília-DF, <asp:Label ID="lblDataHoje" runat="server"></asp:Label>.<o:p></o:p></span></p>
+                        <p align="center" class="MsoNormal">
+                            <span style="font-size:12.0pt;line-height:150%"><o:p>&nbsp;</o:p></span></p>
+                        <p align="center" class="MsoNormal">
+                       </td>
+                    </tr>
+                    <tr>
+                    <td>
+                            <br />
+                      Digitado por:
+                      <br /><asp:Label ID="lblNomeAtendente" runat="server"></asp:Label>/<asp:Label ID="lblMatAtendente" runat="server"></asp:Label><o:p></o:p></span></p>
+                    </td>
+                    <td>
+                            _________________________________<br />
+                      <asp:Label ID="lblNomeCandidatoAssinatura" runat="server"></asp:Label><o:p></o:p></span></p>
+                    
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    </form>
+</body>
+</html>

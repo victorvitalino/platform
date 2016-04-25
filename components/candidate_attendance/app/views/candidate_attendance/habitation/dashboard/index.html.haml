@@ -13,8 +13,15 @@
           .row
             .col-md-2
               = f.submit "Pesquisar CPF", name: nil, class: 'btn btn-success', data: { disable_with: t(:disable_with)}
-          .row
-            .col-md-12
+          %hr/
+          - if @candidate.present?
+            .row
+              .col-md-12
+                %ul.list-group.nav
+                  %li
+                    = link_to "Iniciar atendimento", new_habitation_attendance_path(cpf: @candidate.cpf), class: 'btn btn-default'
+                  %li
+                    = link_to "log de atendimento", "#", class: 'btn btn-default'
       .col-md-8
         = render 'show'
     

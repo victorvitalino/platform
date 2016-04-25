@@ -1,0 +1,17 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title 
+      Detalhamento de atendimento
+  .panel-body
+    .row
+      .col-md-3
+        = link_to "Emitir folha de rosto",habitation_attendance_show_apresentation_path(@attendance) , target: '_blank'
+      .col-md-3
+        = link_to "Emitir espelho de cadastro", habitation_attendance_show_cadastre_path(@attendance), target: '_blank' 
+      .col-md-3
+        = link_to "Emitir espelho de checklist", habitation_attendance_show_checklist_path(@attendance) , target: '_blank' 
+      .col-md-3
+        = link_to "Emitir relatório de indeferimento", habitation_attendance_show_rejection_path(@attendance), target: '_blank'  
+    %hr/
+    .row
+      .col-md-12

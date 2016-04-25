@@ -26,15 +26,33 @@
           %tr
             %th Data
             %th Situação
-            %th Pontuação
-            %th Atendente
-            %th Supervisor
-            %th Ação
+            %th Usuário
+            %th Operações
         %tbody
           - @candidate.cadastre_attendances.order('created_at DESC').each do |attendance|
             %tr
               %td= attendance.created_at.strftime("%d/%m/%Y") 
               %td= attendance.attendance_status.name if attendance.attendance_status.present?
+              %td= attendance.staff.code if attendance.staff.present?
+              %td.col-md-1
+                .btn-group
+                  %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                    Ação
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      = link_to "Detalhar", habitation_attendance_path(attendance)
+                    %li.divider{:role => "separator"}
+                    - if !attendance.supervisor?
+                      %li
+                        = link_to "Realizar atendimento", edit_habitation_cadastre_attendance_cadastre_mirror_path(cadastre_attendance_id: attendance, id: attendance.cadastre_mirror_id)
+                      %li.divider{:role => "separator"}
+                      %li
+                        = link_to "Cancelar", habitation_attendance_path(attendance), method: :delete, data: { confirm: t(:confirm)}
+                    - if attendance.supervisor?
+                      %li.divider{:role => "separator"}
+                      %li
+                        %a{:href => "#"} Parecer do supervisor
 
     .col-md-12
       %h4 Agendamentos

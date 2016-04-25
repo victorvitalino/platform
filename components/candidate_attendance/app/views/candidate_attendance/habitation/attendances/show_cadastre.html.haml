@@ -1,0 +1,215 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head{:runat => "server"}
+    %title Ficha Cadastro
+    :css
+      .EstiloForm
+      {
+          font-size:13px;
+      }
+      .relLabel
+      {
+          width: 30%;
+          text-align: right;
+      }
+      .relInfo
+      {
+          width:70%;
+          text-align:left;
+      }
+      .relTitulo
+      {
+          width: 100%;
+          border: 0px;
+          padding: 0px, 0px, 0px, 0px;
+      }
+      .relLinha1
+      {
+          width: 100%;
+          border: 0px;
+          padding: 0px, 0px, 0px, 0px;
+          background-color: #FAF0E6;
+          text-align: center;
+          font-size:11px;
+      }
+      .relLinha0
+      {
+          width: 100%;
+          border: 0px;
+          padding: 0px, 0px, 0px, 0px;
+          text-align: center;
+          font-size:11px;
+      }
+      .relTituloBranco
+      {
+          width: 30%;
+          border: 0px;
+          text-align: right;
+      }
+      .relColunaTitulo
+      {
+          width:15%;
+          border: 1px solid black;
+          text-align: left;
+          background-color: #fcee94;
+      }
+  %body
+    %div{:style => " width:805px; margin: 0 auto;"}
+      %form#form1{:runat => "server"}
+        %div
+          %div{:style => " width: 800px"}
+            %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "800px"}
+              %tr
+                %td{:style => "width: 1%;"}
+                  %a{:href => "/Entidade/Form/FormCheckList.aspx"}
+                    %img{:alt => "", :src => "../../HabilitaEntidade/../common/imagem_sis/logo_codhab.jpg", :style => "margin-left:5px", :width => "95px"}/
+                %td{:style => "font-weight: bold; font-size: 13px;"}
+                  %div{:style => "text-align: center;"}
+                    GOVERNO DO DISTRITO FEDERAL
+                    %br/
+                    Secretaria de Estado de Habitação
+                    Regularização e Desenvolvimento Urbano
+                    %br/
+                    Companhia de Desenvolvimento Habitacional do Distrito Federal
+                    %br/
+                    %br/
+                    Diretoria Imobiliária
+                %td.style3
+                   
+                  %img{:alt => "", :src => "../../common/imagem_sis/Logo_GDF_2011.png", :style => "width: 87px"}/
+          %br/
+          %table{:border => "0", :cellpadding => "2", :cellspacing => "2", :width => "800px"}
+            %tr
+              %td
+                %center FICHA CADASTRAL
+        #divVisualizacao{:runat => "server", :style => "width: 800px; margin-top:25px; border:0px solid black;"}
+          %table.EstiloForm{:border => "1", :cellpadding => "0", :cellspacing => "0", :style => "border: 1px solid #CCCCCC", :width => "800px;"}
+            %tr
+              %td{:colspan => "3"}
+                Nome do candidato
+                %br/
+                %label#lblNomeCand{:runat => "server", :text => ""}
+              %td
+                Inscrição n.
+                %br/
+                %label#lblSeqCad{:runat => "server", :text => ""}
+            %tr
+              %td
+                RG
+                %br/
+                %label#lblNmRg{:runat => "server", :text => ""}
+              %td
+                Órgão Emissor
+                %br/
+                %label#lblOrgaoEmissor{:runat => "server", :text => ""}
+              %td
+                UF de nascimento
+                %br/
+                %label#lblUf{:runat => "server", :text => ""}
+              %td
+                CPF
+                %br/
+                %label#lblCpfCad{:runat => "server", :text => ""}
+            %tr
+              %td
+                Data de Nascimento
+                %br/
+                %label#lblDtNasc{:runat => "server", :text => ""}
+              %td
+                Estado Civil
+                %br/
+                %label#lblEstCivil{:runat => "server", :text => ""}
+              %td
+                Condição especial
+                %br/
+                %label#lblCondEspecial{:runat => "server", :text => ""}
+              %td
+                Data de chegada no DF
+                %br/
+                %label#lblDtChegadaDF{:runat => "server", :text => ""}
+            %tr
+              %td
+                Telefone
+                %br/
+                %label#lblTelefone{:runat => "server", :text => ""}
+              %td
+                Celular
+                %br/
+                %label#lblCelular{:runat => "server", :text => ""}
+              %td
+                Email
+                %br/
+                %label#lblEmail{:runat => "server", :text => ""}
+              %td
+                Renda familiar
+                %br/
+                %label#lblRenda{:runat => "server", :text => ""}
+            %tr
+              %td{:colspan => "2"}
+                Ocupação
+                %br/
+                %label#lblCatProf{:runat => "server", :text => ""}
+              %td{:colspan => "2"}
+                Data de admissão
+                %br/
+                %label#lblDtAdmissao{:runat => "server", :text => ""}
+            %tr
+              %td{:colspan => "4"}
+                Endereço residencial
+                %br/
+                %label#lblEndereResid{:runat => "server", :text => ""}
+            %tr
+              %td
+                Cidade
+                %br/
+                %label#lblCidade{:runat => "server", :text => ""}
+              %td
+                UF
+                %br/
+                %label#lblUfRedid{:runat => "server", :text => ""}
+              %td{:colspan => "2"}
+                CEP
+                %br/
+                %label#lblCep{:runat => "server", :text => ""}
+            %tr
+              %td{:colspan => "4"}
+                %gridview#GridListDeps{:autogeneratecolumns => "false", :onrowdatabound => "GridListDeps_RowDataBound", :runat => "server", :width => "100%"}
+                  %columns
+                    %boundfield{:datafield => "nomedep", :headertext => "Nome do dependente"}
+                      %headerstyle{"font-names" => "Verdana", "font-size" => "11px", :horizontalalign => "Center"}
+                      %itemstyle{"font-names" => "verdana", "font-size" => "8pt", :horizontalalign => "Center"}
+                    %boundfield{:datafield => "cpfdep", :headertext => "CPF"}
+                      %headerstyle{"font-names" => "Verdana", "font-size" => "11px", :horizontalalign => "Center"}
+                      %itemstyle{"font-names" => "verdana", "font-size" => "8pt", :horizontalalign => "Center"}
+                    %boundfield{:datafield => "dtnasdep", :headertext => "Data de nascimento"}
+                      %headerstyle{"font-names" => "Verdana", "font-size" => "11px", :horizontalalign => "Center"}
+                      %itemstyle{"font-names" => "verdana", "font-size" => "8pt", :horizontalalign => "Center"}
+                    %boundfield{:datafield => "graudep", :headertext => "Grau de parentesco"}
+                      %headerstyle{"font-names" => "Verdana", "font-size" => "11px", :horizontalalign => "Center"}
+                      %itemstyle{"font-names" => "verdana", "font-size" => "8pt", :horizontalalign => "Center"}
+                    %boundfield{:datafield => "deficdep", :headertext => "Condição especial"}
+                      %headerstyle{"font-names" => "Verdana", "font-size" => "11px", :horizontalalign => "Center"}
+                      %itemstyle{"font-names" => "verdana", "font-size" => "8pt", :horizontalalign => "Center"}
+            %tr
+              %td{:colspan => "4"}
+                %br/
+                %div{:style => "float:right;padding-right:10px;"}
+                  %b Brasília, ___/___/______.
+                %br/
+                %br/
+                %br/
+                %br/
+                %table{:width => "100%"}
+                  %tr
+                    %td{:align => "center", :valign => "top"}
+                      Digitado por:
+                      %br/
+                      %label#lblNomeAnalista{:runat => "server"}
+                      %br/
+                    %td{:align => "center", :valign => "top"}
+                      ________________________________
+                      %br/
+                      Assinatura do Candidato
+                %br/
+                %br/
+                %br/

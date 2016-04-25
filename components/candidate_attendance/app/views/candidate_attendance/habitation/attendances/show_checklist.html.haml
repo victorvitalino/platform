@@ -1,0 +1,272 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head{:runat => "server"}
+    %title Ficha de CheckList
+    :css
+      .EstiloForm
+      {
+          font-size:13px;
+      }
+  %body
+    %div{:style => " margin: 0 auto; width:802px;"}
+      %form#form1{:runat => "server"}
+        %div{:style => "width: 800px;"}
+          %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "800px"}
+            %tr
+              %td{:style => "width: 1%;"}
+                %img{:alt => "", :src => "../../HabilitaEntidade/../common/imagem_sis/logo_codhab.jpg", :style => "margin-left:5px", :width => "90px"}/
+              %td{:style => "font-weight: bold; font-size: 13px;"}
+                %div{:style => "text-align: center;"}
+                  GOVERNO DO DISTRITO FEDERAL
+                  %br/
+                  Secretaria de Estado de Habitação
+                  Regularização e Desenvolvimento Urbano
+                  %br/
+                  Companhia de Desenvolvimento Habitacional do Distrito Federal
+                  %br/
+                  %br/
+                  Diretoria Imobiliária
+              %td.style3
+                 
+                %img{:alt => "", :src => "../../common/imagem_sis/Logo_GDF_2011.png", :style => "width: 87px"}/
+        %br/
+        %table{:border => "0", :cellpadding => "1", :cellspacing => "1", :width => "800px"}
+          %tr
+            %td{:colspan => "2", :style => "font-weight: bold; font-size: 17px;", :valign => "bottom"}
+              %center Check List
+        %div{:style => "width: 800px; margin-top:25px;"}
+          %table.EstiloForm{:border => "1", :cellpadding => "0", :cellspacing => "0", :style => " border:1px solid #CCCCCC", :width => "800px"}
+            %tr
+              %td{:colspan => "3"}
+                PROTOCOLO
+                %br/
+                %b
+                  %label#lblProtocolo{"font-bold" => "True", :runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Nome do candidato
+                %br/
+                %b
+                  %label#lblNome{:runat => "server"}
+              %td
+                Inscrição nº
+                %br/
+                %b
+                  %label#lblSeqCad{:runat => "server"}
+            %tr
+              %td
+                Nº do RG
+                %br/
+                %b
+                  %label#lblNmRg{:runat => "server"}
+              %td
+                CPF do Candidato
+                %br/
+                %b
+                  %label#lblCpf{:runat => "server"}
+              %td
+                Comprovante de chegada no DF
+                %br/
+                %b
+                  %label#CompChegadaDF{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Carta de Anuência da Entidade c/firma reconhecida
+                %br/
+                %b
+                  %label#lblFiliaCoop{:runat => "server"}
+              %td
+                Comprovante de renda
+                %br/
+                %b
+                  %label#lblCompRenda{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Autenticação de Documentos
+                %br/
+                %b
+                  %label#lblAutDocs{:runat => "server"}
+              %td
+                Último Contracheque
+                %br/
+                %b
+                  %label#lblUltContCheq{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Taxa de Abertura de Processo
+                %br/
+                %b
+                  %label#lblTaxaAbertura{:runat => "server"}
+              %td
+                Declaração de IRRF
+                %br/
+                %b
+                  %label#lblDecIrrf{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Certidão Cartorária
+                %br/
+                %b
+                  %label#lblCertCart{:runat => "server"}
+              %td
+                Declaração de renda Emitida Sind./Coop.
+                %br/
+                %b
+                  %label#lblDeclSind{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Nada Consta SEFAZ
+                %br/
+                %b
+                  %label#lblSefaz{:runat => "server"}
+              %td
+                Inscrição no GDF - Autonomo Formal
+                %br/
+                %b
+                  %label#lblInsGdf{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Certidão de Casamento/Declaração de União Estável
+                %br/
+                %b
+                  %label#lblCertCasado{:runat => "server"}
+              %td
+                DECORE - DARF Recolhido
+                %br/
+                %b
+                  %label#lblDecore{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Comp. residência no DF
+                %br/
+                %b
+                  %label#lblResidDf{:runat => "server"}
+              %td
+                CTPS
+                %br/
+                %b
+                  %label#lblCtps{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Comprov. Alteração Estado Civil
+                %br/
+                %b
+                  %label#lblAltEstCivil{:runat => "server"}
+              %td
+                Declaração Funcional
+                %br/
+                %b
+                  %label#lblDecFun{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Certidão de Nascimento dos Filhos
+                %br/
+                %b
+                  %label#lblCertNascFilho{:runat => "server"}
+              %td
+                Contrato de Trabalho
+                %br/
+                %b
+                  %label#lblContTrab{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Comprovação de Dependentes
+                %br/
+                %b
+                  %label#lblCompDep{:runat => "server"}
+              %td
+                Declaração Autônomo / Sem Renda
+                %br/
+                %b
+                  %label#lblDecSemRenda{:runat => "server"}
+            %tr
+              %td{:colspan => "2"}
+                Pesquisa Cadastral CODHAB
+                %br/
+                %b
+                  %label#lblPesqCodhab{:runat => "server"}
+              %td
+                Deficientes - Laudo Médico
+                %br/
+                %b
+                  %label#lblDefLaudo{:runat => "server"}
+          %table.EstiloForm{:border => "1", :cellpadding => "0", :cellspacing => "0", :style => " border:1px solid #CCCCCC", :width => "800px"}
+            %tr
+              %td
+                Mensagens:
+                %br/
+                %br/
+                %label#lblMsnRenda{"font-bold" => "True", "font-names" => "verdana", "font-size" => "11px", :forecolor => "Red", :runat => "server", :visible => "false"}
+                %label#lblMsnTempoBrasilia{"font-bold" => "True", "font-names" => "verdana", "font-size" => "11px", :forecolor => "Red", :runat => "server", :visible => "false"}
+                %br/
+                %label#lblMsnCartoraria{"font-bold" => "True", "font-names" => "verdana", "font-size" => "11px", :runat => "server", :visible => "false"}
+                %label#lblSefaz1{"font-bold" => "True", "font-names" => "verdana", "font-size" => "11px", :runat => "server", :visible => "false"}
+                %label#lblMsg{"font-bold" => "True", "font-names" => "verdana", "font-size" => "11px", :runat => "server", :visible => "false"}
+                %label#lblVoiEstrutural{"font-bold" => "True", "font-names" => "verdana", "font-size" => "11px", :runat => "server"}
+                %br/
+                %label#lblComunid{"font-bold" => "True", "font-names" => "verdana", "font-size" => "11px", :runat => "server"}
+                %br/
+                %label#lblHerdeiros{"font-bold" => "True", "font-names" => "verdana", "font-size" => "11px", :runat => "server"}
+                %br/
+                %label#lblImoveis{"font-bold" => "True", "font-names" => "verdana", "font-size" => "11px", :runat => "server"}
+                %br/
+                %label#lblCessionario{"font-bold" => "True", "font-names" => "verdana", "font-size" => "12px", :forecolor => "Red", :runat => "server"}
+          %table.EstiloForm{:border => "1", :cellpadding => "0", :cellspacing => "0", :style => " border:1px solid #CCCCCC", :width => "800px"}
+            %tr
+              %td{:valign => "top"}
+                Parecer do Digitador
+                %br/
+                %b
+                  %label#lblParecerAna{:runat => "server"}
+                %br/
+                %br/
+                Candidato
+                %label#lblMsnPar{:runat => "server"}
+                %b
+                  %label#lblDataAnalise{:runat => "server"}
+                %br/
+                %br/
+                %br/
+                %label#lblObsAnalista{:runat => "server"}
+                %br/
+                %br/
+                %br/
+                Digitado por:
+                %br/
+                %label#lblNomeAnalista{:runat => "server"}
+                %br/
+              %td{:valign => "top"}
+                Parecer do Supervisor
+                %br/
+                %b
+                  %label#lblParecerSup{:runat => "server"}
+                %br/
+                %br/
+                De acordo
+                %br/
+                %br/
+                %b
+                  %label#lblDataSuper{:runat => "server"}
+                %br/
+                %br/
+                %label#lblObsSupervisor{:runat => "server"}
+                %br/
+                _____________________________________
+                %br/
+                %label#lblNomeSupervisor{:runat => "server"}
+                %br/
+                Assinatura
+                do Supervisor
+            %tr
+              %td{:colspan => "2"}
+                %div{:style => " text-align:right; width:790px;"}
+                  Brasília/DF, ___/___/_____.
+                  %br/
+                  %br/
+                De acordo. Autue-se e após à DIMOB para publicar.
+                %br/
+                %br/
+                %center
+                  ___________________________________________
+                  %br/
+                  Chefe do NUATE
