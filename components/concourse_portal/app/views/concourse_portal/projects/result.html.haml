@@ -19,7 +19,7 @@
               %h2
                 %b= winner.winner_type.humanize
             %p
-              %h3 #{winner.participation.candidate.name} - Nº da pasta: #{winner.participation_id} -  Nº de inscrição: #{winner.participation.candidate_id}
+              %h3 #{winner.participation.candidate.name} - Nº da pasta: #{winner.participation_id} -  Nº de inscrição: #{winner.participation.candidate_id} -  #{winner.participation.candidate.city} / #{winner.participation.candidate.state.acronym}
             %p
               %h4
                 %i= winner.participation.team_description
