@@ -6,17 +6,19 @@ namespace :csv do
   desc "migração de log"
   task :log => :environment do
 
-    @index = 1
+    @index = 0
 
-    CSV.foreach("lib/files/lote_20_04_16.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/Solicitante.csv", :col_sep => "#") do |row|
 
 
-           @model = Protocol::Allotment.new({
-             id: row[0],
-             created_at: row[1],
-             description: row[2],
-             status: true,
-             })
+           @model = Protocol::Assessment.find_by_id_old(row[0])
+
+           if @model.present?
+             @model.requesting_unit = row[1]
+             @model.external_agency = row[2]
+
+           end
+
 
           begin
             @model.save

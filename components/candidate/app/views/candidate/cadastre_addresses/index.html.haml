@@ -5,91 +5,87 @@
         %h4
           Candidato endereço
     .panel-body
-      .page-content
-        .documents-wrap.article
-          #articleAffix.article-sidebar.affix-top
-            %ul.list-group.nav
-              %li.list-group-item
-                = simple_form_for url_for, method: :get do |f|
-                  .row
-                    .col-md-12
-                      = f.input :cpf, label: false, input_html: { name: 'cpf', placeholder: "Digite o CPF", value: params[:cpf]}
-                  .row
-                    .col-md-12
-                      = f.input :old_process, label: false, input_html: { name: 'old_process', placeholder: "Digite o Processo", value: params[:old_process]}
-                  .row
-                    .col-md-12
-                      = f.input :city, as: :select, collection: Address::City.federal_district, label: false, prompt: 'selecione a cidade...',input_html: { name: 'city', selected: params[:city]}
-                  .row
-                    .col-md-12
-                      = f.input :block, as: :select, label: false, collection: (@address.city.present?) ? Address::Unit.select(:block).where(city_id: @address.city).distinct : {}, label_method: :block, value_method: :block, prompt: 'selecione a quadra...', input_html: {name: 'block',  value: @address.city}
-                  .row
-                    .col-md-12
-                      = f.input :group_address, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? ) ? Address::Unit.select(:group).where(city_id: @address.city, block: @address.block).distinct : {}, label_method: :group_address, value_method: :group_address, prompt: 'selecione a conjunto...', input_html: {name: 'group_address', value: @address.block}
-                  .row
-                    .col-md-12
-                      = f.input :unit, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @address.city,block: @address.block, group: @address.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a unidade...', input_html: { value: @address.unit,name: 'address', selected: params[:id]}
-                  .row
-                    .col-md-12
-                      = f.submit "Pesquisar", name: nil, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button)}
-          .article-content
-            %section
-              %h2.bold Assentados
-            %hr/
-            %section
-              - if @candidate.present?
-                .row
-                  .col-md-12
-                    .bootstrap-table
-                      %table.table.table-striped.table-bordered.table-condensed
-                        %thead{:style => "display: table-header-group;"}
-                          %tr
-                            %th Nome
-                            %th CPF
-                            %th Status
-                            %th Situação de Processo
+      .row
+        .col-md-3
+          = simple_form_for url_for, method: :get do |f|
+            .row
+              .col-md-12
+                = f.input :cpf, label: false, input_html: { name: 'cpf', placeholder: "Digite o CPF", value: params[:cpf]}
+            .row
+              .col-md-12
+                = f.input :old_process, label: false, input_html: { name: 'old_process', placeholder: "Digite o Processo", value: params[:old_process]}
+            .row
+              .col-md-12
+                = f.input :city, as: :select, collection: Address::City.federal_district, label: false, prompt: 'selecione a cidade...',input_html: { name: 'city', selected: params[:city]}
+            .row
+              .col-md-12
+                = f.input :block, as: :select, label: false, collection: (@address.city.present?) ? Address::Unit.select(:block).where(city_id: @address.city).distinct : {}, label_method: :block, value_method: :block, prompt: 'selecione a quadra...', input_html: {name: 'block',  value: @address.city}
+            .row
+              .col-md-12
+                = f.input :group_address, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? ) ? Address::Unit.select(:group).where(city_id: @address.city, block: @address.block).distinct : {}, label_method: :group_address, value_method: :group_address, prompt: 'selecione a conjunto...', input_html: {name: 'group_address', value: @address.block}
+            .row
+              .col-md-12
+                = f.input :unit, as: :select, label: false, collection: (@address.city.present? &&  @address.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @address.city,block: @address.block, group: @address.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a unidade...', input_html: { value: @address.unit,name: 'address', selected: params[:id]}
+            .row
+              .col-md-12
+                = f.submit "Pesquisar", name: nil, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button)}
+        .col-md-9
+          %h4.bold Assentados
+          %hr/
+          - if @candidate.present?
+            .row
+              .col-md-12
+                .bootstrap-table
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th Nome
+                        %th CPF
+                        %th Status
+                        %th Situação de Processo
+                    %tbody
+                      %tr
+                        - if @candidate.cadastre.present?
+                          %td= @candidate.cadastre.name
+                          %td= @candidate.cadastre.cpf
+                          %td= @candidate.cadastre.current_situation_name
+                          %td= @candidate.cadastre.cadastre_procedurals.last.procedural_status.name.upcase if @candidate.cadastre.cadastre_procedurals.present?
+            -if @candidate.unit.present?
+              .row
+                .col-md-12
+                  .bootstrap-table
+                    %table.table.table-striped.table-bordered.table-condensed
+                      %thead{:style => "display: table-header-group;"}
+                        %tr
+                          %th{:colspan => "2"} Endereço
+                          %th Cidade
+                          %th Data TCU
+                      %tbody
+                        %tr
+                          %td{:colspan => "2"}= link_to @candidate.unit.complete_address, address.unit_path(@candidate.unit.id)
+                          %td= @candidate.unit.city.name
+                          %td= @candidate.created_at.strftime('%d/%m/%Y')
+                      %thead{:style => "display: table-header-group;"}
+                        %tr
+                          %th Doado
+                          %th Escriturado
+                          %th Inscrição IPTU
+                          %th Situação do Imóvel
                         %tbody
                           %tr
-                            - if @candidate.cadastre.present?
-                              %td= @candidate.cadastre.name
-                              %td= @candidate.cadastre.cpf
-                              %td= @candidate.cadastre.current_situation_name
-                              %td= @candidate.cadastre.cadastre_procedurals.last.procedural_status.name.upcase
-                -if @candidate.unit.present?
-                  .row
-                    .col-md-12
-                      .bootstrap-table
-                        %table.table.table-striped.table-bordered.table-condensed
-                          %thead{:style => "display: table-header-group;"}
-                            %tr
-                              %th{:colspan => "2"} Endereço
-                              %th Cidade
-                              %th Data TCU
-                          %tbody
-                            %tr
-                              %td{:colspan => "2"}= link_to @candidate.unit.complete_address, address.unit_path(@candidate.unit.id)
-                              %td= @candidate.unit.city.name
-                              %td= @candidate.created_at.strftime('%d/%m/%Y')
-                          %thead{:style => "display: table-header-group;"}
-                            %tr
-                              %th Doado
-                              %th Escriturado
-                              %th Inscrição IPTU
-                              %th Situação do Imóvel
-                          %tbody
-                            %tr
-                              %td= @candidate.unit.donate ? "Sim" : "Não"
-                              %td= @candidate.unit.registry_units.last.situation
-                              %td= @candidate.unit.registration_iptu
-                              %td= @candidate.unit.situation_unit.description
-                  %hr
-                  -if @candidate.unit.situation_unit_id != 3
-                    .row
-                      .col-md-12
-                        = link_to "Assentar", new_cadastre_address_path(id: @candidate.unit.id), class: 'btn btn-warning btn-sm'
-                        = link_to "Desassentar", unallocate_path(id: @candidate.unit.id), class: 'btn btn-danger btn-sm'
-                        = link_to "Ficha descritiva", address.descriptive_path(id: @candidate.cadastre.id), target: "_blank", class: 'btn btn-primary btn-sm'
-                        = link_to "Emitir TCU", address.descriptive_path(id: @candidate.cadastre.id), target: "_blank", class: 'btn btn-info btn-sm'
+                            %td= @candidate.unit.donate ? "Sim" : "Não"
+                            %td= @candidate.unit.registry_units.last.situation
+                            %td= @candidate.unit.registration_iptu
+                            %td= @candidate.unit.situation_unit.description
+            %hr
+            .row
+              .col-md-12
+                -if @candidate.unit.situation_unit_id != 3
+                  = link_to "Assentar", new_cadastre_address_path(id: @candidate.unit.id), class: 'btn btn-warning btn-sm'
+                -if @candidate.unit.situation_unit_id == 3 && @candidate.cadastre.cadastre_procedurals.last.procedural_status.id == 4
+                  = link_to "Desassentar", unallocate_path(id: @candidate.unit.id), class: 'btn btn-danger btn-sm'
+                  = link_to "Ficha descritiva", address.descriptive_path(id: @candidate.cadastre.id), target: "_blank", class: 'btn btn-primary btn-sm'
+                  = link_to "Emitir TCU", address.descriptive_path(id: @candidate.cadastre.id), target: "_blank", class: 'btn btn-info btn-sm'
 :javascript
 
   $(document).ready(function() {
@@ -169,4 +165,3 @@
       });
     });
   });
-
