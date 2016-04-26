@@ -3,21 +3,25 @@ CandidateAttendance::Engine.routes.draw do
   namespace :habitation do 
     root 'dashboard#index'
 
-    resources :attendances, only: [:new, :index] do 
+    resources :cadastre_attendances do 
       get 'show_apresentation'
       get 'show_cadastre'
       get 'show_checklist'
       get 'show_rejection'
-    end
-
-
-    resources :cadastre_attendances do
+    
       resources :cadastre_mirrors, only: [:edit, :update]
       resources :dependent_mirrors
-      resources :checklists, only: [:index]
+      resources :checklists, only: [:index] do
+        get 'check' 
+        get 'uncheck' 
+        get 'auth' 
+        get 'unauth' 
+      end
+      
       resources :finishs, only: [:new, :create]
     end
-    
+
+
   end
 
   namespace :regularization do

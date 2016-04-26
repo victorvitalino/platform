@@ -13,7 +13,8 @@ module Candidate
       mirror = cadastre.cadastre_mirrors.new
       mirror.set_clone(cadastre.attributes)
       mirror.save
-
+      mirror.set_clone_dependent(cadastre.dependents)
+            
       attendance = self.new
       attendance.cadastre_id = cadastre.id
       attendance.cadastre_mirror_id = mirror.id

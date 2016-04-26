@@ -1,0 +1,9 @@
+- @verifications.order(:name).each do |verification|
+  %tr
+    %td= verification.name
+    %td= verification.description
+    %td.col-md-1= verification.code
+    %td.col-md-1= verification.publish ? "Sim" : "Não"
+    %td.col-md-1
+      = link_to "", edit_verification_path(verification), remote: true, class: 'btn btn-primary glyphicon glyphicon-pencil btn-xs'
+      = link_to "", verification_path(verification), remote: true, method: :delete, data: { confirm: t(:confirm)}, class: 'btn btn-danger glyphicon glyphicon-remove btn-xs'

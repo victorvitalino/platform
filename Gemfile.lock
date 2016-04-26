@@ -88,6 +88,8 @@ PATH
     regularization_portal (0.0.1)
       haml-rails
       rails (~> 4.2.1)
+    report (0.0.1)
+      rails (~> 4.2.1)
     schedule (0.0.1)
       rails (~> 4.2.1)
     schedule_portal (0.0.1)
@@ -527,6 +529,7 @@ DEPENDENCIES
   rake
   regularization!
   regularization_portal!
+  report!
   rspec-rails
   schedule!
   schedule_portal!

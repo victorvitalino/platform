@@ -1,0 +1,36 @@
+= simple_form_for @verification, remote: true do |f|
+  .row
+    .col-md-8
+      = f.input :name, input_html: { placeholder: "Digite o nome do item"}
+    .col-md-4
+      = f.input :code, input_html: { placeholder: "Digite o nome do item"}
+  .row
+    .col-md-12
+      = f.input :description, input_html: { placeholder: "Digite o nome do item"}
+  .row
+    .col-md-6
+      = f.input :text_valid, input_html: { placeholder: "Digite o nome do item"}
+    .col-md-6
+      = f.input :text_invalid, input_html: { placeholder: "Digite o nome do item"}
+  %hr/
+  .row
+    .col-md-4
+      = f.input :verification_type, as: :select, collection: Candidate::Verification.verification_types.keys, include_blank: false
+  .row
+    .col-md-12
+      = f.input :sql, input_html: { placeholder: "Digite o nome do item"}
+      = f.hint "select * from namespace_table where field = '\#{mirror.attribute}'"
+  .row
+    .col-md-12
+      = f.input :service, input_html: { placeholder: "Digite o nome do item"}
+      = f.hint "::Namespace::Model | Function | Attribute ex.: id"
+  %hr/
+  .row
+    .col-md-6
+      = f.association :program, include_blank: false
+    .col-md-6
+      = f.input :publish, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-4
+      = f.submit "Salvar item", class: 'btn btn-success', data: { disable_with: t(:disable_with) }
