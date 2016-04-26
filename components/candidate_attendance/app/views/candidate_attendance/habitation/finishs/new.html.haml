@@ -80,20 +80,10 @@
                           - else
                             %span.label.label-success
                               = ver.text_valid
-            %hr/
-            %h2 Parecer do analista
-            .row
-              .col-md-12
-                = simple_form_for url_for do |f|
-                  .row
-                    .col-md-4
-                      = f.input :option
-                  .row
-                    .col-md-6
-                      = f.input :observation
-                  %hr/
-                  .row
-                    .col-md-12
-                      = link_to "Voltar para preenchimento de checklist", habitation_cadastre_attendance_checklists_path(cadastre_attendance_id: @attendance.id), class: 'btn btn-lg btn-default'
-                      = f.submit "Finalizar atendimento", class: 'btn btn-success btn-lg pull-right'
-
+                - if @cadastre_mirror.cadastre.cadastre_procedurals.present?
+                  - if @cadastre_mirror.cadastre_procedurals.present?
+                    = render 'supervisor_form' 
+                  - else
+                    = render 'simple_supervisor_form' 
+                - else
+                  = render 'attendance_form'

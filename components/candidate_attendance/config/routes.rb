@@ -18,7 +18,13 @@ CandidateAttendance::Engine.routes.draw do
         get 'unauth' 
       end
       
-      resources :finishs, only: [:new, :create]
+      resources :finishs do 
+        collection do 
+          post  'supervisor_check'
+          post  'supervisor_update'
+          post  'attendance_check'
+        end
+      end
     end
 
 
