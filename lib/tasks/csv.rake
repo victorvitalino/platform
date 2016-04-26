@@ -8,7 +8,7 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/Solicitante.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/herdeiro.csv", :col_sep => "#") do |row|
 
 
            @model = Protocol::Assessment.find_by_id_old(row[0])

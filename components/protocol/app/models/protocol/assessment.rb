@@ -1,7 +1,7 @@
 module Protocol
   class Assessment < ActiveRecord::Base
-    belongs_to :document_type
-    belongs_to :subject
+    belongs_to :document_type, -> {order(:name)}
+    belongs_to :subject, -> {order(:name)}
     belongs_to :staff, class_name: "Person::Staff"
     belongs_to :sector, class_name: "Person::Sector"
 

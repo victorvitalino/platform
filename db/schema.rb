@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422141214) do
+ActiveRecord::Schema.define(version: 20160425144622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -753,6 +753,47 @@ ActiveRecord::Schema.define(version: 20160422141214) do
   add_index "candidate_dependents", ["civil_state_id"], name: "index_candidate_dependents_on_civil_state_id", using: :btree
   add_index "candidate_dependents", ["kinship_id"], name: "index_candidate_dependents_on_kinship_id", using: :btree
   add_index "candidate_dependents", ["special_condition_id"], name: "index_candidate_dependents_on_special_condition_id", using: :btree
+
+  create_table "candidate_inheritor_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "candidate_inheritors", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.string   "name"
+    t.integer  "inheritor_type_id"
+    t.string   "cpf"
+    t.string   "rg"
+    t.date     "born"
+    t.integer  "civil_state_id"
+    t.string   "gender"
+    t.string   "single_name"
+    t.decimal  "percentage"
+    t.text     "observation"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "candidate_inheritors", ["cadastre_id"], name: "index_candidate_inheritors_on_cadastre_id", using: :btree
+  add_index "candidate_inheritors", ["civil_state_id"], name: "index_candidate_inheritors_on_civil_state_id", using: :btree
+  add_index "candidate_inheritors", ["inheritor_type_id"], name: "index_candidate_inheritors_on_inheritor_type_id", using: :btree
+
+  create_table "candidate_iptus", force: :cascade do |t|
+    t.string   "cpf"
+    t.string   "name"
+    t.string   "registration"
+    t.string   "address"
+    t.string   "city"
+    t.string   "kind_realty"
+    t.string   "kind_search"
+    t.string   "year"
+    t.boolean  "realty_codhab"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "candidate_kinships", force: :cascade do |t|
     t.string   "name"

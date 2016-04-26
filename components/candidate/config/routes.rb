@@ -1,4 +1,5 @@
 Candidate::Engine.routes.draw do
+  resources :inheritors, path: 'herdeiros'
   resources :cadins
   resources :cadastres, path: 'cadastros' do
     get   'cadastre_situation/id', path: 'situacao', to: 'cadastres#cadastre_situation', as: 'cadastre_situation'
