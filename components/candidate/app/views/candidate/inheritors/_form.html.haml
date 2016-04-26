@@ -1,0 +1,39 @@
+= simple_form_for @inheritor do |f|
+ .card-body.card-padding
+  .row
+   .col-md-8
+    = f.label :name, class: 'fg-label'
+    = f.input :name, label: false, input_html: {placeholder: 'Preencha'}
+  .row
+   .col-md-4
+    = f.label :cpf, class: 'fg-label'
+    = f.input :cpf, label: false, input_html: {placeholder: 'Preencha'}
+   .col-md-2
+    = f.label :born,  as: 'string', class: 'fg-label'
+    = f.input :born, label: false,   as: 'string', input_html: { class: 'date', placeholder: '00/00/0000', value: (@inheritor.born) ? localize(f.object.born) : nil}
+  .row
+   .col-md-4
+    = f.label :gender, class: 'fg-label'
+    = f.input :gender, as: :select, include_blank: false, selected: false, label: false
+   .col-md-2
+    = f.label :rg, class: 'fg-label'
+    = f.input :rg, label: false, input_html: {placeholder: 'Preencha'}
+  .row
+   .col-md-4
+    = f.label :civil_state, class: 'fg-label'
+    = f.input :civil_state, as: :select, collection: Candidate::CivilState.all , include_blank: false, selected: false, label: false
+   .col-md-2
+    = f.label :percentage, class: 'fg-label'
+    = f.input :percentage, label: false, input_html: { placeholder: 'Preencha'}
+  .row
+   .col-md-8
+    = f.label :single_name, class: 'fg-label'
+    = f.input :single_name, label: false, input_html: { placeholder: 'Preencha'}
+  .row
+   .col-md-8
+    = f.label :observation, class: 'fg-label'
+    = f.input :observation, as: :text, label: false, input_html: { placeholder: 'Preencha'}
+  .row
+   .col-md-8
+    = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+    = link_to "voltar",  inheritors_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}

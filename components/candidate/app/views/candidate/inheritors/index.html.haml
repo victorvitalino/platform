@@ -1,0 +1,46 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Herdeiros
+          = link_to 'novo usuário', new_inheritor_path, class: 'btn btn-success pull-right btn-sm'
+    .panel-body
+      .row
+        .col-md-12
+          = simple_form_for  url_for, method: 'get' do  |f|
+            .col-md-3
+              = f.label "Nome"
+              = f.input :name_inheritor, label: false, input_html: { name: 'name_inheritor', value: params[:name_inheritor]}
+            .col-md-2
+              = f.label "CPF"
+              = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+            .col-md-3
+              = f.label "Tipo de herdeiro"
+              = f.input :type_inheritor, as: :select, label: false, collection: Candidate::InheritorType.all, selected: params[:type_inheritor], include_blank: "Todos", input_html: { name: :type_inheritor}
+            .col-md-2{style: 'padding-top: 24px'}
+              = f.submit "Filtrar resultado", name: nil, class: 'btn btn-primary btn-sm', data: { disable_with: t(:disabled_button)}
+
+      .row
+        .col-md-12
+          %table.table.table-hover.table-striped.table-bordered.table-condensed
+            %thead
+              %tr
+                %th Nome
+                %th CPF
+                %th Herdeiro de:
+                %th Tipo de herdeiro
+                %th Ações
+            %tbody
+              - @inheritors.order(:name).each do |i|
+                %tr
+                  %td= i.name.to_s.upcase
+                  %td= i.cpf
+                  %td= link_to i.cadastre.name, candidate.cadastres_path(cpf: i.cadastre.cpf) if i.cadastre.present?
+                  %td= i.inheritor_type.name if i.inheritor_type.present?
+                  %td
+                    = link_to "", edit_inheritor_path(i), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:staff, namespace: Person).update?
+
+          .row
+            .col-md-6.col-md-offset-3
+              = will_paginate @inheritors, renderer: BootstrapPagination::Rails

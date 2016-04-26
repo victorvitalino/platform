@@ -8,15 +8,19 @@ namespace :update do
 
     @index = 0
 
-    CSV.foreach("lib/files/indicados_22_04_2016.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/iptu.csv", :col_sep => "#") do |row|
 
 
-           @model = Firm::EnterpriseCadastre.new(
-           enterprise_id: row[1],
-           cadastre_id: row[0],
-           status: true,
-           created_at: row[2],
-           source_list: row[4]
+           @model = Candidate::Iptu.new(
+           registration: row[2],
+           name: row[1],
+           address: row[3],
+           cpf: row[0].present? ? row[0].gsub('-','').gsub('.','') : "",
+           city: row[4],
+           kind_realty:row[5],
+           kind_search:row[6],
+           year:row[7],
+           realty_codhab:  row[8],
            )
 
 
