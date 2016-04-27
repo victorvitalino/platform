@@ -14,22 +14,23 @@ module CandidateAttendance
       end
 
       def supervisor_check
+        # => Isso ta complexo bagaraio! Faz um favor!? **Otimize-me**
         @supervisor_finish = CadastreProcedural.new(set_supervisor_params)
         @supervisor_finish.staff_id = current_user.id
         @supervisor_finish.cadastre_mirror_id = @cadastre_mirror.id
         @supervisor_finish.cadastre_id = @cadastre_mirror.cadastre_id
 
         if @supervisor_finish.save
-          
+
         else
-          flash[:danger] =  'Não foi possível finalizar o atendimento. Favor verifique as informações fornecidas.'
+          flash[:danger] = 'Não foi possível finalizar o atendimento. Favor verifique as informações fornecidas.'
           render action: :new
         end      
       end
 
       def supervisor_update
       end
-      
+
 
       def attendance_check
       end
