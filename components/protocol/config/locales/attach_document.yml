@@ -11,4 +11,5 @@ pt-BR:
       'protocol/attach_document':
         document_father: "Documento Pai"
         document_child: "Documento Filho"
-
+        document: "Nº do documento"
+        document_type: "Tipo de documento"

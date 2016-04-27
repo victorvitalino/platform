@@ -4,7 +4,7 @@
       .panel-title
         %h4
           Herdeiros
-          = link_to 'novo usuário', new_inheritor_path, class: 'btn btn-success pull-right btn-sm'
+          = link_to 'novo herdeiro', candidate.cadastres_path, class: 'btn btn-success pull-right btn-sm'
     .panel-body
       .row
         .col-md-12
@@ -39,7 +39,7 @@
                   %td= link_to i.cadastre.name, candidate.cadastres_path(cpf: i.cadastre.cpf) if i.cadastre.present?
                   %td= i.inheritor_type.name if i.inheritor_type.present?
                   %td
-                    = link_to "", edit_inheritor_path(i), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:staff, namespace: Person).update?
+                    = link_to "", edit_cadastre_inheritor_path(i.cadastre.id,i), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:staff, namespace: Person).update?
 
           .row
             .col-md-6.col-md-offset-3

@@ -3,6 +3,7 @@ require_dependency "candidate/application_controller"
 module Candidate
   class InheritorsController < ApplicationController
     before_action :set_inheritor, only: [:show, :edit, :update, :destroy]
+    before_action :set_cadastre, only: [:new, :edit]
 
     has_scope :name_inheritor
     has_scope :cpf
@@ -20,7 +21,7 @@ module Candidate
 
     # GET /inheritors/new
     def new
-      @inheritor = Inheritor.new
+      @inheritor = @cadastre.inheritor.new
     end
 
     # GET /inheritors/1/edit
@@ -57,6 +58,10 @@ module Candidate
       # Use callbacks to share common setup or constraints between actions.
       def set_inheritor
         @inheritor = Inheritor.find(params[:id])
+      end
+
+      def set_cadastre
+        @cadastre = Candidate::Cadastre.find(params[:cadastre_id])
       end
 
       # Only allow a trusted parameter "white list" through.

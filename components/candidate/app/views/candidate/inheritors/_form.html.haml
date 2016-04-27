@@ -2,6 +2,15 @@
  .card-body.card-padding
   .row
    .col-md-8
+    = f.label "Nome do candidato: ", class: 'fg-label'
+    = @inheritor.cadastre.name
+  %hr
+  .row
+   .col-md-8
+    %h4
+     Dados do herdeiro
+  .row
+   .col-md-8
     = f.label :name, class: 'fg-label'
     = f.input :name, label: false, input_html: {placeholder: 'Preencha'}
   .row
