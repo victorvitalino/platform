@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160426133343) do
+=======
 ActiveRecord::Schema.define(version: 20160425144622) do
+>>>>>>> 501985be13d8a6f8fb169a440df187d5b867d8ca
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -918,6 +922,23 @@ ActiveRecord::Schema.define(version: 20160425144622) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "candidate_verifications", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "text_valid"
+    t.string   "text_invalid"
+    t.integer  "verification_type"
+    t.string   "sql"
+    t.string   "service"
+    t.integer  "program_id"
+    t.string   "code"
+    t.boolean  "publish",           default: true
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "candidate_verifications", ["program_id"], name: "index_candidate_verifications_on_program_id", using: :btree
 
   create_table "candidate_vois", force: :cascade do |t|
     t.string   "name"

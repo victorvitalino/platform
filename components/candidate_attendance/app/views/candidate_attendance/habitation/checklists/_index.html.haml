@@ -2,12 +2,12 @@
   %tr
     %td= check.name
     %td.col-md-1
-      - if @mirror.cadastre_checklists.where(checklist_id: check, document_authenticate: true).present?
-        = link_to "", attendance_cadastre_mirror_checklist_unauth_path(cadastre_mirror_id: @mirror, checklist_id: check), class: 'btn btn-success fa fa-check', remote: true
-      - elsif @mirror.cadastre_checklists.where(checklist_id: check.id).present?
-        = link_to "", attendance_cadastre_mirror_checklist_auth_path(cadastre_mirror_id: @mirror, checklist_id: check), class: 'btn btn-default fa fa-check', remote: true
+      - if @cadastre_mirror.cadastre_checklists.where(checklist_id: check, document_authenticate: true).present?
+        = link_to "", habitation_cadastre_attendance_checklist_unauth_path(cadastre_attendance_id: @attendance, checklist_id: check), class: 'btn btn-success fa fa-check', remote: true
+      - elsif @cadastre_mirror.cadastre_checklists.where(checklist_id: check.id).present?
+        = link_to "", habitation_cadastre_attendance_checklist_auth_path(cadastre_attendance_id: @attendance, checklist_id: check), class: 'btn btn-default fa fa-check', remote: true
     %td.col-md-1
-      - if @mirror.cadastre_checklists.where(checklist_id: check.id).present?
-        = link_to "", attendance_cadastre_mirror_checklist_uncheck_path(cadastre_mirror_id: @mirror, checklist_id: check.id), class: 'btn btn-success fa fa-check', remote: true
+      - if @cadastre_mirror.cadastre_checklists.where(checklist_id: check.id).present?
+        = link_to "", habitation_cadastre_attendance_checklist_uncheck_path(cadastre_attendance_id: @attendance, checklist_id: check.id), class: 'btn btn-success fa fa-check', remote: true
       - else
-        = link_to "", attendance_cadastre_mirror_checklist_check_path(cadastre_mirror_id: @mirror, checklist_id: check), class: 'btn btn-default fa fa-check', remote: true
+        = link_to "", habitation_cadastre_attendance_checklist_check_path(cadastre_attendance_id: @attendance, checklist_id: check), class: 'btn btn-default fa fa-check', remote: true

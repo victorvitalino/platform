@@ -40,7 +40,24 @@
                       %th Autenticado?
                       %th Checado?
                   %tbody
-                    
+                    - @checklists.each do |check|
+                      %tr
+                        %td.col-md-10= check.name
+                        %td
+                          - if @cadastre_mirror.cadastre_checklists.authenticate?(check)
+                            %span.label.label-success
+                              Autenticado
+                          - else
+                            %span.label.label-default
+                              Não autenticado 
+                        %td
+                          - if @cadastre_mirror.cadastre_checklists.checked?(check)
+                            %span.label.label-success
+                              Checado
+                          - else
+                            %span.label.label-default
+                              Não checado 
+                      
 
             .row
               .col-md-12
@@ -52,66 +69,21 @@
                       %th Descrição
                       %th Situação
                   %tbody
-                    %tr
-                      %td Cadastro Imobiliário
-                      %td.col-md-6
-                      %td.col-md-2
-                        - if @cadastre_mirror.check_cadin
-                          %span.label.label-danger
-                            Tempo menor que 5 anos
-                        - else
-                          %span.label.label-success
-                            Válido
-                    %tr
-                      %td IPTU
-                      %td.col-md-6
-                      %td.col-md-2
-                    %tr
-                      %td Cadastro vínculado como dependente
-                      %td.col-md-6
-                      %td.col-md-2
-                        - if @cadastre_mirror.check_dependent
-                          %span.label.label-danger
-                            Tempo menor que 5 anos
-                        - else
-                          %span.label.label-success
-                            Válido
-                    %tr
-                      %td Renda familiar
-                      %td.col-md-6
-                        A renda familiar não pode exceder 12 salários minímos
-                      %td.col-md-2
-                        - if @cadastre_mirror.check_family_income
-                          %span.label.label-danger
-                            Renda familiar maior que o permitido
-                        - else
-                          %span.label.label-success
-                            Válido
-                    %tr
-                      %td Tempo de brasília
-                      %td.col-md-6
-                        Tempo de brasília deverá ser maior que 5 anos
-                      %td.col-md-2
-                        - if @cadastre_mirror.check_arrival_df
-                          %span.label.label-danger
-                            Tempo menor que 5 anos
-                        - else
-                          %span.label.label-success
-                            Válido
-            %hr/
-            %h2 Parecer do analista
-            .row
-              .col-md-12
-                = simple_form_for url_for do |f|
-                  .row
-                    .col-md-4
-                      = f.input :option
-                  .row
-                    .col-md-6
-                      = f.input :observation
-                  %hr/
-                  .row
-                    .col-md-12
-                      = link_to "Voltar para preenchimento de checklist", habitation_cadastre_attendance_checklists_path(cadastre_attendance_id: @attendance.id), class: 'btn btn-lg btn-default'
-                      = f.submit "Finalizar atendimento", class: 'btn btn-success btn-lg pull-right'
-
+                    - Candidate::Verification.morar_bem.each do |ver| 
+                      %tr
+                        %td.col-md-2= ver.name
+                        %td= ver.description
+                        %td.col-md-3
+                          - if ver.mirror_verificate(@cadastre_mirror)
+                            %span.label.label-danger
+                              = ver.text_invalid
+                          - else
+                            %span.label.label-success
+                              = ver.text_valid
+                - if @cadastre_mirror.cadastre.cadastre_procedurals.present?
+                  - if @cadastre_mirror.cadastre_procedurals.present?
+                    = render 'supervisor_form' 
+                  - else
+                    = render 'simple_supervisor_form' 
+                - else
+                  = render 'attendance_form'

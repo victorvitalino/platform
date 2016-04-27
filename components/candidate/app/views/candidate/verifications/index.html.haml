@@ -1,0 +1,22 @@
+.page-content
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
+        Listagem de verificações cadastrais
+    .panel-body
+      .row
+        .col-md-12
+          = link_to 'Adicionar verificação', new_verification_path, remote: true, class: 'btn btn-success',data: {disable_with: "carregando..."}
+      %br/
+      .row
+        .col-md-12
+          %table#data-table-command.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Nome
+                %th Descrição
+                %th Código
+                %th Publicado?
+                %th Ações
+            %tbody.index-verification
+              = render 'index'

@@ -2,7 +2,7 @@ require_dependency 'candidate_attendance/application_controller'
 
 module CandidateAttendance
   module Habitation
-    class AttendancesController < ApplicationController
+    class CadastreAttendancesController < ApplicationController
       before_action :set_attendance, only: [:show_apresentation, :show_cadastre, :show_checklist, :show_rejection]
 
       def new

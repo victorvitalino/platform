@@ -15,6 +15,7 @@ module Candidate
     has_many :cadastre_checklists
     has_many :cadastre_procedurals
     has_many :attendaces, class_name: "Candidate::Attendance"
+    has_many :iptus, foreign_key: 'cpf'
 
     has_one :pontuation
 
@@ -84,10 +85,11 @@ module Candidate
 
     # => validações do mundo legal
 
-    def check_arrival_df
+    def self.check_arrival_df(id)
+      mirror = Candidate::CadastreMirror.find(id)
+      
       (Date.today - self.born).to_i / 365
-
-      date = Date.parse(self.arrival_df) rescue nil
+      date = Date.parse(mirror.arrival_df) rescue nil
 
       if date.present?
         ((Date.today - date).to_i / 365) < 5
@@ -96,20 +98,13 @@ module Candidate
       end
     end
 
-    def check_cadin
-      Candidate::Cadin.find_by_cpf(self.cpf).present?      
+    def self.family_income_calc(id)
+      mirror = Candidate::CadastreMirror.find(id)
+      income_dep = mirror.dependent_mirrors.sum(:income)
+
+      (income_dep + mirror.income) > FAMILY_INCOME
     end
 
-
-    def check_dependent
-      Candidate::Dependent.where(cpf: self.cpf).present?
-    end
-
-    def check_family_income
-      income_dep = self.dependent_mirrors.sum(:income)
-
-      (income_dep + self.income) > FAMILY_INCOME
-    end
 
     # => functions
 

@@ -36,8 +36,6 @@ module Protocol
     end
 
 
-
-
     def set_staff(staff_id)
         self.staff_id = staff_id
     end

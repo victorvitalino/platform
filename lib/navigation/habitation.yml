@@ -39,6 +39,11 @@ nav:
             code: 11501
             label: 'Cadastro'
             controller: '/entity/cadastres'
+          attendance:
+            module: 'entity'
+            code: 11501
+            label: 'Atendimento'
+            controller: '/entity/cadastres'
       cadastre:
         code: [11005, 11011]
         label: 'Cadastro'
@@ -54,16 +59,16 @@ nav:
             code: 11011
             label: 'Assentamento'
             controller: '/candidate/cadastre_addresses'
-          checklist:
+          inheritors:
             module: 'candidate'
             code: 11011
-            label: 'Gestão de checklists'
-            controller: '/candidate/checklists'
-          checklist_type:
+            label: 'Herdeiros'
+            controller: '/candidate/cadastre_addresses'
+          verification:
             module: 'candidate'
             code: 11011
-            label: 'Gestão de tipos de checklist'
-            controller: '/candidate/checklist_types'
+            label: 'Verificações'
+            controller: '/candidate/verifications'
       address:
         code: [11204, 11207]
         label: 'Endereço'
@@ -74,12 +79,12 @@ nav:
             code: 11204
             label: 'Pesquisa geral'
             controller: '/address/units'
-          index_attendent:
+          iptu:
             module: 'address'
-            code: 11207
-            label: 'Pesquisa Atendentes'
+            code: 11204
+            label: 'Pesquisa IPTU'
             controller: '/address/units'
-            action: 'index_attendent'
+
       cadin:
         code: 11304
         label: 'Cadastro imobiliário'
@@ -107,3 +112,38 @@ nav:
             label: 'Agendas'
             controller: '/schedule/agendas'
             action: 'index'
+      assistent:
+        code: [118103,118101]
+        label: 'Auxiliares'
+        controller: '#'
+        sub:
+          checklist:
+            module: 'candidate'
+            code: 11011
+            label: 'Gestão de checklists'
+            controller: '/candidate/checklists'
+          checklist_type:
+            module: 'candidate'
+            code: 11011
+            label: 'Gestão de tipos de checklist'
+            controller: '/candidate/checklist_types'
+      schedule:
+        code: [118103,118101]
+        label: 'Base de dados'
+        controller: '#'
+        sub:
+          dashboard:
+            module: 'candidate'
+            code: 11011
+            label: 'Visão geral'
+            controller: '/candidate/checklists'
+          reports:
+            module: 'candidate'
+            code: 11011
+            label: 'Relatórios'
+            controller: '/candidate/checklist_types'
+          verification:
+            module: 'candidate'
+            code: 11011
+            label: 'Auditor'
+            controller: '/candidate/checklist_types'

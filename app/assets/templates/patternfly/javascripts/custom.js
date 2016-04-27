@@ -3,8 +3,10 @@ $(document).ready(function(){
  
   $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
   $('.hour').mask("00:00", {placeholder: "00:00"});
+  $('.document_number').mask("000-000.000/0000", {placeholder: "000-000.000/0000"});
+ 
   $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true,allowZero:true, thousands:'', decimal:'.', affixesStay: false});
-
+ 
   
   $('form').on('click', '.remove_fields', function(event) {
     $(this).prev('input[type=hidden]').val('1');

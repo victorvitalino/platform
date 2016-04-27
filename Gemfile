@@ -123,5 +123,6 @@ path 'components' do
   gem 'action_portal'
 
   gem 'candidate_attendance'
+  gem 'report'
 
 end

@@ -12,7 +12,7 @@
               %th Autenticado
               %th Checado
           %tbody.checklist-index
-            /= render 'index'
+            = render 'index'
     .row
       .col-md-12
         = link_to "Voltar para atualização de dependentes", habitation_cadastre_attendance_dependent_mirrors_path(cadastre_attendance_id: @attendance.id), class: 'btn btn-lg btn-default pull-left'
