@@ -6,6 +6,8 @@
 		= stylesheet_link_tag 'portal', media: 'all'
 		= javascript_include_tag 'portal', media: 'all'
 		= csrf_meta_tags
+		:javascript
+			var URL = #{request.host}
 	%body
 		= render 'layouts/portal/partials/navs'
 		%div{class: (controller_name != 'home') ? 'container main' : '' }

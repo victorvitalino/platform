@@ -38,6 +38,10 @@ module Candidate
     validates :cpf, cpf: true
 
 
+    def self.updated_day(day)
+      self.where(updated_at: day).count
+    end
+
     def schedules
       Schedule::AgendaSchedule.where(cpf: self.cpf)
     end
@@ -63,6 +67,7 @@ module Candidate
     def age
       (Date.today - self.born).to_i / 365
     end
+
 
     def special?
         (self.special_condition_id == 2 || self.special_condition_id == 3)
@@ -180,8 +185,7 @@ module Candidate
     end
 
 
-
-
+    
     #program_id = 4 AND income BETWEEN 0 AND 1600
 
     #
