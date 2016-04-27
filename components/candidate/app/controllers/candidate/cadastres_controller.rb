@@ -6,11 +6,13 @@ module Candidate
 
     def index
       authorize :cadastre, :index?
-      
+
       @candidate = Cadastre.find_by_cpf(params[:cpf]) rescue nil
-      
-      flash[:warning] = "O CPF: <b>#{params[:cpf]}</b> não foi encontrado.".html_safe if @candidate.nil?
-      
+
+      unless params[:cpf].nil?
+       flash[:warning] = "O CPF: <b>#{params[:cpf]}</b> não foi encontrado.".html_safe if @candidate.nil?
+      end
+
     end
 
     def edit

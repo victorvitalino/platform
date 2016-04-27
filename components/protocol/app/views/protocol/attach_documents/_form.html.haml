@@ -6,12 +6,12 @@
           Pesquisar Documento
           = simple_form_for  new_assessment_attach_document_path, :method => 'get' do |f|
             .row
-              .col-md-12
-                = f.label :document, class: 'fg-label'
-                = f.input :document, label: false, input_html: { name: 'document', value: params[:document]}
+              .col-md-4
+                = f.label "Nº do documento", class: 'fg-label'
+                = f.input :document, label: false, input_html: { name: 'document', value: params[:document], class: 'document_number'}
             .row
-              .col-md-12
-                = f.label :document_type, class: 'fg-label'
+              .col-md-4
+                = f.label "Tipo de documento", class: 'fg-label'
                 = f.input :document_type, as: 'select', collection: Protocol::DocumentType.all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
             .row
               .col-md-12
@@ -29,11 +29,4 @@
                 = render 'index_result'
       .row
         .col-md-12
-          = link_to "voltar",  assessments_path, class: 'btn btn-dark btn-sm',data: {disable_with: "carregando..."}
-
-
-
-
-
-
-
+          = link_to "voltar",  assessments_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}
