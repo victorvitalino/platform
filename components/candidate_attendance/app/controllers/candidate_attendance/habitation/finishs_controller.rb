@@ -29,6 +29,26 @@ module CandidateAttendance
       end
 
       def supervisor_update
+        
+        @log = Candidate::AttendanceLog.new
+        @log.cadastre_mirror_id   = @cadastre_mirror.id
+        @log.cadastre_id          = @cadastre_mirror.cadastre_id
+        @log.user_id              = current_user.id
+        @log.attendance_status_id = 1
+
+        if @log.save
+          attendance = @cadastre_mirror.cadastre_attendances.new
+          attendance.cadastre_id = @cadastre_mirror.cadastre_id
+          attendance.attendance_status_id = 6 # => atendimento finalizado
+          attendance.staff_id = current_user.id
+          attendance.save
+
+          flash[:success] =  t :success
+          redirect_to habitation_root_path(cpf: @cadastre_mirror.cpf)
+
+        else
+          render action: :new
+        end
       end
 
 

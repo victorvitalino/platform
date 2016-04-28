@@ -8,11 +8,11 @@ module RegularizationPortal
     end
 
     def find_candidate
-      @candidate = Find.new
+      @candidate = RegularizationPortal::Find.new
     end
 
     def show_candidate
-      @candidate = Find.new(set_params_find)
+      @candidate = RegularizationPortal::Find.new(set_params_find)
 
       if @candidate.valid?
         redirect_to action: 'show', id: @candidate.cpf

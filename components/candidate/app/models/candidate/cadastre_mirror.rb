@@ -16,6 +16,7 @@ module Candidate
     has_many :cadastre_procedurals
     has_many :attendaces, class_name: "Candidate::Attendance"
     has_many :iptus, foreign_key: 'cpf'
+    has_many :cadastre_attendances
 
     has_one :pontuation
 

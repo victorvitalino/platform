@@ -61,7 +61,6 @@ jQuery(document).ready(function(){
         function get_json(y){
           var listas = ["GENERICA","RII","RIE","REGULARIZAÇÃO","VULNERAVEIS","DEFICIENTE","CADASTRO ANTIGO","IDOSOS"];
           $.getJSON(url_json+y, function (data) {
-                console.log(data)
                   if(data.length > 0){
                       var ex = [];
                       var lists_data = [];
@@ -128,7 +127,7 @@ jQuery(document).ready(function(){
                             useHTML: true,
                             formatter: function() {
                             var serie = this.series;
-                            console.log (serie);
+                            console.log (this);
                             var s = '<b>' + Highcharts.dateFormat('%a, %b %e, %Y', this.x) + '</b><br>';
                             s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
                             s += '<span style="color:' + serie.color + '">Mudança de Faixa</span>: <b>' + serie.options.myData[2].change_zone + '</b><br/>';

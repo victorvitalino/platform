@@ -4,14 +4,65 @@
       Detalhamento de atendimento
   .panel-body
     .row
-      .col-md-3
-        = link_to "Emitir folha de rosto",habitation_attendance_show_apresentation_path(@attendance) , target: '_blank'
-      .col-md-3
-        = link_to "Emitir espelho de cadastro", habitation_attendance_show_cadastre_path(@attendance), target: '_blank' 
-      .col-md-3
-        = link_to "Emitir espelho de checklist", habitation_attendance_show_checklist_path(@attendance) , target: '_blank' 
-      .col-md-3
-        = link_to "Emitir relatório de indeferimento", habitation_attendance_show_rejection_path(@attendance), target: '_blank'  
+      .col-md-12
+        = link_to "Retornar para detalhamento", habitation_root_path(cpf: @mirror.cpf), class: 'btn btn-default btn-lg'
     %hr/
     .row
       .col-md-12
+        %h3 Dados do atendimento
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th Cod.
+              %th Nome
+              %th CPF
+              %th Situação
+              %th Data
+              %th Funcionário
+          %tbody
+            %tr
+              %td= @mirror.id
+              %td= @mirror.name
+              %td= @mirror.cpf
+              %td= @mirror.cadastre.current_situation_name
+              %td= @mirror.created_at.strftime("%d/%m/%Y às %H:%M")
+              %td= @mirror.cadastre_attendances.last.staff.code
+    .row
+      .col-md-3
+        = link_to "Emitir folha de rosto", "#", target: '_blank', class: 'btn btn-success btn-lg'
+      .col-md-3
+        = link_to "Emitir espelho de cadastro","#", target: '_blank' , class: 'btn btn-success btn-lg'
+      .col-md-3
+        = link_to "Emitir espelho de checklist", "#", target: '_blank' , class: 'btn btn-success btn-lg'
+      .col-md-3
+        = link_to "Emitir relatório de indeferimento", "#", target: '_blank' , class: 'btn btn-success btn-lg'
+    %hr/
+    .row
+      .col-md-12
+        %h3 Log de atendimento
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th Data
+              %th Matrícula do funcionário
+              %th Situação do atendimento
+          %tbody
+            - @mirror.cadastre_attendances.order('created_at DESC').each do |attendance|
+              %tr
+                %td.col-md-2= attendance.created_at.strftime("%d/%m/%Y às %H:%M")
+                %td.col-md-2= attendance.staff.code
+                %td= attendance.attendance_status.name if attendance.attendance_status.present?
+    %hr/
+    .row
+      .col-md-12
+        %h3 Situação processual
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th Data
+              %th Situação do atendimento
+          %tbody
+            - @mirror.cadastre.cadastre_procedurals.order('created_at DESC').each do |procedural|
+              %tr
+                %td.col-md-1= procedural.created_at.strftime("%d/%m/%Y às %H:%M")
+                %td.col-md-2= procedural.procedural_status.name
