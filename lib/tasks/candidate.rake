@@ -1,6 +1,29 @@
 require 'csv'
 
 namespace :candidate do
+
+  task :update_day => :environment do 
+    
+    @day   = Date.parse('20/03/2016')
+    23.times do
+
+      @day = @day + 1.day
+
+      object = Candidate::DayOcurrency.new({
+        update_dependent: Candidate::Dependent.count_updates(@day),
+        update_old: Candidate::View::GeneralPontuation.is_olders?(@day),
+        halted: Candidate::CadastreSituation.halted_day_count(@day),
+        enables_day: Candidate::CadastreSituation.enabled_day_count(@day),
+        update_data: Candidate::Cadastre.updated_day(@day),
+        contemplated_day: Candidate::CadastreSituation.contemplated_day_count(@day),
+        date_ocurrency: @day
+      })
+
+      object.save
+      puts @day
+    end
+  end
+
   task :refresh_view => :environment do 
     connection = ActiveRecord::Base.connection
     begin

@@ -14,6 +14,13 @@ module Candidate
       def cadastre
         Candidate::Cadastre.find(self.id) rescue nil
       end
+
+
+      def self.is_olders?(date)
+        age = date - 60.years
+        self.where(born: age, situation_status_id: 4).count
+      end
+      
     end
   end
 end

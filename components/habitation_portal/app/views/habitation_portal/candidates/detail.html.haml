@@ -57,7 +57,7 @@
 :javascript
 jQuery(document).ready(function(){
   $(function () {
-      var url_json = "http://www.codhab.df.gov.br/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=";
+      var url_json = "http://"+ URL +"/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=";
         function get_json(y){
           var listas = ["GENERICA","RII","RIE","REGULARIZAÇÃO","VULNERAVEIS","DEFICIENTE","CADASTRO ANTIGO","IDOSOS"];
           $.getJSON(url_json+y, function (data) {

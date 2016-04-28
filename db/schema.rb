@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160426133343) do
-=======
-ActiveRecord::Schema.define(version: 20160425144622) do
->>>>>>> 501985be13d8a6f8fb169a440df187d5b867d8ca
+ActiveRecord::Schema.define(version: 20160428122250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -697,6 +693,22 @@ ActiveRecord::Schema.define(version: 20160425144622) do
   end
 
   add_index "candidate_convocations", ["pontuation_code_id"], name: "index_candidate_convocations_on_pontuation_code_id", using: :btree
+
+  create_table "candidate_day_ocurrencies", force: :cascade do |t|
+    t.integer  "update_income",            default: 0
+    t.integer  "update_dependent",         default: 0
+    t.integer  "update_special_condition", default: 0
+    t.integer  "update_old",               default: 0
+    t.integer  "halted",                   default: 0
+    t.integer  "update_arrival_df",        default: 0
+    t.integer  "enables_day",              default: 0
+    t.integer  "change_zone",              default: 0
+    t.integer  "update_data",              default: 0
+    t.integer  "contemplated_day",         default: 0
+    t.date     "date_ocurrency"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
 
   create_table "candidate_dependent_mirrors", force: :cascade do |t|
     t.integer  "cadastre_id"
