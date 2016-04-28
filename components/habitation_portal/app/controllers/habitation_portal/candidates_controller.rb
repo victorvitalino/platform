@@ -2,6 +2,7 @@ require_dependency 'habitation_portal/application_controller'
 
 module HabitationPortal
   class CandidatesController < ApplicationController
+    before_action :set_headers, only: [:detail]
 
     def find_candidate
       @candidate = Find.new
@@ -25,20 +26,25 @@ module HabitationPortal
 
       @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
       @positions = @candidate.positions.where(program_id: params[:program_id]).map do |key|
-        @events    = {
-          update_incomes: 0,
-          update_dependents: 0,
-          update_special_conditions: 0,
-          update_old: 0,
-          halted: 0,
-          update_arrival_df: 0,
-          time_list: 0,
-          enables_day: 0,
-          change_zone: 0,
-          change_zone: 0,
-          update_data: 0,
-          contemplateds_day: 0
-        }
+
+        @day = Candidate::DayOcurrency.find_by_date_ocurrency(key.created_at) rescue nil
+        
+        if @day.present?
+          @events    = {
+            update_incomes: @day.update_income,
+            update_dependents: @day.update_dependent,
+            update_special_conditions: @day.update_special_condition,
+            update_old: @day.update_old,
+            halted: @day.halted,
+            update_arrival_df: @day.update_arrival_df,
+            enables_day: @day.enables_day,
+            change_zone: @day.change_zone,
+            update_data: @day.update_data,
+            contemplateds_day: @day.contemplated_day
+          }
+        else
+          @events = {}
+        end
 
         [key.position, [key.created_at.year, key.created_at.month, key.created_at.day], @events]
       end
@@ -65,6 +71,11 @@ module HabitationPortal
 
     def set_params_find
       params.require(:find).permit(:cpf)
+    end
+   
+    def set_headers
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Request-Method'] = '*'
     end
 
   end

@@ -26,6 +26,9 @@
     = stylesheet_link_tag 'shared/portal', media: 'screen'
     = javascript_include_tag 'shared/portal', media: 'screen', 'data-turbolinks-eval' => 'false'
     = csrf_meta_tags
+
+    :javascript
+      var URL = "#{request.host_with_port}"
   %body
     = render 'partials/shared/portal/top_nav'
     = render 'partials/shared/portal/header'

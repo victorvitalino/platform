@@ -80,10 +80,9 @@
                           - else
                             %span.label.label-success
                               = ver.text_valid
-                - if @cadastre_mirror.cadastre.cadastre_procedurals.present?
-                  - if @cadastre_mirror.cadastre_procedurals.present?
-                    = render 'supervisor_form' 
-                  - else
-                    = render 'simple_supervisor_form' 
-                - else
+                - if @attendance.attendance_status_id == 7
+                  = render 'simple_supervisor_form'
+                - if @attendance.attendance_status_id == 5
+                  = render 'supervisor_form'
+                - if @attendance.attendance_status_id == 4
                   = render 'attendance_form'

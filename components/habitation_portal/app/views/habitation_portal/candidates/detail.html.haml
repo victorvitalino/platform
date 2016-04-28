@@ -57,14 +57,16 @@
 :javascript
 jQuery(document).ready(function(){
   $(function () {
-      var url_json = "http://www.codhab.df.gov.br/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=";
+      var url_json = "http://"+ URL +"/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=";
         function get_json(y){
           var listas = ["GENERICA","RII","RIE","REGULARIZAÇÃO","VULNERAVEIS","DEFICIENTE","CADASTRO ANTIGO","IDOSOS"];
           $.getJSON(url_json+y, function (data) {
                   if(data.length > 0){
                       var ex = [];
+                      var lists_data = [];
                       $.each(data,function(index){
                           ex.push([Date.UTC(data[index][1][0],data[index][1][1]-1,data[index][1][2]),data[index][0],data[index][2]]);
+                          lists_data.push(data[index][2]);
                       });
                       $('.container_grafico_'+y).highcharts({
 
@@ -118,14 +120,14 @@ jQuery(document).ready(function(){
                           series: [{
                               type: 'line',
                               name: 'Posição',
-                              myData: ex[2],
+                              myData: lists_data,
                               data:ex
                           }],
                           tooltip: {
                             useHTML: true,
                             formatter: function() {
                             var serie = this.series;
-                            //console.log (serie);
+                            console.log (this);
                             var s = '<b>' + Highcharts.dateFormat('%a, %b %e, %Y', this.x) + '</b><br>';
                             s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
                             s += '<span style="color:' + serie.color + '">Mudança de Faixa</span>: <b>' + serie.options.myData[2].change_zone + '</b><br/>';
@@ -137,7 +139,7 @@ jQuery(document).ready(function(){
                             s += '<span style="color:' + serie.color + '">Atualização de dados</span>: <b>' + serie.options.myData[2].update_data + '</b><br/>';
                             s += '<span style="color:' + serie.color + '">Atualização de dependentes</span>: <b>' + serie.options.myData[2].update_dependents + '</b><br/>';
                             s += '<span style="color:' + serie.color + '">Atualização de renda</span>: <b>' + serie.options.myData[2].update_incomes + '</b><br/>';
-                            s += '<span style="color:' + serie.color + '">Atualização de idoso</span>: <b>' + serie.options.myData[2].update_old + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Atualização de idoso</span>: <b>' + serie.options.myData.update_old+ '</b><br/>';
                             s += '<span style="color:' + serie.color + '">Atualização de condições especiais</span>: <b>' + serie.options.myData[2].update_special_conditions + '</b><br/>';
                             return s;
                             }

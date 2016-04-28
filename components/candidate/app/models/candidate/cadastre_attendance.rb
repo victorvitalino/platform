@@ -19,7 +19,7 @@ module Candidate
       attendance.cadastre_id = cadastre.id
       attendance.cadastre_mirror_id = mirror.id
       attendance.cadastre_mirror_id = mirror.id
-      attendance.attendance_status_id = 4
+      attendance.attendance_status_id = self.set_status_id(cadastre)
       attendance.staff_id = staff_id
 
       attendance.save
@@ -27,6 +27,22 @@ module Candidate
 
     def supervisor?
       self.attendance_status == 5
+    end
+
+    def self.set_status_id(cadastre)
+      procedural = cadastre.cadastre_procedurals
+      if procedural.present?
+        case procedural.last.procedural_status_id
+        when 7
+          # => retorna o parecer do supervisor
+          # => o problema que pode acontecer aqui é o fator dos cadastros antigos não obterem o mirro para finalização de atendimento. 
+          5 
+        when 14
+          7 # => parecer do gerente. galera habilitada.
+        end
+      else
+        4 # => retorna parecer do analista
+      end
     end
 
     private
@@ -38,6 +54,7 @@ module Candidate
         end
       end
     end
+
 
   end
 end

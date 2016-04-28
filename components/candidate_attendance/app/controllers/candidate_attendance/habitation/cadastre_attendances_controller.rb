@@ -30,7 +30,7 @@ module CandidateAttendance
       end
 
       def show
-        @attendance = Candidate::CadastreAttendance.find(params[:id])
+        @mirror = Candidate::CadastreMirror.find(params[:id])
       end
 
       def show_apresentation

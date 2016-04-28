@@ -127,7 +127,7 @@ nav:
             code: 11011
             label: 'Gestão de tipos de checklist'
             controller: '/candidate/checklist_types'
-      schedule:
+      data_base:
         code: [118103,118101]
         label: 'Base de dados'
         controller: '#'

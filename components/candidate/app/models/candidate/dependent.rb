@@ -16,5 +16,9 @@ module Candidate
     validates :percentage, numericality: true
 
     validates :income, numericality: {only_float: true}
+
+    def self.count_updates(day)
+      self.where(created_at: day).count
+    end
   end
 end
