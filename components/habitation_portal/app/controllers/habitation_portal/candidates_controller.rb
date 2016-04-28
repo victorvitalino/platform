@@ -26,18 +26,25 @@ module HabitationPortal
 
       @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
       @positions = @candidate.positions.where(program_id: params[:program_id]).map do |key|
-        @events    = {
-          update_incomes: 0,
-          update_dependents: Candidate::Dependent.count_updates(key.created_at),
-          update_special_conditions: 0,
-          update_old: Candidate::View::GeneralPontuation.is_olders?(key.created_at),
-          halted: Candidate::CadastreSituation.halted_day_count(key.created_at),
-          update_arrival_df: 0,
-          enables_day: Candidate::CadastreSituation.enabled_day_count(key.created_at),
-          change_zone: 0,
-          update_data: Candidate::Cadastre.updated_day(key.created_at),
-          contemplateds_day: Candidate::CadastreSituation.contemplated_day_count(key.created_at)
-        }
+
+        @day = Candidate::DayOcurrency.find_by_date_ocurrency(key.created_at) rescue nil
+        
+        if @day.present?
+          @events    = {
+            update_incomes: @day.update_income,
+            update_dependents: @day.update_dependent,
+            update_special_conditions: @day.update_special_condition,
+            update_old: @day.update_old,
+            halted: @day.halted,
+            update_arrival_df: @day.update_arrival_df,
+            enables_day: @day.enables_day,
+            change_zone: @day.change_zone,
+            update_data: @day.update_data,
+            contemplateds_day: @day.contemplated_day
+          }
+        else
+          @events = {}
+        end
 
         [key.position, [key.created_at.year, key.created_at.month, key.created_at.day], @events]
       end
