@@ -28,7 +28,7 @@
                 = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf] }
               .col-md-3
                 = f.label 'Processo', class: 'fg-label'
-                = f.input :process_number, label: false, input_html: { name: 'process_number', value: params[:process_number] }
+                = f.input :process_number, label: false, input_html: { name: 'process_number', value: params[:process_number], class: 'document_number' }
             .row
               .col-md-4
                 = f.label 'Nome', class: 'fg-label'

@@ -12,7 +12,7 @@
             .row
               .col-md-2
                 = f.label 'Processo', class: 'fg-label'
-                = f.input :process, label: false, input_html: { name: 'process', value: params[:process]}
+                = f.input :process, label: false, input_html: { name: 'process', value: params[:process], class: 'document_number'}
               .col-md-2
                 = f.label 'CPF', class: 'fg-label'
                 = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}

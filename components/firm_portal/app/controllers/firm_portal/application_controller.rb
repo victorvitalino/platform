@@ -1,6 +1,6 @@
 module FirmPortal
   class ApplicationController < ActionController::Base
-      layout 'portal'
+    layout 'shared/portal'
 
     helper 'portal/application'
   end
