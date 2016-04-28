@@ -1,6 +1,8 @@
 require 'csv'
 
 namespace :candidate do
+
+
   task :refresh_view => :environment do 
     connection = ActiveRecord::Base.connection
     begin
