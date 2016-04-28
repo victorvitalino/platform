@@ -61,10 +61,13 @@ jQuery(document).ready(function(){
         function get_json(y){
           var listas = ["GENERICA","RII","RIE","REGULARIZAÇÃO","VULNERAVEIS","DEFICIENTE","CADASTRO ANTIGO","IDOSOS"];
           $.getJSON(url_json+y, function (data) {
+                console.log(data)
                   if(data.length > 0){
                       var ex = [];
+                      var lists_data = [];
                       $.each(data,function(index){
                           ex.push([Date.UTC(data[index][1][0],data[index][1][1]-1,data[index][1][2]),data[index][0],data[index][2]]);
+                          lists_data.push(data[index][2]);
                       });
                       $('.container_grafico_'+y).highcharts({
 
@@ -118,7 +121,7 @@ jQuery(document).ready(function(){
                           series: [{
                               type: 'line',
                               name: 'Posição',
-                              myData: ex[2],
+                              myData: lists_data,
                               data:ex
                           }],
                           tooltip: {
@@ -137,7 +140,7 @@ jQuery(document).ready(function(){
                             s += '<span style="color:' + serie.color + '">Atualização de dados</span>: <b>' + serie.options.myData[2].update_data + '</b><br/>';
                             s += '<span style="color:' + serie.color + '">Atualização de dependentes</span>: <b>' + serie.options.myData[2].update_dependents + '</b><br/>';
                             s += '<span style="color:' + serie.color + '">Atualização de renda</span>: <b>' + serie.options.myData[2].update_incomes + '</b><br/>';
-                            s += '<span style="color:' + serie.color + '">Atualização de idoso</span>: <b>' + serie.options.myData[2].update_old + '</b><br/>';
+                            s += '<span style="color:' + serie.color + '">Atualização de idoso</span>: <b>' + serie.options.myData.update_old+ '</b><br/>';
                             s += '<span style="color:' + serie.color + '">Atualização de condições especiais</span>: <b>' + serie.options.myData[2].update_special_conditions + '</b><br/>';
                             return s;
                             }
