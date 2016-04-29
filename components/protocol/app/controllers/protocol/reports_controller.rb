@@ -4,9 +4,8 @@ module Protocol
     class ReportsController < ApplicationController
 
         def new
-            authorize :report,  :create?
-           @report = Report.new
-
+          authorize :report,  :create?
+          #@report = Report.new
 
               if params[:date_start].present? && params[:date_end].present?
                 @date_start = Date.parse(params[:date_start])
@@ -17,7 +16,7 @@ module Protocol
               else
                 @assessments = Assessment.joins(:subject,:document_type).
                 select('document_number, protocol_document_types.name as doc_type_name, external_agency, protocol_subjects.name as subject_name, requesting_unit').
-                where("protocol_assessments.created_at:date >= ?", Date.today)
+                where("protocol_assessments.created_at::date >= ?", Date.today)
               end
 
               respond_to do |format|

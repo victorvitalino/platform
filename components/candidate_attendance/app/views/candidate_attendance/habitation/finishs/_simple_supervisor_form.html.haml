@@ -1,5 +1,6 @@
 %hr/
-%h2 Parecer do supervisor
+%h2 Parecer do gerente
+%br/
 .row
   .col-md-12
     = simple_form_for @supervisor_finish, url: supervisor_update_habitation_cadastre_attendance_finishs_path(cadastre_attendance_id: @attendance), method: :post do |f|
@@ -9,3 +10,4 @@
       .row
         .col-md-12
           = f.submit "Finalizar o atendimento", class: 'btn btn-success btn-lg', data: { disable_with: t(:disable_with)}
+          = link_to "Retornar para checklist", habitation_cadastre_attendance_checklists_path(cadastre_attendance_id: @attendance.id), class: 'btn btn-default btn-lg pull-right'

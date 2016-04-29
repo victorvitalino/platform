@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428122250) do
+ActiveRecord::Schema.define(version: 20160428133416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -316,13 +316,22 @@ ActiveRecord::Schema.define(version: 20160428122250) do
 
   add_index "candidate_activity_statuses", ["code"], name: "index_candidate_activity_statuses_on_code", unique: true, using: :btree
 
+  create_table "candidate_attendance_log_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "candidate_attendance_logs", force: :cascade do |t|
     t.integer  "cadastre_mirror_id"
     t.integer  "cadastre_id"
-    t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "attendance_status_id"
+    t.string   "observation"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "candidate_attendance_logs", ["cadastre_id"], name: "index_candidate_attendance_logs_on_cadastre_id", using: :btree

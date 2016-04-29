@@ -13,7 +13,7 @@
                 = f.input :cpf, label: false, input_html: { name: 'cpf', placeholder: "Digite o CPF", value: params[:cpf]}
             .row
               .col-md-12
-                = f.input :old_process, label: false, input_html: { name: 'old_process', placeholder: "Digite o Processo", value: params[:old_process]}
+                = f.input :old_process, label: false, input_html: { name: 'old_process', placeholder: "Digite o Processo", value: params[:old_process], class: 'document_number'}
             .row
               .col-md-12
                 = f.input :city, as: :select, collection: Address::City.federal_district, label: false, prompt: 'selecione a cidade...',input_html: { name: 'city', selected: params[:city]}
