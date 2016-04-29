@@ -24,31 +24,29 @@
               .col-md-2
                 %br
                 = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary', data: {  disable_with: "Pesquisando aguarde..."}
-      .row
-        .col-md-12
-          %table#data-table-command.table.table-striped.table-vmiddle.datatable
-            %thead
-              %tr
-                %th Nome
-                %th CPF
-                %th Condição
-                %th Status
-                %th Pontuação
-                %th Contactar
-                %th
-            %tbody
-              - @enterprise_cadastres.each do |cand|
-                - if cand.cadastre.present?
-                  %tr
-                    %td.col-md-4= cand.name
-                    %td.col-md-2= cand.cpf
-                    %td.col-md-2= cand.cadastre.special_condition_flag
-                    %td.col-md-2= cand.status_cadastre.present? ? cand.status_cadastre.name : "Não Contactado"
-                    %td.col-md-2= cand.total
-                    %td.col-md-1{ class: "tr-#{cand.id}"}
-                      = link_contact_to cand.cadastre.id, cand.id,cand.status_cadastre_id
-                    %td.col-md-1= link_to "Situação", new_enterprise_status_path(id: cand.id, cadastre_id: cand.cadastre_id), remote: true
-      .row
-        .col-md-6.col-md-offset-3
-          .container
-            = will_paginate @enterprise_cadastres, renderer: BootstrapPagination::Rails
+      - if @enterprise_cadastres.present?
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Nome
+                  %th CPF
+                  %th Condição
+                  %th Status
+                  %th Pontuação
+                  %th
+              %tbody
+                - @enterprise_cadastres.each do |cand|
+                  - if cand.cadastre.present?
+                    %tr
+                      %td.col-md-4= cand.name
+                      %td.col-md-2= cand.cpf
+                      %td.col-md-2= cand.cadastre.special_condition_flag
+                      %td.col-md-2= cand.status_cadastre.present? ? cand.status_cadastre.name : "Não Contactado"
+                      %td.col-md-2= cand.total
+                      %td.col-md-1= link_to "Situação", new_enterprise_status_path(id: cand.id, cadastre_id: cand.cadastre_id), remote: true
+        .row
+          .col-md-6.col-md-offset-3
+            .container
+              = will_paginate @enterprise_cadastres, renderer: BootstrapPagination::Rails

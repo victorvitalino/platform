@@ -12,8 +12,10 @@ module FirmPortal
      has_scope :status
 
     def index
-          @enterprise_cadastres = Firm::View::FirmCadastre.where(enterprise_id: @enterprises).includes(:cadastre).order(total: :desc).all
-          @enterprise_cadastres = apply_scopes(@enterprise_cadastres).paginate(:page => params[:page], :per_page => 20)
+      if params[:cpf].present? ||  params[:name_candidate].present? || params[:status].present? 
+       @enterprise_cadastres = Firm::View::FirmCadastre.where(enterprise_id: @enterprises).includes(:cadastre).order(total: :desc).all
+       @enterprise_cadastres = apply_scopes(@enterprise_cadastres).paginate(:page => params[:page], :per_page => 20)
+      end
     end
 
     def new
