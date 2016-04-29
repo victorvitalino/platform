@@ -27,7 +27,6 @@
           500
 
   %hr
-
   %table{:style => "width:100%"}
     %caption
       Exclusão de candidatos
@@ -63,7 +62,8 @@
       %td 10
     %tr
       %td Idosos
-      %td 5
+      %td
+        = @events[:update_old]
     %tr
       %td Membros da família c/condição especial
       %td 5
@@ -73,5 +73,5 @@
           Total
       %td
         %b
-          100
+          = @events[:update_old] + @events[:update_old]
   %br
