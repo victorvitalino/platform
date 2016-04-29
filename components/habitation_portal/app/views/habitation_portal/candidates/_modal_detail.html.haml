@@ -1,77 +1,89 @@
 .modal-header
   %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
     %span{"aria-hidden" => "true"} ×
-  %h4#modal.modal-title Alterações do dia na lista
+  %h4#modal.modal-title 
+    %b Alterações do dia na lista
 .modal-body
-  %table{:style => "width:100%"}
-    %caption
-      Inclusão de candidatos
-    %tr
-      %td Novas Habilitações
-      %td 2oo
-    %tr
-      %td Migração entre faixas de renda
-      %td 1oo
-    %tr
-      %td Novos idosos
-      %td 1oo
-    %tr
-      %td Novos deficientes
-      %td 1oo
-    %tr
-      %td
-        %b
-          Total
-      %td
-        %b
-          500
+  %table.table
+    %thead
+      %tr
+        %th{colspan: 2}
+          Inclusão de candidatos
+    %tbody
+      %tr
+        %td Novas Habilitações
+        %td= @events[:enables_day]
+      %tr
+        %td Migração entre faixas de renda
+        %td 0
+      %tr
+        %td Novos idosos
+        %td= @events[:update_old]
+      %tr
+        %td Novos deficientes
+        %td 0
+    %tfooter
+      %tr
+        %td
+          %b
+            Total
+        %td
+          %b
+            = @events[:enables_day] +  @events[:update_old]
 
   %hr
-  %table{:style => "width:100%"}
-    %caption
-      Exclusão de candidatos
-    %tr
-      %td Novas contemplações
-      %td 25
-    %tr
-      %td Sobrestamento
-      %td 25
-    %tr
-      %td Migração entre programas(RII, RIE, Vulneráveis)
-      %td 0
-    %tr
-      %td
-        %b
-          Total
-      %td
-        %b
-          50
+  %table.table
+    %thead
+      %tr
+        %th{colspan: 2}
+          Exclusão de candidatos
+    %tbody
+      %tr
+        %td Novas contemplações
+        %td= @events[:contemplateds_day]
+      %tr
+        %td Sobrestamento
+        %td= @events[:halted]
+      %tr
+        %td Migração entre programas(RII, RIE, Vulneráveis)
+        %td 0
+    %tfooter
+      %tr
+        %td
+          %b
+            Total
+        %td
+          %b
+            = @events[:contemplateds_day] +   @events[:halted]
 
   %hr
-  %table{:style => "width:100%"}
-    %caption
-      Atualizações de dados cadastrais com impacto na pontuação dos candidatos
-    %tr
-      %td Tempo de lista
-      %td 60
-    %tr
-      %td Dependentes
-      %td 20
-    %tr
-      %td Renda
-      %td 10
-    %tr
-      %td Idosos
-      %td
-        = @events[:update_old]
-    %tr
-      %td Membros da família c/condição especial
-      %td 5
-    %tr
-      %td
-        %b
-          Total
-      %td
-        %b
-          = @events[:update_old] + @events[:update_old]
+  %table.table
+    %thead
+      %tr
+        %th{colspan: 2}
+          Atualizações de dados cadastrais com impacto na pontuação dos candidatos
+    %tbody
+      %tr
+        %td Tempo de lista
+        %td 0
+      %tr
+        %td Dependentes
+        %td= @events[:update_dependents]
+      %tr
+        %td Renda
+        %td= @events[:update_incomes]
+      %tr
+        %td Idosos
+        %td= @events[:update_old]
+      %tr
+        %td Membros da família c/condição especial
+        %td 0
+    %tfooter
+      %tr
+        %td
+          %b
+            Total
+        %td
+          %b
+            = @events[:update_old] + @events[:update_incomes]
   %br
