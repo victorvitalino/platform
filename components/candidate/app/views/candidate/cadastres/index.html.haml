@@ -234,12 +234,39 @@
                           %th Doado?
                           %th Empreendimento
                       %tbody
-                        - @candidate.cadastre_address.each do |address|
+                        - @candidate.cadastre_address.each do |add|
                           %tr
-                            %td= address.unit.city.name if address.unit.present?
-                            %td= address.unit.complete_address if address.unit.present?
-                            %td= address.unit.donate ? "Sim" : "Não" if address.unit.present?
-                            %td= address.unit.enterprises.name if address.unit.present? && address.unit.enterprises.present?
+                            %td= add.unit.city.name if add.unit.present?
+                            %td= link_to add.unit.complete_address, address.unit_path(add.unit.id) if add.unit.present?
+                            %td= add.unit.donate ? "Sim" : "Não" if add.unit.present?
+                            %td= add.unit.enterprises.name if add.unit.present? && add.unit.enterprises.present?
+                    -if @candidate.cadastre_address.last.unit.situation_unit_id == 3 && @candidate.cadastre_address.last.cadastre.cadastre_procedurals.last.procedural_status.id == 4
+                      .row
+                        .col-md-12
+                          = link_to "Ficha descritiva",cadastre_addresses_path(cpf: @candidate.cadastre_address.last.cadastre.cpf), class: 'btn btn-info'
+                  - else
+                    Informação não disponível
+
+            %hr/
+            .row
+              .col-md-12
+                %h4 Dados de IPTU
+                .bootstrap-table
+                  - if @iptu.present?
+                    %table.table.table-striped.table-bordered.table-condensed
+                      %thead{:style => "display: table-header-group;"}
+                        %tr
+                          %th Inscrição de IPTU
+                          %th Endereço
+                          %th Cidade
+                          %th Tipo de pesquisa
+                      %tbody
+                        - @iptu.each do |i|
+                          %tr
+                            %td= i.registration
+                            %td= i.address
+                            %td= i.city
+                            %td= i.kind_search
                   - else
                     Informação não disponível
             %hr/
