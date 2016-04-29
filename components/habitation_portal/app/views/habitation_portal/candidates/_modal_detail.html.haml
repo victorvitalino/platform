@@ -1,6 +1,77 @@
 .modal-header
   %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
     %span{"aria-hidden" => "true"} ×
-  %h4#modal.modal-title Novo Atendente
+  %h4#modal.modal-title Alterações do dia na lista
 .modal-body
-  = @events.inspect
+  %table{:style => "width:100%"}
+    %caption
+      Inclusão de candidatos
+    %tr
+      %td Novas Habilitações
+      %td 2oo
+    %tr
+      %td Migração entre faixas de renda
+      %td 1oo
+    %tr
+      %td Novos idosos
+      %td 1oo
+    %tr
+      %td Novos deficientes
+      %td 1oo
+    %tr
+      %td
+        %b
+          Total
+      %td
+        %b
+          500
+
+  %hr
+
+  %table{:style => "width:100%"}
+    %caption
+      Exclusão de candidatos
+    %tr
+      %td Novas contemplações
+      %td 25
+    %tr
+      %td Sobrestamento
+      %td 25
+    %tr
+      %td Migração entre programas(RII, RIE, Vulneráveis)
+      %td 0
+    %tr
+      %td
+        %b
+          Total
+      %td
+        %b
+          50
+
+  %hr
+  %table{:style => "width:100%"}
+    %caption
+      Atualizações de dados cadastrais com impacto na pontuação dos candidatos
+    %tr
+      %td Tempo de lista
+      %td 60
+    %tr
+      %td Dependentes
+      %td 20
+    %tr
+      %td Renda
+      %td 10
+    %tr
+      %td Idosos
+      %td 5
+    %tr
+      %td Membros da família c/condição especial
+      %td 5
+    %tr
+      %td
+        %b
+          Total
+      %td
+        %b
+          100
+  %br
