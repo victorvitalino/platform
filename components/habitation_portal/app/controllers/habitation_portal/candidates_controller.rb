@@ -23,35 +23,36 @@ module HabitationPortal
     end
 
     def detail
-
       @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
       @positions = @candidate.positions.where(program_id: params[:program_id]).map do |key|
-
-        @day = Candidate::DayOcurrency.find_by_date_ocurrency(key.created_at) rescue nil
-        
-        if @day.present?
-          @events    = {
-            update_incomes: @day.update_income,
-            update_dependents: @day.update_dependent,
-            update_special_conditions: @day.update_special_condition,
-            update_old: @day.update_old,
-            halted: @day.halted,
-            update_arrival_df: @day.update_arrival_df,
-            enables_day: @day.enables_day,
-            change_zone: @day.change_zone,
-            update_data: @day.update_data,
-            contemplateds_day: @day.contemplated_day
-          }
-        else
-          @events = {}
-        end
-
-        [key.position, [key.created_at.year, key.created_at.month, key.created_at.day], @events]
+        [key.position, [key.created_at.year, key.created_at.month, key.created_at.day]]
       end
 
       respond_to do |format|
         format.json { render json: @positions}
         format.html { @candidate }
+        format.js { 
+
+          date = Date.parse(params[:date]) rescue nil
+          @day = Candidate::DayOcurrency.find_by_date_ocurrency(date) rescue nil
+          
+          if @day.present?
+            @events    = {
+                update_incomes: @day.update_income,
+                update_dependents: @day.update_dependent,
+                update_special_conditions: @day.update_special_condition,
+                update_old: @day.update_old,
+                halted: @day.halted,
+                update_arrival_df: @day.update_arrival_df,
+                enables_day: @day.enables_day,
+                change_zone: @day.change_zone,
+                update_data: @day.update_data,
+                contemplateds_day: @day.contemplated_day
+              }
+          else
+            @events = {}
+          end
+        }
       end
     end
 

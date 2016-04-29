@@ -23,36 +23,7 @@
           .row
             .col-md-12{style: 'text-align: center'}
               #container_zueira
-          .row
-            .col-md-12
-              %h3
-                %b Histórico
-          .row
-            .col-md-12
-              %table.table
-                %thead
-                  %tr
-                    %th Data
-                    %th Lista
-                    %th Faixa
-                    %th Posição
-                    %th Cod. Pontuação
-                    %th Habilitados  dia
-                    %th Contemplados dia
-                    %th Indeferidos  dia
-                    %th Mudança de faixa
-                %tbody
-                  - @candidate.positions.each do |position|
-                    %tr
-                      %td= position.created_at.strftime('%d/%m/%Y')
-                      %td= position.program.name
-                      %td= position.zone
-                      %td= position.position
-                      %td= position.pontuation_id
-                      %td 0
-                      %td 0
-                      %td 0
-                      %td 0
+
         .row
 :javascript
 jQuery(document).ready(function(){
@@ -61,10 +32,7 @@ jQuery(document).ready(function(){
         function get_json(y){
           var listas = ["GENERICA","RII","RIE","REGULARIZAÇÃO","VULNERAVEIS","DEFICIENTE","CADASTRO ANTIGO","IDOSOS"];
           $.getJSON(url_json+y, function (data) {
-<<<<<<< HEAD
 
-=======
->>>>>>> 2e64060608024256020c9fde156b9fa097d4ef8c
                   if(data.length > 0){
                       var ex = [];
                       var lists_data = [];
@@ -73,7 +41,7 @@ jQuery(document).ready(function(){
                           lists_data.push(data[index][2]);
                       });
                       var arr = Object.keys(lists_data).map(function(key){
-                        return lists_data[key].change_zone
+                        return lists_data[key]
                       });
                     console.log(arr)
                       $('.container_grafico_'+y).highcharts({
@@ -139,7 +107,7 @@ jQuery(document).ready(function(){
 
                             var s = '<b>' + Highcharts.dateFormat('%a, %b %e, %Y', this.x) + '</b><br>';
                             s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
-                            s += '<a data-remote="true">' + "Detalhes do dia na lista " + listas[y] + '</a>'
+                            s += '<a data-remote="true" href="#{habitation_portal.candidate_detail_path(date: '2016-04-05')}">' + "Detalhes do dia na lista " + listas[y] + '</a>'
                             return s;
                             }
                         }
