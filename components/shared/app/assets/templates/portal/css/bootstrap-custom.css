@@ -375,7 +375,7 @@ background-color:#147EA1;
 }
 #servicos{
   background-color:#147EA1;
-  width: 500px;
+  width: 540px;
 }
 .navbar-default .navbar-nav>.open.editais>a, .navbar-default .navbar-nav>.open.editais>a:focus, .navbar-default .navbar-nav>.open.editais>
 a:hover{
@@ -387,7 +387,8 @@ color: #fff;
 }
 #editais{
   background-color:#7c3961;
-  width:675px;
+  width:800px;
+  margin-left: -250px;
 }
 .navbar-default .navbar-nav>.open.concursos>a, .navbar-default .navbar-nav>.open.concursos>a:focus, .navbar-default .navbar-nav>.open.concursos>
 a:hover{

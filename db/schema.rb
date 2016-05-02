@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428133416) do
+ActiveRecord::Schema.define(version: 20160429143330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -506,11 +506,13 @@ ActiveRecord::Schema.define(version: 20160428133416) do
     t.integer  "procedural_status_id"
     t.integer  "convocation_id"
     t.integer  "assessment_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "old_process"
     t.integer  "staff_id"
     t.text     "observation"
+    t.string   "transfer_process"
+    t.integer  "transfer_assessment_id"
   end
 
   add_index "candidate_cadastre_procedurals", ["assessment_id"], name: "index_candidate_cadastre_procedurals_on_assessment_id", using: :btree
@@ -518,6 +520,7 @@ ActiveRecord::Schema.define(version: 20160428133416) do
   add_index "candidate_cadastre_procedurals", ["convocation_id"], name: "index_candidate_cadastre_procedurals_on_convocation_id", using: :btree
   add_index "candidate_cadastre_procedurals", ["procedural_status_id"], name: "index_candidate_cadastre_procedurals_on_procedural_status_id", using: :btree
   add_index "candidate_cadastre_procedurals", ["staff_id"], name: "index_candidate_cadastre_procedurals_on_staff_id", using: :btree
+  add_index "candidate_cadastre_procedurals", ["transfer_assessment_id"], name: "index_candidate_cadastre_procedurals_on_transfer_assessment_id", using: :btree
 
   create_table "candidate_cadastre_situations", force: :cascade do |t|
     t.integer  "cadastre_mirror_id"
@@ -699,6 +702,7 @@ ActiveRecord::Schema.define(version: 20160428133416) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "program_id"
+    t.integer  "convocation_type"
   end
 
   add_index "candidate_convocations", ["pontuation_code_id"], name: "index_candidate_convocations_on_pontuation_code_id", using: :btree
@@ -2066,6 +2070,7 @@ ActiveRecord::Schema.define(version: 20160428133416) do
     t.integer  "staff_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "desk"
   end
 
   add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id", using: :btree

@@ -63,7 +63,7 @@
                     = link_to_nav l
         %li.dropdown.item_menu.servicos
           %a#link_servicos.dropdown-toggle.item_menu{:href => "#"}
-            Serviços
+            Serviços e Produtos
             %span.sr-only (current)
           %ul#servicos.dropdown-menu-mod.dropdown-menu
             %li.menu-insider-li
@@ -78,6 +78,13 @@
                 - link_each('Ferramentas - Servicos') do |l|
                   %li.link_submenu
                     = link_to_nav l
+              %li.menu-insider-li
+                %span.submenu_title Produção
+                %ul
+                  - link_each('Produtos - Servicos') do |l|
+                    %li.link_submenu
+                      = link_to_nav l
+
         %li.dropdown.item_menu.editais
           %a#link_editais.dropdown-toggle.item_menu{:href => "#"}
             Editais
@@ -107,6 +114,13 @@
                 - link_each('Convite - Editais') do |l|
                   %li.link_submenu
                     = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Concorrência
+              %ul
+                - link_each('Concorrencia - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+
         %li.dropdown.item_menu.concursos
           %a#link_concursos.dropdown-toggle.item_menu{:href => "#"}
             Concursos
@@ -117,16 +131,16 @@
                 - link_each('Concursos') do |l|
                   %li.link_submenu
                     = link_to_nav l
-        %li.dropdown.item_menu.producao
-          %a#link_producao.dropdown-toggle.item_menu{:href => "#"}
-            Produção
-            %span.sr-only (current)
-          %ul#producao.dropdown-menu-mod.dropdown-menu
-            %li.menu-insider-li
-              %ul
-                - link_each('Producao') do |l|
-                  %li.link_submenu
-                    = link_to_nav l
+        -# %li.dropdown.item_menu.producao
+        -#   %a#link_producao.dropdown-toggle.item_menu{:href => "#"}
+        -#     Produção
+        -#     %span.sr-only (current)
+        -#   %ul#producao.dropdown-menu-mod.dropdown-menu
+        -#     %li.menu-insider-li
+        -#       %ul
+        -#         - link_each('Producao') do |l|
+        -#           %li.link_submenu
+        -#             = link_to_nav l
         %li
           .bloco_de_logos
             %a.navbar-brand.carta{:href => "http://www.codhab.df.gov.br/uploads/archive/files/8c35c382fe1a807640fc694ce56fb695.pdf", :target => "_blank"}
