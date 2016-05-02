@@ -13,11 +13,11 @@ nav:
         controller: "#"
         sub:
           habitation:
-            module: 'candidate_attendance'
+            module: 'habitation_attendance'
             code: 0
             label: "Atendimento"
-            controller: '/candidate_attendance/habitation/dashboard'
-            action: 'index'
+            controller: '/habitation_attendance/dashboard'
+            action: 'search'
       regularization:
         code: 119110
         label: "Regularização"

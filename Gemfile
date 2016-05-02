@@ -124,5 +124,5 @@ path 'components' do
 
   gem 'candidate_attendance'
   gem 'report'
-
+  gem 'habitation_attendance'
 end
