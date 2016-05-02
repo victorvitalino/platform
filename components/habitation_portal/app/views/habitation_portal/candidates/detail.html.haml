@@ -99,10 +99,10 @@ jQuery(document).ready(function(){
                             useHTML: true,
                             formatter: function() {
                             var serie = this.series;
-                            var datas = Highcharts.dateFormat('%Y-%m-%d', this.x);
+                            var datas = "/habitacao/candidato/#{@candidate.cpf}/detalhe?date=" + Highcharts.dateFormat('%Y-%m-%d', this.x);
                             var s = '<b>' + Highcharts.dateFormat('%Y-%m-%d', this.x) + '</b><br>';
                             s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
-                            s += '<a data-remote="true" href="#{habitation_portal.candidate_detail_path(date: '2016-04-05')}">' + "Detalhes do dia na lista " + listas[y] + '</a>'
+                            s += '<a data-remote="true" href="'+ datas +'">' + "Detalhes do dia na lista " + listas[y] + '</a>'
                             return s;
                             }
                         }
