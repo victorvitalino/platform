@@ -27,6 +27,8 @@ module Protocol
 
         def general_report
 
+          authorize :report,  :index?
+
           if params[:date_start].present? || params[:date_end].present? || params[:doc_type].present? || params[:subject].present? || params[:sector].present?
             @assessments = Assessment.joins(:subject,:document_type).
             select('document_number,recipient, protocol_assessments.created_at, protocol_document_types.name as doc_type_name,protocol_subjects.name as subject_name, requesting_unit')
