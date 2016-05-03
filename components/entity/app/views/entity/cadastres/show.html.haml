@@ -53,16 +53,16 @@
               %th CPF
               %th RG
               %th Cargo
-              %th Ação
+              %th Certidão Civil Criminal
           %tbody
             - if @cadastre.members.present?
               - @cadastre.members.each do |cad|
                 %tr
                   %td= cad.name
-                  %td= cad.cpf
+                  %td= cad.cpf.format_cpf
                   %td= "#{cad.rg} - #{cad.rg_org}"
                   %td= cad.member_job.name
-                  %td= link_to "detalhar", '#'
+                  %td= link_to "Baixar arquivo", cad.certificate_civil_criminal_url, target: '_blank' if cad.certificate_civil_criminal.to_s.present?
             - else
               %tr
                 %td{colspan:6} Nenhum registro cadastrado.
