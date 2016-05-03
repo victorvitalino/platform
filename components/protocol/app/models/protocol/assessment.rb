@@ -17,6 +17,10 @@ module Protocol
     scope :sector,  -> (sector) {where(sector_id: sector)}
     scope :subject,  -> (subject) {where(subject_id: subject)}
 
+    scope :date_start, -> (date_start) { where("protocol_assessments.created_at::date >= ?", Date.parse(date_start))}
+    scope :date_end, -> (date_end) { where("protocol_assessments.created_at::date <= ?", Date.parse(date_end))}
+
+
 
     before_validation :set_number
 
@@ -38,6 +42,15 @@ module Protocol
 
     def set_staff(staff_id)
         self.staff_id = staff_id
+    end
+
+    def self.to_csv(options = {})
+       CSV.generate(options) do |csv|
+         csv << all.first.attributes.keys
+             all.each do |assessment|
+               csv << assessment.attributes.values
+             end
+       end
     end
 
     private
@@ -72,14 +85,7 @@ module Protocol
         self.document_number = number
     end
 
-   def self.to_csv(options = {})
-      CSV.generate(options) do |csv|
-        csv << all.first.attributes.keys
-            all.each do |assessment|
-              csv << assessment.attributes.values
-            end
-      end
-   end
+
 
 
   end

@@ -7,6 +7,10 @@ module Shared
       @cpf  = "#{$1}.#{$2}.#{$3}-#{$4}"
     end
 
+    def unformat_cpf
+      self.to_s.gsub('-','').gsub('.','')
+    end
+
     def format_obfuscator_cpf
       @cpf  = self
       @cpf  =~ /(\d{3})\.?(\d{3})\.?(\d{3})-?(\d{2})/

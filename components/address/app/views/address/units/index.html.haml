@@ -14,11 +14,14 @@
                 = f.label 'Cidade', class: 'fg-label'
                 = f.input :city, as: 'select', collection: Address::City.federal_district, label: false, prompt: "Selecione...", selected: params[:city], input_html: { name: 'city', value: params[:city],}
               .col-md-3
-                = f.input :block, as: :select, collection: (@unit.city.present?) ? Address::Unit.select(:block).where(city_id: @unit.city).distinct : {}, label_method: :block, value_method: :block, prompt: 'selecione a quadra...', input_html: { name: 'block', value: @unit.city}
+                = f.label 'Quadra', class: 'fg-label'
+                = f.input :block, as: :select, label: false, collection: (@unit.city.present?) ? Address::Unit.select(:block).where(city_id: @unit.city).distinct : {}, label_method: :block, value_method: :block, prompt: 'selecione a quadra...', input_html: { name: 'block', value: @unit.city}
               .col-md-3
-                = f.input :group_address, as: :select, collection: (@unit.city.present? &&  @unit.block.present? ) ? Address::Unit.select(:group).where(city_id: @unit.city, block: @unit.block).distinct : {}, label_method: :group_address, value_method: :group_address, prompt: 'selecione a conjunto...', input_html: { name: 'group_address', value: @unit.block}
+                = f.label 'Conjunto', class: 'fg-label'
+                = f.input :group_address, as: :select, label: false, collection: (@unit.city.present? &&  @unit.block.present? ) ? Address::Unit.select(:group).where(city_id: @unit.city, block: @unit.block).distinct : {}, label_method: :group_address, value_method: :group_address, prompt: 'selecione a conjunto...', input_html: { name: 'group_address', value: @unit.block}
               .col-md-3
-                = f.input :unit, as: :select, collection: (@unit.city.present? &&  @unit.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @unit.city,block: @unit.block, group: @unit.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a unidade...', input_html: {name: 'unit', value: @unit.unit}
+                = f.label 'Unidade', class: 'fg-label'
+                = f.input :unit, as: :select, label: false, collection: (@unit.city.present? &&  @unit.block.present? && @address.group.present? ) ? Address::Unit.select(:unit).where(city_id: @unit.city,block: @unit.block, group: @unit.group).order(:unit) : {}, label_method: :unit, value_method: :unit, prompt: 'selecione a unidade...', input_html: {name: 'unit', value: @unit.unit}
             .row
               .col-md-3
                 = f.label 'Situação do Imóvel', class: 'fg-label'
@@ -33,6 +36,9 @@
               .col-md-4
                 = f.label 'Nome', class: 'fg-label'
                 = f.input :name_candidate, label: false, input_html: { name: 'name_candidate', value: params[:name_candidate] }
+              .col-md-4
+                = f.label 'Endereço completo', class: 'fg-label'
+                = f.input :address, label: false, input_html: { name: 'address', value: params[:address] }
               .col-md-1
                 = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with:  t(:disable_with)}
       %br

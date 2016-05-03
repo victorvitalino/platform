@@ -11,6 +11,7 @@ resources :subjects, path: 'assuntos'
 resources :locations, path: 'localizacoes'
 
 resources :reports, path: 'relatorios'
+get 'general_report', to: 'reports#general_report', as: 'general_report'
 
 #get 'new_multiple', to: 'locations#new_multiple', as:'new_multiple'
 

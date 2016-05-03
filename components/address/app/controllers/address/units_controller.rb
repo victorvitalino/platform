@@ -12,6 +12,7 @@ module Address
         has_scope :group_address
         has_scope :unit
         has_scope :name_candidate
+        has_scope :address
 
         def index
             authorize :unit, :index?

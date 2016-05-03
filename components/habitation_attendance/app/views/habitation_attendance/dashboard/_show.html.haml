@@ -1,0 +1,93 @@
+- if @candidate.present?
+  .row
+    .col-md-12
+      %h4 Informações básicas
+      %table.table.tabel-hover.table-bordered
+        %thead
+          %tr
+            %th Nome
+            %th CPF
+            %th RG
+            %th Sexo
+            %th Nascimento
+        %tbody
+          %tr
+            %td= @candidate.name
+            %td= @candidate.cpf.format_cpf
+            %td= "#{@candidate.rg} - #{@candidate.rg_org}/#{@candidate.rg_uf}" 
+            %td= @candidate.gender
+            %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
+  .row
+    .col-md-12
+      %h4
+        Atendimentos
+      %table.table.tabel-hover.table-bordered
+        %thead
+          %tr
+            %th Nº atendimento
+            %th Data
+            %th Situação
+            %th Usuário
+            %th Operações
+        %tbody
+          - @candidate.cadastre_mirrors.order('created_at DESC').each do |mirror|
+            - attendance = mirror.cadastre_attendances.last.present? ? mirror.cadastre_attendances.last : nil
+            - if !attendance.nil?
+              %tr
+                %td= mirror.id
+                %td= attendance.created_at.strftime('%d/%m/%Y %H:%M')
+                %td= attendance.attendance_status.name if attendance.attendance_status.present?
+                %td= attendance.staff.code if attendance.staff.present?
+                %td
+                  .btn-group
+                    %button.btn.btn-primary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                      Ação
+                      %span.caret
+   
+
+
+    .col-md-12
+      %h4 Agendamentos
+      - if @candidate.schedules.present?
+        %table.table.tabel-hover.table-bordered
+          %thead
+            %tr
+              %th Data
+              %th Horário
+              %th Agenda
+              %th Situação
+              %th Ação
+          %tbody
+            - @candidate.schedules.each do |schedule|
+              %tr
+                %td.col-md-2= schedule.date
+                %td.col-md-2= schedule.hour
+                %td.col-md-2= schedule.agenda.title if schedule.agenda.present?
+                %td.col-md-3= schedule.status 
+                %td.col-md-2 Sem ação
+      - else
+        %i Nenhum agendamento encontrado neste CPF
+
+  .row
+    .col-md-12
+      %h4 Ocorrências
+      - if @candidate.schedules.present?
+        %table.table.tabel-hover.table-bordered
+          %thead
+            %tr
+              %th Data
+              %th Horário
+              %th Agenda
+              %th Situação
+              %th Ação
+          %tbody
+            - @candidate.schedules.each do |schedule|
+              %tr
+                %td.col-md-2= schedule.date
+                %td.col-md-2= schedule.hour
+                %td.col-md-2= schedule.agenda.title if schedule.agenda.present?
+                %td.col-md-3= schedule.status 
+                %td.col-md-2 Sem ação
+      - else
+        %i Nenhuma ocorrência encontrada neste CPF
+- else

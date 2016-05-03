@@ -63,6 +63,7 @@ module Protocol
                     @conduct.staff_id = current_user.id
                     @conduct .save
                 end
+            flash[:success] = "Documento(s) recebido(s) com sucesso!"
             redirect_to receive_path
         end
 
