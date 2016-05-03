@@ -7,5 +7,9 @@ module Protocol
       allow?(31301)
     end
 
+    def index?
+      allow?(31302)
+    end
+
   end
 end

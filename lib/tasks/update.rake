@@ -8,28 +8,27 @@ namespace :update do
 
     @index = 0
 
-    CSV.foreach("lib/files/iptu.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/deps2.csv", :col_sep => "#") do |row|
 
+           staff = Person::Staff.find_by_code(row[3]).id rescue nil
 
-           @model = Candidate::Iptu.new(
-           registration: row[2],
-           name: row[1],
-           address: row[3],
-           cpf: row[0].present? ? row[0].gsub('-','').gsub('.','') : "",
-           city: row[4],
-           kind_realty:row[5],
-           kind_search:row[6],
-           year:row[7],
-           realty_codhab:  row[8],
+           @model = Candidate::CadastreActivity.new(
+           cadastre_id: row[4],
+           staff_id: staff,
+           activity_status_id: 5,
+           type_activity: 4,
+           type_ocurrency: 1,
+           status: true,
+           type_ocurrency:row[5],
+           observation:"#{row[0]} - #{row[2]}",
+           created_at:row[1],
            )
 
 
-          begin
-            @model.save
+          @model.save!
             #puts @model.inspect
-          rescue
-            puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
-          end
+        #    puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
+        #  end
 
 
        puts  @index += 1
