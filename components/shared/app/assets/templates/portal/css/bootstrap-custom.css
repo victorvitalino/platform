@@ -664,6 +664,7 @@ body{
     }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
       width: 100%!important;
+      margin:0px;
     }
     .dropdown-menu {
       position: absolute!important;
