@@ -5,6 +5,7 @@ module Person
     before_action :set_staff,        only: [:edit, :destroy, :update]
     before_action :set_staff_status, only: [:enable, :disable]
 
+
     has_scope :status
     has_scope :sector
     has_scope :name_user
@@ -13,7 +14,6 @@ module Person
     def index
       authorize :staff,  :index?
       @staffs = apply_scopes(Staff).includes(:sector_current).all.paginate(:page => params[:page], :per_page => 40)
-
     end
 
     def new
@@ -49,6 +49,7 @@ module Person
       end
     end
 
+  
     def enable
       authorize :staff,  :update?
       @staff.update(status: true)
