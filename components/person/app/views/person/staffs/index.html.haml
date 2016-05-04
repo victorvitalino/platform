@@ -4,7 +4,7 @@
       .panel-title
         %h4
           Funcionários / Usuários
-          = link_to 'novo herdeiro', new_staff_path, class: 'btn btn-success pull-right btn-sm'
+          = link_to 'novo funcionário', new_staff_path, class: 'btn btn-success pull-right btn-sm'
     %hr/
     .panel-body
       .row
@@ -52,7 +52,7 @@
                     - else
                       %span.label.label-default inativo
                   %td.col-sm-1
-                    = link_to "", new_staff_documents_path(staff), remote: true, title: 'Folha de ponto', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-duplicate btn btn-success btn-xs'                  
+                    = link_to "", new_staff_documents_path(staff), remote: true, title: 'Folha de ponto', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-duplicate btn btn-success btn-xs'
                     = link_to "", edit_staff_path(staff), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:staff, namespace: Person).update?
                     = link_to "", staff_staff_systems_path(staff),  title: 'Permissões', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-share-alt btn btn-warning btn-xs ' if policy(:StaffPermission, namespace: Person).index?
           .row
