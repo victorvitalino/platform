@@ -31,19 +31,24 @@
             %th Operações
         %tbody
           - @candidate.cadastre_mirrors.order('created_at DESC').each do |mirror|
-            - attendance = mirror.cadastre_attendances.last.present? ? mirror.cadastre_attendances.last : nil
-            - if !attendance.nil?
+            - if mirror.attendances.present?
               %tr
                 %td= mirror.id
-                %td= attendance.created_at.strftime('%d/%m/%Y %H:%M')
-                %td= attendance.attendance_status.name if attendance.attendance_status.present?
-                %td= attendance.staff.code if attendance.staff.present?
+                %td= mirror.created_at.strftime('%d/%m/%Y às %H:%M')
+                %td= mirror.last_attendance_name
+                %td= mirror.last_attendance_staff
                 %td
                   .btn-group
                     %button.btn.btn-primary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
                       Ação
                       %span.caret
-   
+                    %ul.dropdown-menu
+                      %li= link_to "Detalhar", enabled_cadastre_path(mirror.id)
+                      - if mirror.last_attendance_open?
+                        %li.divider
+                        %li= link_to "Realizar atendimento", edit_enabled_cadastre_path(mirror.id)
+                        %li= link_to "Cancelar atendimento", enabled_cadastre_path(mirror.id)
+
 
 
     .col-md-12
