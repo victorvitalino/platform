@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     mount Person::Engine                   => "/pessoas",        as: 'person',                module: 'management'
     #mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',         module: 'management'
     mount Protocol::Engine                 => "/protocolo",      as: 'protocol',              module: 'protocol'
-    mount Juridical::Engine                => "/juridico",      as: 'juridical',              module: 'juridical'
+    mount Juridical::Engine                => "/juridico",       as: 'juridical',              module: 'juridical'
     mount Attendance::Engine               => "/atendimento",    as: 'attendance',            module: 'habitation'
     mount Concourse::Engine                => "/concurso",       as: 'concourse',             module: 'portal'
     mount Candidate::Engine                => "/candidatos",     as: 'candidate',             module: 'habitation'
@@ -38,7 +38,8 @@ Rails.application.routes.draw do
     mount ProfileUser::Engine              => "/usuario",        as: 'profile_user',          module: 'dashboard'
     mount Address::Engine                  => "/enderecos",      as: 'address',               module: 'address'
     mount Action::Engine                   => "/acao",           as: 'action',                module: 'action'
-    mount CandidateAttendance::Engine      => "/atendimento",    as: 'candidate_attendance',  module: 'atendimento'
+    
+    mount HabitationAttendance::Engine     => "/atendimento_habitacao",    as: 'habitation_attendance',  module: 'atendimento_habitacao'
   end
 
   constraints DomainConstraint do

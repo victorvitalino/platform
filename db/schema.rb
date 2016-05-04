@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429143330) do
+ActiveRecord::Schema.define(version: 20160429201334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -381,10 +381,12 @@ ActiveRecord::Schema.define(version: 20160429143330) do
     t.text     "object_new"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.integer  "cadastre_mirror_id"
   end
 
   add_index "candidate_cadastre_activities", ["activity_status_id"], name: "index_candidate_cadastre_activities_on_activity_status_id", using: :btree
   add_index "candidate_cadastre_activities", ["cadastre_id"], name: "index_candidate_cadastre_activities_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_activities", ["cadastre_mirror_id"], name: "index_candidate_cadastre_activities_on_cadastre_mirror_id", using: :btree
   add_index "candidate_cadastre_activities", ["staff_id"], name: "index_candidate_cadastre_activities_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_addresses", force: :cascade do |t|

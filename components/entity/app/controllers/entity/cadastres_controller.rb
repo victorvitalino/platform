@@ -9,8 +9,17 @@ module Entity
     has_scope :fantasy_name
 
     def index
-      @cadastres = Cadastre.all.order('created_at DESC')
-      @cadastres = apply_scopes(@cadastres).paginate(:page => params[:page], :per_page => 30)
+      if params[:query].present?
+        if params[:query] == 'senders'
+          @cadastres = Cadastre.senders.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+        end
+
+        if params[:query] == 'complete'
+          @cadastres = Cadastre.complete.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+        end
+      else
+        @cadastres = apply_scopes(Cadastre).paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+      end
     end
 
     def new

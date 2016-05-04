@@ -4,10 +4,7 @@ namespace :candidate do
 
   task :update_day => :environment do
 
-    @day   = Date.parse('20/03/2016')
-    23.times do
-
-      @day = @day + 1.day
+    @day   = Date.parse('13/04/2016')
 
       object = Candidate::DayOcurrency.new({
         update_income: Candidate::CadastreActivity.where("activity_status_id = 4 and created_at::date = '#{@day}'").count,
@@ -22,7 +19,6 @@ namespace :candidate do
 
       object.save
       puts @day
-    end
   end
 
   task :refresh_view => :environment do

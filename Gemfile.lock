@@ -67,6 +67,8 @@ PATH
       rails (~> 4.2.1)
     habitation (0.0.1)
       rails (~> 4.2.1)
+    habitation_attendance (0.0.1)
+      rails (~> 4.2.1)
     habitation_portal (0.0.1)
       rails (~> 4.2.1)
     juridical (0.0.1)
@@ -501,6 +503,7 @@ DEPENDENCIES
   guard-livereload
   guard-rails
   habitation!
+  habitation_attendance!
   habitation_portal!
   haml-rails
   has_scope
