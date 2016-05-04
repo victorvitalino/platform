@@ -17,7 +17,6 @@ module Candidate
     has_many :pontuations , ->  { order(:id)}
     has_many :positions
     has_many :cadastre_attendances
-
     has_many :cadastre_checklists
     has_many :attendance_logs
     has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
@@ -26,6 +25,15 @@ module Candidate
     has_many :cadastre_procedurals
     has_many :cadastre_logs
     has_many :old_candidates, class_name: 'Entity::OldCandidate'
+
+    scope :situation, -> (situation) {
+      self.joins(:cadastre_situations)
+      .where('candidate_cadastre_situations.situation_status_id = (SELECT MAX(candidate_cadastre_situations.situation_status_id)
+              FROM candidate_cadastre_situations WHERE candidate_cadastre_situations.cadastre_id = candidate_cadastres.id)')
+      .where('candidate_cadastre_situations.situation_status_id = ?', situation)
+    }
+
+
 
     scope :regularization,  -> {where(program_id: 3)}
     scope :habitation,      -> {where(program_id: [1,2,4,5,6,7,8])}

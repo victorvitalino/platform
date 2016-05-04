@@ -1,0 +1,43 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title 
+      Detalhamento de atendimento 
+      = link_to "Voltar para detalhamento", enabled_dashboard_index_path(cpf: @mirror.cpf), class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        %h3 Espelhos
+        %hr/
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th Ação
+          %tbody
+            %tr
+              %td Folha de rosto
+              %td.col-md-1= link_to "Emitir"
+            %tr
+              %td Espelho de checklist
+              %td.col-md-1= link_to "Emitir", enabled_cadastre_checklist_path(cadastre_id: @mirror), target: '_blank'
+            %tr
+              %td Espelho de atendimento
+              %td.col-md-1= link_to "Emitir"
+    .row
+      .col-md-12
+        %h3 Log de atendimento
+        %hr/
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Cod. 
+              %th Ação 
+              %th Data/Hora 
+              %th Funcionário 
+          %tbody
+            - @mirror.attendances.order('created_at DESC').each do |att|
+              %tr
+                %td= att.id
+                %td= att.attendance_status_name
+                %td= att.created_at.strftime('%d/%m/%Y às %H:%M')
+                %td= att.staff_code

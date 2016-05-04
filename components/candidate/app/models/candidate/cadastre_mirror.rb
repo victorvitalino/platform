@@ -14,16 +14,39 @@ module Candidate
     has_many :attendance_logs
     has_many :cadastre_checklists
     has_many :cadastre_procedurals
-    has_many :attendaces, class_name: "Candidate::Attendance"
+    has_many :attendances
     has_many :iptus, foreign_key: 'cpf'
     has_many :cadastre_attendances
 
     has_one :pontuation
 
+
+
     enum situation: ['em_progresso','pendente', 'aprovado']
     enum gender: ['N/D', 'masculino', 'feminino']
 
     FAMILY_INCOME = 880 * 12
+
+    # => abstração
+
+    def last_attendance
+      attendances.order(:created_at).last.present? ? attendaces.last : "Sem informação"
+    end
+
+    def last_attendance_name
+      attendace_status = attendances.order(:created_at).last.attendance_status rescue nil
+      attendances.present? ? attendace_status.name : "Sem informação"
+    end
+
+    def last_attendance_staff
+      attendance_staff = attendances.order(:created_at).last.staff rescue nil
+      attendance_staff.present? ? attendance_staff.code : "Sem informação"
+    end
+
+    def last_attendance_open?
+      attendance_status  = attendances.order(:created_at).last.attendance_status.id rescue nil
+      attendance_status == 7 
+    end
 
     def pontuation?
       Candidate::Pontuation.where(cadastre_mirror_id: self.id).present?  

@@ -12,12 +12,18 @@ nav:
         label: "Habitação"
         controller: "#"
         sub:
-          habitation:
+          convocated:
             module: 'habitation_attendance'
             code: 0
-            label: "Atendimento"
-            controller: '/habitation_attendance/dashboard'
-            action: 'search'
+            label: "Atendimento - Convocado"
+            controller: '/habitation_attendance/enabled/dashboard'
+            action: 'index'
+          enabled:
+            module: 'habitation_attendance'
+            code: 0
+            label: "Atendimento - Habilitado"
+            controller: '/habitation_attendance/enabled/dashboard'
+            action: 'index'
       regularization:
         code: 119110
         label: "Regularização"

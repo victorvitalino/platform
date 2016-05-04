@@ -18,8 +18,6 @@ gem 'haml-rails'
 gem 'shareable'
 gem 'pundit', :git => 'https://github.com/codhab/pundit.git', :branch => 'master'
 
-gem 'rails-erd'
-
 gem 'i18n'
 gem 'enum_help'
 
