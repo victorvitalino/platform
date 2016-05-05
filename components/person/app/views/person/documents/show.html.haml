@@ -48,7 +48,7 @@
             CARGA HORÁRIA SEMANAL: 40
         .row
           LOTAÇÃO:
-          = @staff.sector_current.name
+          = "#{@staff.sector_current.code} -  #{@staff.sector_current.name}"
     %div{:style => "text-align: left; margin-top: 20px; font-size: 10px;padding: 0px"}
       %table{:border => "1", :cellpadding => "0", :cellspacing => "0", :width => "800px"}
         %thead
@@ -83,7 +83,7 @@
                   %td
                     %b=@a
                   %td{:colspan => "9"}
-                    %b=@dates.upcase
+                    %b= @dates.upcase
               -elsif @array_holiday.include? @a.to_s
                 %tr{:bgcolor => "#CFCFCF",:style => "text-align: center; padding: 2px"}
                   %td
