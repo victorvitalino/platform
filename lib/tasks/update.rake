@@ -8,25 +8,21 @@ namespace :update do
 
     @index = 0
 
-    CSV.foreach("lib/files/deps2.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/processo.csv", :col_sep => "#") do |row|
 
-           staff = Person::Staff.find_by_code(row[3]).id rescue nil
+           #staff = Person::Staff.find_by_code(row[3]).id rescue nil
 
-           @model = Candidate::CadastreActivity.new(
-           cadastre_id: row[4],
-           staff_id: staff,
-           activity_status_id: 5,
-           type_activity: 4,
-           type_ocurrency: 1,
-           status: true,
-           type_ocurrency:row[5],
-           observation:"#{row[0]} - #{row[2]}",
-           created_at:row[1],
+           @model = Candidate::CadastreProcedural.new(
+           cadastre_id: row[0],
+           procedural_status_id: row[1],
+           created_at: row[4],
+           convocation_id: row[2],
+           old_process: row[3],
            )
 
 
           @model.save!
-            #puts @model.inspect
+          #puts @model.inspect
         #    puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
         #  end
 
