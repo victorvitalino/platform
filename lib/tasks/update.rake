@@ -17,7 +17,6 @@ namespace :update do
            staff_id: staff,
            activity_status_id: 5,
            type_activity: 4,
-           type_ocurrency: 1,
            status: true,
            type_ocurrency:row[5],
            observation:"#{row[0]} - #{row[2]}",
