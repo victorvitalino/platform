@@ -8,5 +8,8 @@ module ActionPortal
 
     def serfm
     end
+
+    def cadastro
+    end  
   end
 end
