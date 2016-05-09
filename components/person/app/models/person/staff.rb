@@ -29,8 +29,8 @@ module Person
                     confirmation: true,
                     length: {within: 6..40}
 
-    validates :cpf, cpf: true, on: :create
-    validates_date :born, :before => lambda {18.years.ago}
+    #validates :cpf, cpf: true, on: :create
+    #validates_date :born, :before => lambda {18.years.ago}
 
 
 

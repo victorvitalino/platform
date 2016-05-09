@@ -59,16 +59,22 @@ nav:
             controller: '/protocol/locations'
             action: 'new'
       report:
-        code: 31301
+        code: [31301,31302]
         label: 'Relatórios'
         controller: '#'
         sub:
-          locations:
+          report:
             module: 'protocol'
             code: 31301
             label: 'Remessas'
             controller: '/protocol/reports'
             action: 'new'
+          general_report:
+            module: 'protocol'
+            code: 31302
+            label: 'Relatório geral'
+            controller: '/protocol/reports'
+            action: 'general_report'
       config:
         code: [31404,31408]
         label: 'Configuração'

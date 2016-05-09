@@ -1,0 +1,46 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Folha de ponto
+.modal-body
+  .row
+    .col-md-12
+      = simple_form_for @document, url: staff_documents_path(@staff.id), :method => 'get' do |f|
+        .row
+          .col-md-4
+            = f.label "Ano", class: 'fg-label'
+            = f.input :year_search, label: false, input_html: { name: 'year_search', value: params[:year_search]}
+          .col-md-4
+            = f.label "Mês", class: 'fg-label'
+            = f.input :month_search, label:false, collection: Date::MONTHNAMES.each_with_index.collect{|m, i| [m, i]}, prompt: 'selecione...', input_html: { name: 'month_search', value: params[:month_search]}
+        .row
+          .col-md-4
+            = f.label "Feriado(s)", class: 'fg-label'
+            = f.input :holidays, label: false, input_html: { placeholder:'Dias separados por ;', name: 'holidays', value: params[:holidays]}
+          .col-md-4
+            = f.label "Férias", class: 'fg-label'
+            = f.input :vocations, label: false, input_html: { placeholder:'Dias separados por ;',name: 'vocations', value: params[:vocations]}
+        .row
+          .col-md-4
+            = f.label "Outros", class: 'fg-label'
+            = f.input :outhers, label: false, input_html: {placeholder:'Dias separados por ;', name: 'outhers', value: params[:outhers]}
+          .col-md-4
+            = f.label "Especificar", class: 'fg-label'
+            = f.input :outhers_label, label: false, input_html: { name: 'outhers_label', value: params[:outhers_label]}
+        .row
+          .col-md-4
+            = f.label "Antes do meio-dia", class: 'fg-label'
+            = f.input :before_noon, label: false, input_html: {placeholder:'Dias separados por ;', name: 'before_noon', value: params[:before_noon]}
+          .col-md-4
+            = f.label "Especificar", class: 'fg-label'
+            = f.input :before_noon_label, label: false, input_html: { name: 'before_noon_label', value: params[:before_noon_label]}
+        .row
+          .col-md-4
+            = f.label "Após o meio -dia", class: 'fg-label'
+            = f.input :afternoon, label: false, input_html: {placeholder:'Dias separados por ;', name: 'afternoon', value: params[:afternoon]}
+          .col-md-4
+            = f.label "Especificar", class: 'fg-label'
+            = f.input :afternoon_label, label: false, input_html: { name: 'afternoon_label', value: params[:afternoon_label]}
+        .row
+          .col-md-12
+            = f.submit 'Pesquisar', class:  'btn btn-success btn-sm',data: {disable_with: "carregando..."}

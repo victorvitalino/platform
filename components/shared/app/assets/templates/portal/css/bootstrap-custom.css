@@ -375,7 +375,7 @@ background-color:#147EA1;
 }
 #servicos{
   background-color:#147EA1;
-  width: 500px;
+  width: 540px;
 }
 .navbar-default .navbar-nav>.open.editais>a, .navbar-default .navbar-nav>.open.editais>a:focus, .navbar-default .navbar-nav>.open.editais>
 a:hover{
@@ -387,7 +387,8 @@ color: #fff;
 }
 #editais{
   background-color:#7c3961;
-  width:675px;
+  width:800px;
+  margin-left: -250px;
 }
 .navbar-default .navbar-nav>.open.concursos>a, .navbar-default .navbar-nav>.open.concursos>a:focus, .navbar-default .navbar-nav>.open.concursos>
 a:hover{
@@ -663,11 +664,12 @@ body{
     }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
       width: 100%!important;
+      margin:0px;
     }
     .dropdown-menu {
       position: absolute!important;
     }
-}
+    }
 /* Landscape iphone 4*/
 /* Portrait */
 @media only screen
@@ -706,6 +708,9 @@ body{
     .item_menu{
       height: 55px;
     }
+    #editais{
+      margin:0px;
+    }
 }
 /* Landscape iphone 4*/
 @media only screen
@@ -740,6 +745,9 @@ body{
     }
     .item_menu{
       height: 55px;
+    }
+    #editais{
+      margin:0px;
     }
   }
 
@@ -780,6 +788,10 @@ body{
       .item_menu{
         height: 55px;
       }
+      #editais{
+        margin:0px;
+      }
+
     }
 
     /*Portrait iphone 5*/
@@ -823,6 +835,9 @@ body{
           .item_menu{
             height: 55px;
           }
+          #editais{
+            margin: 0px;
+          }
         }
 
 
@@ -864,6 +879,9 @@ body{
     .item_menu{
       height: 55px;
     }
+    #editais{
+      margin:0px;
+    }
 
   }
 
@@ -903,6 +921,9 @@ body{
       }
       .item_menu{
         height: 55px;
+      }
+      #editais{
+        margin:0px;
       }
 
     }
@@ -944,6 +965,9 @@ body{
         .item_menu{
           height: 55px;
         }
+        #editais{
+          margin:0px;
+        }
 
       }
 
@@ -983,6 +1007,9 @@ body{
           }
           .item_menu{
             height: 55px;
+          }
+          #editais{
+            margin:0px;
           }
 
         }
@@ -1024,6 +1051,9 @@ body{
       .item_menu{
         height: 55px;
       }
+      #editais{
+        margin:0px;
+      }
   }
 
   @media screen
@@ -1061,6 +1091,9 @@ body{
     }
     .item_menu{
       height: 55px;
+    }
+    #editais{
+      margin:0px;
     }
 
 }
@@ -1100,6 +1133,9 @@ and (orientation: landscape) {
   .item_menu{
     height: 55px;
   }
+  #editais{
+    margin:0px;
+  }
 
 }
 
@@ -1139,10 +1175,13 @@ and (orientation: portrait) {
   .item_menu{
     height: 55px;
   }
+  #editais{
+    margin:0px;
+  }
 
 }
 
-/*Portrait nexus 4*/
+/*Portrait nexus 4* - 5x - 6p*/
 @media screen
 and (device-width: 384px)
 and (device-height: 567px)
@@ -1179,6 +1218,9 @@ and (orientation: portrait) {
   }
   .item_menu{
     height: 55px;
+  }
+  #editais{
+    margin:0px;
   }
 
 }

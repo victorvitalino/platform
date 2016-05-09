@@ -8,7 +8,11 @@ module Candidate
 
     def self.initialize_attendance!(cadastre, staff_id)
       return false if cadastre.nil? || staff_id.nil?
-      return false if cadastre.cadastre_attendances.where(id: 4).present?
+      if cadastre.cadastre_attendances.present?
+        if %w(4 7 5).include? cadastre.cadastre_attendances.last.attendance_status_id.to_s 
+          return false
+        end
+      end
 
       mirror = cadastre.cadastre_mirrors.new
       mirror.set_clone(cadastre.attributes)
@@ -39,6 +43,8 @@ module Candidate
           5 
         when 14
           7 # => parecer do gerente. galera habilitada.
+        else
+          8 # => atendimento com problema de criação
         end
       else
         4 # => retorna parecer do analista

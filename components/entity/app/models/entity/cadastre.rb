@@ -7,6 +7,7 @@ module Entity
     has_many :situation_status, through: :situations
 
     has_many :documents
+    has_many :document_categories, through: :documents
     has_many :members
     has_many :candidates
     has_many :candidate, through: :candidates
@@ -21,6 +22,17 @@ module Entity
       .where('entity_situations.situation_status_id = ?', status)
     }
 
+    scope :count_documents, -> {
+      Entity::Document.select('cadastre_id').group('cadastre_id').having('count(id) > 10')
+    }
+
+    scope :senders, -> {
+      where(id: Entity::Document.all.map(&:cadastre_id))
+    }
+
+    scope :complete, -> {
+      where(id: count_documents)
+    }
     scope :cnpj,  -> (cnpj) {where(cnpj: cnpj)}
     scope :name_entity,  -> (name_entity) {where(name: name_entity)}
     scope :fantasy_name,  -> (fantasy_name) {where(fantasy_name: fantasy_name)}
@@ -39,6 +51,7 @@ module Entity
     validate  :update_password, if: :change_password?
 
     after_create :set_situation
+
 
     private
 

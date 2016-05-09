@@ -2,14 +2,12 @@ require 'csv'
 
 namespace :candidate do
 
-  task :update_day => :environment do 
-    
-    @day   = Date.parse('20/03/2016')
-    23.times do
+  task :update_day => :environment do
 
-      @day = @day + 1.day
+    @day   = Date.parse('13/04/2016')
 
       object = Candidate::DayOcurrency.new({
+        update_income: Candidate::CadastreActivity.where("activity_status_id = 4 and created_at::date = '#{@day}'").count,
         update_dependent: Candidate::Dependent.count_updates(@day),
         update_old: Candidate::View::GeneralPontuation.is_olders?(@day),
         halted: Candidate::CadastreSituation.halted_day_count(@day),
@@ -21,24 +19,23 @@ namespace :candidate do
 
       object.save
       puts @day
-    end
   end
 
-  task :refresh_view => :environment do 
+  task :refresh_view => :environment do
     connection = ActiveRecord::Base.connection
     begin
       connection.execute("REFRESH MATERIALIZED VIEW general_pontuations")
       puts "Refresh view complete"
-    rescue 
+    rescue
       puts "Refresh view failed"
     end
   end
 
-  task :position => :environment do 
+  task :position => :environment do
 
     Rake::Task["candidate:refresh_view"].invoke
-    
-    begin 
+
+    begin
       Rake::Task["candidate:rii"].invoke
       puts "RII complete"
     rescue
@@ -65,7 +62,7 @@ namespace :candidate do
     rescue
       puts "OLD error"
     end
-    
+
     begin
       Rake::Task["candidate:vulnerable"].invoke
       puts "VULNERABLE complete"
@@ -76,14 +73,14 @@ namespace :candidate do
   end
 
   task :rii => :environment do
-    
+
     %w(0_1600_1 1601_3275_2 3276_5000_3 5001_99999_4).each do  |w|
       income = w.underline_array
-      sql = "program_id =  1 AND situation_status_id = 4 
-            AND convocation_id > 1524 
-            AND procedural_status_id IN(14, 72) 
+      sql = "program_id =  1 AND situation_status_id = 4
+            AND convocation_id > 1524
+            AND procedural_status_id IN(14, 72)
             AND income BETWEEN #{income[0]} AND #{income[1]}"
-      
+
       @candidates = Candidate::View::GeneralPontuation.where(sql).order('total DESC')
 
       @candidates.each_with_index do |candidate, index|
@@ -100,18 +97,18 @@ namespace :candidate do
         puts index + 1
       end
     end
-    
+
   end
 
   task :rie => :environment do
 
     %w(0_1600_1 1601_3275_2 3276_5000_3 5001_99999_4).each do |w|
       income = w.underline_array
-      sql = "program_id =  2 AND situation_status_id = 4 
-            AND convocation_id > 1524 
-            AND procedural_status_id IN(14, 72) 
+      sql = "program_id =  2 AND situation_status_id = 4
+            AND convocation_id > 1524
+            AND procedural_status_id IN(14, 72)
             AND income BETWEEN #{income[0]} AND #{income[1]}"
-      
+
       @candidates = Candidate::View::GeneralPontuation.where(sql).order('total DESC')
 
       @candidates.each_with_index do |candidate, index|
@@ -142,7 +139,7 @@ namespace :candidate do
              and convocation_id > 1524
              and procedural_status_id IN(14, 72)
              and income BETWEEN #{income[0]} AND #{income[1]}"
-      
+
       @candidates = Candidate::View::GeneralPontuation.where(sql).order('total DESC')
 
       @candidates.each_with_index do |candidate, index|
@@ -161,16 +158,16 @@ namespace :candidate do
     end
   end
 
-  task :old => :environment do 
-               
+  task :old => :environment do
+
     %w(0_1600_1 1601_3275_2 3276_5000_3 5001_99999_4).each do |w|
       income = w.underline_array
-      sql = "extract(year from age(born)) >= 60 
-            AND convocation_id > 1524 
-            AND procedural_status_id IN(14, 72) 
+      sql = "extract(year from age(born)) >= 60
+            AND convocation_id > 1524
+            AND procedural_status_id IN(14, 72)
             AND situation_status_id = 4
             AND income BETWEEN  #{income[0]} AND #{income[1]}"
-      
+
       @candidates = Candidate::View::GeneralPontuation.where(sql).order('total DESC')
 
       @candidates.each_with_index do |candidate, index|
@@ -189,15 +186,15 @@ namespace :candidate do
     end
   end
 
-  task :vulnerable => :environment do 
+  task :vulnerable => :environment do
 
     %w(0_1600_1 1601_3275_2 3276_5000_3 5001_99999_4).each do |w|
       income = w.underline_array
-      sql = "program_id =  4 AND situation_status_id = 4 
-            AND convocation_id > 1524 
-            AND procedural_status_id IN(14, 72) 
+      sql = "program_id =  4 AND situation_status_id = 4
+            AND convocation_id > 1524
+            AND procedural_status_id IN(14, 72)
             AND income BETWEEN #{income[0]} AND #{income[1]}"
-      
+
       @candidates = Candidate::View::GeneralPontuation.where(sql).order('total DESC')
 
       @candidates.each_with_index do |candidate, index|

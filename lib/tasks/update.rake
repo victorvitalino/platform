@@ -8,28 +8,39 @@ namespace :update do
 
     @index = 0
 
-    CSV.foreach("lib/files/iptu.csv", :col_sep => "#") do |row|
+
+    CSV.foreach("lib/files/person.csv", :col_sep => "#") do |row|
+
+           #staff = Person::Staff.find_by_code(row[3]).id rescue nil
 
 
-           @model = Candidate::Iptu.new(
-           registration: row[2],
-           name: row[1],
-           address: row[3],
-           cpf: row[0].present? ? row[0].gsub('-','').gsub('.','') : "",
-           city: row[4],
-           kind_realty:row[5],
-           kind_search:row[6],
-           year:row[7],
-           realty_codhab:  row[8],
+           @model = Person::Staff.new(
+           name: row[0],
+           cpf: row[1],
+           rg: row[2],
+           rg_org: row[3],
+          code: row[4],
+           blood_type: row[5],
+           email:row[7],
+           email: "@",
+           start_hour:row[8],
+           end_hour: row[9],
+           date_contract: row[10],
+           status: true,
+           job_id: row[12],
+           sector_origin_id: row[14],
+           sector_current_id: row[15],
+           password: "12345678",
+           created_at: row[13],
+           token_status: true,
+           wekeend: false,
            )
 
+          puts @model.inspect
+          @model.save!
 
-          begin
-            @model.save
-            #puts @model.inspect
-          rescue
-            puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
-          end
+        #    puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
+        #  end
 
 
        puts  @index += 1

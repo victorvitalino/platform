@@ -12,11 +12,17 @@ nav:
         label: "Habitação"
         controller: "#"
         sub:
-          habitation:
-            module: 'candidate_attendance'
+          convocated:
+            module: 'habitation_attendance'
             code: 0
-            label: "Atendimento"
-            controller: '/candidate_attendance/habitation/dashboard'
+            label: "Atendimento - Convocado"
+            controller: '/habitation_attendance/enabled/dashboard'
+            action: 'index'
+          enabled:
+            module: 'habitation_attendance'
+            code: 0
+            label: "Atendimento - Habilitado"
+            controller: '/habitation_attendance/enabled/dashboard'
             action: 'index'
       regularization:
         code: 119110
@@ -81,10 +87,10 @@ nav:
             controller: '/address/units'
           iptu:
             module: 'address'
-            code: 11204
-            label: 'Pesquisa IPTU'
+            code: 11207
+            label: 'Pesquisa atendentes'
             controller: '/address/units'
-
+            action: 'index_attendent'
       cadin:
         code: 11304
         label: 'Cadastro imobiliário'

@@ -7,22 +7,31 @@
       .col-md-12
         = simple_form_for  url_for, method: 'get' do |f|
           .row
-            .col-md-3
-              = f.label 'CNPJ (somente números)', class: 'fg-label'
+            .col-md-2
+              = f.label 'CNPJ', class: 'fg-label'
               = f.input :cnpj, label: false, input_html: { name: 'cnpj', value: params[:cnpj]}
-            .col-md-4
+            .col-md-2
               = f.label 'Nome', class: 'fg-label'
               = f.input :name_entity, label: false, input_html: { name: 'name_entity', value: params[:name_entity]}
             .col-md-2
               = f.label 'Sigla', class: 'fg-label'
               = f.input :fantasy_name, label: false, input_html: { name: 'fantasy_name', value: params[:fantasy_name]}
-            .col-md-4
+            .col-md-2
               = f.submit t(:filter_button), name: nil, class:  'btn btn-primary filter-button', data: {  disable_with: t(:disable_with)}
+
+    %hr/
     .row
-      .col-md-12
-        %h6
-          Total de Entidades:
+      .col-md-2
+        %h5
+          Total de entidades:
           = @cadastres.count
+      .col-md-5
+        %h5
+          = link_to "Visualizar somente entidades que enviaram documentos", url_for(query: 'senders')
+      .col-md-4
+        %h5
+          = link_to "Visualizar somente entidades completaram documentos", url_for(query: 'complete')
+    %hr/
     .row
       .col-md-12
         %table.table.table-striped.table-hover.table-bordered
@@ -32,14 +41,16 @@
               %th Sigla
               %th Data cadastro
               %th Última atualização
+              %th Quant. Docs
               %th Ações
           %tbody
             - @cadastres.order(:name).each do |cadastre|
               %tr
                 %td.col-md-1= cadastre.cnpj.format_cnpj
-                %td.col-md-4= cadastre.fantasy_name.upcase
+                %td.col-md-3= cadastre.fantasy_name.upcase
                 %td.col-md-1= cadastre.created_at.strftime('%d/%m/%Y às %H:%M')
                 %td.col-md-1= cadastre.updated_at.strftime('%d/%m/%Y às %H:%M')
+                %td.col-md-1= cadastre.documents.count
                 %td.col-md-1
                   = link_to "", cadastre_path(cadastre), class: 'btn btn-xs btn-primary glyphicon glyphicon-share-alt'
     .row

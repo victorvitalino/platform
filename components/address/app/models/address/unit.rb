@@ -8,13 +8,14 @@ module Address
     has_many :cadastre_address, class_name: "Candidate::CadastreAddress"
 
 
-    scope :address, -> (address) {where("complete_address LIKE ?", "#{address}%")}
+    scope :address, -> (address) {where("complete_address ILIKE ?", "%#{address}%")}
     scope :status, -> (status) {where(situation_unit_id: status)}
 
     scope :city, -> (city) {where(city_id: city)}
     scope :block, -> (block) {where(block: block)}
     scope :group_address, -> (group_address) {where(group: group_address)}
     scope :unit, -> (unit) {where(unit: unit)}
+
 
 
     scope :situation_unit, -> (situation_unit) {where(situation_unit_id: situation_unit)}

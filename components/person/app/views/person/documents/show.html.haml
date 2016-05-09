@@ -1,0 +1,145 @@
+:css
+  .EstiloForms {
+      width: 805px;
+      min-height: 400px;
+      margin: 0 auto;
+      font-size: 12px;
+      font-family: verdana;
+      padding: 2px;
+  }
+  .row{
+    margin-top: 5px;
+    width: 100%;
+  }
+  td{
+    height: 20px;
+  }
+.EstiloForms
+  %div
+    %div{:style => "text-align: center; padding-top: 10px;padding-bottom: 10px; border: 1px solid black"}
+      %b{:style => "font-size: 14px;"}GOVERNO DO DISTRITO FEDERAL - GDF
+      %br/
+      %br/
+      FOLHA DE FREQUÊNCIA
+    %div{:style => "text-align: center;font-size: 10px;padding: 5px;border: 1px solid black"}
+      %br
+      = "REF: #{@date.strftime("%B").upcase} de #{@date.year}"
+      %div{:style => "text-align: left;font-size: 10px;padding: 5px;"}
+        .row
+          MATRÍCULA:
+          = @staff.code
+        .row
+          NOME DO EMPREGADO:
+          = @staff.name.upcase
+        .row
+          CARGO EFETIVO: ---
+        .row
+          %div{:style => "width: 40%;float: left"}
+            CARGO EM COMISSÃO:
+            = @staff.job.name.upcase if @staff.job.present?
+          %div{:style => "width: 60%;float: right"}
+            SÍMBOLO:
+            = @staff.job.code.upcase if @staff.job.present?
+        .row
+          %div{:style => "width: 70%;float: left; margin-top: 5px;margin-bottom: 5px"}
+            UA:
+            %em 001 - COMPANHIA DE DESENVOLVIMENTO HABITACIONAL
+          %div{:style => "width: 30%;float: right; margin-top: 5px; margin-bottom: 5px"}
+            CARGA HORÁRIA SEMANAL: 40
+        .row
+          LOTAÇÃO:
+          = "#{@staff.sector_current.code} -  #{@staff.sector_current.name}"
+    %div{:style => "text-align: left; margin-top: 20px; font-size: 10px;padding: 0px"}
+      %table{:border => "1", :cellpadding => "0", :cellspacing => "0", :width => "800px"}
+        %thead
+          %tr{:style => "text-align: center; padding: 2px"}
+            %td{:style => "width: 5%"}
+              DIA
+            %td{:style => "width: 15%"}
+              ENTRADA
+            %td{:style => "width: 7%"}
+              HORA
+            %td{:style => "width: 15%"}
+              SAÍDA
+            %td{:style => "width: 7%"}
+              HORA
+            %td{:style => "width: 15%"}
+              ENTRADA
+            %td{:style => "width: 7%"}
+              HORA
+            %td{:style => "width: 15%"}
+              SAÍDA
+            %td{:style => "width: 7%"}
+              HORA
+            %td
+              CÓD.
+          %tbody
+            - @a = 0
+            - @date_search.times do |a|
+              - @a = a + 1
+              - @dates = Date.parse("#{@date.year}-#{@date.month}-#{a + 1}").strftime("%A")
+              -if @dates == "Sunday" || @dates == "Saturday"
+                %tr{:bgcolor => "#CFCFCF", :style => "text-align: center; padding: 2px"}
+                  %td
+                    %b=@a
+                  %td{:colspan => "9"}
+                    %b= @dates.upcase
+              -elsif @array_holiday.include? @a.to_s
+                %tr{:bgcolor => "#CFCFCF",:style => "text-align: center; padding: 2px"}
+                  %td
+                    %b=@a
+                  %td{:colspan => "9"}
+                    %b FERIADO
+              -elsif @array_vocations.include? @a.to_s
+                %tr{:bgcolor => "#CFCFCF",:style => "text-align: center; padding: 2px"}
+                  %td
+                    %b=@a
+                  %td{:colspan => "9"}
+                    %b FÉRIAS
+              -elsif @array_outhers.include? @a.to_s
+                %tr{:bgcolor => "#CFCFCF",:style => "text-align: center; padding: 2px"}
+                  %td
+                    %b=@a
+                  %td{:colspan => "9"}
+                    %b=@outhers
+              -elsif @array_before_noon.include? @a.to_s
+                %tr
+                  %td{:bgcolor => "#CFCFCF",:style => "text-align: center; padding: 2px"}
+                    %b=@a
+                  %td{:colspan => "4",:bgcolor => "#CFCFCF",:style => "text-align: center; padding: 2px"}
+                    %b=@before_noon
+                  %td
+                  %td
+                  %td
+                  %td
+                  %td
+              -elsif @array_afternoon.include? @a.to_s
+                %tr
+                  %td{:bgcolor => "#CFCFCF",:style => "text-align: center; padding: 2px"}
+                    %b=@a
+                  %td
+                  %td
+                  %td
+                  %td
+                  %td{:colspan => "5",:bgcolor => "#CFCFCF",:style => "text-align: center; padding: 2px"}
+                    %b=@afternoon
+              -else
+                %tr{:style => "text-align: center; padding: 2px"}
+                  %td
+                    %b=@a
+                  %td
+                  %td
+                  %td
+                  %td
+                  %td
+                  %td
+                  %td
+                  %td
+                  %td
+    %div{:style => "text-align: left; margin-top: 0px; font-size: 10px;padding: 0px"}
+      %table{:border => "1", :cellpadding => "0", :cellspacing => "0", :width => "800px"}
+        %tr{:style => "height: 65px;padding:1px "}
+          %td{:valign => "top"}
+            %b ASSINATURA E CARIMBO DO CHEFE IMEDIATO
+          %td{:valign => "top"}
+            %b ASSINATURA E CARIMBO DO SUPERIOR HIERÁRQUICO

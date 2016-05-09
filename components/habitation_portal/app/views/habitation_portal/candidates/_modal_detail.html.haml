@@ -1,0 +1,92 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title
+    %b Alterações do dia na lista
+.modal-body
+  %table.table
+    %thead
+      %tr
+        %th{colspan: 2}
+          Inclusão de candidatos
+    %tbody
+      %tr
+        %td Novas Habilitações
+        %td= @events[:enables_day]
+      %tr
+        %td Migração entre faixas de renda
+        %td 0
+      %tr
+        %td Novos idosos
+        %td= @events[:update_old]
+      %tr
+        %td Novos deficientes
+        %td 0
+    %tfooter
+      %tr
+        %td
+          %b
+            Total
+        %td
+          %b
+            = @events[:enables_day] +  @events[:update_old]
+
+  %hr
+  %table.table
+    %thead
+      %tr
+        %th{colspan: 2}
+          Exclusão de candidatos
+    %tbody
+      %tr
+        %td Novas contemplações
+        %td= @events[:contemplateds_day]
+      %tr
+        %td Sobrestamento
+        %td= @events[:halted]
+      %tr
+        %td Migração entre programas(RII, RIE, Vulneráveis)
+        %td 0
+    %tfooter
+      %tr
+        %td
+          %b
+            Total
+        %td
+          %b
+            = @events[:contemplateds_day] +   @events[:halted]
+
+  %hr
+  %table.table
+    %thead
+      %tr
+        %th{colspan: 2}
+          Atualizações de dados cadastrais com impacto na pontuação dos candidatos
+    %tbody
+      %tr
+        %td Tempo de lista
+        %td 0
+      %tr
+        %td Dependentes
+        %td= @events[:update_dependents]
+      %tr
+        %td Renda
+        %td= @events[:update_incomes]
+      %tr
+        %td Idosos
+        %td= @events[:update_old]
+      %tr
+        %td Membros da família c/condição especial
+        %td 0
+      %tr
+        %td Tempo de Brasília
+        %td 0
+    %tfooter
+      %tr
+        %td
+          %b
+            Total
+        %td
+          %b
+            = @events[:update_old] + @events[:update_incomes]
+  %br

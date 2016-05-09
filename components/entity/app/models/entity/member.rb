@@ -1,6 +1,7 @@
 module Entity
   class Member < ActiveRecord::Base
     belongs_to :member_job
+    belongs_to :cadastre
     has_many  :member_additionals
     
     validates :name, :rg, :rg_org, presence: true
@@ -10,6 +11,7 @@ module Entity
     validates :telephone_optional, :celphone, numericality: true, allow_blank: true
     validates :member_job, :certificate_civil_criminal, presence: true
     validates :cpf, uniqueness: { scope: :cadastre_id}
+    validate  :unique_cpf
 
     attr_accessor :associated_entities
 
@@ -17,5 +19,12 @@ module Entity
 
     mount_uploader :certificate_civil_criminal, Entity::DocumentUploader
     mount_uploader :photo, Entity::DocumentUploader
+        
+    private
+
+    def unique_cpf
+      @member = Entity::Member.find_by_cpf(self.cpf) rescue nil
+      errors.add(:cpf, "Este cpf já está vínculado em outra entidade") if @member.present?
+    end
   end
 end

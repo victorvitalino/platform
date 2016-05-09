@@ -41,7 +41,7 @@ module Person
 		private
 
 		def sector_params
-			params.require(:sector).permit(:name,:acron,:father_id, :responsible_id,:status,:prefex)
+			params.require(:sector).permit(:name,:acron,:father_id, :responsible_id,:status,:prefex, :code)
 		end
 
 		def set_sectors
