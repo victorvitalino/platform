@@ -44,26 +44,9 @@
                 - link_each('Acompanhe - Regularizacao') do |l|
                   %li.link_submenu
                     = link_to_nav l
-        %li.dropdown.item_menu.entidades
-          %a#link_entidades.dropdown-toggle.item_menu{:href => "#"}
-            Entidades
-            %span.sr-only (current)
-          %ul#entidades.dropdown-menu-mod.dropdown-menu
-            %li.menu-insider-li
-              %span.submenu_title Participe
-              %ul
-                - link_each('Participe - Entidades') do |l|
-                  %li.link_submenu
-                    = link_to_nav l
-            %li.menu-insider-li
-              %span.submenu_title Acompanhe
-              %ul
-                - link_each('Acompanhe - Entidades') do |l|
-                  %li.link_submenu
-                    = link_to_nav l
         %li.dropdown.item_menu.servicos
           %a#link_servicos.dropdown-toggle.item_menu{:href => "#"}
-            Serviços e Produtos
+            Produtos e Serviços  
             %span.sr-only (current)
           %ul#servicos.dropdown-menu-mod.dropdown-menu
             %li.menu-insider-li
@@ -84,6 +67,24 @@
                   - link_each('Produtos - Servicos') do |l|
                     %li.link_submenu
                       = link_to_nav l
+        %li.dropdown.item_menu.entidades
+          %a#link_entidades.dropdown-toggle.item_menu{:href => "#"}
+            Entidades
+            %span.sr-only (current)
+          %ul#entidades.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Participe
+              %ul
+                - link_each('Participe - Entidades') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Acompanhe
+              %ul
+                - link_each('Acompanhe - Entidades') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+
 
         %li.dropdown.item_menu.editais
           %a#link_editais.dropdown-toggle.item_menu{:href => "#"}
