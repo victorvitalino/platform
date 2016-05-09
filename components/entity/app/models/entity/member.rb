@@ -23,10 +23,8 @@ module Entity
     private
 
     def unique_cpf
-        @member = Entity::Member.find_by_cpf(self.cpf) rescue nil
-        if @member.present?
-            errors.add(:cpf, "Este cpf já está vínculado em outra entidade")
-        end
+      @member = Entity::Member.find_by_cpf(self.cpf) rescue nil
+      errors.add(:cpf, "Este cpf já está vínculado em outra entidade") if @member.present?
     end
   end
 end
