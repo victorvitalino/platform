@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504174511) do
+ActiveRecord::Schema.define(version: 20160505133631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -2004,6 +2004,7 @@ ActiveRecord::Schema.define(version: 20160504174511) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "id_old"
+    t.string   "city"
   end
 
   add_index "protocol_assessments", ["document_type_id"], name: "index_protocol_assessments_on_document_type_id", using: :btree
