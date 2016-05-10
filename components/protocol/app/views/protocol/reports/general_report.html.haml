@@ -10,7 +10,7 @@
             .row
               .col-md-12
                 = f.label "Tipo de documento", class: 'fg-label'
-                = f.input :document_type, as: 'select', collection: Protocol::DocumentType.order(:name).all, prompt: 'selecione...', label: false, input_html: {name: 'document_type' }
+                = f.input :doc_type, as: 'select', collection: Protocol::DocumentType.order(:name).all, prompt: 'selecione...', label: false, input_html: {name: 'doc_type' }
             .row
               .col-md-12
                 = f.label "Assunto", class: 'fg-label'
