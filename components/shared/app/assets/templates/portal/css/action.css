@@ -4,19 +4,19 @@
   margin:0;
 }
 .about_action{
-  height: 500px;
+  height: 300px;
   background-color:#79b792;
 }
 .about_action_text{
   background-color:#de3859;
-  height: 500px;
+  height: 300px;
 }
 .about_action_title{
   font-size: 55px;
   font-weight: bold;
   color: #fff;
   display: block;
-  margin-top: 170px;
+  margin-top: 100px;
   transform: rotate(-90deg)!important;
 
 /* Safari */
@@ -34,28 +34,32 @@
 /* Internet Explorer */
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
+.div-image-acao {
+  min-height:370px!important;
+}
 .about_action_text p{
-  font-size: 25px;
+  font-size: 18px;
   color:#fff;
   margin-top: 70px;
 }
 .action_title_home{
   background-color:#f49649;
-  height: 180px;
+  height: 140px;
   color:#fff;
   padding-left: 100px;
-font-size: 40px;
+font-size: 30px;
 }
 .action_cadastre{
   background-color: #bb328a;
-  height: 180px;
+  height: 170px;
 
 }
 .action_participo{
   background-color: #7e5fa5;
-  height: 180px;
+  height: 170px;
 
 }
+
 .action_areabuttons_home{
   padding: 0;
     color: #fff!important;
@@ -66,24 +70,39 @@ font-size: 40px;
 .action_areabuttons_home span{
   display: block;
       margin: 0 auto;
-      width: 370px;
+      width: 345px;
 }
-.action_button{
-  border: 2px solid #fff;
-  font-size: 47px;
+
+.action_button_cadastro{
+  font-size: 29px;
   font-weight: bold;
-  padding: 7px 60px;
-  width: 372px;
+  padding: 7px 101px;
+  width: 357px;
   color: #fff!important;
   display: block;
   margin:0 auto;
-  margin-top: 20px;
+  margin-top: 90px;
 }
+
+.action_button{
+  border: 2px solid #fff;
+  font-size: 29px;
+  font-weight: bold;
+  padding: 7px 101px;
+  width: 357px;
+  color: #fff!important;
+  display: block;
+  margin:0 auto;
+  margin-top: 30px;
+}
+
 .no_padding{
   padding:0px;
 }
 .titulo_home{
-  font-size: 75px;
+  font-size: 55px;
+  padding-left: 210px;
+  margin-top: 10px;
 }
 #action_thumb_1 {
 
@@ -95,7 +114,7 @@ font-size: 40px;
 
   }
 .action_thumb{
-height: 355px;
+height: 250px;
 background-color: #000;
 }
 .action_inscription_button{
@@ -132,8 +151,8 @@ margin-top: 20px;
   padding: 20px 0;
 }
 .action_thumbnail_users_home{
-  width: 185px;
-  height: 185px;
+  width: 168px;
+  height: 168px;
   background-color: black;
   border-radius: 120px;
   margin:0 auto;
@@ -152,7 +171,7 @@ margin-top: 20px;
   text-align: justify;
 }
 .action_footer{
-  padding: 75px 0;
+  padding: 48px 0;
 text-align: center;
 }
 .action_footer a{
@@ -165,7 +184,75 @@ text-align: center;
 #action_footer_contact, .bloco_amarelo{background-color: #fecb0d;}
 #action_footer_gallery, .bloco_rosa{background-color: #de3859;}
 .bloco_laranja {background-color: #ea563f;}
-.texto-gigante{ color:#fff; font-size: 45px;}
+.texto-gigante{ color:#fff; font-size: 30px;}
 .texto_branco{color: #fff;}
-.texto-bold{font-weight: bold;}
-.texto_inscrever{font-size: 30px;}
+.texto-bold{
+  font-weight: bold;
+}
+
+.imagem-pagina-interna{
+  overflow: hidden;
+  padding: 0;
+}
+.imagem-pagina-interna img{
+
+  height: 337px;
+}
+.paddingbottom20{
+  padding-bottom: 20px;
+}
+.texto_inscrever{
+  font-size: 25px;
+  padding-left: 10px;
+  margin-top: 18px;
+}
+
+/*página cadastro */
+.action_cadastro{
+  background-color: #78b692;
+  height: 370px;
+  }
+
+.action_japarticipo{
+  background-color: #78b692;
+  height: 370px;
+
+}
+
+.texto_cadastro{
+  display: block;
+  padding-left: 69px;
+  color: #fff;
+  font-size: 45px;
+  margin-top: 50px;
+  font-weight: 600;
+}
+.texto_cadastrointerno1{
+  display: block;
+  font-size: 11px;
+  padding-left: 2px;
+  margin-top: -7px;
+  font-weight: 400;
+}
+
+.texto_cadastrointerno2{
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: -21px;
+}
+.texto_cadastrointerno3{
+  display: block;
+  font-size: 20px;
+  margin-top: 166px;
+  color: #fff;
+  font-weight: bold;
+}
+.retangulo{
+ width:460px;
+ height:25px;
+ background-color: #fff;
+ margin-top: 19px;
+}
+
+}
