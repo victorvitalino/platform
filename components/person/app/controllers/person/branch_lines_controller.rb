@@ -15,8 +15,6 @@ module Person
 
 		end
 
-
-
 		def new
 			@branch_line = @sector.branch_line.new
 			authorize @branch_line
