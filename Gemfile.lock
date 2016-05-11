@@ -71,6 +71,8 @@ PATH
       rails (~> 4.2.1)
     habitation_portal (0.0.1)
       rails (~> 4.2.1)
+    indication (0.0.1)
+      rails (~> 4.2.1)
     juridical (0.0.1)
       rails (~> 4.2.1)
     maintenance (0.0.1)
@@ -82,6 +84,8 @@ PATH
     portal (0.0.1)
       rails (~> 4.2.1)
     profile_user (0.0.1)
+      rails (~> 4.2.1)
+    project (0.0.1)
       rails (~> 4.2.1)
     protocol (0.0.1)
       rails (~> 4.2.1)
@@ -501,6 +505,7 @@ DEPENDENCIES
   haml-rails
   has_scope
   i18n
+  indication!
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   jquery-turbolinks
@@ -517,6 +522,7 @@ DEPENDENCIES
   poltergeist
   portal!
   profile_user!
+  project!
   protocol!
   pundit!
   rails (= 4.2.1)
