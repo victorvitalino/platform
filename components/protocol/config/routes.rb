@@ -10,6 +10,17 @@ resources :subjects, path: 'assuntos'
 
 resources :locations, path: 'localizacoes'
 
+resources :controls, path: 'controles' do
+  resources :control_routes, path: 'controle_encaminhamentos'
+  resources :control_interesteds, path: 'controle_interessados' 
+end
+
+resources :providences, path: 'providencias'
+resources :solicitations, path: 'solicitacoes' do
+  resources :solicitation_replies, path: 'solicitacao_respostas'
+end
+
+
 resources :reports, path: 'relatorios'
 get 'general_report', to: 'reports#general_report', as: 'general_report'
 

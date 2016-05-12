@@ -1,0 +1,51 @@
+= simple_form_for [:control, @control_route] do |f|
+ .row
+  .col-md-4
+   %b Número do documento:
+   = @control.assessment.document_number
+  .col-md-4
+   %b Recebido por:
+   = @control.staff.name.upcase if @control.staff.present?
+  %hr
+ .row
+  .col-md-4
+   = f.label :need_answer, class: 'fg-label'
+   = f.input :need_answer, label: false
+  .col-md-4
+   = f.label :bureau_route, class: 'fg-label'
+   = f.input :bureau_route, label: false
+ .row
+  .col-md-4
+   = f.label :conduct, class: 'fg-label'
+   = f.input :conduct, label: false
+  .col-md-4
+   = f.label :link, class: 'fg-label'
+   = f.input :link, label: false
+ .row
+  .col-md-4
+   = f.label :redistribuited, class: 'fg-label'
+   = f.input :redistribuited, label: false
+  .col-md-4
+   = f.label :redistribuited_to, class: 'fg-label'
+   = f.input :redistribuited_to, label: false
+ .row
+  .col-md-4
+   = f.label :finalized, class: 'fg-label'
+   = f.input :finalized, label: false
+  .col-md-4
+   = f.label :responded, class: 'fg-label'
+   = f.input :responded, label: false
+ .row
+  .col-md-4
+   = f.label :route_sector, class: 'fg-label'
+   = f.association :route_sector, label: false, prompt: 'selecione...'
+  .col-md-4
+   = f.label :route_staff, class: 'fg-label'
+   = f.association :route_staff, label: false, prompt: 'selecione...'
+ .row
+  .col-md-4
+   = f.label "Data de encaminhamento para o setor: ", as: 'string',class: 'fg-label'
+   = f.input :route_sector_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@control_route.route_sector_date) ? localize(f.object.route_sector_date) : nil}
+ .row
+  .col-md-8
+   = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}

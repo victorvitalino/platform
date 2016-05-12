@@ -1,0 +1,42 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Listagem de solicitações
+          = link_to 'Nova solicitação', new_solicitation_path,class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}  if policy(:Assessment, namespace: Protocol).create?
+    .panel-body
+      .row.form-filter
+        .col-md-12
+          = simple_form_for  url_for, method: 'get' do |f|
+            .row
+              .col-md-4
+                = f.label 'Processo', class: 'fg-label'
+                = f.input :process, label: false, input_html: { name: 'process', value: params[:process], class: 'document_number'}
+              .col-md-1
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+              .col-md-1
+                = link_to "Limpar pesquisa",  assessments_path, class: 'btn btn-warning btn-sm',data: {disable_with: "carregando..."}
+      .row
+        .col-md-12
+          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+            %table#data-table-command.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Número
+                  %th Tipo de Documento
+                  %th Solicitante
+                  %th Ações
+              %tbody
+                - @solicitations.each do |a|
+                  %tr
+                    %td
+                      = a.assessment.document_number
+                    %td
+                      = a.assessment.document_type.name if a.assessment.document_type.present?
+                    %td
+                      = a.staff.name if a.staff.present?
+                    %td.col-md-2
+                      = link_to "", edit_solicitation_path(a), title: "editar",  class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+                      = link_to "", solicitation_path(a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
+                      = link_to "", solicitation_solicitation_replies_path(a), title: "Resposta",  class: 'glyphicon glyphicon-share-alt btn btn-warning btn-xs',data: {disable_with: "carregando..."}

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  assessment_id: 
+  staff_id: 
+  input_doc_date: 2016-05-11
+
+two:
+  assessment_id: 
+  staff_id: 
+  input_doc_date: 2016-05-11

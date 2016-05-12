@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/solicitation_reply': Resposta
+    attributes:
+      'protocol/solicitation_reply':
+        providence: "Providência"
+        providence_data: "Data da providência"
+        providence_staff: "Responsável pela providência"
+        process_delivered: "Processo entregue"
+        delivered_data: "Data de entrega"
+        responsible_delivered: "Responsável pela entrega"
+        observation: "Observação"
+        authenticate: "Validado por"
+        authenticate_data: "Data da Validação"

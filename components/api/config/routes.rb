@@ -13,6 +13,7 @@ Api::Engine.routes.draw do
   namespace :address, path: 'endereco' do
     resources :units, path: 'unidade' do
       collection do
+        get 'cities'
         get 'blocks'
         get 'groups'
         get 'units'
