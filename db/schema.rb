@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505133631) do
+ActiveRecord::Schema.define(version: 20160511193835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -2043,6 +2043,61 @@ ActiveRecord::Schema.define(version: 20160505133631) do
   add_index "protocol_conducts", ["sector_id"], name: "index_protocol_conducts_on_sector_id", using: :btree
   add_index "protocol_conducts", ["staff_id"], name: "index_protocol_conducts_on_staff_id", using: :btree
 
+  create_table "protocol_control_interesteds", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "foundation"
+    t.string   "address"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.string   "cep"
+    t.string   "email"
+    t.string   "telephone"
+    t.string   "fax"
+    t.integer  "interested_type"
+    t.integer  "staff_id"
+    t.integer  "control_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "protocol_control_interesteds", ["city_id"], name: "index_protocol_control_interesteds_on_city_id", using: :btree
+  add_index "protocol_control_interesteds", ["control_id"], name: "index_protocol_control_interesteds_on_control_id", using: :btree
+  add_index "protocol_control_interesteds", ["staff_id"], name: "index_protocol_control_interesteds_on_staff_id", using: :btree
+  add_index "protocol_control_interesteds", ["state_id"], name: "index_protocol_control_interesteds_on_state_id", using: :btree
+
+  create_table "protocol_control_routes", force: :cascade do |t|
+    t.boolean  "responded"
+    t.boolean  "bureau_route"
+    t.boolean  "conduct"
+    t.boolean  "link"
+    t.boolean  "redistribuited"
+    t.boolean  "need_answer"
+    t.boolean  "finalized"
+    t.integer  "route_sector_id"
+    t.integer  "route_staff_id"
+    t.date     "route_sector_date"
+    t.string   "redistribuited_to"
+    t.integer  "control_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "protocol_control_routes", ["control_id"], name: "index_protocol_control_routes_on_control_id", using: :btree
+  add_index "protocol_control_routes", ["route_sector_id"], name: "index_protocol_control_routes_on_route_sector_id", using: :btree
+  add_index "protocol_control_routes", ["route_staff_id"], name: "index_protocol_control_routes_on_route_staff_id", using: :btree
+
+  create_table "protocol_controls", force: :cascade do |t|
+    t.integer  "assessment_id"
+    t.integer  "staff_id"
+    t.date     "input_doc_date"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "protocol_controls", ["assessment_id"], name: "index_protocol_controls_on_assessment_id", using: :btree
+  add_index "protocol_controls", ["staff_id"], name: "index_protocol_controls_on_staff_id", using: :btree
+
   create_table "protocol_digital_documents", force: :cascade do |t|
     t.integer  "page_number"
     t.string   "doc_path"
@@ -2080,6 +2135,47 @@ ActiveRecord::Schema.define(version: 20160505133631) do
   add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id", using: :btree
   add_index "protocol_locations", ["sector_id"], name: "index_protocol_locations_on_sector_id", using: :btree
   add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id", using: :btree
+
+  create_table "protocol_solicitation_providences", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "protocol_solicitation_replies", force: :cascade do |t|
+    t.integer  "providence_id"
+    t.date     "providence_date"
+    t.integer  "providence_staff_id"
+    t.boolean  "process_delivered"
+    t.date     "delivered_date"
+    t.integer  "responsible_delivered_id"
+    t.text     "observation"
+    t.integer  "authenticate_id"
+    t.date     "authenticate_date"
+    t.integer  "solicitation_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "protocol_solicitation_replies", ["authenticate_id"], name: "index_protocol_solicitation_replies_on_authenticate_id", using: :btree
+  add_index "protocol_solicitation_replies", ["providence_id"], name: "index_protocol_solicitation_replies_on_providence_id", using: :btree
+  add_index "protocol_solicitation_replies", ["providence_staff_id"], name: "index_protocol_solicitation_replies_on_providence_staff_id", using: :btree
+  add_index "protocol_solicitation_replies", ["responsible_delivered_id"], name: "index_protocol_solicitation_replies_on_responsible_delivered_id", using: :btree
+  add_index "protocol_solicitation_replies", ["solicitation_id"], name: "index_protocol_solicitation_replies_on_solicitation_id", using: :btree
+
+  create_table "protocol_solicitations", force: :cascade do |t|
+    t.integer  "assessment_id"
+    t.date     "order_date"
+    t.integer  "staff_id"
+    t.text     "observation"
+    t.integer  "priority"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "protocol_solicitations", ["assessment_id"], name: "index_protocol_solicitations_on_assessment_id", using: :btree
+  add_index "protocol_solicitations", ["staff_id"], name: "index_protocol_solicitations_on_staff_id", using: :btree
 
   create_table "protocol_subjects", force: :cascade do |t|
     t.string   "name"

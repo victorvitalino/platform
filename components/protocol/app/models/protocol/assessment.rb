@@ -8,6 +8,9 @@ module Protocol
     has_many :conducts
     has_many :digital_documents
     has_many :locations
+    has_many :controls
+
+    has_many :solicitations
 
     has_many :attach_documents, foreign_key: "document_father_id"
 

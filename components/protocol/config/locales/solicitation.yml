@@ -1,0 +1,19 @@
+pt-BR:
+  enums:
+    'protocol/solicitation':
+      priority:
+        one: "Um"
+        two: "Dois"
+        three: "Três"
+        emergency: "Emergência"
+  activerecord:
+    models:
+      'protocol/solicitation': Solicitação
+    attributes:
+      'protocol/solicitation':
+        order_data: "Data do pedido"
+        staff: "Solicitante"
+        observation: "Observação"
+        priority: "Prioridade"
+        document_number: "Número do documento"
+        document_type: "Tipo de documento"

@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  responded: false
+  bureau_route: false
+  conduct: false
+  link: false
+  redistribuited: false
+  need_answer: false
+  finalized: false
+  route_sector_id: 
+  route_staff_id: 
+  toute_sector_date: 2016-05-11
+  redistribuited_to: MyString
+  document_control_id_id: 
+
+two:
+  responded: false
+  bureau_route: false
+  conduct: false
+  link: false
+  redistribuited: false
+  need_answer: false
+  finalized: false
+  route_sector_id: 
+  route_staff_id: 
+  toute_sector_date: 2016-05-11
+  redistribuited_to: MyString
+  document_control_id_id: 

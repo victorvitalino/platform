@@ -24,12 +24,14 @@
    = f.input :recipient, label: false, input_html: { placeholder: 'Preencha'}
  .row
   .col-md-4
+   = f.label :city, class: 'fg-label'
+   = f.input :city, label: false, input_html: { placeholder: 'Preencha'}
+  .col-md-4
    = f.label :address, class: 'fg-label'
    = f.input :address, label: false, input_html: { placeholder: 'Preencha'}
   .col-md-4
    = f.label :cpf, class: 'fg-label'
    = f.input :cpf, label: false, input_html: { placeholder: 'Preencha'}
-  .col-md-4
   .col-md-4
    = f.label :cnpj, class: 'fg-label'
    = f.input :cnpj, label: false, input_html: { placeholder: 'Preencha'}

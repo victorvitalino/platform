@@ -1,0 +1,45 @@
+= simple_form_for [:solicitation, @solicitation_reply] do |f|
+ .row
+  .col-md-4
+   %b Número do documento:
+   = @solicitation.assessment.document_number
+  %hr
+ .row
+  .col-md-4
+   %b Localização mesa:
+   = @solicitation.assessment.locations.last.desk
+  .col-md-4
+   %b Pratelheira:
+   = @solicitation.assessment.locations.last.shelf
+  .col-md-4
+   %b Pilha:
+   = @solicitation.assessment.locations.last.pile
+  %hr
+ .row
+  .col-md-4
+   = f.label :providence, class: 'fg-label'
+   = f.association :providence, prompt: 'selecione...', label: false
+  .col-md-2
+   = f.label :providence_date, as: 'string',class: 'fg-label'
+   = f.input :providence_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@solicitation_reply.providence_date) ? localize(f.object.providence_date) : nil}
+  .col-md-4
+   = f.label :providence_staff, class: 'fg-label'
+   = f.input :providence_staff, collection: Person::Staff.where(status: true).order(:name), prompt: 'selecione...', label: false
+ .row
+  .col-md-4
+   = f.label :process_delivered, class: 'fg-label'
+   = f.input :process_delivered, prompt: 'selecione...', label: false
+  .col-md-2
+   = f.label :delivered_date, as: 'string',class: 'fg-label'
+   = f.input :delivered_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@solicitation_reply.delivered_date) ? localize(f.object.delivered_date) : nil}
+  .col-md-4
+   = f.label :responsible_delivered, class: 'fg-label'
+   = f.input :responsible_delivered, collection: Person::Staff.where(status: true).order(:name), prompt: 'selecione...', label: false
+ .row
+  .col-md-8
+   = f.label :observation, class: 'fg-label'
+   = f.input :observation, label: false, input_html: {placeholder: 'Preencha'}
+ .row
+  .col-md-8
+   = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+   = link_to "voltar",  solicitation_solicitation_replies_path(solicitation_id:@solicitation_reply.solicitation_id), class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}

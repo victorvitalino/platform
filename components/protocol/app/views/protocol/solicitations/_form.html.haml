@@ -1,0 +1,32 @@
+= simple_form_for @solicitation do |f|
+ .row
+  .col-md-4
+   = f.label :document_number, class: 'fg-label'
+   = f.input :document_number, label: false, input_html: { class: 'document_number'}
+  .col-md-4
+   = f.label :document_type, class: 'fg-label'
+   = f.input :document_type, label: false , collection: Protocol::DocumentType.where(status: true), prompt: 'selecione...'
+ .row
+  .col-md-4
+   = f.label :order_date, as: 'string', class: 'fg-label'
+   = f.input :order_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@solicitation.order_date) ? localize(f.object.order_date) : nil}
+ .row
+  .col-md-8
+   = f.label :observation, class: 'fg-label'
+   = f.input :observation, label: false, input_html: {placeholder: 'Preencha'}
+ .row
+  .col-md-4
+   = f.label :priority, class: 'fg-label'
+ .row
+  - Protocol::Solicitation.priorities_i18n.each do |key, value|
+   .col-md-3
+    %label.radio.radio-inline.m-r-20
+     %input{:name => "solicitation[priority]", :type => "radio", value: "#{key}"}/
+     %i.input-helper
+      %strong= "#{value}"
+   %br
+   %br
+ .row
+  .col-md-8
+   = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+   = link_to "voltar",  solicitations_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}
