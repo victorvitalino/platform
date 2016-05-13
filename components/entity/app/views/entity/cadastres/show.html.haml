@@ -2,7 +2,7 @@
   .panel-heading
     %h4.panel-title
       Detalhamento de Entidade
-      = link_to "Voltar para listagem", cadastres_path, class: 'pull-right'
+      = link_to "Voltar para listagem", cadastres_path, class: 'pull-right no-print '
   .panel-body
     .row
       .col-md-12
@@ -53,7 +53,7 @@
               %th CPF
               %th RG
               %th Cargo
-              %th Certidão Civil Criminal
+              %th.no-print  Certidão Civil Criminal
           %tbody
             - if @cadastre.members.present?
               - @cadastre.members.each do |cad|
@@ -62,7 +62,8 @@
                   %td= cad.cpf.format_cpf
                   %td= "#{cad.rg} - #{cad.rg_org}"
                   %td= cad.member_job.name
-                  %td= link_to "Baixar arquivo", cad.certificate_civil_criminal_url, target: '_blank' if cad.certificate_civil_criminal.to_s.present?
+                  %td.no-print 
+                    = link_to "Baixar arquivo", cad.certificate_civil_criminal_url, target: '_blank' if cad.certificate_civil_criminal.to_s.present?
             - else
               %tr
                 %td{colspan:6} Nenhum registro cadastrado.
@@ -104,7 +105,7 @@
             %tr
               %th Documento
               %th Tipo
-              %th Arquivo
+              %th.no-print  Arquivo
               %th Data
           %tbody
             - if @cadastre.documents.general.present?
@@ -112,7 +113,8 @@
                 %tr
                   %td= document.document_category.name if document.document_category.present?
                   %td.col-md-2= document.document_category.document_type.humanize  if document.document_category.present?
-                  %td= link_to "visualizar", document.archive_path.to_s, target: '_blank'
+                  %td.no-print 
+                    = link_to "visualizar", document.archive_path.to_s, target: '_blank'
                   %td.col-md-2= document.created_at.strftime("%d/%m/%Y às %H:%M")
             - else
               %tr
