@@ -1,0 +1,29 @@
+= simple_form_for @enterprise do |f|
+  .row
+    .col-md-7
+      = f.input :name, placeholder: "Digite o nome do empreendimento"
+    .col-md-2
+      = f.association :typology, label_method: :complete_name, include_blank: 'Selecione uma tipologia...'
+    .col-md-3
+      = f.association :company, label_method: :complete_name, include_blank: 'Selecione uma empresa...'
+  .row
+    .col-md-2
+      = f.input :value, input_html: {class: 'coin_mask'}
+    .col-md-2
+      = f.input :units
+    .col-md-3
+      = f.input :edict_number
+    .col-md-2
+      = f.input :process_number
+  %hr/
+  .row
+    .col-md-2
+      = f.input :status, as: :select, include_blank: false
+    .col-md-3
+      = f.input :situation, as: :select, collection: {}, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
+      = link_to "voltar", enterprises_path, class:'btn btn-default'
+       

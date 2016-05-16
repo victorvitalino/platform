@@ -15,7 +15,11 @@ pt-BR:
     habitation: "Habitação"
     attendances: "Atendimento"
     juridical: "Jurídico"
+    project: "Projeto"
   modules:
+    project:
+      enterprises: "Empreendimentos"
+      typologies: "Tipologias"
     address:
       units: "Unidades"
       notary_offices: "Cartório"

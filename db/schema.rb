@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511193835) do
+ActiveRecord::Schema.define(version: 20160516143911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1966,6 +1966,35 @@ ActiveRecord::Schema.define(version: 20160511193835) do
   add_index "planning_tasks", ["author_id"], name: "index_planning_tasks_on_author_id", using: :btree
   add_index "planning_tasks", ["project_id"], name: "index_planning_tasks_on_project_id", using: :btree
   add_index "planning_tasks", ["responsible_id"], name: "index_planning_tasks_on_responsible_id", using: :btree
+
+  create_table "project_enterprises", force: :cascade do |t|
+    t.string   "name"
+    t.string   "value"
+    t.integer  "typology_id"
+    t.integer  "company_id"
+    t.boolean  "status",         default: true
+    t.string   "edict_number"
+    t.string   "process_number"
+    t.integer  "situation"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "units"
+  end
+
+  add_index "project_enterprises", ["company_id"], name: "index_project_enterprises_on_company_id", using: :btree
+  add_index "project_enterprises", ["typology_id"], name: "index_project_enterprises_on_typology_id", using: :btree
+
+  create_table "project_typologies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "home_type"
+    t.string   "private_area"
+    t.string   "income_family"
+    t.string   "initial_value"
+    t.string   "end_value"
+    t.boolean  "status",        default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "protocol_allotments", force: :cascade do |t|
     t.text     "description"

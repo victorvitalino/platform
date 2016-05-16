@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      'project/enterprise': 'Empreendimento'
+    attributes:
+      'project/enterprise':
+          name: "Nome"
+          value: "Valor"
+          typology: "Tipologia"
+          company: "Empresa responsável"
+          edict_number: "Nº Edital"
+          process_number: "Nº processual"
+          status: "Ativo?"
+          situation: "Situação"
+          units: "Quant. Unidades"

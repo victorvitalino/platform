@@ -118,6 +118,27 @@ nav:
             label: 'Agendas'
             controller: '/schedule/agendas'
             action: 'index'
+      project:
+        code: 0
+        label: 'Empreendimentos'
+        controller: '#'
+        sub:
+          enterprise:
+            module: 'project'
+            code: 118101
+            label: 'Gestão de empreendimentos'
+            controller: '/project/enterprises'
+            action: 'index'
+          typologies:
+            module: 'project'
+            code: 118103
+            label: 'Gestão de tipologias'
+            controller: '/project/typologies'
+            action: 'index'            
+      indication:
+        code: 0
+        label: 'Indicação'
+        controller: '#'            
       assistent:
         code: [118103,118101]
         label: 'Auxiliares'
