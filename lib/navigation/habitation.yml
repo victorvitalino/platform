@@ -45,11 +45,6 @@ nav:
             code: 11501
             label: 'Cadastro'
             controller: '/entity/cadastres'
-          attendance:
-            module: 'entity'
-            code: 11501
-            label: 'Atendimento'
-            controller: '/entity/cadastres'
       cadastre:
         code: [11005, 11011]
         label: 'Cadastro'
