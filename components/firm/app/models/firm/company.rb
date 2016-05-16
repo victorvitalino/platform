@@ -9,6 +9,8 @@ module Firm
     validates :cnpj, cnpj: true
 
 
-
+    def complete_name
+      "#{self.id} - #{self.name}"
+    end
   end
 end

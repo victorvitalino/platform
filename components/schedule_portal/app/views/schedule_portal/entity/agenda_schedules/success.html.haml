@@ -1,0 +1,50 @@
+.row
+  .col-md-12.box
+    .panel.panel-default
+      .panel-heading.panel-green
+        .row
+          .col-md-12
+            %h1
+              %b.dark-orange Entidade
+              %br/
+              %small Agendamento realizado com sucesso!
+      .panel-body
+        .row
+          .col-md-12.input-big
+            %h2
+              %b Parabéns seu agendamento foi realizado com sucesso!
+        %hr/
+        .row.input-big
+          .col-md-12
+            %h4
+              %b Agenda
+            %h4
+              = @schedule.agenda.title if @schedule.agenda.present?
+            
+        .row.input-big
+          .col-md-3
+            %h4
+              %b CNPJ
+            %h4
+              = @schedule.cnpj
+          .col-md-6
+            %h4
+              %b NOME
+            %h4
+              = @schedule.name
+        .row.input-big
+          .col-md-3
+            %h4
+              %b Protocolo Gerado
+            %h4
+              = @schedule.protocol
+          .col-md-3
+            %h4
+              %b Data e Horário
+            %h4
+              = "#{@schedule.date.strftime('%d/%m/%Y')} às #{@schedule.hour.strftime('%H:%M')}" 
+        %hr/
+        .row
+          .col-md-3
+            %h4
+              = link_to "Realizar novo agendamento!", new_entity_agenda_schedule_path

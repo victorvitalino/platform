@@ -42,15 +42,23 @@
               %th Data cadastro
               %th Última atualização
               %th Quant. Docs
+              %th Tipo
               %th Ações
           %tbody
             - @cadastres.order(:name).each do |cadastre|
               %tr
-                %td.col-md-1= cadastre.cnpj.format_cnpj
+                %td.col-md-2= cadastre.cnpj.format_cnpj
                 %td.col-md-3= cadastre.fantasy_name.upcase
-                %td.col-md-1= cadastre.created_at.strftime('%d/%m/%Y às %H:%M')
-                %td.col-md-1= cadastre.updated_at.strftime('%d/%m/%Y às %H:%M')
+                %td.col-md-2= cadastre.created_at.strftime('%d/%m/%Y às %H:%M')
+                %td.col-md-2= cadastre.updated_at.strftime('%d/%m/%Y às %H:%M')
                 %td.col-md-1= cadastre.documents.count
+                %td.col-md-1
+                  - if cadastre.new_entity?
+                    %span.label.label-success
+                      Novo cadastro
+                  - else
+                    %span.label.label-primary
+                      Recadastro
                 %td.col-md-1
                   = link_to "", cadastre_path(cadastre), class: 'btn btn-xs btn-primary glyphicon glyphicon-share-alt'
     .row

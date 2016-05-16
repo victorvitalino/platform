@@ -45,11 +45,6 @@ nav:
             code: 11501
             label: 'Cadastro'
             controller: '/entity/cadastres'
-          attendance:
-            module: 'entity'
-            code: 11501
-            label: 'Atendimento'
-            controller: '/entity/cadastres'
       cadastre:
         code: [11005, 11011]
         label: 'Cadastro'
@@ -118,6 +113,51 @@ nav:
             label: 'Agendas'
             controller: '/schedule/agendas'
             action: 'index'
+      project:
+        code: 0
+        label: 'Empreendimentos'
+        controller: '#'
+        sub:
+          enterprise:
+            module: 'project'
+            code: 118101
+            label: 'Gestão de empreendimentos'
+            controller: '/project/enterprises'
+            action: 'index'
+          typologies:
+            module: 'project'
+            code: 118103
+            label: 'Gestão de tipologias'
+            controller: '/project/typologies'
+            action: 'index'            
+      indication:
+        code: 0
+        label: 'Indicação'
+        controller: '#'           
+        sub:
+          dasboard:
+            module: 'indication'
+            code: 0
+            label: "Visão geral"
+            controller: '/indication/allotments'
+            action: 'index' 
+          allotment:
+            module: 'indication'
+            code: 0
+            label: "Lotes"
+            controller: '/indication/allotments'
+            action: 'index' 
+      sefaz:
+        code: 0
+        label: 'Sefaz'
+        controller: '#'           
+        sub:
+          itcd_itbi:
+            module: 'indication'
+            code: 0
+            label: "Inseção ITCD/ITBI"
+            controller: '/indication/allotments'
+            action: 'index' 
       assistent:
         code: [118103,118101]
         label: 'Auxiliares'
