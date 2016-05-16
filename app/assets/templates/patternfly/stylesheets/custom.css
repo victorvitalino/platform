@@ -2,6 +2,9 @@ body {
   background-color: #FFF9F0  !important;
 }
 
+.less-margin-bottom {
+  margin-bottom: 0px !important;
+}
 .nav-tabs > li {
   margin-bottom: -2px !important; 
 }

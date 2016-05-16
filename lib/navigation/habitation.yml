@@ -133,7 +133,31 @@ nav:
       indication:
         code: 0
         label: 'Indicação'
-        controller: '#'            
+        controller: '#'           
+        sub:
+          dasboard:
+            module: 'indication'
+            code: 0
+            label: "Visão geral"
+            controller: '/indication/allotments'
+            action: 'index' 
+          allotment:
+            module: 'indication'
+            code: 0
+            label: "Lotes"
+            controller: '/indication/allotments'
+            action: 'index' 
+      sefaz:
+        code: 0
+        label: 'Sefaz'
+        controller: '#'           
+        sub:
+          itcd_itbi:
+            module: 'indication'
+            code: 0
+            label: "Inseção ITCD/ITBI"
+            controller: '/indication/allotments'
+            action: 'index' 
       assistent:
         code: [118103,118101]
         label: 'Auxiliares'

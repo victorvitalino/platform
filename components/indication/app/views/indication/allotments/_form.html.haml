@@ -1,0 +1,109 @@
+:css
+  table .form-group {
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+  }
+
+= simple_form_for @allotment do |f|
+  .row
+    .col-md-12
+      %h3 Informações do empreendimento
+  .row
+    .col-md-3
+      = f.association :enterprise, label: false, include_blank: 'Selecione o empreendimento...', input_html: { id: "enterprise_id"}
+    .col-md-3
+      = f.input :zone, as: :select, label: false, collection: {}, include_blank: 'Selecione a faixa...'
+    .col-md-6
+      %i
+        padrão de calculo
+        (40% RII,  40% RIE, %9 Idosos, %6 Deficiêntes, %5 Vulneráveis )
+
+  .row
+    .col-md-12
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Disponível
+            %th RII
+            %th RIE
+            %th Idosos
+            %th Deficiêntes
+            %th Vulneráveis
+        %tbody
+          %tr
+            %td.col-md-2#allow 0
+            %td.col-md-2#rii-count 0
+            %td.col-md-2#rie-count 0
+            %td.col-md-2#old-count 0
+            %td.col-md-2#special-count 0
+            %td.col-md-2#vulnerable-count 0
+  .row
+    .col-md-12
+      %table.table.table-striped.table-bordered.table-condensed
+        %thead
+          %tr
+            %th Demanda
+            %th RII
+            %th RIE
+            %th Idosos
+            %th Deficiêntes
+            %th Vulneráveis
+        %tbody
+          %tr
+            %td= f.input :demand, as: :string, label: false, input_html: { value: 0 }
+            %td= f.input :rii, as: :string, label: false, input_html: { value: 0, id: 'rii_user', class: 'allotment_demand_fields'}
+            %td= f.input :rie, as: :string, label: false, input_html: { value: 0, id: 'rie_user', class: 'allotment_demand_fields'}
+            %td= f.input :old, as: :string, label: false, input_html: { value: 0, id: 'old_user', class: 'allotment_demand_fields'}
+            %td= f.input :special, as: :string, label: false, input_html: { value: 0, id: 'special_user', class: 'allotment_demand_fields'}
+            %td= f.input :vulnerable, as: :string, label: false, input_html: { value: 0, id: 'vulnerable_user', class: 'allotment_demand_fields'}
+      %i É necessário que todos os números sejam arredondados para inteiro
+  %hr/
+  .row
+    .col-md-12
+      = f.input :observation, label: "Justificativa / Descrição"
+  %hr/
+  .row
+    .col-md-2
+      = f.input :code, label: "Matrícula"
+    .col-md-2
+      = f.input :password, label: "Senha"
+    .col-md-2
+      = f.submit "Realizar a criação de lote", class: 'btn btn-success filter-button'
+:javascript
+
+  $(document).ready(function() {
+
+    $('#enterprise_id').on('change', function() {
+      
+
+      $("#info").fadeIn();
+
+
+    })
+
+    $('#allotment_demand').on('change', function() {
+      update_default_demand($(this).val());
+    })
+
+
+    
+  })
+  
+  function update_default_demand(demand) {
+    var rii_defaul_demand         = percentage(demand, 40)
+    var rie_defaul_demand         = percentage(demand, 40)
+    var old_defaul_demand         = percentage(demand, 9)
+    var special_defaul_demand     = percentage(demand, 6)
+    var vulnerable_defaul_demand  = percentage(demand, 5) 
+    
+    $('#rii_user').val(rii_defaul_demand)
+    $('#rie_user').val(rie_defaul_demand)
+    $('#old_user').val(old_defaul_demand)
+    $('#special_user').val(special_defaul_demand)
+    $('#vulnerable_user').val(vulnerable_defaul_demand)
+  }
+
+  function percentage(num, per) {
+    value = (num/100) * per;
+    return value
+  }

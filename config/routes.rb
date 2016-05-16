@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     mount Address::Engine                  => "/enderecos",      as: 'address',               module: 'address'
     mount Action::Engine                   => "/acao",           as: 'action',                module: 'action'
     mount Project::Engine                  => "/projeto",        as: 'project',               module: 'project'
+    mount Indication::Engine               => "/indicacao",      as: 'indication',            module: 'indication'
 
     mount HabitationAttendance::Engine     => "/atendimento_habitacao",    as: 'habitation_attendance',  module: 'atendimento_habitacao'
   end

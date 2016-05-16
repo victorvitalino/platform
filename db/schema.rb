@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516143911) do
+ActiveRecord::Schema.define(version: 20160516180535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1672,6 +1672,44 @@ ActiveRecord::Schema.define(version: 20160516143911) do
   add_index "helpdesk_tickets", ["sector_id"], name: "index_helpdesk_tickets_on_sector_id", using: :btree
   add_index "helpdesk_tickets", ["ticket_subject_id"], name: "index_helpdesk_tickets_on_ticket_subject_id", using: :btree
   add_index "helpdesk_tickets", ["ticket_type_id"], name: "index_helpdesk_tickets_on_ticket_type_id", using: :btree
+
+  create_table "indication_allotments", force: :cascade do |t|
+    t.integer  "enterprise_id"
+    t.integer  "zone"
+    t.integer  "demand"
+    t.integer  "rii"
+    t.integer  "rie"
+    t.integer  "old"
+    t.integer  "special"
+    t.integer  "vulnerable"
+    t.integer  "situation",     default: 0
+    t.integer  "staff_id"
+    t.integer  "supervisor_id"
+    t.text     "observation"
+    t.boolean  "status"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "indication_allotments", ["enterprise_id"], name: "index_indication_allotments_on_enterprise_id", using: :btree
+  add_index "indication_allotments", ["staff_id"], name: "index_indication_allotments_on_staff_id", using: :btree
+  add_index "indication_allotments", ["supervisor_id"], name: "index_indication_allotments_on_supervisor_id", using: :btree
+  add_index "indication_allotments", ["zone"], name: "index_indication_allotments_on_zone", using: :btree
+
+  create_table "indication_cadastres", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "program_id"
+    t.integer  "pontuation_id"
+    t.integer  "situation",     default: 0
+    t.string   "observation"
+    t.string   "zone"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "indication_cadastres", ["cadastre_id"], name: "index_indication_cadastres_on_cadastre_id", using: :btree
+  add_index "indication_cadastres", ["pontuation_id"], name: "index_indication_cadastres_on_pontuation_id", using: :btree
+  add_index "indication_cadastres", ["program_id"], name: "index_indication_cadastres_on_program_id", using: :btree
 
   create_table "juridical_advice_types", force: :cascade do |t|
     t.string   "name"

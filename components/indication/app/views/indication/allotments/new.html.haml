@@ -1,0 +1,9 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Novo lote de indicação
+      = link_to "Voltar para listagem", allotments_path, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        = render 'form'

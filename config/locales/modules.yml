@@ -16,7 +16,10 @@ pt-BR:
     attendances: "Atendimento"
     juridical: "Jurídico"
     project: "Projeto"
+    indication: "Indicação"
   modules:
+    indication:
+      allotment: "Lote"
     project:
       enterprises: "Empreendimentos"
       typologies: "Tipologias"
