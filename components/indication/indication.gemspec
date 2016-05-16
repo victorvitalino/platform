@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Indication::VERSION
   s.authors     = ["Elton Silva"]
   s.email       = ["elton.chrls@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Indication."
-  s.description = "TODO: Description of Indication."
+  s.homepage    = ""
+  s.summary     = "Summary of Indication."
+  s.description = "Description of Indication."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
