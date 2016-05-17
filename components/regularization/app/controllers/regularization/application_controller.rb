@@ -11,5 +11,8 @@ module Regularization
     before_action :authenticate_staff?
 
     include Pundit
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   end
 end
