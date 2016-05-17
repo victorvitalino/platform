@@ -17,7 +17,13 @@ pt-BR:
     juridical: "Jurídico"
     project: "Projeto"
     indication: "Indicação"
+    profile_user: "Meu perfil"
+    habitation_attendance: "Atendimento habitação"
   modules:
+    habitation_attendance:
+      dashboard: "Visão geral"
+    profile_user:
+      users: "Usuário"
     indication:
       allotment: "Lote"
     project:

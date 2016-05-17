@@ -6,7 +6,7 @@ module Concourse
     layout 'patternfly/application', only: [:index, :new, :edit]
 
     def index
-      @projects = Project.unscoped.all
+      @projects = Concourse::Project.unscoped.all
       authorize :project, :index?
     end
 
@@ -16,7 +16,7 @@ module Concourse
 
     def new
       authorize :project, :new?
-      @project = Project.new
+      @project = Concourse::Project.new
     end
 
     def edit
@@ -25,7 +25,7 @@ module Concourse
 
     def create
       authorize :project, :new?
-      @project = Project.new(project_params)
+      @project = Concourse::Project.new(project_params)
 
       if @project.save
         flash[:success] = t :success
@@ -56,7 +56,7 @@ module Concourse
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_project
-        @project = Project.unscoped.friendly.find(params[:id])
+        @project = Concourse::Project.unscoped.friendly.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.

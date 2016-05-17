@@ -6,7 +6,7 @@ module Regularization
     enum marital_status: ['união_estável', 'solteiro']
     enum gender: [:masculino, :feminino]
 
-    scope :name_candidate, -> (name_candidate) {where(name: name_candidate)}
+    scope :name_candidate, -> (name_candidate) { where("name ILIKE '%#{name_candidate}%'")}
     scope :cpf, -> (cpf) {where(cpf: cpf)}
 
     validates_presence_of :name, :marital_status, :gender, :cpf, :rg, :born, :telephone,:nationality, :email
