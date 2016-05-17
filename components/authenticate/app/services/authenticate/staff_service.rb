@@ -1,6 +1,6 @@
 module Authenticate
   module StaffService
-    
+
     def authenticate_staff?
       redirect_to authenticate.new_staff_path if !session_present? || expired_session?
     end
@@ -13,6 +13,12 @@ module Authenticate
       session_present?
     end
 
+    def user_not_authorized
+      flash[:warning] = t(:warning_pundit)
+      redirect_to(request.referrer || dashboard.root_path)
+    end
+
+
     private
 
     def session_present?
@@ -22,5 +28,8 @@ module Authenticate
     def expired_session?
       session[:staff_expiration_id] < Time.now
     end
+
+
+
   end
 end

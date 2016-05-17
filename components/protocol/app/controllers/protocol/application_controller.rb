@@ -12,12 +12,9 @@ module Protocol
 
     include Pundit
 
-    private
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-    def user_not_authorized(exception)
-      flash[:alert] = "Você não possue permissão para está ação."
-      redirect_to(request.referrer || root_path)
-    end
+
 
   end
 end

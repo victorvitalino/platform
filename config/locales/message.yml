@@ -7,3 +7,4 @@ pt-BR:
  disable_with: "Carregando..."
  button_back: "Voltar"
  filter_button: "Filtrar pesquisa"
+ warning_pundit: "Você não tem permissão de acesso neste sistema."

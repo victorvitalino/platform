@@ -5,7 +5,10 @@ module Finance
     layout 'material'
 
     include Pundit
-    
+
     helper ::ApplicationHelper
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   end
 end
