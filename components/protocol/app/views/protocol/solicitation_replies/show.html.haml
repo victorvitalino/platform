@@ -1,0 +1,47 @@
+.panel
+  .panel-heading
+    .panel-title
+      %h4
+        Dados da resposta à solicitação
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-4
+            %label Número de Documento:
+            = @solicitation.assessment.document_number if @solicitation.assessment.present?
+          .col-md-4
+            %label Tipo do Documento:
+            = @solicitation.assessment.document_type.name if @solicitation.assessment.document_type.present?
+        .row
+          .col-md-4
+            %label Solicitante:
+            = @solicitation.staff.name if @solicitation.staff.present?
+          .col-md-4
+            %label Providências:
+            = @solicitation_reply.providence.name
+        .row
+          .col-md-4
+            %label Data da providências:
+            = @solicitation_reply.providence_date.strftime('%d/%m/%Y') if @solicitation_reply.providence_date.present?
+          .col-md-4
+            %label Responsável pela providências:
+            = @solicitation_reply.providence_staff.name if @solicitation_reply.providence_staff.present?
+        .row
+          .col-md-4
+            %label Processo entregue:
+            = @solicitation_reply.process_delivered == true ? "Sim" : "Não"
+          .col-md-4
+            %label Data da entrega:
+            = @solicitation_reply.delivered_date.strftime('%d/%m/%Y') if @solicitation_reply.delivered_date.present?
+        .row
+          .col-md-4
+            %label Responsável pela entrega:
+            = @solicitation_reply.responsible_delivered.name if @solicitation_reply.responsible_delivered.present?
+          .col-md-8
+            %label Observação:
+            = @solicitation_reply.observation
+        %hr
+        .row
+          .col-md-4
+            = link_to "Voltar", solicitation_solicitation_replies_path(@solicitation), class: 'btn btn-default btn-xs'

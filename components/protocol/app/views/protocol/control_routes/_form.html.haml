@@ -2,7 +2,7 @@
  .row
   .col-md-4
    %b Número do documento:
-   = @control.assessment.document_number
+   = @control.assessment.document_number if  @control.assessment.present?
   .col-md-4
    %b Recebido por:
    = @control.staff.name.upcase if @control.staff.present?

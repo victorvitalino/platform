@@ -6,17 +6,17 @@ module Protocol
         before_action :set_control, only: [:edit, :destroy, :update]
 
         def index
-          # authorize :allotment,  :index?
+          authorize :control,  :index?
         end
 
         def new
-          #  authorize :allotment,  :create?
+            authorize :control,  :create?
             @control = Control.new
 
         end
 
         def create
-            #authorize :allotment,  :create?
+            authorize :control,  :create?
             @control = Control.new(control_params)
             @assessment = Protocol::Assessment.where(document_number:@control.document_number, document_type: @control.document_type).first
 
@@ -36,12 +36,12 @@ module Protocol
         end
 
         def update
-            #authorize :allotment,  :update?
+            authorize :control,  :update?
             @control.update(control_params)
         end
 
         def destroy
-            #authorize :allotment,  :destroy?
+            authorize :control,  :destroy?
             if @control.destroy
                 redirect_to action: 'index'
             end

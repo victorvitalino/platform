@@ -7,17 +7,17 @@ module Protocol
         before_action :set_control_route, only: [:edit, :destroy, :update]
 
         def index
-          # authorize :allotment,  :index?
+           authorize :control_route,  :index?
         end
 
         def new
-          #  authorize :allotment,  :create?
+            authorize :control_route,  :create?
             @control_route = @control.control_routes.new
 
         end
 
         def create
-            #authorize :allotment,  :create?
+            authorize :control_route,  :create?
             @control_route = @control.control_routes.new(control_route_params)
             @control_route.save
             redirect_to action: 'index'
@@ -28,12 +28,12 @@ module Protocol
         end
 
         def update
-            #authorize :allotment,  :update?
+            authorize :control_route,  :update?
             @control_route.update(control_route_params)
         end
 
         def destroy
-            #authorize :allotment,  :destroy?
+            authorize :control_route,  :destroy?
             if @control_route.destroy
                 redirect_to action: 'index'
             end

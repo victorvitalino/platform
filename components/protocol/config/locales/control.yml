@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/control': Controle de Entrada
+    attributes:
+      'protocol/control':
+        document_number: "Número do documento"
+        document_type: "Tipo de documento"
+        input_doc_date: "Data de entrada do documento"
