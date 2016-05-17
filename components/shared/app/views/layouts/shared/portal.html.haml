@@ -10,6 +10,13 @@
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
+      window.smartlook||(function(d) {
+      var o=smartlook=function(){ o.api.push(arguments)},s=d.getElementsByTagName('script')[0];
+      var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+      c.charset='utf-8';c.src='//rec.getsmartlook.com/bundle.js';s.parentNode.insertBefore(c,s);
+      })(document);
+      smartlook('init', '51f12ba1ca61744f60383cc80125dbe2f9ba1d6e');
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     - if controller_name == "posts"
