@@ -371,6 +371,7 @@ GEM
     rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    remotipart (1.2.1)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -530,6 +531,7 @@ DEPENDENCIES
   rake
   regularization!
   regularization_portal!
+  remotipart
   report!
   rspec-rails
   schedule!
