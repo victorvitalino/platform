@@ -52,7 +52,7 @@
       .col-md-12
         %h5
           Diretoria & Membros - 
-          %b= link_to "Atualizar diretoria & membros", "#", class: 'no-print'
+          %b= link_to "Atualizar diretoria & membros", cadastre_members_path(@cadastre), class: 'no-print'
     .row
       .col-md-12
         %table.table.table-striped.table-hover.table-bordered
@@ -80,54 +80,25 @@
       %br/
     .row
       .col-md-12
-        %h5 Imóveis
-    .row
-      .col-md-12
-        %table.table.table-striped.table-hover.table-bordered
-          %thead
-            %tr
-              %th Cidade
-              %th Bairro
-              %th Endereço
-              %th Tipo
-              %th Observação
-          %tbody
-            - if @cadastre.realties.present?
-              - @cadastre.realties.each do |realty|
-                %tr
-                  %td= realty.city.name if realty.city.present?
-                  %td= realty.burgh
-                  %td= realty.address
-                  %td= realty.situation.humanize
-                  %td= realty.observation
-            - else
-              %tr
-                %td{colspan:5} Nenhum registro cadastrado.
-      %br/
-    .row
-      .col-md-12
         %h5
-          Upload de documentos - 
-          %b= link_to "Atualizar upload de documentos", "#", class: 'no-print'
+          Upload de documentos
+          /%b= link_to "Atualizar upload de documentos", "#", class: 'no-print'
     .row
       .col-md-12
         %table.table.table-striped.table-hover.table-bordered
           %thead
             %tr
               %th Documento
-              %th.no-print Tipo
-              %th.no-print  Arquivo
               %th Data
+              %th.no-print  Arquivo
           %tbody
             - if @cadastre.documents.general.present?
               - @cadastre.documents.general.each do |document|
                 %tr
                   %td= document.document_category.name if document.document_category.present?
-                  %td.no-print
-                    = document.document_category.document_type.humanize  if document.document_category.present?
+                  %td.col-md-2= document.created_at.strftime("%d/%m/%Y às %H:%M")
                   %td.no-print 
-                    = link_to "visualizar", document.archive_path.to_s, target: '_blank'
-                  %td.col-md-3= document.created_at.strftime("%d/%m/%Y às %H:%M")
+                    = link_to "visualizar", document.archive_path.to_s, target: '_blank', class: 'btn btn-primary btn-sm'
             - else
               %tr
                 %td{colspan:4} Nenhum registro cadastrado.

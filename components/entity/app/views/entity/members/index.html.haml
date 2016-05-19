@@ -1,0 +1,24 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Entidades Cadastradas
+  .panel-body
+    .row
+      .col-md-5
+        %h5
+          = link_to "+ Adicionar membro", new_cadastre_member_path(@cadastre), remote: true, class: 'btn btn-success'
+          = link_to "Voltar para detalhamento", cadastre_path(@cadastre), class: 'btn btn-default'
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-hover.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th RG
+              %th Cargo
+              %th Certidão Civil Criminial
+              %th Ações
+          %tbody.index-member
+            = render 'index'
