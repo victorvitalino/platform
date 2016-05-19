@@ -25,10 +25,12 @@ module Protocol
 
 
 
-    before_validation :set_number
+    before_save :set_number
 
-    validates_presence_of :document_type, :subject, :requesting_unit
-    validates :document_number, uniqueness: { scope: [:document_type] }, presence: true
+    validates :document_type,  presence: true
+    validates :subject, presence: true
+    validates :requesting_unit, presence: true
+    #validates :document_number, uniqueness: { scope: [:document_type] }, presence: true
 
     after_create :set_conduct
 
@@ -74,6 +76,7 @@ module Protocol
            self.number = (documents.present?) ? documents.number + 1 :  1
 
            format_document_number
+
         end
     end
 
