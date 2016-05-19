@@ -7,17 +7,17 @@ module Protocol
       before_action :set_control_interested, only: [:edit, :destroy, :update]
 
       def index
-        # authorize :allotment,  :index?
+         authorize :control_interested,  :index?
       end
 
       def new
-        #  authorize :allotment,  :create?
+          authorize :control_interested,  :create?
           @control_interested = @control.control_interesteds.new
 
       end
 
       def create
-          #authorize :allotment,  :create?
+          authorize :control_interested,  :create?
           @control_interested = @control.control_interesteds.new(control_interested_params)
           @control_interested.save
           redirect_to action: 'index'
@@ -28,12 +28,12 @@ module Protocol
       end
 
       def update
-          #authorize :allotment,  :update?
+          authorize :control_interested,  :update?
           @control_interested.update(control_interested_params)
       end
 
       def destroy
-          #authorize :allotment,  :destroy?
+          authorize :control_interested,  :destroy?
           if @control_interested.destroy
               redirect_to action: 'index'
           end

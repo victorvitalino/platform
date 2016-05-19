@@ -5,5 +5,6 @@ module Protocol
     belongs_to :responsible_delivered, class_name: "Person::Staff"
     belongs_to :authenticate, class_name: "Person::Staff"
     belongs_to :socilitation
+    
   end
 end

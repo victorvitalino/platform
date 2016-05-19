@@ -3,20 +3,20 @@ require_dependency 'protocol/application_controller'
 module Protocol
     class SolicitationsController < ApplicationController
         before_action :set_solicitations, only: [:index, :create, :destroy, :update]
-        before_action :set_solicitation, only: [:edit, :destroy, :update]
+        before_action :set_solicitation, only: [:edit, :destroy, :update, :show]
 
         def index
-          # authorize :allotment,  :index?
+          authorize :solicitation,  :index?
         end
 
         def new
-          #  authorize :allotment,  :create?
+            authorize :solicitation,  :create?
             @solicitation = Solicitation.new
 
         end
 
         def create
-            #authorize :allotment,  :create?
+            authorize :solicitation,  :create?
             @solicitation = Solicitation.new(solicitation_params)
             @assessment = Protocol::Assessment.where(document_number:@solicitation.document_number, document_type: @solicitation.document_type).first
 
@@ -33,13 +33,17 @@ module Protocol
         def edit
         end
 
+        def show
+          authorize :solicitation,  :index?
+        end
+
         def update
-            #authorize :allotment,  :update?
+            authorize :solicitation,  :update?
             @solicitation.update(solicitation_params)
         end
 
         def destroy
-            #authorize :allotment,  :destroy?
+            authorize :solicitation,  :destroy?
             if @solicitation.destroy
                 redirect_to action: 'index'
             end
@@ -52,7 +56,6 @@ module Protocol
         end
 
         def set_solicitations
-
            @solicitations = Solicitation.all
         end
 

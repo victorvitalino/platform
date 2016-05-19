@@ -70,6 +70,11 @@ pt-BR:
       locations: "Localização"
       reports: "Relatório"
       attach_documents: "Anexar/Apensar"
+      solicitations: "Solictação"
+      solicitation_replies: "Resposta à solicitação"
+      controls: "Controle de entrada"
+      control_routes: "Encaminhamento"
+      control_interesteds: "Interessado e/ou remetente"
     entity:
       cadastres: "Cadastros"
       document_categories: "Categoria de Documentos"

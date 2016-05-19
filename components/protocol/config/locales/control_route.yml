@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/control_route': Encaminhamentos
+    attributes:
+      'protocol/control_route':
+        need_answer: "Precisa responder?"
+        bureau_route: "Encaminhado à secretária"
+        conduct: "Tramitado"
+        link: "Vinculado"
+        redistribuited: "Redistribuído"
+        redistribuited_to: "Redistribuído para"
+        finalized: "Finalizado"
+        responded: "Respondido"
+        route_sector: "Encaminhado para - setor"
+        route_staff: "Encaminhado para - pessoa"

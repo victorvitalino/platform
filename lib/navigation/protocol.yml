@@ -75,6 +75,38 @@ nav:
             label: 'Relatório geral'
             controller: '/protocol/reports'
             action: 'general_report'
+      solicitation:
+        code: [31801,31802]
+        label: 'Solictação de documento'
+        controller: '#'
+        sub:
+          new_solicitation:
+            module: 'protocol'
+            code: 31802
+            label: 'Nova'
+            controller: '/protocol/solicitations'
+            action: 'new'
+          solicitation:
+            module: 'protocol'
+            code: 31801
+            label: 'Lista'
+            controller: '/protocol/solicitations'
+      control:
+        code: [31901,31902]
+        label: 'Controle de entrada'
+        controller: '#'
+        sub:
+          new_control:
+            module: 'protocol'
+            code: 31902
+            label: 'Nova'
+            controller: '/protocol/controls'
+            action: 'new'
+          control:
+            module: 'protocol'
+            code: 31901
+            label: 'Lista'
+            controller: '/protocol/controls'
       config:
         code: [31404,31408]
         label: 'Configuração'
