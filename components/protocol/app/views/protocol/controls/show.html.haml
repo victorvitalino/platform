@@ -1,0 +1,37 @@
+.panel
+  .panel-heading
+    .panel-title
+      %h4
+        Dados da solicitação
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-4
+            %label Número de Documento:
+            = @control.assessment.document_number if @control.assessment.present?
+          .col-md-4
+            %label Tipo do Documento:
+            = @control.assessment.document_type.name if @control.assessment.document_type.present?
+        .row
+          .col-md-4
+            %label Data de entrada do documento:
+            = @control.input_doc_date.strftime('%d/%m/%Y')
+          .col-md-4
+            %label Data do documento:
+            = @control.assessment.created_at.strftime('%d/%m/%Y') if @control.assessment.present?
+        .row
+          .col-md-8
+            %label Assunto:
+            = @control.assessment.subject.name if @control.assessment.present?
+        .row
+          .col-md-4
+            %label Caixa:
+            = @control.assessment.locations.last.box if @control.assessment.present? && @control.assessment.locations.present?
+          .col-md-4
+            %label Ármario:
+            = @control.assessment.locations.last.shelf if @control.assessment.present? && @control.assessment.locations.present?
+        %hr
+        .row
+          .col-md-4
+            = link_to "Voltar", controls_path, class: 'btn btn-default btn-xs'

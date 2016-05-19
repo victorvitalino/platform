@@ -1,0 +1,49 @@
+.panel
+  .panel-heading
+    .panel-title
+      %h4
+        Dados do
+        = @control_interested.interested_type_i18n
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-4
+            %label Nome:
+            = @control_interested.name
+          .col-md-4
+            %label CPF:
+            = @control_interested.cpf
+        .row
+          .col-md-8
+            %label Instituição:
+            = @control_interested.foundation
+        .row
+          .col-md-4
+            %label UF:
+            = @control_interested.state.name if @control_interested.state.present?
+          .col-md-4
+            %label Cidade:
+            = @control_interested.city.name if @control_interested.city.present?
+        .row
+          .col-md-8
+            %label Endereço:
+            = @control_interested.address
+        .row
+          .col-md-4
+            %label CEP:
+            = @control_interested.cep
+          .col-md-4
+            %label Email:
+            = @control_interested.email
+        .row
+          .col-md-4
+            %label Telefone:
+            = @control_interested.telephone
+          .col-md-4
+            %label Fax:
+            = @control_interested.fax
+        %hr
+        .row
+          .col-md-4
+            = link_to "Voltar", control_control_interesteds_path(@control.id), class: 'btn btn-default btn-xs'

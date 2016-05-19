@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516180535) do
+ActiveRecord::Schema.define(version: 20160519152236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -2022,6 +2022,16 @@ ActiveRecord::Schema.define(version: 20160516180535) do
   add_index "project_enterprises", ["company_id"], name: "index_project_enterprises_on_company_id", using: :btree
   add_index "project_enterprises", ["typology_id"], name: "index_project_enterprises_on_typology_id", using: :btree
 
+  create_table "project_steps", force: :cascade do |t|
+    t.integer  "enterprise_id"
+    t.string   "name"
+    t.text     "text"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "project_steps", ["enterprise_id"], name: "index_project_steps_on_enterprise_id", using: :btree
+
   create_table "project_typologies", force: :cascade do |t|
     t.string   "name"
     t.string   "home_type"
@@ -2197,6 +2207,7 @@ ActiveRecord::Schema.define(version: 20160516180535) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "desk"
+    t.string   "network_path"
   end
 
   add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id", using: :btree

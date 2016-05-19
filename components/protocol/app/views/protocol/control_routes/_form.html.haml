@@ -1,4 +1,4 @@
-= simple_form_for [:control, @control_route] do |f|
+= simple_form_for [@control, @control_route] do |f|
  .row
   .col-md-4
    %b Número do documento:
@@ -49,3 +49,4 @@
  .row
   .col-md-8
    = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+   = link_to "Voltar", control_control_routes_path(@control.id), class: 'btn btn-default btn-xs'

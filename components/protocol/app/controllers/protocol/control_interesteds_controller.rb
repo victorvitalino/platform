@@ -4,7 +4,7 @@ module Protocol
     class ControlInterestedsController < ApplicationController
       before_action :set_control
       before_action :set_control_interesteds, only: [:index, :create, :destroy, :update]
-      before_action :set_control_interested, only: [:edit, :destroy, :update]
+      before_action :set_control_interested, only: [:edit, :destroy, :update, :show]
 
       def index
          authorize :control_interested,  :index?
@@ -19,6 +19,7 @@ module Protocol
       def create
           authorize :control_interested,  :create?
           @control_interested = @control.control_interesteds.new(control_interested_params)
+          @control_interested.staff_id = current_user.id
           @control_interested.save
           redirect_to action: 'index'
 
@@ -27,9 +28,13 @@ module Protocol
       def edit
       end
 
+      def show
+      end
+
       def update
           authorize :control_interested,  :update?
           @control_interested.update(control_interested_params)
+          redirect_to control_control_interesteds_path(@control.id)
       end
 
       def destroy
@@ -42,7 +47,7 @@ module Protocol
       private
 
       def control_interested_params
-          params.require(:control_interested).permit(:responded, :bureau_route,:conduct, :link, :redistribuited, :need_answer, :finalized, :route_sector_id, :route_staff_id, :route_sector_date, :redistribuited_to)
+          params.require(:control_interested).permit(:name, :cpf,:foundation, :address, :state_id, :city_id, :cep, :email, :telephone, :fax, :interested_type)
       end
 
       def set_control_interesteds

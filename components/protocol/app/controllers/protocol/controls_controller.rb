@@ -3,7 +3,7 @@ require_dependency 'protocol/application_controller'
 module Protocol
     class ControlsController < ApplicationController
         before_action :set_controls, only: [:index, :create, :destroy, :update]
-        before_action :set_control, only: [:edit, :destroy, :update]
+        before_action :set_control, only: [:edit, :destroy, :update, :show]
 
         def index
           authorize :control,  :index?
@@ -33,6 +33,10 @@ module Protocol
         end
 
         def edit
+        end
+
+        def show
+
         end
 
         def update

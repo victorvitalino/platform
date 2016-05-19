@@ -7,5 +7,9 @@ module Protocol
 
     enum :interested_type => [:interested, :sender]
 
+    validates_presence_of :name, :cpf, :telephone
+
+    validates :cpf, cpf: true
+
   end
 end

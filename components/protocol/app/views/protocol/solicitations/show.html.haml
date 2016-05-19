@@ -16,7 +16,7 @@
         .row
           .col-md-4
             %label Data do Pedido:
-            = @solicitation.order_date
+            = @solicitation.order_date.strftime('%d/%m/%Y')
           .col-md-4
             %label Prioridade:
             = @solicitation.priority_i18n

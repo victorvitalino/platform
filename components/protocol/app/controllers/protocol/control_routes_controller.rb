@@ -4,7 +4,7 @@ module Protocol
     class ControlRoutesController < ApplicationController
         before_action :set_control
         before_action :set_control_routes, only: [:index, :create, :destroy, :update]
-        before_action :set_control_route, only: [:edit, :destroy, :update]
+        before_action :set_control_route, only: [:edit, :destroy, :update, :show]
 
         def index
            authorize :control_route,  :index?
@@ -25,6 +25,9 @@ module Protocol
         end
 
         def edit
+        end
+
+        def show
         end
 
         def update

@@ -1,8 +1,8 @@
-= simple_form_for [:control, @control_interested] do |f|
+= simple_form_for [@control, @control_interested] do |f|
  .row
   .col-md-4
    %b Número do documento:
-   = @control.assessment.document_number
+   = @control.assessment.document_number if @control.assessment.present?
   .col-md-4
    %b Recebido por:
    = @control.staff.name.upcase if @control.staff.present?
@@ -30,7 +30,7 @@
    = f.association :state, label: false, prompt: 'selecione...'
   .col-md-4
    = f.label :city, class: 'fg-label'
-   = f.input :city, label: false,  as: :select, collection: (@control_interested.state.present?) ? Address::City.where(state_id: @control_interested.state) : {}, label_method: :city, value_method: :city, prompt: 'selecione o estado...', input_html: { value: @control_interested.state}
+   = f.input :city_id, label: false,  as: :select, collection: (@control_interested.state.present?) ? Address::City.where(state_id: @control_interested.state).order(:name) : {}, label_method: :name, value_method: :id, prompt: 'selecione o estado...', input_html: { value: @control_interested.state}
  .row
   .col-md-8
    = f.label :address, class: 'fg-label'
@@ -57,6 +57,7 @@
  .row
   .col-md-8
    = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+   = link_to "Voltar", control_control_interesteds_path(@control.id), class: 'btn btn-default btn-xs'
 
 :javascript
 
