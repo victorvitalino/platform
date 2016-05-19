@@ -15,6 +15,8 @@ module Entity
     has_many :realties
     has_many :activities
 
+    audited
+    
     scope :situation, -> (status) {
       Entity::Cadastre.joins(:situations)
       .where('entity_situations.situation_status_id = (SELECT MAX(entity_situations.situation_status_id)

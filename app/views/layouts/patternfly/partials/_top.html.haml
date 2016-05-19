@@ -10,8 +10,6 @@
       %a.navbar-brand{:href => "#{dashboard.root_path}"}
         %img{:alt => "...", :src => "/images/codhab.png", width: 150}/
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        
       %ul.nav.navbar-nav.navbar-right
         %li.user-last-signed
           %b= "#{current_user.account.name} - #{current_user.code}"

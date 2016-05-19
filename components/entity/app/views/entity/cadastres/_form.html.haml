@@ -1,22 +1,37 @@
-= simple_form_for(@category) do |f|
-  .card-body.card-padding
-    .row
-      .col-md-12
-        = f.label :name, class: 'fg-label'
-        = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
-    .row
-      .col-md-12
-        = f.label :description, class: 'fg-label'
-        = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
-    .row
-      .col-md-12
-        = f.label :code, class: 'fg-label'
-        = f.input :code, label: false, input_html: { placeholder: 'Digite uma descrição'}
-    .row
-      .col-md-2
-        = f.input :status, as: :select, include_blank: false
-    %hr/
-    .row
-      .col-md-12
-        = f.button :submit, class: 'btn btn-success'
-        = link_to "voltar", document_categories_path, class: 'btn btn-inverse'
+= simple_form_for(@cadastre) do |f|
+  .row
+    .col-md-6
+      = f.input :name, input_html: { placeholder: 'Digite um nome'}
+    .col-md-6
+      = f.input :fantasy_name, input_html: { placeholder: 'Digite um nome'}
+  .row
+    .col-md-3
+      = f.input :cnpj, input_html: { class: 'cnpj', placeholder: 'Digite um cnpj', disabled: true}
+    .col-md-3
+      = f.input :email, input_html: { placeholder: 'Digite um email'}
+    .col-md-2
+      = f.input :telephone, input_html: { placeholder: 'Digite um telefone'}
+    .col-md-2
+      = f.input :telephone_optional, input_html: { placeholder: 'Digite um telefone'}
+    .col-md-2
+      = f.input :celphone, input_html: { placeholder: 'Digite um nome'}
+  %hr/
+  .row
+    .col-md-3
+      = f.association :city, include_blank: false
+  .row
+    .col-md-6
+      = f.input :address, input_html: { placeholder: 'Digite um nome'}
+    .col-md-4
+      = f.input :complement, input_html: { placeholder: 'Digite um nome'}
+    .col-md-2
+      = f.input :cep, input_html: { placeholder: 'Digite um nome'}
+  %hr/
+  .row
+    .col-md-12
+      = f.input :observation
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
+      = link_to "Voltar para detalhamento", cadastre_path(f.object.id), class: 'btn btn-default'
