@@ -1,4 +1,4 @@
-.panel
+.panel.panel-default
   .panel-heading
     .panel-title
       %h4
@@ -21,6 +21,10 @@
           .col-md-8
             %label Orgão Destinatário:
             = @assessment.recipient
+        .row
+          .col-md-8
+            %label Cidade:
+            = @assessment.city.name if @assessment.city.present?
         .row
           .col-md-8
             %label Endereço:
@@ -51,20 +55,20 @@
         .row
           .col-md-12
             %br
-        .row
+        .row.no-print
           .col-md-12
             = render 'index_conduct'
-        .row
+        .row.no-print
           .col-md-12
             = render 'index_attach'
-        .row
+        .row.no-print
           .col-md-12
             = render 'index_digital'
-        .row
+        .row.no-print
           .col-md-12
             = render 'index_location'
           %br
           %br
-        .row
+        .row.no-print
           .col-md-4
             = link_to "voltar",  assessments_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}

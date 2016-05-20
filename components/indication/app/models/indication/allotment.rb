@@ -4,8 +4,8 @@ module Indication
 
     attr_accessor :code, :password
 
-    validates :enterprise, :zone, :code, presence: true
+    #validates :enterprise, :zone, :code, presence: true
     validates :demand, :rii, :rie, :old, :special, :vulnerable, presence: true, numericality: true
-    validates :password, presence: true
+    #validates :password, presence: true
   end
 end

@@ -5,6 +5,7 @@ Address::Engine.routes.draw do
   end
   resources :documents, path: 'documentos'
   get '/descriptive',        to: 'documents#descriptive',      as: 'descriptive'
+  get '/positive_certificate',        to: 'documents#positive_certificate',      as: 'positive_certificate'
 
   get '/index_attendent',        to: 'units#index_attendent',      as: 'index_attendent'
   get '/city',        to: 'informations#cities',      as: 'cities'

@@ -1,0 +1,179 @@
+:css
+  .EstiloForms {
+      width: 805px;
+      min-height: 400px;
+      margin: 0 auto;
+      //background: url("/casinha/brasao.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      font-size: 12px;
+      font-family: verdana;
+      padding: 2px;
+  }
+.EstiloForms
+  %div{:style => "width: 800px"}
+    %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "800px"}
+      %tr
+        %td{:style => "width: 1%;"}
+          %img{:alt => "", :src => "/images/codhab.png", :style => "margin-left: 5px", :width => "120px"}/
+          %div{:style => "padding: 5px; text-align: center; font-size: 2px"}
+            %label#lblValida{"font-bold" => "True", :runat => "server"}
+        %td{:style => "font-weight: bold; font-size: 13px;"}
+          %div{:style => "text-align: center;"}
+            GOVERNO DO DISTRITO FEDERAL
+            %br/
+            Secretaria de Estado de Habitação
+            Regularização e Desenvolvimento Urbano
+            %br/
+            Companhia de Desenvolvimento Habitacional do Distrito Federal
+            %br/
+            %br/
+            CODHAB-DF
+        %td.style3
+  - if @candidate.present?
+    %div{:style => "width: 800px; height: 50px;"}
+      %div{:style => "padding: 5px; text-align: center;"}
+        %b
+          CERTIDÃO POSITIVA DO IMÓVEL DISTRIBUIDO PELA POLÍTICA HABITACIONAL DO GDF Nº
+          %label= @candidate.unit.id
+        %br/
+        %div{:style => "font-size: 11px;"}
+          Válida até:
+          - date = DateTime.now + 90.days
+          %label=date.strftime('%d/%m/%Y')
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "padding: 5px;"}
+        Certificamos que, a requerimento da parte interessada, CONSTA(M) em nossos arquivos a(s) seguintes(s) informação(ões) quanto ao imóvel abaixo caracterizado:
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "width: 550px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          ENDEREÇO DO IMÓVEL
+          %br/
+          %br/
+          %label
+            %b= @candidate.unit.complete_address
+      %div{:style => "width: 240px; height: 50px; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          BAIRRO
+          %br/
+          %br/
+          %label
+            %b= @candidate.unit.city.name
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "width: 550px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          NOME DO INTERESSADO
+          %br/
+          %br/
+          %label
+            %b= @candidate.cadastre.name
+      %div{:style => "width: 240px; height: 50px; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          CPF
+          %br/
+          %br/
+          %label
+            %b= @candidate.cadastre.cpf
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          C. IDENTIDADE
+          %br/
+          %br/
+          %label
+            %b= @candidate.cadastre.rg
+      %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          DATA NASCIMENTO
+          %br/
+          %br/
+          %label
+            %b= @candidate.cadastre.born.strftime('%d/%m/%Y')
+      %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          NATURALIDADE
+          %br/
+          %br/
+          %label
+            %b= @candidate.cadastre.born_uf
+      %div{:style => "width: 190px; height: 50px; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          ESTADO CIVIL
+          %br/
+          %br/
+          %label
+            %b= @candidate.cadastre.civil_state.name
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "width: 550px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          - @spouse = @candidate.cadastre.dependents.where(kinship_id: 6).last
+          CÔNJUGE/COMPANHEIRO(a)/COADQUIRENTE
+          %br/
+          %br/
+          %label= @spouse.name if @spouse.present?
+      %div{:style => "width: 240px; height: 50px; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          CPF
+          %br/
+          %br/
+          %label= @spouse.cpf if @spouse.present?
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "width: 260px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          C. IDENTIDADE
+          %br/
+          %br/
+          %label= @spouse.rg if @spouse.present?
+      %div{:style => "width: 260px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          DATA NASCIMENTO
+          %br/
+          %br/
+          %label= @spouse.born if @spouse.present?
+      %div{:style => "width: 255px; height: 50px; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          DOC. FIRMADO EM
+          %br/
+          %br/
+          %label= @candidate.created_at.strftime('%d/%m/%Y')
+    %br/
+    // =------------------------- --------------
+    %div{:style => "width: 800px; min-height: 170px; border: 1px solid gray;"}
+      %div{:style => "padding: 5px; text-align: center"}
+        COADQUIRENTE / HERDEIRO
+      // tabela de herdeiros
+    %br/
+    %div{:style => "width: 800px; height: 30px;"}
+      %div{:style => "padding: 5px; font-weight: bold;"}
+        OBSERVAÇÃO:
+        %label#lblObs{"font-bold" => "True", :runat => "server"}
+      %div{:style => "padding: 5px; font-size: 9px;"}
+        %label#lblObsCand{"font-bold" => "True", :runat => "server"}
+    %br/
+    %br/
+    %div{:style => "width: 800px; height: 45px; background-color: silver"}
+      %div{:style => "padding: 5px; text-align: center"}
+        ATENÇÃO! FICA VEDADA A COMERCIALIZAÇÃO, CESSÃO, PERMUTA, ALUGUEL OU QUALQUER OUTRA OPERAÇÃO IMOBILIÁRIA DO PRESENTE IMÓVEL.
+    %br/
+    %div{:style => "width: 800px; height: 25px; "}
+      %div{:style => "padding: 5px; text-align: center"}
+        %div{:style => "font-size: 10px"}
+          Autenticação:
+          %label#lblAutenticar{"font-bold" => "True", :runat => "server"}
+    %br/
+    %div{:style => "width: 800px; height: 55px;"}
+      %div{:style => "padding: 5px; text-align: center; font-size: 10px; font-weight: bold;"}
+        A PRESENTE CERTIDÃO PODE SER VALIDADA NO SITE www.codhab.df.gov.br link SERVIÇOS Brasília,
+        %label= DateTime.now.strftime('%d/%m/%Y')
+    %br/
+    %br/
+    %div{:style => "width: 600px; height: 35px; margin: 0 auto"}
+      %div{:style => "padding: 5px; text-align: center; font-size: 10px;"}
+        SCS Quadra 06 Bloco 'A' Ed. SEDUMA - CEP 70.306-918 - Telefones (61) 3214 1802
+        Site: www.codhab.df.gov.br

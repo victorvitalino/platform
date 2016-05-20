@@ -1,22 +1,24 @@
 .page-content
-  .documents-wrap.article
-    #articleAffix.article-sidebar.affix-top
-      %ul.list-group.nav
-        %li.list-group-item
-          Pesquisar Documento
-          = simple_form_for  new_assessment_attach_document_path, :method => 'get' do |f|
-            .row
-              .col-md-4
-                = f.label "Nº do documento", class: 'fg-label'
-                = f.input :document, label: false, input_html: { name: 'document', value: params[:document], class: 'document_number'}
-            .row
-              .col-md-4
-                = f.label "Tipo de documento", class: 'fg-label'
-                = f.input :document_type, as: 'select', collection: Protocol::DocumentType.all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
-            .row
-              .col-md-12
-                = f.submit 'Pesquisar', class:  'btn btn-success btn-sm',data: {disable_with: "carregando..."}
-    .article-content
+  .row
+    .col-md-4
+      .documents-wrap.article
+        #articleAffix.article-sidebar.affix-top
+          %ul.list-group.nav
+            %li.list-group-item
+              Pesquisar Documento
+              = simple_form_for  new_assessment_attach_document_path, :method => 'get' do |f|
+                .row
+                  .col-md-8
+                    = f.label "Nº do documento", class: 'fg-label'
+                    = f.input :document, label: false, input_html: { name: 'document', value: params[:document], class: 'document_number'}
+                .row
+                  .col-md-8
+                    = f.label "Tipo de documento", class: 'fg-label'
+                    = f.input :document_type, as: 'select', selected: params[:document_type],collection: Protocol::DocumentType.all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
+                .row
+                  .col-md-12
+                    = f.submit 'Pesquisar', class:  'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+    .col-md-8
       .row
         .col-md-12
           %h4 Anexar/Apensar Documento

@@ -1,40 +1,39 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 Devolver Documentos
-      .panel-body
-        - if @conduct_receive.present?
-          = simple_form_for @conduct, url: update_docs_path(2), method: 'get' do |f|
-            .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-              %table#data-table-command.table.table-striped.table-bordered
-                %thead
-                  %tr
-                    %th #
-                    %th Número do Documento
-                    %th Tipo de Documento
-                    %th Remessa
-                    %th Prioridade
-                    %th Marcar
-                %tbody.index-docs
-                  - @conduct_receive.each_with_index do |j, i|
-                    %tr
-                      %td.col-md-1
-                        = i + 1
-                      %td
-                        = j.assessment.document_number
-                      %td
-                        = j.assessment.document_type.name
-                      %td
-                        = j.allotment.description
-                      %td
-                        = j.allotment.priority_i18n
-                      %td
-                        = check_box_tag "assessment_ids[]", j.assessment_id
-            %br
-            %br
-            .row
-              .col-md-6
-                = f.button :submit, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
-        - else
-          .alert.alert-warning{:role => "alert"} Nenhum documento para ser devolvido
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4 Devolver Documentos
+  .panel-body
+    - if @conduct_receive.present?
+      = simple_form_for @conduct, url: update_docs_path(2), method: 'get' do |f|
+        .row
+          .col-md-6
+            = f.button :submit, "Devolver Documentos", class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+        %br/
+        %br/
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table#data-table-command.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th #
+                %th Número do Documento
+                %th Tipo de Documento
+                %th Remessa
+                %th Prioridade
+                %th Marcar
+            %tbody.index-docs
+              - @conduct_receive.each_with_index do |j, i|
+                %tr
+                  %td.col-md-1
+                    = i + 1
+                  %td
+                    = j.assessment.document_number
+                  %td
+                    = j.assessment.document_type.name
+                  %td
+                    = j.allotment.description
+                  %td
+                    = j.allotment.priority_i18n
+                  %td
+                    = check_box_tag "assessment_ids[]", j.assessment_id
+    - else
+      .alert.alert-warning{:role => "alert"} Nenhum documento para ser devolvido

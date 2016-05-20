@@ -1,15 +1,14 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 Novo Documento
-    .panel-body
-      .row
-        .col-md-12
-          = render 'form'
-      .row
-        .col-md-12
-          = render 'index'
-      .row
-        .col-md-12
-          = link_to "voltar",  assessments_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4 Novo Documento
+  .panel-body
+    .row
+      .col-md-12
+        = render 'form'
+    .row
+      .col-md-12
+        = render 'index'
+    .row
+      .col-md-12
+        = link_to "voltar",  assessments_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}
