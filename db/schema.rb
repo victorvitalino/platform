@@ -1674,7 +1674,7 @@ ActiveRecord::Schema.define(version: 20160519152236) do
   add_index "helpdesk_tickets", ["ticket_type_id"], name: "index_helpdesk_tickets_on_ticket_type_id", using: :btree
 
   create_table "indication_allotments", force: :cascade do |t|
-    t.integer  "enterprise_id"
+    t.integer  "step_id"
     t.integer  "zone"
     t.integer  "demand"
     t.integer  "rii"
@@ -1691,8 +1691,8 @@ ActiveRecord::Schema.define(version: 20160519152236) do
     t.datetime "updated_at",                null: false
   end
 
-  add_index "indication_allotments", ["enterprise_id"], name: "index_indication_allotments_on_enterprise_id", using: :btree
   add_index "indication_allotments", ["staff_id"], name: "index_indication_allotments_on_staff_id", using: :btree
+  add_index "indication_allotments", ["step_id"], name: "index_indication_allotments_on_step_id", using: :btree
   add_index "indication_allotments", ["supervisor_id"], name: "index_indication_allotments_on_supervisor_id", using: :btree
   add_index "indication_allotments", ["zone"], name: "index_indication_allotments_on_zone", using: :btree
 
@@ -2026,10 +2026,20 @@ ActiveRecord::Schema.define(version: 20160519152236) do
     t.integer  "enterprise_id"
     t.string   "name"
     t.text     "text"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "demand",        default: 0
+    t.string   "rii",           default: "40"
+    t.string   "rie",           default: "40"
+    t.string   "old",           default: "8"
+    t.string   "special",       default: "7"
+    t.string   "vulnerable",    default: "5"
+    t.integer  "situation",     default: 0
+    t.boolean  "status",        default: true
+    t.integer  "creator_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
+  add_index "project_steps", ["creator_id"], name: "index_project_steps_on_creator_id", using: :btree
   add_index "project_steps", ["enterprise_id"], name: "index_project_steps_on_enterprise_id", using: :btree
 
   create_table "project_typologies", force: :cascade do |t|

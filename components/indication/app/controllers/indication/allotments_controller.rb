@@ -2,17 +2,19 @@ require_dependency 'indication/application_controller'
 
 module Indication
   class AllotmentsController < ApplicationController
-    
+    before_action :set_step
+
     def index
-      @allotments = Indication::Allotment.all
+      @allotments = @step.allotments
     end
 
     def new
-      @allotment = Indication::Allotment.new
+      @allotment = @step.allotments.new
     end
 
     def create
-      @allotment = Indication::Allotment.new(set_params)
+      @allotment = @step.allotments.new(set_params)
+
       if @allotment.save
         redirect_to action: :index
       else
@@ -37,7 +39,11 @@ module Indication
     end
 
     def set_allotment
-      @allotment =  Indication::Allotment.find(params[:id])
+      @allotment  =  @step.allotments.find(params[:id])
+    end
+
+    def set_step
+      @step       = Project::Step.find(params[:step_id])
     end
 
   end

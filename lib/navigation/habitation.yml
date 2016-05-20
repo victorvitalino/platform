@@ -138,14 +138,8 @@ nav:
           dasboard:
             module: 'indication'
             code: 0
-            label: "Visão geral"
-            controller: '/indication/allotments'
-            action: 'index' 
-          allotment:
-            module: 'indication'
-            code: 0
-            label: "Lotes"
-            controller: '/indication/allotments'
+            label: "Empreendimentos"
+            controller: '/indication/enterprises'
             action: 'index' 
       sefaz:
         code: 0
@@ -156,7 +150,7 @@ nav:
             module: 'indication'
             code: 0
             label: "Inseção ITCD/ITBI"
-            controller: '/indication/allotments'
+            controller: '/indication/enterprises'
             action: 'index' 
       assistent:
         code: [118103,118101]

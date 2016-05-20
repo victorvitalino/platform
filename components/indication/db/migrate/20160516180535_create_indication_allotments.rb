@@ -2,7 +2,8 @@ class CreateIndicationAllotments < ActiveRecord::Migration
   def change
     create_table :indication_allotments do |t|
 
-      t.references :enterprise, index: true 
+      t.references :step, index: true 
+
       t.integer    :zone, index: true
       t.integer    :demand
       t.integer    :rii
@@ -12,7 +13,8 @@ class CreateIndicationAllotments < ActiveRecord::Migration
       t.integer    :vulnerable
       t.integer    :situation, default: 0
       t.references :staff, index: true 
-      t.references :supervisor, index: true 
+      t.references :supervisor, index: true
+       
       t.text :observation
       t.boolean :status 
 

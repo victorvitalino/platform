@@ -1,0 +1,11 @@
+- @steps.each do |step|
+  %tr
+    %td{style: 'width: 1%'}= step.id
+    %td.col-md-8= link_to step.name, enterprise_step_allotments_path(enterprise_id: @enterprise.id, step_id: step.id)
+    %td{style: 'width: 1%'}= step.demand
+    %td{style: 'width: 1%'}= step.rii
+    %td{style: 'width: 1%'}= step.rie
+    %td{style: 'width: 1%'}= step.old
+    %td{style: 'width: 1%'}= step.special
+    %td{style: 'width: 1%'}= step.vulnerable
+    %td

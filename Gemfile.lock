@@ -73,6 +73,8 @@ PATH
       rails (~> 4.2.1)
     indication (0.0.1)
       rails (~> 4.2.1)
+    indication_portal (0.0.1)
+      rails (~> 4.2.1)
     juridical (0.0.1)
       rails (~> 4.2.1)
     maintenance (0.0.1)
@@ -507,6 +509,7 @@ DEPENDENCIES
   has_scope
   i18n
   indication!
+  indication_portal!
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   jquery-turbolinks

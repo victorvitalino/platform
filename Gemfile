@@ -117,13 +117,16 @@ path 'components' do
 
   gem 'juridical'
 
-
   gem 'action'
   gem 'action_portal'
 
   gem 'candidate_attendance'
-  gem 'report'
   gem 'habitation_attendance'
+  
+  gem 'report'
+  
   gem 'indication'
+  gem 'indication_portal'
+  
   gem 'project'
 end
