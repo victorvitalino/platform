@@ -2,6 +2,7 @@ class CreateIndicationCadastres < ActiveRecord::Migration
   def change
     create_table :indication_cadastres do |t|
       
+      t.references :allotment, index: true
       t.references :cadastre, index: true
       t.references :program, index: true 
       t.references :pontuation, index: true 

@@ -29,7 +29,8 @@ module Indication
     private
 
     def set_params
-      params.require(:step).permit(:name, :description)
+      params.require(:step).permit(:name, :text, :demand, :rii, :rie, :old, :special, :vulnerable,
+                                   :situation, :status)
     end
 
     def set_project

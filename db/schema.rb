@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519152236) do
+ActiveRecord::Schema.define(version: 20160520184749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -784,6 +784,42 @@ ActiveRecord::Schema.define(version: 20160519152236) do
   add_index "candidate_dependents", ["civil_state_id"], name: "index_candidate_dependents_on_civil_state_id", using: :btree
   add_index "candidate_dependents", ["kinship_id"], name: "index_candidate_dependents_on_kinship_id", using: :btree
   add_index "candidate_dependents", ["special_condition_id"], name: "index_candidate_dependents_on_special_condition_id", using: :btree
+
+  create_table "candidate_enterprise_cadastre_situations", force: :cascade do |t|
+    t.integer  "enterprise_cadastre_id"
+    t.integer  "enterprise_cadastre_status_id"
+    t.text     "observation"
+    t.string   "file_path"
+    t.integer  "firm_user_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "candidate_enterprise_cadastre_situations", ["enterprise_cadastre_id"], name: "index_enterprise_cadastre_on_enterprise_cadastre_id", using: :btree
+  add_index "candidate_enterprise_cadastre_situations", ["enterprise_cadastre_status_id"], name: "index_ent_cad_on_enterprise_cad_status_id", using: :btree
+  add_index "candidate_enterprise_cadastre_situations", ["firm_user_id"], name: "index_candidate_enterprise_cadastre_situations_on_firm_user_id", using: :btree
+
+  create_table "candidate_enterprise_cadastres", force: :cascade do |t|
+    t.integer  "enterprise_id"
+    t.integer  "cadastre_id"
+    t.integer  "indication_cadastre_id"
+    t.date     "inactive_date"
+    t.boolean  "inactive"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "candidate_enterprise_cadastres", ["cadastre_id"], name: "index_candidate_enterprise_cadastres_on_cadastre_id", using: :btree
+  add_index "candidate_enterprise_cadastres", ["enterprise_id"], name: "index_candidate_enterprise_cadastres_on_enterprise_id", using: :btree
+  add_index "candidate_enterprise_cadastres", ["indication_cadastre_id"], name: "index_candidate_enterprise_cadastres_on_indication_cadastre_id", using: :btree
+
+  create_table "candidate_enterprise_situation_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "candidate_inheritor_types", force: :cascade do |t|
     t.string   "name"
@@ -1697,6 +1733,7 @@ ActiveRecord::Schema.define(version: 20160519152236) do
   add_index "indication_allotments", ["zone"], name: "index_indication_allotments_on_zone", using: :btree
 
   create_table "indication_cadastres", force: :cascade do |t|
+    t.integer  "allotment_id"
     t.integer  "cadastre_id"
     t.integer  "program_id"
     t.integer  "pontuation_id"
@@ -1707,6 +1744,7 @@ ActiveRecord::Schema.define(version: 20160519152236) do
     t.datetime "updated_at",                null: false
   end
 
+  add_index "indication_cadastres", ["allotment_id"], name: "index_indication_cadastres_on_allotment_id", using: :btree
   add_index "indication_cadastres", ["cadastre_id"], name: "index_indication_cadastres_on_cadastre_id", using: :btree
   add_index "indication_cadastres", ["pontuation_id"], name: "index_indication_cadastres_on_pontuation_id", using: :btree
   add_index "indication_cadastres", ["program_id"], name: "index_indication_cadastres_on_program_id", using: :btree

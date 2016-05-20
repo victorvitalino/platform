@@ -43,7 +43,8 @@ module Indication
     end
 
     def set_step
-      @step       = Project::Step.find(params[:step_id])
+      @step = Project::Step.find(params[:step_id])
+      @enterprise = @step.enterprise
     end
 
   end

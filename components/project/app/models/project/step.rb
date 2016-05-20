@@ -6,5 +6,7 @@ module Project
 
     validates :name, presence: true
     validates :demand, :rii, :rie, :old, :special, :vulnerable, numericality:  true, presence: true
+
+    
   end
 end
