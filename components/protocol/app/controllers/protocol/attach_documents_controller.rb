@@ -17,8 +17,9 @@ module Protocol
             sector = current_user.sector_current.id
 
             #parametro 4 documento recebido pelo setor
-            @attach_result = Protocol::Conduct.find_document(params[:document],params[:document_type],4,sector,params[:assessment_id])
+            @attach_result = Protocol::Conduct.find_document(params[:document],params[:document_type],[0,4],sector,params[:assessment_id])
             unless @attach_result.present?
+              flash[:danger] = "Documento não está no seu setor."
             end
         end
 

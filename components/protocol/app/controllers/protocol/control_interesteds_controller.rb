@@ -20,9 +20,12 @@ module Protocol
           authorize :control_interested,  :create?
           @control_interested = @control.control_interesteds.new(control_interested_params)
           @control_interested.staff_id = current_user.id
-          @control_interested.save
-          redirect_to action: 'index'
 
+          if @control_interested.save
+            redirect_to action: 'index'
+          else
+            render :new
+          end
       end
 
       def edit
@@ -33,8 +36,11 @@ module Protocol
 
       def update
           authorize :control_interested,  :update?
-          @control_interested.update(control_interested_params)
-          redirect_to control_control_interesteds_path(@control.id)
+          if @control_interested.update(control_interested_params)
+           redirect_to control_control_interesteds_path(@control.id)
+          else
+            render :edit
+          end
       end
 
       def destroy

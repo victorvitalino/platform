@@ -8,14 +8,13 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/herdeiro.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/criterios.csv", :col_sep => "#") do |row|
 
 
-           @model = Protocol::Assessment.find_by_id_old(row[0])
+           @model = Candidate::Convocation.find_by_id(row[0])
 
            if @model.present?
-             @model.requesting_unit = row[1]
-             @model.external_agency = row[2]
+             @model.criteria = row[1]
 
            end
 

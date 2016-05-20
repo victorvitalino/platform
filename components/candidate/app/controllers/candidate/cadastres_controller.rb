@@ -8,7 +8,7 @@ module Candidate
       authorize :cadastre, :index?
 
       @candidate = Cadastre.find_by_cpf(params[:cpf]) rescue nil
-      @iptu = Candidate::Iptu.find_by_cpf(params[:cpf]) rescue nil
+      @iptu = Candidate::Iptu.where(cpf: params[:cpf]) rescue nil
       unless params[:cpf].nil?
        flash[:warning] = "O CPF: <b>#{params[:cpf]}</b> não foi encontrado.".html_safe if @candidate.nil?
       end

@@ -21,9 +21,11 @@ module Protocol
 
             @solicitation_reply = @solicitation.solicitation_replies.new(solicitation_params)
 
-              @solicitation_reply.save
+            if @solicitation_reply.save
               redirect_to action: 'index'
-
+            else
+              render :new
+            end
         end
 
         def edit
@@ -35,7 +37,11 @@ module Protocol
 
         def update
             authorize :solicitation_reply,  :update?
-            @solicitation_reply.update(solicitation_params)
+            if @solicitation_reply.update(solicitation_params)
+              redirect_to action: 'index'
+            else
+              render :edit
+            end
         end
 
         def destroy

@@ -29,6 +29,9 @@
             - if policy(:cadastre, namespace: Candidate).update_procedural?
               %li
                 %a{:href => "#{candidate.cadastre_cadastre_procedural_path(@candidate)}", class: 'btn btn-default'} Alterar situação processual
+            - if policy(:inheritor, namespace: Candidate).create?
+              %li
+                %a{:href => "#{candidate.new_cadastre_inheritor_path(@candidate)}", class: 'btn btn-default'} Incluir herdeiro
       .col-md-9
         %section
           %h3 Detalhamento
@@ -209,7 +212,7 @@
                     - @candidate.cadastre_procedurals.order('id ASC').each do |candidate|
                       %tr
                         %td= candidate.procedural_status.name.upcase if candidate.procedural_status.present?
-                        %td= candidate.convocation.description if candidate.convocation.present?
+                        %td= link_to candidate.convocation.description, "#", title: "#{candidate.convocation.criteria}" if candidate.convocation.present?
                         %td= candidate.old_process
                         %td
                           - unless %w(2016-01-05 2016-01-15 2016-01-18).include? candidate.created_at.strftime('%Y-%m-%d').to_s
@@ -347,5 +350,27 @@
                           %td= c.process
                 - else
                   Informação não disponível
+          %hr/
+          .row
+            .col-md-12
+              %h4 Atividades
+              .bootstrap-table
+                - if @candidate.cadastre_activities.present?
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th Status da atividade
+                        %th Tipo de atividade
+                        %th Observação
+                        %th Data
+                    %tbody
+                      - @candidate.cadastre_activities.each do |c|
+                        %tr
+                          %td= c.activity_status.title if c.activity_status.present?
+                          %td= c.type_activity
+                          %td= c.observation
+                          %td= c.created_at.strftime("%d/%m/%Y")
+                - else
+                  Informação não disponível
         - else
-          %i 
+          %i

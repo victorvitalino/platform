@@ -19,8 +19,11 @@ module Protocol
         def create
             authorize :control_route,  :create?
             @control_route = @control.control_routes.new(control_route_params)
-            @control_route.save
-            redirect_to action: 'index'
+            if @control_route.save
+              redirect_to action: 'index'
+            else
+              render :new
+            end
 
         end
 

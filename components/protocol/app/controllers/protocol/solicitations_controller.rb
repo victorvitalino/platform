@@ -23,8 +23,11 @@ module Protocol
             if @assessment.present?
               @solicitation.assessment_id = @assessment.id
               @solicitation.staff_id = current_user.id
-              @solicitation.save
-              redirect_to action: 'index'
+              if @solicitation.save
+                redirect_to action: 'index'
+              else
+                render :new
+              end
             else
               redirect_to action: 'new'
             end
@@ -39,7 +42,11 @@ module Protocol
 
         def update
             authorize :solicitation,  :update?
-            @solicitation.update(solicitation_params)
+            if @solicitation.update(solicitation_params)
+              redirect_to action: 'index'
+            else
+              render :edit
+            end
         end
 
         def destroy

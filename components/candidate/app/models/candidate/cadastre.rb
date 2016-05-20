@@ -24,6 +24,8 @@ module Candidate
     has_many :cadastre_address
     has_many :cadastre_procedurals
     has_many :cadastre_logs
+    has_many :inheritors
+    has_many :cadastre_activities
     has_many :old_candidates, class_name: 'Entity::OldCandidate'
 
     scope :situation, -> (situation) {
@@ -193,7 +195,7 @@ module Candidate
     end
 
 
-    
+
     #program_id = 4 AND income BETWEEN 0 AND 1600
 
     #

@@ -23,13 +23,14 @@ module Protocol
             if @assessment.present?
               @control.assessment_id = @assessment.id
               @control.staff_id = current_user.id
-              @control.save
-              redirect_to action: 'index'
+              if @control.save
+                redirect_to action: 'index'
+              else
+                render :new
+              end
             else
               redirect_to action: 'new'
             end
-            @control.save
-
         end
 
         def edit
@@ -41,7 +42,11 @@ module Protocol
 
         def update
             authorize :control,  :update?
-            @control.update(control_params)
+            if @control.update(control_params)
+              redirect_to action: 'index'
+            else
+              render :edit
+            end
         end
 
         def destroy

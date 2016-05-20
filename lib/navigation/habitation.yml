@@ -46,7 +46,7 @@ nav:
             label: 'Cadastro'
             controller: '/entity/cadastres'
       cadastre:
-        code: [11005, 11011]
+        code: [11005, 11011,11016]
         label: 'Cadastro'
         controller: '#'
         sub:
@@ -62,9 +62,9 @@ nav:
             controller: '/candidate/cadastre_addresses'
           inheritors:
             module: 'candidate'
-            code: 11011
+            code: 11016
             label: 'Herdeiros'
-            controller: '/candidate/cadastre_addresses'
+            controller: '/candidate/inheritors'
           verification:
             module: 'candidate'
             code: 11011
@@ -129,29 +129,46 @@ nav:
             code: 118103
             label: 'Gestão de tipologias'
             controller: '/project/typologies'
-            action: 'index'            
+            action: 'index'
       indication:
         code: 0
         label: 'Indicação'
-        controller: '#'           
+        controller: '#'
         sub:
           dasboard:
             module: 'indication'
             code: 0
+<<<<<<< HEAD
             label: "Empreendimentos"
             controller: '/indication/enterprises'
             action: 'index' 
+=======
+            label: "Visão geral"
+            controller: '/indication/allotments'
+            action: 'index'
+          allotment:
+            module: 'indication'
+            code: 0
+            label: "Lotes"
+            controller: '/indication/allotments'
+            action: 'index'
+>>>>>>> 60263a2a0a121a1debbad8417addc9b6292ade4f
       sefaz:
         code: 0
         label: 'Sefaz'
-        controller: '#'           
+        controller: '#'
         sub:
           itcd_itbi:
             module: 'indication'
             code: 0
             label: "Inseção ITCD/ITBI"
+<<<<<<< HEAD
             controller: '/indication/enterprises'
             action: 'index' 
+=======
+            controller: '/indication/allotments'
+            action: 'index'
+>>>>>>> 60263a2a0a121a1debbad8417addc9b6292ade4f
       assistent:
         code: [118103,118101]
         label: 'Auxiliares'

@@ -4,7 +4,7 @@ module Candidate
     belongs_to :cadastre
     belongs_to :cadastre_procedural
 
-    enum status: ['reserva', 'venda', 'distrato','transferencia']
+    enum status: ['reserva', 'venda', 'distrato','transferencia', 'permuta']
 
     scope :cpf,  -> (cpf) {joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
     scope :old_process,  -> (old_process) { joins("inner join candidate_cadastre_procedurals on candidate_cadastre_procedurals.cadastre_id = candidate_cadastre_addresses.cadastre_id").where('candidate_cadastre_procedurals.old_process = ?', old_process)}
