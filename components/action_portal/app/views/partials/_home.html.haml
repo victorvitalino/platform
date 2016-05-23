@@ -1,10 +1,12 @@
-.row
+.row.margint50
   .col-md-2.about_action
     %span.about_action_title
       sobre
   .col-md-10.about_action_text
     %p
-      Nulla tincidunt, erat at pretium rhoncus, orci est imperdiet diam, vitae condimentum lorem quam id metus. Etiam at blandit ligula. Suspendisse odio velit, viverra sit amet fermentum in, interdum lobortis nisl. Proin bibendum sodales ipsum vehicula viverra. Aliquam semper vel magna nec interdum. Fusce cursus dapibus vehicula. Fusce faucibus varius ligula, sit amet interdum ipsum lobortis in. Cras a neque at metus semper porta aliquet a mi. Nunc ac ex felis. Vivamus id sollicitudin dui, a porta nibh. Nam fermentum luctus neque, nec viverra massa tincidunt in. Mauris vestibulum urna eget posuere aliquet. Pellentesque sed arcu ut lorem gravida tincidunt vitae at mauris. Curabitur venenatis libero non sem dignissim porta. Etiam molestie turpis nec est congue dignissim. Ut fermentum ligula sed ligula malesuada consectetur quis vitae lectus.
+      Ações urbanas comunitárias são um projeto participativo desenvolvido pela equipe de assistência técnica e pelo atelier de projetos da CODHAB/DF. Em formato de mutirão, as ações somam a participação de profissionais e estudantes de arquitetura e urbanismo, tanto da companhia quanto voluntários, e dos moradores das comunidades locais. O intuito é transformar coletivamente o espaço público, conectando governo e sociedade, tornando esta a protagonista da mudança. A seleção das áreas onde acontecem as ações segue critérios específicos. Interesse e articulação da comunidade para melhorar o lugar, inexistência de infraestrutura ou manutenção, possibilidade de arborização e paisagismo, vazios urbanos públicos, conexão com praças ou espaços de relevância e grande fluxo na comunidade são alguns deles. Além de identificar os problemas, é preciso observar o potencial do espaço.
+      %br
+      Maiores Informações: example@codhab.com.br
 .row
   .action_title_home.col-md-12
     %p
@@ -13,22 +15,19 @@
       colabore para transformar as áreas de interesse
       %br
       social do Distrito Federal
-  .action_areabuttons_home.col-md-12
-    .col-md-6.action_cadastre
-      = link_to 'cadastre-se', 'http://www.google.com', class:"action_button"
-      %span
-        e receba convites e informações
-        %br
-        sobre nossas ações!
-    .col-md-6.action_participo
-      = link_to 'já participo', 'http://www.google.com', class:"action_button"
-      %span
-        altere seus dados, acesse suas atividades
-        %br
-        e emita certificados
+
+
+
 .row
-  .col-md-12.no_padding
-    = render 'partials/slider_fhome'
+  .col-md-6.action_participe.action_areabuttons_home
+    %p
+      já participo
+  .col-md-6.action_cadastre.action_areabuttons_home
+    = link_to 'cadastre-se', 'http://www.google.com', class:"action_button"
+    %span
+      e receba convites e informações
+      %br
+      sobre nossas ações!
 .row
   .col-md-12
     %h3.titulo_home
@@ -69,6 +68,48 @@
         26.03 /// sexta-feira
       %br
       de 9h às 15h
+      /*repeticao*/
+  .col-md-4.action_home_inscription
+    #action_thumb_1.action_thumb
+    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_1"
+    .action_inscription_title
+      SERFM
+      %br
+      Sol Nascente
+    .action_inscription_sub_title
+      %b
+        26.03 /// sexta-feira
+      %br
+      de 9h às 15h
+  .col-md-4.action_home_inscription
+    #action_thumb_2.action_thumb
+    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_2"
+    .action_inscription_title
+      Horta Comunitária
+      %br
+      Pôr Do Sol
+    .action_inscription_sub_title
+      %b
+        26.03 /// sábado
+      %br
+      de 9h às 15h
+  .col-md-4.action_home_inscription
+    #action_thumb_3.action_thumb
+    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_3"
+    .action_inscription_title
+      reCICLO urbano
+      %br
+      Brazlândia
+    .action_inscription_sub_title
+      %b
+        26.03 /// sexta-feira
+      %br
+      de 9h às 15h
+    /*repeticao titulo*/
+.row
+  .col-md-12
+    %h3.titulo_home_finalizadas
+      ações finalizadas
 .row
   .col-md-12.users_back_ground
     = render 'partials/home_admin'
