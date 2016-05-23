@@ -2,16 +2,20 @@ module Entity
   class Member < ActiveRecord::Base
     belongs_to :member_job
     belongs_to :cadastre
+    belongs_to :city, -> {federal_district}, class_name: "Address::City"
     has_many  :member_additionals
+    
+    audited
     
     validates :name, :rg, :rg_org, presence: true
     validates :cpf, cpf: true, presence: true
     validates_date :born, presence: true
     validates :telephone, presence:  true, numericality: true
     validates :telephone_optional, :celphone, numericality: true, allow_blank: true
-    validates :member_job, :certificate_civil_criminal, presence: true
-    validates :cpf, uniqueness: { scope: :cadastre_id}
-    validate  :unique_cpf
+    validates :member_job,presence: true
+    validates :certificate_civil_criminal, presence: true, on: :create 
+    validates :cpf, uniqueness: { scope: :cadastre_id}, on: :create
+    validate  :unique_cpf, on: :create
 
     attr_accessor :associated_entities
 

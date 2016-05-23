@@ -24,6 +24,7 @@ gem 'enum_help'
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
+gem 'remotipart'
 
 gem 'audited-activerecord', '~> 4.0'
 gem 'wicked'
@@ -116,11 +117,16 @@ path 'components' do
 
   gem 'juridical'
 
-
   gem 'action'
   gem 'action_portal'
 
   gem 'candidate_attendance'
-  gem 'report'
   gem 'habitation_attendance'
+  
+  gem 'report'
+  
+  gem 'indication'
+  gem 'indication_portal'
+  
+  gem 'project'
 end

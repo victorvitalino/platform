@@ -2,4 +2,5 @@
 *= require patternfly/stylesheets/pattern.min
 *= require patternfly/stylesheets/addition.min
 *= require patternfly/stylesheets/custom.css
+*= require patternfly/stylesheets/print.css
 */

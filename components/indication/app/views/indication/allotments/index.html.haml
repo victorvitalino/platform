@@ -1,0 +1,27 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title 
+      #{@step.enterprise.name} - #{@step.name} - Lotes de indicação
+      = link_to 'Voltar para etapas', enterprise_steps_path(enterprise_id: @step.enterprise_id), class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        = link_to '+ Adicionar novo lote', new_enterprise_step_allotment_path(enterprise_id: @step.enterprise_id, step_id: @step), class: 'btn btn-success'
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-bordered.table-striped.table-hover
+          %thead
+            %tr
+              %th #
+              %th Nome
+              %th RII
+              %th RIE
+              %th ID.
+              %th VUL.
+              %th DEF.
+              %th Situação
+              %th Data
+              %th Ações
+          %tbody
+      

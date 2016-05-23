@@ -1,0 +1,58 @@
+.panel
+  .panel-heading
+    .panel-title
+      %h4
+        Dados da encaminhamento
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-4
+            %label Número de Documento:
+            = @control.assessment.document_number if @control.assessment.present?
+          .col-md-4
+            %label Tipo do Documento:
+            = @control.assessment.document_type.name if @control.assessment.document_type.present?
+        .row
+          .col-md-4
+            %label Precisa responder?
+            = @control_route.need_answer ? "Sim" : "Não"
+          .col-md-4
+            %label Encaminhado a secretária?
+            = @control_route.bureau_route ? "Sim" : "Não"
+        .row
+          .col-md-4
+            %label Tramitado:
+            = @control_route.conduct ? "Sim" : "Não"
+          .col-md-4
+            %label Vinculado:
+            = @control_route.link ? "Sim" : "Não"
+        .row
+          .col-md-4
+            %label Redistribuído:
+            = @control_route.redistribuited ? "Sim" : "Não"
+          .col-md-4
+            %label Redistribuído para:
+            = @control_route.redistribuited_to
+        .row
+          .col-md-4
+            %label Respondido:
+            = @control_route.responded ? "Sim" : "Não"
+          .col-md-4
+            %label Finalizado:
+            = @control_route.finalized  ? "Sim" : "Não"
+        .row
+          .col-md-4
+            %label Encaminhado para - setor:
+            = @control_route.route_sector.name if @control_route.route_sector.present?
+          .col-md-4
+            %label Encaminhado para - Pessoa:
+            = @control_route.route_staff.name if @control_route.route_staff.present?
+        .row
+          .col-md-4
+            %label Data de encaminhamento para setor:
+            = @control_route.route_sector_date.strftime('%d/%m/%Y') if @control_route.route_sector_date.present?
+        %hr
+        .row
+          .col-md-4
+            = link_to "Voltar", controls_path, class: 'btn btn-default btn-xs'

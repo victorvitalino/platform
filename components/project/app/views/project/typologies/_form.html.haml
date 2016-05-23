@@ -1,0 +1,23 @@
+= simple_form_for @typology do |f|
+  .row
+    .col-md-6
+      = f.input :name, placeholder: "Digite o nome da tipologia"
+    .col-md-3
+      = f.input :home_type, placeholder: "Digite o tipo da tipologia"
+    .col-md-3
+      = f.input :private_area
+  .row
+    .col-md-2
+      = f.input :income_family
+    .col-md-2
+      = f.input :initial_value, input_html: { class: 'coin_mask'}
+    .col-md-2
+      = f.input :end_value, input_html: { class: 'coin_mask'}
+    .col-md-2
+      = f.input :status, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
+      = link_to "Voltar", typologies_path, class:'btn btn-default'
+       

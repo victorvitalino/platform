@@ -49,7 +49,7 @@
                 %tr
                   %th Protocolo
                   %th Nome
-                  %th CPF
+                  %th CPF/CNPJ
                   %th Data
                   %th Horário
                   %th Status
@@ -59,7 +59,11 @@
                   %tr
                     %td= schedule.protocol
                     %td= schedule.name.upcase
-                    %td= schedule.cpf.format_cpf
+                    %td
+                      - if schedule.cpf.present?
+                        = schedule.cpf.format_cpf
+                      - else
+                        = schedule.cnpj.format_cnpj
                     %td= schedule.date.strftime('%d/%m/%Y')
                     %td= schedule.hour.strftime('%H:%M')
                     %td= schedule.status.humanize

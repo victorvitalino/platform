@@ -1,0 +1,29 @@
+= simple_form_for [@enterprise, @step], remote: true do |f|
+  .row
+    .col-md-12
+      = f.input :name
+  .row
+    .col-md-12
+      = f.input :text
+  .row
+    .col-md-2
+      = f.input :demand
+    .col-md-2
+      = f.input :rii
+    .col-md-2
+      = f.input :rie
+    .col-md-2
+      = f.input :old
+    .col-md-2
+      = f.input :special
+    .col-md-2
+      = f.input :vulnerable
+  .row
+    .col-md-2
+      = f.input :situation, as: :select, include_blank: false
+    .col-md-2
+      = f.input :status, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'

@@ -13,6 +13,7 @@
             %th Armário
             %th Prateleira
             %th Caixa
+            %th Caminho de rede
             %th Obersevação
         %tbody
           - @locations.each_with_index do |j, i|
@@ -25,5 +26,7 @@
                 = j.pile
               %td
                 = j.box
+              %td
+                = j.network_path
               %td
                 = j.observation

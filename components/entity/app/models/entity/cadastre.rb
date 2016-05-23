@@ -15,6 +15,8 @@ module Entity
     has_many :realties
     has_many :activities
 
+    audited
+    
     scope :situation, -> (status) {
       Entity::Cadastre.joins(:situations)
       .where('entity_situations.situation_status_id = (SELECT MAX(entity_situations.situation_status_id)
@@ -22,17 +24,22 @@ module Entity
       .where('entity_situations.situation_status_id = ?', status)
     }
 
-    scope :count_documents, -> {
-      Entity::Document.select('cadastre_id').group('cadastre_id').having('count(id) > 10')
-    }
-
     scope :senders, -> {
       where(id: Entity::Document.all.map(&:cadastre_id))
     }
 
-    scope :complete, -> {
-      where(id: count_documents)
+    scope :active_documents, -> {
+      Entity::Document.where(document_category_id: Entity::DocumentCategory.actives.map(&:id))
     }
+
+    scope :complete, -> {
+      count = active_documents.select('cadastre_id')
+                              .group('cadastre_id')
+                              .having('count(cadastre_id) >= 11')
+
+      where(id: count)
+    }
+
     scope :cnpj,  -> (cnpj) {where(cnpj: cnpj)}
     scope :name_entity,  -> (name_entity) {where(name: name_entity)}
     scope :fantasy_name,  -> (fantasy_name) {where(fantasy_name: fantasy_name)}
@@ -52,6 +59,10 @@ module Entity
 
     after_create :set_situation
 
+
+    def new_entity?
+      Entity::Old.find_by_cnpj(self.cnpj) rescue false
+    end
 
     private
 

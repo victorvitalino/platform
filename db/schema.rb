@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505133631) do
+ActiveRecord::Schema.define(version: 20160520184749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -784,6 +784,42 @@ ActiveRecord::Schema.define(version: 20160505133631) do
   add_index "candidate_dependents", ["civil_state_id"], name: "index_candidate_dependents_on_civil_state_id", using: :btree
   add_index "candidate_dependents", ["kinship_id"], name: "index_candidate_dependents_on_kinship_id", using: :btree
   add_index "candidate_dependents", ["special_condition_id"], name: "index_candidate_dependents_on_special_condition_id", using: :btree
+
+  create_table "candidate_enterprise_cadastre_situations", force: :cascade do |t|
+    t.integer  "enterprise_cadastre_id"
+    t.integer  "enterprise_cadastre_status_id"
+    t.text     "observation"
+    t.string   "file_path"
+    t.integer  "firm_user_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "candidate_enterprise_cadastre_situations", ["enterprise_cadastre_id"], name: "index_enterprise_cadastre_on_enterprise_cadastre_id", using: :btree
+  add_index "candidate_enterprise_cadastre_situations", ["enterprise_cadastre_status_id"], name: "index_ent_cad_on_enterprise_cad_status_id", using: :btree
+  add_index "candidate_enterprise_cadastre_situations", ["firm_user_id"], name: "index_candidate_enterprise_cadastre_situations_on_firm_user_id", using: :btree
+
+  create_table "candidate_enterprise_cadastres", force: :cascade do |t|
+    t.integer  "enterprise_id"
+    t.integer  "cadastre_id"
+    t.integer  "indication_cadastre_id"
+    t.date     "inactive_date"
+    t.boolean  "inactive"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "candidate_enterprise_cadastres", ["cadastre_id"], name: "index_candidate_enterprise_cadastres_on_cadastre_id", using: :btree
+  add_index "candidate_enterprise_cadastres", ["enterprise_id"], name: "index_candidate_enterprise_cadastres_on_enterprise_id", using: :btree
+  add_index "candidate_enterprise_cadastres", ["indication_cadastre_id"], name: "index_candidate_enterprise_cadastres_on_indication_cadastre_id", using: :btree
+
+  create_table "candidate_enterprise_situation_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "candidate_inheritor_types", force: :cascade do |t|
     t.string   "name"
@@ -1673,6 +1709,46 @@ ActiveRecord::Schema.define(version: 20160505133631) do
   add_index "helpdesk_tickets", ["ticket_subject_id"], name: "index_helpdesk_tickets_on_ticket_subject_id", using: :btree
   add_index "helpdesk_tickets", ["ticket_type_id"], name: "index_helpdesk_tickets_on_ticket_type_id", using: :btree
 
+  create_table "indication_allotments", force: :cascade do |t|
+    t.integer  "step_id"
+    t.integer  "zone"
+    t.integer  "demand"
+    t.integer  "rii"
+    t.integer  "rie"
+    t.integer  "old"
+    t.integer  "special"
+    t.integer  "vulnerable"
+    t.integer  "situation",     default: 0
+    t.integer  "staff_id"
+    t.integer  "supervisor_id"
+    t.text     "observation"
+    t.boolean  "status"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "indication_allotments", ["staff_id"], name: "index_indication_allotments_on_staff_id", using: :btree
+  add_index "indication_allotments", ["step_id"], name: "index_indication_allotments_on_step_id", using: :btree
+  add_index "indication_allotments", ["supervisor_id"], name: "index_indication_allotments_on_supervisor_id", using: :btree
+  add_index "indication_allotments", ["zone"], name: "index_indication_allotments_on_zone", using: :btree
+
+  create_table "indication_cadastres", force: :cascade do |t|
+    t.integer  "allotment_id"
+    t.integer  "cadastre_id"
+    t.integer  "program_id"
+    t.integer  "pontuation_id"
+    t.integer  "situation",     default: 0
+    t.string   "observation"
+    t.string   "zone"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "indication_cadastres", ["allotment_id"], name: "index_indication_cadastres_on_allotment_id", using: :btree
+  add_index "indication_cadastres", ["cadastre_id"], name: "index_indication_cadastres_on_cadastre_id", using: :btree
+  add_index "indication_cadastres", ["pontuation_id"], name: "index_indication_cadastres_on_pontuation_id", using: :btree
+  add_index "indication_cadastres", ["program_id"], name: "index_indication_cadastres_on_program_id", using: :btree
+
   create_table "juridical_advice_types", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -1967,6 +2043,55 @@ ActiveRecord::Schema.define(version: 20160505133631) do
   add_index "planning_tasks", ["project_id"], name: "index_planning_tasks_on_project_id", using: :btree
   add_index "planning_tasks", ["responsible_id"], name: "index_planning_tasks_on_responsible_id", using: :btree
 
+  create_table "project_enterprises", force: :cascade do |t|
+    t.string   "name"
+    t.string   "value"
+    t.integer  "typology_id"
+    t.integer  "company_id"
+    t.boolean  "status",         default: true
+    t.string   "edict_number"
+    t.string   "process_number"
+    t.integer  "situation"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "units"
+  end
+
+  add_index "project_enterprises", ["company_id"], name: "index_project_enterprises_on_company_id", using: :btree
+  add_index "project_enterprises", ["typology_id"], name: "index_project_enterprises_on_typology_id", using: :btree
+
+  create_table "project_steps", force: :cascade do |t|
+    t.integer  "enterprise_id"
+    t.string   "name"
+    t.text     "text"
+    t.integer  "demand",        default: 0
+    t.string   "rii",           default: "40"
+    t.string   "rie",           default: "40"
+    t.string   "old",           default: "8"
+    t.string   "special",       default: "7"
+    t.string   "vulnerable",    default: "5"
+    t.integer  "situation",     default: 0
+    t.boolean  "status",        default: true
+    t.integer  "creator_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "project_steps", ["creator_id"], name: "index_project_steps_on_creator_id", using: :btree
+  add_index "project_steps", ["enterprise_id"], name: "index_project_steps_on_enterprise_id", using: :btree
+
+  create_table "project_typologies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "home_type"
+    t.string   "private_area"
+    t.string   "income_family"
+    t.string   "initial_value"
+    t.string   "end_value"
+    t.boolean  "status",        default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
   create_table "protocol_allotments", force: :cascade do |t|
     t.text     "description"
     t.integer  "priority"
@@ -2043,6 +2168,61 @@ ActiveRecord::Schema.define(version: 20160505133631) do
   add_index "protocol_conducts", ["sector_id"], name: "index_protocol_conducts_on_sector_id", using: :btree
   add_index "protocol_conducts", ["staff_id"], name: "index_protocol_conducts_on_staff_id", using: :btree
 
+  create_table "protocol_control_interesteds", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "foundation"
+    t.string   "address"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.string   "cep"
+    t.string   "email"
+    t.string   "telephone"
+    t.string   "fax"
+    t.integer  "interested_type"
+    t.integer  "staff_id"
+    t.integer  "control_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "protocol_control_interesteds", ["city_id"], name: "index_protocol_control_interesteds_on_city_id", using: :btree
+  add_index "protocol_control_interesteds", ["control_id"], name: "index_protocol_control_interesteds_on_control_id", using: :btree
+  add_index "protocol_control_interesteds", ["staff_id"], name: "index_protocol_control_interesteds_on_staff_id", using: :btree
+  add_index "protocol_control_interesteds", ["state_id"], name: "index_protocol_control_interesteds_on_state_id", using: :btree
+
+  create_table "protocol_control_routes", force: :cascade do |t|
+    t.boolean  "responded"
+    t.boolean  "bureau_route"
+    t.boolean  "conduct"
+    t.boolean  "link"
+    t.boolean  "redistribuited"
+    t.boolean  "need_answer"
+    t.boolean  "finalized"
+    t.integer  "route_sector_id"
+    t.integer  "route_staff_id"
+    t.date     "route_sector_date"
+    t.string   "redistribuited_to"
+    t.integer  "control_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "protocol_control_routes", ["control_id"], name: "index_protocol_control_routes_on_control_id", using: :btree
+  add_index "protocol_control_routes", ["route_sector_id"], name: "index_protocol_control_routes_on_route_sector_id", using: :btree
+  add_index "protocol_control_routes", ["route_staff_id"], name: "index_protocol_control_routes_on_route_staff_id", using: :btree
+
+  create_table "protocol_controls", force: :cascade do |t|
+    t.integer  "assessment_id"
+    t.integer  "staff_id"
+    t.date     "input_doc_date"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "protocol_controls", ["assessment_id"], name: "index_protocol_controls_on_assessment_id", using: :btree
+  add_index "protocol_controls", ["staff_id"], name: "index_protocol_controls_on_staff_id", using: :btree
+
   create_table "protocol_digital_documents", force: :cascade do |t|
     t.integer  "page_number"
     t.string   "doc_path"
@@ -2075,11 +2255,53 @@ ActiveRecord::Schema.define(version: 20160505133631) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "desk"
+    t.string   "network_path"
   end
 
   add_index "protocol_locations", ["assessment_id"], name: "index_protocol_locations_on_assessment_id", using: :btree
   add_index "protocol_locations", ["sector_id"], name: "index_protocol_locations_on_sector_id", using: :btree
   add_index "protocol_locations", ["staff_id"], name: "index_protocol_locations_on_staff_id", using: :btree
+
+  create_table "protocol_solicitation_providences", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "protocol_solicitation_replies", force: :cascade do |t|
+    t.integer  "providence_id"
+    t.date     "providence_date"
+    t.integer  "providence_staff_id"
+    t.boolean  "process_delivered"
+    t.date     "delivered_date"
+    t.integer  "responsible_delivered_id"
+    t.text     "observation"
+    t.integer  "authenticate_id"
+    t.date     "authenticate_date"
+    t.integer  "solicitation_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "protocol_solicitation_replies", ["authenticate_id"], name: "index_protocol_solicitation_replies_on_authenticate_id", using: :btree
+  add_index "protocol_solicitation_replies", ["providence_id"], name: "index_protocol_solicitation_replies_on_providence_id", using: :btree
+  add_index "protocol_solicitation_replies", ["providence_staff_id"], name: "index_protocol_solicitation_replies_on_providence_staff_id", using: :btree
+  add_index "protocol_solicitation_replies", ["responsible_delivered_id"], name: "index_protocol_solicitation_replies_on_responsible_delivered_id", using: :btree
+  add_index "protocol_solicitation_replies", ["solicitation_id"], name: "index_protocol_solicitation_replies_on_solicitation_id", using: :btree
+
+  create_table "protocol_solicitations", force: :cascade do |t|
+    t.integer  "assessment_id"
+    t.date     "order_date"
+    t.integer  "staff_id"
+    t.text     "observation"
+    t.integer  "priority"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "protocol_solicitations", ["assessment_id"], name: "index_protocol_solicitations_on_assessment_id", using: :btree
+  add_index "protocol_solicitations", ["staff_id"], name: "index_protocol_solicitations_on_staff_id", using: :btree
 
   create_table "protocol_subjects", force: :cascade do |t|
     t.string   "name"

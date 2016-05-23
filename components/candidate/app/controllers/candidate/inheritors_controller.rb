@@ -2,8 +2,8 @@ require_dependency "candidate/application_controller"
 
 module Candidate
   class InheritorsController < ApplicationController
-    before_action :set_inheritor, only: [:show, :edit, :update, :destroy]
     before_action :set_cadastre, only: [:new, :edit]
+    before_action :set_inheritor, only: [:show, :edit, :update, :destroy]
 
     has_scope :name_inheritor
     has_scope :cpf
@@ -11,29 +11,35 @@ module Candidate
 
     # GET /inheritors
     def index
+      authorize :inheritor, :index?
       @inheritors = Inheritor.all
       @inheritors = apply_scopes(@inheritors).paginate(:page => params[:page], :per_page => 20)
     end
 
     # GET /inheritors/1
     def show
+      authorize :inheritor, :index?
     end
 
     # GET /inheritors/new
     def new
-      @inheritor = @cadastre.inheritor.new
+      authorize :inheritor, :create?
+      @inheritor = @cadastre.inheritors.new
     end
 
     # GET /inheritors/1/edit
     def edit
+      authorize :inheritor, :update?
     end
 
     # POST /inheritors
     def create
+      authorize :inheritor, :create?
       @inheritor = Inheritor.new(inheritor_params)
 
       if @inheritor.save
-        redirect_to @inheritor, notice: 'Inheritor was successfully created.'
+        redirect_to @inheritor
+
       else
         render :new
       end
@@ -41,8 +47,9 @@ module Candidate
 
     # PATCH/PUT /inheritors/1
     def update
+      authorize :inheritor, :update?
       if @inheritor.update(inheritor_params)
-        redirect_to @inheritor, notice: 'Inheritor was successfully updated.'
+        redirect_to @inheritor
       else
         render :edit
       end
@@ -50,8 +57,9 @@ module Candidate
 
     # DELETE /inheritors/1
     def destroy
+      authorize :inheritor, :destroy?
       @inheritor.destroy
-      redirect_to inheritors_url, notice: 'Inheritor was successfully destroyed.'
+      redirect_to inheritors_url
     end
 
     private

@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      'project/typology': 'Tipologia'
+    attributes:
+      'project/typology':
+          name: "Nome"
+          home_type: "Tipo"
+          private_area: "Área (m²)"
+          income_family: "Renda familiar"
+          initial_value: "Valor inicial"
+          end_value: "Valor final"
+          status: "Ativa?"

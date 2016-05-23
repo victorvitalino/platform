@@ -8,21 +8,20 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/herdeiro.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/atualizar.csv", :col_sep => "#") do |row|
 
 
-           @model = Protocol::Assessment.find_by_id_old(row[0])
+           @model = Candidate::EnterpriseCadastre.find_by_id(row[0])
 
            if @model.present?
-             @model.requesting_unit = row[1]
-             @model.external_agency = row[2]
-
+             @model.inactive = true
+             @model.inactive_date = row[1]
            end
 
 
           begin
-            @model.save
-            #puts @model.inspect
+            #@model.save
+            puts @model.inspect
           rescue
             puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
           end

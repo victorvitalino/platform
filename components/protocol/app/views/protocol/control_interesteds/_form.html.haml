@@ -1,0 +1,83 @@
+= simple_form_for [@control, @control_interested] do |f|
+ .row
+  .col-md-4
+   %b Número do documento:
+   = @control.assessment.document_number if @control.assessment.present?
+  .col-md-4
+   %b Recebido por:
+   = @control.staff.name.upcase if @control.staff.present?
+  %hr
+ .row
+  .col-md-8
+   %h3
+    Dados do interessado
+ %hr
+ .row
+  .col-md-8
+   = f.label :name, class: 'fg-label'
+   = f.input :name, label: false
+ .row
+  .col-md-4
+   = f.label :cpf, class: 'fg-label'
+   = f.input :cpf, label: false
+ .row
+  .col-md-8
+   = f.label :foundation, class: 'fg-label'
+   = f.input :foundation, label: false
+ .row
+  .col-md-4
+   = f.label :state, class: 'fg-label'
+   = f.association :state, label: false, prompt: 'selecione...'
+  .col-md-4
+   = f.label :city, class: 'fg-label'
+   = f.input :city_id, label: false,  as: :select, collection: (@control_interested.state.present?) ? Address::City.where(state_id: @control_interested.state).order(:name) : {}, label_method: :name, value_method: :id, prompt: 'selecione o estado...', input_html: { value: @control_interested.state}
+ .row
+  .col-md-8
+   = f.label :address, class: 'fg-label'
+   = f.input :address, label: false
+ .row
+  .col-md-4
+   = f.label :cep, class: 'fg-label'
+   = f.input :cep, label: false
+ .row
+  .col-md-8
+   = f.label :email, class: 'fg-label'
+   = f.input :email, label: false
+ .row
+  .col-md-4
+   = f.label :telephone, class: 'fg-label'
+   = f.input :telephone, label: false
+  .col-md-4
+   = f.label :fax, class: 'fg-label'
+   = f.input :fax, label: false
+ .row
+  .col-md-4
+   = f.label :interested_type, class: 'fg-label'
+   = f.input :interested_type, label: false, prompt: 'selecione...'
+ .row
+  .col-md-8
+   = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+   = link_to "Voltar", control_control_interesteds_path(@control.id), class: 'btn btn-default btn-xs'
+
+:javascript
+
+  $(document).ready(function() {
+
+    $("#control_interested_state_id").on('change', function(){
+
+      $.getJSON("#{api.cities_address_units_path}?state_id=" + $(this).val(), function(data) {
+
+        html = "<option value>selecione a cidade...</option>"
+        if(data.length > 0) {
+          console.log(data)
+          for(var i = 0; i < data.length; i++) {
+            html += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+          }
+
+        } else {
+          html = "<option value>Não foram encontradas cidades</option>"
+        }
+        $("#control_interested_city").html(html)
+      });
+    });
+  });

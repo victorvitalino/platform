@@ -1,0 +1,22 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Novo lote de indicação - #{@step.name} - #{@step.enterprise.name}
+      = link_to "Voltar para listagem", enterprise_step_allotments_path(enterprise_id: @step.enterprise_id, step_id: @step), class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th Demanda da etapa
+              %th Cumprido
+              %th Retornado do último lote
+              %th Dispónivel
+          %tbody
+            %tr
+              %td.col-md-1= @step.demand
+              %td.col-md-1 0
+              %td.col-md-1
+              %td.col-md-1
+        

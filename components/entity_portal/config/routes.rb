@@ -10,7 +10,11 @@ EntityPortal::Engine.routes.draw do
 
   get     'authorization',  path: 'acesso', to: 'authorization#new',      as: 'new_authorization'
   post    'authorization',  path: 'acesso', to: 'authorization#create',   as: 'authorization'
+  
   delete  'authorization',  path: 'acesso', to: 'authorization#destroy',  as: 'destroy_authorization'
+
+  get     'remember_password', path: 'lembrar-senha', to: 'cadastres#remember_password'
+  post    'send_password', path: 'lembrar-senha', to: 'cadastres#send_password' 
 
   namespace :restrict_area, path: 'area_restrita' do
     get   'access_data', path: 'dados_acesso', to: 'session#edit',    as: 'edit_session'

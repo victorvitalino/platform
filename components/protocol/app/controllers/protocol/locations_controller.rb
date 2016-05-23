@@ -48,7 +48,7 @@ module Protocol
         private
 
         def location_params
-            params.require(:location).permit(:shelf, :pile,:box,:observation,:assessment_id,:staff_id)
+            params.require(:location).permit(:shelf, :pile,:box,:observation,:assessment_id,:staff_id, :network_path)
         end
 
         def set_locations

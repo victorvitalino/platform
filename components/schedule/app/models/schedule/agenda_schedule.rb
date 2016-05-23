@@ -12,14 +12,17 @@ module Schedule
     enum status: ['agendado', 'liberado_para_retorno', 'cancelado', 'finalizado_sem_retorno']
 
     validates :name, presence: true
-    validates :cpf, cpf: true, presence: true
+    validates :cpf, cpf: true, presence: true, unless: :cnpj_present?
+    validates :cnpj, cnpj: true, presence: true, if: :cnpj_present?
+
     validates :telephone, numericality: true, presence: true
     validates :telephone_optional, :celphone, numericality: true, allow_blank: true
     validates :email, email: true, presence: true
     validates_date :date, presence: true 
     validates :hour, presence: true
     
-    validate :unique_schedule, on: :create
+    validate :unique_schedule, on: :create, unless: :cnpj_present?
+    validate :unique_schedule_cnpj, on: :create, if: :cnpj_present?
     validate :validate!, on: :create
     
     validate :restriction!, on: :create, if: :restriction_enabled?
@@ -32,20 +35,31 @@ module Schedule
 
     private
 
+    def cnpj_present?
+      self.cnpj.present? || !self.cnpj.to_s.empty?
+    end
+
     def restriction_enabled?
       agenda.existente? || agenda.inexistente?
     end
 
     def restriction!
-      if agenda.existente?
-        if !Schedule::AgendaSchedule.find_by_sql("#{agenda.restriction_sql} AND cpf = '#{self.cpf}'").present?
-          errors.add(:cpf, 'este CPF não tem permissão de participar desta agenda')
+      
+      if !cnpj_present?
+        if agenda.existente?
+          if !Schedule::AgendaSchedule.find_by_sql("#{agenda.restriction_sql} AND cpf = '#{self.cpf}'").present?
+            errors.add(:cpf, 'este CPF não tem permissão de participar desta agenda')
+          end
         end
-      end
 
-      if agenda.inexistente?
-        if Schedule::AgendaSchedule.find_by_sql("#{agenda.restriction_sql} AND cpf = '#{self.cpf}'").present?
-          errors.add(:cpf, 'este CPF não tem permissão de participar desta agenda')
+        if agenda.inexistente?
+          if Schedule::AgendaSchedule.find_by_sql("#{agenda.restriction_sql} AND cpf = '#{self.cpf}'").present?
+            errors.add(:cpf, 'este CPF não tem permissão de participar desta agenda')
+          end
+        end
+      else
+        if !Entity::Cadastre.complete.where(cnpj: self.cnpj).present?
+          errors.add(:cnpj, 'este CNPJ ainda não completou o recadastramento, favor acessar a área de recadastramento de entidade e verificar as pendências.')
         end
       end
     end
@@ -62,8 +76,20 @@ module Schedule
       end
     end
 
+    def unique_schedule_cnpj
+
+      if agenda.agenda_schedules.where("cnpj = ? AND status = 0 AND date >= ?", cnpj, Date.today).present?
+        errors.add(:cnpj, 'este CNPJ já se encontra agendado, favor verificar')
+      end
+
+      if agenda.agenda_schedules.where("cnpj = ? AND status = 3", cnpj).present?
+        errors.add(:cnpj, 'este CNPJ já foi atendido, em caso de dúvidas entre em contato com a Codhab')
+      end
+
+    end
+
     def unique_schedule
-      if agenda.agenda_schedules.where("cpf = ? AND status = 0 AND date > ?", self.cpf, Date.today).present?
+      if agenda.agenda_schedules.where("cpf = ? AND status = 0 AND date >= ?", self.cpf, Date.today).present?
         errors.add(:cpf, 'este CPF já se encontra agendado, favor verificar')
       end
 

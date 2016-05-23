@@ -1,0 +1,30 @@
+.panel
+  .panel-heading
+    .panel-title
+      %h4
+        Dados da solicitação
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-4
+            %label Número de Documento:
+            = @solicitation.assessment.document_number if @solicitation.assessment.present?
+          .col-md-4
+            %label Tipo do Documento:
+            = @solicitation.assessment.document_type.name if @solicitation.assessment.document_type.present?
+        .row
+          .col-md-4
+            %label Data do Pedido:
+            = @solicitation.order_date.strftime('%d/%m/%Y')
+          .col-md-4
+            %label Prioridade:
+            = @solicitation.priority_i18n
+        .row
+          .col-md-8
+            %label Observação:
+            = @solicitation.observation
+        %hr
+        .row
+          .col-md-4
+            = link_to "Voltar", solicitations_path, class: 'btn btn-default btn-xs'

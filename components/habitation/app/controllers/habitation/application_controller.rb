@@ -10,6 +10,8 @@ module Habitation
     helper  ::NavigationHelper
 
     before_action :authenticate_staff?
-    
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   end
 end

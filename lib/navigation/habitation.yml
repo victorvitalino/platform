@@ -45,13 +45,8 @@ nav:
             code: 11501
             label: 'Cadastro'
             controller: '/entity/cadastres'
-          attendance:
-            module: 'entity'
-            code: 11501
-            label: 'Atendimento'
-            controller: '/entity/cadastres'
       cadastre:
-        code: [11005, 11011]
+        code: [11005, 11011,11016]
         label: 'Cadastro'
         controller: '#'
         sub:
@@ -67,9 +62,9 @@ nav:
             controller: '/candidate/cadastre_addresses'
           inheritors:
             module: 'candidate'
-            code: 11011
+            code: 11016
             label: 'Herdeiros'
-            controller: '/candidate/cadastre_addresses'
+            controller: '/candidate/inheritors'
           verification:
             module: 'candidate'
             code: 11011
@@ -118,6 +113,34 @@ nav:
             label: 'Agendas'
             controller: '/schedule/agendas'
             action: 'index'
+      project:
+        code: 0
+        label: 'Empreendimentos'
+        controller: '#'
+        sub:
+          enterprise:
+            module: 'project'
+            code: 118101
+            label: 'Gestão de empreendimentos'
+            controller: '/project/enterprises'
+            action: 'index'
+          typologies:
+            module: 'project'
+            code: 118103
+            label: 'Gestão de tipologias'
+            controller: '/project/typologies'
+            action: 'index'
+      indication:
+        code: 0
+        label: 'Indicação'
+        controller: '#'
+        sub:
+          dasboard:
+            module: 'indication'
+            code: 0
+            label: "Empreendimentos"
+            controller: '/indication/enterprises'
+            action: 'index' 
       assistent:
         code: [118103,118101]
         label: 'Auxiliares'

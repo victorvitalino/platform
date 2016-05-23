@@ -1,0 +1,26 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title 
+      #{@enterprise.name} - Etapas
+      = link_to "Voltar para empreendimentos", enterprises_path, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        = link_to "+ Adicionar nova etapa", new_enterprise_step_path(@enterprise), remote: true, class: 'btn btn-success'
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-bordered.table-striped.table-hover
+          %thead
+            %tr
+              %th ID
+              %th Nome
+              %th Demanda
+              %th Rii
+              %th Rie
+              %th Idosos
+              %th Def.
+              %th Vul.
+              %th Ações
+          %tbody.index-step
+            = render 'index'

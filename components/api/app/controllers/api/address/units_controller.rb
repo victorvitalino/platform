@@ -12,6 +12,13 @@ module Api
         render json: @unit
       end
 
+      def cities
+        return false unless params[:state_id].present?
+        @cities = ::Address::City.where(state_id: params[:state_id]).order(:name)
+
+        render json: @cities
+      end
+
       def blocks
         return false unless params[:city_id].present?
         @blocks = ::Address::Unit.select(:block).where(city_id: params[:city_id]).order(:block).distinct

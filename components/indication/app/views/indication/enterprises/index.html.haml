@@ -1,0 +1,31 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title 
+      Empreendimentos
+  .panel-body
+    %table.table.table-bordered.table-striped.table-hover
+      %thead
+        %tr
+          %th ID
+          %th Nome
+          %th Tipologia
+          %th Empresa Resp.
+          %th Unidades
+          %th Edital
+          %th Situação
+          %th Ativo?
+      %tbody
+        - @enterprises.each do |ent|
+          %tr
+            %td{style: 'width: 1%'}= ent.id
+            %td.col-md-2= link_to ent.name, enterprise_steps_path(ent)
+            %td= ent.typology.complete_name  if ent.typology.present?
+            %td
+              - if ent.company.present?
+                = ent.company.complete_name
+              - else
+                sem vínculo
+            %td= ent.units
+            %td= ent.edict_number
+            %td= ent.situation
+            %td= ent.status ? "sim" :  "não"

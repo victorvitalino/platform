@@ -19,6 +19,7 @@ module Juridical
       redirect_to(request.referrer || root_path)
     end
 
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   end
 end

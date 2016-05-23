@@ -2,7 +2,7 @@ require_dependency 'entity/application_controller'
 
 module Entity
   class CadastresController < ApplicationController
-    before_action :set_document_category, only: [:edit, :update, :destroy]
+    before_action :set_cadastre, only: [:edit, :update, :destroy]
 
     has_scope :cnpj
     has_scope :name_entity
@@ -21,6 +21,8 @@ module Entity
         @cadastres = apply_scopes(Cadastre).paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
       end
     end
+
+
 
     def new
       @category = DocumentCategory.new
@@ -45,9 +47,9 @@ module Entity
     end
 
     def update
-      if @category.update(set_params)
+      if @cadastre.update(set_params)
         flash[:success] = t :success
-        redirect_to action: 'index'
+        redirect_to cadastre_path(@cadastre)
       else
         render action: 'edit'
       end
@@ -65,11 +67,13 @@ module Entity
     private
 
     def set_params
-      params.require(:document_category).permit(:name, :description, :code, :status)
+      params.require(:cadastre).permit(:name, :fantasy_name, :email, :telephone,
+                                                :telephone_optional, :celphone, :city, :address, :complement,
+                                                :cep, :observation)
     end
 
-    def set_document_category
-      @category = DocumentCategory.find(params[:id])
+    def set_cadastre
+      @cadastre = Entity::Cadastre.find(params[:id])
     end
   end
 end

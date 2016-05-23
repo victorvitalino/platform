@@ -4,6 +4,24 @@ module EntityPortal
   class CadastresController < ApplicationController 
     has_scope :situation
 
+
+    def remember_password
+      @cadastre = Entity::Cadastre.new
+    end
+
+    def send_password
+      cnpj = params[:cadastre][:cnpj].gsub('.','').gsub('/','').gsub('-','')
+      
+      @cadastre = Entity::Cadastre.find_by_cnpj(cnpj) rescue nil
+      if @cadastre.present?
+        EntityPortal::CadastreMailer.remember(@cadastre.email, @cadastre.password).deliver_now!
+      else
+        @cadastre = Entity::Cadastre.new
+        @cadastre.errors.add(:cnpj, "CNPJ não encontrado")
+        render action: 'remember_password'
+      end
+    end
+
     def index
       @entities = apply_scopes(Entity::Cadastre).all.order(:name).paginate(:page => params[:page], :per_page => 20)
     end

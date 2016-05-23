@@ -47,10 +47,10 @@ module Protocol
           @assessment = Assessment.new(set_assessment_params)
           @assessment.set_staff(current_user.id)
 
-          if @assessment.save!
+          if @assessment.save
               redirect_to action: 'index'
           else
-              render action: 'new'
+              render :new
           end
         else
           flash[:danger] = "Usuário não está alocado em um setor."
@@ -78,7 +78,7 @@ module Protocol
             flash[:success] = "Documento atualizado."
             redirect_to assessments_path
         else
-            render action: 'edit'
+            render :edit
         end
     end
 
@@ -96,10 +96,8 @@ module Protocol
 
 
     def set_assessment_params
-            params.require(:assessment).permit(:document_number, :document_type_id, :subject_id,:description_subject,:requesting_unit,:external_agency,:recipient,:address,:cpf,:cnpj ,:sign_by ,:observation,:staff_id,:sector_id)
+      params.require(:assessment).permit(:document_number, :document_type_id, :subject_id,:description_subject,:requesting_unit,:external_agency,:recipient,:address,:cpf,:cnpj ,:sign_by ,:observation,:staff_id,:sector_id,:city)
     end
-
-
 
   end
 end

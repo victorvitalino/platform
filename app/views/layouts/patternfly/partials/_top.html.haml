@@ -1,4 +1,4 @@
-%nav.navbar.navbar-inverse
+%nav.navbar.navbar-default
   .container
     / Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -8,13 +8,11 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand{:href => "#{dashboard.root_path}"}
-        %img{:alt => "...", :src => "/images/codhab_logo_white.png", width: 100}/
+        %img{:alt => "...", :src => "/images/codhab.png", width: 150}/
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        
       %ul.nav.navbar-nav.navbar-right
         %li.user-last-signed
-          = "#{current_user.account.name} - #{current_user.code}"
+          %b= "#{current_user.account.name} - #{current_user.code}"
           %br/
           %i= "Último acesso - #{current_user.last_signed_in_at.strftime('%d/%m/%Y')}" if current_user.last_signed_in_at.present?
         %li

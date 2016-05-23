@@ -39,8 +39,8 @@
                   %td= link_to i.cadastre.name, candidate.cadastres_path(cpf: i.cadastre.cpf) if i.cadastre.present?
                   %td= i.inheritor_type.name if i.inheritor_type.present?
                   %td
-                    = link_to "", edit_cadastre_inheritor_path(i.cadastre.id,i), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:staff, namespace: Person).update?
-
+                    = link_to "", edit_cadastre_inheritor_path(i.cadastre.id,i), title: 'Editar', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs' if policy(:inheritor, namespace: Candidate).update?
+                    = link_to "", cadastre_inheritor_path(i.cadastre.id,i), title: 'Excluir', 'data-toggle' => 'tooltip', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs' if policy(:inheritor, namespace: Candidate).update?
           .row
             .col-md-6.col-md-offset-3
               = will_paginate @inheritors, renderer: BootstrapPagination::Rails

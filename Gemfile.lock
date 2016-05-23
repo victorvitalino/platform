@@ -71,6 +71,10 @@ PATH
       rails (~> 4.2.1)
     habitation_portal (0.0.1)
       rails (~> 4.2.1)
+    indication (0.0.1)
+      rails (~> 4.2.1)
+    indication_portal (0.0.1)
+      rails (~> 4.2.1)
     juridical (0.0.1)
       rails (~> 4.2.1)
     maintenance (0.0.1)
@@ -82,6 +86,8 @@ PATH
     portal (0.0.1)
       rails (~> 4.2.1)
     profile_user (0.0.1)
+      rails (~> 4.2.1)
+    project (0.0.1)
       rails (~> 4.2.1)
     protocol (0.0.1)
       rails (~> 4.2.1)
@@ -367,6 +373,7 @@ GEM
     rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    remotipart (1.2.1)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -501,6 +508,8 @@ DEPENDENCIES
   haml-rails
   has_scope
   i18n
+  indication!
+  indication_portal!
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   jquery-turbolinks
@@ -517,6 +526,7 @@ DEPENDENCIES
   poltergeist
   portal!
   profile_user!
+  project!
   protocol!
   pundit!
   rails (= 4.2.1)
@@ -524,6 +534,7 @@ DEPENDENCIES
   rake
   regularization!
   regularization_portal!
+  remotipart
   report!
   rspec-rails
   schedule!

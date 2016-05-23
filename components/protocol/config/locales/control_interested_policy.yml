@@ -1,0 +1,23 @@
+pt-BR:
+  enums:
+    'protocol/control_interested':
+      interested_type:
+        interested: "Interessado"
+        sender: "Remetente"
+  activerecord:
+    models:
+      'protocol/control_interested': Interessado e/ou Remetente
+    attributes:
+      'protocol/control_interested':
+        name: "Nome"
+        cpf: "CPF"
+        foundation: "Instituição"
+        address: "Endereço"
+        state: "UF"
+        city: "Cidade"
+        cep: "Cep"
+        email: "Email"
+        telephone: "Telefone"
+        fax: "Fax"
+        interested_type: "Tipo de interessado"
+        staff: "Usuário"

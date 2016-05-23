@@ -9,7 +9,7 @@
         %span.label.label-success ativo
       - else
         %span.label.label-default inativo
-    %td.col-md-1
+    %td
       = link_to "", new_sector_branch_line_path(sector),title: 'Novo Ramal', 'data-toggle' => 'tooltip',  remote: true, class: 'glyphicon glyphicon-phone-alt btn btn-success btn-xs' if policy(:BranchLine, namespace: Person).create?
       = link_to "", edit_sector_path(sector), title: 'Editar', 'data-toggle' => 'tooltip',  remote: true, class: 'glyphicon glyphicon-pencil btn-xs btn btn-primary waves-effect waves-button waves-float'if policy(:sector, namespace: Person).update?
       = link_to "", sector_path(sector), method: :delete, class: 'glyphicon glyphicon-remove btn-xs btn btn-danger', data: {confirm: "#{t(:confirm_delete)}"}if policy(:sector, namespace: Person).destroy?

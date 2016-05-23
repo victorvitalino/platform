@@ -1,0 +1,45 @@
+= simple_form_for [@cadastre, @member], remote: true, html: { multipart: true} do |f|
+  .row
+    .col-md-12
+      = f.input :name 
+  .row
+    .col-md-4
+      = f.input :cpf, input_html: { class: 'cpf', disabled: f.object.new_record? ? false : true  } 
+    .col-md-4
+      = f.input :rg 
+    .col-md-4
+      = f.input :rg_org 
+  .row
+    .col-md-4
+      = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil} 
+  %hr/
+  .row
+    .col-md-4
+      = f.association :member_job, include_blank: false
+    .col-md-4
+      = f.input :start, as: :string, input_html: { class: 'date', value: f.object.start.present? ? localize(f.object.start) : nil} 
+    .col-md-4
+      = f.input :end, as: :string, input_html: { class: 'date', value: f.object.end.present? ? localize(f.object.end) : nil} 
+  %hr/
+  .row
+    .col-md-4
+      = f.input :telephone
+    .col-md-4
+      = f.input :telephone_optional
+    .col-md-4
+      = f.input :celphone
+  %hr/
+  .row
+    .col-md-6
+      = f.association :city, include_blank: false
+  .row
+    .col-md-12
+      = f.input :address, placeholder: "Digite o endereço/logradouro"
+  %hr/
+  .row
+    .col-md-12
+      = f.input :certificate_civil_criminal, as: :file
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'

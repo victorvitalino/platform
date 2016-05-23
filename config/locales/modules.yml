@@ -15,7 +15,20 @@ pt-BR:
     habitation: "Habitação"
     attendances: "Atendimento"
     juridical: "Jurídico"
+    project: "Projeto"
+    indication: "Indicação"
+    profile_user: "Meu perfil"
+    habitation_attendance: "Atendimento habitação"
   modules:
+    habitation_attendance:
+      dashboard: "Visão geral"
+    profile_user:
+      users: "Usuário"
+    indication:
+      allotment: "Lote"
+    project:
+      enterprises: "Empreendimentos"
+      typologies: "Tipologias"
     address:
       units: "Unidades"
       notary_offices: "Cartório"
@@ -57,6 +70,11 @@ pt-BR:
       locations: "Localização"
       reports: "Relatório"
       attach_documents: "Anexar/Apensar"
+      solicitations: "Solictação"
+      solicitation_replies: "Resposta à solicitação"
+      controls: "Controle de entrada"
+      control_routes: "Encaminhamento"
+      control_interesteds: "Interessado e/ou remetente"
     entity:
       cadastres: "Cadastros"
       document_categories: "Categoria de Documentos"
