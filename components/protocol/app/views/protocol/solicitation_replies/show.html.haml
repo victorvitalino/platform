@@ -41,6 +41,16 @@
           .col-md-8
             %label Observação:
             = @solicitation_reply.observation
+        .row
+          .col-md-4
+            %label Solicitação validada pelo gerente da GECAR?
+            = @solicitation_reply.authenticate_id.present? ? "Sim" : "Não"
+          .col-md-4
+            %label Validado por:
+            = @solicitation_reply.authenticate.name if @solicitation_reply.authenticate.present?
+          .col-md-4
+            %label Data da validação:
+            = @solicitation_reply.authenticate_date.strftime('%d/%m/%Y') if @solicitation_reply.authenticate_date.present?
         %hr
         .row
           .col-md-4

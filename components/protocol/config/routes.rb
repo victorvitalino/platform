@@ -12,12 +12,14 @@ resources :locations, path: 'localizacoes'
 
 resources :controls, path: 'controles' do
   resources :control_routes, path: 'controle_encaminhamentos'
-  resources :control_interesteds, path: 'controle_interessados' 
+  resources :control_interesteds, path: 'controle_interessados'
 end
 
 resources :providences, path: 'providencias'
 resources :solicitations, path: 'solicitacoes' do
-  resources :solicitation_replies, path: 'solicitacao_respostas'
+  resources :solicitation_replies, path: 'solicitacao_respostas' do
+    get 'validate'
+  end
 end
 
 

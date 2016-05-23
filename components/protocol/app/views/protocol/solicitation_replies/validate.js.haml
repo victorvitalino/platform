@@ -1,0 +1,2 @@
+- if !@solicitation_reply.errors.any?
+    $(".tr-#{@solicitation_reply.id}").html("#{escape_javascript(link_validate_to(@solicitation_reply.id))}")

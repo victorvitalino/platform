@@ -11,7 +11,7 @@ namespace :csv do
     CSV.foreach("lib/files/atualizar.csv", :col_sep => "#") do |row|
 
 
-           @model = Candidate::EnterpriseCadastre.find_by_id(row[0])
+           @model = Candidate::EnterpriseCadastre.find_by_cadastre_id(row[0])
 
            if @model.present?
              @model.inactive = true
@@ -20,8 +20,8 @@ namespace :csv do
 
 
           begin
-            #@model.save
-            puts @model.inspect
+            @model.save
+            #puts @model.inspect
           rescue
             puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
           end

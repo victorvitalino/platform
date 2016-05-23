@@ -2,9 +2,10 @@ require_dependency 'protocol/application_controller'
 
 module Protocol
     class SolicitationRepliesController < ApplicationController
-        before_action :set_solicitation
+        before_action :set_solicitation, excepty: [:validate]
         before_action :set_solicitation_replies, only: [:index, :create, :destroy, :update]
         before_action :set_solicitation_reply, only: [:edit, :destroy, :update, :show]
+        before_action :set_validate, only: [:validate]
 
         def index
           authorize :solicitation_reply,  :index?
@@ -29,6 +30,11 @@ module Protocol
         end
 
         def edit
+        end
+
+        def validate
+          @solicitation_reply.update(authenticate_id: current_user.id, authenticate_date: Date.today)
+          redirect_to action: 'index'
         end
 
         def show
@@ -67,6 +73,10 @@ module Protocol
 
         def set_solicitation_reply
             @solicitation_reply = SolicitationReply.find(params[:id])
+        end
+
+        def set_validate
+          @solicitation_reply = SolicitationReply.find(params[:solicitation_reply_id])
         end
     end
 end
