@@ -253,6 +253,17 @@ text-align: center;
   font-weight: 600;
 }
 
+.gallery_title{
+  background-color:#dd3858;
+  color:#fff;
 
-
+  text-align: left;
+}
+.gallery_title span{
+  font-size: 48px;
+  display: block;
+  padding: 42px;
+}
+.box_galerias{
+  padding: 40px;
 }
