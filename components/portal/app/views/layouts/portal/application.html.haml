@@ -10,6 +10,6 @@
 			var URL = #{request.host}
 	%body
 		= render 'layouts/portal/partials/navs'
-		%div{class: (controller_name != 'home') ? 'container main' : '' }
+		%div{class: (controller_name != 'home' ) ? 'container main' : '' }
 			= yield
 		= render 'layouts/portal/partials/footer'
