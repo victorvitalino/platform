@@ -1,19 +1,18 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Ramal
-          %small Listagem de Ramal
-    .panel-body
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-        %table.table.table-hover.table-bordered
-          %thead
-            %tr
-              %th #
-              %th Nome
-              %th Ramal
-              %th Status
-              %th Ações
-          %tbody.index-branch_line
-            = render 'index_branch'
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Ramal
+        %small Listagem de Ramal
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table.table.table-hover.table-bordered
+        %thead
+          %tr
+            %th #
+            %th Nome
+            %th Ramal
+            %th Status
+            %th Ações
+        %tbody.index-branch_line
+          = render 'index_branch'

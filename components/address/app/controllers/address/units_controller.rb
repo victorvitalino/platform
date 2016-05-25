@@ -13,6 +13,7 @@ module Address
         has_scope :unit
         has_scope :name_candidate
         has_scope :address
+        has_scope :process_number
 
         def index
             authorize :unit, :index?

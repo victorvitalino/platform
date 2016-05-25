@@ -1,4 +1,4 @@
-.panel
+.panel.panel-default
   .panel-heading
     .panel-title
       %h4
@@ -53,6 +53,6 @@
             %label Data de encaminhamento para setor:
             = @control_route.route_sector_date.strftime('%d/%m/%Y') if @control_route.route_sector_date.present?
         %hr
-        .row
+        .row.no-print
           .col-md-4
             = link_to "Voltar", controls_path, class: 'btn btn-default btn-xs'

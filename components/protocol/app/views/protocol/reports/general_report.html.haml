@@ -1,59 +1,58 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 Pesquisar Documento
-    .panel-body
-      .row
-        .col-md-2
-          = simple_form_for :search, url: general_report_path, :method => 'get' do |f|
-            .row
-              .col-md-12
-                = f.label "Tipo de documento", class: 'fg-label'
-                = f.input :doc_type, as: 'select', collection: Protocol::DocumentType.order(:name).all, prompt: 'selecione...', label: false, input_html: {name: 'doc_type' }
-            .row
-              .col-md-12
-                = f.label "Assunto", class: 'fg-label'
-                = f.input :subject, as: 'select', collection: Protocol::Subject.order(:name).all, prompt: 'selecione...', label: false, input_html: {name: 'subject' }
-            .row
-              .col-md-12
-                = f.label "Setor", class: 'fg-label'
-                = f.input :sector, as: 'select', collection: Person::Sector.where(status: true).order(:name).all, prompt: 'selecione...', label: false, input_html: {name: 'sector' }
-            .row
-              .col-md-12
-                = f.label "Data Inicial", class: 'fg-label'
-                = f.input :date_start, label: false, input_html: {name: 'date_start' , class: 'date', placeholder: '00/00/0000'}
-            .row
-              .col-md-12
-                = f.label "Data Final", class: 'fg-label'
-                = f.input :date_end, label: false, input_html: { name: 'date_end' , class: 'date', placeholder: '00/00/0000'}
-            .row
-              .col-md-12
-                = f.submit 'Pesquisar', class:  'btn btn-success btn-sm',data: {disable_with: "carregando..."}
-        .col-md-10
-          %h4.bold Relatório de Expediente
-          .row
-            .col-md-10
-              = link_to "Excell", general_report_path({format: "csv"}.merge(document_type: params[:document_type],sector: params[:sector], subject: params[:subject], date_start: params[:date_start], date_end: params[:date_end])),  class:  'btn btn-info btn-sm'
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4 Pesquisar Documento
+  .panel-body
+    .row
+      .col-md-2
+        = simple_form_for :search, url: general_report_path, :method => 'get' do |f|
           .row
             .col-md-12
-              %span.c-black
-              %br
-              - if @assessments.present?
-                .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-                  %table.table.table-hover.table-bordered
-                    %thead
+              = f.label "Tipo de documento", class: 'fg-label'
+              = f.input :doc_type, as: 'select', collection: Protocol::DocumentType.order(:name).all, prompt: 'selecione...', label: false, input_html: {name: 'doc_type' }
+          .row
+            .col-md-12
+              = f.label "Assunto", class: 'fg-label'
+              = f.input :subject, as: 'select', collection: Protocol::Subject.order(:name).all, prompt: 'selecione...', label: false, input_html: {name: 'subject' }
+          .row
+            .col-md-12
+              = f.label "Setor", class: 'fg-label'
+              = f.input :sector, as: 'select', collection: Person::Sector.where(status: true).order(:name).all, prompt: 'selecione...', label: false, input_html: {name: 'sector' }
+          .row
+            .col-md-12
+              = f.label "Data Inicial", class: 'fg-label'
+              = f.input :date_start, label: false, input_html: {name: 'date_start' , class: 'date', placeholder: '00/00/0000'}
+          .row
+            .col-md-12
+              = f.label "Data Final", class: 'fg-label'
+              = f.input :date_end, label: false, input_html: { name: 'date_end' , class: 'date', placeholder: '00/00/0000'}
+          .row
+            .col-md-12
+              = f.submit 'Pesquisar', class:  'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+      .col-md-10
+        %h4.bold Relatório de Expediente
+        .row
+          .col-md-10
+            = link_to "Excell", general_report_path({format: "csv"}.merge(document_type: params[:document_type],sector: params[:sector], subject: params[:subject], date_start: params[:date_start], date_end: params[:date_end])),  class:  'btn btn-info btn-sm'
+        .row
+          .col-md-12
+            %span.c-black
+            %br
+            - if @assessments.present?
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table.table.table-hover.table-bordered
+                  %thead
+                    %tr
+                      %th Processo
+                      %th Tipo de Documento
+                      %th Assunto
+                      %th Área Solicitante
+                      %th Data do documento
+                  %tbody
+                    - @assessments.each_with_index do |a|
                       %tr
-                        %th Processo
-                        %th Tipo de Documento
-                        %th Assunto
-                        %th Área Solicitante
-                        %th Data do documento
-                    %tbody
-                      - @assessments.each_with_index do |a|
-                        %tr
-                          %td= a.document_number
-                          %td= a.doc_type_name
-                          %td= a.subject_name
-                          %td= a.requesting_unit
-                          %td= a.created_at
+                        %td= a.document_number
+                        %td= a.doc_type_name
+                        %td= a.subject_name
+                        %td= a.requesting_unit
+                        %td= a.created_at

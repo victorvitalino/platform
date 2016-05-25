@@ -1,34 +1,33 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Listagem de interessados/remetentes
-          = link_to 'Nova encaminhamentos', new_control_control_interested_path(@control),class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}
-    .panel-body
-      .row
-        .col-md-12
-          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-            %table#data-table-command.table.table-striped.table-bordered
-              %thead
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Listagem de interessados/remetentes
+        = link_to 'Nova encaminhamentos', new_control_control_interested_path(@control),class: 'pull-right',data: {disable_with: "carregando..."}
+  .panel-body
+    .row
+      .col-md-12
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table#data-table-command.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Número
+                %th Tipo de Documento
+                %th Interessado
+                %th Tipo de Interessado
+                %th Ações
+            %tbody
+              - @control_interesteds.each do |a|
                 %tr
-                  %th Número
-                  %th Tipo de Documento
-                  %th Interessado
-                  %th Tipo de Interessado
-                  %th Ações
-              %tbody
-                - @control_interesteds.each do |a|
-                  %tr
-                    %td
-                      = a.control.assessment.document_number if a.control.assessment.present?
-                    %td
-                      = a.control.assessment.document_type.name if a.control.assessment.document_type.present?
-                    %td
-                      = a.name
-                    %td
-                      = a.interested_type_i18n
-                    %td.col-md-2
-                      = link_to "", edit_control_control_interested_path(control_id: @control.id,id: a), title: "editar",  class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}
-                      = link_to "", control_control_interested_path(@control.id,a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
-                      = link_to "", control_control_interested_path(@control.id,a), method: :delete, class: 'glyphicon glyphicon-remove btn-xs btn btn-danger', data: {confirm: "#{t(:confirm_delete)}"}
+                  %td
+                    = a.control.assessment.document_number if a.control.assessment.present?
+                  %td
+                    = a.control.assessment.document_type.name if a.control.assessment.document_type.present?
+                  %td
+                    = a.name
+                  %td
+                    = a.interested_type_i18n
+                  %td.col-md-2
+                    = link_to "", edit_control_control_interested_path(control_id: @control.id,id: a), title: "editar",  class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+                    = link_to "", control_control_interested_path(@control.id,a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
+                    = link_to "", control_control_interested_path(@control.id,a), method: :delete, class: 'glyphicon glyphicon-remove btn-xs btn btn-danger', data: {confirm: "#{t(:confirm_delete)}"}

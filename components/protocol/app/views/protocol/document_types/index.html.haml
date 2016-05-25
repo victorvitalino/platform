@@ -1,19 +1,18 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Tipos de Documento
-          = link_to 'novo tipo de documento', new_document_type_path, remote: true, class: 'btn btn-success pull-right btn-sm',data: {disable_with: "carregando..."}
-    .panel-body
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-        %table#data-table-command.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th #
-              %th Nome
-              %th Descrição
-              %th Status
-              %th Ações
-          %tbody.index-document_type
-            = render 'index'
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Tipos de Documento
+        = link_to 'novo tipo de documento', new_document_type_path, remote: true, class: 'pull-right',data: {disable_with: "carregando..."}
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th #
+            %th Nome
+            %th Descrição
+            %th Status
+            %th Ações
+        %tbody.index-document_type
+          = render 'index'

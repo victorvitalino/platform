@@ -1,19 +1,18 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 
-          Sistema
-          = link_to 'Novo sistema', new_system_path, remote: true, class: 'btn btn-success pull-right btn-sm'
-    .panel-body
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-        %table.table.table-hover.table-bordered.datatable
-          %thead
-            %tr
-              %th Nome
-              %th Código
-              %th Módulo
-              %th Status
-              %th Ações
-          %tbody.index-system
-            = render 'index'
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Sistema
+        = link_to 'Novo sistema', new_system_path, remote: true, class: 'pull-right'
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table.table.table-hover.table-bordered.datatable
+        %thead
+          %tr
+            %th Nome
+            %th Código
+            %th Módulo
+            %th Status
+            %th Ações
+        %tbody.index-system
+          = render 'index'

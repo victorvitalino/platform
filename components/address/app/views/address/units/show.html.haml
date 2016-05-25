@@ -1,132 +1,131 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Dados do endereço
-    .panel-body
-      .row
-        .col-md-12
-          .row
-            .col-md-4
-              %label Cidade:
-              = @unit.city.name if @unit.city.present?
-            .col-md-4
-              %label Endereço completo:
-              = @unit.complete_address
-          .row
-            .col-md-8
-              %label CEP:
-              = @unit.cep_unit
-          .row
-            .col-md-8
-              %label Area:
-              = @unit.area
-          .row
-            .col-md-4
-              %label Doado:
-              = @unit.donate ? "Sim" : "Não"
-            .col-md-4
-              %label Data de Doação:
-              = @unit.date_donate.strftime('%d/%m/%Y') if @unit.date_donate.present?
-          .row
-            .col-md-4
-              %label Registro de IPTU:
-              = @unit.registration_iptu
-            .col-md-4
-              %label Data de Iptu:
-              = @unit.date_iptu.strftime('%d/%m/%Y') if @unit.date_iptu.present?
-          .row
-            .col-md-4
-              %label Situação:
-              = @unit.situation_unit.description if @unit.situation_unit.present?
-            .col-md-4
-              %label Escriturado?:
-              = @unit.registry_units.last.situation if @unit.registry_units.present?
-          .row
-            .col-md-8
-              %label Empreendimento:
-              = @unit.enterprises.name if @unit.enterprises.present?
-          - if @unit.notary_offices.present?
-            - @offices = @unit.notary_offices.last
-            %hr
-            %h4
-              Dados do cartório
-            .row
-              .col-md-4
-                %label Matrícula da Unidade:
-                = @offices.unit_code
-              .col-md-4
-                %label Cartório:
-                = @offices.office
-            .row
-              .col-md-4
-                %label Data da Matrícula:
-                = @offices.date_code.strftime('%d/%m/%Y') if @offices.date_code.present?
-              .col-md-4
-                %label Data da Assinatura:
-                = @offices.date_signature.strftime('%d/%m/%Y') if @offices.date_signature.present?
-            .row
-              .col-md-4
-                %label Matrícula do contrato:
-                = @offices.code_contract
-              .col-md-4
-                %label Data da Anoreg:
-                = @offices.date_anoreg.strftime('%d/%m/%Y') if @offices.date_anoreg.present?
-            .row
-              .col-md-4
-                %label Ato declaratório:
-                = @offices.declaratory_act_number
-              .col-md-4
-                %label Data da Ato:
-                = @offices.date_act_declaratory.strftime('%d/%m/%Y') if @offices.date_act_declaratory.present?
-          - if @unit.cadastre_address.present?
-            %hr
-            - @cadastre = @unit.cadastre_address.order('created_at asc').last.cadastre
-            - if @cadastre.present?
-              %h4
-                Dados do Morador
-              .row
-                .col-md-4
-                  %label Nome:
-                  = @cadastre.name
-                .col-md-4
-                  %label CPF:
-                  = link_to @cadastre.cpf, candidate.cadastres_path(cpf: @cadastre.cpf)
-                .col-md-4
-                  %label Processo:
-                  = @cadastre.cadastre_procedurals.last.old_process if @cadastre.cadastre_procedurals.present?
-              .row
-                .col-md-4
-                  %label Situação candidato:
-                  = @cadastre.cadastre_situations.last.situation_status.name if @cadastre.cadastre_situations.present?
-                .col-md-4
-                  %label situação de processo:
-                  = @cadastre.cadastre_procedurals.last.procedural_status.name if @cadastre.cadastre_procedurals.present?
-            %hr
-            .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-              %table#data-table-command.table.table-striped.table-bordered
-                %thead
-                  %tr
-                    %th Nome
-                    %th CPF
-                    %th Cadeia Dominial
-                    %th Data
-                    %th Recebimento
-                %tbody
-                  - @unit.cadastre_address.each do |a|
-                    %tr
-                      %td= a.cadastre.name if a.cadastre.present?
-                      %td= a.cadastre.cpf if a.cadastre.present?
-                      %td= a.dominial_chain
-                      %td= a.created_at.strftime('%d/%m/%Y')
-                      - if a.type_receipt == 1
-                        %td= "Transferência"
-                      - elsif a.type_receipt == 0
-                        %td= "SEDUH/CODHAB"
-                      - else
-                        %td= ""
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Dados do endereço
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-4
+            %label Cidade:
+            = @unit.city.name if @unit.city.present?
+          .col-md-4
+            %label Endereço completo:
+            = @unit.complete_address
+        .row
+          .col-md-8
+            %label CEP:
+            = @unit.cep_unit
+        .row
+          .col-md-8
+            %label Area:
+            = @unit.area
+        .row
+          .col-md-4
+            %label Doado:
+            = @unit.donate ? "Sim" : "Não"
+          .col-md-4
+            %label Data de Doação:
+            = @unit.date_donate.strftime('%d/%m/%Y') if @unit.date_donate.present?
+        .row
+          .col-md-4
+            %label Registro de IPTU:
+            = @unit.registration_iptu
+          .col-md-4
+            %label Data de Iptu:
+            = @unit.date_iptu.strftime('%d/%m/%Y') if @unit.date_iptu.present?
+        .row
+          .col-md-4
+            %label Situação:
+            = @unit.situation_unit.description if @unit.situation_unit.present?
+          .col-md-4
+            %label Escriturado?:
+            = @unit.registry_units.last.situation if @unit.registry_units.present?
+        .row
+          .col-md-8
+            %label Empreendimento:
+            = @unit.enterprises.name if @unit.enterprises.present?
+        - if @unit.notary_offices.present?
+          - @offices = @unit.notary_offices.last
           %hr
+          %h4
+            Dados do cartório
           .row
             .col-md-4
-              = link_to "voltar",  units_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}
+              %label Matrícula da Unidade:
+              = @offices.unit_code
+            .col-md-4
+              %label Cartório:
+              = @offices.office
+          .row
+            .col-md-4
+              %label Data da Matrícula:
+              = @offices.date_code.strftime('%d/%m/%Y') if @offices.date_code.present?
+            .col-md-4
+              %label Data da Assinatura:
+              = @offices.date_signature.strftime('%d/%m/%Y') if @offices.date_signature.present?
+          .row
+            .col-md-4
+              %label Matrícula do contrato:
+              = @offices.code_contract
+            .col-md-4
+              %label Data da Anoreg:
+              = @offices.date_anoreg.strftime('%d/%m/%Y') if @offices.date_anoreg.present?
+          .row
+            .col-md-4
+              %label Ato declaratório:
+              = @offices.declaratory_act_number
+            .col-md-4
+              %label Data da Ato:
+              = @offices.date_act_declaratory.strftime('%d/%m/%Y') if @offices.date_act_declaratory.present?
+        - if @unit.cadastre_address.present?
+          %hr
+          - @cadastre = @unit.cadastre_address.order('created_at asc').last.cadastre
+          - if @cadastre.present?
+            %h4
+              Dados do Morador
+            .row
+              .col-md-4
+                %label Nome:
+                = @cadastre.name
+              .col-md-4
+                %label CPF:
+                = link_to @cadastre.cpf, candidate.cadastres_path(cpf: @cadastre.cpf)
+              .col-md-4
+                %label Processo:
+                = @cadastre.cadastre_procedurals.last.old_process if @cadastre.cadastre_procedurals.present?
+            .row
+              .col-md-4
+                %label Situação candidato:
+                = @cadastre.cadastre_situations.last.situation_status.name if @cadastre.cadastre_situations.present?
+              .col-md-4
+                %label situação de processo:
+                = @cadastre.cadastre_procedurals.last.procedural_status.name if @cadastre.cadastre_procedurals.present?
+          %hr
+          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+            %table#data-table-command.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Nome
+                  %th CPF
+                  %th Cadeia Dominial
+                  %th Data
+                  %th Recebimento
+              %tbody
+                - @unit.cadastre_address.each do |a|
+                  %tr
+                    %td= a.cadastre.name if a.cadastre.present?
+                    %td= a.cadastre.cpf if a.cadastre.present?
+                    %td= a.dominial_chain
+                    %td= a.created_at.strftime('%d/%m/%Y')
+                    - if a.type_receipt == 1
+                      %td= "Transferência"
+                    - elsif a.type_receipt == 0
+                      %td= "SEDUH/CODHAB"
+                    - else
+                      %td= ""
+        %hr
+        .row.no-print
+          .col-md-4
+            = link_to "voltar",  units_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}

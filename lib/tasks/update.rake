@@ -9,23 +9,23 @@ namespace :update do
     @index = 0
 
 
-    CSV.foreach("lib/files/indi_cad.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/obs_2.csv", :col_sep => "#") do |row|
 
            #staff = Person::Staff.find_by_code(row[3]).id rescue nil
 
 
-           @model = Indication::Cadastre.new(
-           allotment_id: row[2],
+           @model = Candidate::CadastreActivity.new(
            cadastre_id: row[1],
-           program_id: row[5],
-           pontuation_id: row[4],
-           zone: row[3],
-           created_at: row[0],
+           activity_status_id: 11,
+           type_activity: 0,
+           status: true,
+           type_ocurrency: 1,
+           observation:row[0].strip,
 
            )
 
           #puts @model.inspect
-          @model.save!
+          @model.save
 
         #    puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
         #  end
