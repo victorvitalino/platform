@@ -1,111 +1,105 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-    .panel-body
-      .row
-        .col-md-12
-          %section
-            %h2.bold Assentar
-          %hr/
-          %section
-            - if @candidate.present?
-              - @candidate_last = @candidate.last
-              .row
-                .col-md-12
-                  .bootstrap-table
-                    %table.table.table-striped.table-bordered.table-condensed
-                      %thead{:style => "display: table-header-group;"}
-                        %tr
-                          %th Nome
-                          %th CPF
-                          %th Status
-                          %th Situação de Processo
-                      %tbody
-                        %tr
-                          %td= @candidate_last.cadastre.name
-                          %td= @candidate_last.cadastre.cpf
-                          %td= @candidate_last.cadastre.current_situation_name
-                          %td= @candidate_last.cadastre.cadastre_procedurals.last.procedural_status.name.upcase
-              .row
-                .col-md-12
-                  .bootstrap-table
-                    %table.table.table-striped.table-bordered.table-condensed
-                      %thead{:style => "display: table-header-group;"}
-                        %tr
-                          %th{:colspan => "2"} Endereço
-                          %th Cidade
-                          %th Data TCU
-                      %tbody
-                        %tr
-                          %td{:colspan => "2"}= @candidate_last.unit.complete_address
-                          %td= @candidate_last.unit.city.name
-                          %td= @candidate_last.created_at.strftime('%d/%m/%Y')
-                      %thead{:style => "display: table-header-group;"}
-                        %tr
-                          %th Doado
-                          %th Escriturado
-                          %th Inscrição IPTU
-                          %th Situação do Imóvel
-                      %tbody
-                        %tr
-                          %td= @candidate_last.unit.donate ? "Sim" : "Não"
-                          %td= @candidate_last.unit.registry_units.last.situation
-                          %td= @candidate_last.unit.registration_iptu
-                          %td= @candidate_last.unit.situation_unit.description
-              .row
-                .col-md-12
-                  .bootstrap-table
-                    %table.table.table-striped.table-bordered.table-condensed
-                      %thead{:style => "display: table-header-group;"}
-                        %tr
-                          %th{:colspan => "2"} Endereço
-                          %th Cidade
-                          %th Data TCU
-                      %tbody
-                        %tr
-                          %td{:colspan => "2"}= @candidate_last.unit.complete_address
-                          %td= @candidate_last.unit.city.name
-                          %td= @candidate_last.created_at.strftime('%d/%m/%Y')
-              .row
-                .col-md-12
-                  .bootstrap-table
-                    %table.table.table-striped.table-bordered.table-condensed
-                      %thead{:style => "display: table-header-group;"}
-                        %tr
-                          %th{:colspan => "2"} Nome
-                          %th CPF
-                          %th Cadeia Dominial
-                          %th Data
-                      %tbody
-                        - if @candidate.present?
-                          - @candidate.each do |a|
-                            %tr
-                              %td{:colspan => "2"}= a.cadastre.name if a.cadastre.present?
-                              %td= a.cadastre.cpf if a.cadastre.present?
-                              %td= a.dominial_chain
-                              %td= a.created_at.strftime('%d/%m/%Y')
-              .row
-                .col-md-12
-                  = simple_form_for @cadastre_address  do |f|
-                    = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate_last.id}
-                    = f.input :unit_id, as: :hidden,  input_html:{ value: @candidate_last.unit.id}
-                    .row
-                      .col-md-2
-                        = f.label  "Data de Distribuição", as: 'string',  class: 'fg-label'
-                        = f.input :created_at, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@cadastre_address.created_at) ? localize(f.object.created_at) : nil}
-                      .col-md-3
-                        = f.label  "se regularização por Decreto, informar: ", class: 'fg-label'
-                        = f.input :regularization_type_id, as: 'select', collection: Candidate::RegularizationType.all, label: false, prompt: "Selecione..."
-                    .row
-                      .col-md-5
-                        = f.label :observation, class: 'fg-label'
-                        = f.input :observation, label: false, as: 'text', input_html: {placeholder: 'Observação'}
-                    .row
-                      .col-md-2
-                        = f.submit 'Assentar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
-
-
-
-
-
+.panel.panel-default
+  .panel-heading
+    .panel-title
+  .panel-body
+    .row
+      .col-md-12
+        %section
+          %h2.bold Assentar
+        %hr/
+        %section
+          - if @candidate.present?
+            - @candidate_last = @candidate.last
+            .row
+              .col-md-12
+                .bootstrap-table
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th Nome
+                        %th CPF
+                        %th Status
+                        %th Situação de Processo
+                    %tbody
+                      %tr
+                        %td= @candidate_last.cadastre.name
+                        %td= @candidate_last.cadastre.cpf
+                        %td= @candidate_last.cadastre.current_situation_name
+                        %td= @candidate_last.cadastre.cadastre_procedurals.last.procedural_status.name.upcase
+            .row
+              .col-md-12
+                .bootstrap-table
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th{:colspan => "2"} Endereço
+                        %th Cidade
+                        %th Data TCU
+                    %tbody
+                      %tr
+                        %td{:colspan => "2"}= @candidate_last.unit.complete_address
+                        %td= @candidate_last.unit.city.name
+                        %td= @candidate_last.created_at.strftime('%d/%m/%Y')
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th Doado
+                        %th Escriturado
+                        %th Inscrição IPTU
+                        %th Situação do Imóvel
+                    %tbody
+                      %tr
+                        %td= @candidate_last.unit.donate ? "Sim" : "Não"
+                        %td= @candidate_last.unit.registry_units.last.situation
+                        %td= @candidate_last.unit.registration_iptu
+                        %td= @candidate_last.unit.situation_unit.description
+            .row
+              .col-md-12
+                .bootstrap-table
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th{:colspan => "2"} Endereço
+                        %th Cidade
+                        %th Data TCU
+                    %tbody
+                      %tr
+                        %td{:colspan => "2"}= @candidate_last.unit.complete_address
+                        %td= @candidate_last.unit.city.name
+                        %td= @candidate_last.created_at.strftime('%d/%m/%Y')
+            .row
+              .col-md-12
+                .bootstrap-table
+                  %table.table.table-striped.table-bordered.table-condensed
+                    %thead{:style => "display: table-header-group;"}
+                      %tr
+                        %th{:colspan => "2"} Nome
+                        %th CPF
+                        %th Cadeia Dominial
+                        %th Data
+                    %tbody
+                      - if @candidate.present?
+                        - @candidate.each do |a|
+                          %tr
+                            %td{:colspan => "2"}= a.cadastre.name if a.cadastre.present?
+                            %td= a.cadastre.cpf if a.cadastre.present?
+                            %td= a.dominial_chain
+                            %td= a.created_at.strftime('%d/%m/%Y')
+            .row
+              .col-md-12
+                = simple_form_for @cadastre_address  do |f|
+                  = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate_last.id}
+                  = f.input :unit_id, as: :hidden,  input_html:{ value: @candidate_last.unit.id}
+                  .row
+                    .col-md-2
+                      = f.label  "Data de Distribuição", as: 'string',  class: 'fg-label'
+                      = f.input :created_at, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@cadastre_address.created_at) ? localize(f.object.created_at) : nil}
+                    .col-md-3
+                      = f.label  "se regularização por Decreto, informar: ", class: 'fg-label'
+                      = f.input :regularization_type_id, as: 'select', collection: Candidate::RegularizationType.all, label: false, prompt: "Selecione..."
+                  .row
+                    .col-md-5
+                      = f.label :observation, class: 'fg-label'
+                      = f.input :observation, label: false, as: 'text', input_html: {placeholder: 'Observação'}
+                  .row
+                    .col-md-2
+                      = f.submit 'Assentar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}

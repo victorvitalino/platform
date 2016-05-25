@@ -1,33 +1,32 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Listagem de solicitações
-          = link_to 'Nova Resposta', new_solicitation_solicitation_reply_path(@solicitation),class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}  if policy(:solicitation_reply, namespace: Protocol).create?
-    .panel-body
-      .row
-        .col-md-12
-          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-            %table#data-table-command.table.table-striped.table-bordered
-              %thead
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Listagem de solicitações
+        = link_to 'Nova Resposta', new_solicitation_solicitation_reply_path(@solicitation),class: 'pull-right',data: {disable_with: "carregando..."}  if policy(:solicitation_reply, namespace: Protocol).create?
+  .panel-body
+    .row
+      .col-md-12
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table#data-table-command.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Número
+                %th Tipo de Documento
+                %th Solicitante
+                %th Ações
+            %tbody
+              - @solicitation_replies.each do |a|
                 %tr
-                  %th Número
-                  %th Tipo de Documento
-                  %th Solicitante
-                  %th Ações
-              %tbody
-                - @solicitation_replies.each do |a|
-                  %tr
-                    %td
-                      = @solicitation.assessment.document_number
-                    %td
-                      = @solicitation.assessment.document_type.name if @solicitation.assessment.document_type.present?
-                    %td
-                      = a.providence.name if a.providence.present?
-                    %td.col-md-2
-                      = link_to "", edit_solicitation_solicitation_reply_path(a,solicitation_id: @solicitation), title: "editar",  class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}
-                      = link_to "", solicitation_solicitation_reply_path(a,solicitation_id: @solicitation), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
-                      - if policy(:solicitation_reply, namespace: Protocol).validate?
-                        %span{class: "tr-#{a.id}"}
-                          = link_validate_to a.id
+                  %td
+                    = @solicitation.assessment.document_number
+                  %td
+                    = @solicitation.assessment.document_type.name if @solicitation.assessment.document_type.present?
+                  %td
+                    = a.providence.name if a.providence.present?
+                  %td.col-md-2
+                    = link_to "", edit_solicitation_solicitation_reply_path(a,solicitation_id: @solicitation), title: "editar",  class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+                    = link_to "", solicitation_solicitation_reply_path(a,solicitation_id: @solicitation), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
+                    - if policy(:solicitation_reply, namespace: Protocol).validate?
+                      %span{class: "tr-#{a.id}"}
+                        = link_validate_to a.id

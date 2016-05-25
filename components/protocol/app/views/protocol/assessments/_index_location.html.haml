@@ -1,32 +1,31 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Localização
-    .panel-body
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table#data-table-command.table.table-striped.table-bordered
-        %thead
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Localização
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th Número
+          %th Armário
+          %th Prateleira
+          %th Caixa
+          %th Caminho de rede
+          %th Obersevação
+      %tbody
+        - @locations.each_with_index do |j, i|
           %tr
-            %th Número
-            %th Armário
-            %th Prateleira
-            %th Caixa
-            %th Caminho de rede
-            %th Obersevação
-        %tbody
-          - @locations.each_with_index do |j, i|
-            %tr
-              %td.col-md-1
-                = i + 1
-              %td
-                = j.shelf
-              %td
-                = j.pile
-              %td
-                = j.box
-              %td
-                = j.network_path
-              %td
-                = j.observation
+            %td.col-md-1
+              = i + 1
+            %td
+              = j.shelf
+            %td
+              = j.pile
+            %td
+              = j.box
+            %td
+              = j.network_path
+            %td
+              = j.observation

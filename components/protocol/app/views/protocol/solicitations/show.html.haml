@@ -1,4 +1,4 @@
-.panel
+.panel.panel-default
   .panel-heading
     .panel-title
       %h4
@@ -25,6 +25,6 @@
             %label Observação:
             = @solicitation.observation
         %hr
-        .row
+        .row.no-print
           .col-md-4
             = link_to "Voltar", solicitations_path, class: 'btn btn-default btn-xs'

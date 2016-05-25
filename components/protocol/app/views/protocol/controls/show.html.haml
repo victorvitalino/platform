@@ -1,4 +1,4 @@
-.panel
+.panel.panel-default
   .panel-heading
     .panel-title
       %h4
@@ -32,6 +32,6 @@
             %label Ármario:
             = @control.assessment.locations.last.shelf if @control.assessment.present? && @control.assessment.locations.present?
         %hr
-        .row
+        .row.no-print
           .col-md-4
             = link_to "Voltar", controls_path, class: 'btn btn-default btn-xs'
