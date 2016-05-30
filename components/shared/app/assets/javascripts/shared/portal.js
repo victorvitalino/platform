@@ -14,3 +14,4 @@
 //= require portal/js/canvasjs.min
 //= require portal/js/raphael-min
 //= require portal/js/morris-0.4.1.min
+//= require moment

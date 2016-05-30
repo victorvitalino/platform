@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520184749) do
+ActiveRecord::Schema.define(version: 20160530175608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -807,6 +807,8 @@ ActiveRecord::Schema.define(version: 20160520184749) do
     t.boolean  "inactive"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "source_list"
+    t.integer  "zone"
   end
 
   add_index "candidate_enterprise_cadastres", ["cadastre_id"], name: "index_candidate_enterprise_cadastres_on_cadastre_id", using: :btree
@@ -1742,6 +1744,7 @@ ActiveRecord::Schema.define(version: 20160520184749) do
     t.string   "zone"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "source_list"
   end
 
   add_index "indication_cadastres", ["allotment_id"], name: "index_indication_cadastres_on_allotment_id", using: :btree

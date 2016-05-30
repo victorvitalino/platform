@@ -1,7 +1,8 @@
 module Indication
   class Cadastre < ActiveRecord::Base
     belongs_to :cadastre, class_name: "Candidate::Cadastre"
-   
+    belongs_to :allotment
+    
     has_many :enterprise_cadastres, foreign_key: 'indication_cadastre_id', class_name: "Candidate::EnterpriseCadastre"
     
     scope :prepare_enterprise, -> (enterprise_id) {
