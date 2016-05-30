@@ -4,7 +4,13 @@ module Candidate
     belongs_to :convocation
     belongs_to :cadastre
 
-  private
+
+
+    def current_status_procedural
+        self.procedural_status.name if procedural_status.present?
+    end
+
+    private
 
     def self.create_procedural(mirror_id, cadastre_id, procedural_status,convocation,assessment, process)
          @cadastre_procedurals = Candidate::CadastreProcedural.new

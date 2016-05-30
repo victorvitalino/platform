@@ -219,7 +219,8 @@ text-align: center;
 }
 .imagem-pagina-interna img{
 
-  height: 337px;
+  height: 557px;
+
 }
 .paddingbottom20{
   padding-bottom: 20px;
@@ -253,6 +254,9 @@ text-align: center;
   font-weight: 600;
 }
 /*habitabrasilia*/
+.body{
+  background-color: #fff;
+}
 .widthimg{
   width: 100%;
 }
@@ -269,7 +273,11 @@ width: 100%;
 text-align: center;
 margin-bottom: 57px;
     margin-top: 43px;
-
+}
+.title1{
+  width: 747px;
+  margin-left: 379px;
+margin-bottom: 50px;
 }
 .gallerys_title{
   background-color:#dd3858;
@@ -299,4 +307,7 @@ margin-bottom: 57px;
   text-align: center;
   font-size: 20px;
 
+}
+.conhecafooter{
+  margin-bottom: 100px;
 }
