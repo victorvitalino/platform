@@ -1,4 +1,4 @@
-.panel
+.panel.panel-default
   .panel-heading
     .panel-title
       %h4
@@ -52,6 +52,6 @@
             %label Data da validação:
             = @solicitation_reply.authenticate_date.strftime('%d/%m/%Y') if @solicitation_reply.authenticate_date.present?
         %hr
-        .row
+        .row.no-print
           .col-md-4
             = link_to "Voltar", solicitation_solicitation_replies_path(@solicitation), class: 'btn btn-default btn-xs'

@@ -1,29 +1,28 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Documentos Anexos/Apensos
-    .panel-body
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table#data-table-command.table.table-striped.table-bordered
-        %thead
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Documentos Anexos/Apensos
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th
+          %th Número Documento
+          %th Tipo de Documento
+          %th Tipo
+          %th Data
+      %tbody
+        - @attach_document.each_with_index do |j, i|
           %tr
-            %th
-            %th Número Documento
-            %th Tipo de Documento
-            %th Tipo
-            %th Data
-        %tbody
-          - @attach_document.each_with_index do |j, i|
-            %tr
-              %td.col-md-1
-                = i + 1
-              %td
-                = j.document_child.document_number if j.document_child.present?
-              %td
-                = j.document_child.document_type.name if j.document_child.present?
-              %td
-                = j.attach_type_i18n
-              %td
-                = j.created_at.strftime('%d/%m/%Y - %H:%M')
+            %td.col-md-1
+              = i + 1
+            %td
+              = j.document_child.document_number if j.document_child.present?
+            %td
+              = j.document_child.document_type.name if j.document_child.present?
+            %td
+              = j.attach_type_i18n
+            %td
+              = j.created_at.strftime('%d/%m/%Y - %H:%M')

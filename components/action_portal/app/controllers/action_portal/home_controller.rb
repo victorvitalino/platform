@@ -10,6 +10,10 @@ module ActionPortal
     end
 
     def cadastro
-    end  
+    end
+
+    def galeria
+      @galerias = Cms::Post.where(publish:true, post_category:'3').order(created_at: :desc)
+    end
   end
 end

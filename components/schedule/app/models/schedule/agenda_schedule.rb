@@ -4,6 +4,7 @@ module Schedule
     scope :by_date,   -> (date = Date.today) {where(date: Date.parse(date))}
     scope :by_status, -> (status) {where(status: status)}
     scope :by_cpf,    -> (cpf) {where(cpf: cpf)}
+    scope :by_cnpj,   -> (cnpj) {where(cnpj: cnpj)}
     scope :by_hour,   -> (hour) {where(hour: hour)}
 
     belongs_to :city, class_name: "Address::City"

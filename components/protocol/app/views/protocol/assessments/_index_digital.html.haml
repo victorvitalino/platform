@@ -1,23 +1,22 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Digitalizações
-    .panel-body
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table#data-table-command.table.table-striped.table-bordered
-        %thead
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Digitalizações
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+    %table#data-table-command.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th #
+          %th Página
+          %th Documento
+      %tbody.index-docs
+        - @digital_docs.each_with_index do |j, i|
           %tr
-            %th #
-            %th Página
-            %th Documento
-        %tbody.index-docs
-          - @digital_docs.each_with_index do |j, i|
-            %tr
-              %td.col-md-1
-                = i + 1
-              %td
-                = j.page_number
-              %td
-                = link_to "Visualizar", j.doc_path_url, target: '_blank'
+            %td.col-md-1
+              = i + 1
+            %td
+              = j.page_number
+            %td
+              = link_to "Visualizar", j.doc_path_url, target: '_blank'

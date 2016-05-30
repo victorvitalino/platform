@@ -279,6 +279,21 @@ margin-bottom: 57px;
   margin-left: 379px;
 margin-bottom: 50px;
 }
+.gallery_title{
+  background-color:#dd3858;
+  color:#fff;
+
+  text-align: left;
+}
+.gallery_title span{
+  font-size: 48px;
+  display: block;
+  padding: 42px;
+}
+.box_galerias{
+  padding: 40px;
+
+}
 .icon_home_habita{
   text-align: center;
 }
@@ -291,6 +306,7 @@ margin-bottom: 50px;
 .text_conheca{
   text-align: center;
   font-size: 20px;
+
 }
 .conhecafooter{
   margin-bottom: 100px;

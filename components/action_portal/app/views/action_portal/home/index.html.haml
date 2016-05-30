@@ -31,7 +31,7 @@
       .box_internal {
         box-shadow: none !important;
       }
-
+      #map { height: 500px; }
 
   %body
     = render 'partials/shared/portal/top_nav'
@@ -42,5 +42,20 @@
           .col-md-12.container
             = render 'partials/slider'
             = render 'partials/home'
+        .row
+          .col-md-12.no_padding
+            #map
     = render 'partials/shared/portal/footer'
 :javascript
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -15.795268, lng: -47.883911},
+      zoom: 8
+    });
+  var ctaLayer = new google.maps.KmlLayer({
+    url: '/as.kml',
+    map: map
+  });
+  }
+%script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyC19AcSjRaoMzPqsBOc7n6S09fs-hOY4Z4&callback=initMap"}

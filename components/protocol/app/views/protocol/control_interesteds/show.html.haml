@@ -1,4 +1,4 @@
-.panel
+.panel.panel-default
   .panel-heading
     .panel-title
       %h4
@@ -44,6 +44,6 @@
             %label Fax:
             = @control_interested.fax
         %hr
-        .row
+        .row.no-print
           .col-md-4
             = link_to "Voltar", control_control_interesteds_path(@control.id), class: 'btn btn-default btn-xs'

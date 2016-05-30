@@ -10,8 +10,8 @@ module Juridical
 
 
     def index
-            @legal_advices = LegalAdvice.order(created_at: :desc)
-            @legal_advices = apply_scopes(@legal_advices).paginate(:page => params[:page], :per_page => 20)
+      @legal_advices = LegalAdvice.order(created_at: :desc)
+      @legal_advices = apply_scopes(@legal_advices).paginate(:page => params[:page], :per_page => 20)
     end
 
 
@@ -41,7 +41,7 @@ module Juridical
          @data = []
           doc.xpath('//tr').each_with_index do |link, index|
             @data[index] =  []
-            link.css('td').each_with_index do |a, i|
+            link.xpath('td').each_with_index do |a, i|
               #@teste = a.inner_html
               @data[index][i] = a.text
 

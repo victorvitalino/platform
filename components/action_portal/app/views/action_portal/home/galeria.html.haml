@@ -1,0 +1,35 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Portal Codhab
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag 'shared/portal', media: 'all'
+    = javascript_include_tag 'shared/portal', media: 'all'
+    = csrf_meta_tags
+
+  %body
+    = render 'partials/shared/portal/top_nav'
+    = render 'partials/shared/portal/header'
+    %div{class: (controller_name != 'home') ? 'container main' : '' }
+      .container
+        .row
+          .col-md-12.no_padding
+            .gallery_title
+              %span
+                Galeria Urbana
+        .row
+          .col-md-12.no_padding
+            .box_internal
+              - @galerias.each do |galeria|
+                .box_galerias
+                  %h2
+                    = galeria.title
+                  %p
+                    = galeria.content.html_safe
+                  - if galeria.flickr
+                    = galeria.flickr.html_safe
+                %hr
+
+
+    = render 'partials/shared/portal/footer'
+:javascript

@@ -20,6 +20,9 @@
             = f.label "CPF"
             = f.input :cpf, label: false, as: :string, input_html: { name: 'by_cpf', value: params[:by_cpf]}
           .col-md-2
+            = f.label "CNPJ"
+            = f.input :cnpj, label: false, as: :string, input_html: { name: 'by_cnpj', value: params[:by_cnpj]}
+          .col-md-2
             = f.label "horário"
             = f.input :hour, label: false, as: :string, input_html: { name: 'by_hour', value: params[:by_hour], class: 'hour'}
           .col-md-2{style: 'padding-top:24px'}
