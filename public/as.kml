@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+	<Document>
+		<name>Ações - Assistência Técnica</name>
+		<description><![CDATA[]]></description>
+		<Folder>
+			<name>Camada sem título</name>
+			<Placemark>
+				<name>PAT- Sol Nascente</name>
+				<styleUrl>#icon-961-777777-nodesc</styleUrl>
+				<Point>
+					<coordinates>-48.12945400000001,-15.835921400000002,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>PAT - Estrutural</name>
+				<styleUrl>#icon-961-777777-nodesc</styleUrl>
+				<Point>
+					<coordinates>-47.9970521,-15.7822934,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>PAT - Buritizinho</name>
+				<styleUrl>#icon-961-777777-nodesc</styleUrl>
+				<Point>
+					<coordinates>-47.8284994,-15.6477118,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>PAT - Fercal</name>
+				<styleUrl>#icon-961-777777-nodesc</styleUrl>
+				<Point>
+					<coordinates>-47.8701434,-15.601221299999999,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>PAT - Pôr do Sol</name>
+				<styleUrl>#icon-961-777777-nodesc</styleUrl>
+				<Point>
+					<coordinates>-48.1179647,-15.8566836,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>PAT - Vila Cauhy</name>
+				<styleUrl>#icon-961-777777-nodesc</styleUrl>
+				<Point>
+					<coordinates>-47.9605982,-15.874907700000001,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>PAT - Porto Rico</name>
+				<styleUrl>#icon-961-777777-nodesc</styleUrl>
+				<Point>
+					<coordinates>-48.0214387,-16.0354018,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>PAT - São Sebastião</name>
+				<styleUrl>#icon-961-777777-nodesc</styleUrl>
+				<Point>
+					<coordinates>-47.769354,-15.909810900000002,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>PAT - Brazlandia</name>
+				<description><![CDATA[Vila São José]]></description>
+				<styleUrl>#icon-961-777777</styleUrl>
+				<Point>
+					<coordinates>-48.194747,-15.684965299999998,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>PAT - QNR</name>
+				<styleUrl>#icon-961-777777-nodesc</styleUrl>
+				<Point>
+					<coordinates>-48.15884830000001,-15.801162899999998,0.0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Folder>
+			<name>Camada sem título</name>
+			<Placemark>
+				<name>SPFM - 1ª Ação</name>
+				<description><![CDATA[Parque Infantil]]></description>
+				<styleUrl>#poly-7C3592-0-140</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>1</tessellate>
+							<coordinates>-47.7693044,-15.9096613,0.0 -47.7691273,-15.9097967,0.0 -47.7690509,-15.9097076,0.0 -47.7692226,-15.9095722,0.0 -47.7693044,-15.9096613,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<name>SPFM - 1ª Ação</name>
+				<description><![CDATA[Painel Artístico]]></description>
+				<styleUrl>#poly-7C3592-1-201</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>1</tessellate>
+							<coordinates>-47.7693875,-15.909542600000002,0.0 -47.7693701,-15.909558099999998,0.0 -47.7693164,-15.9095026,0.0 -47.7693312,-15.909485900000002,0.0 -47.7693875,-15.909542600000002,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+		</Folder>
+		<Folder>
+			<name>Ações realizadas</name>
+			<Placemark>
+				<name>Ação #1 - SERFM
+</name>
+				<description><![CDATA[24 de outubro de 2015 - ações: pintura de fachadas. Org. Erick, Fred, Luiz, Lucélia.]]></description>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<Point>
+					<coordinates>-48.127622,-15.834858299999999,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Ação #2 - Ação Urbana Comunitária
+</name>
+				<description><![CDATA[30 de abril de 2016 - sábado.                         ações: SERFM, Botando Verde, re(ciclo) Urbano + galeria. Org. Luiz Sarmento, Isabela Gardes]]></description>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<Point>
+					<coordinates>-48.1347513,-15.835358900000001,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Ação #3 - Pôr do Sol
+</name>
+				<description><![CDATA[21 de maio de 2016 - ações: SERFM, limpeza. Org. Frederico Barboza, Luiz Sarmento.]]></description>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<Point>
+					<coordinates>-48.1213993,-15.8612801,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Ação #4 - prevista
+</name>
+				<description><![CDATA[Org. Sandra]]></description>
+				<styleUrl>#icon-503-F4B400</styleUrl>
+				<Point>
+					<coordinates>-47.7691448,-15.9096638,0.0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Folder>
+			<name>Galeria Urbana da CODHAB</name>
+			<Placemark>
+				<name>Galeria Urbana da Codhab - Obra #1 
+</name>
+				<description><![CDATA[Obra #1<br>título: Conexões geométricas | 24 de outubro de 2015 | autor: Luiz Sarmento | técnica: tapeart]]></description>
+				<styleUrl>#icon-959-0BA9CC</styleUrl>
+				<Point>
+					<coordinates>-48.1279278,-15.8350041,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Galeria Urbana da Codhab - Obra #2
+</name>
+				<description><![CDATA[obra #2<br>título: A praça é o coração da cidade | 30 de abril de 2016 | autores: Alyssa Volpini e Breubs | técnica: grafite]]></description>
+				<styleUrl>#icon-959-0BA9CC</styleUrl>
+				<Point>
+					<coordinates>-48.1349123,-15.8354337,0.0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Style id='icon-503-62AF44-normal'>
+			<IconStyle>
+				<color>ff44AF62</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+		</Style>
+		<Style id='icon-503-62AF44-highlight'>
+			<IconStyle>
+				<color>ff44AF62</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.1</scale>
+			</LabelStyle>
+		</Style>
+		<StyleMap id='icon-503-62AF44'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#icon-503-62AF44-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#icon-503-62AF44-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='icon-503-F4B400-normal'>
+			<IconStyle>
+				<color>ff00B4F4</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+		</Style>
+		<Style id='icon-503-F4B400-highlight'>
+			<IconStyle>
+				<color>ff00B4F4</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.1</scale>
+			</LabelStyle>
+		</Style>
+		<StyleMap id='icon-503-F4B400'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#icon-503-F4B400-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#icon-503-F4B400-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='icon-959-0BA9CC-normal'>
+			<IconStyle>
+				<color>ffCCA90B</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/959-wht-circle-blank.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+		</Style>
+		<Style id='icon-959-0BA9CC-highlight'>
+			<IconStyle>
+				<color>ffCCA90B</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/959-wht-circle-blank.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.1</scale>
+			</LabelStyle>
+		</Style>
+		<StyleMap id='icon-959-0BA9CC'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#icon-959-0BA9CC-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#icon-959-0BA9CC-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='icon-961-777777-normal'>
+			<IconStyle>
+				<color>ff777777</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/961-wht-square-blank.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+		</Style>
+		<Style id='icon-961-777777-highlight'>
+			<IconStyle>
+				<color>ff777777</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/961-wht-square-blank.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.1</scale>
+			</LabelStyle>
+		</Style>
+		<StyleMap id='icon-961-777777'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#icon-961-777777-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#icon-961-777777-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='icon-961-777777-nodesc-normal'>
+			<IconStyle>
+				<color>ff777777</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/961-wht-square-blank.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id='icon-961-777777-nodesc-highlight'>
+			<IconStyle>
+				<color>ff777777</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/961-wht-square-blank.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.1</scale>
+			</LabelStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<StyleMap id='icon-961-777777-nodesc'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#icon-961-777777-nodesc-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#icon-961-777777-nodesc-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='poly-7C3592-0-140-normal'>
+			<LineStyle>
+				<color>ff92357C</color>
+				<width>0</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>8C92357C</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-7C3592-0-140-highlight'>
+			<LineStyle>
+				<color>ff92357C</color>
+				<width>0.0</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>8C92357C</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<StyleMap id='poly-7C3592-0-140'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#poly-7C3592-0-140-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#poly-7C3592-0-140-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='poly-7C3592-1-201-normal'>
+			<LineStyle>
+				<color>ff92357C</color>
+				<width>1</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>C992357C</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-7C3592-1-201-highlight'>
+			<LineStyle>
+				<color>ff92357C</color>
+				<width>2.0</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>C992357C</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<StyleMap id='poly-7C3592-1-201'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#poly-7C3592-1-201-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#poly-7C3592-1-201-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+	</Document>
+</kml>
