@@ -1,3 +1,10 @@
+.filter-button {
+  margin-top: 24px;
+} 
+
+.filter-button:hover {
+  margin-top: 24px;
+} 
 .orange {
   color: #FEAA15 !important;
 }
