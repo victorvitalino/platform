@@ -19,6 +19,11 @@ module IndicationPortal
         @special_count    = @cadastres.where(source_list: 'DEF').count
         @old_count        = @cadastres.where(source_list: 'IDO').count
         @vul_count        = @cadastres.where(source_list: 'VUL').count
+
+        @cadastres_desactive_count    = @cadastres.where(inactive: true).count
+        @cadastres_contemplated_count = @cadastres.contemplated.count
+        @cadastres_in_progress_count  =  @cadastres.in_process.count
+
       else
         @cadastres = nil
       end

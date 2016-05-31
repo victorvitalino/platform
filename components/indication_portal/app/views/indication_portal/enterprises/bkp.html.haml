@@ -1,0 +1,23 @@
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered.table-hover
+                %thead
+                  %tr
+                    %th Nome
+                    %th CPF
+                    %th Programa
+                    %th Faixa
+                    %th Situação Cad.
+                    %th Data
+                %tbody
+                  - @cadastres.order('candidate_cadastres.name').each do |cad|
+                    %tr
+                      %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.cpf)
+                      %td= cad.cadastre.cpf.format_obfuscator_cpf
+                      %td= cad.source_list
+                      %td= "Faixa #{cad.zone}"
+                      %td= cad.cadastre.current_situation_name
+                      %td= cad.created_at.strftime("%d/%m/%Y")
+          .row
+            .col-md-8.col-md-offset-3.paginate
+              = will_paginate @cadastres, renderer: BootstrapPagination::Rails
