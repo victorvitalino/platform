@@ -12,6 +12,7 @@ gem 'jquery-turbolinks'
 gem 'turbolinks', '~> 5.0.0.beta'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'momentjs-rails'
 
 gem 'simple_form'
 gem 'haml-rails'

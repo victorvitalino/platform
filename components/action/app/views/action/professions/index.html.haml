@@ -1,0 +1,28 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Páginas
+      = link_to 'Nova Profissão', new_profession_path,  data: { no_turbolink: true }, class: 'pull-right'
+  .panel-body
+    %br/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Profissão
+              %th Data de Criação
+              %th Última Atualização
+              %th Ações
+
+          %tbody
+            - @professions.each do |profession|
+              %tr
+                %td= profession.id
+                %td= profession.name
+                %td= profession.created_at.strftime('%d/%m/%Y')
+                %td= profession.updated_at.strftime('%d/%m/%Y')
+                %td.col-md-1
+                  = link_to '', edit_profession_path(profession), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false}
+                  = link_to '', profession, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' }

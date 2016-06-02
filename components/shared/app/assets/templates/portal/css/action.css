@@ -2,7 +2,7 @@
 .flexslider_mod{
   border:none;
   margin:0;
-  height: 290px!important;
+  height: 350px!important;
 }
 .flexslider_mod .slides img {
     height: 290px;
@@ -45,7 +45,7 @@
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 .div-image-acao {
-  min-height:290px!important;
+  min-height:350px!important;
 }
 .about_action_text p{
   font-size: 16px;
@@ -107,6 +107,9 @@ font-size: 30px;
 
 .no_padding{
   padding:0px;
+}
+.action_button_galeria{
+  width: 400px;
 }
 .titulo_home{
   font-size: 48px;
@@ -219,7 +222,8 @@ text-align: center;
 }
 .imagem-pagina-interna img{
 
-  height: 337px;
+  height: 557px;
+
 }
 .paddingbottom20{
   padding-bottom: 20px;
@@ -253,12 +257,16 @@ text-align: center;
   font-weight: 600;
 }
 /*habitabrasilia*/
+.body{
+  background-color: #fff;
+}
 .widthimg{
   width: 100%;
 }
 .no_margin{
   margin:0;
 }
+
 .slidetop{
 overflow: hidden;
 width: 100%;
@@ -269,15 +277,19 @@ width: 100%;
 text-align: center;
 margin-bottom: 57px;
     margin-top: 43px;
-
 }
-.gallery_title{
+.title1{
+  width: 747px;
+  margin-left: 379px;
+margin-bottom: 50px;
+}
+.gallerys_title{
   background-color:#dd3858;
   color:#fff;
 
   text-align: left;
 }
-.gallery_title span{
+.gallerys_title span{
   font-size: 48px;
   display: block;
   padding: 42px;
@@ -299,4 +311,7 @@ margin-bottom: 57px;
   text-align: center;
   font-size: 20px;
 
+}
+.conhecafooter{
+  margin-bottom: 100px;
 }

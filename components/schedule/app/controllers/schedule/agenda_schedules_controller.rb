@@ -9,6 +9,7 @@ module Schedule
     has_scope :by_date
     has_scope :by_status
     has_scope :by_cpf
+    has_scope :by_cnpj
     has_scope :by_hour
     
     def index

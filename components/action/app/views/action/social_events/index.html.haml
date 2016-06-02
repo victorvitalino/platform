@@ -1,0 +1,28 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Eventos
+      = link_to 'Novo evento', new_social_event_path,  data: { no_turbolink: true }, class: 'pull-right'
+  .panel-body
+    %br/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Evento
+              %th Data de Criação
+              %th Última Atualização
+              %th Ações
+
+          %tbody
+            - @events.each do |event|
+              %tr
+                %td= event.id
+                %td= event.name
+                %td= event.created_at.strftime('%d/%m/%Y')
+                %td= event.updated_at.strftime('%d/%m/%Y')
+                %td.col-md-1
+                  = link_to '', edit_social_event_path(event), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false}
+                  = link_to '', event, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' }

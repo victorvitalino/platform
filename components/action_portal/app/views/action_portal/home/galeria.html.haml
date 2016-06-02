@@ -14,7 +14,7 @@
       .container
         .row
           .col-md-12.no_padding
-            .gallery_title
+            .gallerys_title
               %span
                 Galeria Urbana
         .row
@@ -22,7 +22,7 @@
             .box_internal
               - @galerias.each do |galeria|
                 .box_galerias
-                  %h2
+                  %h2{:id => "item_#{galeria.id}"}
                     = galeria.title
                   %p
                     = galeria.content.html_safe

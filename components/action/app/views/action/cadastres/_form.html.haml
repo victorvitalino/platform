@@ -1,0 +1,46 @@
+= simple_form_for(@cadastre) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-7
+        = f.input :name, input_html: { placeholder: 'Digite o nome da formação'}
+      .col-md-3
+        = f.label :born, as: 'string', class: 'fg-label'
+        = f.input :born, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@cadastre.born) ? localize(f.object.born) : nil}
+      .col-md-2
+        = f.input :cpf, input_html: { placeholder: 'Digite o cpf'}
+    .row
+      .col-md-4
+        = f.label :state, class: 'fg-label'
+        = f.association :state, label: false, include_blank: false
+      .col-md-4
+        = f.label :city, class: 'fg-label'
+        = f.association :city, label: false, include_blank: false, collection: Address::City.federal_district
+      .col-md-4
+        = f.input :address, input_html: {placeholder: 'Digite o nome da localização'}
+    .row
+      .col-md-4
+        = f.label :profession, class: 'fg-label'
+        = f.association :profession, label: false, include_blank: false
+      .col-md-4
+        = f.label :formation_area, class: 'fg-label'
+        = f.association :formation_area, label: false, include_blank: false
+      .col-md-4
+        = f.label :atuation_area, class: 'fg-label'
+        = f.association :atuation_area, label: false, include_blank: false
+    .row
+      .col-md-3
+        = f.input :nationality, input_html: { placeholder: 'Digite o nacionalidade'}
+      .col-md-3
+        = f.input :phone, input_html: { placeholder: 'Digite o telefone'}
+      .col-md-3
+        = f.input :email, input_html: { placeholder: 'Digite o email'}
+    .row
+      .col-md-3
+        = f.input :password, input_html: {placeholder: 'Digite a senha'}
+      .col-md-3
+        = f.input :password_confirmation, input_html: { placeholder: 'Redigite sua senha'}
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+        = link_to t(:button_back) ,cadastres_path , class: 'btn btn-default'

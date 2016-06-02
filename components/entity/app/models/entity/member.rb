@@ -13,7 +13,7 @@ module Entity
     validates :telephone, presence:  true, numericality: true
     validates :telephone_optional, :celphone, numericality: true, allow_blank: true
     validates :member_job,presence: true
-    validates :certificate_civil_criminal, presence: true, on: :create 
+    #validates :certificate_civil_criminal, presence: true, on: :create 
     validates :cpf, uniqueness: { scope: :cadastre_id}, on: :create
     validate  :unique_cpf, on: :create
 

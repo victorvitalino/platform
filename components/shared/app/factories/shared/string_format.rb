@@ -1,6 +1,14 @@
 module Shared
   module StringFormat
     
+    def percent_string_of(n)
+      if n == 0
+        "0 %"
+      else
+        "#{(self.to_f / n.to_f * 100.0).round(2)} %"
+      end
+    end 
+
     def format_cpf
       @cpf  = self
       @cpf  =~ /(\d{3})\.?(\d{3})\.?(\d{3})-?(\d{2})/
