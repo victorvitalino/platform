@@ -1,0 +1,10 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Editar profissão
+      %span.pull-right
+        = link_to "Voltar para listagem", professions_path
+  .panel-body
+    .row
+      .col-md-12
+        = render 'form'

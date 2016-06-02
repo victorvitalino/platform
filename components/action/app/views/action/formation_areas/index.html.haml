@@ -1,0 +1,28 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Áreas de formação
+      = link_to 'Nova área', new_formation_area_path,  data: { no_turbolink: true }, class: 'pull-right'
+  .panel-body
+    %br/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Formaçao
+              %th Data de Criação
+              %th Última Atualização
+              %th Ações
+
+          %tbody
+            - @formations.each do |formation|
+              %tr
+                %td= formation.id
+                %td= formation.name
+                %td= formation.created_at.strftime('%d/%m/%Y')
+                %td= formation.updated_at.strftime('%d/%m/%Y')
+                %td.col-md-1
+                  = link_to '', edit_formation_area_path(formation), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false}
+                  = link_to '', formation, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' }

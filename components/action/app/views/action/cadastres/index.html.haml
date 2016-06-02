@@ -1,0 +1,28 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Cadastros
+      = link_to 'Novo cadastro', new_cadastre_path,  data: { no_turbolink: true }, class: 'pull-right'
+  .panel-body
+    %br/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Nome
+              %th Data de Criação
+              %th Última Atualização
+              %th Ações
+
+          %tbody
+            - @cadastres.each do |cadastre|
+              %tr
+                %td= cadastre.id
+                %td= cadastre.name
+                %td= cadastre.created_at.strftime('%d/%m/%Y')
+                %td= cadastre.updated_at.strftime('%d/%m/%Y')
+                %td.col-md-1
+                  = link_to '', edit_cadastre_path(cadastre), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false}
+                  = link_to '', cadastre, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' }

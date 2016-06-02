@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  date: 2016-06-01
+  description: MyText
+  situation: 1
+  localization_id: 
+  city_id: 
+
+two:
+  name: MyString
+  date: 2016-06-01
+  description: MyText
+  situation: 1
+  localization_id: 
+  city_id: 

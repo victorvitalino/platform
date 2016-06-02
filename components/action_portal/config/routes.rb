@@ -3,4 +3,5 @@ root "home#index"
 get 'SERFM', to: 'home#serfm'
 get 'cadastro', to: 'home#cadastro'
 get 'galeria', to: 'home#galeria'
+
 end

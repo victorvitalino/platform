@@ -51,10 +51,11 @@
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -15.795268, lng: -47.883911},
-      zoom: 8
+      zoom: 8,
+      mapTypeId: google.maps.MapTypeId.HYBRID
     });
   var ctaLayer = new google.maps.KmlLayer({
-    url: '/as.kml',
+    url: 'http://www.codhab.df.gov.br/acoes.kml',
     map: map
   });
   }

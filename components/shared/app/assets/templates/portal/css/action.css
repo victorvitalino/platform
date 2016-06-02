@@ -2,7 +2,7 @@
 .flexslider_mod{
   border:none;
   margin:0;
-  height: 290px!important;
+  height: 350px!important;
 }
 .flexslider_mod .slides img {
     height: 290px;
@@ -45,7 +45,7 @@
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 .div-image-acao {
-  min-height:290px!important;
+  min-height:350px!important;
 }
 .about_action_text p{
   font-size: 16px;
@@ -107,6 +107,9 @@ font-size: 30px;
 
 .no_padding{
   padding:0px;
+}
+.action_button_galeria{
+  width: 400px;
 }
 .titulo_home{
   font-size: 48px;
@@ -263,6 +266,7 @@ text-align: center;
 .no_margin{
   margin:0;
 }
+
 .slidetop{
 overflow: hidden;
 width: 100%;
