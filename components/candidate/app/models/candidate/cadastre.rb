@@ -38,7 +38,7 @@ module Candidate
 
 
 
-    scope :regularization,  -> {where(program_id: 3)}
+    scope :regularization,  -> {where(program_id: [3,6])}
     scope :habitation,      -> {where(program_id: [1,2,4,5,6,7,8])}
     scope :by_cpf,          -> (cpf = nil) { where(cpf: cpf) }
 
