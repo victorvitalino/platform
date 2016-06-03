@@ -22,7 +22,8 @@ module Candidate
 
     scope :contemplated, -> {
       self.joins('INNER JOIN general_pontuations AS point 
-                  ON point.id = candidate_enterprise_cadastres.cadastre_id')
+                  ON point.id = candidate_enterprise_cadastres.cadastre_id AND 
+                  candidate_enterprise_cadastres.inactive IS NULL')
                   .where('point.situation_status_id IN(7,14)')
     }
 
