@@ -13,10 +13,13 @@ module ActionPortal
     def create
       @cadastre = Action::Cadastre.new(cadastre_params)
       if @cadastre.save
-        redirect_to action: 'new',notice: 'Cadastrado com sucesso'
+        redirect_to action: 'success'
       else
-        render :new
+        render :new, :id => 'aasdf'
       end
+    end
+
+    def success
     end
 
     private
@@ -24,7 +27,8 @@ module ActionPortal
 
       # Only allow a trusted parameter "white list" through.
       def cadastre_params
-        params.require(:cadastre).permit(:name, :cpf, :profession, :formation_area, :atuation_area, :email, :password, :address, :nationality, :phone, :born, :city, :state)
+        params.require(:cadastre).permit(:name, :cpf, :profession, :formation_area, :atuation_area,
+                                      :email, :password, :password_confirmation, :address, :nationality, :phone, :born, :city, :state)
       end
   end
 end

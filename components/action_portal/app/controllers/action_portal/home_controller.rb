@@ -9,6 +9,9 @@ module ActionPortal
     def serfm
     end
 
+    def SERFM_SOL
+    end
+
     def cadastro
     end
 
