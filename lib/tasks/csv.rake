@@ -8,14 +8,13 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/atualizar.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/renda.csv", :col_sep => "#") do |row|
 
 
-           @model = Candidate::EnterpriseCadastre.find_by_cadastre_id(row[0])
+           @model = Candidate::Cadastre.find_by_cpf(row[0])
 
            if @model.present?
-             @model.inactive = true
-             @model.inactive_date = row[1]
+             @model.income = row[1]
            end
 
 

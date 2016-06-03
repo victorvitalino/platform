@@ -9,6 +9,8 @@ module Candidate
 
       @candidate = Cadastre.find_by_cpf(params[:cpf]) rescue nil
       @iptu = Candidate::Iptu.where(cpf: params[:cpf]) rescue nil
+      document_number = @candidate.cadastre_procedurals.last.old_process if @candidate.present? && @candidate.cadastre_procedurals.present?
+      @candidate_assessment = Protocol::Assessment.where("document_number = ? or cpf = ? ",document_number,params[:cpf]) rescue nil
       unless params[:cpf].nil?
        flash[:warning] = "O CPF: <b>#{params[:cpf]}</b> não foi encontrado.".html_safe if @candidate.nil?
       end

@@ -324,9 +324,9 @@
                     %tbody
                       - @candidate_assessment.order(:created_at).each do |assessment|
                         %tr
-                          %td= assessment.document_number
+                          %td= link_to assessment.document_number, protocol.assessment_path(assessment.id), target: "_blank" 
                           %td= assessment.document_type.name
-                          %td= assessment.subjects.name
+                          %td= assessment.subject.name if assessment.subject.present?
                           %td= assessment.observation
                 - else
                   Informação não disponível
