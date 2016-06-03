@@ -16,20 +16,34 @@
           .col-md-12.no_padding
             .gallerys_title
               %span
-                Galeria Urbana
+                QUEM FAZ A DIFERENÇA
+
         .row
-          .col-md-12.no_padding
-            .box_internal
-              - @galerias.each do |galeria|
-                .box_galerias
-                  %h2{:id => "item_#{galeria.id}"}
-                    = galeria.title
-                  %p
-                    = galeria.content.html_safe
-                  - if galeria.flickr
-                    = galeria.flickr.html_safe
-                %hr
-
-
+          .col-md-12.no_padding.box_internal
+            - @galerias.each do |galeria|
+              .col-md-1
+                .date_g
+                  %span
+                    = galeria.date.strftime('%d-%m')
+              .col-md-11.box_galerias
+                %h2{:id => "item_#{galeria.id}"}
+                  = galeria.title
+                %p
+                  = galeria.content.html_safe
+                - if galeria.flickr
+                  = galeria.flickr.html_safe
+          %hr
+        -# .row
+        -#   .col-md-12.no_padding
+        -#     .box_internal
+        -#       - @galerias.each do |galeria|
+        -#         .box_galerias
+        -#           %h2{:id => "item_#{galeria.id}"}
+        -#             = galeria.title
+        -#           %p
+        -#             = galeria.content.html_safe
+        -#           - if galeria.flickr
+        -#             = galeria.flickr.html_safe
+        -#         %hr
     = render 'partials/shared/portal/footer'
 :javascript
