@@ -2340,14 +2340,11 @@ ActiveRecord::Schema.define(version: 20160602164039) do
     t.date     "delivered_date"
     t.integer  "responsible_delivered_id"
     t.text     "observation"
-    t.integer  "authenticate_id"
-    t.date     "authenticate_date"
     t.integer  "solicitation_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  add_index "protocol_solicitation_replies", ["authenticate_id"], name: "index_protocol_solicitation_replies_on_authenticate_id", using: :btree
   add_index "protocol_solicitation_replies", ["providence_id"], name: "index_protocol_solicitation_replies_on_providence_id", using: :btree
   add_index "protocol_solicitation_replies", ["providence_staff_id"], name: "index_protocol_solicitation_replies_on_providence_staff_id", using: :btree
   add_index "protocol_solicitation_replies", ["responsible_delivered_id"], name: "index_protocol_solicitation_replies_on_responsible_delivered_id", using: :btree
@@ -2359,11 +2356,14 @@ ActiveRecord::Schema.define(version: 20160602164039) do
     t.integer  "staff_id"
     t.text     "observation"
     t.integer  "priority"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "authenticate_id"
+    t.date     "authenticate_date"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "protocol_solicitations", ["assessment_id"], name: "index_protocol_solicitations_on_assessment_id", using: :btree
+  add_index "protocol_solicitations", ["authenticate_id"], name: "index_protocol_solicitations_on_authenticate_id", using: :btree
   add_index "protocol_solicitations", ["staff_id"], name: "index_protocol_solicitations_on_staff_id", using: :btree
 
   create_table "protocol_subjects", force: :cascade do |t|
