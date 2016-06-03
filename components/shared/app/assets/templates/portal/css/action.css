@@ -289,6 +289,9 @@ margin-bottom: 50px;
 
   text-align: left;
 }
+.flickr-embed-frame{
+  width: 100%!important;
+}
 .gallerys_title span{
   font-size: 48px;
   display: block;
@@ -297,6 +300,16 @@ margin-bottom: 50px;
 .box_galerias{
   padding: 40px;
 
+}
+.date_g{
+  color:#fff;
+  font-weight: bold;
+  font-size: 20px;
+      margin-top: 65px;
+}
+.date_g span{
+  background: #f5cb1f;
+      padding: 3px 13px;
 }
 .icon_home_habita{
   text-align: center;
