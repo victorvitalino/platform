@@ -113,8 +113,8 @@ font-size: 30px;
 }
 .titulo_home{
   font-size: 48px;
-  padding-left: 210px;
   margin-top: 55px;
+  text-align: center;
 }
 .titulo_home_finalizadas{
   font-size: 48px;
@@ -155,13 +155,13 @@ margin-top: 20px;
 .action_inscription_button:hover{
   color:#fff;
 }
-#action_inscription_button_1{
+.action_inscription_button_1{
   background-color: #de3859;
 }
-#action_inscription_button_2{
+.action_inscription_button_2{
   background-color: #79b792;
 }
-#action_inscription_button_3{
+.action_inscription_button_3{
   background-color: #f49649;
 }
 .users_back_ground{
