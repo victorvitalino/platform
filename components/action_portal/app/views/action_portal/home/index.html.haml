@@ -42,9 +42,6 @@
           .col-md-12.container
             = render 'partials/slider'
             = render 'partials/home'
-        .row
-          .col-md-12.no_padding
-            #map
     = render 'partials/shared/portal/footer'
 :javascript
   var map;
@@ -52,7 +49,7 @@
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -15.795268, lng: -47.883911},
       zoom: 8,
-      mapTypeId: google.maps.MapTypeId.HYBRID
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     });
   var ctaLayer = new google.maps.KmlLayer({
     url: 'http://www.codhab.df.gov.br/acoes.kml',
