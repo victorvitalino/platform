@@ -67,7 +67,7 @@
                       %td
                       %td
                       %td= @candidate.pontuations.last.total if @candidate.pontuations.present?
-          -if @candidate.old_candidates.present?
+          -if @candidate.old_candidates.present? && @candidate.program_id == 2
             .row
               .col-md-12
                 %table#data-table-command.table.table-striped.table-vmiddle.datatable

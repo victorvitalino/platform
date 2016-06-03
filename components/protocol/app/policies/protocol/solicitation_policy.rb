@@ -15,5 +15,8 @@ module Protocol
 		def destroy?
 			allow?(31804)
 		end
+		def validate?
+			allow?(31809)
+		end
 	end
 end

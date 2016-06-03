@@ -92,17 +92,6 @@
                     %th Total VUL.
                 %tbody
                   %tr
-                    %th Contemplados
-                    %td
-                      = @cadastres_contemplated_count
-                    %td
-                      = @cadastres_contemplated_count.to_s.percent_string_of(@cadastres_count)
-                    %td= @cadastres.contemplated.where(source_list: 'RII').count.to_s.percent_string_of(@cadastres_contemplated_count)
-                    %td= @cadastres.contemplated.where(source_list: 'RIE').count.to_s.percent_string_of(@cadastres_contemplated_count)
-                    %td= @cadastres.contemplated.where(source_list: 'DEF').count.to_s.percent_string_of(@cadastres_contemplated_count)
-                    %td= @cadastres.contemplated.where(source_list: 'IDO').count.to_s.percent_string_of(@cadastres_contemplated_count)
-                    %td= @cadastres.contemplated.where(source_list: 'VUL').count.to_s.percent_string_of(@cadastres_contemplated_count)
-                  %tr
                     %th Recusados
                     %td
                       = @cadastres_desactive_count

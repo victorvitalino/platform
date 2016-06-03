@@ -18,9 +18,8 @@ end
 
 resources :providences, path: 'providencias'
 resources :solicitations, path: 'solicitacoes' do
-  resources :solicitation_replies, path: 'solicitacao_respostas' do
-    get 'validate'
-  end
+  get 'validate'
+  resources :solicitation_replies, path: 'solicitacao_respostas' 
 end
 
 

@@ -29,6 +29,7 @@ module Protocol
                 render :new
               end
             else
+              flash[:danger] = "Documento não encontrado."
               redirect_to action: 'new'
             end
         end
@@ -38,6 +39,12 @@ module Protocol
 
         def show
           authorize :solicitation,  :index?
+        end
+
+        def validate
+          @solicitation = Solicitation.find(params[:solicitation_id])
+          @solicitation.update(authenticate_id: current_user.id, authenticate_date: Date.today)
+          redirect_to action: 'index'
         end
 
         def update
@@ -59,7 +66,7 @@ module Protocol
         private
 
         def solicitation_params
-            params.require(:solicitation).permit(:document_number, :document_type,:order_date, :observation, :priority)
+            params.require(:solicitation).permit(:document_number, :document_type,:order_date, :observation, :priority, :authenticate_id, :authenticate_date)
         end
 
         def set_solicitations

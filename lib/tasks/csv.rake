@@ -8,13 +8,14 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/renda.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/log2.csv", :col_sep => "#") do |row|
 
 
-           @model = Candidate::Cadastre.find_by_cpf(row[0])
+           @model = Candidate::EnterpriseCadastre.where(enterprise_id: row[2], cadastre_id: row[0]).first
 
            if @model.present?
-             @model.income = row[1]
+             @model.inactive = true
+             @model.inactive_date = row[1].to_s == "NULL" ? "" : row[1]
            end
 
 

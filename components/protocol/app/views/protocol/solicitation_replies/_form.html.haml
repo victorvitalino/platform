@@ -7,13 +7,13 @@
  .row
   .col-md-4
    %b Localização mesa:
-   = @solicitation.assessment.locations.last.desk
+   = @solicitation.assessment.locations.last.desk if @solicitation.assessment.locations.present?
   .col-md-4
    %b Pratelheira:
-   = @solicitation.assessment.locations.last.shelf
+   = @solicitation.assessment.locations.last.shelf if @solicitation.assessment.locations.present?
   .col-md-4
    %b Pilha:
-   = @solicitation.assessment.locations.last.pile
+   = @solicitation.assessment.locations.last.pile if @solicitation.assessment.locations.present?
   %hr
  .row
   .col-md-4
