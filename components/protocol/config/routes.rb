@@ -1,6 +1,7 @@
 Protocol::Engine.routes.draw do
 
 resources :assessments, path: 'autuacoes' do
+  get 'show_print'
   resources :digital_documents, path: 'digitalizacoes'
   resources :attach_documents, path: 'anexos'
 end
