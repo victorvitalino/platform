@@ -8,8 +8,6 @@ class CreateProtocolSolicitationReplies < ActiveRecord::Migration
       t.date :delivered_date
       t.references :responsible_delivered, index: true#, foreign_key: true
       t.text :observation
-      t.references :authenticate, index: true#, foreign_key: true
-      t.date :authenticate_date
       t.references :solicitation, index: true#, foreign_key: true
 
       t.timestamps null: false

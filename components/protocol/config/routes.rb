@@ -1,6 +1,7 @@
 Protocol::Engine.routes.draw do
 
 resources :assessments, path: 'autuacoes' do
+  get 'show_print'
   resources :digital_documents, path: 'digitalizacoes'
   resources :attach_documents, path: 'anexos'
 end
@@ -17,9 +18,8 @@ end
 
 resources :providences, path: 'providencias'
 resources :solicitations, path: 'solicitacoes' do
-  resources :solicitation_replies, path: 'solicitacao_respostas' do
-    get 'validate'
-  end
+  get 'validate'
+  resources :solicitation_replies, path: 'solicitacao_respostas' 
 end
 
 

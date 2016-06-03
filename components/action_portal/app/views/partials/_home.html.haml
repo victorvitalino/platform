@@ -15,26 +15,23 @@
       colabore para transformar as áreas de interesse
       %br
       social do Distrito Federal
-
-
-
-.row
-  .col-md-6.action_participe.action_areabuttons_home
-    %p
-      já participo
-  .col-md-6.action_cadastre.action_areabuttons_home
-    = link_to 'cadastre-se', 'http://www.google.com', class:"action_button"
-    %span
-      e receba convites e informações
-      %br
-      sobre nossas ações!
+-# .row
+-#   .col-md-6.action_participe.action_areabuttons_home
+-#     %p
+-#       já participo
+-#   .col-md-6.action_cadastre.action_areabuttons_home
+-#     = link_to 'cadastre-se', 'http://www.google.com', class:"action_button"
+-#     %span
+-#       e receba convites e informações
+-#       %br
+-#       sobre nossas ações!
 .row
   .col-md-12
     %h3.titulo_home
       inscrições abertas para voluntários
   .col-md-4.action_home_inscription
     #action_thumb_1.action_thumb
-    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_1"
+    = link_to 'concluido', 'SERFM',class:"action_inscription_button action_inscription_button_1"
     .action_inscription_title
       SERFM
       %br
@@ -46,7 +43,7 @@
       de 9h às 15h
   .col-md-4.action_home_inscription
     #action_thumb_2.action_thumb
-    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_2"
+    = link_to 'concluido', 'SERFM',class:"action_inscription_button action_inscription_button_2"
     .action_inscription_title
       Horta Comunitária
       %br
@@ -58,7 +55,7 @@
       de 9h às 15h
   .col-md-4.action_home_inscription
     #action_thumb_3.action_thumb
-    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_3"
+    = link_to 'concluido', 'SERFM',class:"action_inscription_button action_inscription_button_3"
     .action_inscription_title
       reCICLO urbano
       %br
@@ -68,11 +65,50 @@
         26.03 /// sexta-feira
       %br
       de 9h às 15h
-      /*repeticao*
 .row
   .col-md-12
-    %h3.titulo_home_finalizadas
-      ações finalizadas
+    %h3.titulo_home
+      ações concluidas
+  .col-md-4.action_home_inscription
+    #action_thumb_1.action_thumb
+    = link_to 'concluido', 'SERFM',class:"action_inscription_button action_inscription_button_1"
+    .action_inscription_title
+      SERFM
+      %br
+      Sol Nascente
+    .action_inscription_sub_title
+      %b
+        26.03 /// sexta-feira
+      %br
+      de 9h às 15h
+  .col-md-4.action_home_inscription
+    #action_thumb_2.action_thumb
+    = link_to 'concluido', 'SERFM',class:"action_inscription_button action_inscription_button_2"
+    .action_inscription_title
+      Horta Comunitária
+      %br
+      Pôr Do Sol
+    .action_inscription_sub_title
+      %b
+        26.03 /// sábado
+      %br
+      de 9h às 15h
+  .col-md-4.action_home_inscription
+    #action_thumb_3.action_thumb
+    = link_to 'concluido', 'SERFM',class:"action_inscription_button action_inscription_button_3"
+    .action_inscription_title
+      reCICLO urbano
+      %br
+      Brazlândia
+    .action_inscription_sub_title
+      %b
+        26.03 /// sexta-feira
+      %br
+      de 9h às 15h
 .row
-  .col-md-12.users_back_ground
-    = render 'partials/home_admin'
+  .col-md-12
+    %h3.titulo_home
+      encontre a ação
+.row
+  .col-md-12.no_padding.margint50
+    #map

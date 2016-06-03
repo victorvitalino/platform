@@ -9,6 +9,7 @@
     %td.col-md-2
       = link_to "", edit_assessment_path(a), title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."} if policy(:Assessment, namespace: Protocol).update?
       = link_to "", assessment_path(a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."} if policy(:Assessment, namespace: Protocol).index?
+      = link_to "", assessment_show_print_path(a), target: "_blank", title: "impressão",  class: 'glyphicon glyphicon-print btn btn-success btn-xs' if policy(:Assessment, namespace: Protocol).index?
       = link_to "" ,  new_assessment_digital_document_path(a), title: 'Documento Digital', class: 'glyphicon glyphicon-open-file btn btn-info btn-xs',data: {disable_with: "carregando..."}
       = link_to "", new_assessment_attach_document_path(a), title: 'Anexar/Apensar Documento', class: 'glyphicon glyphicon-duplicate btn btn-info btn-xs',data: {disable_with: "carregando..."}
       = link_to "", assessment_path(a), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."} if policy(:Assessment, namespace: Protocol).destroy?
