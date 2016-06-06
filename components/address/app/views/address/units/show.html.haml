@@ -2,89 +2,15 @@
   .panel-heading
     .panel-title
       %h4
-        Dados do endereço
+        %b Dados do endereço
   .panel-body
     .row
       .col-md-12
-        .row
-          .col-md-4
-            %label Cidade:
-            = @unit.city.name if @unit.city.present?
-          .col-md-4
-            %label Endereço completo:
-            = @unit.complete_address
-        .row
-          .col-md-8
-            %label CEP:
-            = @unit.cep_unit
-        .row
-          .col-md-8
-            %label Area:
-            = @unit.area
-        .row
-          .col-md-4
-            %label Doado:
-            = @unit.donate ? "Sim" : "Não"
-          .col-md-4
-            %label Data de Doação:
-            = @unit.date_donate.strftime('%d/%m/%Y') if @unit.date_donate.present?
-        .row
-          .col-md-4
-            %label Registro de IPTU:
-            = @unit.registration_iptu
-          .col-md-4
-            %label Data de Iptu:
-            = @unit.date_iptu.strftime('%d/%m/%Y') if @unit.date_iptu.present?
-        .row
-          .col-md-4
-            %label Situação:
-            = @unit.situation_unit.description if @unit.situation_unit.present?
-          .col-md-4
-            %label Escriturado?:
-            = @unit.registry_units.last.situation if @unit.registry_units.present?
-        .row
-          .col-md-8
-            %label Empreendimento:
-            = @unit.enterprises.name if @unit.enterprises.present?
-        - if @unit.notary_offices.present?
-          - @offices = @unit.notary_offices.last
-          %hr
-          %h4
-            Dados do cartório
-          .row
-            .col-md-4
-              %label Matrícula da Unidade:
-              = @offices.unit_code
-            .col-md-4
-              %label Cartório:
-              = @offices.office
-          .row
-            .col-md-4
-              %label Data da Matrícula:
-              = @offices.date_code.strftime('%d/%m/%Y') if @offices.date_code.present?
-            .col-md-4
-              %label Data da Assinatura:
-              = @offices.date_signature.strftime('%d/%m/%Y') if @offices.date_signature.present?
-          .row
-            .col-md-4
-              %label Matrícula do contrato:
-              = @offices.code_contract
-            .col-md-4
-              %label Data da Anoreg:
-              = @offices.date_anoreg.strftime('%d/%m/%Y') if @offices.date_anoreg.present?
-          .row
-            .col-md-4
-              %label Ato declaratório:
-              = @offices.declaratory_act_number
-            .col-md-4
-              %label Data da Ato:
-              = @offices.date_act_declaratory.strftime('%d/%m/%Y') if @offices.date_act_declaratory.present?
         - if @unit.cadastre_address.present?
-          %hr
           - @cadastre = @unit.cadastre_address.order('created_at asc').last.cadastre
           - if @cadastre.present?
             %h4
-              Dados do Morador
+              %b Dados do Morador
             .row
               .col-md-4
                 %label Nome:
@@ -125,6 +51,84 @@
                       %td= "SEDUH/CODHAB"
                     - else
                       %td= ""
+        %hr
+        .row
+          .col-md-8
+            %h4
+              %b Dados do endereço
+        .row
+          .col-md-4
+            %label Endereço completo:
+            = @unit.complete_address
+          .col-md-4
+            %label Cidade:
+            = @unit.city.name if @unit.city.present?
+        .row
+          .col-md-8
+            %label CEP:
+            = @unit.cep_unit
+        .row
+          .col-md-8
+            %label Area:
+            = @unit.area
+        .row
+          .col-md-4
+            %label Doado:
+            = @unit.donate ? "Sim" : "Não"
+          .col-md-4
+            %label Data de Doação:
+            = @unit.date_donate.strftime('%d/%m/%Y') if @unit.date_donate.present?
+        .row
+          .col-md-4
+            %label Registro de IPTU:
+            = @unit.registration_iptu
+          .col-md-4
+            %label Data de Iptu:
+            = @unit.date_iptu.strftime('%d/%m/%Y') if @unit.date_iptu.present?
+        .row
+          .col-md-4
+            %label Situação:
+            = @unit.situation_unit.description if @unit.situation_unit.present?
+          .col-md-4
+            %label Escriturado?:
+            = @unit.registry_units.last.situation if @unit.registry_units.present?
+        .row
+          .col-md-8
+            %label Empreendimento:
+            = @unit.enterprises.name if @unit.enterprises.present?
+        - if @unit.notary_offices.present?
+          - @offices = @unit.notary_offices.last
+          %hr
+          %h4
+            %b Dados do cartório
+          .row
+            .col-md-4
+              %label Matrícula da Unidade:
+              = @offices.unit_code
+            .col-md-4
+              %label Cartório:
+              = @offices.office
+          .row
+            .col-md-4
+              %label Data da Matrícula:
+              = @offices.date_code.strftime('%d/%m/%Y') if @offices.date_code.present?
+            .col-md-4
+              %label Data da Assinatura:
+              = @offices.date_signature.strftime('%d/%m/%Y') if @offices.date_signature.present?
+          .row
+            .col-md-4
+              %label Matrícula do contrato:
+              = @offices.code_contract
+            .col-md-4
+              %label Data da Anoreg:
+              = @offices.date_anoreg.strftime('%d/%m/%Y') if @offices.date_anoreg.present?
+          .row
+            .col-md-4
+              %label Ato declaratório:
+              = @offices.declaratory_act_number
+            .col-md-4
+              %label Data da Ato:
+              = @offices.date_act_declaratory.strftime('%d/%m/%Y') if @offices.date_act_declaratory.present?
         %hr
         .row.no-print
           .col-md-4

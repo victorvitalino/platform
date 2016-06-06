@@ -8,6 +8,10 @@
       = a.situation_unit.description if a.situation_unit.present?
     %td
       = a.registry_units.last.situation if a.registry_units.present?
+    %td
+      = a.registration_iptu
+    %td
+      = a.notary_offices.last.declaratory_act_number if a.notary_offices.present?
     %td.col-md-2
       = link_to "", unit_path(a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
       = link_to "", edit_unit_path(a), title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}
