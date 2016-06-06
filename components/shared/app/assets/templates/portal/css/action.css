@@ -193,18 +193,48 @@ margin-top: 20px;
   padding: 48px 0;
 text-align: center;
 }
+.btn-voltars{
+  width: 165px; padding: 10px 45px;
+}
+.txt_inscricao{
+  font-weight: bold;
+  text-align: center;
+  font-size: 45px;
+}
+.colorw{
+  color: #fff!important;
+}
 .action_footer a{
   font-weight: bold;
   color:#fff;
   font-size: 35px;
   padding: 155px 0;
 }
+.btn-cadastre{
+  background-color: #fecb0d;
+  border:2px solid #fff;
+  font-size: 29px;
+font-weight: bold;
+padding: 7px 101px;
+margin: 0 auto;
+display: block;
+text-align: center;
+width: 420px;
+
+}
+.btn-cadastre:hover{
+  color:#fff;
+  margin-top: 0px;
+border-bottom-width: 2px;
+}
 #action_footer_diferent, .bloco_azul{background-color: #81c5e0;}
 #action_footer_contact, .bloco_amarelo{background-color: #fecb0d;}
 #action_footer_gallery, .bloco_rosa{background-color: #de3859;}
 .bloco_laranja {
   background-color: #fecb0d;
-  height: 400px;
+  overflow: hidden;
+  color: #fff;
+  padding: 15px 15px;
 }
 .texto-gigante{
   color:#fff;
@@ -289,7 +319,7 @@ margin-bottom: 50px;
 
   text-align: left;
 }
-.flickr-embed-frame{
+.flickr-embed-frame, .flickr-embed .flickr-embed-photo{
   width: 100%!important;
 }
 .gallerys_title span{

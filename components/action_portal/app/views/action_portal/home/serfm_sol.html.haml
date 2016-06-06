@@ -1,0 +1,46 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Portal Codhab
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag 'shared/portal', media: 'all'
+    = javascript_include_tag 'shared/portal', media: 'all'
+    = csrf_meta_tags
+    :css
+      .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+        z-index: 2;
+        color: #FFFFFF !important;
+        background-color: #5A5A5A !important;
+        font-weight: bold !important;
+      }
+
+      .panel-warning>.panel-heading {
+        color: #010101;
+        background-color: #FDD000;
+        border-color: #FDD000;
+      }
+
+      body {
+        background-color: white;
+      }
+
+      .panel, .list-group-item {
+        border: none !important;
+      }
+
+      .box_internal {
+        box-shadow: none !important;
+      }
+
+
+  %body
+    = render 'partials/shared/portal/top_nav'
+    = render 'partials/shared/portal/header'
+    %div{class: (controller_name != 'home') ? 'container main' : '' }
+      .container
+        .row
+          .col-md-12.container
+            = render 'partials/slider'
+            = render 'partials/home_serfm_sol'
+    = render 'partials/shared/portal/footer'
+:javascript
