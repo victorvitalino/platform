@@ -62,7 +62,7 @@
   .row
    .col-md-4
     = f.label :firm_enterprise_id, class: 'fg-label'
-    = f.input :firm_enterprise_id, as: 'select', collection: Firm::Enterprise.all, label: false, prompt: "Selecione..."
+    = f.input :firm_enterprise_id, as: 'select', collection: Project::Enterprise.all, label: false, prompt: "Selecione..."
   .row
    .col-md-8
     = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}

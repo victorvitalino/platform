@@ -1,6 +1,13 @@
-.modal-header
-  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-    %span{"aria-hidden" => "true"} ×
-  %h4#modal.modal-title Reservar Imóvel
-.modal-body
-  = render 'form'
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/firm_portal/tabs'
+      .row
+        .col-md-12
+          %h3
+            %b Reservar imóvel
+            %br/
+            %small
+      .row
+        .col-md-12
+          = render 'form'

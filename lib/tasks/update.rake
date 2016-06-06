@@ -9,18 +9,15 @@ namespace :update do
     @index = 0
 
 
-    CSV.foreach("lib/files/log1.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/log_mangueiral.csv", :col_sep => "#") do |row|
 
 
-           @model = Candidate::CadastreActivity.new(
-           cadastre_id: row[3],
-           staff_id: row[2],
-           activity_status_id: 4,
-           type_activity: 3,
-           status: true,
-           type_ocurrency: 1,
-           observation: row[0],
-           created_at: row[1],
+           @model = Candidate::EnterpriseCadastreSituation.new(
+           enterprise_cadastre_id: row[5],
+           enterprise_cadastre_status_id: row[3],
+           observation: row[2],
+           file_path: row[4],
+           created_at: row[1]
            )
 
           #puts @model.inspect

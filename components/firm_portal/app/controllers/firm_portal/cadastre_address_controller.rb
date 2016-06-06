@@ -7,17 +7,18 @@ module FirmPortal
 
 
     def new
-      @enterprise_status = Firm::EnterpriseStatus.new
-      @candidate_firm = Firm::EnterpriseCadastre.joins(:cadastre).where("candidate_cadastres.cpf = ? AND firm_enterprise_cadastres.status = true",params[:cpf]).last
+      @enterprise_status = Candidate::EnterpriseCadastreSituation.new
+      @candidate_firm = Candidate::EnterpriseCadastre.joins(:cadastre).where("candidate_cadastres.cpf = ? AND candidate_enterprise_cadastres.inactive is null",params[:cpf]).last
       if @candidate_firm .present?
        @candidate = Candidate::Cadastre.find(@candidate_firm.cadastre_id)
       end
     end
 
    def book
-      @enterprise_status = Firm::EnterpriseStatus.new(enterprise_status_params)
+      @enterprise_status = Candidate::EnterpriseCadastreSituation.new(enterprise_status_params)
       @enterprise_status.observation = "Reserva de imóvel"
-      @enterprise_status.status_cadastre_id = 10
+      @enterprise_status.enterprse_cadastre_status_id = 10
+      @enterprise_status.firm_user_id = session[:firm_auth_id]
       @enterprise_status.save
 
       @cadastre_address = Candidate::CadastreAddress.new
@@ -57,7 +58,7 @@ module FirmPortal
 
 
     def enterprise_status_params
-      params.require(:enterprise_status).permit(:cadastre_id,:enterprise_cadastre_id,:observation, :status_cadastre_id,:archive_file)
+      params.require(:enterprise_cadastre_situation).permit(:enterprise_cadastre_id,:observation, :status_cadastre_id,:file_path, :firm_user_id)
     end
 
     def address_params
@@ -65,7 +66,7 @@ module FirmPortal
     end
 
     def set_enterprise
-      @enterprise = Firm::Enterprise.find(params[:id])
+      @enterprise = Project::Enterprise.find(params[:id])
     end
 
 
