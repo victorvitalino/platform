@@ -30,7 +30,6 @@ module FirmPortal
     def create
         @user_company = Firm::UserCompany.new(user_company_params)
         @user_company.save
-        redirect_to
     end
 
     private

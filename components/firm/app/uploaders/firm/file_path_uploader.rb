@@ -1,4 +1,4 @@
-class Firm::ArchiveFileUploader < CarrierWave::Uploader::Base
+class Firm::FilePathUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

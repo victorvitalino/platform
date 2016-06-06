@@ -8,8 +8,11 @@
   .row
     .col-md-4
       = f.input :login_user, as: :string
+  .row
     .col-md-4
-      = f.input :password, as: :string
+      = f.input :password
+    .col-md-4
+      = f.input :password_confirmation, require: true
   .row
     .col-md-12
       = f.input :admin, as: :boolean
