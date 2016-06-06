@@ -6,6 +6,9 @@
     = stylesheet_link_tag 'shared/portal', media: 'all'
     = javascript_include_tag 'shared/portal', media: 'all'
     = csrf_meta_tags
+    %meta{:content => "Ações Urbanas", :property => "og:title"}/
+    %meta{:content => "http://www.codhab.df.gov.br/acoes/slider1.png)", :property => "og:image"}/
+    %meta{:content => "http://www.codhab.df.gov.br/acoesurbanas", :property => "og:url"}
     :css
       .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
         z-index: 2;
