@@ -54,11 +54,11 @@
                 %td.col-md-1= cadastre.documents.count
                 %td.col-md-1
                   - if cadastre.new_entity?
-                    %span.label.label-success
-                      Novo cadastro
-                  - else
                     %span.label.label-primary
                       Recadastro
+                  - else
+                    %span.label.label-success
+                      Novo cadastro
                 %td.col-md-1
                   = link_to "", cadastre_path(cadastre), class: 'btn btn-xs btn-primary glyphicon glyphicon-share-alt'
     .row
