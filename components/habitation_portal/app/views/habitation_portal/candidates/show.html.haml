@@ -177,14 +177,16 @@
               = link_to "Como funciona a pontuação?"
           .row
             .col-md-12{style: 'text-align: center'}
-              /#accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
-              /  #container_zueira
-          %hr/
-          .row
-            .col-md-12{style: 'text-align: center'}
-              %h4
-                %i Linha temporal de Pontuação
-              = area_chart @candidate.pontuations.map {|key| [Date.parse(key.code.to_s).strftime('%Y-%m-%d'), key.total]}
+              #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+                #heading1.panel-heading{:role => "tab"}
+                  %a.collapsed{"aria-controls" => "collapse", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse", :role => "button"} Visualizar evolução
+                #collapse.panel-collapse.collapse.in{"aria-labelledby" => "heading", :role => "tabpanel"}
+                  .panel-body
+                    #container_zueira
+                    .col-md-12{style: 'text-align: center'}
+                      %h4
+                        %i Linha temporal de Pontuação
+                      = area_chart @candidate.pontuations.map {|key| [Date.parse(key.code.to_s).strftime('%Y-%m-%d'), key.total]}
             .col-md-12{style: 'text-align: center'}
               %hr/
               %h4
@@ -273,8 +275,8 @@ jQuery(document).ready(function(){
 
   $(function () {
       var url_json = "http://"+ URL +"/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=";
-        function get_json(y){
-          var listas = ["GENERICA","RII","RIE","REGULARIZAÇÃO","VULNERAVEIS","DEFICIENTE","CADASTRO ANTIGO","IDOSOS"];
+        function get_json(y, listagem){
+          var listas = listagem;
           $.getJSON(url_json+y, function (data) {
 
                   if(data.length > 0){
@@ -358,12 +360,14 @@ jQuery(document).ready(function(){
       }
         var listass = ["GENERICA","RII","RIE","REGULARIZAÇÃO","VULNERAVEIS","DEFICIENTE","CADASTRO ANTIGO","IDOSOS"];
         for (x = 1; x <= 7;x++){
-            get_json(x);
-            $("<div class='panel panel-default'><div class='panel-heading' role='tab' id='heading_" + x + "'><a class='collapsed' role='button' data-toggle='collapse' data-parent='#accordion' href='#collapse_" + x +"' aria-expanded='false' aria-controls='collapse_"+ x +"'> Gráfico na lista " + listass[x]+ " </a></div><div id='collapse_" + x + "' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='heading_" + x + "'><div class='panel-body'><div class='container_grafico_"+ x +"'></div></div></div></div>").appendTo('#container_zueira');
+            get_json(x , listass);
+            $("<div class='container_grafico_"+ x +"'></div>").appendTo('#container_zueira');
           }
             $( ".panel-body" ).each(function( index ) {
               console.log( index + ": " + $( this ).children().length);
               });
   });
-$('.collapse').collapse(toogle:false)
+$('.collapse').collapse(
+  toogle:false
+)
 });
