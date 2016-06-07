@@ -3,7 +3,7 @@ module Candidate
     belongs_to :cadastre
     belongs_to :enterprise, class_name: "Project::Enterprise"
     belongs_to :indication_cadastre, class_name: "Indication::Cadastre"
-    has_many   :enterprise_cadastre_situations
+    has_many :enterprise_cadastre_situations, class_name: "Candidate::EnterpriseCadastreSituation"
 
     scope :prepare_allotment, -> (allotment_id) {
       cadastres = Indication::Cadastre.where(allotment_id: allotment_id).map(&:id)
@@ -17,7 +17,7 @@ module Candidate
     scope :by_allotment,  -> (allotment_id = nil)   { where(indication_cadastre_id: prepare_allotment(allotment_id))}
     scope :by_step,       -> (step_id = nil)        { where(indication_cadastre_id: prepare_step(step_id))}
     scope :by_cpf,        -> (cpf = nil)            { joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
-    
+
     scope :name_candidate,  -> (name) {joins(:cadastre).where('candidate_cadastres.name like ?', "#{name}%")}
     scope :status, -> (status) { where(status: status) }
 
