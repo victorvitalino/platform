@@ -4,7 +4,7 @@ namespace :candidate do
 
   task :update_day => :environment do
 
-    @day   = Date.parse('30/05/2016')
+    @day   = Date.parse('01/06/2016')
 
       object = Candidate::DayOcurrency.new({
         update_income: Candidate::CadastreActivity.where("activity_status_id = 4 and created_at::date = '#{@day}'").count,
@@ -33,7 +33,7 @@ namespace :candidate do
 
   task :position => :environment do
 
-    Rake::Task["candidate:refresh_view"].invoke
+    #Rake::Task["candidate:refresh_view"].invoke
 
     begin
       Rake::Task["candidate:rii"].invoke
@@ -90,7 +90,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 1,
           zone: income[2],
-          created_at: Date.parse('30/05/2016')
+          created_at: Date.parse('01/06/2016')
         })
         @position.save
 
@@ -118,7 +118,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 2,
           zone: income[2],
-          created_at: Date.parse('30/05/2016')
+          created_at: Date.parse('01/06/2016')
         })
         @position.save
 
@@ -149,7 +149,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 5,
           zone: income[2],
-          created_at: Date.parse('30/05/2016')
+          created_at: Date.parse('01/06/2016')
         })
         @position.save
 
@@ -177,7 +177,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 7,
           zone: income[2],
-          created_at: Date.parse('30/05/2016')
+          created_at: Date.parse('01/06/2016')
         })
         @position.save
 
@@ -204,7 +204,7 @@ namespace :candidate do
           position: index + 1,
           program_id: 4,
           zone: income[2],
-          created_at: Date.parse('30/05/2016')
+          created_at: Date.parse('01/06/2016')
         })
         @position.save
 
