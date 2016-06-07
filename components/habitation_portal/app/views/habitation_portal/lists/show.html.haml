@@ -56,7 +56,7 @@
                         %span.label.label-success
                           - if candidate.cadastre.enterprise_cadastres.present?
                             - unless candidate.cadastre.enterprise_cadastres.last.inactive == true
-                              = "#{candidate.cadastre.current_situation_name} - INDICADO"
+                              = "#{candidate.cadastre.current_situation_name} - INDICADO - #{candidate.cadastre.enterprise_cadastres.last.enterprise.name}"
                             -else
                               = "#{candidate.cadastre.current_situation_name}"
                           - else

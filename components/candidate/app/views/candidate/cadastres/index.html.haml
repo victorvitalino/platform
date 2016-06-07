@@ -285,7 +285,7 @@
                         %tr
                           %td= enterprise.enterprise.name if enterprise.enterprise.present?
                           %td= enterprise.created_at.strftime("%d/%m/%Y")
-                          %td= enterprise.status ? "Indicação ativa" :  "Indicação inativa"
+                          %td= enterprise.inactive ? "Indicação inativada em: #{enterprise.inactive_date.strftime("%d/%m/%Y")}" :  "Indicação ativa"
                 - else
                   Informação não disponível
           %hr/
@@ -324,7 +324,7 @@
                     %tbody
                       - @candidate_assessment.order(:created_at).each do |assessment|
                         %tr
-                          %td= link_to assessment.document_number, protocol.assessment_path(assessment.id), target: "_blank" 
+                          %td= link_to assessment.document_number, protocol.assessment_path(assessment.id), target: "_blank"
                           %td= assessment.document_type.name
                           %td= assessment.subject.name if assessment.subject.present?
                           %td= assessment.observation
