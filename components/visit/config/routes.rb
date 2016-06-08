@@ -1,3 +1,3 @@
 Visit::Engine.routes.draw do
-  resources :lifting
+  resources :liftings
 end
