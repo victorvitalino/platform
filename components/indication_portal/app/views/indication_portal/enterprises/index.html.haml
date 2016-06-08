@@ -1,0 +1,288 @@
+.row
+  .col-md-12.box
+    .panel.panel-default
+      .panel-heading
+        %h1
+          %b.green Indicação ao empreendimento
+          %br/
+          %small Listagem de indicações aos empreendimentos
+      %hr/
+      .panel-body
+        .row
+          .col-md-12
+            = simple_form_for url_for, method: :get do |f|
+              .row
+                .col-md-3
+                  = f.input :by_enterprise, label: "Empreendimento", as: :select, collection: Project::Enterprise.actives, include_blank: 'selecione o empreendimento...', selected: params[:by_enterprise], input_html: { name: 'by_enterprise', id: 'enterprise_id'}
+                .col-md-3
+                  = f.input :by_step, label: "Etapa", collection: (params[:by_enterprise].present?) ? Project::Step.where(enterprise_id: params[:by_enterprise]) : {}, as: :select, include_blank: 'selecione a etapa...', selected: params[:by_step],input_html: { name: 'by_step', id: 'step_id'}
+                .col-md-2
+                  = f.input :by_allotment, label: "Lote", as: :select, collection: (params[:by_step].present?) ? Indication::Allotment.where(step_id: params[:by_step]) : {}, label_method: :created_at_formated, include_blank: 'selecione...', selected: params[:by_allotment], input_html: { name: 'by_allotment', id: 'allotment_id'}
+                .col-md-2
+                  = f.input :by_cpf, label: "CPF (somente números)", input_html: { name: 'by_cpf', id: 'by_cpf', value: params[:by_cpf]}
+                
+                .col-md-2
+                  = f.submit "Carregar", name: nil, class: 'btn btn-success filter-button', data: { disable_with: t(:disable_with) }
+        - if @cadastres.present?
+          - if params[:by_cpf].present?
+            .row
+              .col-md-12
+                %table.table.table-striped.table-bordered.table-hover
+                  %thead
+                    %tr
+                      %th Empreendimento
+                      %th Etapa
+                      %th Lote
+                  %tbody
+                    %tr
+                      %td.col-md-6= @cadastres.last.enterprise.name
+                      %td
+                        - if @cadastres.last.indication_cadastre.allotment.present? && @cadastres.last.indication_cadastre.allotment.step.present?  
+                          = @cadastres.last.indication_cadastre.allotment.step.name
+                      %td.col-md-2
+                        - if @cadastres.last.indication_cadastre.allotment.present? 
+                          = @cadastres.last.indication_cadastre.allotment.created_at.strftime('%d/%m/%Y')
+          .row
+            .col-md-12
+              %h3 
+                %b Indicação
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered.table-hover
+                %thead
+                  %tr
+                    %th Total Indicado
+                    %th Total RII
+                    %th Total RIE
+                    %th Total DEF.
+                    %th Total IDOSO
+                    %th Total VUL.
+                %tbody
+                  %tr
+                    %td= @cadastres_count
+                    %td= @rii_count
+                    %td= @rie_count
+                    %td= @special_count
+                    %td= @old_count
+                    %td= @vul_count
+                %tfooter
+                  %tr
+                    %th Porcentagem
+                    %th= @rii_count.to_s.percent_string_of(@cadastres_count)
+                    %th= @rie_count.to_s.percent_string_of(@cadastres_count)
+                    %th= @special_count.to_s.percent_string_of(@cadastres_count)
+                    %th= @old_count.to_s.percent_string_of(@cadastres_count)
+                    %th= @vul_count.to_s.percent_string_of(@cadastres_count)
+          .row
+            .col-md-12
+              %h3 
+                %b Retorno
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered.table-hover
+                %thead
+                  %tr
+                    %th 
+                    %th Total
+                    %th %
+                    %th Total RII
+                    %th Total RIE
+                    %th Total DEF.
+                    %th Total IDOSO
+                    %th Total VUL.
+                %tbody
+                  %tr
+                    %th Recusados
+                    %td
+                      = @cadastres_desactive_count
+                    %td
+                      = @cadastres_desactive_count.to_s.percent_string_of(@cadastres_count)
+                    %td= @cadastres.desactive.where(source_list: 'RII').count.to_s.percent_string_of(@cadastres_desactive_count)
+                    %td= @cadastres.desactive.where(source_list: 'RIE').count.to_s.percent_string_of(@cadastres_desactive_count)
+                    %td= @cadastres.desactive.where(source_list: 'DEF').count.to_s.percent_string_of(@cadastres_desactive_count)
+                    %td= @cadastres.desactive.where(source_list: 'IDO').count.to_s.percent_string_of(@cadastres_desactive_count)
+                    %td= @cadastres.desactive.where(source_list: 'VUL').count.to_s.percent_string_of(@cadastres_desactive_count)
+                  %tr
+                    %th Em processo
+                    %td= @cadastres_in_progress_count
+                    %td= @cadastres_in_progress_count.to_s.percent_string_of(@cadastres_count)
+                    %td= @cadastres.in_process.where(source_list: 'RII').count.to_s.percent_string_of(@cadastres_in_progress_count)
+                    %td= @cadastres.in_process.where(source_list: 'RIE').count.to_s.percent_string_of(@cadastres_in_progress_count)
+                    %td= @cadastres.in_process.where(source_list: 'DEF').count.to_s.percent_string_of(@cadastres_in_progress_count)
+                    %td= @cadastres.in_process.where(source_list: 'IDO').count.to_s.percent_string_of(@cadastres_in_progress_count)
+                    %td= @cadastres.in_process.where(source_list: 'VUL').count.to_s.percent_string_of(@cadastres_in_progress_count)
+          
+          %hr/
+          .row
+            .col-md-12
+              %h3
+                %b Lista
+          .row
+            .col-md-12
+              %ul.nav.nav-tabs
+                %li{:role => "presentation",id: 'list', :class => (params[:list] == 'contemplated' || params[:list].nil? ) ? 'active' : nil}
+                  = link_to "Contemplados", params.merge(list: 'contemplated', page: 1), anchor: "#list"
+                %li{:role => "presentation",id: 'list', :class => (params[:list] == 'desactived') ? 'active' : nil}
+                  = link_to "Recusados",  params.merge(list: 'desactived', page: 1), anchor: "#list"
+                %li{:role => "presentation", id: 'list',:class => (params[:list] == 'in_process') ? 'active' : nil}
+                  = link_to "Em processo", params.merge(list: 'in_process', page: 1), anchor: "#list"
+
+          - if params[:list] == 'contemplated' || params[:list].nil?
+            .row
+              .col-md-12
+                %table.table.table-striped.table-bordered.table-hover
+                  %thead
+                    %tr
+                      %th Total de contemplados
+                      %th %
+                  %tbody
+                    %tr
+                      %td= @cadastres_contemplated_count   
+                      %td= @cadastres_contemplated_count.to_s.percent_string_of(@cadastres_count)
+            .row
+              .col-md-12
+                %table.table.table-striped.table-bordered.table-hover
+                  %thead
+                    %tr
+                      %th Nome
+                      %th CPF
+                      %th Programa
+                      %th Faixa
+                      %th Situação Cad.
+                      %th Data
+                  %tbody
+                    - @cadastres.contemplated.order('candidate_cadastres.name').each do |cad|
+                      %tr
+                        %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.cpf)
+                        %td= cad.cadastre.cpf.format_obfuscator_cpf
+                        %td= cad.source_list
+                        %td= "Faixa #{cad.zone}"
+                        %td= cad.cadastre.current_situation_name
+                        %td= cad.created_at.strftime("%d/%m/%Y")
+            .row
+              .col-md-8.col-md-offset-3.paginate
+                = will_paginate @cadastres.contemplated, renderer: BootstrapPagination::Rails        
+          - if params[:list] == 'desactived'
+            .row
+              .col-md-12
+                %table.table.table-striped.table-bordered.table-hover
+                  %thead
+                    %tr
+                      %th Total de recusados
+                      %th %
+                  %tbody
+                    %tr
+                      %td= @cadastres_desactive_count   
+                      %td= @cadastres_desactive_count.to_s.percent_string_of(@cadastres_count)
+            .row
+              .col-md-12
+                %table.table.table-striped.table-bordered.table-hover
+                  %thead
+                    %tr
+                      %th Nome
+                      %th CPF
+                      %th Programa
+                      %th Faixa
+                      %th Situação Cad.
+                      %th Data
+                  %tbody
+                    - @cadastres.desactive.order('candidate_cadastres.name').each do |cad|
+                      %tr
+                        %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.cpf)
+                        %td= cad.cadastre.cpf.format_obfuscator_cpf
+                        %td= cad.source_list
+                        %td= "Faixa #{cad.zone}"
+                        %td= cad.cadastre.current_situation_name
+                        %td= cad.created_at.strftime("%d/%m/%Y")
+            .row
+              .col-md-8.col-md-offset-3.paginate
+                = will_paginate @cadastres.desactive, renderer: BootstrapPagination::Rails 
+          - if params[:list] == 'in_process'
+            .row
+              .col-md-12
+                %table.table.table-striped.table-bordered.table-hover
+                  %thead
+                    %tr
+                      %th Total em processo
+                      %th %
+                  %tbody
+                    %tr
+                      %td= @cadastres_in_progress_count   
+                      %td= @cadastres_in_progress_count.to_s.percent_string_of(@cadastres_count)
+            .row
+              .col-md-12
+                %table.table.table-striped.table-bordered.table-hover
+                  %thead
+                    %tr
+                      %th Nome
+                      %th CPF
+                      %th Programa
+                      %th Faixa
+                      %th Situação Cad.
+                      %th Data
+                  %tbody
+                    - @cadastres.in_process.order('candidate_cadastres.name').each do |cad|
+                      %tr
+                        %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.cpf)
+                        %td= cad.cadastre.cpf.format_obfuscator_cpf
+                        %td= cad.source_list
+                        %td= "Faixa #{cad.zone}"
+                        %td= cad.cadastre.current_situation_name
+                        %td= cad.created_at.strftime("%d/%m/%Y")
+            .row
+              .col-md-8.col-md-offset-3.paginate
+                = will_paginate @cadastres.in_process, renderer: BootstrapPagination::Rails 
+
+:javascript
+
+  $(document).ready(function(){
+
+    $('#enterprise_id').on('change', function() {
+
+      $.getJSON("#{steps_enterprises_path}?enterprise_id=" + $(this).val(), function(data) {
+        
+        var html = ""
+
+        if(data.length > 0) {
+
+          html = "<option value>Selecione a etapa...</option>"   
+          for(var i = 0; i < data.length; i++) { html += "<option value="+ data[i].id +">" + data[i].name + "</option>" }
+          $("#step_id").html(html)
+
+        } else {
+
+          html = "<option>Não existem etapas</option>"   
+          $("#step_id").html(html)
+        }
+
+      });
+
+    });
+
+    $('#step_id').on('change', function() {
+      $.getJSON("#{allotments_enterprises_path}?step_id=" + $(this).val(), function( data ) {
+        
+        var html = ""
+
+        if(data.length > 0) {
+
+          html = "<option value>Selecione o lote...</option>"   
+          
+          for(var i = 0; i < data.length; i++) { 
+            var date = moment(data[i].created_at);
+            html += "<option value="+ data[i].id +">" + date.format("DD/MM/YYYY") + "</option>" 
+          }
+          
+          $("#allotment_id").html(html)
+
+        } else {
+
+          html = "<option>Não existem lotes</option>"   
+          $("#allotment_id").html(html)
+        }
+        
+
+      });
+    })  
+
+  });

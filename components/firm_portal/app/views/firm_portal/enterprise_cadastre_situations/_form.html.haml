@@ -1,0 +1,22 @@
+.row
+ .col-md-12
+  = simple_form_for @enterprise_situation, remote: true do |f|
+   = f.input :cadastre_id, as: :hidden,  input_html:{ :value => params[:cadastre_id] }
+   = f.input :enterprise_cadastre_id, as: :hidden, input_html:{value: params[:id]}
+   .row
+    .col-md-12
+     = f.label :observation, class: 'fg-label'
+     = f.input :observation, label: false, input_html: { placeholder: 'Digite um Obervação'}
+   .row
+    .col-md-12
+     = f.label :enterprise_cadastre_status_id, class: 'fg-label'
+     = f.input :enterprise_cadastre_status_id, as: 'select', collection: Candidate::EnterpriseSituationStatus.where(status: true), label: false, prompt: "Selecione..."
+   .row
+    .col-md-12
+     = f.label :file_path, as: 'file', class: 'fg-label'
+     = f.input :file_path, as: 'file', label: false, input_html: { placeholder: 'Insira uma imagem'}
+     = image_tag @enterprise_situation.file_path_url, width: '150' if @enterprise_situation.file_path?
+   .row
+    .col-md-12
+     = f.button :submit, class: 'btn btn-success'
+   %br/

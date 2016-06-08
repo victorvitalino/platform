@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      'firm/user_company': 'Usuaŕios'
+    attributes:
+      'firm/user_company':
+        name: "Nome"
+        email: "Email"
+        login_user: "Login"
+        password: "Senha"
+        company: "Empresa"

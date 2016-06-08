@@ -1,0 +1,9 @@
+= render 'partials/shared/portal/top_nav'
+= render 'partials/shared/portal/header'
+%div{class: (controller_name != 'home') ? 'container main' : '' }
+  .container
+    .row
+      .col-md-12.container
+        = render 'partials/slider'
+        = render 'partials/home_serfm_sol'
+= render 'partials/shared/portal/footer'

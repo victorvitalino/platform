@@ -5,7 +5,7 @@ FirmPortal::Engine.routes.draw do
   delete  'authorization',  path: 'acesso', to: 'authorization#destroy',  as: 'destroy_authorization'
 
   resources :enterprise_cadastres, path: 'candidatos'
-  resources :enterprise_statuses, path: 'situacao'
+  resources :enterprise_cadastre_situations, path: 'situacao'
   resources :enterprise_units, path: 'enderecos' do
       resources :cadastre_address, path: 'candidato_unidade'
       post 'book', to:'cadastre_address#book', as: 'book'

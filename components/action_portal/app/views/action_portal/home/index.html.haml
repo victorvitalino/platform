@@ -1,60 +1,22 @@
-%html
-  %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Portal Codhab
-    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
-    = stylesheet_link_tag 'shared/portal', media: 'all'
-    = javascript_include_tag 'shared/portal', media: 'all'
-    = csrf_meta_tags
-    :css
-      .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
-        z-index: 2;
-        color: #FFFFFF !important;
-        background-color: #5A5A5A !important;
-        font-weight: bold !important;
-      }
-
-      .panel-warning>.panel-heading {
-        color: #010101;
-        background-color: #FDD000;
-        border-color: #FDD000;
-      }
-
-      body {
-        background-color: white;
-      }
-
-      .panel, .list-group-item {
-        border: none !important;
-      }
-
-      .box_internal {
-        box-shadow: none !important;
-      }
-      #map { height: 500px; }
-
-  %body
-    = render 'partials/shared/portal/top_nav'
-    = render 'partials/shared/portal/header'
-    %div{class: (controller_name != 'home') ? 'container main' : '' }
-      .container
-        .row
-          .col-md-12.container
-            = render 'partials/slider'
-            = render 'partials/home'
-        .row
-          .col-md-12.no_padding
-            #map
-    = render 'partials/shared/portal/footer'
+= render 'partials/shared/portal/top_nav'
+= render 'partials/shared/portal/header'
+%div{class: (controller_name != 'home') ? 'container main' : '' }
+  .container
+    .row
+      .col-md-12.container
+        = render 'partials/slider'
+        = render 'partials/home'
+= render 'partials/shared/portal/footer'
 :javascript
   var map;
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -15.795268, lng: -47.883911},
-      zoom: 8
+      zoom: 8,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     });
   var ctaLayer = new google.maps.KmlLayer({
-    url: '/as.kml',
+    url: 'http://www.codhab.df.gov.br/acoes.kml',
     map: map
   });
   }

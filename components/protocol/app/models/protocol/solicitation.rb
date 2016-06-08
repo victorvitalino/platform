@@ -2,6 +2,7 @@ module Protocol
   class Solicitation < ActiveRecord::Base
     belongs_to :assessment
     belongs_to :staff, class_name: "Person::Staff"
+    belongs_to :authenticate, class_name: "Person::Staff"
 
     has_many :solicitation_replies
 

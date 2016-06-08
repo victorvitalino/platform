@@ -14,13 +14,13 @@
             .row
               .col-md-3
                 = f.label 'CPF', class: 'fg-label'
-                = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+                = f.input :cpf, label: false, input_html: { name: 'by_cpf', value: params[:cpf]}
               .col-md-3
                 = f.label 'Nome', class: 'fg-label'
                 = f.input :name_candidate, label: false, input_html: { name: 'name_candidate', value: params[:name_candidate]}
               .col-md-3
                 = f.label 'Situação do Candidato', class: 'fg-label'
-                = f.input :status, label: false,  collection: Firm::StatusCadastre.all, selected: params[:status], input_html: { name: 'status'},include_blank: 'Todos'
+                = f.input :status, label: false,  collection: Candidate::EnterpriseSituationStatus.all, selected: params[:status], input_html: { name: 'status'},include_blank: 'Todos'
               .col-md-2
                 %br
                 = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary', data: {  disable_with: "Pesquisando aguarde..."}
@@ -42,10 +42,11 @@
                     %tr
                       %td.col-md-4= cand.name
                       %td.col-md-2= cand.cpf
-                      %td.col-md-2= cand.cadastre.special_condition_flag
-                      %td.col-md-2= cand.status_cadastre.present? ? cand.status_cadastre.name : "Não Contactado"
+                      %td.col-md-2= cand.cadastre.special_condition.name if cand.cadastre.special_condition_id.present?
+                      %td.col-md-2= cand.enterprise_cadastre_situation.present? ? cand.enterprise_cadastre_situation.enterprise_situation_status.name : "Não Contactado"
                       %td.col-md-2= cand.total
-                      %td.col-md-1= link_to "Situação", new_enterprise_status_path(id: cand.id, cadastre_id: cand.cadastre_id), remote: true
+                      - if !cand.enterprise_cadastre_situation.present? || cand.enterprise_cadastre_situation.enterprise_situation_status.id == 9 || cand.enterprise_cadastre_situation.enterprise_situation_status.id == 12
+                        %td.col-md-1= link_to "Situação", new_enterprise_cadastre_situation_path(id: cand.id, cadastre_id: cand.cadastre_id), remote: true
         .row
           .col-md-6.col-md-offset-3
             .container

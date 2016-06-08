@@ -9,11 +9,14 @@ module ActionPortal
     def serfm
     end
 
+    def SERFM_SOL
+    end
+
     def cadastro
     end
 
     def galeria
-      @galerias = Cms::Post.where(publish:true, post_category:'3').order(created_at: :desc)
+      @galerias = Cms::Post.where(post_category:'10').order(created_at: :desc)
     end
   end
 end

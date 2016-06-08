@@ -6,5 +6,9 @@ module Indication
 
     #validates :enterprise, :zone, :code, presence: true
     validates :demand, :rii, :rie, :old, :special, :vulnerable, presence: true, numericality: true
+
+    def created_at_formated
+      self.created_at.strftime('%d/%m/%Y')
+    end
   end
 end

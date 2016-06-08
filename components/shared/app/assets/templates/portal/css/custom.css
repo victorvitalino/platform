@@ -1,3 +1,19 @@
+.filter-button {
+  margin-top: 24px;
+}
+#heading1 a, #heading2 a{
+  font-size:30px;
+  font-weight:bold;
+}
+.highcharts-container{
+  width: 1080px;
+}
+.chart-wrapper {
+    width: 100%;
+}
+.filter-button:hover {
+  margin-top: 24px;
+}
 .orange {
   color: #FEAA15 !important;
 }

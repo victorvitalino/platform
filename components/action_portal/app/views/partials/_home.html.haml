@@ -4,9 +4,10 @@
       sobre
   .col-md-10.about_action_text
     %p
-      Ações urbanas comunitárias são um projeto participativo desenvolvido pela equipe de assistência técnica e pelo atelier de projetos da CODHAB/DF. Em formato de mutirão, as ações somam a participação de profissionais e estudantes de arquitetura e urbanismo, tanto da companhia quanto voluntários, e dos moradores das comunidades locais. O intuito é transformar coletivamente o espaço público, conectando governo e sociedade, tornando esta a protagonista da mudança. A seleção das áreas onde acontecem as ações segue critérios específicos. Interesse e articulação da comunidade para melhorar o lugar, inexistência de infraestrutura ou manutenção, possibilidade de arborização e paisagismo, vazios urbanos públicos, conexão com praças ou espaços de relevância e grande fluxo na comunidade são alguns deles. Além de identificar os problemas, é preciso observar o potencial do espaço.
+      Ações urbanas comunitárias é um projeto participativo desenvolvido pela equipe de assistência técnica e pelo atelier de projetos da CODHAB/DF. Em formato de mutirão, as ações somam a participação de profissionais e estudantes de arquitetura e urbanismo, tanto da companhia quanto voluntários, e dos moradores das comunidades locais. O intuito é transformar coletivamente o espaço público, conectando governo e sociedade, tornando esta a protagonista da mudança. A seleção das áreas onde acontecem as ações segue critérios específicos. Interesse e articulação da comunidade para melhorar o lugar, inexistência de infraestrutura ou manutenção, possibilidade de arborização e paisagismo, vazios urbanos públicos, conexão com praças ou espaços de relevância e grande fluxo na comunidade são alguns deles. Além de identificar os problemas, é preciso observar o potencial do espaço.
       %br
-      Maiores Informações: example@codhab.com.br
+      %strong
+        Maiores Informações: acoescomunitarias@codhab.df.gov.br
 .row
   .action_title_home.col-md-12
     %p
@@ -15,101 +16,102 @@
       colabore para transformar as áreas de interesse
       %br
       social do Distrito Federal
-
-
-
-.row
-  .col-md-6.action_participe.action_areabuttons_home
-    %p
-      já participo
-  .col-md-6.action_cadastre.action_areabuttons_home
-    = link_to 'cadastre-se', 'http://www.google.com', class:"action_button"
-    %span
-      e receba convites e informações
-      %br
-      sobre nossas ações!
+-# .row
+-#   .col-md-6.action_participe.action_areabuttons_home
+-#     %p
+-#       já participo
+-#   .col-md-6.action_cadastre.action_areabuttons_home
+-#     = link_to 'cadastre-se', 'http://www.google.com', class:"action_button"
+-#     %span
+-#       e receba convites e informações
+-#       %br
+-#       sobre nossas ações!
 .row
   .col-md-12
     %h3.titulo_home
       inscrições abertas para voluntários
   .col-md-4.action_home_inscription
-    #action_thumb_1.action_thumb
-    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_1"
+    #action_thumb_1.action_thumb{:style => "background-image: url(/acoes/inscrever.jpg)"}
+    = link_to 'inscrever-se', action_portal.cadastres_url.to_s + '/new' ,class:"action_inscription_button action_inscription_button_1"
     .action_inscription_title
       SERFM
       %br
-      Sol Nascente
+      Pôr do Sol
     .action_inscription_sub_title
       %b
-        26.03 /// sexta-feira
+        11.06 /// sábado
       %br
-      de 9h às 15h
+      de 9h às 17h
   .col-md-4.action_home_inscription
-    #action_thumb_2.action_thumb
-    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_2"
-    .action_inscription_title
-      Horta Comunitária
-      %br
-      Pôr Do Sol
-    .action_inscription_sub_title
-      %b
-        26.03 /// sábado
-      %br
-      de 9h às 15h
-  .col-md-4.action_home_inscription
-    #action_thumb_3.action_thumb
-    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_3"
-    .action_inscription_title
-      reCICLO urbano
-      %br
-      Brazlândia
-    .action_inscription_sub_title
-      %b
-        26.03 /// sexta-feira
-      %br
-      de 9h às 15h
-      /*repeticao*/
-  .col-md-4.action_home_inscription
-    #action_thumb_1.action_thumb
-    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_1"
+    #action_thumb_2.action_thumb{:style => "background-image: url(/acoes/breve_sebastiao.jpg)"}
+    .action_inscription_button.action_inscription_button_2
+      em breve
     .action_inscription_title
       SERFM
       %br
-      Sol Nascente
+      São Sebastião
     .action_inscription_sub_title
       %b
-        26.03 /// sexta-feira
+        18.06 /// sábado
       %br
-      de 9h às 15h
+      de 9h às 17h
   .col-md-4.action_home_inscription
-    #action_thumb_2.action_thumb
-    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_2"
+    #action_thumb_3.action_thumb{:style => "background-image: url(/acoes/breve_sol.jpg)"}
+    .action_inscription_button.action_inscription_button_3
+      em breve
     .action_inscription_title
-      Horta Comunitária
+      Ação Urbana Comunitária
       %br
-      Pôr Do Sol
+      Buritizinho
     .action_inscription_sub_title
       %b
-        26.03 /// sábado
+        02.07 /// sabado
       %br
-      de 9h às 15h
-  .col-md-4.action_home_inscription
-    #action_thumb_3.action_thumb
-    = link_to 'inscreva-se', 'SERFM',class:"action_inscription_button", id:"action_inscription_button_3"
-    .action_inscription_title
-      reCICLO urbano
-      %br
-      Brazlândia
-    .action_inscription_sub_title
-      %b
-        26.03 /// sexta-feira
-      %br
-      de 9h às 15h
-    /*repeticao titulo*/
+      de 9h às 17h
 .row
   .col-md-12
-    %h3.titulo_home_finalizadas
-      ações finalizadas
+    %h3.titulo_home
+      ações concluidas
+  .col-md-4.action_home_inscription
+    #action_thumb_1.action_thumb{:style => "background-image: url(/acoes/acao2.jpg)"}
+    = link_to 'concluido', 'acoesurbanas/SERFM_SOL',class:"action_inscription_button action_inscription_button_1"
+    .action_inscription_title
+      SERFM
+      %br
+      Sol Nascente
+    .action_inscription_sub_title
+      %b
+        30.04 /// sábado
+      %br
+      8h30
+  .col-md-4.action_home_inscription
+    #action_thumb_2.action_thumb{:style => "background-image: url(/acoes/acao3.jpg)"}
+    = link_to 'concluido', 'acoesurbanas/SERFM_PSOL',class:"action_inscription_button action_inscription_button_2"
+    .action_inscription_title
+      SERFM
+      %br
+      Pôr do Sol
+    .action_inscription_sub_title
+      %b
+        21.05 /// sábado
+      %br
+      de 9h
+  .col-md-4.action_home_inscription
+    #action_thumb_3.action_thumb{:style => "background-image: url(/acoes/acao4.jpg)"}
+    = link_to 'concluido', 'acoesurbanas/mutirao',class:"action_inscription_button action_inscription_button_3"
+    .action_inscription_title
+      Mutirão de
+      %br
+      Requalificação urbana
+    .action_inscription_sub_title
+      %b
+        28.05 /// sábado
+      %br
+      de 9h
 .row
-  .col-md-12.users_back_ground
-    = render 'partials/home_admin'
+  .col-md-12
+    %h3.titulo_home
+      encontre a ação
+.row
+  .col-md-12.no_padding.margint50
+    #map

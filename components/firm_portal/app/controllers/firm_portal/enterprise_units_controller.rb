@@ -11,12 +11,12 @@ module FirmPortal
       has_scope :status
 
     def index
-       @enterprise_units = Address::Unit.where(firm_enterprise_id: @enterprises)
+       @enterprise_units = Address::Unit.where(project_enterprise_id: @enterprises)
        @enterprise_units =  apply_scopes(@enterprise_units).paginate(:page => params[:page], :per_page => 20)
     end
 
     def new
-        @enterprise_status = Firm::EnterpriseStatus.new
+        @enterprise_status = Candidate::EnterpriseCadastreSituation.new
     end
 
     def show
@@ -24,7 +24,7 @@ module FirmPortal
     end
 
     def create
-        @enterprise_status = Firm::EnterpriseStatus.new(enterprise_status_params)
+        @enterprise_status = Candidate::EnterpriseCadastreSituation.new(enterprise_status_params)
         @enterprise_status.save
 
         redirect_to enterprise_cadastres_path
@@ -49,7 +49,7 @@ module FirmPortal
     end
 
     def set_enterprises
-       @enterprises = Firm::Enterprise.where(company_id: @firm.company_id)
+       @enterprises = Project::Enterprise.where(company_id: @firm.company_id)
     end
 
     def set_tab

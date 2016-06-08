@@ -1,0 +1,44 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Páginas
+      = link_to 'Nova Página', new_page_path,  data: { no_turbolink: true }, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          = simple_form_for url_for, method: :get do |f|
+            .col-md-5
+              = f.input :by_title, label: "Título", input_html: { name: 'by_title', value: params[:by_title]}
+            .col-md-2
+              = f.input :by_category, label: "Categoria", as: :select, selected: params[:by_category], collection: Cms::PageCategory.all, include_blank: 'Todas', input_html: { name: 'by_category'}
+            .col-md-2
+              = f.input :by_publish, label: "Publicada?", as: :select, selected: params[:by_publish], include_blank: 'Todas', input_html: { name: 'by_publish'}
+            .col-md-2
+              = f.submit t(:filter_button), name: nil, class: 'btn btn-primary filter-button'
+    %br/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Título
+              %th Categoria
+              %th Data de Criação
+              %th Última Atualização
+              %th Publicado
+              %th Ações
+
+          %tbody
+            - @pages.order('id DESC').each do |page|
+              %tr
+                %td= page.id
+                %td= page.title
+                %td= page.page_category.title
+                %td= page.created_at.strftime('%d/%m/%Y')
+                %td= page.updated_at.strftime('%d/%m/%Y')
+                %td= status_helper (page.publish)
+                %td.col-md-1
+                  = link_to '', edit_page_path(page), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false} if policy(:page, namespace: Cms).update?
+                  = link_to '', page, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' } if policy(:page, namespace: Cms).destroy?

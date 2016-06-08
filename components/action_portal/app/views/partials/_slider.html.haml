@@ -3,8 +3,9 @@
     .flex-container
       .flexslider.flexslider_mod
         / .slides
-        .flex-viewport
+        .flex-viewport.flex-acao
           %ul.slides
-            - 4.times do
-              %li.clone{"aria-hidden" => "true"}
-                .div-image.div-image-acao{:style => "background-image: url(http://www.codhab.df.gov.br/uploads/archive/images/89538c20636d27b755a0b081fc2fa72e.jpg)"}
+            %li.clone{"aria-hidden" => "true"}
+              .div-image.div-image-acao{:style => "background-image: url(/acoes/slider1.png)"}
+            %li.clone{"aria-hidden" => "true"}
+              .div-image.div-image-acao{:style => "background-image: url(/acoes/slider2.png)"}

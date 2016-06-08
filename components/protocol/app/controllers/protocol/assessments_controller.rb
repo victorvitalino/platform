@@ -2,6 +2,8 @@ require_dependency 'protocol/application_controller'
 
 module Protocol
   class AssessmentsController < ApplicationController
+
+
     before_action :set_assessment, only: [:show, :edit, :update, :destroy]
 
     has_scope :cpf
@@ -66,6 +68,12 @@ module Protocol
        @digital_docs= @assessment.digital_documents.all
        @locations = @assessment.locations.all
        @attach_document = @assessment.attach_documents.all
+    end
+
+    def show_print
+
+        @assessment = Assessment.find(params[:assessment_id])
+        render layout: "shared/empty"
     end
 
     def edit

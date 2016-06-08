@@ -20,7 +20,9 @@ module Candidate
     has_many :cadastre_checklists
     has_many :attendance_logs
     has_many :firm_enterprise_statuses, class_name: 'Firm::EnterpriseStatus'
-    has_many :enterprise_cadastres, foreign_key: "cadastre_id", class_name: "Firm::EnterpriseCadastre"
+    #has_many :enterprise_cadastres, foreign_key: "cadastre_id", class_name: "Firm::EnterpriseCadastre"
+    has_many :enterprise_cadastres, foreign_key: "cadastre_id", class_name: "Candidate::EnterpriseCadastre"
+
     has_many :cadastre_address
     has_many :cadastre_procedurals
     has_many :cadastre_logs
@@ -37,7 +39,7 @@ module Candidate
 
 
 
-    scope :regularization,  -> {where(program_id: 3)}
+    scope :regularization,  -> {where(program_id: [3,6])}
     scope :habitation,      -> {where(program_id: [1,2,4,5,6,7,8])}
     scope :by_cpf,          -> (cpf = nil) { where(cpf: cpf) }
 

@@ -6,6 +6,8 @@ class CreateProtocolSolicitations < ActiveRecord::Migration
       t.references :staff, index: true#, foreign_key: true
       t.text :observation
       t.integer :priority
+      t.references :authenticate, index: true
+      t.date :authenticate_date
 
       t.timestamps null: false
     end

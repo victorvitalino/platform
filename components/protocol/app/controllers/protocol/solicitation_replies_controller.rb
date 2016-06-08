@@ -2,7 +2,7 @@ require_dependency 'protocol/application_controller'
 
 module Protocol
     class SolicitationRepliesController < ApplicationController
-        before_action :set_solicitation, excepty: [:validate]
+        before_action :set_solicitation
         before_action :set_solicitation_replies, only: [:index, :create, :destroy, :update]
         before_action :set_solicitation_reply, only: [:edit, :destroy, :update, :show]
         before_action :set_validate, only: [:validate]
@@ -32,10 +32,7 @@ module Protocol
         def edit
         end
 
-        def validate
-          @solicitation_reply.update(authenticate_id: current_user.id, authenticate_date: Date.today)
-          redirect_to action: 'index'
-        end
+
 
         def show
           authorize :solicitation_reply,  :index?
@@ -60,7 +57,7 @@ module Protocol
         private
 
         def solicitation_params
-            params.require(:solicitation_reply).permit(:providence_id, :providence_date,:providence_staff_id, :process_delivered,:delivered_date, :responsible_delivered_id, :observation, :authenticate_id, :authenticate_date)
+            params.require(:solicitation_reply).permit(:providence_id, :providence_date,:providence_staff_id, :process_delivered,:delivered_date, :responsible_delivered_id, :observation)
         end
 
         def set_solicitation

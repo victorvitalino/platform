@@ -11,11 +11,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520184749) do
+ActiveRecord::Schema.define(version: 20160602164039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "dblink"
+
+  create_table "action_atuation_areas", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "action_cadastres", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "address"
+    t.string   "nationality"
+    t.string   "password"
+    t.string   "email"
+    t.string   "phone"
+    t.date     "born"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "profession_id"
+    t.integer  "formation_area_id"
+    t.integer  "atuation_area_id"
+  end
+
+  add_index "action_cadastres", ["atuation_area_id"], name: "index_action_cadastres_on_atuation_area_id", using: :btree
+  add_index "action_cadastres", ["city_id"], name: "index_action_cadastres_on_city_id", using: :btree
+  add_index "action_cadastres", ["formation_area_id"], name: "index_action_cadastres_on_formation_area_id", using: :btree
+  add_index "action_cadastres", ["profession_id"], name: "index_action_cadastres_on_profession_id", using: :btree
+  add_index "action_cadastres", ["state_id"], name: "index_action_cadastres_on_state_id", using: :btree
+
+  create_table "action_formation_areas", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "action_professions", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "action_social_events", force: :cascade do |t|
+    t.string   "name"
+    t.date     "date"
+    t.text     "description"
+    t.integer  "situation"
+    t.integer  "localization_id"
+    t.integer  "city_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.boolean  "status"
+  end
+
+  add_index "action_social_events", ["city_id"], name: "index_action_social_events_on_city_id", using: :btree
+  add_index "action_social_events", ["localization_id"], name: "index_action_social_events_on_localization_id", using: :btree
 
   create_table "address_cities", force: :cascade do |t|
     t.string   "name"
@@ -807,6 +867,8 @@ ActiveRecord::Schema.define(version: 20160520184749) do
     t.boolean  "inactive"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "source_list"
+    t.integer  "zone"
   end
 
   add_index "candidate_enterprise_cadastres", ["cadastre_id"], name: "index_candidate_enterprise_cadastres_on_cadastre_id", using: :btree
@@ -1742,6 +1804,7 @@ ActiveRecord::Schema.define(version: 20160520184749) do
     t.string   "zone"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "source_list"
   end
 
   add_index "indication_cadastres", ["allotment_id"], name: "index_indication_cadastres_on_allotment_id", using: :btree
@@ -2277,14 +2340,11 @@ ActiveRecord::Schema.define(version: 20160520184749) do
     t.date     "delivered_date"
     t.integer  "responsible_delivered_id"
     t.text     "observation"
-    t.integer  "authenticate_id"
-    t.date     "authenticate_date"
     t.integer  "solicitation_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  add_index "protocol_solicitation_replies", ["authenticate_id"], name: "index_protocol_solicitation_replies_on_authenticate_id", using: :btree
   add_index "protocol_solicitation_replies", ["providence_id"], name: "index_protocol_solicitation_replies_on_providence_id", using: :btree
   add_index "protocol_solicitation_replies", ["providence_staff_id"], name: "index_protocol_solicitation_replies_on_providence_staff_id", using: :btree
   add_index "protocol_solicitation_replies", ["responsible_delivered_id"], name: "index_protocol_solicitation_replies_on_responsible_delivered_id", using: :btree
@@ -2296,11 +2356,14 @@ ActiveRecord::Schema.define(version: 20160520184749) do
     t.integer  "staff_id"
     t.text     "observation"
     t.integer  "priority"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "authenticate_id"
+    t.date     "authenticate_date"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "protocol_solicitations", ["assessment_id"], name: "index_protocol_solicitations_on_assessment_id", using: :btree
+  add_index "protocol_solicitations", ["authenticate_id"], name: "index_protocol_solicitations_on_authenticate_id", using: :btree
   add_index "protocol_solicitations", ["staff_id"], name: "index_protocol_solicitations_on_staff_id", using: :btree
 
   create_table "protocol_subjects", force: :cascade do |t|

@@ -1,4 +1,5 @@
 = javascript_include_tag "https://www.google.com/jsapi", "chartkick"
+= javascript_include_tag "http://code.highcharts.com/highcharts.js"
 :css
   .table {
     font-size: 14px !important;
@@ -67,7 +68,7 @@
                       %td
                       %td
                       %td= @candidate.pontuations.last.total if @candidate.pontuations.present?
-          -if @candidate.old_candidates.present?
+          -if @candidate.old_candidates.present? && @candidate.program_id == 2
             .row
               .col-md-12
                 %table#data-table-command.table.table-striped.table-vmiddle.datatable
@@ -130,7 +131,7 @@
                       %tr
                         %td= enterprise.enterprise.name if enterprise.enterprise.present?
                         %td= enterprise.created_at.strftime("%d/%m/%Y")
-                        %td= enterprise.status ? "Indicação ativa" :  "Indicação inativa"
+                        %td= enterprise.inactive ? "Indicação inativada em: #{enterprise.inactive_date.strftime("%d/%m/%Y")}" :  "Indicação ativa"
               - else
                 Informação não disponível
           %hr/
@@ -172,14 +173,29 @@
           .row
             .col-md-12
               %h3
-                %b Pontuações
-              = link_to "Como funciona a pontuação?"
+                %b Evolução na Lista
+            .col-md-12{style: 'text-align: center'}
+              #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+                #heading1.panel-heading{:role => "tab"}
+                  %a.collapsed{"aria-controls" => "collapse", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse", :role => "button"} Visualizar evolução
+                #collapse.panel-collapse.collapse{"aria-labelledby" => "heading", :role => "tabpanel"}
+                  .panel-body
+                    #container_zueira
           %hr/
           .row
+            .col-md-12
+              %h3
+                %b Pontuações
+              = link_to "Como funciona a pontuação?"
             .col-md-12{style: 'text-align: center'}
-              %h4
-                %i Linha temporal de Pontuação
-              = area_chart @candidate.pontuations.map {|key| [Date.parse(key.code.to_s).strftime('%Y-%m-%d'), key.total]}
+              #accordion2.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+                #heading2.panel-heading{:role => "tab"}
+                  %a.collapsed{"aria-controls" => "collapse", "aria-expanded" => "false", "data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse2", :role => "button"} Visualizar pontuação
+                #collapse2.panel-collapse.collapse{"aria-labelledby" => "heading", :role => "tabpanel"}
+                  .panel-body
+                    %h4
+                      %i Linha temporal de Pontuação
+                    = area_chart @candidate.pontuations.map {|key| [Date.parse(key.code.to_s).strftime('%Y-%m-%d'), key.total]}, {library: {width: 1080}}
             .col-md-12{style: 'text-align: center'}
               %hr/
               %h4
@@ -261,29 +277,107 @@
                         %td= (attendance.convocation.present?) ? attendance.convocation.description  : 'Informação não disponível'
                         %td= (attendance.observation.present?) ? attendance.observation : 'Informação não disponível'
                         %td= attendance.created_at.strftime('%d/%m/%Y às %H:%M')
-          %hr/
-          .row
-            .col-md-12
-              %h2
-                %b Informações da Construtora
-          .row
-            .col-md-12
-              - if @candidate.firm_enterprise_statuses.present?
-                %table#data-table-command.table.table-striped.table-vmiddle.datatable
-                  %thead
-                    %tr
-                      %th Empresa
-                      %th Status
-                      %th Observação
-                      %th Data
-                  %tbody
-                    - @candidate.firm_enterprise_statuses.order(:created_at).each do |firm|
-                      %tr
-                        %td= firm.enterprise_cadastre.enterprise.name if firm.enterprise_cadastre.present? && firm.enterprise_cadastre.enterprise.present?
-                        %td= firm.status_cadastre.name if firm.status_cadastre.present?
-                        %td= (firm.observation.to_s.empty?) ? 'Não informado' : firm.observation
-                        %td= firm.created_at.strftime('%d/%m/%Y às %H:%M')
-              - else
-                Informação não disponível
           .row
         .row
+:javascript
+jQuery(document).ready(function(){
+
+  $(function () {
+      var url_json = "http://"+ URL +"/habitacao/candidato/#{@candidate.cpf}/detalhe.json?program_id=";
+        function get_json(y, listagem){
+          var listas = listagem;
+          $.getJSON(url_json+y, function (data) {
+
+                  if(data.length > 0){
+                      var ex = [];
+                      var lists_data = [];
+                      $.each(data,function(index){
+                          ex.push([Date.UTC(data[index][1][0],data[index][1][1]-1,data[index][1][2]),data[index][0],data[index][2]]);
+                          lists_data.push(data[index][2]);
+                      });
+                      $('.container_grafico_'+y).highcharts({
+
+                          chart: {
+                              zoomType: 'x',
+                              width: 1080
+                          },
+                          title: {
+                              text:listas[y]
+                          },
+                          subtitle: {
+                              text: document.ontouchstart === undefined ?
+                                      'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                          },
+                          xAxis: {
+                              format: '{value:%Y-%m-%d}',
+                              type: 'datetime'
+                          },
+                          yAxis: {
+                              title: {
+                                  text: 'Posição'
+                              },
+                              reversed: true
+                          },
+                          legend: {
+                              enabled: true
+                          },
+                          plotOptions: {area: {
+                                  fillColor: {
+                                      linearGradient: {
+                                          x1: 0,
+                                          y1: 0,
+                                          x2: 0,
+                                          y2: 2
+                                      },
+                                      stops: [
+                                          [0, Highcharts.getOptions().colors[0]],
+                                          [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                      ]
+                                  },
+                                  marker: {
+                                      radius: 0
+                                  },
+                                  lineWidth: 1,
+                                  states: {
+                                      hover: {
+                                          lineWidth: 1
+                                      }
+                                  },
+                                  threshold: null
+                              },
+
+                          },
+                          series: [{
+                              type: 'line',
+                              name: 'Posição',
+                              data:ex
+                          }],
+                          tooltip: {
+                            useHTML: true,
+                            formatter: function() {
+                            var serie = this.series;
+                            var datas = "/habitacao/candidato/#{@candidate.cpf}/detalhe?date=" + Highcharts.dateFormat('%Y-%m-%d', this.x);
+                            var s = '<b>' + Highcharts.dateFormat('%d/%m/%Y', this.x) + '</b><br>';
+                            s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
+                            s += '<a data-remote="true" href="'+ datas +'">' + "Detalhes do dia na lista " + listas[y] + '</a>'
+                            return s;
+                            }
+                        }
+                      });
+
+                    }
+          });
+      }
+        var listass = ["GENERICA","RII","RIE","REGULARIZAÇÃO","VULNERAVEIS","DEFICIENTE","CADASTRO ANTIGO","IDOSOS"];
+        for (x = 1; x <= 7;x++){
+            get_json(x , listass);
+            $("<div class='container_grafico_"+ x +"'></div>").appendTo('#container_zueira');
+          }
+            $( ".panel-body" ).each(function( index ) {
+              console.log( index + ": " + $( this ).children().length);
+              });
+  });
+$('.collapse').collapse(
+  toogle:false
+)
+});

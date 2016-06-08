@@ -1,0 +1,13 @@
+= simple_form_for(@profession) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-7
+        = f.input :name, input_html: { placeholder: 'Digite o nome da profissão'}
+      .col-md-2
+        = f.label :status
+        = f.input :status, as: :select, label: false, include_blank: false
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+        = link_to t(:button_back) ,professions_path , class: 'btn btn-default'

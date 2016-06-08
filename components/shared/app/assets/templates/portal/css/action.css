@@ -2,7 +2,7 @@
 .flexslider_mod{
   border:none;
   margin:0;
-  height: 290px!important;
+  height: 350px!important;
 }
 .flexslider_mod .slides img {
     height: 290px;
@@ -45,7 +45,7 @@
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 .div-image-acao {
-  min-height:290px!important;
+  min-height:350px!important;
 }
 .about_action_text p{
   font-size: 16px;
@@ -108,10 +108,13 @@ font-size: 30px;
 .no_padding{
   padding:0px;
 }
+.action_button_galeria{
+  width: 400px;
+}
 .titulo_home{
   font-size: 48px;
-  padding-left: 210px;
   margin-top: 55px;
+  text-align: center;
 }
 .titulo_home_finalizadas{
   font-size: 48px;
@@ -152,13 +155,13 @@ margin-top: 20px;
 .action_inscription_button:hover{
   color:#fff;
 }
-#action_inscription_button_1{
+.action_inscription_button_1{
   background-color: #de3859;
 }
-#action_inscription_button_2{
+.action_inscription_button_2{
   background-color: #79b792;
 }
-#action_inscription_button_3{
+.action_inscription_button_3{
   background-color: #f49649;
 }
 .users_back_ground{
@@ -190,18 +193,48 @@ margin-top: 20px;
   padding: 48px 0;
 text-align: center;
 }
+.btn-voltars{
+  width: 165px; padding: 10px 45px;
+}
+.txt_inscricao{
+  font-weight: bold;
+  text-align: center;
+  font-size: 45px;
+}
+.colorw{
+  color: #fff!important;
+}
 .action_footer a{
   font-weight: bold;
   color:#fff;
   font-size: 35px;
   padding: 155px 0;
 }
+.btn-cadastre{
+  background-color: #fecb0d;
+  border:2px solid #fff;
+  font-size: 29px;
+font-weight: bold;
+padding: 7px 101px;
+margin: 0 auto;
+display: block;
+text-align: center;
+width: 420px;
+
+}
+.btn-cadastre:hover{
+  color:#fff;
+  margin-top: 0px;
+border-bottom-width: 2px;
+}
 #action_footer_diferent, .bloco_azul{background-color: #81c5e0;}
 #action_footer_contact, .bloco_amarelo{background-color: #fecb0d;}
 #action_footer_gallery, .bloco_rosa{background-color: #de3859;}
 .bloco_laranja {
   background-color: #fecb0d;
-  height: 400px;
+  overflow: hidden;
+  color: #fff;
+  padding: 15px 15px;
 }
 .texto-gigante{
   color:#fff;
@@ -263,6 +296,7 @@ text-align: center;
 .no_margin{
   margin:0;
 }
+
 .slidetop{
 overflow: hidden;
 width: 100%;
@@ -278,13 +312,16 @@ margin-bottom: 57px;
 width: 90%
 margin-bottom: 50px;
 }
-.gallery_title{
+.gallerys_title{
   background-color:#dd3858;
   color:#fff;
 
   text-align: left;
 }
-.gallery_title span{
+.flickr-embed-frame, .flickr-embed .flickr-embed-photo{
+  width: 100%!important;
+}
+.gallerys_title span{
   font-size: 48px;
   display: block;
   padding: 42px;
@@ -292,6 +329,16 @@ margin-bottom: 50px;
 .box_galerias{
   padding: 40px;
 
+}
+.date_g{
+  color:#fff;
+  font-weight: bold;
+  font-size: 20px;
+      margin-top: 65px;
+}
+.date_g span{
+  background: #f5cb1f;
+      padding: 3px 13px;
 }
 .icon_home_habita{
   text-align: center;

@@ -1,0 +1,181 @@
+:css
+  .EstiloForm
+  {
+      font-size:13px;
+  }
+  .relLabel
+  {
+      width: 30%;
+      text-align: right;
+  }
+  .relInfo
+  {
+      width:70%;
+      text-align:left;
+  }
+  .relTitulo
+  {
+      width: 100%;
+      border: 0px;
+      padding: 0px, 0px, 0px, 0px;
+  }
+  .relLinha1
+  {
+      width: 100%;
+      border: 0px;
+      padding: 0px, 0px, 0px, 0px;
+      background-color: #FAF0E6;
+      text-align: center;
+      font-size:11px;
+  }
+  .relLinha0
+  {
+      width: 100%;
+      border: 0px;
+      padding: 0px, 0px, 0px, 0px;
+      text-align: center;
+      font-size:11px;
+  }
+  .relTituloBranco
+  {
+      width: 30%;
+      border: 0px;
+      text-align: right;
+  }
+  .relColunaTitulo
+  {
+      width:15%;
+      border: 1px solid black;
+      text-align: left;
+      background-color: #fcee94;
+  }
+%body
+  %div{:style => " width:805px; margin: 0 auto;"}
+    %div
+      %div
+        %div{:style => " width: 800px"}
+          %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "800px"}
+            %tr
+              %td
+                %img{:alt => "", :src => "/images/codhab.png", :style => "margin-left:1px", :width => "180px"}/
+              %td{:style => "font-weight: bold; font-size: 13px;"}
+                %div{:style => "text-align: justify;"}
+                  GOVERNO DO DISTRITO FEDERAL
+                  %br/
+                  Secretaria de Estado de Habitação
+                  %br/
+                  Regularização e Desenvolvimento Urbano
+                  %br/
+                  COMPANHIA DE DESENVOLVIMENTO HABITACIONAL
+                  %br/
+                  DO DISTRITO FEDERAL
+                  %br/
+        %br/
+        #divVisualizacao{:runat => "server", :style => "width: 800px; margin-top:5px; border:0px solid black;"}
+          %table.EstiloForm{:border => "0px;", :cellpadding => "2", :width => "800px;"}
+            %tr
+              %td{:colspan => "2"}                 
+            %tr
+              %td{:colspan => "2"}
+                %center{:style => "font-size:16px;"}
+                  %b
+                    Dados do Documento
+                %br/
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                Nº do processo
+              %td{:style => "width: 50%; text-align:left"}
+                Tipo de documento
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.document_number
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.document_type.name if @assessment.document_type.present?
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                Interessado
+              %td{:style => "width: 50%; text-align:left"}
+
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.requesting_unit
+              %td{:style => "width: 50%; text-align:left"}
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                Cidade
+              %td{:style => "width: 50%; text-align:left"}
+                Endereço
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.city.name if @assessment.city.present?
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.address
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                CPF
+              %td{:style => "width: 50%; text-align:left"}
+                CNPJ
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.cpf
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.cnpj
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                Assunto
+              %td{:style => "width: 50%; text-align:left"}
+                Continuação
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.subject.name if @assessment.subject.present?
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.description_subject
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                Data autuação
+              %td{:style => "width: 50%; text-align:left"}
+                Documento Externo
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.created_at.strftime('%d/%m/%Y %H:%M:%S')
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.external_number
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                Anexado ao - (Data da Anexação):
+              %td{:style => "width: 50%; text-align:left"}
+                Apensado ao - (Data do Apensamento):
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.attach_documents.last.document_child.document_number if @assessment.attach_documents.present? && @assessment.attach_documents.last.attach_type == 0
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.attach_documents.last.document_child.document_number if @assessment.attach_documents.present? && @assessment.attach_documents.last.attach_type == 1
+            %tr
+              %td{:colspan => "2"}
+                 

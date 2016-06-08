@@ -285,7 +285,31 @@
                         %tr
                           %td= enterprise.enterprise.name if enterprise.enterprise.present?
                           %td= enterprise.created_at.strftime("%d/%m/%Y")
-                          %td= enterprise.status ? "Indicação ativa" :  "Indicação inativa"
+                          %td= enterprise.inactive ? "Indicação inativada em: #{enterprise.inactive_date.strftime("%d/%m/%Y")}" :  "Indicação ativa"
+                - else
+                  Informação não disponível
+          %hr/
+          .row
+            .col-md-12
+              %h4 Retorno da empresa
+              .bootstrap-table
+                - if @candidate.enterprise_cadastres.present?
+                  - @candidate.enterprise_cadastres.each do |a|
+                    - if a.enterprise_cadastre_situations.present?
+                      %table.table.table-striped.table-bordered.table-condensed
+                        %thead{:style => "display: table-header-group;"}
+                          %tr
+                            %th Empreendimento
+                            %th Situação
+                            %th Observação
+                            %th Data
+                        %tbody
+                          - a.enterprise_cadastre_situations.each do |s|
+                            %tr
+                              %td= s.enterprise_cadastre.enterprise.name if s.enterprise_cadastre.enterprise.present?
+                              %td= s.enterprise_situation_status.name if s.enterprise_situation_status.present?
+                              %td= s.observation
+                              %td= s.created_at.strftime('%d/%m/%Y às %H:%M')
                 - else
                   Informação não disponível
           %hr/
@@ -324,9 +348,9 @@
                     %tbody
                       - @candidate_assessment.order(:created_at).each do |assessment|
                         %tr
-                          %td= assessment.document_number
+                          %td= link_to assessment.document_number, protocol.assessment_path(assessment.id), target: "_blank"
                           %td= assessment.document_type.name
-                          %td= assessment.subjects.name
+                          %td= assessment.subject.name if assessment.subject.present?
                           %td= assessment.observation
                 - else
                   Informação não disponível
