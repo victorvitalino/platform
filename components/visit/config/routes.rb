@@ -1,3 +1,3 @@
 Visit::Engine.routes.draw do
-  resources :liftings
+  resources :liftings, path: 'selagem'
 end

@@ -1,9 +1,10 @@
-require_dependency 'shared/nav_helper'
+require_dependency 'authenticate/staff_service'
+require_dependency 'authenticate/staff_helper'
 module Visit
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
-    layout 'patternfly/less-application'
+    layout 'patternfly/mobile-less-application'
 
     include Authenticate::StaffService
     helper  Authenticate::StaffHelper
