@@ -713,6 +713,36 @@ body{
     #editais{
       margin:0px;
     }
+    .topSlider_action{
+      display: none;
+    }
+    .about_action_title{
+      font-size: 100px!important;
+      text-align: center;
+      transform: rotate(0deg)!important;
+
+    /* Safari */
+    -webkit-transform: rotate(0deg)!important;
+
+    /* Firefox */
+    -moz-transform: rotate(0deg)!important;
+
+    /* IE */
+    -ms-transform: rotate(0deg)!important;
+
+    /* Opera */
+    -o-transform: rotate(0deg)!important;
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    }
+    .about_action{
+      height: auto!important;
+    }
+    .action_thumb{
+      background-repeat: no-repeat;
+      width: 100%;
+    }
 }
 /* Landscape iphone 4*/
 @media only screen
@@ -750,6 +780,36 @@ body{
     }
     #editais{
       margin:0px;
+    }
+    .topSlider_action{
+      display: none;
+    }
+    .about_action_title{
+      font-size: 100px!important;
+      text-align: center;
+      transform: rotate(0deg)!important;
+
+    /* Safari */
+    -webkit-transform: rotate(0deg)!important;
+
+    /* Firefox */
+    -moz-transform: rotate(0deg)!important;
+
+    /* IE */
+    -ms-transform: rotate(0deg)!important;
+
+    /* Opera */
+    -o-transform: rotate(0deg)!important;
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    }
+    .about_action{
+      height: auto!important;
+    }
+    .action_thumb{
+      background-repeat: no-repeat;
+      width: 100%;
     }
   }
 
@@ -792,6 +852,36 @@ body{
       }
       #editais{
         margin:0px;
+      }
+      .topSlider_action{
+        display: none;
+      }
+      .about_action_title{
+        font-size: 100px!important;
+        text-align: center;
+        transform: rotate(0deg)!important;
+
+      /* Safari */
+      -webkit-transform: rotate(0deg)!important;
+
+      /* Firefox */
+      -moz-transform: rotate(0deg)!important;
+
+      /* IE */
+      -ms-transform: rotate(0deg)!important;
+
+      /* Opera */
+      -o-transform: rotate(0deg)!important;
+
+      /* Internet Explorer */
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+      }
+      .about_action{
+        height: auto!important;
+      }
+      .action_thumb{
+        background-repeat: no-repeat;
+        width: 100%;
       }
 
     }
@@ -840,6 +930,36 @@ body{
           #editais{
             margin: 0px;
           }
+          .topSlider_action{
+            display: none;
+          }
+          .about_action_title{
+            font-size: 100px!important;
+            text-align: center;
+            transform: rotate(0deg)!important;
+
+          /* Safari */
+          -webkit-transform: rotate(0deg)!important;
+
+          /* Firefox */
+          -moz-transform: rotate(0deg)!important;
+
+          /* IE */
+          -ms-transform: rotate(0deg)!important;
+
+          /* Opera */
+          -o-transform: rotate(0deg)!important;
+
+          /* Internet Explorer */
+          filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+          }
+          .about_action{
+            height: auto!important;
+          }
+          .action_thumb{
+            background-repeat: no-repeat;
+            width: 100%;
+          }
         }
 
 
@@ -884,6 +1004,36 @@ body{
     #editais{
       margin:0px;
     }
+    .topSlider_action{
+      display: none;
+    }
+    .about_action_title{
+      font-size: 100px!important;
+      text-align: center;
+      transform: rotate(0deg)!important;
+
+    /* Safari */
+    -webkit-transform: rotate(0deg)!important;
+
+    /* Firefox */
+    -moz-transform: rotate(0deg)!important;
+
+    /* IE */
+    -ms-transform: rotate(0deg)!important;
+
+    /* Opera */
+    -o-transform: rotate(0deg)!important;
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    }
+    .about_action{
+      height: auto!important;
+    }
+    .action_thumb{
+      background-repeat: no-repeat;
+      width: 100%;
+    }
 
   }
 
@@ -927,7 +1077,36 @@ body{
       #editais{
         margin:0px;
       }
+      .topSlider_action{
+        display: none;
+      }
+      .about_action_title{
+        font-size: 100px!important;
+        text-align: center;
+        transform: rotate(0deg)!important;
 
+      /* Safari */
+      -webkit-transform: rotate(0deg)!important;
+
+      /* Firefox */
+      -moz-transform: rotate(0deg)!important;
+
+      /* IE */
+      -ms-transform: rotate(0deg)!important;
+
+      /* Opera */
+      -o-transform: rotate(0deg)!important;
+
+      /* Internet Explorer */
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+      }
+      .about_action{
+        height: auto!important;
+      }
+      .action_thumb{
+        background-repeat: no-repeat;
+        width: 100%;
+      }
     }
 
     /* Portrait iphone 6 Plus*/
@@ -969,6 +1148,36 @@ body{
         }
         #editais{
           margin:0px;
+        }
+        .topSlider_action{
+          display: none;
+        }
+        .about_action_title{
+          font-size: 100px!important;
+          text-align: center;
+          transform: rotate(0deg)!important;
+
+        /* Safari */
+        -webkit-transform: rotate(0deg)!important;
+
+        /* Firefox */
+        -moz-transform: rotate(0deg)!important;
+
+        /* IE */
+        -ms-transform: rotate(0deg)!important;
+
+        /* Opera */
+        -o-transform: rotate(0deg)!important;
+
+        /* Internet Explorer */
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+        }
+        .about_action{
+          height: auto!important;
+        }
+        .action_thumb{
+          background-repeat: no-repeat;
+          width: 100%;
         }
 
       }
@@ -1013,6 +1222,36 @@ body{
           #editais{
             margin:0px;
           }
+          .topSlider_action{
+            display: none;
+          }
+          .about_action_title{
+            font-size: 100px!important;
+            text-align: center;
+            transform: rotate(0deg)!important;
+
+          /* Safari */
+          -webkit-transform: rotate(0deg)!important;
+
+          /* Firefox */
+          -moz-transform: rotate(0deg)!important;
+
+          /* IE */
+          -ms-transform: rotate(0deg)!important;
+
+          /* Opera */
+          -o-transform: rotate(0deg)!important;
+
+          /* Internet Explorer */
+          filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+          }
+          .about_action{
+            height: auto!important;
+          }
+          .action_thumb{
+            background-repeat: no-repeat;
+            width: 100%;
+          }
 
         }
 
@@ -1056,6 +1295,36 @@ body{
       #editais{
         margin:0px;
       }
+      .topSlider_action{
+        display: none;
+      }
+      .about_action_title{
+        font-size: 100px!important;
+        text-align: center;
+        transform: rotate(0deg)!important;
+
+      /* Safari */
+      -webkit-transform: rotate(0deg)!important;
+
+      /* Firefox */
+      -moz-transform: rotate(0deg)!important;
+
+      /* IE */
+      -ms-transform: rotate(0deg)!important;
+
+      /* Opera */
+      -o-transform: rotate(0deg)!important;
+
+      /* Internet Explorer */
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+      }
+      .about_action{
+        height: auto!important;
+      }
+      .action_thumb{
+        background-repeat: no-repeat;
+        width: 100%;
+      }
   }
 
   @media screen
@@ -1097,7 +1366,36 @@ body{
     #editais{
       margin:0px;
     }
+    .topSlider_action{
+      display: none;
+    }
+    .about_action_title{
+      font-size: 100px!important;
+      text-align: center;
+      transform: rotate(0deg)!important;
 
+    /* Safari */
+    -webkit-transform: rotate(0deg)!important;
+
+    /* Firefox */
+    -moz-transform: rotate(0deg)!important;
+
+    /* IE */
+    -ms-transform: rotate(0deg)!important;
+
+    /* Opera */
+    -o-transform: rotate(0deg)!important;
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    }
+    .about_action{
+      height: auto!important;
+    }
+    .action_thumb{
+      background-repeat: no-repeat;
+      width: 100%;
+    }
 }
 @media screen
 and (device-width: 640px)
@@ -1138,7 +1436,36 @@ and (orientation: landscape) {
   #editais{
     margin:0px;
   }
+  .topSlider_action{
+    display: none;
+  }
+  .about_action_title{
+    font-size: 100px!important;
+    text-align: center;
+    transform: rotate(0deg)!important;
 
+  /* Safari */
+  -webkit-transform: rotate(0deg)!important;
+
+  /* Firefox */
+  -moz-transform: rotate(0deg)!important;
+
+  /* IE */
+  -ms-transform: rotate(0deg)!important;
+
+  /* Opera */
+  -o-transform: rotate(0deg)!important;
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  }
+  .about_action{
+    height: auto!important;
+  }
+  .action_thumb{
+    background-repeat: no-repeat;
+    width: 100%;
+  }
 }
 
 @media screen
@@ -1180,7 +1507,36 @@ and (orientation: portrait) {
   #editais{
     margin:0px;
   }
+  .topSlider_action{
+    display: none;
+  }
+  .about_action_title{
+    font-size: 100px!important;
+    text-align: center;
+    transform: rotate(0deg)!important;
 
+  /* Safari */
+  -webkit-transform: rotate(0deg)!important;
+
+  /* Firefox */
+  -moz-transform: rotate(0deg)!important;
+
+  /* IE */
+  -ms-transform: rotate(0deg)!important;
+
+  /* Opera */
+  -o-transform: rotate(0deg)!important;
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  }
+  .about_action{
+    height: auto!important;
+  }
+  .action_thumb{
+    background-repeat: no-repeat;
+    width: 100%;
+  }
 }
 
 /*Portrait nexus 4* - 5x - 6p*/
@@ -1224,5 +1580,34 @@ and (orientation: portrait) {
   #editais{
     margin:0px;
   }
+  .topSlider_action{
+    display: none;
+  }
+  .about_action_title{
+    font-size: 100px!important;
+    text-align: center;
+    transform: rotate(0deg)!important;
 
+  /* Safari */
+  -webkit-transform: rotate(0deg)!important;
+
+  /* Firefox */
+  -moz-transform: rotate(0deg)!important;
+
+  /* IE */
+  -ms-transform: rotate(0deg)!important;
+
+  /* Opera */
+  -o-transform: rotate(0deg)!important;
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  }
+  .about_action{
+    height: auto!important;
+  }
+  .action_thumb{
+    background-repeat: no-repeat;
+    width: 100%;
+  }
 }
