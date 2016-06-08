@@ -104,6 +104,8 @@ PATH
       rails (~> 4.2.1)
     shared (0.0.1)
       rails (~> 4.2.1)
+    visit (0.0.1)
+      rails (~> 4.2.1)
 
 GEM
   remote: http://rubygems.org/
@@ -556,5 +558,6 @@ DEPENDENCIES
   unicorn
   validates_cpf_cnpj
   validates_timeliness
+  visit!
   wicked
   will_paginate-bootstrap

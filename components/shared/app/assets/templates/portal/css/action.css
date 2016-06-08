@@ -27,19 +27,19 @@
   color: #fff;
   display: block;
   margin-top: 74px;
-  transform: rotate(-90deg)!important;
+  transform: rotate(-90deg);
 
 /* Safari */
--webkit-transform: rotate(-90deg)!important;
+-webkit-transform: rotate(-90deg);
 
 /* Firefox */
--moz-transform: rotate(-90deg)!important;
+-moz-transform: rotate(-90deg);
 
 /* IE */
--ms-transform: rotate(-90deg)!important;
+-ms-transform: rotate(-90deg);
 
 /* Opera */
--o-transform: rotate(-90deg)!important;
+-o-transform: rotate(-90deg);
 
 /* Internet Explorer */
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
@@ -134,6 +134,7 @@ font-size: 30px;
 height: 250px;
 background-color: #000;
 margin-top: 40px;
+background-size: cover;
 }
 .action_inscription_button{
   color: #fff;
@@ -309,9 +310,7 @@ margin-bottom: 57px;
     margin-top: 43px;
 }
 .title1{
-  width: 747px;
-  margin-left: 379px;
-margin-bottom: 50px;
+
 }
 .gallerys_title{
   background-color:#dd3858;

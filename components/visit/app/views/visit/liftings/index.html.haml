@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-md-12
+      %h1 Selagem Codhab
+  %hr/
+  .row
+    = simple_form_for url_for, method: :get do |f|
+      .col-md-12
+        = f.input :by_name, label: "Nome", input_html: { name: 'by_name', value: params[:by_name]}
+      .col-md-12
+        = f.input :by_cpf, label: "CPF (somente números)", input_html: { name: 'by_cpf', value: params[:by_cpf]}
+      .col-md-12
+        = f.input :by_localization, label: "Endereço", input_html: { name: 'by_localization', value: params[:by_localization]}
+      .col-md-12
+        = f.submit "Pesquisar", name: nil, class: 'btn btn-success'
+  %hr/
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          %table.table.table-striped.table-bordered.table-hover
+            %thead
+              %tr
+                %th Nome
+                %th Endereço
+                %th CPF
+            %tbody
+              - @lifts.each do |lift|
+                %tr
+                  %td= link_to lift.name, edit_lifting_path(lift)
+                  %td= link_to lift.localization, edit_lifting_path(lift)
+                  %td= link_to lift.cpf.format_cpf, edit_lifting_path(lift)

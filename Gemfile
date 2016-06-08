@@ -132,4 +132,5 @@ path 'components' do
   gem 'indication_portal'
 
   gem 'project'
+  gem 'visit'
 end
