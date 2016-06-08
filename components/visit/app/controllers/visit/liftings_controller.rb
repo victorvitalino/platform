@@ -1,10 +1,16 @@
+require_dependency 'visit/application_controller'
+
 module Visit
   class LiftingsController < ApplicationController
     before_action :set_lifting, only: [:show, :edit, :update, :destroy]
 
-    def index
-      @liftings = Visit::Lifting.all
-    end
+  has_scope :by_cpf
+  has_scope :by_localization
+  has_scope :by_name
+
+  def index
+    @lifts = apply_scopes(Visit::Lifting).all.order(:localization)
+  end
 
     def show
 
@@ -53,7 +59,12 @@ module Visit
 
       # Only allow a trusted parameter "white list" through.
       def lifting_params
-        params.require(:lifting).permit( :localization ,:seal,:name,:naturality,:sex,:born,:cpf,:rg,:rg_org,:rg_org_date,:phone,:celphone,:retirement,:benefit,:pension,:nis,:income,:spouse_name,:spouse_born,:spouse_cpf,:spouse_rg,:spouse_rg_org,:spouse_rg_org_date,:deficiency,:deficiency_specification,:civil_status,:lot_situation,:lot_situation_time,:busy_lot,:busy_lot_user,:lot_vacated,:lot_vacated_description,:business_activities,:business_activities_description,:contractual_purpose,:contractual_purpose_description,:additional_information,:geolocation,:photo_one,:photo_two,:photo_three, :voi)
+        params.require(:lifting).permit( :localization ,:seal,:name,:naturality,:sex,:born,:cpf,:rg,:rg_org,:rg_org_date,:phone,:celphone,:retirement,:benefit,:pension,:nis,:income,:spouse_name,:spouse_born,:spouse_cpf,:spouse_rg,:spouse_rg_org,:spouse_rg_org_date,:deficiency,:deficiency_specification,:civil_status,:lot_situation,:lot_situation_time,:busy_lot,
+                                         :busy_lot_user,:lot_vacated,:lot_vacated_description,:business_activities,:business_activities_description,:contractual_purpose,:contractual_purpose_description,:additional_information,:geolocation,:photo_one,:photo_two,:photo_three, :voi)
       end
+
+
+    def new
+    end
   end
 end
