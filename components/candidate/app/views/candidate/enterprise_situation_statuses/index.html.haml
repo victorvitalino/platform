@@ -1,0 +1,28 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Situações
+      = link_to 'nova situação', new_enterprise_situation_status_path, remote: true, class: 'pull-right' #if policy(:sector, namespace: Person).create?
+      %small Listagem de situações
+  .panel-body
+    .row
+      .col-md-12
+        %table.table.table-hover.table-bordered.table-striped
+          %thead
+            %tr
+              %th Nome
+              %th Descrição
+              %th Status
+              %th Ações
+          %tbody.index-enterprise_situation_statuses
+            - @enterprise_situation_statuses.order(:name).each do |s|
+              %tr
+                %td= s.name.to_s.upcase
+                %td= s.description.to_s.upcase
+                %td
+                  - if s.status
+                    %span.label.label-success ativo
+                  - else
+                    %span.label.label-default inativo
+                %td
+                  = link_to "", edit_enterprise_situation_status_path(s), title: 'Editar', 'data-toggle' => 'tooltip',  remote: true, class: 'glyphicon glyphicon-pencil btn-xs btn btn-primary waves-effect waves-button waves-float' #if policy(:sector, namespace: Person).update?
