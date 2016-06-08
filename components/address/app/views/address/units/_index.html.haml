@@ -13,12 +13,12 @@
     %td
       = a.notary_offices.last.declaratory_act_number if a.notary_offices.present?
     %td.col-md-2
-      = link_to "", unit_path(a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
-      = link_to "", edit_unit_path(a), title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+      = link_to "", unit_path(a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."} if policy(:Unit, namespace: Address).index?
+      = link_to "", edit_unit_path(a), title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."} if policy(:Unit, namespace: Address).update?
       - if a.situation_unit_id == 3
         = link_to "", candidate.transfer_path(id:a), title: "Transferencia",  class: 'glyphicon glyphicon-transfer btn btn-info btn-xs',data: {disable_with: "carregando..."}
       - if a.notary_offices.present?
-        = link_to "", edit_unit_notary_office_path(a,a.notary_offices.last.id), title: "Cartorio",  class: 'glyphicon glyphicon-briefcase btn btn-default btn-xs',data: {disable_with: "carregando..."}
+        = link_to "", edit_unit_notary_office_path(a,a.notary_offices.last.id), title: "Cartorio",  class: 'glyphicon glyphicon-briefcase btn btn-default btn-xs',data: {disable_with: "carregando..."} if policy(:NotaryOffice, namespace: Address).update?
       -else
-        = link_to "", new_unit_notary_office_path(a), title: "Cartorio",  class: 'glyphicon glyphicon-briefcase btn btn-info btn-xs',data: {disable_with: "carregando..."}
-      = link_to "", unit_path(a), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."}
+        = link_to "", new_unit_notary_office_path(a), title: "Cartorio",  class: 'glyphicon glyphicon-briefcase btn btn-info btn-xs',data: {disable_with: "carregando..."} if policy(:NotaryOffice, namespace: Address).create?
+      = link_to "", unit_path(a), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."} if policy(:Unit, namespace: Address).destroy?
