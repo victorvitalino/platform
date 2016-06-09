@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602164039) do
+ActiveRecord::Schema.define(version: 20160608193551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,15 +156,15 @@ ActiveRecord::Schema.define(version: 20160602164039) do
     t.integer  "type_use_unit_id"
     t.integer  "city_id"
     t.integer  "program"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "firm_enterprise_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "project_enterprise_id"
     t.string   "urb"
     t.integer  "control_number"
   end
 
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
-  add_index "address_units", ["firm_enterprise_id"], name: "index_address_units_on_firm_enterprise_id", using: :btree
+  add_index "address_units", ["project_enterprise_id"], name: "index_address_units_on_firm_enterprise_id", using: :btree
   add_index "address_units", ["situation_unit_id"], name: "index_address_units_on_situation_unit_id", using: :btree
   add_index "address_units", ["type_use_unit_id"], name: "index_address_units_on_type_use_unit_id", using: :btree
 
@@ -2571,5 +2571,52 @@ ActiveRecord::Schema.define(version: 20160602164039) do
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+
+  create_table "visit_liftings", force: :cascade do |t|
+    t.string   "localization"
+    t.string   "seal"
+    t.string   "name"
+    t.string   "naturality"
+    t.boolean  "sex"
+    t.date     "born"
+    t.string   "cpf"
+    t.string   "rg"
+    t.string   "rg_org"
+    t.date     "rg_org_date"
+    t.string   "phone"
+    t.string   "celphone"
+    t.integer  "retirement"
+    t.integer  "benefit"
+    t.integer  "pension"
+    t.string   "nis"
+    t.string   "income"
+    t.string   "spouse_name"
+    t.date     "spouse_born"
+    t.string   "spouse_cpf"
+    t.string   "spouse_rg"
+    t.string   "spouse_rg_org"
+    t.date     "spouse_rg_org_date"
+    t.integer  "deficiency"
+    t.string   "deficiency_specification"
+    t.integer  "civil_status"
+    t.integer  "lot_situation"
+    t.string   "lot_situation_time"
+    t.integer  "busy_lot"
+    t.integer  "busy_lot_user"
+    t.integer  "lot_vacated"
+    t.text     "lot_vacated_description"
+    t.integer  "business_activities"
+    t.text     "business_activities_description"
+    t.integer  "contractual_purpose"
+    t.text     "contractual_purpose_description"
+    t.text     "additional_information"
+    t.string   "geolocation"
+    t.string   "photo_one"
+    t.string   "photo_two"
+    t.string   "photo_three"
+    t.integer  "voi"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
 
 end

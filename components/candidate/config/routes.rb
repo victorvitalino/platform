@@ -19,6 +19,7 @@ Candidate::Engine.routes.draw do
   resources :checklists
   resources :checklist_types
   resources :verifications
+  resources :enterprise_situation_statuses, path: 'situacao_empresas'
 
 
 

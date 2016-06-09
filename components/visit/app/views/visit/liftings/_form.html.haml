@@ -1,0 +1,83 @@
+= simple_form_for(@lifting) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-12
+        = f.input :name, label: "Nome", input_html: { placeholder: 'Digite o nome'}
+      .col-md-12
+        = f.input :localization, label: "Localização", input_html: { placeholder: 'Digite uma localização'}
+      .col-md-12
+        = f.input :seal, label: "Selo", input_html: { placeholder: 'Digite um selo'}
+      .col-md-12
+        = f.input :naturality, label: "Naturalidade", input_html: { placeholder: 'Digite a naturalidade'}
+      .col-md-12
+        = f.input :born,label: "Data de Nascimento",  as: 'string', input_html: { class: 'date', placeholder: '00/00/0000', value: (@lifting.born) ? localize(f.object.born) : nil}
+      .col-md-12
+        = f.input :cpf, label: "CPF", input_html: { placeholder: 'Somente números'}
+      .col-md-12
+        = f.input :rg, label: "RG", input_html: { placeholder: 'Digite o rg'}
+      .col-md-12
+        = f.input :rg_org_date, label: "Data de emissão", as: 'string', input_html: { class: 'date', placeholder: '00/00/0000', value: (@lifting.rg_org_date) ? localize(f.object.rg_org_date) : nil}
+      .col-md-12
+        = f.input :phone, label: "Telefone", input_html: { placeholder: 'Digite um telefone'}
+      .col-md-12
+        = f.input :retirement, label: "Recebe Aposentadoria?", as: :select, include_blank: false, input_html: { placeholder: 'Aposentadoria'}
+      .col-md-12
+        = f.input :benefit, label: "Recebe Benefício?", input_html: { placeholder: 'Beneficio'}
+      .col-md-12
+        = f.input :pension, label: "Recebe Pensão", input_html: { placeholder: 'Pensão'}
+      .col-md-12
+        = f.input :nis, label: "Nº do nis", input_html: { placeholder: 'Digite o Nis'}
+      .col-md-12
+        = f.input :income, label: "Renda Familiar", input_html: { placeholder: 'Apenas o valor'}
+      .col-md-12
+        = f.input :civil_status, label: "Estado Civil", input_html: { placeholder: 'Estado civil'}
+      .col-md-12
+        = f.input :spouse_name, label: "Nome do cônjuge", input_html: { placeholder: 'Digite um nome'}
+      .col-md-12
+        = f.input :spouse_cpf, label: "CPF do cônjuge", input_html: { placeholder: 'Apenas numeros'}
+      .col-md-12
+        = f.input :spouse_born, label: "Nascimento do cônjuge", as: 'string', input_html: { class: 'date', placeholder: '00/00/0000', value: (@lifting.spouse_born) ? localize(f.object.spouse_born) : nil}
+      .col-md-12
+        = f.input :spouse_rg, label: "Rg do cônjuge", input_html: { placeholder: 'Digite o RG'}
+      .col-md-12
+        = f.input :spouse_rg_org_date, label: "Emissão do RG cônjuge", as: 'string', input_html: { class: 'date', placeholder: '00/00/0000', value: (@lifting.spouse_rg_org_date) ? localize(f.object.spouse_rg_org_date) : nil}
+      .col-md-12
+        = f.input :deficiency, label: "Deficiência na Família?", input_html: { placeholder: 'Selecione'}
+      .col-md-12
+        = f.input :deficiency_specification, label: "Especificação da Deficiência", input_html: { placeholder: 'Descreva'}
+      .col-md-12
+        = f.input :lot_situation, label: "Situação do Lote", input_html: { placeholder: 'Selecione'}
+      .col-md-12
+        = f.input :lot_situation_time, label: "Tempo de ocupação", input_html: { placeholder: 'Informe o tempo de ocupação'}
+      .col-md-12
+        = f.input :busy_lot, label: "Lote ocupado por", input_html: { placeholder: 'Selecione'}
+      .col-md-12
+        = f.input :busy_lot_user, label: "Ocupante localizado?", input_html: { placeholder: 'Selecione'}
+      .col-md-12
+        = f.input :lot_vacated, label: "Lote Desocupado?", input_html: { placeholder: 'Selecione'}
+      .col-md-12
+        = f.input :lot_vacated_description, label: "Descrição do lote desocupado",input_html: { id: 'lot_vacated_description', rows: 5, cols: 80}
+      .col-md-12
+        = f.input :business_activities, label: "Pequenas Atividades Comerciais?", as: :select, include_blank: false, input_html: { placeholder: 'Selecione'}
+      .col-md-12
+        = f.input :business_activities_description, label: "Descreva tal atividade",input_html: { id: 'business_activities_description', rows: 5, cols: 80}
+      .col-md-12
+        = f.input :contractual_purpose, label: "Descumprimento da Finalidade Contratual", as: :select, include_blank: false, input_html: { placeholder: 'Selecione'}
+      .col-md-12
+        = f.input :contractual_purpose_description, label: "Descreva o Descumprimento", input_html: { id: 'contractual_purpose_description', rows: 5, cols: 80}
+      .col-md-12
+        = f.input :additional_information, label: "Informações Adicionais", input_html: { id: 'additional_information', rows: 5, cols: 80}
+      .col-md-12
+        = f.input :photo_one, as: :file, label: "Foto 1"
+        = link_to "visualizar arquivo atual", f.object.photo_one.url, target: '_blank' if !f.object.photo_one.to_s.empty?
+      .col-md-12
+        = f.input :photo_two, as: :file, label: "Foto 2"
+        = link_to "visualizar arquivo atual", f.object.photo_two.url, target: '_blank' if !f.object.photo_two.to_s.empty?
+      .col-md-12
+        = f.input :photo_three, as: :file, label: "Foto 3"
+        = link_to "visualizar arquivo atual", f.object.photo_three.url, target: '_blank' if !f.object.photo_three.to_s.empty?
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit,"Salvar", class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+        = link_to t(:button_back) ,liftings_path , class: 'btn btn-default'

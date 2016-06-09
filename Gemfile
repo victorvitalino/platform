@@ -44,6 +44,8 @@ gem 'email_validator'
 gem 'nokogiri'
 gem 'barby'
 gem 'chunky_png'
+gem 'axlsx_rails'
+
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'file_validators'
@@ -123,11 +125,12 @@ path 'components' do
 
   gem 'candidate_attendance'
   gem 'habitation_attendance'
-  
+
   gem 'report'
-  
+
   gem 'indication'
   gem 'indication_portal'
-  
+
   gem 'project'
+  gem 'visit'
 end
