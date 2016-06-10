@@ -33,15 +33,24 @@
                 %h4 Alterar situação do candidato
                 = simple_form_for @cadastre_procedural, url: cadastre_cadastre_procedural_create_path  do |f|
                   = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate.id}
-                  = f.input :convocation_id, as: :hidden,  input_html:{ value: @candidate.cadastre_procedurals.present? ? @candidate.cadastre_procedurals.last.convocation_id : nil }
-                  = f.input :old_process, as: :hidden,  input_html:{ value: @candidate.cadastre_procedurals.present? ?  @candidate.cadastre_procedurals.last.old_process : nil }
-                  = f.input :assessment_id, as: :hidden,  input_html:{ value: @candidate.cadastre_procedurals.present? ?  @candidate.cadastre_procedurals.last.assessment_id : nil }
                   .row
-                    .col-md-6
-                      = f.input :procedural_status_id, as: 'select', collection: Candidate::ProceduralStatus.all {|x| [x.name, x.id]}, label: false, prompt: "Selecione..."
+                    .col-md-4
+                      = f.label "Convocação"
+                      = f.input :convocation_id, label: false, input_html:{ value: @candidate.cadastre_procedurals.present? ? @candidate.cadastre_procedurals.last.convocation_id : nil }
+                    .col-md-4
+                      = f.label "Processo"
+                      = f.input :old_process, label: false, input_html:{ value: @candidate.cadastre_procedurals.present? ?  @candidate.cadastre_procedurals.last.old_process : nil }
                   .row
-                    .col-md-6
-                      = f.input :observation, as: 'text'
+                    .col-md-4
+                      = f.label "Processo de cessionário"
+                      = f.input :transfer_process, label: false, input_html:{ value: @candidate.cadastre_procedurals.present? ?  @candidate.cadastre_procedurals.last.transfer_process : nil }
+                    .col-md-4
+                      = f.label "Situação processual"
+                      = f.input :procedural_status_id, label: false, as: 'select', collection: Candidate::ProceduralStatus.all {|x| [x.name, x.id]}, prompt: "Selecione..."
+                  .row
+                    .col-md-8
+                      = f.label "Observação"
+                      = f.input :observation, as: 'text',label: false
                   %hr
                   .row
                     .col-md-12

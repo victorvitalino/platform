@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Assessments") do |sheet|
-  sheet.add_row ["Número do documento", "Tipo de documento","Orgão externo", "Assunto", "Área Solicitante", "Data do documento" ]
+  sheet.add_row ["Número do documento", "Tipo de documento", "Assunto", "Área Solicitante", "Data do documento" ]
   @assessments.each do |a|
-    sheet.add_row [a.document_number, a.doc_type_name, a.external_agency, a.subject_name,a.requesting_unit, a.created_at]
+    sheet.add_row [a.document_number, a.doc_type_name,  a.subject_name,a.requesting_unit, a.created_at]
   end
 end
