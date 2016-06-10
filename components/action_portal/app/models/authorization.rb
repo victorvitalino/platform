@@ -1,5 +1,5 @@
 module ActionPortal
-  class Authorization
+  class Authorizations
     include ActiveModel::Model
 
     attr_accessor :password, :id, :cpf

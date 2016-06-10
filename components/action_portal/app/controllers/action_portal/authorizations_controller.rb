@@ -1,6 +1,6 @@
 require_dependency 'action_portal/application_controller'
 module ActionPortal
-  class AuthorizationController < ApplicationController
+  class AuthorizationsController < ApplicationController
 
     def new
       @authorization = ActionPortal::Authorization.new
@@ -10,19 +10,20 @@ module ActionPortal
       @authorization = ActionPortal::Authorization.new(set_params)
 
       if @authorization.valid?
-        session[:entity_auth_id] = @authorization.id
-        session[:entity_expiration_id] = Time.now + 2.hours
-        redirect_to restrict_area_cadastres_path
+        session[:action_auth_id] = @authorization.id
+        session[:action_expiration_id] = Time.now + 2.hours
+        redirect_to restrict_areas_path
+        
       else
         render action: 'new'
       end
     end
 
     def destroy
-      session[:entity_auth_id] = nil
-      session[:entity_expiration_id] = nil
+      session[:action_auth_id] = nil
+      session[:action_expiration_id] = nil
 
-      redirect_to entity_portal.new_authorization_path
+      redirect_to action_portal.new_authorization_path
     end
 
     private

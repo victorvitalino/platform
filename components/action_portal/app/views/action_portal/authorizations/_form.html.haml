@@ -1,5 +1,5 @@
 .col-md-8.col-md-offset-2
-  = simple_form_for @authorization, url: authorization_path,method: :post do |f|
+  = simple_form_for @authorization, url: authorizations_path,method: :post do |f|
     .row
       .col-md-6
         = f.input :cpf, input_html: {class: 'cpf'}
@@ -8,5 +8,3 @@
     .row
       .col-md-6
         = f.submit "Realizar acesso", class: 'btn btn-warning'
-      .col-md-6
-        = link_to "Esqueci minha senha", remember_password_path
