@@ -1,5 +1,5 @@
-.page-content
-  .panel
+.page
+  .panel.panel-default
     .panel-heading
       .panel-title
         %h4
@@ -24,7 +24,7 @@
                       %tr
                         %td= @candidate.name.upcase
                         %td= @candidate.cpf
-                        - if @candidate.cadastre_situations.present?
+                        - if @candidate.cadastre_procedurals.present?
                           %td= @candidate.cadastre_procedurals.order('created_at asc').last.procedural_status.name.upcase
                           %td= @candidate.cadastre_procedurals.order('created_at asc').last.created_at.strftime('%d-%m-%Y')
             %hr
@@ -33,15 +33,25 @@
                 %h4 Alterar situação do candidato
                 = simple_form_for @cadastre_procedural, url: cadastre_cadastre_procedural_create_path  do |f|
                   = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate.id}
-                  = f.input :convocation_id, as: :hidden,  input_html:{ value: @candidate.cadastre_procedurals.last.convocation_id  }
-                  = f.input :old_process, as: :hidden,  input_html:{ value: @candidate.cadastre_procedurals.last.old_process }
-                  = f.input :assessment_id, as: :hidden,  input_html:{ value: @candidate.cadastre_procedurals.last.assessment_id }
                   .row
-                    .col-md-6
-                      = f.input :procedural_status_id, as: 'select', collection: Candidate::ProceduralStatus.all {|x| [x.name, x.id]}, label: false, prompt: "Selecione..."
+                    .col-md-4
+                      = f.label "Convocação"
+                      = f.input :convocation_id, label: false, input_html:{ value: @candidate.cadastre_procedurals.present? ? @candidate.cadastre_procedurals.last.convocation_id : nil }
+                    .col-md-4
+                      = f.label "Processo"
+                      = f.input :old_process, label: false, input_html:{ value: @candidate.cadastre_procedurals.present? ?  @candidate.cadastre_procedurals.last.old_process : nil }
+                  .row
+                    .col-md-4
+                      = f.label "Processo de cessionário"
+                      = f.input :transfer_process, label: false, input_html:{ value: @candidate.cadastre_procedurals.present? ?  @candidate.cadastre_procedurals.last.transfer_process : nil }
+                    .col-md-4
+                      = f.label "Situação processual"
+                      = f.input :procedural_status_id, label: false, as: 'select', collection: Candidate::ProceduralStatus.all {|x| [x.name, x.id]}, prompt: "Selecione..."
+                  .row
+                    .col-md-8
+                      = f.label "Observação"
+                      = f.input :observation, as: 'text',label: false
                   %hr
                   .row
                     .col-md-12
                       = f.submit "Atualizar situação", name: nil, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button)}
-
-

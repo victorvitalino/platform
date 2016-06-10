@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/procedural': Situação Procesual
+    attributes:
+      'candidate/procedural':
+        convocation: "Convocação"
+        old_process: "Processo"
+        transfer_process: "Processo de cessionário"
+        procedural_status: "Situação processual"
+        observation: "Observação"

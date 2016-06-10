@@ -3,9 +3,7 @@ module Candidate
     belongs_to :procedural_status
     belongs_to :convocation
     belongs_to :cadastre
-
-
-
+    
     def current_status_procedural
         self.procedural_status.name if procedural_status.present?
     end
