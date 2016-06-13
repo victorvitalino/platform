@@ -12,5 +12,6 @@ ActionPortal::Engine.routes.draw do
       get 'success', path: 'sucesso'
     end
   end
-
+  resources :authorizations
+  resources :restrict_areas
 end

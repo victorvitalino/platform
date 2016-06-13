@@ -1,4 +1,15 @@
 /*action page*/
+.restrict_block{
+  background-color: #7863ac;
+  overflow: hidden;
+  color: #fff;
+  padding-bottom: 30px;
+}
+.action_button_in{
+  width: 445px!important;
+  cursor: pointer;
+}
+.restrict_block h1{ text-align: center; color: #fff;}
 .flexslider_mod{
   border:none;
   margin:0;
