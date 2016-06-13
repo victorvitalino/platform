@@ -31,21 +31,8 @@
     %h3.titulo_home
       inscrições abertas para voluntários
   .col-md-4.action_home_inscription
-    #action_thumb_1.action_thumb{:style => "background-image: url(/acoes/inscrever.jpg)"}
-    = link_to 'inscrever-se', action_portal.cadastres_url.to_s + '/new' ,class:"action_inscription_button action_inscription_button_1"
-    .action_inscription_title
-      SERFM
-      %br
-      Pôr do Sol
-    .action_inscription_sub_title
-      %b
-        11.06 /// sábado
-      %br
-      de 9h às 17h
-  .col-md-4.action_home_inscription
     #action_thumb_2.action_thumb{:style => "background-image: url(/acoes/breve_sebastiao.jpg)"}
-    .action_inscription_button.action_inscription_button_2
-      em breve
+    = link_to 'inscreva-se', action_portal.cadastres_url.to_s + '/new' ,class:"action_inscription_button action_inscription_button_2"
     .action_inscription_title
       SERFM
       %br
@@ -66,6 +53,19 @@
     .action_inscription_sub_title
       %b
         02.07 /// sabado
+      %br
+      de 9h às 17h
+  .col-md-4.action_home_inscription
+    #action_thumb_1.action_thumb{:style => "background-image: url(/acoes/inscrever.jpg)"}
+    .action_inscription_button.action_inscription_button_1
+      concluido
+    .action_inscription_title
+      SERFM
+      %br
+      Pôr do Sol
+    .action_inscription_sub_title
+      %b
+        11.06 /// sábado
       %br
       de 9h às 17h
 .row
