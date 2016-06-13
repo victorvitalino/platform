@@ -95,7 +95,7 @@
                 %b Histórico de situação
           .row
             .col-md-12
-              - if @candidate.list.present?
+              - if @candidate.cadastre_situations.present?
                 %table#data-table-command.table.table-striped.table-vmiddle.datatable
                   %thead
                     %tr
