@@ -129,7 +129,7 @@
                   %tbody
                     - @candidate.enterprise_cadastres.each do |enterprise|
                       %tr
-                        %td= enterprise.enterprise.name if enterprise.enterprise.present?
+                        %td= link_to enterprise.enterprise.name, enterprise_cadastre_situation_candidates_path(id:enterprise.id), remote: true if enterprise.enterprise.present?
                         %td= enterprise.created_at.strftime("%d/%m/%Y")
                         %td= enterprise.inactive ? "Indicação inativada em: #{enterprise.inactive_date.strftime("%d/%m/%Y")}" :  "Indicação ativa"
               - else

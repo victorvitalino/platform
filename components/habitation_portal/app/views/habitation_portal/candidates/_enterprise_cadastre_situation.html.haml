@@ -1,0 +1,23 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title
+    %b Histórico da empresa
+.modal-body
+  .row
+    .col-md-12
+      - if @enterprise_cadastre_situation.present?
+        %table#data-table-command.table.table-striped.table-vmiddle.datatable
+          %thead
+            %tr
+              %th Situação
+              %th Observação
+              %th Data
+          %tbody
+            - @enterprise_cadastre_situation.each do |enterprise|
+              %tr
+                %td= enterprise.enterprise_situation_status.name if enterprise.enterprise_situation_status.present?
+                %td= enterprise.observation
+                %td= enterprise.created_at.strftime("%d/%m/%Y")
+      -else
+        Nenhuma informação disponível
