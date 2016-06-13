@@ -9,17 +9,16 @@ namespace :update do
     @index = 0
 
 
-    CSV.foreach("lib/files/empresa.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/escritura.csv", :col_sep => "#") do |row|
 
 
-           @model = Candidate::EnterpriseCadastreSituation.new(
-           enterprise_cadastre_id: row[8],
-           enterprise_cadastre_status_id: row[5],
-           observation: row[4],
-           file_path: row[3],
-           firm_user_id: row[6],
-           created_at: row[2],
-
+           @model = Candidate::CadastreActivity.new(
+           cadastre_id: row[0],
+           activity_status_id: 12,
+           type_activity: 0,
+           status: true,
+           type_ocurrency: 1,
+           observation: "Escritura física na CODHAB"
            )
 
           #puts @model.inspect

@@ -24,7 +24,7 @@ module Action
 
     def password_compare
       unless self.password == self.password_confirmation
-        errors.add(:password, "Senha não conferealkjrhlkjeahrk")
+        errors.add(:password, "Senha não confere")
       end
     end
   end

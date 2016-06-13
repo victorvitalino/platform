@@ -21,3 +21,7 @@ pt-BR:
         observation: "Observação"
         description_subject: "Descrição do Assunto"
         city: "Cidade"
+        finalized: "Finalizado"
+        finalized_date: "Data de finalização"
+        responded: "Respondido"
+        responded_date: "Data de resposta"
