@@ -5,6 +5,13 @@
   color: #fff;
   padding-bottom: 30px;
 }
+.action_map_head{
+  background-color:#de3859;
+    margin-top: 50px;
+}
+.action_button_dl{
+  width:413px!important;
+}
 .action_button_in{
   width: 445px!important;
   cursor: pointer;
@@ -25,19 +32,19 @@
   margin-top: 50px;
 }
 .about_action{
-  height: 250px;
+  height: 330px;
   background-color:#79b792;
 }
 .about_action_text{
   background-color:#de3859;
-  height: 250px;
+  height: 330px;
 }
 .about_action_title{
   font-size: 45px;
   font-weight: bold;
   color: #fff;
   display: block;
-  margin-top: 74px;
+  margin-top: 105px;
   transform: rotate(-90deg);
 
 /* Safari */
@@ -131,6 +138,11 @@ font-size: 30px;
   font-size: 48px;
   padding-left: 405px;
   margin-top: 55px;
+}
+.titulo_home_mapa{
+  font-size: 48px;
+  text-align: center;
+  padding: 5px 0;
 }
 #action_thumb_1 {
 
