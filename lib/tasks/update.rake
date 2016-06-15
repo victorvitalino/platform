@@ -9,20 +9,32 @@ namespace :update do
     @index = 0
 
 
-    CSV.foreach("lib/files/escritura.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/address.csv", :col_sep => "#") do |row|
 
 
-           @model = Candidate::CadastreActivity.new(
-           cadastre_id: row[0],
-           activity_status_id: 12,
-           type_activity: 0,
-           status: true,
-           type_ocurrency: 1,
-           observation: "Escritura física na CODHAB"
-           )
+           #@model = Candidate::CadastreProcedural.new(
+           #cadastre_id: row[1],
+           #procedural_status_id: row[4],
+           #convocation_id: row[3],
+           #old_process: row[6],
+           #ransfer_process: row[7],
+           #created_at: row[5]
+           #)
 
           #puts @model.inspect
-          @model.save
+
+          @model = Candidate::CadastreAddress.find_by_unit_id(row[2])
+
+          if @model.present?
+            @model.cadastre_id = row[0]
+
+            @model.save
+            #puts @model.inspect
+          end
+
+
+
+          #@model.save
 
 
 
