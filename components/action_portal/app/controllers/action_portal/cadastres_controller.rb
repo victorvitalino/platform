@@ -27,8 +27,8 @@ module ActionPortal
 
       # Only allow a trusted parameter "white list" through.
       def cadastre_params
-        params.require(:cadastre).permit(:name, :cpf, :profession, :formation_area, :atuation_area,
-                                      :email, :password, :password_confirmation, :address, :nationality, :phone, :born, :city, :state)
+        params.require(:cadastre).permit(:name, :cpf, :profession_id, :formation_area_id, :atuation_area_id,
+                                      :email, :password, :password_confirmation, :address, :nationality, :phone, :born, :city_id, :state_id)
       end
   end
 end
