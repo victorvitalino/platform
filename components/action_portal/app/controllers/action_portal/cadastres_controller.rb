@@ -15,7 +15,7 @@ module ActionPortal
       if @cadastre.save
         redirect_to action: 'success'
       else
-        render :new, :id => 'aasdf'
+        render :new
       end
     end
 
