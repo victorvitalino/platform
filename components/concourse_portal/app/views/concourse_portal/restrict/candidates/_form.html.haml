@@ -57,6 +57,9 @@
       %h4 Informações Adicionais
   %hr/
   .row
+    .col-md-4
+      = f.input :professional_type, label: "Tipo de profissional", as: :select, collection: Concourse::Candidate.professional_types.keys, include_blank: false
+  .row
     = f.simple_fields_for :properties, OpenStruct.new(@candidate.properties) do |builder|
       - @candidate.subscribe.fields.each_with_index do |field, index|
         - if field.file?

@@ -47,7 +47,7 @@ module ConcoursePortal
         params.require(:candidate).permit(:name, :rg, :cpf, :born, 
               :state_id, :city, :cep, :address, :burgh, :telephone,
               :celphone, :email, :gender, :fantasy_name, :social_reason, 
-              :password, :confirmation_password, :terms_use,
+              :password, :confirmation_password, :terms_use, :professional_type,
               :cnpj, :properties => dinamic_fields)
       end
 
