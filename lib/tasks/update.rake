@@ -9,32 +9,21 @@ namespace :update do
     @index = 0
 
 
-    CSV.foreach("lib/files/address.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/conduct2.csv", :col_sep => "#") do |row|
 
 
-           #@model = Candidate::CadastreProcedural.new(
-           #cadastre_id: row[1],
-           #procedural_status_id: row[4],
-           #convocation_id: row[3],
-           #old_process: row[6],
-           #ransfer_process: row[7],
-           #created_at: row[5]
-           #)
+           @model = Protocol::Conduct.new(
+           conduct_type: row[2].to_i,
+           assessment_id: row[3],
+           staff_id: row[5],
+           sector_id: row[4],
+           allotment_id: row[0],
+           created_at: row[1]
+           )
 
           #puts @model.inspect
 
-          @model = Candidate::CadastreAddress.find_by_unit_id(row[2])
-
-          if @model.present?
-            @model.cadastre_id = row[0]
-
-            @model.save
-            #puts @model.inspect
-          end
-
-
-
-          #@model.save
+          @model.save
 
 
 

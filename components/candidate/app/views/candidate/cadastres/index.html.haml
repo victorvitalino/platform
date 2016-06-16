@@ -208,6 +208,7 @@
                       %th Convocação
                       %th Processo
                       %th Data da situação
+                      %th Processo Cessionário
                   %tbody
                     - @candidate.cadastre_procedurals.order('id ASC').each do |candidate|
                       %tr
@@ -219,6 +220,7 @@
                             = candidate.created_at.strftime('%d/%m/%Y')
                           - else
                             Informação não disponível
+                        %td= candidate.transfer_process
           %hr/
           .row
             .col-md-12

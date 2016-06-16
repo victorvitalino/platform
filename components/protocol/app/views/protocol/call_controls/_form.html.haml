@@ -1,0 +1,47 @@
+= simple_form_for [@assessment,@call_control], remote: true do |f|
+  .row
+    .col-md-12
+      %b Responsável
+      %br
+      = @responsible.name if @responsible.present?
+      %br
+      %br
+  .row
+    .col-md-3
+      = f.label :time_start, class: 'fg-label'
+      = f.input :time_start, as: 'string', label: false, input_html: { class: 'hour',value: (f.object.time_start) ? f.object.time_start.strftime('%H:%M:%S') : nil }
+    .col-md-2
+      %br
+      %input{:onclick => "hour_start()", :type => "button", :value => "Agora"}/
+    .col-md-3
+      = f.label :time_end, class: 'fg-label'
+      = f.input :time_end, as: 'string', label: false, input_html: { class: 'hour',value: (f.object.time_end) ? f.object.time_end.strftime('%H:%M:%S') : nil }
+    .col-md-2
+      %br
+      %input{:onclick => "hour_end()", :type => "button", :value => "Agora"}/
+  .row
+    .col-md-6
+      = f.label :phone_number, class: 'fg-label'
+      = f.input :phone_number, label: false, input_html: { placeholder: 'Digite um  prefixo'}
+  .row
+    .col-md-8
+      = f.label :interested, class: 'fg-label'
+      = f.input :interested, label: false, input_html: { placeholder: 'Digite uma lotação'}
+  .row
+    .col-md-12
+      = f.label :observation, class: 'fg-label'
+      = f.input :observation, label: false, input_html: { placeholder: 'Digite uma lotação'}
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button) }
+:javascript
+
+  function hour_start(){
+  var d = new Date();
+  document.getElementById('call_control_time_start').value = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+  }
+  function hour_end(){
+  var dt = new Date();
+  document.getElementById('call_control_time_end').value = dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds();
+  }

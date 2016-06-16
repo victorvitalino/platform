@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Listagem de ligações
+        = link_to 'Nova ligação', new_assessment_call_control_path(@assessment), remote: true, class: 'pull-right',data: {disable_with: "carregando..."}
+  .panel-body
+    .row
+      .col-md-12
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table#data-table-command.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Número
+                %th Tipo de Documento
+                %th Interessado
+                %th Data
+                %th Ações
+            %tbody.index-call
+              = render 'index'
