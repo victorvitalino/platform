@@ -1,7 +1,7 @@
 = simple_form_for [:project,@consult] do |f|
   .row
     .col-md-12
-      = f.label "* Descreva abaixo a consulta anônima relativa à base do respectivo concurso"
+      = f.label "* Descreva abaixo sua consulta"
       %br/
       = f.input :content, label: false, placeholder: 'Descrição da consulta', input_html: { style: 'min-height: 200px;'}
   %br/
