@@ -5,7 +5,7 @@ module Concourse
     has_scope :by_status
 
     def index
-      @consults = apply_scopes(Concourse::Consult).all.paginate(:page => params[:page], :per_page => 20)
+      @consults = apply_scopes(@project).consults.paginate(:page => params[:page], :per_page => 20)
       authorize :consult, :index?
     end
 
@@ -16,7 +16,7 @@ module Concourse
         @project = Project.friendly.find(params[:project_id])
         if @consult.update(status: true)
           flash[:success] = t :success
-          redirect_to project_path(id: @project, q: 'consultas')
+          redirect_to project_consults_path(@project)
         else
 
         end
@@ -39,14 +39,14 @@ module Concourse
 
     def show
       authorize :consult, :index?
-      @project = Project.friendly.find(params[:project_id])
-      @consult = Consult.find(params[:id])
+      @project = Concourse::Project.friendly.find(params[:project_id])
+      @consult = Concourse::Consult.find(params[:id])
     end
 
     private
 
     def set_project
-      @project = Project.friendly.find(params[:project_id])
+      @project = Concourse::Project.friendly.find(params[:project_id])
     end
 
   end

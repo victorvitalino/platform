@@ -80,7 +80,7 @@ module ConcoursePortal
 
       params.require(:candidate).permit(:name, :rg, :born, 
               :state_id, :city, :cep, :address, :burgh, :telephone,
-              :celphone, :email, :gender, :fantasy_name, :social_reason, 
+              :celphone, :email, :gender, :fantasy_name, :social_reason, :professional_type,
               :cnpj, :properties => dinamic_fields)
       end
 

@@ -55,7 +55,7 @@
           %tbody
             %tr
               %td= @candidate.name.upcase
-              %td= @candidate.cpf
+              %td= @candidate.cpf.format_cpf
               %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
               %td= @candidate.gender
     %br
@@ -117,14 +117,22 @@
         %table.table.table-striped.table-bordered
           %thead
             %tr
+              %th Tipo de profissional
+          %tbody
+            %tr
+              %td= @candidate.professional_type
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
               %th Descrição
-              %th Informação - opção 1
-              %th Informação - opção 2
+              %th Informação
           %tbody
             - @candidate.properties.each do |p|
               %tr
                 %td= p[0].humanize
-                %td.col-md-3= link_to "Baixar Arquivo", "http://api.codhab.df.gov.br/static/#{p[1]}", target: '_blank'
+
                 %td.col-md-3= link_to "Baixar Arquivo", "http://www.codhab.df.gov.br/files/concourse/project/#{p[1]}", target: '_blank'
     %hr/
     .row

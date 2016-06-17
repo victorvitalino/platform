@@ -80,7 +80,7 @@
           %tbody
             %tr
               %td= @candidate.name.upcase
-              %td= @candidate.cpf
+              %td= @candidate.cpf.format_cpf
               %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
               %td= @candidate.gender
 
@@ -120,7 +120,16 @@
             %tr
               %td= @candidate.fantasy_name
               %td= @candidate.social_reason
-              %td= @candidate.cnpj
+              %td= @candidate.cnpj.format_cnpj
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Tipo de profissional
+          %tbody
+            %tr
+              %td= @candidate.professional_type if @candidate.professional_type.present?
     .row
       .col-md-12
         %table.table.table-striped.table-bordered

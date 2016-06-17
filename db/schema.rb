@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160616135251) do
+=======
+ActiveRecord::Schema.define(version: 20160616140749) do
+>>>>>>> 504f7bad041d6c7823b4b4742d45d4a04da446e6
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1246,9 +1250,10 @@ ActiveRecord::Schema.define(version: 20160616135251) do
     t.text     "properties"
     t.string   "protocol"
     t.text     "observation"
-    t.integer  "status",        default: 0
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "status",            default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "professional_type"
   end
 
   add_index "concourse_candidates", ["state_id"], name: "index_concourse_candidates_on_state_id", using: :btree
