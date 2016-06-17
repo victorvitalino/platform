@@ -18,7 +18,7 @@
   %hr/
   .row
     .col-md-3
-      = f.association :city, include_blank: false
+      = f.association :city, collection: Address::City.federal_district, include_blank: false
   .row
     .col-md-6
       = f.input :address, input_html: { placeholder: 'Digite um nome'}
