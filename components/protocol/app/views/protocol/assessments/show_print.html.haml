@@ -185,11 +185,11 @@
               %td{:style => "width: 50%; text-align:left"}
                 %b
                   %label
-                    = @assessment.attach_documents.last.document_child.document_number if @assessment.attach_documents.present? && @assessment.attach_documents.last.attach_type == 0
+                    = @assessment.attach_document_children.last.document_father.document_number if @assessment.attach_document_children.present? && @assessment.attach_document_children.last.attach_type == 0
               %td{:style => "width: 50%; text-align:left"}
                 %b
                   %label
-                    = @assessment.attach_documents.last.document_child.document_number if @assessment.attach_documents.present? && @assessment.attach_documents.last.attach_type == 1
+                    = @assessment.attach_document_children.last.document_father.document_number if @assessment.attach_document_children.present? && @assessment.attach_document_children.last.attach_type == 1
             %tr
               %td{:colspan => "2"}
                  
