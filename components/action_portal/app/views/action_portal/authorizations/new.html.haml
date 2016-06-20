@@ -1,3 +1,5 @@
+= render 'partials/shared/portal/top_nav'
+= render 'partials/shared/portal/header'
 .row
   .col-md-12.box
     .panel.panel-default
@@ -16,3 +18,11 @@
             %br/
             %br/
             = render 'form'
+      .panel-body
+        %hr/
+        .row
+          .col-md-12
+            %br/
+            %br/
+            %h1
+              = link_to 'Não possui cadastro? clique aqui', action_portal.cadastres_url.to_s + '/new', style:'    display: block;text-align: center;width: 100%;'

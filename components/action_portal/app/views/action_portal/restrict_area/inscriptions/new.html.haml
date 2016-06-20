@@ -2,12 +2,11 @@
 = render 'partials/shared/portal/header'
 %div{class: (controller_name != 'home') ? 'container main' : '' }
   .container
-    .row
-      .col-md-12.container
-        = render 'partials/slider'
-    .row
-      .col-md-12.bloco_laranja
-        .txt_inscricao
-          Inscrição
-        = render 'partials/form'
+    .restrict_block
+      %h1
+        %strong
+          Olá
+          = @action_user.name
+      .index-inscriptions
+        = render 'index'
 = render 'partials/shared/portal/footer'

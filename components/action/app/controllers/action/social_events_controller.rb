@@ -42,7 +42,7 @@ module Action
     # DELETE /posts/1
     def destroy
       @event.destroy
-      redirect_to social_events_url, notice: 'Post was successfully destroyed.'
+      redirect_to social_events_url, notice: 'Event was successfully destroyed.'
     end
 
     private
@@ -53,7 +53,7 @@ module Action
 
       # Only allow a trusted parameter "white list" through.
       def social_event_params
-        params.require(:social_event).permit(:name, :status, :date, :description, :localization, :city, :situation)
+        params.require(:social_event).permit(:name, :status, :date, :description, :district, :city_id, :situation, :hour,:photo, :thumb)
       end
   end
 end

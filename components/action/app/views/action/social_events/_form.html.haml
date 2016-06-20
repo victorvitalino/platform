@@ -1,3 +1,9 @@
+:javascript
+  tinyMCE.init({
+    selector: 'textarea.tinymce',
+    language: 'pt_BR',
+    plugins : 'advlist autolink link uploadimage image lists charmap print preview'
+  });
 = simple_form_for(@event) do |f|
   .card-body.card-padding
     .row
@@ -7,21 +13,31 @@
         = f.label :date, as: 'string', class: 'fg-label'
         = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@event.date) ? localize(f.object.date) : nil}
       .col-md-2
-        = f.label :status
-        = f.input :status, as: :select, label: false, include_blank: false
+        = f.label :hour
+        = f.input :hour, label: false, include_blank: false
     .row
       .col-md-12
         = f.label :description, class: 'fg-label'
-        = f.input :description, label: false, input_html: { id: 'content', class: 'tinymce', rows: 10, cols: 80}
+        = f.input :description, label: false, input_html: { id: 'description', class: 'tinymce', rows: 10, cols: 80}
     .row
-      .col-md-4
+      .col-md-2
+        = f.label :status
+        = f.input :status, as: :select, label: false, include_blank: false
+      .col-md-2
         = f.label :situation, class: 'fg-label'
-        = f.input :situation, as: :select, label: false, include_blank: false
+        = f.input :situation, label: false, include_blank: false
       .col-md-4
-        = f.label :city, class: 'fg-label'
+        = f.label :city_id, class: 'fg-label'
         = f.association :city, label: false, include_blank: false, collection: Address::City.federal_district
       .col-md-4
-        = f.input :localization, input_html: {placeholder: 'Digite o nome da localização'}
+        = f.input :district, input_html: {placeholder: 'Digite o nome da localização'}
+    .row
+      .col-md-6
+        = f.input :thumb, as: :file
+        = link_to "visualizar arquivo atual", f.object.thumb.url, target: '_blank' if !f.object.thumb.to_s.empty?
+      .col-md-6
+        = f.input :photo, as: :file
+        = link_to "visualizar arquivo atual", f.object.photo.url, target: '_blank' if !f.object.photo.to_s.empty?
     %hr/
     .row
       .col-md-12

@@ -14,4 +14,14 @@ ActionPortal::Engine.routes.draw do
   end
   resources :authorizations
   resources :restrict_areas
+
+  namespace :restrict_area do
+      resources :inscriptions
+      resources :user_social_events do
+        get 'mark'
+        get 'unmark'
+      end
+  end
+  resources :social_events
+
 end

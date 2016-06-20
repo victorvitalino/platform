@@ -1,10 +1,13 @@
 module Action
   class Cadastre < ActiveRecord::Base
-    belongs_to :city
+    belongs_to :city,class_name: 'Address::City'
     belongs_to :state, class_name: "Address::State"
     belongs_to :profession
     belongs_to :atuation_area
     belongs_to :formation_area
+
+    has_many   :inscriptions
+    has_many   :social_events, through: :inscriptions
 
     attr_accessor :password_confirmation
 

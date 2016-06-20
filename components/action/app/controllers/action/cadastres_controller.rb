@@ -53,7 +53,7 @@ module Action
 
       # Only allow a trusted parameter "white list" through.
       def cadastre_params
-        params.require(:cadastre).permit(:name, :cpf, :profession, :formation_area, :atuation_area, :email, :password, :address, :nationality, :phone, :born, :city, :state, :password_confirmation)
+        params.require(:cadastre).permit(:name, :cpf, :profession_id, :formation_area_id, :atuation_area_id, :email, :password, :address, :nationality, :phone, :born, :city_id, :state, :password_confirmation)
       end
   end
 end

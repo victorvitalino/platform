@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608193551) do
+ActiveRecord::Schema.define(version: 20160620124438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 20160608193551) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "action_inscriptions", force: :cascade do |t|
+    t.integer  "social_event_id"
+    t.integer  "cadastre_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "action_inscriptions", ["cadastre_id"], name: "index_action_inscriptions_on_cadastre_id", using: :btree
+  add_index "action_inscriptions", ["social_event_id"], name: "index_action_inscriptions_on_social_event_id", using: :btree
+
   create_table "action_professions", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status"
@@ -72,6 +82,10 @@ ActiveRecord::Schema.define(version: 20160608193551) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.boolean  "status"
+    t.string   "photo"
+    t.string   "thumb"
+    t.string   "hour"
+    t.string   "district"
   end
 
   add_index "action_social_events", ["city_id"], name: "index_action_social_events_on_city_id", using: :btree
@@ -1242,9 +1256,10 @@ ActiveRecord::Schema.define(version: 20160608193551) do
     t.text     "properties"
     t.string   "protocol"
     t.text     "observation"
-    t.integer  "status",        default: 0
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "status",            default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "professional_type"
   end
 
   add_index "concourse_candidates", ["state_id"], name: "index_concourse_candidates_on_state_id", using: :btree
@@ -2193,6 +2208,10 @@ ActiveRecord::Schema.define(version: 20160608193551) do
     t.datetime "updated_at",          null: false
     t.integer  "id_old"
     t.string   "city"
+    t.boolean  "finalized"
+    t.datetime "finalized_date"
+    t.boolean  "responded"
+    t.datetime "responded_date"
   end
 
   add_index "protocol_assessments", ["document_type_id"], name: "index_protocol_assessments_on_document_type_id", using: :btree
@@ -2214,6 +2233,21 @@ ActiveRecord::Schema.define(version: 20160608193551) do
   add_index "protocol_attach_documents", ["document_father_id"], name: "index_protocol_attach_documents_on_document_father_id", using: :btree
   add_index "protocol_attach_documents", ["sector_id"], name: "index_protocol_attach_documents_on_sector_id", using: :btree
   add_index "protocol_attach_documents", ["staff_id"], name: "index_protocol_attach_documents_on_staff_id", using: :btree
+
+  create_table "protocol_call_controls", force: :cascade do |t|
+    t.time     "time_start"
+    t.time     "time_end"
+    t.string   "phone_number"
+    t.string   "interested"
+    t.text     "observation"
+    t.integer  "staff_id"
+    t.integer  "assessment_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "protocol_call_controls", ["assessment_id"], name: "index_protocol_call_controls_on_assessment_id", using: :btree
+  add_index "protocol_call_controls", ["staff_id"], name: "index_protocol_call_controls_on_staff_id", using: :btree
 
   create_table "protocol_conducts", force: :cascade do |t|
     t.text     "description"

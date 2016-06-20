@@ -4,12 +4,8 @@ module ActionPortal
 
   class HomeController < ApplicationController
     def index
-    end
-
-    def serfm
-    end
-
-    def SERFM_SOL
+      @events_i = Action::SocialEvent.where(situation:'2',status:true).limit(3).order(date: 'ASC')
+      @events_c = Action::SocialEvent.where(situation:'0',status: true).limit(3).order(date: 'ASC')
     end
 
     def cadastro
