@@ -19,7 +19,7 @@
             = @assessment.requesting_unit
         .row
           .col-md-8
-            %label Orgão Destinatário:
+            %label Interessado:
             = @assessment.recipient
         .row
           .col-md-8
@@ -66,6 +66,10 @@
           .col-md-4
             %label Data de resposta:
             = @assessment.responded_date
+        .row
+          .col-md-4
+            %label Data do documento:
+            = @assessment.created_at.strftime("%d-%m-%Y - %H:%M:%S")
         .row
           .col-md-12
             %br
