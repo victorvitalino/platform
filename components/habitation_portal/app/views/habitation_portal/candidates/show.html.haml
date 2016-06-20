@@ -131,7 +131,7 @@
                       %tr
                         %td= link_to enterprise.enterprise.name, enterprise_cadastre_situation_candidates_path(id:enterprise.id), remote: true if enterprise.enterprise.present?
                         %td= enterprise.created_at.strftime("%d/%m/%Y")
-                        %td= enterprise.inactive ? "Indicação inativada em: #{enterprise.inactive_date.strftime("%d/%m/%Y")}" :  "Indicação ativa"
+                        %td= enterprise.inactive ? "Indicação inativa: #{enterprise.inactive_date.present? ? enterprise.inactive_date.strftime("%d/%m/%Y") : 'Sem informação de data.' }" :  "Indicação ativa"
               - else
                 Informação não disponível
           %hr/

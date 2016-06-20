@@ -30,6 +30,9 @@ module Candidate
     has_many :cadastre_activities
     has_many :old_candidates, class_name: 'Entity::OldCandidate'
 
+    has_many :cadastre_attendances
+    has_many :cadastre_attendance_statuses, through: :cadastre_attendances 
+
     scope :situation, -> (situation) {
       self.joins(:cadastre_situations)
       .where('candidate_cadastre_situations.situation_status_id = (SELECT MAX(candidate_cadastre_situations.situation_status_id)

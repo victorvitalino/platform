@@ -13,9 +13,12 @@ module Concourse
     scope :by_cpf, -> (cpf) { where(cpf: cpf)}
     scope :by_id, -> (id) { where(id: id)}
 
+    enum professional_type: ['arquiteto','engenheiro civil']
     enum gender: [:masculino, :feminino]
     enum status: [:processando, :pendente, :homologado, :indeferido]
 
+    validates :professional_type, presence: true
+    
     serialize  :properties, Hash 
 
     def invoice_paid

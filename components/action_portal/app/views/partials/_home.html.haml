@@ -33,58 +33,46 @@
       inscrições abertas para voluntários
   .col-md-4.action_home_inscription
     #action_thumb_2.action_thumb{:style => "background-image: url(/acoes/breve_sebastiao.jpg)"}
-    = link_to 'inscreva-se', action_portal.cadastres_url.to_s + '/new' ,class:"action_inscription_button action_inscription_button_2"
+    = link_to 'inscreva-se', 'acoesurbanas/serfm_buritizinho' ,class:"action_inscription_button action_inscription_button_1"
     .action_inscription_title
       SERFM
       %br
-      São Sebastião
+      Buritizinho
     .action_inscription_sub_title
       %b
         18.06 /// sábado
       %br
-      de 9h às 17h
+      de 8h às 17h
   .col-md-4.action_home_inscription
     #action_thumb_3.action_thumb{:style => "background-image: url(/acoes/breve_sol.jpg)"}
     .action_inscription_button.action_inscription_button_3
-      em breve
+    = link_to 'inscreva-se', 'acoesurbanas/acao_urbana_sao_sebastiao' ,class:"action_inscription_button action_inscription_button_2"
+    .action_inscription_title
+      Ação Urbana Comunitária
+      %br
+      São Sebastião
+    .action_inscription_sub_title
+      %b
+        25.06 /// sabado
+      %br
+      de 8h às 17h
+  .col-md-4.action_home_inscription
+    #action_thumb_1.action_thumb{:style => "background-image: url(/acoes/inscrever.jpg)"}
+    .action_inscription_button.action_inscription_button_1
+    = link_to 'inscreva-se', 'acoesurbanas/acao_urbana_buritizinho' ,class:"action_inscription_button action_inscription_button_3"
     .action_inscription_title
       Ação Urbana Comunitária
       %br
       Buritizinho
     .action_inscription_sub_title
       %b
-        02.07 /// sabado
+        02.07 /// sábado
       %br
-      de 9h às 17h
-  .col-md-4.action_home_inscription
-    #action_thumb_1.action_thumb{:style => "background-image: url(/acoes/inscrever.jpg)"}
-    .action_inscription_button.action_inscription_button_1
-      concluido
-    .action_inscription_title
-      SERFM
-      %br
-      Pôr do Sol
-    .action_inscription_sub_title
-      %b
-        11.06 /// sábado
-      %br
-      de 9h às 17h
+      de 8h às 17h
 .row
   .col-md-12
     %h3.titulo_home
       ações concluidas
-  .col-md-4.action_home_inscription
-    #action_thumb_1.action_thumb{:style => "background-image: url(/acoes/acao2.jpg)"}
-    = link_to 'concluido', 'acoesurbanas/SERFM_SOL',class:"action_inscription_button action_inscription_button_1"
-    .action_inscription_title
-      SERFM
-      %br
-      Sol Nascente
-    .action_inscription_sub_title
-      %b
-        30.04 /// sábado
-      %br
-      8h30
   .col-md-4.action_home_inscription
     #action_thumb_2.action_thumb{:style => "background-image: url(/acoes/acao3.jpg)"}
     = link_to 'concluido', 'acoesurbanas/SERFM_PSOL',class:"action_inscription_button action_inscription_button_2"
@@ -109,6 +97,19 @@
         28.05 /// sábado
       %br
       de 9h
+  .col-md-4.action_home_inscription
+    #action_thumb_1.action_thumb{:style => "background-image: url(/acoes/inscrever.jpg)"}
+    .action_inscription_button.action_inscription_button_1
+      concluido
+    .action_inscription_title
+      SERFM
+      %br
+      Pôr do Sol
+    .action_inscription_sub_title
+      %b
+        11.06 /// sábado
+      %br
+      de 9h às 17h
 .row
   .col-md-12.action_map_head
     %h3.texto_branco.titulo_home_mapa

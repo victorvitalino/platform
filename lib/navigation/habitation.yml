@@ -16,7 +16,7 @@ nav:
             module: 'habitation_attendance'
             code: 0
             label: "Atendimento - Convocado"
-            controller: '/habitation_attendance/enabled/dashboard'
+            controller: '/habitation_attendance/convoke/dashboard'
             action: 'index'
           enabled:
             module: 'habitation_attendance'

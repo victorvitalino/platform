@@ -70,8 +70,9 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 .about_action_text p{
   font-size: 16px;
-  color:#fff;
-  margin-top: 50px;
+  color: #fff;
+  margin-top:30px;
+  text-align: justify;
 }
 .action_title_home{
   background-color:#f49649;
@@ -323,8 +324,8 @@ overflow: hidden;
 width: 100%;
 }
 .title_habita1{
-  font-size: 60px;
-  font-weight: 500;
+  font-size: 55px;
+  font-weight: 600;
 text-align: center;
 margin-bottom: 57px;
     margin-top: 43px;
@@ -376,4 +377,12 @@ margin-bottom: 57px;
 }
 .conhecafooter{
   margin-bottom: 100px;
+}
+.logo_habita{
+  margin: 20px auto;
+display: block;
+margin-bottom: 50px;
+}
+.texto-icon{
+font-size: 16px;
 }

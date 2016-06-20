@@ -1,0 +1,14 @@
+- @call_controls.each do |a|
+  %tr
+    %td
+      = a.assessment.document_number if a.assessment.present?
+    %td
+      = a.assessment.document_type.name if a.assessment.document_type.present?
+    %td
+      = a.interested
+    %td
+      = a.created_at.strftime('%d/%m/%Y')
+    %td.col-md-2
+      = link_to "", edit_assessment_call_control_path(@assessment.id,a),remote:true, title: "editar",  class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+      = link_to "", assessment_call_control_path(@assessment.id,a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."}
+      = link_to "", assessment_call_control_path(@assessment.id,a), method: :delete, class: 'glyphicon glyphicon-remove btn-xs btn btn-danger', data: {confirm: "#{t(:confirm_delete)}"}

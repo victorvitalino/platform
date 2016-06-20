@@ -97,15 +97,18 @@
                     = @assessment.document_type.name if @assessment.document_type.present?
             %tr
               %td{:style => "width: 50%; text-align:left"}
-                Interessado
+                Unidade Solicitante
               %td{:style => "width: 50%; text-align:left"}
-
+                Interessado
             %tr
               %td{:style => "width: 50%; text-align:left"}
                 %b
                   %label
                     = @assessment.requesting_unit
               %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.recipient
             %tr
               %td{:style => "width: 50%; text-align:left"}
                 Cidade
@@ -115,7 +118,7 @@
               %td{:style => "width: 50%; text-align:left"}
                 %b
                   %label
-                    = @assessment.city.name if @assessment.city.present?
+                    = @assessment.city
               %td{:style => "width: 50%; text-align:left"}
                 %b
                   %label
@@ -138,7 +141,7 @@
               %td{:style => "width: 50%; text-align:left"}
                 Assunto
               %td{:style => "width: 50%; text-align:left"}
-                Continuação
+                Descrição do assunto
             %tr
               %td{:style => "width: 50%; text-align:left"}
                 %b
@@ -148,6 +151,17 @@
                 %b
                   %label
                     = @assessment.description_subject
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                Observação
+              %td{:style => "width: 50%; text-align:left"}
+
+            %tr
+              %td{:style => "width: 50%; text-align:left"}
+                %b
+                  %label
+                    = @assessment.observation
+              %td{:style => "width: 50%; text-align:left"}
             %tr
               %td{:style => "width: 50%; text-align:left"}
                 Data autuação
@@ -171,11 +185,11 @@
               %td{:style => "width: 50%; text-align:left"}
                 %b
                   %label
-                    = @assessment.attach_documents.last.document_child.document_number if @assessment.attach_documents.present? && @assessment.attach_documents.last.attach_type == 0
+                    = @assessment.attach_document_children.last.document_father.document_number if @assessment.attach_document_children.present? && @assessment.attach_document_children.last.attach_type == 0
               %td{:style => "width: 50%; text-align:left"}
                 %b
                   %label
-                    = @assessment.attach_documents.last.document_child.document_number if @assessment.attach_documents.present? && @assessment.attach_documents.last.attach_type == 1
+                    = @assessment.attach_document_children.last.document_father.document_number if @assessment.attach_document_children.present? && @assessment.attach_document_children.last.attach_type == 1
             %tr
               %td{:colspan => "2"}
                  

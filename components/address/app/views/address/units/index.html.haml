@@ -137,7 +137,7 @@
 
     $("#_enderecos_unidades_unit").on('change', function(){
       $.getJSON("#{api.address_units_path}?unit_id=" + $(this).val(),function(data) {
-          $("#_enderecos_unidades_unit").val(data.id)
+          //$("#_enderecos_unidades_unit").val(data.id)
       });
     });
   });

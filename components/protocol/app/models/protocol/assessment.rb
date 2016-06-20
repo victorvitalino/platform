@@ -9,10 +9,12 @@ module Protocol
     has_many :digital_documents
     has_many :locations
     has_many :controls
+    has_many :call_controls
 
     has_many :solicitations
 
     has_many :attach_documents, foreign_key: "document_father_id"
+    has_many :attach_document_children, class_name: "Protocol::AttachDocument", foreign_key: "document_child_id"
 
     scope :process,  -> (process) {where(document_number: process)}
     scope :doc_type,  -> (doc_type) {where(document_type_id: doc_type)}
@@ -37,7 +39,7 @@ module Protocol
     def set_conduct
         current_user = Person::Staff.find(self.staff_id)
         @conduct  = Protocol::Conduct.new
-        @conduct.conduct_type = 4
+        @conduct.conduct_type = 0
         @conduct.assessment_id = self.id
         @conduct.staff_id = current_user.id
         @conduct.sector_id = current_user.sector_current.id

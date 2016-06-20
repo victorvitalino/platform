@@ -136,7 +136,7 @@
 
     $("#_enderecos_index_attendent_unit").on('change', function(){
       $.getJSON("#{api.address_units_path}?unit_id=" + $(this).val(),function(data) {
-          $("#_enderecos_index_attendent_unit").val(data.id)
+          //$("#_enderecos_index_attendent_unit").val(data.id)
       });
     });
   });

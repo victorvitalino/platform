@@ -38,7 +38,7 @@
  .row
   .col-md-6
    = f.label :subject, class: 'fg-label'
-   = f.input :subject, label: false,  as: :select, collection: (@assessment.document_type.present?) ? Protocol::Subject.where(description: 'DIREG').order(:name) : {}, label_method: :name, value_method: :id, prompt: 'selecione o assunto...', input_html: { value: @assessment.document_type}
+   = f.input :subject_id, label: false,  as: :select, collection: (@assessment.document_type.present?) ? Protocol::Subject.where(description: 'DIREG').order(:name) : {}, label_method: :name, value_method: :id, prompt: 'selecione o assunto...', input_html: { value: @assessment.document_type}
   .col-md-6
    = f.input :description_subject, label: false, input_html: { placeholder: 'Digite um complemento do assunto'}
  .row
@@ -85,7 +85,7 @@
         } else {
           html = "<option value>Não foram encontrados assuntos</option>"
         }
-        $("#assessment_subject").html(html)
+        $("#assessment_subject_id").html(html)
       });
     });
   });

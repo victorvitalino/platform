@@ -1,6 +1,6 @@
 module Action
   class Cadastre < ActiveRecord::Base
-    belongs_to :city,class_name: 'Address::City'
+    belongs_to :city, class_name: "Address::City"
     belongs_to :state, class_name: "Address::State"
     belongs_to :profession
     belongs_to :atuation_area
