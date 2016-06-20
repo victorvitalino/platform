@@ -21,7 +21,7 @@ module Protocol
 
               respond_to do |format|
                 format.html
-                format.csv { send_data @assessments.to_csv }
+                format.xlsx  { response.headers['Content-Disposition'] = 'attachment; filename="relatorio_remessa.xlsx"' }
               end
         end
 
@@ -37,8 +37,8 @@ module Protocol
 
           respond_to do |format|
             format.html
-            format.csv { send_data @assessments.to_csv }
-          end
+            format.xlsx  { response.headers['Content-Disposition'] = 'attachment; filename="relatorio_processos.xlsx"' }
+        end
 
         end
 

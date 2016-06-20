@@ -1,0 +1,5 @@
+- if @enterprise_situation_status.errors.any?
+  $('#modal .modal-content').html("#{escape_javascript(render 'new')}")
+- else
+  $('#modal').modal('hide')
+  $('.index-enterprise_situation_status').html("#{escape_javascript(render 'index')}")

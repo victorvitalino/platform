@@ -53,6 +53,20 @@
             %label Observação:
             = @assessment.observation
         .row
+          .col-md-4
+            %label Finalizado:
+            = @assessment.finalized
+          .col-md-4
+            %label Data de finalização:
+            = @assessment.finalized_date
+        .row
+          .col-md-4
+            %label Respondido:
+            = @assessment.responded
+          .col-md-4
+            %label Data de resposta:
+            = @assessment.responded_date
+        .row
           .col-md-12
             %br
         .row.no-print

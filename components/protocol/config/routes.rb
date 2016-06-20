@@ -4,6 +4,7 @@ resources :assessments, path: 'autuacoes' do
   get 'show_print'
   resources :digital_documents, path: 'digitalizacoes'
   resources :attach_documents, path: 'anexos'
+  resources :call_controls, path: 'ligacoes'
 end
 
 resources :document_types, path: 'tipo_documentos'
@@ -19,7 +20,7 @@ end
 resources :providences, path: 'providencias'
 resources :solicitations, path: 'solicitacoes' do
   get 'validate'
-  resources :solicitation_replies, path: 'solicitacao_respostas' 
+  resources :solicitation_replies, path: 'solicitacao_respostas'
 end
 
 

@@ -62,7 +62,7 @@
 
                   - else
                     %tr
-                      %td= @candidate.current_situation_name
+                      %td= @candidate.current_situa02326284160tion_name
                       %td= program(@candidate.program_id)
                       %td
                       %td
@@ -95,7 +95,7 @@
                 %b Histórico de situação
           .row
             .col-md-12
-              - if @candidate.list.present?
+              - if @candidate.cadastre_situations.present?
                 %table#data-table-command.table.table-striped.table-vmiddle.datatable
                   %thead
                     %tr
@@ -129,9 +129,9 @@
                   %tbody
                     - @candidate.enterprise_cadastres.each do |enterprise|
                       %tr
-                        %td= enterprise.enterprise.name if enterprise.enterprise.present?
+                        %td= link_to enterprise.enterprise.name, enterprise_cadastre_situation_candidates_path(id:enterprise.id), remote: true if enterprise.enterprise.present?
                         %td= enterprise.created_at.strftime("%d/%m/%Y")
-                        %td= enterprise.inactive ? "Indicação inativada em: #{enterprise.inactive_date.strftime("%d/%m/%Y")}" :  "Indicação ativa"
+                        %td= enterprise.inactive ? "Indicação inativa: #{enterprise.inactive_date.present? ? enterprise.inactive_date.strftime("%d/%m/%Y") : 'Sem informação de data.' }" :  "Indicação ativa"
               - else
                 Informação não disponível
           %hr/

@@ -5,10 +5,11 @@ HabitationPortal::Engine.routes.draw do
   post  'authenticate', path: 'verificacao', to: 'authenticate#create', as: 'authenticate'
 
   resources :lists, path: 'listas'
-  resources :candidates, path: 'candidato' do 
-    collection do 
+  resources :candidates, path: 'candidato' do
+    collection do
       get 'update_positions', path: 'lista_alteracao'
       get 'programs', path: 'programs'
+      get 'enterprise_cadastre_situation', path: 'situacao_empresa'
     end
 
     get 'detail', path: 'detalhe'

@@ -1,6 +1,6 @@
 module Action
   class Cadastre < ActiveRecord::Base
-    belongs_to :city
+    belongs_to :city, class_name: "Address::City"
     belongs_to :state, class_name: "Address::State"
     belongs_to :profession
     belongs_to :atuation_area
@@ -24,7 +24,7 @@ module Action
 
     def password_compare
       unless self.password == self.password_confirmation
-        errors.add(:password, "Senha não conferealkjrhlkjeahrk")
+        errors.add(:password, "Senha não confere")
       end
     end
   end

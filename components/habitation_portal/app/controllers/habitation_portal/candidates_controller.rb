@@ -31,11 +31,11 @@ module HabitationPortal
       respond_to do |format|
         format.json { render json: @positions}
         format.html { @candidate }
-        format.js { 
+        format.js {
 
           date = Date.parse(params[:date]) rescue nil
           @day = Candidate::DayOcurrency.find_by_date_ocurrency(date) rescue nil
-          
+
           if @day.present?
             @events    = {
                 update_incomes: @day.update_income,
@@ -56,6 +56,10 @@ module HabitationPortal
       end
     end
 
+    def enterprise_cadastre_situation
+      @enterprise_cadastre_situation = Candidate::EnterpriseCadastreSituation.where(enterprise_cadastre_id:params[:id])
+    end
+
     def update_positions
       @day      = params[:by_date].present? ? params[:by_date] : Date.today.strftime('%d/%m/%Y')
       @zone     = params[:by_zone].present? ? params[:by_zone] : 1
@@ -73,7 +77,7 @@ module HabitationPortal
     def set_params_find
       params.require(:find).permit(:cpf)
     end
-   
+
     def set_headers
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Request-Method'] = '*'

@@ -477,6 +477,7 @@ DEPENDENCIES
   attendance!
   audited-activerecord (~> 4.0)
   authenticate!
+  axlsx_rails
   barby
   bootstrap-datepicker-rails
   brb!
