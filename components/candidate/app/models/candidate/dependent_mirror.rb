@@ -7,7 +7,7 @@ module Candidate
     belongs_to :cadastre_mirror
 
     enum gender: ['N/D', 'masculino', 'feminino']
-
+=begin
     validates :name, :born, :kinship, :special_condition, presence: true 
     validates :cpf, :rg, presence: true, if: :major?
     validates :cpf, cpf: true, if: :major?
@@ -16,7 +16,7 @@ module Candidate
     validates :income, presence:true, numericality: {only_float: true}
 
     validate  :unique_cpf, :major?
-
+=end
     def age
       return false unless self.born.present?
       (Date.today - self.born).to_i / 365

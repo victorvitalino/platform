@@ -30,7 +30,9 @@ module Candidate
     # => abstração
 
     def last_attendance
-      attendances.order(:created_at).last.present? ? attendaces.last : "Sem informação"
+      if self.attendaces.present?
+        self.attendances.order(:created_at).last.present? ? attendaces.last : "Sem informação"
+      end
     end
 
     def last_attendance_name
@@ -72,7 +74,7 @@ module Candidate
           end
         end
 
-        @new_dependent.save!
+        @new_dependent.save
       end
 
     end

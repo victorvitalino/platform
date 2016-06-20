@@ -18,6 +18,15 @@ HabitationAttendance::Engine.routes.draw do
     resources :finish
   end
 
-  namespace :subscribe do 
+  namespace :convoke do 
+    resources :dashboard
+    resources :attendances
+    resources :cadastre_mirrors do 
+      resources :dependent_mirrors
+      resources :checklists do 
+        get 'check'
+        get 'uncheck'
+      end
+    end
   end  
 end
