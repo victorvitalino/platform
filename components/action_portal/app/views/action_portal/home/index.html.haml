@@ -44,7 +44,8 @@
                   = event.district
               .action_inscription_sub_title
                 %b
-                  = event.date.strftime('%d.%m /// %A ')
+                  = event.date.strftime('%d.%m /// ')
+                  = I18n.translate("date.day_names")[event.date.strftime('%w').to_i]
                 %br
                 = event.hour
         .row
@@ -62,7 +63,8 @@
                   = event.district
               .action_inscription_sub_title
                 %b
-                  = event.date.strftime('%d.%m /// %A ')
+                  = event.date.strftime('%d.%m /// ')
+                  = I18n.translate("date.day_names")[event.date.strftime('%w').to_i]
                 %br
                 = event.hour
         .row
