@@ -1,0 +1,5 @@
+- if @dependent_mirror.errors.any?
+  $("#modal .modal-content .modal-body").html("#{escape_javascript(render 'form')}")
+- else
+  $(".index-dependent").html("#{escape_javascript(render 'index')}")
+  $("#modal").modal("hide")

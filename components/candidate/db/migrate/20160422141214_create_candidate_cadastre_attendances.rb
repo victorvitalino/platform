@@ -4,8 +4,9 @@ class CreateCandidateCadastreAttendances < ActiveRecord::Migration
       
       t.references :cadastre, index: true 
       t.references :cadastre_mirror, index: true
-      t.references :attendance_status, index: true, default: 4
       t.references :staff, index: true
+      t.integer    :situation, default: 0
+      t.integer    :attendance_type, default: 0
 
       t.timestamps null: false
     end

@@ -6,6 +6,8 @@ module ActionPortal
     def index
 
     end
+
+
     private
 
 
@@ -16,6 +18,5 @@ module ActionPortal
         redirect_to action_portal.new_authorization_path
       end
     end
-
   end
 end

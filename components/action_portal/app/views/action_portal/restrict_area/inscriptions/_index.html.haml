@@ -1,0 +1,7 @@
+- @actions_events.each do |action_event|
+  - if @action_user.inscriptions.where(social_event_id: action_event).present?
+    = link_to "Sair do evento #{action_event.name} /// #{action_event.date}",restrict_area_user_social_event_unmark_path(user_social_event_id: action_event), class:"action_button action_button_in", remote: true
+    %br/
+  - else
+    = link_to "Inscrever-se no evento #{action_event.name} /// #{action_event.date}",restrict_area_user_social_event_mark_path(user_social_event_id: action_event), class:"action_button action_button_in", remote: true
+    %br/

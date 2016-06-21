@@ -1,0 +1,13 @@
+- @type.checklists.each do |check|
+  %tr
+    %td= check.name
+    %td.col-md-1
+      - if @cadastre_mirror.cadastre_checklists.where(checklist_id: check, document_authenticate: true).present?
+        = link_to "", convoke_cadastre_mirror_checklist_unauth_path(cadastre_mirror_id: @cadastre_mirror.id, checklist_id: check), class: 'btn btn-success fa fa-check', remote: true
+      - elsif @cadastre_mirror.cadastre_checklists.where(checklist_id: check.id).present?
+        = link_to "", convoke_cadastre_mirror_checklist_auth_path(cadastre_mirror_id: @cadastre_mirror.id, checklist_id: check), class: 'btn btn-default fa fa-check', remote: true
+    %td.col-md-1
+      - if @cadastre_mirror.cadastre_checklists.where(checklist_id: check.id).present?
+        = link_to "", convoke_cadastre_mirror_checklist_uncheck_path(cadastre_mirror_id: @cadastre_mirror.id, checklist_id: check.id), class: 'btn btn-success fa fa-check', remote: true
+      - else
+        = link_to "", convoke_cadastre_mirror_checklist_check_path(cadastre_mirror_id: @cadastre_mirror.id, checklist_id: check), class: 'btn btn-default fa fa-check', remote: true

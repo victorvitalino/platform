@@ -1,0 +1,12 @@
+= render 'partials/shared/portal/top_nav'
+= render 'partials/shared/portal/header'
+%div{class: (controller_name != 'home') ? 'container main' : '' }
+  .container
+    .restrict_block
+      %h1
+        %strong
+          Olá
+          = @action_user.name
+      .index-inscriptions
+        = render 'index'
+= render 'partials/shared/portal/footer'

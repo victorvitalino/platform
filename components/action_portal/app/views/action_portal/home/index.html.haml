@@ -5,7 +5,74 @@
     .row
       .col-md-12.container
         = render 'partials/slider'
-        = render 'partials/home'
+        .row.margint50
+          .col-md-2.about_action
+            %span.about_action_title
+              sobre
+          .col-md-10.about_action_text
+            %p
+              Ações urbanas comunitárias é um projeto participativo desenvolvido pela equipe de assistência técnica e pelo atelier de projetos da CODHAB/DF. Em formato de mutirão, as ações somam a participação de profissionais e estudantes de arquitetura e urbanismo, tanto da companhia quanto voluntários, e dos moradores das comunidades locais. O intuito é transformar coletivamente o espaço público, conectando governo e sociedade, tornando esta a protagonista da mudança. A seleção das áreas onde acontecem as ações segue critérios específicos. Interesse e articulação da comunidade para melhorar o lugar, inexistência de infraestrutura ou manutenção, possibilidade de arborização e paisagismo, vazios urbanos públicos, conexão com praças ou espaços de relevância e grande fluxo na comunidade são alguns deles. Além de identificar os problemas, é preciso observar o potencial do espaço.
+              %br
+              %strong
+                Maiores Informações: acoescomunitarias@codhab.df.gov.br
+            = link_to 'Conheça Melhor', 'http://www.codhab.df.gov.br/acoes/apresentacao_projeto_acoes_urbanas.pdf',target:'_blank' ,class:"action_button action_button_dl"
+        .row
+          .action_title_home.col-md-12
+            %p
+              seja um parceiro e
+              %br
+              colabore para transformar as áreas de interesse
+              %br
+              social do Distrito Federal
+        .row
+          .col-md-6.action_participe.action_areabuttons_home
+            = link_to 'já participo', new_authorization_path, class:"action_button"
+          .col-md-6.action_cadastre.action_areabuttons_home
+            = link_to 'cadastre-se', action_portal.cadastres_url.to_s + '/new', class:"action_button"
+        .row
+          .col-md-12
+            %h3.titulo_home
+              inscrições abertas para voluntários
+          - @events_i.each_with_index do |event, index|
+            .col-md-4.action_home_inscription
+              .action_thumb{:class => "action_thumb_#{index}",:style => "background-image: url(#{event.thumb})"}
+              = link_to 'inscreva-se', social_event_path(event),class:"action_inscription_button action_inscription_button_#{index}"
+              .action_inscription_title
+                = event.name
+                %br
+                  = event.city.name
+                  = event.district
+              .action_inscription_sub_title
+                %b
+                  = event.date.strftime('%d.%m /// %A ')
+                %br
+                = event.hour
+        .row
+          .col-md-12
+            %h3.titulo_home
+              ações concluidas
+          - @events_c.each_with_index do |event, index|
+            .col-md-4.action_home_inscription
+              .action_thumb{:class => "action_thumb_#{index}",:style => "background-image: url(#{event.thumb})"}
+              = link_to 'concluido', social_event_path(event),class:"action_inscription_button action_inscription_button_#{index}"
+              .action_inscription_title
+                = event.name
+                %br
+                  = event.city.name
+                  = event.district
+              .action_inscription_sub_title
+                %b
+                  = event.date.strftime('%d.%m /// %A ')
+                %br
+                = event.hour
+        .row
+          .col-md-12.action_map_head
+            %h3.texto_branco.titulo_home_mapa
+              encontre a ação
+        .row
+          .col-md-12.no_padding
+            #map
+
 = render 'partials/shared/portal/footer'
 :javascript
   var map;

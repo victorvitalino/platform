@@ -11,11 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160616135251) do
-=======
-ActiveRecord::Schema.define(version: 20160616140749) do
->>>>>>> 504f7bad041d6c7823b4b4742d45d4a04da446e6
+ActiveRecord::Schema.define(version: 20160620125909) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +55,16 @@ ActiveRecord::Schema.define(version: 20160616140749) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "action_inscriptions", force: :cascade do |t|
+    t.integer  "social_event_id"
+    t.integer  "cadastre_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "action_inscriptions", ["cadastre_id"], name: "index_action_inscriptions_on_cadastre_id", using: :btree
+  add_index "action_inscriptions", ["social_event_id"], name: "index_action_inscriptions_on_social_event_id", using: :btree
 
   create_table "action_professions", force: :cascade do |t|
     t.string   "name"
@@ -481,16 +488,30 @@ ActiveRecord::Schema.define(version: 20160616140749) do
   add_index "candidate_cadastre_addresses", ["unit_id"], name: "index_candidate_cadatre_addresses_on_unit_id", using: :btree
   add_index "candidate_cadastre_addresses", ["user_company_id"], name: "index_candidate_cadastre_addresses_on_user_company_id", using: :btree
 
+  create_table "candidate_cadastre_attendance_statuses", force: :cascade do |t|
+    t.integer  "cadastre_attendance_id"
+    t.integer  "attendance_status_id"
+    t.integer  "staff_id"
+    t.integer  "mirror_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "candidate_cadastre_attendance_statuses", ["attendance_status_id"], name: "index_attendace_status_id", using: :btree
+  add_index "candidate_cadastre_attendance_statuses", ["cadastre_attendance_id"], name: "index_cadastre_attendance_id", using: :btree
+  add_index "candidate_cadastre_attendance_statuses", ["mirror_id"], name: "index_candidate_cadastre_attendance_statuses_on_mirror_id", using: :btree
+  add_index "candidate_cadastre_attendance_statuses", ["staff_id"], name: "index_candidate_cadastre_attendance_statuses_on_staff_id", using: :btree
+
   create_table "candidate_cadastre_attendances", force: :cascade do |t|
     t.integer  "cadastre_id"
     t.integer  "cadastre_mirror_id"
-    t.integer  "attendance_status_id", default: 4
     t.integer  "staff_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "situation",          default: 0
+    t.integer  "attendance_type",    default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
-  add_index "candidate_cadastre_attendances", ["attendance_status_id"], name: "index_candidate_cadastre_attendances_on_attendance_status_id", using: :btree
   add_index "candidate_cadastre_attendances", ["cadastre_id"], name: "index_candidate_cadastre_attendances_on_cadastre_id", using: :btree
   add_index "candidate_cadastre_attendances", ["cadastre_mirror_id"], name: "index_candidate_cadastre_attendances_on_cadastre_mirror_id", using: :btree
   add_index "candidate_cadastre_attendances", ["staff_id"], name: "index_candidate_cadastre_attendances_on_staff_id", using: :btree

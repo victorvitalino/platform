@@ -7,6 +7,7 @@ module CandidateAttendance
       before_action :set_cadastre_mirror
 
       def index
+        @cadastre_mirror
       end
 
       def new
