@@ -10,7 +10,11 @@ namespace :mailer do
 
       unless Entity::Cadastre.find_by_cnpj(cnpj).present?        
         index += 1
-        Mailer::SimpleMailer.send_mail_entity(email).deliver_now!
+        begin
+          Mailer::SimpleMailer.send_mail_entity(email).deliver_now!
+        rescue
+          puts "OPS"
+        end
         puts index
       end
 
@@ -20,7 +24,11 @@ namespace :mailer do
     CSV.foreach("public/files/new_entity.csv", :col_sep => "#") do |row|
       email = row[0].to_s.downcase.strip
       index2 += 1
-      Mailer::SimpleMailer.send_mail_entity(email).deliver_now!
+      begin
+        Mailer::SimpleMailer.send_mail_entity(email).deliver_now!
+      rescue
+        puts "OPS"
+      end
       puts index2
     end
 
