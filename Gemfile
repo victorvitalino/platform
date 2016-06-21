@@ -133,4 +133,5 @@ path 'components' do
 
   gem 'project'
   gem 'visit'
+  gem 'mailer'
 end
