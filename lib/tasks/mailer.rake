@@ -4,7 +4,7 @@ namespace :mailer do
   
   task :old_entity => :environment do
     index = 0
-    CSV.foreach("lib/files/old_entity.csv", :col_sep => "#") do |row|
+    CSV.foreach("public/files/old_entity.csv", :col_sep => "#") do |row|
       cnpj  = row[0].to_s.gsub('.','').gsub('-','').gsub('/','')
       email = row[3].to_s.downcase.strip
 
@@ -17,7 +17,7 @@ namespace :mailer do
     end
 
     index2 = 0
-    CSV.foreach("lib/files/new_entity.csv", :col_sep => "#") do |row|
+    CSV.foreach("public/files/new_entity.csv", :col_sep => "#") do |row|
       email = row[0].to_s.downcase.strip
       index2 += 1
       Mailer::SimpleMailer.send_mail_entity(email).deliver_now!
