@@ -36,6 +36,7 @@ gem 'mini_magick'
 gem 'friendly_id'
 gem 'has_scope'
 gem 'will_paginate-bootstrap'
+gem 'public_suffix'
 
 gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
