@@ -40,9 +40,10 @@ Rails.application.routes.draw do
     mount Action::Engine                   => "/acao",           as: 'action',                module: 'action'
     mount Project::Engine                  => "/projeto",        as: 'project',               module: 'project'
     mount Indication::Engine               => "/indicacao",      as: 'indication',            module: 'indication'
-
+    mount Visit::Engine                    => "/visita",         as: 'visit',                 module: 'visit'
+    mount Mailer::Engine                   => "/mailer",         as: 'mailer',                module: 'mailer'
+    
     mount HabitationAttendance::Engine     => "/atendimento_habitacao",    as: 'habitation_attendance',  module: 'atendimento_habitacao'
-    mount Visit::Engine                    => "/visita",          as: 'visit',                 module: 'visit'
   end
 
   constraints DomainConstraint do

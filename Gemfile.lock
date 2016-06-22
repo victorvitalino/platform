@@ -77,6 +77,8 @@ PATH
       rails (~> 4.2.1)
     juridical (0.0.1)
       rails (~> 4.2.1)
+    mailer (0.0.1)
+      rails (~> 4.2.1)
     maintenance (0.0.1)
       rails (~> 4.2.1)
     person (0.0.1)
@@ -324,6 +326,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    public_suffix (2.0.1)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -520,6 +523,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   juridical!
+  mailer!
   maintenance!
   mina
   mina-unicorn
@@ -534,6 +538,7 @@ DEPENDENCIES
   profile_user!
   project!
   protocol!
+  public_suffix
   pundit!
   rails (= 4.2.1)
   rails_db
