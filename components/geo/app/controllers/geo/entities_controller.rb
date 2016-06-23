@@ -5,7 +5,12 @@ module Geo
 
     def index
       
-      @entites_old = Entity::Old.where(old: 'Credenciada').order(:name)
+      if params[:situation] == "complete" && params[:situation].present?
+        @entities    = Entity::Cadastre.complete
+        @entites_old = Entity::Old.where(cnpj: @entities.map(&:cnpj)).order(:name)
+      else
+        @entites_old = Entity::Old.where(old: 'Credenciada').order(:name)
+      end
 
       respond_to do |format|
         format.json {

@@ -8,14 +8,13 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/entity_cred.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/geo_entity.csv", :col_sep => "#") do |row|
 
-      @lift = Entity::Old.find_by_cnpj(row[0]) rescue nil
+      @lift = Entity::Old.find_by_cnpj(row[0].strip) rescue nil
 
       if @lift.present?
-        @lift.address   = row[1].to_s.downcase
-        @lift.city      = row[2].to_s.downcase
-        @lift.cep       = row[3].to_s.downcase
+        @lift.lat       = row[1].to_s
+        @lift.long      = row[2].to_s
         @lift.save
       end
 

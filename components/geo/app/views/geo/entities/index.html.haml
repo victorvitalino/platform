@@ -4,8 +4,18 @@
     height: 600px;
   }
 
-%h1 
-  %b Geolocalização Entidades
+%p
+  %h1 
+    %b Geolocalização Entidades
+.row
+  .col-md-4
+    =link_to "Visualizar entidades que completaram o recadastramento", entities_path(situation: 'complete'), class: 'btn btn-primary btn-xs'
+  .col-md-3
+    =link_to "Visualizar todas entidades", entities_path(situation: false), class: 'btn btn-primary btn-xs'
+%br/
+%p
+  %b Total de entidades listadas: 
+  #{@entites_old.count}
 %br/
 %br/
 #map
@@ -33,58 +43,41 @@
   }
 
   function codeAddress(zipCode, data) {
-      country = "Brasilia - Federal District"
-      zipCode = zipCode.substring(0, 5)
-      
-      geocoder.geocode({ 
-        componentRestrictions: {
-          country: 'BR',
-        },
-        'address': zipCode
-        },
-        function(results, status) {
-          
-          if (status == google.maps.GeocoderStatus.OK) {
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
+    
+    var Latlng = new google.maps.LatLng(parseFloat(data.lat),parseFloat(data.long));
+    
+    var marker = new google.maps.Marker({
+        position: Latlng,
+        map: map,
+        draggable: true
+    });
 
-          var complete_recadastre = "Não completou"
+    var complete_recadastre = "Não completou"
 
-          $.getJSON("#{geo.entities_path}/situacao_nova?" + data.cnpj, function(data) {
-            if(data != null) {
-              complete_recadastre = "Recadastro realizado"
-            }
-          });
+    $.getJSON("#{geo.entities_path}/situacao_nova?" + data.cnpj, function(data) {
+      if(data != null) {
+        complete_recadastre = "Recadastro realizado"
+      }
+    });
 
-          var contentString = "" 
-          + "<p><h1><b>"+data.fantasy_name+"</b></h1><p/>"
-          + "<p>"+data.name+"</p>"
-          + "<hr/>"
-          + "<p><b>CNPJ:</b><br/>"+data.cnpj+"</p>"
-          + "<p><b>Completou Recadastramento:</b><br/> "+ complete_recadastre +"</p>"
-          + "<p><b>Situação Anterior:</b><br/> Credenciada</p>"
-          + "<hr />"
-          + "<p><b>Endereço:</b><br/> "+data.address+"</p>"
-          + "<p><b>Cidade:</b><br/> "+data.city+"</p>"
-          + "<p><b>CEP:</b><br/> "+data.cep+"</p>"
+    var contentString = "" 
+    + "<p><h1><b>"+data.fantasy_name+"</b></h1><p/>"
+    + "<p>"+data.name+"</p>"
+    + "<hr/>"
+    + "<p><b>CNPJ:</b><br/>"+data.cnpj+"</p>"
+    + "<p><b>Completou Recadastramento:</b><br/> "+ complete_recadastre +"</p>"
+    + "<p><b>Situação Anterior:</b><br/> Credenciada</p>"
+    + "<hr />"
+    + "<p><b>Endereço:</b><br/> "+data.address+"</p>"
+    + "<p><b>Cidade:</b><br/> "+data.city+"</p>"
+    + "<p><b>CEP:</b><br/> "+data.cep+"</p>"
 
-          var infowindow = new google.maps.InfoWindow({
-            content: contentString
-          });
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
 
-          marker.addListener('click', function() {
-            infowindow.open(map, marker);
-          });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
 
-        } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {    
-            setTimeout(function() {
-              codeAddress(zipCode, data);
-            }, 100);
-        } else {
-            console.log("Geocode was not successful for the following reason:" 
-                  + status);
-        }
-      });
-    }
+  }
