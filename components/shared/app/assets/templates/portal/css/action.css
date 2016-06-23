@@ -370,12 +370,12 @@ margin-bottom: 57px;
 .icon_funciona{
   text-align: center;
 }
-.text_conheca{
-  text-align: center;
+.text_perguntas{
+  text-align: left;
   font-size: 20px;
 
 }
-.conhecafooter{
+.perguntasfooter{
   margin-bottom: 100px;
 }
 .logo_habita{
@@ -406,4 +406,8 @@ text-align: center;
 }
 .icon_funciona{
   margin-bottom: 50px;
+}
+.text_funciona{
+  text-align: justify;
+  font-size: 20px;
 }
