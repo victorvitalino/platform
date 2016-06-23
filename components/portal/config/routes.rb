@@ -10,4 +10,5 @@ Portal::Engine.routes.draw do
 
 	get 'galerias_privadas', to: 'galleries#galleries_private'
 	get 'habitabrasilia', to: 'habita#index'
+	get 'habitabrasilia_teste', to: 'habita_teste#index'
 end
