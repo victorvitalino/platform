@@ -16,5 +16,11 @@ module Geo
       end
     end
 
+    def situation_entity
+      @entity_complete     = Entity::Cadastre.complete.find_by_cnpj(params[:cnpj]) rescue nil
+
+      render json: @entity_complete
+    end
+
   end
 end
