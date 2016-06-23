@@ -59,6 +59,6 @@ Rails.application.routes.draw do
 
   end
 
-  mount Geo::Engine                     => "/geo",            as: 'geo',                      module: 'geo'
+  mount Geo::Engine                     => "/geo_data",            as: 'geo',                      module: 'geo'
   mount Authenticate::Engine            => "/acesso",         as: 'authenticate'
 end
