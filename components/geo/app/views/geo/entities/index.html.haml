@@ -34,7 +34,7 @@
 
   function codeAddress(zipCode, data) {
       country = "Brasilia - Federal District"
-      zipCode = zipCode + ", "+ country
+      zipCode = zipCode.substring(0, 5)
       
       geocoder.geocode({ 
         componentRestrictions: {
@@ -43,6 +43,7 @@
         'address': zipCode
         },
         function(results, status) {
+          
           if (status == google.maps.GeocoderStatus.OK) {
             var marker = new google.maps.Marker({
                 map: map,
@@ -52,7 +53,7 @@
           var complete_recadastre = "Não completou"
 
           $.getJSON("#{geo.entities_path}/situacao_nova?" + data.cnpj, function(data) {
-            if(data.length > 0) {
+            if(data != null) {
               complete_recadastre = "Recadastro realizado"
             }
           });
@@ -77,8 +78,13 @@
             infowindow.open(map, marker);
           });
 
+        } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {    
+            setTimeout(function() {
+              codeAddress(zipCode, data);
+            }, 100);
         } else {
-          console.log('err')
+            console.log("Geocode was not successful for the following reason:" 
+                  + status);
         }
       });
     }
