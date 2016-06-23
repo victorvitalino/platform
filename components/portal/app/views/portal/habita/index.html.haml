@@ -1,109 +1,106 @@
-.body
-  .container
-    .row
-      .topSlider_action
-        .flex-container
-          .flexslider.flexslider_mod
-            / .slides
-            .flex-viewport.flex-acao
-              %ul.slides
-                %li.clone{"aria-hidden" => "true"}
-                  .div-image.div-image-acao{:style => "background-image: url(/acoes/slider1.png)"}
-                %li.clone{"aria-hidden" => "true"}
-                  .div-image.div-image-acao{:style => "background-image: url(/acoes/slider2.png)"}
-    .col-md-12.container
-      .col-md-12.title1
-        %img{:alt => "Habita Brasília", :src => "/images/title1.png", :class =>"logo_habita"}/
-      .margint50
-        .col-md-3.icon_home_habita
-          %img{:alt => "Conheça o Programa", :src => "/images/conheca.png"}/
-          %h3
-            Conheça o Programa
-          .texto-icon
-            Conheça o Habita Brasília, novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
-        .col-md-3.icon_home_habita
-          = link_to image_tag("/images/habita-como-funciona.png"), "http://www.codhab.df.gov.br/habitabrasilia#comofunciona"
-          %h3
-            Como Funciona
-            %br
-          .texto-icon
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius varius sapien, vitae ornare velit.
-        .col-md-3.icon_home_habita
-          %img{:alt => "5 Eixos", :src => "/images/habita-5eixos01.png"}/
-          %h3
-            5 Eixos
-          .texto-icon
-            Trazem diversidade na oferta de habitação de interesse social, sempre considerando o planejamento das cidades.
-        .col-md-3.icon_home_habita
-          %img{:alt => "Perguntas Frequentes", :src => "/images/habita-perguntas.png"}/
-          %h3
-            Perguntas Frequentes
-          .texto-icon
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius varius sapien, vitae ornare velit.
-    .margint50#conhecaoprograma
-      %img{:alt => "Conheça o Programa", :src => "/images/blocoimagem2.png", :class =>"widthimg"}/
-      .col-md-12
-        .h3.title_habita1#comofunciona
-          Como funciona
-      .margint50
-        .col-md-4.icon_funciona
-          %img{:alt => "icon1", :src => "/images/iconfunciona1.png"}/
-          %h3
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt risus dui, eu venenatis metus porttitor nec. Suspendisse porta mi erat, eu consequat risus consectetur sed.
-        .col-md-4.icon_funciona
-          %img{:alt => "icon1", :src => "/images/iconfunciona3.png"}/
-          %h3
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt risus dui, eu venenatis metus porttitor nec. Suspendisse porta mi erat, eu consequat risus consectetur sed.
-
-        .col-md-4.icon_funciona
-          %img{:alt => "icon1", :src => "/images/iconfunciona1.png"}/
-          %h3
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt risus dui, eu venenatis metus porttitor nec. Suspendisse porta mi erat, eu consequat risus consectetur sed.
-    .margint50#5eixos
-      %img{:alt => "5 Eixos", :src => "/images/blocoimagem3.png", :class =>"widthimg image_bloco_responsivo"}/
-    .container
-      .col-md-12.bloco_responsivo
-        %img{:alt => "icon1", :src => "/images/habita-5eixos01.png", :style => "margin: 0 auto;display: block;margin-top: 20px;"}/
-      .col-md-12.bloco_responsivo
-        %h3.title_bloco_responsivo
-          Lote legal
-        %p.texto_bloco_responsivo
-          Modalidade que oferece lotes urbanizados e regularizados para pessoas físicas e entidades inscritas no cadastro da Companhia de
-          Desenvolvimento Habitacional do Distrito Federal (Codhab). Ou seja, terrenos com ruas pavimentadas e com infraestrutura de abastecimento
-          de água, e com esgotamento sanitário, energia e iluminação pública. Além disso, próximo aos centros de emprego e a serviços públicos,
-          como escolas e postos de saúde. Essa linha também vai disponibilizar para os contemplados projetos arquitetônicos para a construção das
-          moradias, além da supervisão dos profissionais da Codhab para garantir a segurança do local. As ações de regularização, com a entrega de
-          escrituras, também estão amparadas por essa ação de governo.
-      .col-md-12.bloco_responsivo
-        %h3.title_bloco_responsivo
-          Projeto na medida
-        %p.texto_bloco_responsivo
-          Linha de ação que tem como objetivo garantir a qualidade das residências de interesse social. Por essa modalidade, os arquitetos da Codhab
-          realizam projetos de arquitetura para reforma em casas de famílias que vivem em situação precária. Atualmente, já existem 10 postos de
-          assistência técnica da Codhab que realizam essa atividade e também são responsáveis pela medição de conflitos em áreas de regularização.
-          Os postos ainda desenvolvem projetos de melhorias nas ruas, parques e áreas públicas das comunidades onde estão instalados.
-      .col-md-12.bloco_responsivo
-        %h3.title_bloco_responsivo
-          Morar Bem (produção de unidades habitacionais)
-        %p.texto_bloco_responsivo
-          Modalidade que produz unidades imobiliárias em áreas urbanas, com recursos do Minha Casa Minha Vida, para inscritos na lista da Codhab.
-      .col-md-12.bloco_responsivo
-        %h3.title_bloco_responsivo
-          Aluguel legal
-        %p.texto_bloco_responsivo
-          Destina-se às famílias de renda mais baixa, em especial as que moram de aluguel e gastam mais de 30% do rendimento, aos idosos e à população
-          vulnerável. Para eles, o governo oferecerá moradia, próximo dos empregos e de serviços públicos, com valores mais baixos que os praticados no
-          mercado de locação. Quem participa dessa linha do programa continua na lista de atendimento habitacional, aguardando ser contemplado em outra modalidade.
-      .col-md-12.bloco_responsivo
-        %h3.title_bloco_responsivo
-          Portas abertas
-        %p.texto_bloco_responsivo
-          Incentivo do governo ao setor da construção civil para que sejam disponibilizadas unidades imobiliárias em valor compatível com a renda dos beneficiários.
-          O público-alvo é a família que tem rendimentos de até R$ 6.500
-      .col-md-12
-        .h3.title_habita1#perguntas
+.no_padding
+  .topSlider_action
+    .flex-container
+      .flexslider.flexslider_mod
+        / .slides
+        .flex-viewport.flex-acao
+          %ul.slides
+            %li.clone{"aria-hidden" => "true"}
+              .div-image.div-image-acao{:style => "background-image: url(/acoes/slider1.png)"}
+            %li.clone{"aria-hidden" => "true"}
+              .div-image.div-image-acao{:style => "background-image: url(/acoes/slider2.png)"}
+  .col-md-12
+    .col-md-12.title1
+      %img{:alt => "Habita Brasília", :src => "/images/title1.png", :class =>"logo_habita"}/
+    .margint50
+      .col-md-3.icon_home_habita
+        %img{:alt => "Conheça o Programa", :src => "/images/conheca.png"}/
+        %h3
+          Conheça o Programa
+        .texto-icon
+          Conheça o Habita Brasília, novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
+      .col-md-3.icon_home_habita
+        = link_to image_tag("/images/habita-como-funciona.png"), "http://www.codhab.df.gov.br/habitabrasilia#comofunciona"
+        %h3
+          Como Funciona
+          %br
+        .texto-icon
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius varius sapien, vitae ornare velit.
+      .col-md-3.icon_home_habita
+        %img{:alt => "5 Eixos", :src => "/images/habita-5eixos01.png"}/
+        %h3
+          5 Eixos
+        .texto-icon
+          Trazem diversidade na oferta de habitação de interesse social, sempre considerando o planejamento das cidades.
+      .col-md-3.icon_home_habita
+        %img{:alt => "Perguntas Frequentes", :src => "/images/habita-perguntas.png"}/
+        %h3
           Perguntas Frequentes
-      .col-md-12.conhecafooter
-        .text_conheca
-          %h3
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
+        .texto-icon
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius varius sapien, vitae ornare velit.
+  .margint50#conhecaoprograma
+    %img{:alt => "Conheça o Programa", :src => "/images/blocoimagem2.png", :class =>"widthimg"}/
+    .col-md-12
+      .h3.title_habita1#comofunciona
+        Como funciona
+    .margint50
+      .col-md-4.icon_funciona
+        %img{:alt => "icon1", :src => "/images/iconfunciona1.png"}/
+        %h3
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt risus dui, eu venenatis metus porttitor nec. Suspendisse porta mi erat, eu consequat risus consectetur sed.
+      .col-md-4.icon_funciona
+        %img{:alt => "icon1", :src => "/images/iconfunciona3.png"}/
+        %h3
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt risus dui, eu venenatis metus porttitor nec. Suspendisse porta mi erat, eu consequat risus consectetur sed.
+
+      .col-md-4.icon_funciona
+        %img{:alt => "icon1", :src => "/images/iconfunciona1.png"}/
+        %h3
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt risus dui, eu venenatis metus porttitor nec. Suspendisse porta mi erat, eu consequat risus consectetur sed.
+  .margint50#5eixos
+    %img{:alt => "5 Eixos", :src => "/images/blocoimagem3.png", :class =>"widthimg image_bloco_responsivo"}/
+  .col-md-12.bloco_responsivo
+    %img{:alt => "icon1", :src => "/images/habita-5eixos01.png", :style => "margin: 0 auto;display: block;margin-top: 20px;"}/
+  .col-md-12.bloco_responsivo
+    %h3.title_bloco_responsivo
+      Lote legal
+    %p.texto_bloco_responsivo
+      Modalidade que oferece lotes urbanizados e regularizados para pessoas físicas e entidades inscritas no cadastro da Companhia de
+      Desenvolvimento Habitacional do Distrito Federal (Codhab). Ou seja, terrenos com ruas pavimentadas e com infraestrutura de abastecimento
+      de água, e com esgotamento sanitário, energia e iluminação pública. Além disso, próximo aos centros de emprego e a serviços públicos,
+      como escolas e postos de saúde. Essa linha também vai disponibilizar para os contemplados projetos arquitetônicos para a construção das
+      moradias, além da supervisão dos profissionais da Codhab para garantir a segurança do local. As ações de regularização, com a entrega de
+      escrituras, também estão amparadas por essa ação de governo.
+  .col-md-12.bloco_responsivo
+    %h3.title_bloco_responsivo
+      Projeto na medida
+    %p.texto_bloco_responsivo
+      Linha de ação que tem como objetivo garantir a qualidade das residências de interesse social. Por essa modalidade, os arquitetos da Codhab
+      realizam projetos de arquitetura para reforma em casas de famílias que vivem em situação precária. Atualmente, já existem 10 postos de
+      assistência técnica da Codhab que realizam essa atividade e também são responsáveis pela medição de conflitos em áreas de regularização.
+      Os postos ainda desenvolvem projetos de melhorias nas ruas, parques e áreas públicas das comunidades onde estão instalados.
+  .col-md-12.bloco_responsivo
+    %h3.title_bloco_responsivo
+      Morar Bem (produção de unidades habitacionais)
+    %p.texto_bloco_responsivo
+      Modalidade que produz unidades imobiliárias em áreas urbanas, com recursos do Minha Casa Minha Vida, para inscritos na lista da Codhab.
+  .col-md-12.bloco_responsivo
+    %h3.title_bloco_responsivo
+      Aluguel legal
+    %p.texto_bloco_responsivo
+      Destina-se às famílias de renda mais baixa, em especial as que moram de aluguel e gastam mais de 30% do rendimento, aos idosos e à população
+      vulnerável. Para eles, o governo oferecerá moradia, próximo dos empregos e de serviços públicos, com valores mais baixos que os praticados no
+      mercado de locação. Quem participa dessa linha do programa continua na lista de atendimento habitacional, aguardando ser contemplado em outra modalidade.
+  .col-md-12.bloco_responsivo
+    %h3.title_bloco_responsivo
+      Portas abertas
+    %p.texto_bloco_responsivo
+      Incentivo do governo ao setor da construção civil para que sejam disponibilizadas unidades imobiliárias em valor compatível com a renda dos beneficiários.
+      O público-alvo é a família que tem rendimentos de até R$ 6.500
+  .col-md-12
+    .h3.title_habita1#perguntas
+      Perguntas Frequentes
+  .col-md-12.conhecafooter
+    .text_conheca
+      %h3
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
