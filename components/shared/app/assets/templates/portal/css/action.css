@@ -65,6 +65,9 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 .div-image-acao {
   min-height:350px!important;
 }
+.bloco_texto_acao_interna p{
+  color: #fff;
+}
 .about_action_text p{
   font-size: 16px;
   color: #fff;
@@ -80,12 +83,12 @@ font-size: 30px;
 }
 .action_cadastre{
   background-color: #7e5fa5;
-  height: 170px;
+  padding-bottom: 30px!important;
 
 }
 .action_participe{
   background-color: #bb328a;
-  height: 170px;
+  padding-bottom: 30px!important;
 
 }
 
@@ -130,6 +133,9 @@ font-size: 30px;
 .action_button_galeria{
   width: 400px;
 }
+.action_button_galeria2{
+  width: 352px;
+}
 .titulo_home{
   font-size: 48px;
   margin-top: 55px;
@@ -145,15 +151,6 @@ font-size: 30px;
   text-align: center;
   padding: 5px 0;
 }
-#action_thumb_1 {
-
-  }
-#action_thumb_2 {
-
-  }
-#action_thumb_3 {
-
-  }
 .action_thumb{
 height: 250px;
 background-color: #000;
@@ -180,13 +177,13 @@ margin-top: 20px;
 .action_inscription_button:hover{
   color:#fff;
 }
-.action_inscription_button_1{
+.action_inscription_button_0{
   background-color: #de3859;
 }
-.action_inscription_button_2{
+.action_inscription_button_1{
   background-color: #79b792;
 }
-.action_inscription_button_3{
+.action_inscription_button_2{
   background-color: #f49649;
 }
 .users_back_ground{
@@ -312,8 +309,9 @@ border-bottom-width: 2px;
   font-weight: 600;
 }
 /*habitabrasilia*/
-.body{
+.fundo_branco{
   background-color: #fff;
+  overflow: hidden;
 }
 .widthimg{
   width: 100%;
@@ -388,4 +386,16 @@ margin-bottom: 50px;
 }
 .texto-icon{
 font-size: 16px;
+}
+.title_bloco_responsivo{
+text-align-last: center;
+font-weight: bold;
+}
+.texto_bloco_responsivo{
+  text-align: justify;
+  font-family: roboto;
+ font-size: 16px;
+}
+.bloco_responsivo{
+  display: none;
 }

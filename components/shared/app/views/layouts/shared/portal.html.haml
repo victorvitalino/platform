@@ -39,7 +39,7 @@
   %body
     = render 'partials/shared/portal/top_nav'
     = render 'partials/shared/portal/header'
-    %div{class: (controller_path == "portal/home" || controller_path == "portal/habita") ? "" : "container portal-container box"}
+    %div{class: (controller_path == "portal/home" || controller_path == "portal/habita_teste") ? "" : "container portal-container box"}
       = yield
     = render 'partials/shared/portal/footer'
     #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}

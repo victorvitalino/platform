@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Extranet
+    = stylesheet_link_tag  'patternfly', media: 'all'
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,300", :rel => "stylesheet", :type => "text/css"}/
+    = javascript_include_tag 'patternfly', 'data-turbolinks-eval' => 'false'
+    :javascript
+      URL_BASE = "#{request.original_url}"
+    %script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyC19AcSjRaoMzPqsBOc7n6S09fs-hOY4Z4&signed_in=true&callback=initialize"}
+
+  %body
+    .container
+      = yield
+
+

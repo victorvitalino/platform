@@ -1,0 +1,35 @@
+= render 'partials/shared/portal/top_nav'
+= render 'partials/shared/portal/header'
+%div{class: (controller_name != 'home') ? 'container main' : '' }
+  .container
+    .row
+      .col-md-12.container
+        = render 'partials/slider'
+    .row
+      .col-md-12.bloco_amarelo.texto-gigante
+        %span.texto-bold
+          = @event.name
+        %br
+        %span
+          = @event.city.name
+          = @event.district
+        %br
+        %span.texto-bold
+          = @event.date.strftime('%d.%m ///')
+          = @event.hour
+    .row
+      .col-md-6.no_padding
+        .imagem-pagina-interna
+          = image_tag(@event.photo)
+      .col-md-6.bloco_rosa.paddingbottom20.bloco_texto_acao_interna
+        %p.texto_branco.texto_inscrever
+
+          = @event.description.html_safe
+          -if @event.situation == 'concluido'
+            = link_to 'Galeria Urbana', 'http://www.codhab.df.gov.br/acoesurbanas/galeria', class:"action_button action_button_galeria"
+          -else
+            = link_to 'Inscreva-se',new_authorization_path ,class:"action_button action_button_galeria2"
+
+    = render 'partials/contato'
+    = render 'partials/home_admin'
+= render 'partials/shared/portal/footer'

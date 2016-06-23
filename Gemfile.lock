@@ -65,6 +65,8 @@ PATH
       rails (~> 4.2.1)
     firm_portal (0.0.1)
       rails (~> 4.2.1)
+    geo (0.0.1)
+      rails (~> 4.2.1)
     habitation (0.0.1)
       rails (~> 4.2.1)
     habitation_attendance (0.0.1)
@@ -76,6 +78,8 @@ PATH
     indication_portal (0.0.1)
       rails (~> 4.2.1)
     juridical (0.0.1)
+      rails (~> 4.2.1)
+    mailer (0.0.1)
       rails (~> 4.2.1)
     maintenance (0.0.1)
       rails (~> 4.2.1)
@@ -224,6 +228,7 @@ GEM
     get_process_mem (0.2.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     groupdate (2.1.1)
       activerecord (>= 3.0.0)
     guard (2.13.0)
@@ -324,6 +329,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    public_suffix (2.0.1)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -503,6 +509,8 @@ DEPENDENCIES
   firm!
   firm_portal!
   friendly_id
+  geo!
+  gmaps4rails
   groupdate (~> 2.1.1)
   guard
   guard-livereload
@@ -520,6 +528,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   juridical!
+  mailer!
   maintenance!
   mina
   mina-unicorn
@@ -534,6 +543,7 @@ DEPENDENCIES
   profile_user!
   project!
   protocol!
+  public_suffix
   pundit!
   rails (= 4.2.1)
   rails_db

@@ -1,0 +1,81 @@
+:css
+  #map {
+    width: 100%;
+    height: 600px;
+  }
+
+%p
+  %h1 
+    %b Geolocalização Entidades
+.row
+  .col-md-4
+    =link_to "Visualizar entidades que completaram o recadastramento", entities_path(situation: 'complete'), class: 'btn btn-primary btn-xs'
+  .col-md-3
+    =link_to "Visualizar todas entidades", entities_path(situation: false), class: 'btn btn-primary btn-xs'
+%br/
+
+%br/
+%br/
+#map
+
+:javascript 
+  var geocoder; 
+  var map; 
+
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-15.8091397,-47.8781489);
+    var myOptions = {
+      zoom: 10,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    
+    $.getJSON("#{geo.entities_path}.json", function(data) {
+      for(var i = 0; i < data.length; i++) {
+        codeAddress(data[i].cep, data[i])
+      }
+    });
+
+  }
+
+  function codeAddress(zipCode, data) {
+    
+    var Latlng = new google.maps.LatLng(parseFloat(data.lat),parseFloat(data.long));
+    
+    var marker = new google.maps.Marker({
+        position: Latlng,
+        map: map,
+        draggable: true
+    });
+
+    var complete_recadastre = "Não completou"
+
+    $.getJSON("#{geo.entities_path}/situacao_nova?" + data.cnpj, function(data) {
+      if(data != null) {
+        complete_recadastre = "Recadastro realizado"
+      }
+    });
+
+    var contentString = "" 
+    + "<p><h1><b>"+data.fantasy_name+"</b></h1><p/>"
+    + "<p>"+data.name+"</p>"
+    + "<hr/>"
+    + "<p><b>CNPJ:</b><br/>"+data.cnpj+"</p>"
+    + "<p><b>Completou Recadastramento:</b><br/> "+ complete_recadastre +"</p>"
+    + "<p><b>Situação Anterior:</b><br/> Credenciada</p>"
+    + "<hr />"
+    + "<p><b>Endereço:</b><br/> "+data.address+"</p>"
+    + "<p><b>Cidade:</b><br/> "+data.city+"</p>"
+    + "<p><b>CEP:</b><br/> "+data.cep+"</p>"
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+
+  }

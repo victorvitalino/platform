@@ -6,6 +6,9 @@ module Action
     belongs_to :atuation_area
     belongs_to :formation_area
 
+    has_many   :inscriptions
+    has_many   :social_events, through: :inscriptions
+
     attr_accessor :password_confirmation
 
     validates_presence_of :name, :born, :cpf, :address, :phone, :email

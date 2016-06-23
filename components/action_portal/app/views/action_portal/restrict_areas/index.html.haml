@@ -7,14 +7,14 @@
         %strong
           Olá
           = @action_user.name
+      -# .row
+      -#   .col-md-12
+      -#     = link_to 'Editar meus dados', 'http://www.codhab.df.gov.br/acao/galeria#item_301', class:"action_button action_button_in"
+      -# .row
+      -#   .col-md-12
+      -#     = link_to 'Emitir certificados', 'http://www.codhab.df.gov.br/acao/galeria#item_301', class:"action_button action_button_in"
       .row
         .col-md-12
-          = link_to 'Editar meus dados', 'http://www.codhab.df.gov.br/acao/galeria#item_301', class:"action_button action_button_in"
-      .row
-        .col-md-12
-          = link_to 'Emitir certificados', 'http://www.codhab.df.gov.br/acao/galeria#item_301', class:"action_button action_button_in"
-      .row
-        .col-md-12
-          = link_to 'Inscrições abertas', 'http://www.codhab.df.gov.br/acao/galeria#item_301', class:"action_button action_button_in"
+          = link_to 'Inscrições abertas', new_restrict_area_inscription_path, class:"action_button action_button_in"
 
 = render 'partials/shared/portal/footer'

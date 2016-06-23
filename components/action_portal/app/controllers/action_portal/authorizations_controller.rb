@@ -13,7 +13,7 @@ module ActionPortal
         session[:action_auth_id] = @authorization.id
         session[:action_expiration_id] = Time.now + 2.hours
         redirect_to restrict_areas_path
-        
+
       else
         render action: 'new'
       end

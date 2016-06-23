@@ -13,7 +13,7 @@
               %th #
               %th Evento
               %th Data de Criação
-              %th Última Atualização
+              %th Data da Ação
               %th Ações
 
           %tbody
@@ -22,7 +22,7 @@
                 %td= event.id
                 %td= event.name
                 %td= event.created_at.strftime('%d/%m/%Y')
-                %td= event.updated_at.strftime('%d/%m/%Y')
+                %td= event.date.strftime('%d/%m/%Y')
                 %td.col-md-1
                   = link_to '', edit_social_event_path(event), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false}
                   = link_to '', event, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' }
