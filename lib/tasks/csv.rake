@@ -8,15 +8,17 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/process.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/entity_cred.csv", :col_sep => "#") do |row|
 
-      @lift = Visit::Lifting.new
-      @lift.localization  = row[0].upcase
-      @lift.name  = row[1].downcase
-      @lift.cpf   = row[2].to_s.gsub('.','').gsub('-','')
-      @lift.rg    = row[3]
-      @lift.phone = row[4]
-      #@lift.save
+      @lift = Entity::Old.find_by_cnpj(row[0]) rescue nil
+
+      if @lift.present?
+        @lift.address   = row[1].to_s.downcase
+        @lift.city      = row[2].to_s.downcase
+        @lift.cep       = row[3].to_s.downcase
+        @lift.save
+      end
+
     end
   end
 
