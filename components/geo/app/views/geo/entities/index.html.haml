@@ -31,7 +31,7 @@
   }
 
   function codeAddress(zipCode, data) {
-      country = "Brazil"
+      country = data.city + ", Brasilia - Federal District"
       geocoder.geocode( { 'address': zipCode + ',' + country}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var marker = new google.maps.Marker({
