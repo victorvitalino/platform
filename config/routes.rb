@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   end
 
   constraints DomainConstraint do
-    mount Geo::Engine                   => "/geolocalizacao",            as: 'geo',                      module: 'geo'
+    mount Geo::Engine                   => "/localizacao",      as: 'geo',                    module: 'geo'
     mount Portal::Engine                => '/',                 as: 'portal',                 module: 'portal'
     mount RegularizationPortal::Engine  => '/regularizacao',    as: 'regularization_portal',  module: 'regularization_portal'
     mount HabitationPortal::Engine      => "/habitacao",        as: 'habitation_portal',      module: 'habitation_portal'
