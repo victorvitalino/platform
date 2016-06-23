@@ -3,14 +3,14 @@ module Candidate
     belongs_to :procedural_status
     belongs_to :convocation
     belongs_to :cadastre
-    
+
     def current_status_procedural
         self.procedural_status.name if procedural_status.present?
     end
 
     private
 
-    def self.create_procedural(mirror_id, cadastre_id, procedural_status,convocation,assessment, process)
+    def self.create_procedural(mirror_id, cadastre_id, procedural_status,convocation,assessment, process, staff,observation)
          @cadastre_procedurals = Candidate::CadastreProcedural.new
          @cadastre_procedurals.cadastre_mirror_id = mirror_id
          @cadastre_procedurals.cadastre_id = cadastre_id
@@ -18,6 +18,8 @@ module Candidate
          @cadastre_procedurals.convocation_id = convocation
          @cadastre_procedurals.assessment_id = assessment
          @cadastre_procedurals.old_process = process
+         @cadastre_procedurals.staff_id = staff
+         @cadastre_procedurals.observation = observation
          @cadastre_procedurals.save
     end
 

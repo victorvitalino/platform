@@ -32,7 +32,7 @@ module Protocol
     validates :document_type,  presence: true
     validates :subject, presence: true
     validates :requesting_unit, presence: true
-    #validates :document_number, uniqueness: { scope: [:document_type] }, presence: true
+    validates :document_number, uniqueness: { scope: [:document_type] }, presence: true
 
     after_create :set_conduct
 

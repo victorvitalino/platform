@@ -9,16 +9,16 @@ namespace :update do
     @index = 0
 
 
-    CSV.foreach("lib/files/conduct2.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/conduct.csv", :col_sep => "#") do |row|
 
 
            @model = Protocol::Conduct.new(
-           conduct_type: row[2].to_i,
-           assessment_id: row[3],
-           staff_id: row[5],
-           sector_id: row[4],
+           conduct_type: 0,
+           assessment_id: row[2],
+           sector_id: row[3],
+           staff_id: row[4],
            allotment_id: row[0],
-           created_at: row[1]
+           created_at: row[1],
            )
 
           #puts @model.inspect

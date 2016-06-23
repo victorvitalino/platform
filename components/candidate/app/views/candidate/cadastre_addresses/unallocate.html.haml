@@ -85,9 +85,16 @@
                             %td= a.created_at.strftime('%d/%m/%Y')
             .row
               .col-md-12
-                = simple_form_for url_for deallocate_path  do |f|
-                  = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate.id}
+                = simple_form_for @deallocate, url: deallocate_path  do |f|
+                  = f.input :cadastre_id, as: :hidden,  input_html:{ value: @address.cadastre_id }
                   = f.input :unit_id, as: :hidden,  input_html:{ value: @address.unit_id}
+                  .row
+                    .col-md-5
+                      = f.label "Nova situação processual", class: 'fg-label'
+                      = f.input :procedural, label: false,  as: :select, collection: Candidate::ProceduralStatus.order(:name), label_method: :name, value_method: :id, prompt: 'Situação processual...'
+                    .col-md-5
+                      = f.label "Nova situação de cadastro", class: 'fg-label'
+                      = f.input :status_cadastre, label: false,   as: :select, collection: Candidate::SituationStatus.order(:name), label_method: :name, value_method: :id, prompt: 'Situação de cadastro...'
                   .row
                     .col-md-5
                       = f.label :observation, class: 'fg-label'
