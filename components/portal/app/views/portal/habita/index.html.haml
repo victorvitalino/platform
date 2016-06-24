@@ -1,3 +1,4 @@
+%a.back-to-tops{:href => "#"} voltar
 .container
   .fundo_branco
     .slidetop
@@ -123,3 +124,19 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
         %br
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
+:javascript
+  $(window).scroll(function(){
+      var amountScrolled = 300;
+      var win = $(window).scrollTop();
+    	if (win > amountScrolled) {
+    		$('a.back-to-tops').fadeIn('slow');
+    	} else {
+    		$('a.back-to-tops').fadeOut('slow');
+    	}
+  });
+  $('a.back-to-tops').click(function() {
+  	$('html, body').animate({
+  		scrollTop: 0
+  	}, 700);
+  	return false;
+  });
