@@ -1,3 +1,8 @@
+.content_post img {
+  width: 100% !important;
+  height: auto !important;
+}
+
 .filter-button {
   margin-top: 24px;
 }
