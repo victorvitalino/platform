@@ -114,16 +114,46 @@
         Incentivo do governo ao setor da construção civil para que sejam disponibilizadas unidades imobiliárias em valor compatível com a renda dos beneficiários.
         O público-alvo é a família que tem rendimentos de até R$ 6.500
     .col-md-12
-      .h3.title_habita1#perguntas
+      %h3.title_habita1#perguntas
         Perguntas Frequentes
     .col-md-12.perguntasfooter
       .text_perguntas
-        %h3
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
+        %strong
+          Já sou habilitado na lista da CODHAB, vou perder meu cadastro?
         %br
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
+        Não. O Programa Habita Brasília contempla o cidadão que já está inscrito na lista da CODHAB, bem como segue a ordem de pontuação que consta no portal da Companhia, da mesma forma que é feita atualmente.
         %br
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
+        %br
+        %strong
+          Quem pode participar?
+        %br
+        O Habita Brasília atende as pessoas que já estão habilitadas na lista da CODHAB e que tenham, preferencialmente, renda até três salários mínimos (R$ 2.640,00) podendo ser estendida até o valor de R$ 6.500,00.
+        %br
+        %br
+        %strong
+          Como são feitas as inscrições?
+        %br
+        Para participar, o candidato precisa realizar o cadastro no portal da CODHAB. Neste momento, não serão abertas novas inscrições.
+        %br
+        %br
+        %strong
+          Preciso aceitar o empreendimento que me for ofertado?
+        %br
+        Não. O candidato habilitado que optar por aguardar a oferta de empreendimentos habitacionais em localidades do seu interesse, poderá ficar com a mesma pontuação na fila por até quatro anos, a contar da data de sua primeira recusa. Após esse prazo, o habilitado passará à condição de declinado por prazo excedido.
+        %br
+        %br
+        %strong
+          Como denunciar um beneficiário que esteja vendendo ou alugando o imóvel?
+        %br
+        Para denunciar, o cidadão pode entrar em contato com a
+        = link_to "ouvidoria", "http://www.ouvidoria.df.gov.br/", :target => "_blank"
+        , pela central 162, pelo endereço eletrônico www.ouvidoria.df.gov.br, ou ainda, comparecer o núcleo de atendimento da CODHAB. É necessário informar o endereço completo do imóvel para que possamos apurar os fatos. Ao denunciar, a identidade da pessoa é preservada.
+        %br
+        %br
+        %strong
+          Caso o beneficiário tenha alguma dúvida sobre o programa, quem ele deve procurar?
+        %br
+        Para saber mais informações sobre o programa Habita Brasília, basta ligar para a central 156, opção 5.
 :javascript
   $(window).scroll(function(){
       var amountScrolled = 300;
@@ -136,6 +166,7 @@
   });
   $('a.back-to-tops').click(function() {
   	$('html, body').animate({
+
   		scrollTop: 0
   	}, 700);
   	return false;
