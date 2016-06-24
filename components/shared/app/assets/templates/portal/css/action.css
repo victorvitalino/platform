@@ -371,12 +371,12 @@ margin-bottom: 57px;
 .icon_funciona{
   text-align: center;
 }
-.text_conheca{
-  text-align: center;
+.text_perguntas{
+  text-align: left;
   font-size: 20px;
 
 }
-.conhecafooter{
+.perguntasfooter{
   margin-bottom: 100px;
 }
 .logo_habita{
@@ -390,6 +390,12 @@ font-size: 16px;
 .title_bloco_responsivo{
 text-align-last: center;
 font-weight: bold;
+font-size: 55px;
+text-align: center;
+}
+.title_responsivo{
+    font-weight: 600;
+    text-align: center;
 }
 .texto_bloco_responsivo{
   text-align: justify;
@@ -398,4 +404,11 @@ font-weight: bold;
 }
 .bloco_responsivo{
   display: none;
+}
+.icon_funciona{
+  margin-bottom: 50px;
+}
+.text_funciona{
+  text-align: justify;
+  font-size: 20px;
 }
