@@ -44,6 +44,11 @@ module Juridical
             link.xpath('td').each_with_index do |a, i|
               #@teste = a.inner_html
               @data[index][i] = a.text
+              if @data[index][2]
+               @data[index][2] = a.text
+               @hrefs = a.xpath('//font/a').map {|link| a.attribute('href').to_s}.uniq.sort.delete_if {|href| href.empty?}
+
+              end
 
             end
           end

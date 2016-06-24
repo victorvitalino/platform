@@ -31,7 +31,7 @@ module Candidate
     has_many :old_candidates, class_name: 'Entity::OldCandidate'
 
     has_many :cadastre_attendances
-    has_many :cadastre_attendance_statuses, through: :cadastre_attendances 
+    has_many :cadastre_attendance_statuses, through: :cadastre_attendances
 
     scope :situation, -> (situation) {
       self.joins(:cadastre_situations)
@@ -50,7 +50,7 @@ module Candidate
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 
-    #validates :cpf, cpf: true
+    validates :cpf, cpf: true
 
 
     def self.updated_day(day)

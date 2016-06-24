@@ -4,6 +4,8 @@ module Candidate
     belongs_to :cadastre
     belongs_to :cadastre_procedural
 
+    
+
     enum status: ['reserva', 'venda', 'distrato','transferencia', 'permuta']
 
     scope :cpf,  -> (cpf) {joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}

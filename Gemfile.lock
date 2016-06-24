@@ -65,6 +65,8 @@ PATH
       rails (~> 4.2.1)
     firm_portal (0.0.1)
       rails (~> 4.2.1)
+    geo (0.0.1)
+      rails (~> 4.2.1)
     habitation (0.0.1)
       rails (~> 4.2.1)
     habitation_attendance (0.0.1)
@@ -226,6 +228,7 @@ GEM
     get_process_mem (0.2.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     groupdate (2.1.1)
       activerecord (>= 3.0.0)
     guard (2.13.0)
@@ -506,6 +509,8 @@ DEPENDENCIES
   firm!
   firm_portal!
   friendly_id
+  geo!
+  gmaps4rails
   groupdate (~> 2.1.1)
   guard
   guard-livereload

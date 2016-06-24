@@ -26,6 +26,7 @@ gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem 'remotipart'
+gem 'gmaps4rails'
 
 gem 'audited-activerecord', '~> 4.0'
 gem 'wicked'
@@ -135,4 +136,5 @@ path 'components' do
   gem 'project'
   gem 'visit'
   gem 'mailer'
+  gem 'geo'
 end

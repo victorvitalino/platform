@@ -23,7 +23,8 @@ Rails.application.routes.draw do
     mount Person::Engine                   => "/pessoas",        as: 'person',                module: 'management'
     #mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',         module: 'management'
     mount Protocol::Engine                 => "/protocolo",      as: 'protocol',              module: 'protocol'
-    mount Juridical::Engine                => "/juridico",       as: 'juridical',              module: 'juridical'
+    mount Api::Engine                      => "/api",            as: 'api',                   module: 'api'
+    mount Juridical::Engine                => "/juridico",       as: 'juridical',             module: 'juridical'
     mount Attendance::Engine               => "/atendimento",    as: 'attendance',            module: 'habitation'
     mount Concourse::Engine                => "/concurso",       as: 'concourse',             module: 'portal'
     mount Candidate::Engine                => "/candidatos",     as: 'candidate',             module: 'habitation'
@@ -42,11 +43,12 @@ Rails.application.routes.draw do
     mount Indication::Engine               => "/indicacao",      as: 'indication',            module: 'indication'
     mount Visit::Engine                    => "/visita",         as: 'visit',                 module: 'visit'
     mount Mailer::Engine                   => "/mailer",         as: 'mailer',                module: 'mailer'
-    
+
     mount HabitationAttendance::Engine     => "/atendimento_habitacao",    as: 'habitation_attendance',  module: 'atendimento_habitacao'
   end
 
   constraints DomainConstraint do
+    mount Geo::Engine                   => "/localizacao",      as: 'geo',                    module: 'geo'
     mount Portal::Engine                => '/',                 as: 'portal',                 module: 'portal'
     mount RegularizationPortal::Engine  => '/regularizacao',    as: 'regularization_portal',  module: 'regularization_portal'
     mount HabitationPortal::Engine      => "/habitacao",        as: 'habitation_portal',      module: 'habitation_portal'
@@ -59,6 +61,5 @@ Rails.application.routes.draw do
 
   end
 
-  mount Api::Engine                     => "/api",            as: 'api'
   mount Authenticate::Engine            => "/acesso",         as: 'authenticate'
 end

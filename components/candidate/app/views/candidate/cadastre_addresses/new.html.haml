@@ -78,7 +78,7 @@
                         %th Data
                     %tbody
                       - if @candidate.present?
-                        - @candidate.each do |a|
+                        - @candidate.where(situation_id: 1).each do |a|
                           %tr
                             %td{:colspan => "2"}= a.cadastre.name if a.cadastre.present?
                             %td= a.cadastre.cpf if a.cadastre.present?

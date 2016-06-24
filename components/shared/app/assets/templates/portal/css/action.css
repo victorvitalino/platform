@@ -311,6 +311,7 @@ border-bottom-width: 2px;
 /*habitabrasilia*/
 .fundo_branco{
   background-color: #fff;
+  overflow: hidden;
 }
 .widthimg{
   width: 100%;
