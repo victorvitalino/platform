@@ -3,6 +3,9 @@
   height: auto !important;
 }
 
+footer {
+  margin-top: 80px !important;
+}
 .filter-button {
   margin-top: 24px;
 }
