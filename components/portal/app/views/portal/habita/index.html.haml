@@ -1,28 +1,20 @@
-.no_paddings
-  .topSlider_action
-    .flex-container
-      .flexslider.flexslider_mod
-        / .slides
-        .flex-viewport.flex-acao
-          %ul.slides
-            %li.clone{"aria-hidden" => "true"}
-              .div-image.div-image-acao{:style => "background-image: url(/acoes/slider1.png)"}
-            %li.clone{"aria-hidden" => "true"}
-              .div-image.div-image-acao{:style => "background-image: url(/acoes/slider2.png)"}
+.slidetop
+  %img{:alt => "slider", :src => "/images/sliderhabita6.png", :class =>"widthimg"}/
+.container
   .col-md-12
-    .col-md-12.title1
-      %img{:alt => "Habita Brasília", :src => "/images/title1.png", :class =>"logo_habita"}/
+    -# .col-md-12.title1
+    -#   %img{:alt => "Habita Brasília", :src => "/images/title1.png", :class =>"logo_habita"}/
     .margint50
       .col-md-3.icon_home_habita
         = link_to image_tag("/images/habita-conheca.png"), "http://www.codhab.df.gov.br/habitabrasilia#conheca.png"
         %h3
           Conheça o Programa
         .texto-icon
-          Conheça o Habita Brasília, novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
+          O Habita Brasília, novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
       .col-md-3.icon_home_habita
         = link_to image_tag("/images/habita-como-funciona.png"), "http://www.codhab.df.gov.br/habitabrasilia#comofunciona"
         %h3
-          Quem Perticipa
+          Quem Participa
           %br
         .texto-icon
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius varius sapien, vitae ornare velit.
@@ -54,21 +46,18 @@
       Projetos na Medida; Morar Bem;Auguel Legal e Portas Abertas.
   .col-md-12
     .h3.title_habita1#comofunciona
-      Como funciona
+      Quem Participa
   .margint50
     .col-md-4.icon_funciona
-      %img{:alt => "icon1", :src => "/images/iconfunciona1.png"}/
-      %h3
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt risus dui, eu venenatis metus porttitor nec. Suspendisse porta mi erat, eu consequat risus consectetur sed.
+      %img{:alt => "icone familia", :src => "/images/family.png", :style => "height: 170px; margin-top: 20px;"}/
     .col-md-4.icon_funciona
-      %img{:alt => "icon1", :src => "/images/iconfunciona3.png"}/
-      %h3
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt risus dui, eu venenatis metus porttitor nec. Suspendisse porta mi erat, eu consequat risus consectetur sed.
-
+      %h3.text_funciona
+        O Habita Brasília vai atender as famílias já cadastradas na lista da CODHAB que tenham,
+        preferencialmente, renda até xxx referente à faixa xx Programa do Minha Casa Minha Vida
+        3. Os habilitados serão convocados de acordo com a ordem de pontuação, da mesma forma que já acontecia.
     .col-md-4.icon_funciona
-      %img{:alt => "icon1", :src => "/images/iconfunciona1.png"}/
-      %h3
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt risus dui, eu venenatis metus porttitor nec. Suspendisse porta mi erat, eu consequat risus consectetur sed.
+      %h3.text_funciona
+        Para ter acesso à lista o candidato pode fazer uma pesquisa pelo próprio CPF ou pela faixa de renda, basta acessar o portal da Companhia  pelo endereço www.codhab.df.gov.br, na aba habitação. Para mais informações ligar no 156, opçao5.
   .margint50#5eixos
     %img{:alt => "5 Eixos", :src => "/images/blocoimagem3.png", :class =>"widthimg image_bloco_responsivo"}/
   .col-md-12.bloco_responsivo
@@ -112,7 +101,11 @@
   .col-md-12
     .h3.title_habita1#perguntas
       Perguntas Frequentes
-  .col-md-12.conhecafooter
-    .text_conheca
+  .col-md-12.perguntasfooter
+    .text_perguntas
       %h3
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
+      %br
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
+      %br
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit, ex a gravida porttitor, libero turpis consequat purus, at elementum felis massa blandit purus. Fusce molestie eleifend faucibus. Nunc blandit tellus ac massa dignissim, in aliquam turpis finibus.
