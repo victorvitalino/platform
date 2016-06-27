@@ -346,7 +346,12 @@ margin-bottom: 57px;
     margin-top: 43px;
 }
 .title1{
-
+	height: 25px;
+	background-color: #009540;
+}
+.cartilha-baixar{
+	color: #fff;
+	text-align: center;
 }
 .gallerys_title{
   background-color:#dd3858;

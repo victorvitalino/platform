@@ -3,48 +3,51 @@
   .fundo_branco
     .slidetop
       %img{:alt => "slider", :src => "/images/sliderhabita6.png", :class =>"widthimg"}/
-    .col-md-12
-      -# .col-md-12.title1
-      -#   %img{:alt => "Habita Brasília", :src => "/images/title1.png", :class =>"logo_habita"}/
-      .margint50
-        .col-md-3.icon_home_habita.image_bloco_responsivo
-          = link_to image_tag("/images/habita-conheca.png"), "#conhecaoprograma"
-          %h3
-            Conheça o Programa
-          .texto-icon
-            Novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
-        .col-md-3.icon_home_habita.bloco_responsivo
-          = link_to image_tag("/images/habita-conheca.png"), "#conhecaoprogramas"
-          %h3
-            Conheça o Programa
-          .texto-icon
-            Novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
-        .col-md-3.icon_home_habita
-          = link_to image_tag("/images/habita-como-funciona.png"), "#quemparticipa"
-          %h3
-            Quem Participa
-            %br
-          .texto-icon
-            O Habita Brasília vai atender famílias já cadastradas na lista da CODHAB no programa Minha Casa Minha Vida.
-        .col-md-3.icon_home_habita.image_bloco_responsivo
-          = link_to image_tag("/images/habita-5eixos.png"), "#5eixos"
-          %h3
-            5 Eixos
-          .texto-icon
-            Diversidade na oferta de habitação de interesse social,considerando o planejamento das cidades.
-        .col-md-3.icon_home_habita.bloco_responsivo
-          = link_to image_tag("/images/habita-5eixos.png"), "#5eixoss"
-          %h3
-            5 Eixos
-          .texto-icon
-            Diversidade na oferta de habitação de interesse social,considerando o planejamento das cidades.
-        .col-md-3.icon_home_habita
-          = link_to image_tag("/images/habita-perguntas.png"), "#perguntas"
-          %h3
-            Perguntas Frequentes
-          .texto-icon
-            Tire suas dúvidas e conheça mais sobre o programa habitacional Habita Brasília.
     .margint50
+      .col-md-3.icon_home_habita.image_bloco_responsivo
+        = link_to image_tag("/images/habita-conheca.png"), "#conhecaoprograma"
+        %h3
+          Conheça o Programa
+        .texto-icon
+          Novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
+      .col-md-3.icon_home_habita.bloco_responsivo
+        = link_to image_tag("/images/habita-conheca.png"), "#conhecaoprogramas"
+        %h3
+          Conheça o Programa
+        .texto-icon
+          Novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
+      .col-md-3.icon_home_habita
+        = link_to image_tag("/images/habita-como-funciona.png"), "#quemparticipa"
+        %h3
+          Quem Participa
+          %br
+        .texto-icon
+          O Habita Brasília vai atender famílias já cadastradas na lista da CODHAB no programa Minha Casa Minha Vida.
+      .col-md-3.icon_home_habita.image_bloco_responsivo
+        = link_to image_tag("/images/habita-5eixos.png"), "#5eixos"
+        %h3
+          5 Eixos
+        .texto-icon
+          Diversidade na oferta de habitação de interesse social,considerando o planejamento das cidades.
+      .col-md-3.icon_home_habita.bloco_responsivo
+        = link_to image_tag("/images/habita-5eixos.png"), "#5eixoss"
+        %h3
+          5 Eixos
+        .texto-icon
+          Diversidade na oferta de habitação de interesse social,considerando o planejamento das cidades.
+      .col-md-3.icon_home_habita
+        = link_to image_tag("/images/habita-perguntas.png"), "#perguntas"
+        %h3
+          Perguntas Frequentes
+        .texto-icon
+          Tire suas dúvidas e conheça mais sobre o programa habitacional Habita Brasília.
+
+    .margint50
+    .col-md-12.title1
+      %p.cartilha-baixar
+        %strong
+          = link_to "Maiores informações faça o download da Cartilha do Habita Brasília","#cartilha",:style => "color:#fff"
+
     .col-md-12.image_bloco_responsivo#conhecaoprograma.no_padding
       %img{:alt => "Conheça o Programa", :src => "/images/blocoimagem2.png", :class =>"widthimg"}/
     .col-md-12.bloco_responsivo#conhecaoprogramas
@@ -163,12 +166,9 @@
           Caso o beneficiário tenha alguma dúvida sobre o programa, quem ele deve procurar?
         %br
         Para saber mais informações sobre o programa Habita Brasília, basta ligar para a central 156, opção 5.
-    .col-md-12
-      %h3.title_habita1{:style => "margin-bottom:30px!important"}
-        Cartilha Habita Brasília
-      %h5{:style => "text-align:center"}
-        Faça o download
-      = link_to image_tag("http://www.codhab.df.gov.br/uploads/archive/files/096e40fd7a037151aeebae51ffa17404.png", :style => "display:block; margin:0 auto; width: 75px; cursor: pointer;"), "http://www.codhab.df.gov.br/uploads/archive/files/9d9378fbb7dd6300b1833dc3366865b3.pdf", :target => "_blank",:style => "display:block;padding-bottom: 70px;"
+      .margint50
+        .col-md-12.image_bloco_responsivo.no_padding#cartilha
+          = link_to image_tag("/images/blocoimagem4.png", :class =>"widthimg"), "http://www.codhab.df.gov.br/uploads/archive/files/9d9378fbb7dd6300b1833dc3366865b3.pdf", :target => "_blank"
 :javascript
   $(window).scroll(function(){
       var amountScrolled = 300;
