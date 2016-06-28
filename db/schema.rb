@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628120459) do
+ActiveRecord::Schema.define(version: 20160628181319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1546,6 +1546,7 @@ ActiveRecord::Schema.define(version: 20160628120459) do
     t.datetime "updated_at",             null: false
     t.string   "attorney_name"
     t.text     "property_description"
+    t.date     "current_elected"
   end
 
   add_index "entity_inspections", ["cadastre_id_id"], name: "index_entity_inspections_on_cadastre_id_id", using: :btree

@@ -55,7 +55,7 @@ module Entity
 
       # Only allow a trusted parameter "white list" through.
       def inspection_params
-        params.require(:inspection).permit( :cadastre_id ,:address_optional,:general_photo_1,:general_photo_2,:general_photo_3,:size,:property_type,:property_owner,:property_description,:others_local,:operating_time,:location_time,:meeting_frequency,:elected,:action_area,:associated_amount,:business_hour,:business_days,:inspection_type,:attorney,:attorney_name,:documentation_photo_1,:documentation_photo_2,:responsible_rg,:responsible_cpf,:responsible_name,:responsible_title,:responsible_title,:responsible_photo,
+        params.require(:inspection).permit( :cadastre_id ,:address_optional,:general_photo_1,:general_photo_2,:general_photo_3,:size,:property_type,:property_owner,:property_description,:others_local,:operating_time,:location_time,:meeting_frequency,:elected,:current_elected,:action_area,:associated_amount,:business_hour,:business_days,:inspection_type,:attorney,:attorney_name,:documentation_photo_1,:documentation_photo_2,:responsible_rg,:responsible_cpf,:responsible_name,:responsible_title,:responsible_title,:responsible_photo,
         :responsible_phone, :occupied_property, :additional_information)
       end
   end

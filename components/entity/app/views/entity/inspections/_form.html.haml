@@ -2,4 +2,98 @@
   .card-body.card-padding
     .row
       .col-md-12
-        = f.input :size, label: "Tamanho da entidade", input_html: { placeholder: 'Digite o nome'}
+        %h2
+          Dados da empresa
+      .col-md-12
+        = f.label "Nome da Entidade :"
+        = @cadastre.name
+      .col-md-12
+        = f.label "Endereço da Entidade :"
+        = @cadastre.address
+      .col-md-12
+        = f.label "Nome Fantasia :"
+        = @cadastre.fantasy_name
+      .col-md-4
+        = f.label "Telefone :"
+        = @cadastre.telephone
+      .col-md-4
+        = f.label "Celular :"
+        = @cadastre.celphone
+      .col-md-4
+        = f.label "E-mail :"
+        = @cadastre.email
+    .row
+      .col-md-12
+        %h2
+          Campos para vistoria
+      .col-md-12
+        = f.input :address_optional, label: "Endereço (opcional)", input_html: { placeholder: 'Digite o endereço'}
+      .col-md-12
+        = f.input :address_optional, label: "Endereço (opcional)", input_html: { placeholder: 'Digite o endereço'}
+      .col-md-12
+        = f.input :size, label: "Porte da entidade", input_html: { placeholder: 'Digite o porte'}
+      .col-md-12
+        = f.input :property_type, label: "Tipo de imóvel",input_html: { placeholder: 'Tipo de imóvel'}
+      .col-md-12
+        = f.input :property_owner, label: "Nome do locatário/dono do imóvel",input_html: { placeholder: 'Digite um nome'}
+      .col-md-12
+        = f.input :occupied_property, label: "Imóvel ocupado",input_html: { placeholder: 'Digite'}
+      .col-md-12
+        = f.input :property_description, label: "Descrição do Imóvel", input_html: { id: 'additional_information', rows: 5, cols: 80}
+      .col-md-4
+        = f.input :general_photo_1, as: :file, label: "Foto da entidade 1"
+        = link_to "visualizar arquivo atual", f.object.general_photo_1.url, target: '_blank' if !f.object.general_photo_1.to_s.empty?
+      .col-md-4
+        = f.input :general_photo_2, as: :file, label: "Foto da entidade 2"
+        = link_to "visualizar arquivo atual", f.object.general_photo_2.url, target: '_blank' if !f.object.general_photo_2.to_s.empty?
+      .col-md-4
+        = f.input :general_photo_3, as: :file, label: "Foto da entidade 3"
+        = link_to "visualizar arquivo atual", f.object.general_photo_3.url, target: '_blank' if !f.object.general_photo_3.to_s.empty?
+      .col-md-12
+        = f.input :others_local, label: "Possui outras entidades no local ? Quais?", input_html: { id: 'additional_information', rows: 5, cols: 80}
+      .col-md-12
+        = f.input :operating_time, label: "Tempo de Atuação",input_html: { placeholder: 'Digite o tempo'}
+      .col-md-12
+        = f.input :location_time, label: "Tempo no local",input_html: { placeholder: 'Digite o tempo no local'}
+      .col-md-12
+        = f.input :meeting_frequency, label: "Frequência das reuniões",input_html: { placeholder: 'Digite a frequência'}
+      .col-md-12
+        = f.input :current_elected, label: "Data da eleição do atual presidente", as: 'string', input_html: { class: 'date', placeholder: '00/00/0000', value: (@inspection.current_elected) ? localize(f.object.current_elected) : nil}
+      .col-md-12
+        = f.input :action_area, label: "Área de atuação",input_html: { placeholder: 'Digite a area de atuação'}
+      .col-md-12
+        = f.input :associated_amount, label: "Quantidade de Associados",input_html: { placeholder: 'Digite apenas números'}
+      .col-md-12
+        = f.input :business_hour, label: "Horário de funcionamento",input_html: { placeholder: 'Digite os horários'}
+      .col-md-12
+        = f.input :business_days, label: "Dias de funcionamento",input_html: { placeholder: 'Digite os dias'}
+      .col-md-12
+        = f.input :attorney_name, label: "Nome do representante/procurador junto a CODHAB?",input_html: { placeholder: 'Digite o nome caso a Entidade trabalhe com um representante/procurador junto a CODHAB'}
+      .col-md-4
+        = f.input :documentation_photo_1, as: :file, label: "Foto de documentação 1"
+        = link_to "visualizar arquivo atual", f.object.documentation_photo_1.url, target: '_blank' if !f.object.documentation_photo_1.to_s.empty?
+      .col-md-4
+        = f.input :documentation_photo_2, as: :file, label: "Foto de documentação 2"
+        = link_to "visualizar arquivo atual", f.object.documentation_photo_2.url, target: '_blank' if !f.object.documentation_photo_2.to_s.empty?
+      .col-md-12
+        %hr
+      .col-md-12
+        %h3
+          Responsável pelas informações
+      .col-md-12
+        = f.input :responsible_name, label: "Nome",input_html: { placeholder: 'Digite o nome'}
+      .col-md-12
+        = f.input :responsible_cpf, label: "CPF",input_html: { placeholder: 'Digite apenas números'}
+      .col-md-12
+        = f.input :responsible_rg, label: "RG",input_html: { placeholder: 'Digite o rg'}
+      .col-md-12
+        = f.input :responsible_title, label: "Cargo",input_html: { placeholder: 'Digite o cargo'}
+      .col-md-12
+        = f.input :responsible_phone, label: "Telefone",input_html: { placeholder: 'Digite o telefone'}
+      .col-md-12
+        = f.input :responsible_photo, as: :file, label: "Foto do Responsável das informações"
+        = link_to "visualizar arquivo atual", f.object.responsible_photo.url, target: '_blank' if !f.object.responsible_photo.to_s.empty?
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit,"Salvar", class: 'btn btn-success', data: {disable_with: t(:disable_with)}
