@@ -55,10 +55,12 @@
                       %td
                         %span.label.label-success
                           - if candidate.cadastre.enterprise_cadastres.present?
-                            - unless candidate.cadastre.enterprise_cadastres.last.inactive == true
-                              = "#{candidate.cadastre.current_situation_name} - INDICADO - #{candidate.cadastre.enterprise_cadastres.last.enterprise.name}"
-                            -else
+                            - if candidate.cadastre.enterprise_cadastres.last.inactive == true
+                              = "#{candidate.cadastre.current_situation_name} - #{candidate.cadastre.enterprise_cadastres.where(inactive: true).count}º RECUSA - #{candidate.cadastre.enterprise_cadastres.last.enterprise.name}"
+                            - elsif candidate.cadastre.enterprise_cadastres.nil?
                               = "#{candidate.cadastre.current_situation_name}"
+                            - else
+                              = "#{candidate.cadastre.current_situation_name} - INDICADO - #{candidate.cadastre.enterprise_cadastres.last.enterprise.name}"
                           - else
                             = "#{candidate.cadastre.current_situation_name}"
             - else

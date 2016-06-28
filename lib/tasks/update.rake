@@ -4,35 +4,33 @@ require "open-uri"
 namespace :update do
 
   desc "migração de log"
-  task :firm => :environment do
+  task :preguica_jesus => :environment do
 
-    @index = 0
+    @all1 = Protocol::Assessment.where('cnpj IS NOT NULL AND length(cnpj) = 13')
+    
+    @all = Protocol::Assessment.where('cnpj IS NOT NULL')
 
-
-    CSV.foreach("lib/files/indica.csv", :col_sep => "#") do |row|
-
-
-           @model = Firm::EnterpriseCadastre.new(
-           enterprise_id: 1,
-           cadastre_id: row[0],
-           status: true,
-           created_at: row[1],
-           source_list: row[2],
-
-           )
-
-          #puts @model.inspect
-
-          @model.save
-
-
-
-          #    puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
-          #  end
-
-       puts  @index += 1
-
+    @all1.each do |c|
+      @e = Protocol::Assessment.find(c.id) rescue nil
+      if @e.present?
+        @e.cnpj = "0#{c.cnpj}"
+        @e.save
+        puts @e.cnpj
+      end
     end
+
+    @all.each do |a|
+      @b = Protocol::Assessment.find(a.id) rescue nil
+
+      if @b.present?
+        @b.cnpj = a.cnpj.gsub('.','').gsub('/','').gsub('-','')
+        @b.save
+        puts @b.cnpj
+      end
+    end
+    
+    puts "JESUS PREGUIÇOSO"
+    #select cnpj from protocol_assessments where cnpj is not null and length(cnpj) = 13
   end
 
 end
