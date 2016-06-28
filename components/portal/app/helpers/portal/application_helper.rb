@@ -39,7 +39,7 @@ module Portal
     end
 
     def slider_each(limit = 10, order = 'DESC')
-      @slider = Cms::Post.where(slider: true ,publish: true).limit(limit).order("date #{order}")
+      @slider = Cms::Post.where(slider: true ,publish: true).limit(limit).order("created_at #{order}")
 
       @slider.each do |s|
         yield s

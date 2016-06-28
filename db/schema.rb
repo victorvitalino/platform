@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628120459) do
+ActiveRecord::Schema.define(version: 20160628181319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1513,7 +1513,7 @@ ActiveRecord::Schema.define(version: 20160628120459) do
   add_index "entity_documents", ["document_category_id"], name: "index_entity_documents_on_document_category_id", using: :btree
 
   create_table "entity_inspections", force: :cascade do |t|
-    t.integer  "cadastre_id_id"
+    t.integer  "cadastre_id"
     t.string   "address_optional"
     t.string   "general_photo_1"
     t.string   "general_photo_2"
@@ -1542,13 +1542,14 @@ ActiveRecord::Schema.define(version: 20160628120459) do
     t.string   "responsible_phone"
     t.integer  "occupied_property"
     t.text     "additional_information"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
     t.string   "attorney_name"
     t.text     "property_description"
+    t.date     "current_elected"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "entity_inspections", ["cadastre_id_id"], name: "index_entity_inspections_on_cadastre_id_id", using: :btree
+  add_index "entity_inspections", ["cadastre_id"], name: "index_entity_inspections_on_cadastre_id", using: :btree
 
   create_table "entity_member_additionals", force: :cascade do |t|
     t.string   "cnpj"

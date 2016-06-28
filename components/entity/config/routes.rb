@@ -8,6 +8,6 @@ Entity::Engine.routes.draw do
 
 
   resources :surveys, path: 'vistoria' do
-
+    resources :inspections
   end
 end

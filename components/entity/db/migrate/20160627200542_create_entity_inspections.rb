@@ -1,7 +1,7 @@
 class CreateEntityInspections < ActiveRecord::Migration
   def change
     create_table :entity_inspections do |t|
-      t.references :cadastre_id, index: true
+      t.references :cadastre, index: true
       t.string :address_optional
       t.string :general_photo_1
       t.string :general_photo_2
@@ -30,6 +30,9 @@ class CreateEntityInspections < ActiveRecord::Migration
       t.string :responsible_phone
       t.integer :occupied_property
       t.text :additional_information
+      t.string :attorney_name
+      t.text :property_description
+      t.date :current_elected
 
       t.timestamps null: false
     end
