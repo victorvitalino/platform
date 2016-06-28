@@ -1,6 +1,6 @@
 module Entity
   class Inspection < ActiveRecord::Base
-    belongs_to :cadastre_id
+    belongs_to :cadastre
     scope :by_cnpj,          -> (value) { where(cnpj: value) }
     scope :by_name,         -> (value) { where("name ILIKE '%#{value}%'") }
     validates :general_photo_1, :general_photo_2, :general_photo_3,:documentation_photo_1,:documentation_photo_2,:responsible_photo, file_size: { less_than_or_equal_to: 10.megabytes.to_i }

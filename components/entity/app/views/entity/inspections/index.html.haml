@@ -3,26 +3,28 @@
     .col-md-12
       %h1 Selagem Codhab
   %hr/
-  .row
-    = simple_form_for url_for, method: :get do |f|
-      .col-md-12
-        = f.input :by_cnpj, label: "cnpj (somente números)", input_html: { name: 'by_cnpj', value: params[:by_cnpj]}
-      .col-md-12
-        = f.submit "Pesquisar", name: nil, class: 'btn btn-success'
+
   %hr/
   .row
     .col-md-12
       .panel.panel-default
         .panel-body
-          %table.table.table-striped.table-bordered.table-hover
-            %thead
-              %tr
-                %th Nome
-                %th Endereço
-                %th CNPJ
-            %tbody
-              - @surveys.each do |survey|
-                %tr
-                  %td= link_to inspection.name, edit_inspection_path(inspection)
-                  %td= "link_to inspection.cadastre_id.localization, edit_lifting_path(lift)"
-                  %td= "link_to lift.cpf.format_cpf, edit_lifting_path(lift)"
+          .row
+            .col-md-12
+              = link_to 'Novo', new_cadastre_inspection_path(cadastre_id:@cadastre.id),class: 'btn btn-success'
+          %hr
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered.table-hover
+                %thead
+                  %tr
+                    %th Nº Inspeção
+                    %th Nome da Entidade
+                    %th Ações
+                %tbody
+                  - if @inspections.present?
+                    - @inspections.each_with_index do |survey, index|
+                      %tr
+                        %td= "Inspeção Nº #{index+1}"
+                        %td= survey.cadastre.name if survey.cadastre.present?
+                        %td= link_to '', edit_cadastre_inspection_path(cadastre_id:survey.cadastre_id, id:survey),title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'

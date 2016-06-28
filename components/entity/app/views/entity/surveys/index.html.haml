@@ -23,6 +23,6 @@
             %tbody
               - @surveys.each do |survey|
                 %tr
-                  %td= link_to survey.name, new_survey_inspection_path(survey, cadastre_id:survey)
-                  %td= link_to survey.address, new_survey_inspection_path(survey)
-                  %td= link_to survey.cnpj, new_survey_inspection_path(survey)
+                  %td= link_to survey.name, cadastre_inspections_path(survey)
+                  %td= link_to survey.address, cadastre_inspections_path(survey)
+                  %td= link_to survey.cnpj, cadastre_inspections_path(survey)

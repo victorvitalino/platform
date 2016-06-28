@@ -6,5 +6,6 @@ module Entity
   def index
     @surveys = Entity::Cadastre.all
   end
+  
 end
 end

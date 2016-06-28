@@ -22,6 +22,9 @@
       .col-md-4
         = f.label "E-mail :"
         = @cadastre.email
+      .col-md-12
+        = f.label "Presidente :"
+        = @cadastre.members.where(member_job_id: 2).first.name if @cadastre.members.present?
     .row
       .col-md-12
         %h2

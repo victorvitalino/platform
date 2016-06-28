@@ -6,8 +6,9 @@ module Entity
     layout 'patternfly/mobile-less-application'
 
     def index
-      @inspections = Inspections.all
+    @inspections = @cadastre.inspections.all
     end
+
     def show
 
     end
@@ -26,7 +27,7 @@ module Entity
     def create
       @inspection = @cadastre.inspections.new(inspection_params)
       if @inspection.save
-        redirect_to action: 'index'
+        redirect_to surveys_path
       else
         render :new
       end
@@ -35,7 +36,7 @@ module Entity
     # PATCH/PUT /posts/1
     def update
       if @inspection.update(inspection_params)
-        redirect_to action: 'index'
+        redirect_to surveys_path
       else
         render :edit
       end
