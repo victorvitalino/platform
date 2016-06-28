@@ -5,6 +5,9 @@ module Entity
     before_action :set_inspection, only: [:show, :edit, :update, :destroy]
     layout 'patternfly/mobile-less-application'
 
+    def index
+      @inspections = Inspections.all
+    end
     def show
 
     end
