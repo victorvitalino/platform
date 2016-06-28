@@ -1,11 +1,9 @@
 require_dependency 'entity/application_controller'
 module Entity
   class InspectionsController < ApplicationController
+    before_action :set_cadastre
     before_action :set_inspection, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @inspections = apply_scopes(Entity::Inspection).all
-  end
+    layout 'patternfly/mobile-less-application'
 
     def show
 
@@ -13,7 +11,7 @@ module Entity
 
     # GET /posts/new
     def new
-      @inspection = Inspection.new
+      @inspection = @cadastre.inspections.new
     end
 
     # GET /posts/1/edit
@@ -23,7 +21,7 @@ module Entity
 
     # POST /posts
     def create
-      @inspection = Inspection.new(inspection_params)
+      @inspection = @cadastre.inspections.new(inspection_params)
       if @inspection.save
         redirect_to action: 'index'
       else
@@ -49,7 +47,10 @@ module Entity
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_inspection
-        @inspection = Entity::Inspection.find(params[:id])
+        @inspection = @cadastre.inspections.find(params[:id])
+      end
+      def set_cadastre
+        @cadastre = Entity::Cadastre.find(params[:cadastre_id])
       end
 
       # Only allow a trusted parameter "white list" through.

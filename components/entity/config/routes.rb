@@ -5,7 +5,8 @@ Entity::Engine.routes.draw do
   resources :document_categories, path: 'categorias_documento'
   resources :member_jobs, path: 'diretoria_cargos'
 
-  resources :inspections, path: 'vistoria' do
-    
+
+  resources :surveys, path: 'vistoria' do
+      resources :inspections
   end
 end
