@@ -46,7 +46,7 @@ nav:
             label: 'Cadastro'
             controller: '/entity/cadastres'
       cadastre:
-        code: [11005, 11011,11016]
+        code: [11005, 11011,11016,11020]
         label: 'Cadastro'
         controller: '#'
         sub:
@@ -70,6 +70,11 @@ nav:
             code: 11011
             label: 'Verificações'
             controller: '/candidate/verifications'
+          report:
+            module: 'candidate'
+            code: 11020
+            label: 'Resumo de Habilitados'
+            controller: '/candidate/reports'
       address:
         code: [11204, 11207]
         label: 'Endereço'
@@ -140,7 +145,7 @@ nav:
             code: 0
             label: "Empreendimentos"
             controller: '/indication/enterprises'
-            action: 'index' 
+            action: 'index'
       assistent:
         code: [118103,118101]
         label: 'Auxiliares'

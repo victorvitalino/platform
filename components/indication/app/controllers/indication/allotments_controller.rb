@@ -48,4 +48,4 @@ module Indication
     end
 
   end
-end 
+end
