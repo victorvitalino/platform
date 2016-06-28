@@ -4,6 +4,7 @@ module Entity
     belongs_to :city, class_name: "Address::City"
 
     has_many :situations
+    has_many :inspections
     has_many :situation_status, through: :situations
 
     has_many :documents
@@ -16,7 +17,7 @@ module Entity
     has_many :activities
 
     audited
-    
+
     scope :situation, -> (status) {
       Entity::Cadastre.joins(:situations)
       .where('entity_situations.situation_status_id = (SELECT MAX(entity_situations.situation_status_id)

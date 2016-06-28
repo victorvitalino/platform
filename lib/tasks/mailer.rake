@@ -34,7 +34,12 @@ namespace :mailer do
 
   end
 
-  task :new_entity => :environment do 
+  task :sam => :environment do 
+    
+    Concourse::Candidate.where(subscribe_id: 5).each do |candidate|
+      puts candidate.email
+      ConcoursePortal::SubscribeMailer.crazy(candidate.email).deliver_now!
+    end
   end
 
 end

@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-md-12
+      %h1 Selagem Codhab
+  %hr/
+  .row
+    = simple_form_for url_for, method: :get do |f|
+      .col-md-12
+        = f.input :by_cnpj, label: "cnpj (somente números)", input_html: { name: 'by_cnpj', value: params[:by_cnpj]}
+      .col-md-12
+        = f.submit "Pesquisar", name: nil, class: 'btn btn-success'
+  %hr/
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          %table.table.table-striped.table-bordered.table-hover
+            %thead
+              %tr
+                %th Nome
+                %th Endereço
+                %th CNPJ
+            %tbody
+              - @surveys.each do |survey|
+                %tr
+                  %td= link_to inspection.name, edit_inspection_path(inspection)
+                  %td= "link_to inspection.cadastre_id.localization, edit_lifting_path(lift)"
+                  %td= "link_to lift.cpf.format_cpf, edit_lifting_path(lift)"

@@ -1,4 +1,18 @@
 /*action page*/
+a.back-to-tops {
+	display: none;
+	width: 60px;
+	height: 60px;
+	text-indent: -9999px;
+	position: fixed;
+	z-index: 999;
+	right: 20px;
+	bottom: 20px;
+	background: #81C341 url("/images/up-arrow.png") no-repeat center 43%;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
 .restrict_block{
   background-color: #7863ac;
   overflow: hidden;
@@ -332,7 +346,12 @@ margin-bottom: 57px;
     margin-top: 43px;
 }
 .title1{
-
+	height: 25px;
+	background-color: #009540;
+}
+.cartilha-baixar{
+	color: #fff;
+	text-align: center;
 }
 .gallerys_title{
   background-color:#dd3858;
@@ -371,12 +390,12 @@ margin-bottom: 57px;
 .icon_funciona{
   text-align: center;
 }
-.text_conheca{
-  text-align: center;
+.text_perguntas{
+  text-align: left;
   font-size: 20px;
 
 }
-.conhecafooter{
+.perguntasfooter{
   margin-bottom: 100px;
 }
 .logo_habita{
@@ -390,6 +409,12 @@ font-size: 16px;
 .title_bloco_responsivo{
 text-align-last: center;
 font-weight: bold;
+font-size: 55px;
+text-align: center;
+}
+.title_responsivo{
+    font-weight: 600;
+    text-align: center;
 }
 .texto_bloco_responsivo{
   text-align: justify;
@@ -398,4 +423,11 @@ font-weight: bold;
 }
 .bloco_responsivo{
   display: none;
+}
+.icon_funciona{
+  margin-bottom: 50px;
+}
+.text_funciona{
+  text-align: justify;
+  font-size: 20px;
 }
