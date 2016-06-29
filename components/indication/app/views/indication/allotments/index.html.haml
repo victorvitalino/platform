@@ -1,6 +1,6 @@
 .panel.panel-default
   .panel-heading
-    %h4.panel-title 
+    %h4.panel-title
       #{@step.enterprise.name} - #{@step.name} - Lotes de indicação
       = link_to 'Voltar para etapas', enterprise_steps_path(enterprise_id: @step.enterprise_id), class: 'pull-right'
   .panel-body
@@ -14,14 +14,24 @@
           %thead
             %tr
               %th #
-              %th Nome
+              %th Faixa.
+              %th Demanda
               %th RII
               %th RIE
               %th ID.
               %th VUL.
               %th DEF.
-              %th Situação
               %th Data
               %th Ações
           %tbody
-      
+            - @allotments.each do |allotment|
+              %tr
+                %td{style: 'width: 1%'}= allotment.id
+                %td{style: 'width: 1%'}= allotment.zone
+                %td{style: 'width: 1%'}= allotment.demand
+                %td{style: 'width: 1%'}= allotment.rii
+                %td{style: 'width: 1%'}= allotment.rie
+                %td{style: 'width: 1%'}= allotment.old
+                %td{style: 'width: 1%'}= allotment.vulnerable
+                %td{style: 'width: 1%'}= allotment.special
+                %td{style: 'width: 1%'}= allotment.created_at.strftime('%d/%m/%Y')

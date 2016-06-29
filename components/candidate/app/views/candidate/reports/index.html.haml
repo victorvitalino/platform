@@ -1,0 +1,48 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4 Resumo de Habilitados
+  .panel-body
+    .row
+      .col-md-6
+        %b Total de Habilitados -
+        = number_with_delimiter(@enable.count, delimiter: ".")
+        %br
+        = link_to 'RII: ', list_path(1)
+        = number_with_delimiter(@enable.where(program_id:1).count, delimiter: ".")
+        %br
+        = link_to 'RIE: ', list_path(28)
+        = number_with_delimiter(@enable.where(program_id:2).count, delimiter: ".")
+        %br
+        = link_to 'Idosos: ', list_path(14)
+        = number_with_delimiter(@enable.where('extract(year from age(born)) >= 60').count, delimiter: ".")
+        %br
+        = link_to 'Deficientes: ', list_path(18)
+        = number_with_delimiter(@enable.where('(special_condition_id in (2,3) or (select COUNT(*) from candidate_dependents where special_condition_id in (2,3) and cadastre_id = general_pontuations.id) > 0)').count, delimiter: ".")
+        %br
+        = link_to 'Vulneráveis: ', list_path(13)
+        = number_with_delimiter(@enable.where(program_id:4).count, delimiter: ".")
+    %hr
+    .row
+      .col-md-6
+        %h4 Habilitados - RII
+        = "Total de candidatos #{number_with_delimiter(@enable.where(program_id:1).count, delimiter: ".")}"
+        = pie_chart [["Faixa 1 - #{@zone1rii}", @zone1rii],["Faixa 2 - #{@zone2rii}", @zone2rii],["Faixa 3 - #{@zone3rii}", @zone3rii],["Faixa 4 - #{@zone4rii}", @zone4rii]]
+      .col-md-6
+        %h4 Habilitados - RIE
+        = "Total de candidatos #{number_with_delimiter(@enable.where(program_id:2).count, delimiter: ".")}"
+        = pie_chart [["Faixa 1 - #{@zone1rie}", @zone1rie],["Faixa 2 - #{@zone2rie}", @zone2rie],["Faixa 3 - #{@zone3rie}", @zone3rie],["Faixa 4 - #{@zone4rie}", @zone4rie]]
+    .row
+      .col-md-6
+        %h4 Habilitados - Idosos
+        = "Total de candidatos #{number_with_delimiter(@enable.where('(special_condition_id in (2,3) or (select COUNT(*) from candidate_dependents where special_condition_id in (2,3) and cadastre_id = general_pontuations.id) > 0)').count, delimiter: ".")}"
+        = pie_chart [["Faixa 1 - #{@zone1ido}", @zone1ido],["Faixa 2 - #{@zone2ido}", @zone2ido],["Faixa 3 - #{@zone3ido}", @zone3ido],["Faixa 4 - #{@zone4ido}", @zone4ido]]
+      .col-md-6
+        %h4 Habilitados - Deficientes
+        = "Total de candidatos #{number_with_delimiter(@enable.where('extract(year from age(born)) >= 60').count, delimiter: ".")}"
+        = pie_chart [["Faixa 1 - #{@zone1def}", @zone1def],["Faixa 2 - #{@zone2def}", @zone2def],["Faixa 3 - #{@zone3def}", @zone3def],["Faixa 4 - #{@zone4def}", @zone4def]]
+    .row
+      .col-md-6
+        %h4 Habilitados - Vulneráveis
+        = "Total de candidatos #{number_with_delimiter(@enable.where(program_id:4).count, delimiter: ".")}"
+        = pie_chart [["Faixa 1 - #{@zone1vul}", @zone1vul],["Faixa 2 - #{@zone2vul}", @zone2vul],["Faixa 3 - #{@zone3vul}", @zone3vul],["Faixa 4 - #{@zone4vul}", @zone4vul]]

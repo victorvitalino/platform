@@ -5,14 +5,14 @@ module Candidate
 
     has_scope :by_income, :using => [:started_at, :ended_at], :type => :hash
     has_scope :cpf
-    
+
     def index
       @lists = List.all.order(:created_at)
     end
 
     def show
-      @geral = "#{@list.view_target}".constantize.where("#{@list.condition_sql}")    
-      @candidates = apply_scopes(@geral).paginate(:page => params[:page], :per_page => 20)
+      @geral = "#{@list.view_target}".constantize.where("#{@list.condition_sql}")
+      @candidates = apply_scopes(@geral).paginate(:page => params[:page], :per_page => 50)
     end
 
     def new
@@ -40,7 +40,7 @@ module Candidate
         redirect_to action: 'index'
       else
         render action: 'edit'
-      end    
+      end
 
     end
 
