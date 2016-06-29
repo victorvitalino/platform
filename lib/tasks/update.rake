@@ -39,6 +39,7 @@ namespace :update do
           #  end
 
 
+
     #select cnpj from protocol_assessments where cnpj is not null and length(cnpj) = 13
 
   end

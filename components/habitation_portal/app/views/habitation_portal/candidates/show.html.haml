@@ -134,7 +134,7 @@
                         %td= enterprise.created_at.strftime("%d/%m/%Y")
                         %td{colspan: 6}= enterprise.inactive ? "Indicação inativa: #{enterprise.inactive_date.present? ? enterprise.inactive_date.strftime("%d/%m/%Y") : 'Sem informação de data.' }" :  "Indicação ativa"
                   %tfooter
-                    - if @inactives.present? 
+                    - if @inactives.present? && @inactives.first.inactive_date.present?
                       %tr
                         %th Quantidade de recusas
                         %td= @inactives.count
