@@ -1,0 +1,32 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title 
+      Concursos codhab - Relatório geral 
+
+  .panel-body
+    .row
+      .col-md-12
+        %h2
+          %b Total de participantes:
+          #{@count_candidates}
+    %br/
+    %hr/
+    .row
+      .col-md-6
+        %h4 
+          %b Candidatos por estado
+        = pie_chart @per_state
+      .col-md-6
+        %h4
+          %b Candidatos por concurso
+        = pie_chart @per_concourse
+    %hr/
+    .row
+      .col-md-6
+        %h4 
+          %b Candidatos por situação
+        = column_chart [["Processado", @candidates.where(status: 0).count],["Indeferido", @candidates.where(status: 3).count],["Homologado", @candidates.where(status: 2).count]]
+      .col-md-6
+        %h4 
+          %b Candidatos por tipo profissional
+          = pie_chart [["Arquiteto", @candidates.where(professional_type: 0).count],["Engenheiro Civil", @candidates.where(professional_type: 1).count]]

@@ -28,4 +28,6 @@ Concourse::Engine.routes.draw do
     get '/responded', path: 'consulta_respondida', as: 'consult_responded', to: 'consults#responded'
   
   end
+
+  resources :reports
 end
