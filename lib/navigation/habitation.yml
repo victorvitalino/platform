@@ -191,3 +191,8 @@ nav:
             code: 11020
             label: 'Resumo de habilitados'
             controller: '/candidate/reports'
+          reports_entity:
+            module: 'entity'
+            code: 11502
+            label: 'Recadastramento de entidades'
+            controller: '/entity/reports'
