@@ -8,35 +8,39 @@
   .card-body.card-padding
     .row
       .col-md-7
-        = f.input :name, input_html: { placeholder: 'Digite o nome da formação'}
+        = f.label "Nome do Evento", class: 'fg-label'
+        = f.input :name, label: false, input_html: { placeholder: 'Digite o nome da formação'}
       .col-md-3
-        = f.label :date, as: 'string', class: 'fg-label'
+        = f.label "Data", as: 'string', class: 'fg-label'
         = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@event.date) ? localize(f.object.date) : nil}
       .col-md-2
-        = f.label :hour
+        = f.label "Hora do Evento"
         = f.input :hour, label: false, include_blank: false
     .row
       .col-md-12
-        = f.label :description, class: 'fg-label'
+        = f.label "Texto do evento", class: 'fg-label'
         = f.input :description, label: false, input_html: { id: 'description', class: 'tinymce', rows: 10, cols: 80}
     .row
       .col-md-2
-        = f.label :status
+        = f.label "Ativar evento?"
         = f.input :status, as: :select, label: false, include_blank: false
       .col-md-2
-        = f.label :situation, class: 'fg-label'
+        = f.label "Situação do evento", class: 'fg-label'
         = f.input :situation, label: false, include_blank: false
       .col-md-4
-        = f.label :city_id, class: 'fg-label'
+        = f.label "Cidade", class: 'fg-label'
         = f.association :city, label: false, include_blank: false, collection: Address::City.federal_district
       .col-md-4
-        = f.input :district, input_html: {placeholder: 'Digite o nome da localização'}
+        = f.label "Bairro", class: 'fg-label'
+        = f.input :district, label: false, input_html: {placeholder: 'Digite o nome da localização'}
     .row
       .col-md-6
-        = f.input :thumb, as: :file
+        = f.label "Foto pequena", class: 'fg-label'
+        = f.input :thumb, as: :file, label: false
         = link_to "visualizar arquivo atual", f.object.thumb.url, target: '_blank' if !f.object.thumb.to_s.empty?
       .col-md-6
-        = f.input :photo, as: :file
+        = f.label "Foto interna", class: 'fg-label'
+        = f.input :photo, as: :file, label: false
         = link_to "visualizar arquivo atual", f.object.photo.url, target: '_blank' if !f.object.photo.to_s.empty?
     %hr/
     .row

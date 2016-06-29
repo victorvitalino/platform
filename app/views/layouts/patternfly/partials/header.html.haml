@@ -8,6 +8,7 @@
     = csrf_meta_tags
     :javascript
       URL_BASE = "#{request.original_url}"
+   
     = javascript_include_tag 'patternfly', 'data-turbolinks-eval' => 'false'
     :javascript
       tinyMCE.init({

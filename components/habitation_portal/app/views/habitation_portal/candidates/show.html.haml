@@ -125,13 +125,51 @@
                     %tr
                       %th Empreendimento
                       %th Data de encaminhamento
-                      %th Situação
+                      %th{colspan: 6} Situação
                   %tbody
-                    - @candidate.enterprise_cadastres.each do |enterprise|
+                    - @inactives = @candidate.enterprise_cadastres.where(inactive: true).order('inactive_date ASC')
+                    - @candidate.enterprise_cadastres.order('created_at ASC').each_with_index do |enterprise, index|
                       %tr
                         %td= link_to enterprise.enterprise.name, enterprise_cadastre_situation_candidates_path(id:enterprise.id), remote: true if enterprise.enterprise.present?
                         %td= enterprise.created_at.strftime("%d/%m/%Y")
-                        %td= enterprise.inactive ? "Indicação inativa: #{enterprise.inactive_date.present? ? enterprise.inactive_date.strftime("%d/%m/%Y") : 'Sem informação de data.' }" :  "Indicação ativa"
+                        %td{colspan: 6}= enterprise.inactive ? "Indicação inativa: #{enterprise.inactive_date.present? ? enterprise.inactive_date.strftime("%d/%m/%Y") : 'Sem informação de data.' }" :  "Indicação ativa"
+                  %tfooter
+                    - if @inactives.present? && @inactives.first.inactive_date.present?
+                      %tr
+                        %th Quantidade de recusas
+                        %td= @inactives.count
+                        %th Primeira recusa
+                        %td
+                          = @inactives.first.inactive_date.present? ? @inactives.first.inactive_date.strftime('%d/%m/%Y') : "Sem informação"
+                        %th Prazo final
+                        %td
+                          - @year  = @inactives.first.inactive_date + 4.years
+                          = @year.strftime("%d/%m/%Y")
+                        %th Tempo restante
+                        %td
+                          - if @year > Date.today
+                            - @month = ((Date.today.year - 1) * 12 + Date.today.month) - ((@year.year - 1) * 12 + @year.month)
+                            - case @month.divmod(12)[0]
+                              - when -4
+                                %span.label.label-success
+                                  Faltam #{(@month.divmod(12)[0] + 1) * -1} ano(s) e #{12 - @month.divmod(12)[1]} mes(es)
+                              - when -3
+                                %span.label.label-warning
+                                  Faltam #{(@month.divmod(12)[0] + 1) * -1} ano(s) e #{12 -@month.divmod(12)[1]} mes(es)
+                              - when -2
+                                %span.label.label-danger
+                                  Faltam #{(@month.divmod(12)[0] + 1) * -1} ano(s) e #{12 -@month.divmod(12)[1]} mes(es)
+                              - when -1
+                                %span.label.label-inverse
+                                  Faltam #{(@month.divmod(12)[0] + 1) * -1} ano(s) e #{12 -@month.divmod(12)[1]} mes(es)
+                              - when 0
+                                %span.label.label-inverse
+                                  Faltam poucos dias para exceder o prazo
+                          - else
+                            %span.label.label-inverse
+                              Prazo excedido
+
+
               - else
                 Informação não disponível
           %hr/

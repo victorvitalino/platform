@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623141305) do
+ActiveRecord::Schema.define(version: 20160628181319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1511,6 +1511,45 @@ ActiveRecord::Schema.define(version: 20160623141305) do
   add_index "entity_documents", ["cadastre_id"], name: "index_entity_documents_on_cadastre_id", using: :btree
   add_index "entity_documents", ["cadastre_mirror_id"], name: "index_entity_documents_on_cadastre_mirror_id", using: :btree
   add_index "entity_documents", ["document_category_id"], name: "index_entity_documents_on_document_category_id", using: :btree
+
+  create_table "entity_inspections", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.string   "address_optional"
+    t.string   "general_photo_1"
+    t.string   "general_photo_2"
+    t.string   "general_photo_3"
+    t.string   "size"
+    t.integer  "property_type"
+    t.string   "property_owner"
+    t.text     "others_local"
+    t.string   "operating_time"
+    t.string   "location_time"
+    t.string   "meeting_frequency"
+    t.string   "elected"
+    t.string   "action_area"
+    t.string   "associated_amount"
+    t.string   "business_hour"
+    t.string   "business_days"
+    t.integer  "inspection_type"
+    t.string   "attorney"
+    t.string   "documentation_photo_1"
+    t.string   "documentation_photo_2"
+    t.string   "responsible_name"
+    t.string   "responsible_cpf"
+    t.string   "responsible_rg"
+    t.string   "responsible_title"
+    t.string   "responsible_photo"
+    t.string   "responsible_phone"
+    t.integer  "occupied_property"
+    t.text     "additional_information"
+    t.string   "attorney_name"
+    t.text     "property_description"
+    t.date     "current_elected"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "entity_inspections", ["cadastre_id"], name: "index_entity_inspections_on_cadastre_id", using: :btree
 
   create_table "entity_member_additionals", force: :cascade do |t|
     t.string   "cnpj"

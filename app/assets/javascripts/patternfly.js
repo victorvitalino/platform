@@ -6,3 +6,5 @@
 //= require patternfly/javascripts/jquery.maskmoney.min
 //= require tinymce-jquery
 //= require patternfly/javascripts/custom
+//= require patternfly/javascripts/highchart.min
+//= require chartkick

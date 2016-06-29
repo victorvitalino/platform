@@ -9,30 +9,38 @@ namespace :update do
     @index = 0
 
 
-    CSV.foreach("lib/files/indica.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/users.csv", :col_sep => "#") do |row|
 
 
-           @model = Firm::EnterpriseCadastre.new(
-           enterprise_id: 1,
-           cadastre_id: row[0],
-           status: true,
-           created_at: row[1],
-           source_list: row[2],
-
+           @teste = Person::Staff.new(
+           name: row[1],
+           cpf: row[2],
+           rg: row[3],
+           rg_org: row[4],
+           code: row[5],
+           blood_type: row[6],
+           born: row[7],
+           email: "@codhab.df",
+           start_hour: row[9],
+           end_hour: row[10],
+           date_contract: row[11],
+           sector_origin_id: row[12],
+           sector_current_id: row[13],
+           job_id: row[14],
+           password: "12345678"
            )
 
-          #puts @model.inspect
+           #puts @teste.inspect
+           @teste.save
 
-          @model.save
-
-
-
+           puts @index + 1
+       end
           #    puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
           #  end
 
-       puts  @index += 1
 
-    end
+
+    #select cnpj from protocol_assessments where cnpj is not null and length(cnpj) = 13
+
   end
-
 end

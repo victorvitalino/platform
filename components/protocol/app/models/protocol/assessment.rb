@@ -27,14 +27,14 @@ module Protocol
 
 
 
-    before_save :set_number
+  #  before_save :set_number
 
-    validates :document_type,  presence: true
-    validates :subject, presence: true
-    validates :requesting_unit, presence: true
-    validates :document_number, uniqueness: { scope: [:document_type] }, presence: true
+    #validates :document_type,  presence: true
+  #  validates :subject, presence: true
+    #validates :requesting_unit, presence: true
+    #validates :document_number, uniqueness: { scope: [:document_type] }, presence: true
 
-    after_create :set_conduct
+    #after_create :set_conduct
 
     def set_conduct
         current_user = Person::Staff.find(self.staff_id)

@@ -1,0 +1,30 @@
+.container
+  .row
+    .col-md-12
+      %h1 Selagem Codhab
+  %hr/
+
+  %hr/
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-md-12
+              = link_to 'Novo', new_cadastre_inspection_path(cadastre_id:@cadastre.id),class: 'btn btn-success'
+          %hr
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered.table-hover
+                %thead
+                  %tr
+                    %th Nº Inspeção
+                    %th Nome da Entidade
+                    %th Ações
+                %tbody
+                  - if @inspections.present?
+                    - @inspections.each_with_index do |survey, index|
+                      %tr
+                        %td= "Inspeção Nº #{index+1}"
+                        %td= survey.cadastre.name if survey.cadastre.present?
+                        %td= link_to '', edit_cadastre_inspection_path(cadastre_id:survey.cadastre_id, id:survey),title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'

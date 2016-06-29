@@ -1,0 +1,63 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cadastre_id_id: 
+  address_optional: MyString
+  general_photo_1: MyString
+  general_photo_2: MyString
+  general_photo_3: MyString
+  size: MyString
+  property_type: 1
+  property_owner: MyString
+  others_local: MyText
+  operating_time: MyString
+  location_time: MyString
+  meeting_frequency: MyString
+  elected: MyString
+  action_area: MyString
+  associated_amount: MyString
+  business_hour: MyString
+  business_days: MyString
+  inspection_type: 1
+  attorney: MyString
+  documentation_photo_1: MyString
+  documentation_photo_2: MyString
+  responsible_name: MyString
+  responsible_cpf: MyString
+  responsible_rg: MyString
+  responsible_title: MyString
+  responsible_photo: MyString
+  responsible_phone: MyString
+  occupied_property: 1
+  additional_information: MyText
+
+two:
+  cadastre_id_id: 
+  address_optional: MyString
+  general_photo_1: MyString
+  general_photo_2: MyString
+  general_photo_3: MyString
+  size: MyString
+  property_type: 1
+  property_owner: MyString
+  others_local: MyText
+  operating_time: MyString
+  location_time: MyString
+  meeting_frequency: MyString
+  elected: MyString
+  action_area: MyString
+  associated_amount: MyString
+  business_hour: MyString
+  business_days: MyString
+  inspection_type: 1
+  attorney: MyString
+  documentation_photo_1: MyString
+  documentation_photo_2: MyString
+  responsible_name: MyString
+  responsible_cpf: MyString
+  responsible_rg: MyString
+  responsible_title: MyString
+  responsible_photo: MyString
+  responsible_phone: MyString
+  occupied_property: 1
+  additional_information: MyText

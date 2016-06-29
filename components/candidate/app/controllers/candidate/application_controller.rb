@@ -4,7 +4,7 @@ module Candidate
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
-    layout 'shared/remark'
+    layout 'patternfly/application'
 
     include Authenticate::StaffService
     helper  Authenticate::StaffHelper
