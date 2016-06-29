@@ -23,30 +23,30 @@ module Person
 
     belongs_to :job
 
-    validates_uniqueness_of :code
+    #validates_uniqueness_of :code
 
-    validates :password, presence: true,
-                    confirmation: true,
-                    length: {within: 6..40}
+    #validates :password, presence: true,
+      #              confirmation: true,
+      #              length: {within: 6..40}
 
     #validates :cpf, cpf: true, on: :create
     #validates_date :born, :before => lambda {18.years.ago}
 
 
 
-    validates :avatar, :personal_image, file_size: { less_than_or_equal_to: 10.megabytes.to_i }
-    validates :avatar, :personal_image, file_content_type: { allow: ['image/jpeg', 'image/png'],
-                                             message: 'Somente arquivos .jpg ou .png' }
+    #validates :avatar, :personal_image, file_size: { less_than_or_equal_to: 10.megabytes.to_i }
+  #  validates :avatar, :personal_image, file_content_type: { allow: ['image/jpeg', 'image/png'],
+                                            # message: 'Somente arquivos .jpg ou .png' }
 
 
 
-    validates :curriculum, file_size: { less_than_or_equal_to: 60.megabytes.to_i,
-                                      message: "Arquivo não pode exceder 60 MB" }
-    validates :curriculum, file_content_type: { allow: ['application/pdf',   'application/docx',
-                                                       'application/doc',   'application/xls',
-                                                       'application/xlsx',  'application/ppt',
-                                                       'application/pptx',  'application/zip'],
-                                              message: 'Somente arquivos (.doc, .docx, .xls, .xlsx, .ppt. .pptx ou .zip)' }
+  #  validates :curriculum, file_size: { less_than_or_equal_to: 60.megabytes.to_i,
+                        #              message: "Arquivo não pode exceder 60 MB" }
+    #validates :curriculum, file_content_type: { allow: ['application/pdf',   'application/docx',
+                                              #         'application/doc',   'application/xls',
+                                                  #     'application/xlsx',  'application/ppt',
+                                          #             'application/pptx',  'application/zip'],
+                                            #  message: 'Somente arquivos (.doc, .docx, .xls, .xlsx, .ppt. .pptx ou .zip)' }
 
     mount_uploader :avatar, Archive::ImageUploader
     mount_uploader :personal_image, Archive::ImageUploader
