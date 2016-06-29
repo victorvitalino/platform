@@ -8,17 +8,22 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/geo_entity.csv", :col_sep => "#") do |row|
+    #CSV.foreach("lib/files/update.csv", :col_sep => "#") do |row|
 
-      @lift = Entity::Old.find_by_cnpj(row[0].strip) rescue nil
+      @lift = Protocol::Assessment.where("length(cnpj) > 14")
 
-      if @lift.present?
-        @lift.lat       = row[1].to_s
-        @lift.long      = row[2].to_s
-        @lift.save
+      @lift.each do |l|
+        #puts l.cnpj
+        l.cnpj = l.cnpj.gsub('.','').gsub('/','').gsub('-','')
+        @assessment = Protocol::Assessment.find(l.id)
+        @assessment.cnpj = l.cnpj
+        @assessment.save
+        puts l.cnpj
       end
+      #puts @lift.count
 
-    end
+
+    #end
   end
 
 end
