@@ -5,13 +5,14 @@
   .panel-body
     .row
       .col-md-8
-        %b Total de Entidades -
-        = number_with_delimiter(@entities.count, delimiter: ".")
+        %h2
+          %b Total de Entidades -
+          = number_with_delimiter(@entities.count, delimiter: ".")
     %hr
     .row
       .col-md-6
         %h4 Resumo do recadastramento
-        = pie_chart [["Formalizaram processo - #{@process.count}",@process.count],["Enviaram todos os documentos - #{(@entities.complete.count - @process.count)}", (@entities.complete.count - @process.count)],["Enviaram documentos - #{(@entities.senders.count - @entities.complete.count)}", (@entities.senders.count - @entities.complete.count)],["Não enviaram documentos - #{@notsend}", @notsend]]
+        = pie_chart [["Formalizaram processo",@process.count],["Enviaram todos os documentos", (@entities.complete.count - @process.count)],["Enviaram documentos", (@entities.senders.count - @entities.complete.count)],["Não enviaram documentos", @notsend]]
       .col-md-6
         %h4 Entidades participantes
-        = pie_chart [["Entidades antigas - #{@olds}", @olds], ["Novas entidades - #{@news.count}", @news.count]]
+        = pie_chart [["Entidades antigas", @olds], ["Novas entidades", @news.count]]
