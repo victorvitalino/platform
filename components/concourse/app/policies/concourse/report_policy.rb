@@ -1,8 +1,8 @@
-module Entity
+module Concourse
   class ReportPolicy < ApplicationPolicy
 
     def index?
-      allow?(51002)
+      allow?(51101)
     end
 
   end

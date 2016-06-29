@@ -5,6 +5,9 @@ module Concourse
     layout 'patternfly/application'
     
     def index
+
+      authorize :report, :index?
+
       @candidates       = Concourse::Candidate.all
       
       @count_candidates = @candidates.count 

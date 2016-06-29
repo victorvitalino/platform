@@ -3,7 +3,8 @@ module Entity
   class ReportsController < ApplicationController
 
     def index
-      #authorize :report, :index?
+      authorize :report, :index?
+      
       @entities = Entity::Cadastre.all
       @notsend =  @entities.count - @entities.senders.count
       @news = Entity::Cadastre.joins("left join entity_olds on entity_olds.cnpj = entity_cadastres.cnpj and old = 'Credenciada'").where("entity_olds.cnpj is null")
