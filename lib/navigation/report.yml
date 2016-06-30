@@ -32,3 +32,13 @@ nav:
             code: 51101
             label: 'Resumo de participantes'
             controller: '/concourse/reports'
+      regularization:
+        code: 51201
+        label: 'Regularização'
+        controller: '#'
+        sub:
+          reports:
+            module: 'address'
+            code: 51201
+            label: 'Resumo de endereços'
+            controller: '/address/reports'

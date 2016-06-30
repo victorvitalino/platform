@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sector: MyString
+  exemption_type: MyString
+  cnpj_notifiers: MyString
+  notifiers: MyString
+  name: MyString
+  cpf: MyString
+  city: MyString
+  address: MyString
+  realty_number: MyString
+  realty_value: MyString
+  send_status_id: 
+  allotment: 1
+  return_protocol: MyString
+  act_number: MyString
+  send_date: 2016-06-29 15:34:59
+  error_message: MyString
+  year_act: 1
+  type_ask: MyString
+  staff_id: 
+  staff_send_id: 
+
+two:
+  sector: MyString
+  exemption_type: MyString
+  cnpj_notifiers: MyString
+  notifiers: MyString
+  name: MyString
+  cpf: MyString
+  city: MyString
+  address: MyString
+  realty_number: MyString
+  realty_value: MyString
+  send_status_id: 
+  allotment: 1
+  return_protocol: MyString
+  act_number: MyString
+  send_date: 2016-06-29 15:34:59
+  error_message: MyString
+  year_act: 1
+  type_ask: MyString
+  staff_id: 
+  staff_send_id: 

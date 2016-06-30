@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628181319) do
+ActiveRecord::Schema.define(version: 20160629183459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1198,6 +1198,7 @@ ActiveRecord::Schema.define(version: 20160628181319) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "flickr"
+    t.string   "color"
   end
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
@@ -2584,6 +2585,43 @@ ActiveRecord::Schema.define(version: 20160628181319) do
   end
 
   add_index "schedule_data_references", ["code"], name: "index_schedule_data_references_on_code", using: :btree
+
+  create_table "sefaz_exemptions", force: :cascade do |t|
+    t.string   "sector"
+    t.string   "exemption_type"
+    t.string   "cnpj_notifiers"
+    t.string   "notifiers"
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "city"
+    t.string   "address"
+    t.string   "realty_number"
+    t.string   "realty_value"
+    t.integer  "send_status_id"
+    t.integer  "allotment"
+    t.string   "return_protocol"
+    t.string   "act_number"
+    t.datetime "send_date"
+    t.string   "error_message"
+    t.integer  "year_act"
+    t.string   "type_ask"
+    t.integer  "staff_id"
+    t.integer  "staff_send_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "sefaz_exemptions", ["send_status_id"], name: "index_sefaz_exemptions_on_send_status_id", using: :btree
+  add_index "sefaz_exemptions", ["staff_id"], name: "index_sefaz_exemptions_on_staff_id", using: :btree
+  add_index "sefaz_exemptions", ["staff_send_id"], name: "index_sefaz_exemptions_on_staff_send_id", using: :btree
+
+  create_table "sefaz_send_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "sefaz_transmission_candidates", force: :cascade do |t|
     t.integer  "transmission_id"

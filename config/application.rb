@@ -10,6 +10,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 require "csv"
+
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -25,7 +26,7 @@ module Plataform
 
     config.assets.paths << File.join(Rails.root, 'shared', 'assets', 'templates')
 
-    
+
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*','**','***', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :'pt-BR'
 
@@ -33,4 +34,3 @@ module Plataform
 
   end
 end
-

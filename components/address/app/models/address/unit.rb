@@ -16,7 +16,7 @@ module Address
     scope :group_address, -> (group_address) {where(group: group_address)}
     scope :unit, -> (unit) {where(unit: unit)}
 
-
+    scope :regularization, -> {where("urb not in ('ETAPA 4C','MORARBEM','H4')")}
 
     scope :situation_unit, -> (situation_unit) {where(situation_unit_id: situation_unit)}
     scope :cpf, -> (cpf) {joins(cadastre_address: :cadastre).where("candidate_cadastres.cpf = ?", cpf)}
