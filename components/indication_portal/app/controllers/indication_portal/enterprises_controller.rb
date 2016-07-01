@@ -2,7 +2,7 @@ require 'indication_portal/application_controller'
 
 module IndicationPortal
   class EnterprisesController < ApplicationController
-    
+
     has_scope :by_enterprise
     has_scope :by_step
     has_scope :by_allotment
@@ -12,7 +12,7 @@ module IndicationPortal
 
       if params[:by_enterprise].present? || params[:by_cpf].present?
         @cadastres = apply_scopes(Candidate::EnterpriseCadastre.includes(:cadastre)).paginate(:page => params[:page], :per_page => 20)
-        
+
         @cadastres_count  = @cadastres.count
         @rii_count        = @cadastres.where(source_list: 'RII').count
         @rie_count        = @cadastres.where(source_list: 'RIE').count
@@ -20,8 +20,10 @@ module IndicationPortal
         @old_count        = @cadastres.where(source_list: 'IDO').count
         @vul_count        = @cadastres.where(source_list: 'VUL').count
 
+
+
         @cadastres_desactive_count    = @cadastres.where(inactive: true).count
-        @cadastres_contemplated_count = @cadastres.contemplated.count
+        @cadastres_contemplated_count = @cadastres.contemplated(params[:by_enterprise]).count
         @cadastres_in_progress_count  =  @cadastres.in_process.count
 
       else
@@ -34,7 +36,7 @@ module IndicationPortal
 
       @steps = Project::Step.where(enterprise_id: enterprise_id)
 
-      render json: @steps 
+      render json: @steps
     end
 
     def allotments

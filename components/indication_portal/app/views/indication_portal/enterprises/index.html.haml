@@ -20,7 +20,7 @@
                   = f.input :by_allotment, label: "Lote", as: :select, collection: (params[:by_step].present?) ? Indication::Allotment.where(step_id: params[:by_step]) : {}, label_method: :created_at_formated, include_blank: 'selecione...', selected: params[:by_allotment], input_html: { name: 'by_allotment', id: 'allotment_id'}
                 .col-md-2
                   = f.input :by_cpf, label: "CPF (somente números)", input_html: { name: 'by_cpf', id: 'by_cpf', value: params[:by_cpf]}
-                
+
                 .col-md-2
                   = f.submit "Carregar", name: nil, class: 'btn btn-success filter-button', data: { disable_with: t(:disable_with) }
         - if @cadastres.present?
@@ -37,14 +37,14 @@
                     %tr
                       %td.col-md-6= @cadastres.last.enterprise.name
                       %td
-                        - if @cadastres.last.indication_cadastre.allotment.present? && @cadastres.last.indication_cadastre.allotment.step.present?  
+                        - if @cadastres.last.indication_cadastre.allotment.present? && @cadastres.last.indication_cadastre.allotment.step.present?
                           = @cadastres.last.indication_cadastre.allotment.step.name
                       %td.col-md-2
-                        - if @cadastres.last.indication_cadastre.allotment.present? 
+                        - if @cadastres.last.indication_cadastre.allotment.present?
                           = @cadastres.last.indication_cadastre.allotment.created_at.strftime('%d/%m/%Y')
           .row
             .col-md-12
-              %h3 
+              %h3
                 %b Indicação
           .row
             .col-md-12
@@ -75,14 +75,14 @@
                     %th= @vul_count.to_s.percent_string_of(@cadastres_count)
           .row
             .col-md-12
-              %h3 
+              %h3
                 %b Retorno
           .row
             .col-md-12
               %table.table.table-striped.table-bordered.table-hover
                 %thead
                   %tr
-                    %th 
+                    %th
                     %th Total
                     %th %
                     %th Total RII
@@ -111,7 +111,16 @@
                     %td= @cadastres.in_process.where(source_list: 'DEF').count.to_s.percent_string_of(@cadastres_in_progress_count)
                     %td= @cadastres.in_process.where(source_list: 'IDO').count.to_s.percent_string_of(@cadastres_in_progress_count)
                     %td= @cadastres.in_process.where(source_list: 'VUL').count.to_s.percent_string_of(@cadastres_in_progress_count)
-          
+                  %tr
+                    %th Contemplados
+                    %td= @cadastres_contemplated_count
+                    %td= @cadastres_contemplated_count.to_s.percent_string_of(@cadastres_count)
+                    %td= @cadastres.contemplated(params[:by_enterprise]).where(source_list: 'RII').count.to_s.percent_string_of(@cadastres_contemplated_count)
+                    %td= @cadastres.contemplated(params[:by_enterprise]).where(source_list: 'RIE').count.to_s.percent_string_of(@cadastres_contemplated_count)
+                    %td= @cadastres.contemplated(params[:by_enterprise]).where(source_list: 'DEF').count.to_s.percent_string_of(@cadastres_contemplated_count)
+                    %td= @cadastres.contemplated(params[:by_enterprise]).where(source_list: 'IDO').count.to_s.percent_string_of(@cadastres_contemplated_count)
+                    %td= @cadastres.contemplated(params[:by_enterprise]).where(source_list: 'VUL').count.to_s.percent_string_of(@cadastres_contemplated_count)
+
           %hr/
           .row
             .col-md-12
@@ -137,7 +146,7 @@
                       %th %
                   %tbody
                     %tr
-                      %td= @cadastres_contemplated_count   
+                      %td= @cadastres_contemplated_count
                       %td= @cadastres_contemplated_count.to_s.percent_string_of(@cadastres_count)
             .row
               .col-md-12
@@ -151,7 +160,7 @@
                       %th Situação Cad.
                       %th Data
                   %tbody
-                    - @cadastres.contemplated.order('candidate_cadastres.name').each do |cad|
+                    - @cadastres.contemplated(params[:by_enterprise]).order('candidate_cadastres.name').each do |cad|
                       %tr
                         %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.cpf)
                         %td= cad.cadastre.cpf.format_obfuscator_cpf
@@ -161,7 +170,7 @@
                         %td= cad.created_at.strftime("%d/%m/%Y")
             .row
               .col-md-8.col-md-offset-3.paginate
-                = will_paginate @cadastres.contemplated, renderer: BootstrapPagination::Rails        
+                = will_paginate @cadastres.contemplated, renderer: BootstrapPagination::Rails
           - if params[:list] == 'desactived'
             .row
               .col-md-12
@@ -172,7 +181,7 @@
                       %th %
                   %tbody
                     %tr
-                      %td= @cadastres_desactive_count   
+                      %td= @cadastres_desactive_count
                       %td= @cadastres_desactive_count.to_s.percent_string_of(@cadastres_count)
             .row
               .col-md-12
@@ -196,7 +205,7 @@
                         %td= cad.created_at.strftime("%d/%m/%Y")
             .row
               .col-md-8.col-md-offset-3.paginate
-                = will_paginate @cadastres.desactive, renderer: BootstrapPagination::Rails 
+                = will_paginate @cadastres.desactive, renderer: BootstrapPagination::Rails
           - if params[:list] == 'in_process'
             .row
               .col-md-12
@@ -207,7 +216,7 @@
                       %th %
                   %tbody
                     %tr
-                      %td= @cadastres_in_progress_count   
+                      %td= @cadastres_in_progress_count
                       %td= @cadastres_in_progress_count.to_s.percent_string_of(@cadastres_count)
             .row
               .col-md-12
@@ -231,7 +240,7 @@
                         %td= cad.created_at.strftime("%d/%m/%Y")
             .row
               .col-md-8.col-md-offset-3.paginate
-                = will_paginate @cadastres.in_process, renderer: BootstrapPagination::Rails 
+                = will_paginate @cadastres.in_process, renderer: BootstrapPagination::Rails
 
 :javascript
 
@@ -240,18 +249,18 @@
     $('#enterprise_id').on('change', function() {
 
       $.getJSON("#{steps_enterprises_path}?enterprise_id=" + $(this).val(), function(data) {
-        
+
         var html = ""
 
         if(data.length > 0) {
 
-          html = "<option value>Selecione a etapa...</option>"   
+          html = "<option value>Selecione a etapa...</option>"
           for(var i = 0; i < data.length; i++) { html += "<option value="+ data[i].id +">" + data[i].name + "</option>" }
           $("#step_id").html(html)
 
         } else {
 
-          html = "<option>Não existem etapas</option>"   
+          html = "<option>Não existem etapas</option>"
           $("#step_id").html(html)
         }
 
@@ -261,28 +270,28 @@
 
     $('#step_id').on('change', function() {
       $.getJSON("#{allotments_enterprises_path}?step_id=" + $(this).val(), function( data ) {
-        
+
         var html = ""
 
         if(data.length > 0) {
 
-          html = "<option value>Selecione o lote...</option>"   
-          
-          for(var i = 0; i < data.length; i++) { 
+          html = "<option value>Selecione o lote...</option>"
+
+          for(var i = 0; i < data.length; i++) {
             var date = moment(data[i].created_at);
-            html += "<option value="+ data[i].id +">" + date.format("DD/MM/YYYY") + "</option>" 
+            html += "<option value="+ data[i].id +">" + date.format("DD/MM/YYYY") + "</option>"
           }
-          
+
           $("#allotment_id").html(html)
 
         } else {
 
-          html = "<option>Não existem lotes</option>"   
+          html = "<option>Não existem lotes</option>"
           $("#allotment_id").html(html)
         }
-        
+
 
       });
-    })  
+    })
 
   });

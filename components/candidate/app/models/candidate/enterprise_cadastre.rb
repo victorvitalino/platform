@@ -23,11 +23,15 @@ module Candidate
 
     scope :desactive, -> { where(inactive: true) }
 
-    scope :contemplated, -> {
+    scope :contemplated, -> (enterprise_id = nil){
       self.joins('INNER JOIN general_pontuations AS point
-                  ON point.id = candidate_enterprise_cadastres.cadastre_id AND
-                  candidate_enterprise_cadastres.inactive IS NULL')
-                  .where('point.situation_status_id IN(7,14)')
+                  ON point.id = candidate_enterprise_cadastres.cadastre_id
+                  inner join candidate_cadastre_addresses
+                  on candidate_cadastre_addresses.cadastre_id = candidate_enterprise_cadastres.cadastre_id
+                  inner join address_units as unit
+                  on unit.id = candidate_cadastre_addresses.unit_id')
+                  .where('point.situation_status_id IN(7,14) and candidate_cadastre_addresses.situation_id = 1
+                  and unit.situation_unit_id = 3 and unit.project_enterprise_id = ?', enterprise_id)
     }
 
     scope :in_process, -> {
