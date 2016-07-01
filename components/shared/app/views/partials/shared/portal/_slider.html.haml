@@ -4,11 +4,14 @@
       - batata(s.post_category.title) do |b|
         %li.clone{"aria-hidden" => "true", :style => "height: 413px;"}
           = image_tag s.thumb, :style => "width:68%;float:left;"
-          .new-caption{:style => s.color.present? ? "background-color: #{s.color}" : "background-color:#feaa15"}, :class => "#{@sliderss}"}
-            %h3{:style => "margin-top:0px;"}
-              = link_to s.title, post_path(s)
-            %p
-              = s.resume.html_safe
+          - if s.color.present?
+            .new-caption{:style =>"background-color: #{s.color}"}, :class => "#{@sliderss}"}
+          - else
+            .new-caption{:style =>"background-color:#feaa15"}, :class => "#{@sliderss}"}
+          %h3{:style => "margin-top:0px;"}
+            = link_to s.title, post_path(s)
+          %p
+            = s.resume.html_safe
 -# .container
 -#   .topSlider
 -#     .flex-container
