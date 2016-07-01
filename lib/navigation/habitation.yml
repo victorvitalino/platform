@@ -181,13 +181,3 @@ nav:
             code: 11011
             label: 'Auditor'
             controller: '/candidate/checklist_types'
-      report:
-        code: 11020
-        label: 'Relatórios'
-        controller: '#'
-        sub:
-          reports:
-            module: 'candidate'
-            code: 11020
-            label: 'Resumo de habilitados'
-            controller: '/candidate/reports'

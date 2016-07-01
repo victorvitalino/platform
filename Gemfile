@@ -47,7 +47,7 @@ gem 'nokogiri'
 gem 'barby'
 gem 'chunky_png'
 gem 'axlsx_rails'
-
+gem 'roo'
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'file_validators'
@@ -129,6 +129,7 @@ path 'components' do
   gem 'habitation_attendance'
 
   gem 'report'
+  gem 'sefaz'
 
   gem 'indication'
   gem 'indication_portal'

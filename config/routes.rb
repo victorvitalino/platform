@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     mount Indication::Engine               => "/indicacao",      as: 'indication',            module: 'indication'
     mount Visit::Engine                    => "/visita",         as: 'visit',                 module: 'visit'
     mount Mailer::Engine                   => "/mailer",         as: 'mailer',                module: 'mailer'
+    mount Sefaz::Engine                   => "/sefaz",           as: 'sefaz',                 module: 'sefaz'
 
     mount HabitationAttendance::Engine     => "/atendimento_habitacao",    as: 'habitation_attendance',  module: 'atendimento_habitacao'
   end

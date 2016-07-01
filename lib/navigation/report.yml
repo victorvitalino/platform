@@ -1,0 +1,44 @@
+nav:
+  report:
+    info:
+      module: 'report'
+      label: "Relatórios"
+      code: 51
+      icon: 'wb-order'
+      link: '#'
+    modules:
+      habitation:
+        code: [51001, 51002]
+        label: 'Habitação'
+        controller: '#'
+        sub:
+          reports:
+            module: 'candidate'
+            code: 51010
+            label: 'Resumo de habilitados'
+            controller: '/candidate/reports'
+          reports_entity:
+            module: 'entity'
+            code: 51011
+            label: 'Recadastramento de entidades'
+            controller: '/entity/reports'
+      concourse:
+        code: 51101
+        label: 'Concurso'
+        controller: '#'
+        sub:
+          reports:
+            module: 'concourse'
+            code: 51101
+            label: 'Resumo de participantes'
+            controller: '/concourse/reports'
+      regularization:
+        code: 51201
+        label: 'Regularização'
+        controller: '#'
+        sub:
+          reports:
+            module: 'address'
+            code: 51201
+            label: 'Resumo de endereços'
+            controller: '/address/reports'

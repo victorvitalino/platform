@@ -1,0 +1,21 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Relatório de endereços
+  .panel-body
+    .row
+      .col-md-12
+        %h2
+          %b Total de imoveis de regularização:
+          = number_with_delimiter(@address_regularization.count, delimiter: ".")
+    %br/
+    %hr/
+    .row
+      .col-md-6
+        %h4
+          %b Situação dos endereços
+        = pie_chart @address_situation
+      .col-md-6
+        %h4
+          %b Endereços por cidade
+        = pie_chart @address_city
