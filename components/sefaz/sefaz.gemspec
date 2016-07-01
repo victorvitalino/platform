@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Sefaz::VERSION
   s.authors     = ["Igor Marques"]
   s.email       = ["igormarjes@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Sefaz."
-  s.description = "TODO: Description of Sefaz."
+  s.homepage    = ""
+  s.summary     = "Summary of Sefaz."
+  s.description = "Description of Sefaz."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

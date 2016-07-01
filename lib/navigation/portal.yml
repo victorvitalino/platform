@@ -43,7 +43,7 @@ nav:
             action: 'new'
           pages:
             module: 'cms'
-            code: 21016 
+            code: 21016
             label: 'Páginas'
             controller: '/cms/pages'
             action: 'index'
@@ -80,6 +80,23 @@ nav:
             code: 21026
             label: 'Galerias'
             controller: '/cms/galleries'
+            action: 'index'
+      video:
+        code: [21032]
+        label: 'Videos'
+        controller: '#'
+        sub:
+          new_video:
+            module: 'cms'
+            code: 21032
+            label: 'Novo Video'
+            controller: '/cms/videos'
+            action: 'new'
+          galleries:
+            module: 'cms'
+            code: 21032
+            label: 'Videos'
+            controller: '/cms/videos'
             action: 'index'
       archive:
         code: [21201, 21202]
@@ -121,5 +138,3 @@ nav:
             label: 'Inscrições'
             controller: '/concourse/candidates'
             action: 'view_all'
-
-

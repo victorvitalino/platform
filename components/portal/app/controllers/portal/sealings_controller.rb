@@ -1,6 +1,7 @@
 require_dependency 'portal/application_controller'
 module Portal
-  class HabitaTesteController < ApplicationController
+  class SealingsController < ApplicationController
+
     def index
     end
 

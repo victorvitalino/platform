@@ -32,6 +32,9 @@
 
     .col-md-2
       = f.input :slider, as: :select, include_blank: false
+    .col-md-4
+      = f.label "Cor do caption"
+      = f.input :color,label:false, input_html: { placeholder: 'ex: #321654' }
   %hr/
   .row
     .col-md-12
