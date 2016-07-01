@@ -2,7 +2,7 @@
   .bxslide2
     - slider_each(6,'DESC') do |s|
       - batata(s.post_category.title) do |b|
-        %li.clone{"aria-hidden" => "true"}
+        %li.clone{"aria-hidden" => "true", :style => "height: 413px;"}
           = image_tag s.thumb, :style => "width:68%;float:left;"
           .new-caption{:style => "background-color:#{s.color.present? ? 's.color' : '#feaa15'}", :class => "#{@sliderss}"}
             %h3{:style => "margin-top:0px;"}
