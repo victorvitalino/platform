@@ -4,7 +4,7 @@ $(document).ready(function() {
         useCSS: false,
         animationLoop: true,
         smoothHeight: true,
-        manualControls: '.custom-controls li a',
+        manualControls: '.flex-control-nav li a',
         controlsContainer: '.flex-container',
         start: function (slider) {
             $('body').removeClass('loading');
@@ -40,6 +40,10 @@ $(document).ready(function() {
       minSlides: 1,
       maxSlides: 3,
       slideMargin: 0
+    });
+    $('.bxslide2').bxSlider({
+      slideMargin: 0,
+      controls: false
     });
 
     $('.bottomSlider .flexslider').flexslider({

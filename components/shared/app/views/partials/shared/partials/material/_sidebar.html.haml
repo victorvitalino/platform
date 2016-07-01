@@ -77,7 +77,7 @@
               %i.md.md-recent-actors>
               Entidades
             %ul{style: ('display:block;' if params[:module] == "entity")}
-              %li= link_to "Gestão de cadastro", entity.cadastres_path 
+              %li= link_to "Gestão de cadastro", entity.cadastres_path
         - if policy(:application, namespace: Firm).view_nav?
           %li.sub-menu{class: ('toggled active' if params[:module] == "firm")}
             %a{:href => ""}
@@ -119,4 +119,3 @@
               %li= link_to "Pesquisa"
               %li= link_to "Listas"
               %li= link_to "Últimos arquivos"
-  

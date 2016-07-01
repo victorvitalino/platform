@@ -488,9 +488,12 @@ height: auto;
   text-transform: uppercase;
   width: 90px;
 }
+.link_caption_text a, .council{
+  color:#818285;
+}
 .title_notice {
   font-family: Arial;
-  color: #004A77;
+  color: #818285;
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 30px;
