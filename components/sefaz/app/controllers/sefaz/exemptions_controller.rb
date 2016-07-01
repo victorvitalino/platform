@@ -5,18 +5,13 @@ module Sefaz
 
     def new
       @exemption = Exemption.new
+
     end
 
     def create
-      Exemption.import(set_params_exemption)
+      Exemption.import(params[:file])
+			redirect_to root_url, notice: "Products imported."
     end
-
-    private
-
-    def set_params_exemption
-      params.require(:exemption).permit(:file)
-    end
-
 
   end
 end

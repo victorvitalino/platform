@@ -12,7 +12,7 @@
     .row
       .col-md-6
         %h4 Resumo do recadastramento
-        = pie_chart [["Formalizaram processo",@process.count],["Enviaram todos os documentos", (@entities.complete.count - @process.count)],["Enviaram documentos", (@entities.senders.count - @entities.complete.count)],["Não enviaram documentos", @notsend]]
+        = pie_chart [["Formalizaram processo",@process.count],["Enviaram documentos", (@entities.senders.count - @entities.complete.count)],["Enviaram todos os documentos" + "<br>" + "mas não formalizaram processo", (@entities.complete.count - @process.count)],["Não enviaram documentos", @notsend]]
       .col-md-6
         %h4 Entidades participantes
         = pie_chart [["Entidades antigas", @olds], ["Novas entidades", @news.count]]
