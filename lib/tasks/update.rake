@@ -9,31 +9,25 @@ namespace :update do
     @index = 0
 
 
-     CSV.foreach("lib/files/users.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/address.csv", :col_sep => "#") do |row|
 
 
-           @teste = Person::Staff.new(
-           name: row[1],
-           cpf: row[2],
-           rg: row[3],
-           rg_org: row[4],
-           code: row[5],
-           blood_type: row[6],
-           born: row[7],
-           email: "@codhab.df",
-           start_hour: row[9],
-           end_hour: row[10],
-           date_contract: row[11],
-           sector_origin_id: row[12],
-           sector_current_id: row[13],
-           job_id: row[14],
-           password: "12345678"
+           @teste = Candidate::CadastreAddress.new(
+           cadastre_id: row[8],
+           unit_id: row[11],
+           dominial_chain: row[2],
+           type_occurrence: row[3],
+           type_receipt: row[4],
+           created_at: row[5],
+           situation_id: row[10],
+           regularization_type_id: row[6],
+
            )
 
            #puts @teste.inspect
            @teste.save
 
-           puts @index + 1
+           puts @index += 1
        end
           #    puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
           #  end

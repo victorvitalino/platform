@@ -39,7 +39,7 @@
                   %th Data
                   %th Recebimento
               %tbody
-                - @unit.cadastre_address.each do |a|
+                - @unit.cadastre_address.where(situation_id:[1,3]).each do |a|
                   %tr
                     %td= a.cadastre.name if a.cadastre.present?
                     %td= a.cadastre.cpf if a.cadastre.present?

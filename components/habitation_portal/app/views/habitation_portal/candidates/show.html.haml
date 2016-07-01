@@ -176,6 +176,33 @@
           .row
             .col-md-12
               %h3
+                %b Dados da contemplação
+          .row
+            .col-md-12
+              - if @candidate.cadastre_address.present? && @candidate.cadastre_address.where(situation_id: 1).last
+                - @address = @candidate.cadastre_address.last
+                %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                  %thead
+                    %tr
+                      %th Cidade
+                      %th Quadra
+                      %th Conjunto
+                      %th Situação
+                      %th Data
+                  %tbody
+                    %tr
+                      %td= @address.unit.city.name if @address.unit.city.present?
+                      %td= @address.unit.block if @address.unit.present?
+                      %td= @address.unit.group if @address.unit.present?
+                      %td= @address.unit.situation_unit.description if @address.unit.present?
+                      %td= @address.created_at.strftime("%d/%m/%Y")
+
+              - else
+                Informação não disponível
+          %hr/
+          .row
+            .col-md-12
+              %h3
                 %b Dados Pessoais
           .row
             .col-md-12

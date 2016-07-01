@@ -4,15 +4,22 @@ module Candidate
     belongs_to :cadastre
     belongs_to :cadastre_procedural
 
-    
 
-    enum status: ['reserva', 'venda', 'distrato','transferencia', 'permuta']
+
+    enum status: ['reserva', 'distribuído', 'distrato','transferencia', 'permuta']
 
     scope :cpf,  -> (cpf) {joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
     scope :old_process,  -> (old_process) { joins("inner join candidate_cadastre_procedurals on candidate_cadastre_procedurals.cadastre_id = candidate_cadastre_addresses.cadastre_id").where('candidate_cadastre_procedurals.old_process = ?', old_process)}
     scope :address,  -> (id) {joins(:unit).where('address_units.id = ?', id)}
 
-
+    scope :contemplateds, -> {
+      self.joins('INNER JOIN general_pontuations AS point
+                  ON point.id = candidate_cadastre_addresses.cadastre_id
+                  inner join address_units as unit
+                  on unit.id = candidate_cadastre_addresses.unit_id')
+                  .where('point.situation_status_id IN(7,14) and candidate_cadastre_addresses.situation_id = 1
+                  and unit.situation_status_id = 3')
+    }
 
 
     private
