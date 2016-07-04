@@ -7,7 +7,7 @@
           = render_shareable :buttons=> ['twitter', 'facebook','google_plus'], :facebook=> {:send=> 'true', :url=> "#{request.original_url}"}
           .post_date
             = @page.date.strftime('%d/%m/%Y')
-        .post
+        .post{:style => "color:#333333;"}
           .imagem_post
             - if @page.active_photo? && @page.photo_author?
               = image_tag @page.thumbnail
