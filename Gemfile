@@ -52,6 +52,7 @@ gem 'roo'
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'file_validators'
 
+gem 'jquery-minicolors-rails'
 group :test do
   gem 'sqlite3'
   gem 'rspec-rails'

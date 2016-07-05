@@ -9,3 +9,5 @@
 //= require shared/trix/attachment
 //= require remark/javascripts/custom
 //= require portal/js/jquery.bxslider.min
+//= require jquery.minicolors
+//= require jquery.minicolors.simple_form
