@@ -6,7 +6,7 @@
   .row
     = simple_form_for url_for, method: :get do |f|
       .col-md-12
-        = f.input :by_cnpj, label: "cnpj (somente números)", input_html: { name: 'by_cnpj', value: params[:by_cnpj]}
+        = f.input :by_cnpj, label: "cnpj (somente números)", input_html: { name: 'by_cnpj', class:'cnpj', value: params[:by_cnpj]}
       .col-md-12
         = f.submit "Pesquisar", name: nil, class: 'btn btn-success'
   %hr/
@@ -18,11 +18,11 @@
             %thead
               %tr
                 %th Nome
-                %th Endereço
+                -# %th Endereço
                 %th CNPJ
             %tbody
               - @surveys.each do |survey|
                 %tr
                   %td= link_to survey.name, cadastre_inspections_path(survey)
-                  %td= link_to survey.address, cadastre_inspections_path(survey)
-                  %td= link_to survey.cnpj, cadastre_inspections_path(survey)
+                  -# %td= link_to survey.address, cadastre_inspections_path(survey)
+                  %td= link_to survey.cnpj.format_cnpj, cadastre_inspections_path(survey)

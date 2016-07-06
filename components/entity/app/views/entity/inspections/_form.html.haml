@@ -38,7 +38,7 @@
       .col-md-12
         = f.input :property_owner, label: "Nome do locatário/dono do imóvel",input_html: { placeholder: 'Digite um nome'}
       .col-md-12
-        = f.input :occupied_property, label: "Imóvel ocupado",input_html: { placeholder: 'Digite'}
+        = f.input :occupied_property, as: 'select', collection: Entity::Inspection.occupied_properties.map {|k,v| [k.humanize, k]}, include_blank: false, label: "Imóvel ocupado",input_html: { placeholder: 'Digite'}
       .col-md-12
         = f.input :property_description, label: "Descrição do Imóvel", input_html: { id: 'additional_information', rows: 5, cols: 80}
       .col-md-4
