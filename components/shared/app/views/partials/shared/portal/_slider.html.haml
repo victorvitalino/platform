@@ -1,5 +1,5 @@
 .container
-  .bxslide2
+  .bxslide2{:style => "margin-top:30px;"}
     - slider_each(6,'DESC') do |s|
       - batata(s.post_category.title) do |b|
         %li.clone{"aria-hidden" => "true", :style => "height: 413px;"}
