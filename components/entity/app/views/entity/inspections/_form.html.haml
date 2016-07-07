@@ -62,7 +62,7 @@
       .col-md-12
         = f.input :property_description, label: "Descrição do Imóvel", input_html: { id: 'additional_information', rows: 5, cols: 80}
       .col-md-4
-        = f.input :general_photo_1, as: :file, label: "Foto da entidade 1"
+        = f.input :general_photo_1, as: :file, label: "Foto da entidade 1", input_html: {:accept => "image/*", :capture => "camera"}
         = link_to "visualizar arquivo atual", f.object.general_photo_1.url, target: '_blank' if !f.object.general_photo_1.to_s.empty?
       .col-md-4
         = f.input :general_photo_2, as: :file, label: "Foto da entidade 2"
