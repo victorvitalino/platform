@@ -19,7 +19,14 @@ module HabitationPortal
     end
 
     def show
+
       @candidate = Candidate::Cadastre.by_cpf(params[:id]).first
+      respond_to do |format|
+        format.html
+        format.json {
+          render json: @candidate
+        }
+      end
     end
 
     def detail
