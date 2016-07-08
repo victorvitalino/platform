@@ -38,7 +38,7 @@ namespace :mailer do
     
     Concourse::Candidate.where(subscribe_id: 5).each do |candidate|
       puts candidate.email
-      ConcoursePortal::SubscribeMailer.crazy(candidate.email).deliver_now!
+      Mailer::SimpleMailer.send_text(candidate.email, "Informação importante - Concursos Codhab").deliver_now!
     end
   end
 
