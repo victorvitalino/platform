@@ -2,7 +2,10 @@
   background-color: black;
   color: white;
 }
-
+.content_post, .content_post p{
+  font-family: "Roboto"!important;
+  color:#333333!important;
+}
 .new-caption{
   display:block;
   float:left;

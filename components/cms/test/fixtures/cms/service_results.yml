@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  program_morarbem: MyString
+  regularization: MyString
+  contract: MyString
+  ombudsman: MyString
+  protocol: MyString
+  date: 2016-07-11
+  status: false
+
+two:
+  program_morarbem: MyString
+  regularization: MyString
+  contract: MyString
+  ombudsman: MyString
+  protocol: MyString
+  date: 2016-07-11
+  status: false
