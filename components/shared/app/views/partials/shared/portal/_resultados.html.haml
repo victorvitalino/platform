@@ -1,0 +1,36 @@
+.container
+  .fundo_resultados
+    - results_each do |result|
+      .col-md-6
+        chart vai ser aqui
+      .col-md-6
+        .col-md-2
+          .span
+            = result.program_morarbem
+          .span
+            MORAR BEM
+        .col-md-2
+          .span
+            = result.regularization
+          .span
+            REGULARIZAÇÃO
+        .col-md-2
+          .span
+            = result.contract
+          .span
+            ESCRITURAS
+        .col-md-2
+          .span
+            = result.ombudsman
+          .span
+            OUVIDORIA
+        .col-md-2
+          .span
+            = result.protocol
+          .span
+            PROTOCOLO
+        .col-md-2
+          .span
+            = result.program_morarbem + result.regularization + result.contract + result.ombudsman + result.protocol
+          .span
+            TOTAL
