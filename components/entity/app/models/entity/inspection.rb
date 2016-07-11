@@ -14,7 +14,7 @@ module Entity
     mount_uploader :documentation_photo_2, Archive::ImageUploader
     mount_uploader :responsible_photo, Archive::ImageUploader
 
-    enum property_type: ["Comercial", "Residencial"]
-    enum occupied_property: ["Entidade Origial","Outra Entidade"]
+    enum property_type: ["comercial", "residencial"]
+    enum occupied_property: ["entidade_original","outra_entidade","outros"]
   end
 end

@@ -1,7 +1,7 @@
 require 'test_helper'
 
-module Action
-  class AtuationAreaTest < ActiveSupport::TestCase
+module Cms
+  class ServiceResultTest < ActiveSupport::TestCase
     # test "the truth" do
     #   assert true
     # end

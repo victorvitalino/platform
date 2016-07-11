@@ -1,14 +1,15 @@
 
 $(document).ready(function(){
- 
+
   $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
   $('.hour').mask("00:00", {placeholder: "00:00"});
   $('.cpf').mask("000.000.000-00", {placeholder: "000.000.000-00"});
+  $('.cnpj').mask("00.000.000/0000-00", {placeholder: "00.000.000/0000-00"});
   $('.document_number').mask("000-000.000/0000", {placeholder: "000-000.000/0000"});
- 
+
   $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true,allowZero:true, thousands:'', decimal:'.', affixesStay: false});
- 
-  
+
+
   $('form').on('click', '.remove_fields', function(event) {
     $(this).prev('input[type=hidden]').val('1');
     $(this).closest('fieldset').hide();
@@ -63,7 +64,7 @@ $(document).ready(function(){
     $('#station_id').on('change', function() {
       $.getJSON("/atendimento/counters?station_id=" + $(this).val(), function(data) {
         var items = '<option value>Não víncular guichê</option>';
-       
+
         for(var i = 0; i < data.length; i++) {
           items += "<option value='"+ data[i].id +"'>"+data[i].number+"</option>";
         }
@@ -73,6 +74,3 @@ $(document).ready(function(){
     });
 
 });
-
-  
-  

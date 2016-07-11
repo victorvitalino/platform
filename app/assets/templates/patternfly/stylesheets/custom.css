@@ -1,7 +1,10 @@
 body {
   background-color: #FFF9F0  !important;
 }
-
+.minicolors-theme-bootstrap .minicolors-swatch {
+  width: 20px!important;
+  height: 20px!important;
+}
 
 .navbar-custom {
   border-top: 0px !important;

@@ -1,48 +1,68 @@
+:css
+  .form-control {
+    height: 55px !important;
+  }
 = simple_form_for [@cadastre,@inspection] do |f|
   .card-body.card-padding
     .row
       .col-md-12
         %h2
-          Dados da empresa
+          %b Dados da empresa
+      %hr/
       .col-md-12
         = f.label "Nome da Entidade :"
+        %br/
         = @cadastre.name
+      %br/
       .col-md-12
         = f.label "Endereço da Entidade :"
+        %br/
         = @cadastre.address
+      %br/
       .col-md-12
         = f.label "Nome Fantasia :"
+        %br/
         = @cadastre.fantasy_name
+      %br/
       .col-md-4
         = f.label "Telefone :"
+        %br/
         = @cadastre.telephone
+      %br/
       .col-md-4
         = f.label "Celular :"
+        %br/
         = @cadastre.celphone
+      %br/
       .col-md-4
         = f.label "E-mail :"
+        %br/
         = @cadastre.email
+      %br/
       .col-md-12
         = f.label "Presidente :"
+        %br/
         = @cadastre.members.where(member_job_id: 2).first.name if @cadastre.members.present?
+      %br/
     .row
       .col-md-12
         %h2
           Campos para vistoria
+      %hr/
       .col-md-12
         = f.input :address_optional, label: "Endereço (opcional)", input_html: { placeholder: 'Digite o endereço'}
       .col-md-12
         = f.input :size, label: "Porte da entidade", input_html: { placeholder: 'Digite o porte'}
       .col-md-12
-        = f.input :property_type, label: "Tipo de imóvel",input_html: { placeholder: 'Tipo de imóvel'}
+        = f.input :property_type, as: :select, collection: Entity::Inspection.property_types.map {|k,v| [k.humanize, k]}, include_blank: false,label: "Tipo de imóvel",input_html: { placeholder: 'Tipo de imóvel'}
       .col-md-12
         = f.input :property_owner, label: "Nome do locatário/dono do imóvel",input_html: { placeholder: 'Digite um nome'}
       .col-md-12
-        = f.input :occupied_property, label: "Imóvel ocupado",input_html: { placeholder: 'Digite'}
+        = f.input :occupied_property, as: 'select', collection: Entity::Inspection.occupied_properties.map {|k,v| [k.humanize, k]}, include_blank: false, label: "Imóvel ocupado",input_html: { placeholder: 'Digite'}
       .col-md-12
         = f.input :property_description, label: "Descrição do Imóvel", input_html: { id: 'additional_information', rows: 5, cols: 80}
       .col-md-4
-        = f.input :general_photo_1, as: :file, label: "Foto da entidade 1"
+        = f.input :general_photo_1, as: :file, label: "Foto da entidade 1", input_html: {:accept => "image/*", :capture => "camera"}
         = link_to "visualizar arquivo atual", f.object.general_photo_1.url, target: '_blank' if !f.object.general_photo_1.to_s.empty?
       .col-md-4
         = f.input :general_photo_2, as: :file, label: "Foto da entidade 2"
@@ -97,4 +117,6 @@
     %hr/
     .row
       .col-md-12
-        = f.button :submit,"Salvar", class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+        = f.button :submit,"Salvar", class: 'btn btn-success btn-lg', data: {disable_with: t(:disable_with)}
+        = link_to "Voltar", cadastre_inspections_path(@cadastre), class: 'btn btn-primary btn-lg', data: {disable_with: t(:disable_with)}
+        = link_to "Listagem", surveys_path, class: 'btn btn-default btn-lg pull-right', data: {disable_with: t(:disable_with)}

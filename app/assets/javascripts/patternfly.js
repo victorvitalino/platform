@@ -8,3 +8,5 @@
 //= require patternfly/javascripts/custom
 //= require patternfly/javascripts/highchart.min
 //= require chartkick
+//= require jquery.minicolors
+//= require jquery.minicolors.simple_form

@@ -9,6 +9,13 @@ module Portal
       end
     end
 
+    def results_each
+      @service_results = Cms::ServiceResult.where(status: true).order(:date)
+      @service_results.each do |sr|
+        yield sr
+      end
+    end
+
     def batata(categories)
   		@sliderss = categories
   		if @sliderss == 'habitação'

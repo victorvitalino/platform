@@ -6,5 +6,8 @@ module Mailer
       mail(to: email, subject: "Lançamento Habita Brasília - Convite")
     end
 
+    def send_text(email, subject)
+      mail(to: email, subject: subject)
+    end
   end
 end

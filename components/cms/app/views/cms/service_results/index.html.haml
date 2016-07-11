@@ -1,0 +1,21 @@
+.page-content
+  .panel
+    .panel-heading
+      .panel-title
+        %h4
+          Resultados
+          = link_to 'Novo resultado', new_service_result_path, class: 'btn btn-success pull-right btn-sm'
+    .panel-body
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th Data
+            %th Ações
+
+        %tbody
+          - @service_results.each do |service_result|
+            %tr
+              %td= service_result.date.strftime('%d/%m/%Y')
+              %td.col-md-1
+                = link_to '', edit_service_result_path(service_result), title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs'
+                = link_to '', service_result, title: 'Remover', :method => :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :data => { :confirm => t(:confirm_delete) }
