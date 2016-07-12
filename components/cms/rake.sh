@@ -1,0 +1,1 @@
+rails g model service_result program_morarbem regularization contract ombudsman protocol

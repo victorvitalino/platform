@@ -1,0 +1,30 @@
+= simple_form_for(@service_result) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-3
+        = f.label "Programa Morarbem", class: 'fg-label'
+        = f.input :program_morarbem, label: false, input_html: { placeholder: 'Número de atendimentos no Morar Bem' }
+      .col-md-3
+        = f.label "Protocolo", class: 'fg-label'
+        = f.input :protocol, label: false, input_html: { placeholder: 'Número de atendimentos no Protocolo' }
+      .col-md-3
+        = f.label "Escrituras", class: 'fg-label'
+        = f.input :contract, label: false, input_html: { placeholder: 'Número de atendimentos no Protocolo' }
+      .col-md-3
+        = f.label "Ouvidoria", class: 'fg-label'
+        = f.input :ombudsman, label: false, input_html: { placeholder: 'Número de atendimentos na Ouvidoria' }
+    .row
+      .col-md-3
+        = f.label "Regularização", class: 'fg-label'
+        = f.input :regularization, label: false, input_html: { placeholder: 'Número de atendimentos na Regularização' }
+      .col-md-3
+        = f.label "Data do Resultado", as: 'string', class: 'fg-label'
+        = f.input :date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@service_result.date) ? localize(f.object.date) : nil}
+      .col-md-3
+        = f.label "Publicado", as: 'string', class: 'fg-label'
+        = f.input :status, as: :select, label: false, include_blank: false
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success', data: { disable_with: t(:disabled_button)}
+        = link_to 'Voltar',service_results_path , class: 'btn btn-dark'

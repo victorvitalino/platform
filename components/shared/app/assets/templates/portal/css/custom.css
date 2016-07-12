@@ -2,7 +2,20 @@
   background-color: black;
   color: white;
 }
+.content_post, .content_post p{
+  font-family: "Roboto"!important;
+  color:#333333!important;
+}
 
+/*inicio paralax novo*/
+.fundo_resultados{
+  display: none;
+  background-color: #3483DE;
+  color:#fff;
+  overflow: hidden;
+  text-align: center;
+}
+/*fim paralax novo*/
 .new-caption{
   display:block;
   float:left;
