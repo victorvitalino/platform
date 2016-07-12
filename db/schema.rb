@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705185743) do
+ActiveRecord::Schema.define(version: 20160712114450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,6 +179,8 @@ ActiveRecord::Schema.define(version: 20160705185743) do
     t.string   "latlng_group"
     t.string   "latlng_unit"
     t.string   "latlng_urb"
+    t.string   "lat"
+    t.string   "lng"
   end
 
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
@@ -1206,6 +1208,18 @@ ActiveRecord::Schema.define(version: 20160705185743) do
   end
 
   add_index "cms_posts", ["post_category_id"], name: "index_cms_posts_on_post_category_id", using: :btree
+
+  create_table "cms_service_results", force: :cascade do |t|
+    t.integer  "program_morarbem"
+    t.integer  "regularization"
+    t.integer  "contract"
+    t.integer  "ombudsman"
+    t.integer  "protocol"
+    t.date     "date"
+    t.boolean  "status"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "cms_videos", force: :cascade do |t|
     t.string   "title"
