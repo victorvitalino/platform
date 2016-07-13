@@ -65,7 +65,7 @@ module Cms
 
       # Only allow a trusted parameter "white list" through.
       def video_params
-        params.require(:video).permit(:title, :url, :position, :publish)
+        params.require(:video).permit(:title, :url, :position, :publish, :description)
       end
   end
 end
