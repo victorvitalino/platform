@@ -3,7 +3,7 @@ module Portal
   class MapController < ApplicationController
 
     def test
-      @address = Address::Unit.where(urb:'ETAPA 4C', block: ['QN 18', 'QN 19'])
+      @address = Address::Unit.where(urb:'ETAPA 4C', block: ['QN 18', 'QN 19', 'QN 20'])
 
       @data = Array.new
 
