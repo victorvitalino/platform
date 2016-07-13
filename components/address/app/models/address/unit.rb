@@ -6,7 +6,7 @@ module Address
     has_many :registry_units
     has_many :notary_offices
     has_many :cadastre_address, class_name: "Candidate::CadastreAddress"
-
+    has_many :cadastres, through: :cadastre_address, class_name: "Candidate::Cadastre"
 
     scope :address, -> (address) {where("complete_address ILIKE ?", "%#{address}%")}
     scope :status, -> (status) {where(situation_unit_id: status)}
