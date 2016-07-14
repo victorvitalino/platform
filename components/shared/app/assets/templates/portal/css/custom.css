@@ -507,7 +507,8 @@ h3 {
   margin-top: 10px;
 }
 .thumbnoticia{
-  border:none!important;
+min-height: 375px;
+border-radius: 0px;
 }
 .clone{
       height: 413px!important;
