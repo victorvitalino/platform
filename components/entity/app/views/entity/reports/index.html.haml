@@ -1,14 +1,8 @@
 .panel.panel-default
   .panel-heading
     .panel-title
-      %h4 Resumo de Entidades Recadastradas
+      %h4 Resumo de Entidades
   .panel-body
-    .row
-      .col-md-8
-        %h2
-          %b Total de Entidades -
-          = number_with_delimiter(@entities.count, delimiter: ".")
-    %hr
     .row
       .col-md-6
         %h4 Resumo do recadastramento
@@ -16,3 +10,11 @@
       .col-md-6
         %h4 Entidades participantes
         = pie_chart [["Entidades antigas", @olds], ["Novas entidades", @news.count]]
+    %hr
+    .row
+      .col-md-6
+        %h4 Entidades por cidade - Recadastramento 
+        = pie_chart Entity::Cadastre.joins(:city).group('address_cities.name').count
+      .col-md-6
+        %h4 Entidades por cidade - Cadastro anterior - Total #{@total_new} 
+        = pie_chart Entity::Old.where(old: "Credenciada").group(:city).count

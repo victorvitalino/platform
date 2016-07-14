@@ -1,9 +1,13 @@
 .container
   .row
     .col-md-12
-      %h1 Selagem Codhab
+      %h1
+        %b Selagem Codhab
   %hr/
-
+  %h2
+    %b= @cadastre.fantasy_name
+  %p
+    %b= @cadastre.cnpj.format_cnpj
   %hr/
   .row
     .col-md-12
@@ -11,15 +15,15 @@
         .panel-body
           .row
             .col-md-12
-              = link_to 'Novo', new_cadastre_inspection_path(cadastre_id:@cadastre.id),class: 'btn btn-success'
+              = link_to 'Nova selagem', new_cadastre_inspection_path(cadastre_id:@cadastre.id),class: 'btn btn-success btn-lg'
+              = link_to 'Voltar para listagem', surveys_path,class: 'btn btn-primary btn-lg pull-right'
           %hr
           .row
             .col-md-12
               %table.table.table-striped.table-bordered.table-hover
                 %thead
                   %tr
-                    %th Nº Inspeção
-                    %th Nome da Entidade
+                    %th Nº
                     %th Ações
                 %tbody
                   - if @inspections.present?

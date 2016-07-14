@@ -11,5 +11,6 @@ module Portal
       @page = Cms::Page.friendly.find(params[:id]) #@rescue Cms::Page.find(params[:id])
     end
 
+
   end
 end

@@ -5,6 +5,10 @@
         = f.label :title, class: 'fg-label'
         = f.input :title, label: false, input_html: { placeholder: 'Digite um titulo' }
     .row
+      .col-md-12
+        = f.label :description,  class: 'fg-label'
+        = f.input :description, label: false, input_html: { id: 'content', class: 'tinymce', rows: 20, cols: 80}
+    .row
       .col-md-6
         = f.label :url, class: 'fg-label'
         = f.input :url, label: false, input_html: { placeholder: 'Digite a url do vídeo' }

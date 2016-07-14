@@ -23,4 +23,9 @@ namespace :csv do
     end
   end
 
+  task :lat_fix => :environment do 
+
+
+  end
+
 end

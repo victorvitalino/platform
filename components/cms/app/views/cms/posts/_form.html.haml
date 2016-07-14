@@ -34,7 +34,7 @@
       = f.input :slider, as: :select, include_blank: false
     .col-md-4
       = f.label "Cor do caption"
-      = f.input :color,label:false, input_html: { placeholder: 'ex: #321654' }
+      = f.input :color, as: :minicolors, input_html: {data: {minicolors: {theme: :bootstrap, position: :right}}}, label:false
   %hr/
   .row
     .col-md-12

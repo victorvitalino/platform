@@ -11,6 +11,7 @@
 *= require remark/stylesheets/login.min
 *= require shared/trix/trix.min.css
 *= require portal/css/jquery.bxslider
+*= require jquery.minicolors
 */
 
 li a.btn {

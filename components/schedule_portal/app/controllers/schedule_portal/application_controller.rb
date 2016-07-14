@@ -5,5 +5,9 @@ module SchedulePortal
     layout 'shared/portal'
 
     helper 'portal/application'
+    before_action :allow_iframe
+    def allow_iframe
+      response.headers.delete('X-Frame-Options')
+    end
   end
 end

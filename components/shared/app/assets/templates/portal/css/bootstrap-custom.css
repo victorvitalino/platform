@@ -691,6 +691,28 @@ body{
     .navbar-superior{
       display: none;
     }
+    .publicity{
+        padding:0;
+    }
+    .publicity2{
+      margin-top: 50px;
+      padding:0;
+    }
+    .clone img{
+      display: none!important;
+    }
+    .new-caption{
+      width: 100%!important;
+    }
+    .board{
+      width: 255px;
+    }
+    .libugada a{
+      margin-left: 7px;
+    }
+    .bx-wrapper .bx-controls-direction a{
+      display: none
+    }
     .bloco_responsivo{
       display: block!important;
     }
@@ -774,6 +796,28 @@ body{
     .image_bloco_responsivo{
       display: none;
     }
+    .publicity{
+        padding:0;
+    }
+    .publicity2{
+      margin-top: 50px;
+      padding:0;
+    }
+    .clone img{
+      display: none!important;
+    }
+    .new-caption{
+      width: 100%!important;
+    }
+    .board{
+      width: 255px;
+    }
+    .libugada a{
+      margin-left: 7px;
+    }
+    .bx-wrapper .bx-controls-direction a{
+      display: none;
+    }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
       width: 100%!important;
     }
@@ -795,6 +839,9 @@ body{
       display: block;
       float: left;
       margin-top: 20px;
+    }
+    .homeVideoWrapper{
+      display: none;
     }
     .item_menu{
       height: 55px;
@@ -851,6 +898,28 @@ body{
     }
       .dropdown-menu {
         position: absolute!important;
+      }
+      .publicity{
+          padding:0;
+      }
+      .publicity2{
+        margin-top: 50px;
+        padding:0;
+      }
+      .clone img{
+        display: none!important;
+      }
+      .new-caption{
+        width: 100%!important;
+      }
+      .board{
+        width: 255px;
+      }
+      .libugada a{
+        margin-left: 7px;
+      }
+      .bx-wrapper .bx-controls-direction a{
+        display: none;
       }
       #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
         width: 100%!important;
@@ -932,6 +1001,28 @@ body{
           .dropdown-menu {
             position: absolute!important;
           }
+          .publicity{
+              padding:0;
+          }
+          .publicity2{
+            margin-top: 50px;
+            padding:0;
+          }
+          .clone img{
+            display: none!important;
+          }
+          .new-caption{
+            width: 100%!important;
+          }
+          .board{
+            width: 255px;
+          }
+          .libugada a{
+            margin-left: 7px;
+          }
+          .bx-wrapper .bx-controls-direction a{
+            display: none;
+          }
           #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
             width: 100%!important;
           }
@@ -1010,6 +1101,28 @@ body{
       display: block!important;
     }
     .image_bloco_responsivo{
+      display: none;
+    }
+    .publicity{
+        padding:0;
+    }
+    .publicity2{
+      margin-top: 50px;
+      padding:0;
+    }
+    .clone img{
+      display: none!important;
+    }
+    .new-caption{
+      width: 100%!important;
+    }
+    .board{
+      width: 255px;
+    }
+    .libugada a{
+      margin-left: 7px;
+    }
+    .bx-wrapper .bx-controls-direction a{
       display: none;
     }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
@@ -1091,6 +1204,28 @@ body{
       .image_bloco_responsivo{
         display: none;
       }
+      .publicity{
+          padding:0;
+      }
+      .publicity2{
+        margin-top: 50px;
+        padding:0;
+      }
+      .clone img{
+        display: none!important;
+      }
+      .new-caption{
+        width: 100%!important;
+      }
+      .board{
+        width: 255px;
+      }
+      .libugada a{
+        margin-left: 7px;
+      }
+      .bx-wrapper .bx-controls-direction a{
+        display: none;
+      }
       #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
         width: 100%!important;
       }
@@ -1167,6 +1302,28 @@ body{
           display: block!important;
         }
         .image_bloco_responsivo{
+          display: none;
+        }
+        .publicity{
+            padding:0;
+        }
+        .publicity2{
+          margin-top: 50px;
+          padding:0;
+        }
+        .clone img{
+          display: none!important;
+        }
+        .new-caption{
+          width: 100%!important;
+        }
+        .board{
+          width: 255px;
+        }
+        .libugada a{
+          margin-left: 7px;
+        }
+        .bx-wrapper .bx-controls-direction a{
           display: none;
         }
         #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
@@ -1246,6 +1403,28 @@ body{
             display: block!important;
           }
           .image_bloco_responsivo{
+            display: none;
+          }
+          .publicity{
+              padding:0;
+          }
+          .publicity2{
+            margin-top: 50px;
+            padding:0;
+          }
+          .clone img{
+            display: none!important;
+          }
+          .new-caption{
+            width: 100%!important;
+          }
+          .board{
+            width: 255px;
+          }
+          .libugada a{
+            margin-left: 7px;
+          }
+          .bx-wrapper .bx-controls-direction a{
             display: none;
           }
           #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
@@ -1333,6 +1512,28 @@ body{
       .image_bloco_responsivo{
         display: none;
       }
+      .publicity{
+          padding:0;
+      }
+      .publicity2{
+        margin-top: 50px;
+        padding:0;
+      }
+      .clone img{
+        display: none!important;
+      }
+      .new-caption{
+        width: 100%!important;
+      }
+      .board{
+        width: 255px;
+      }
+      .libugada a{
+        margin-left: 7px;
+      }
+      .bx-wrapper .bx-controls-direction a{
+        display: none;
+      }
       #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
         width: 100%!important;
       }
@@ -1408,6 +1609,28 @@ body{
       display: block!important;
     }
     .image_bloco_responsivo{
+      display: none;
+    }
+    .publicity{
+        padding:0;
+    }
+    .publicity2{
+      margin-top: 50px;
+      padding:0;
+    }
+    .clone img{
+      display: none!important;
+    }
+    .new-caption{
+      width: 100%!important;
+    }
+    .board{
+      width: 255px;
+    }
+    .libugada a{
+      margin-left: 7px;
+    }
+    .bx-wrapper .bx-controls-direction a{
       display: none;
     }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
@@ -1486,6 +1709,28 @@ and (orientation: landscape) {
   .image_bloco_responsivo{
     display: none;
   }
+  .publicity{
+      padding:0;
+  }
+  .publicity2{
+    margin-top: 50px;
+    padding:0;
+  }
+  .clone img{
+    display: none!important;
+  }
+  .new-caption{
+    width: 100%!important;
+  }
+  .board{
+    width: 255px;
+  }
+  .libugada a{
+    margin-left: 7px;
+  }
+  .bx-wrapper .bx-controls-direction a{
+    display: none;
+  }
   #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
     width: 100%!important;
   }
@@ -1561,6 +1806,28 @@ and (orientation: portrait) {
     display: block!important;
   }
   .image_bloco_responsivo{
+    display: none;
+  }
+  .publicity{
+      padding:0;
+  }
+  .publicity2{
+    margin-top: 50px;
+    padding:0;
+  }
+  .clone img{
+    display: none!important;
+  }
+  .new-caption{
+    width: 100%!important;
+  }
+  .board{
+    width: 255px;
+  }
+  .libugada a{
+    margin-left: 7px;
+  }
+  .bx-wrapper .bx-controls-direction a{
     display: none;
   }
   #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
@@ -1639,6 +1906,28 @@ and (orientation: portrait) {
     display: block!important;
   }
   .image_bloco_responsivo{
+    display: none;
+  }
+  .publicity{
+      padding:0;
+  }
+  .publicity2{
+    margin-top: 50px;
+    padding:0;
+  }
+  .clone img{
+    display: none!important;
+  }
+  .new-caption{
+    width: 100%!important;
+  }
+  .board{
+    width: 255px;
+  }
+  .libugada a{
+    margin-left: 7px;
+  }
+  .bx-wrapper .bx-controls-direction a{
     display: none;
   }
   #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{

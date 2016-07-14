@@ -1,28 +1,32 @@
 .container
   .row
     .col-md-12
-      %h1 Vistoria de Entidades
+      %h1
+        %b Vistoria de Entidades
   %hr/
   .row
     = simple_form_for url_for, method: :get do |f|
       .col-md-12
-        = f.input :by_cnpj, label: "cnpj (somente números)", input_html: { name: 'by_cnpj', value: params[:by_cnpj]}
+        = f.input :by_cnpj, label: "CNPJ (somente números)", input_html: { name: 'by_cnpj', class:'cnpj', value: params[:by_cnpj], style: 'height: 50px !important'}
       .col-md-12
-        = f.submit "Pesquisar", name: nil, class: 'btn btn-success'
+        = f.input :by_name, label: "Sigla", input_html: { name: 'by_name', class:'', value: params[:by_name], style: 'height: 50px !important', placeholder: "Digite um termo"}
+      .col-md-12
+        = f.submit "Pesquisar", name: nil, class: 'btn btn-success btn-lg', data: { disable_with: t(:disable_with)}
+        = link_to "Ver todas", surveys_path, class: 'btn btn-primary btn-lg', data: { disable_with: t(:disable_with)}
   %hr/
   .row
     .col-md-12
+      %h1
+        %b Listagem
+      %hr/
       .panel.panel-default
         .panel-body
           %table.table.table-striped.table-bordered.table-hover
-            %thead
-              %tr
-                %th Nome
-                %th Endereço
-                %th CNPJ
             %tbody
-              - @surveys.each do |survey|
+              - @surveys.order(:fantasy_name).each do |survey|
                 %tr
-                  %td= link_to survey.name, cadastre_inspections_path(survey)
-                  %td= link_to survey.address, cadastre_inspections_path(survey)
-                  %td= link_to survey.cnpj, cadastre_inspections_path(survey)
+                  %td{style: 'font-size: 20px'}
+                    %b= link_to survey.fantasy_name.upcase, cadastre_inspections_path(survey)
+                    %br/
+                    = link_to survey.cnpj.format_cnpj, cadastre_inspections_path(survey)
+               

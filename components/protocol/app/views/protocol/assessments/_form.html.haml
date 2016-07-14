@@ -54,14 +54,14 @@
    = f.input :finalized, label: false
   .col-md-3
    = f.label :finalized_date,as: 'string', class: 'fg-label'
-   = f.input :finalized_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@assessment.finalized_date) ? localize(f.object.finalized_date) : nil}
+   = f.input :finalized_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: @assessment.finalized_date}
  .row
   .col-md-4
    = f.label :responded, class: 'fg-label'
    = f.input :responded, label: false
   .col-md-3
    = f.label :responded_date, as: 'string',class: 'fg-label'
-   = f.input :responded_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: (@assessment.responded_date) ? localize(f.object.responded_date) : nil}
+   = f.input :responded_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000' , value: f.object.responded_date}
  .row
   .col-md-8
    = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}

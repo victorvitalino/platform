@@ -27,14 +27,14 @@ module Protocol
 
 
 
-  #  before_save :set_number
+    before_save :set_number, on: :create
 
-    #validates :document_type,  presence: true
-  #  validates :subject, presence: true
-    #validates :requesting_unit, presence: true
-    #validates :document_number, uniqueness: { scope: [:document_type] }, presence: true
+    validates :document_type,  presence: true
+    validates :subject, presence: true
+    validates :requesting_unit, presence: true
+    validates :document_number, uniqueness: { scope: [:document_type] }, presence: true
 
-    #after_create :set_conduct
+    after_create :set_conduct
 
     def set_conduct
         current_user = Person::Staff.find(self.staff_id)
@@ -73,7 +73,9 @@ module Protocol
            self.prefex = (!document_type.prefex.nil?) ? document_type.prefex  : self.sector.prefex
            self.year = Time.now.year
 
-           documents = Assessment.where(sector_id: self.sector_id, document_type_id:  self.document_type_id, year: self.year).last
+           documents = Assessment.where(sector_id: self.sector_id,
+                                        document_type_id:  self.document_type_id,
+                                        year: self.year).order('id ASC').last
 
            self.number = (documents.present?) ? documents.number + 1 :  1
 

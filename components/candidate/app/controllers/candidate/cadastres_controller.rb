@@ -4,7 +4,6 @@ module Candidate
   class CadastresController < ApplicationController
 
     before_action :set_cadastre, only: [:cadastre_situation, :cadastre_procedural]
-
     def index
       authorize :cadastre, :index?
 
@@ -64,6 +63,8 @@ module Candidate
 
 
     private
+
+
 
      def set_cadastre
        @candidate = Cadastre.find(params[:cadastre_id])
