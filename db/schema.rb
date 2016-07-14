@@ -10,7 +10,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20160712114450) do
+
+ActiveRecord::Schema.define(version: 20160713170223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1225,8 +1226,9 @@ ActiveRecord::Schema.define(version: 20160712114450) do
     t.string   "url"
     t.integer  "position"
     t.boolean  "publish"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
   end
 
   create_table "concourse_candidate_messages", force: :cascade do |t|

@@ -1,0 +1,24 @@
+.row
+  .col-md-12.box
+    .panel.panel-default
+      .panel-heading.green
+        .row
+          .col-md-12
+            %h1
+              %b#link_concursos Concursos
+              %br/
+              %small Emissão de certificados
+      %hr/
+      .panel-body
+        .row
+          .col-md-12
+            = simple_form_for @certificate do |f|
+              .row
+                .col-md-2
+                  = f.label "Nº de inscrição"
+                  = f.input :candidate,label: false, placeholder: "Informe sua inscrição"
+                .col-md-2
+                  = f.label "CPF"
+                  = f.input :cpf, label: false,placeholder: "Informe seu cpf", input_html: { class: 'cpf'}
+                .col-md-2
+                  = f.submit "Emitir certificado", class: 'btn btn-success filter-button', data: { disable_with: t(:disable_with)}
