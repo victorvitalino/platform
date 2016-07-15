@@ -4,9 +4,18 @@ module Portal
 
     def test
       @address = Address::Unit.where(urb:'ETAPA 4C', block: ['QN 18', 'QN 19', 'QN 20'])
-
+      
+      @address = @address.joins(:cadastres) if params[:imovel] == "ocupados"
+      
+      if params[:imovel] == "desocupados"
+        @address = @address.joins('LEFT JOIN candidate_cadastre_addresses 
+                                   ON candidate_cadastre_addresses.unit_id = address_units.id')
+                                .where('candidate_cadastre_addresses.unit_id is null')
+      end
+      
       @data = Array.new
 
+    
       @address.each do |addr|
         @data << {
           lat: addr.lat,
