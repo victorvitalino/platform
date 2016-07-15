@@ -9,19 +9,24 @@ namespace :update do
     @index = 0
 
 
-     CSV.foreach("lib/files/address.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/unit.csv", :col_sep => "#") do |row|
 
 
-           @teste = Candidate::CadastreAddress.new(
-           cadastre_id: row[8],
-           unit_id: row[11],
-           dominial_chain: row[2],
-           type_occurrence: row[3],
-           type_receipt: row[4],
-           created_at: row[5],
-           situation_id: row[10],
-           regularization_type_id: row[6],
-
+           @teste = Address::Unit.new(
+           acron_block: row[0],
+           block: row[1],
+           acron_group: row[2],
+           group: row[2],
+           unit: row[3],
+           cep_unit: row[4],
+           area: row[6],
+           complete_address: row[7],
+           burgh: row[8],
+           situation_unit_id: row[9],
+           donate: row[10],
+           city_id: row[11],
+           project_enterprise_id: row[11].to_s == "810" ? 17 : nil,
+           control_number: row[12]
            )
 
            #puts @teste.inspect

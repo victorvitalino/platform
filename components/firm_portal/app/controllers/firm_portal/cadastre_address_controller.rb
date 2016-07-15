@@ -34,12 +34,13 @@ module FirmPortal
 
    def sale
        @cadastre_address = Candidate::CadastreAddress.new
+       @candidateAddress = Candidate::CadastreAddress.where(unit_id: params[:enterprise_unit_id]).last
    end
 
    def sell
        @cadastre_address = Candidate::CadastreAddress.where(unit_id: @unit_id).last
        @cadastre_address.update(dominial_chain:0, type_occurrence: 0 ,type_receipt: 0)
-       update_tables_sale
+       Candidate::CadastreAddress.update_tables_sale(@cadastre_address.cadastre_id, @cadastre_address.unit_id, 7, status, 3,session[:firm_auth_id],params[:observation])
 
         redirect_to enterprise_units_path
 

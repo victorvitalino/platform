@@ -8,22 +8,19 @@ namespace :csv do
 
     @index = 0
 
-    #CSV.foreach("lib/files/update.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/lote.csv", :col_sep => "#") do |row|
 
-      @lift = Protocol::Assessment.where("length(cnpj) > 14")
+      @lift = Address::Unit.find_by_control_number(row[0])
 
-      @lift.each do |l|
+      if @lift.present?
         #puts l.cnpj
-        l.cnpj = l.cnpj.gsub('.','').gsub('/','').gsub('-','')
-        @assessment = Protocol::Assessment.find(l.id)
-        @assessment.cnpj = l.cnpj
-        @assessment.save
-        puts l.cnpj
+        @lift.situation_unit_id = row[1]
+        @lift.save
       end
-      #puts @lift.count
+      #puts @lift.inspect
+     puts @index += 1
 
-
-    #end
+    end
   end
 
   task :lat_fix => :environment do 

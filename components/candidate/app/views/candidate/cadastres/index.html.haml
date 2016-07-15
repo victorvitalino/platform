@@ -234,6 +234,9 @@
                         %th Endereço
                         %th Doado?
                         %th Empreendimento
+                        %th Situação
+                        %th Situação Imóvel
+                        %th Data
                     %tbody
                       - @candidate.cadastre_address.each do |add|
                         %tr
@@ -241,6 +244,9 @@
                           %td= link_to add.unit.complete_address, address.unit_path(add.unit.id) if add.unit.present?
                           %td= add.unit.donate ? "Sim" : "Não" if add.unit.present?
                           %td= add.unit.enterprises.name if add.unit.present? && add.unit.enterprises.present?
+                          %td= add.situation_id
+                          %td= add.unit.situation_unit.description if add.unit.situation_unit.present?
+                          %td= add.created_at.strftime('%d/%m/%Y')
                   -if @candidate.cadastre_address.last.unit.situation_unit_id == 3 && @candidate.cadastre_address.last.cadastre.cadastre_procedurals.last.procedural_status.id == 4
                     .row
                       .col-md-12
@@ -347,6 +353,7 @@
                         %th Documento
                         %th Assunto
                         %th Observação
+                        %th Data
                     %tbody
                       - @candidate_assessment.order(:created_at).each do |assessment|
                         %tr
@@ -354,6 +361,7 @@
                           %td= assessment.document_type.name
                           %td= assessment.subject.name if assessment.subject.present?
                           %td= assessment.observation
+                          %td= assessment.created_at.strftime('%d/%m/%Y')
                 - else
                   Informação não disponível
           %hr/
