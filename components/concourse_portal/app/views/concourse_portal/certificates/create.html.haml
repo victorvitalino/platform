@@ -1,0 +1,73 @@
+.row
+  .col-sm-1
+    %img{style: 'position: absolute', src:'/concourse/certificates/cei/side.png', width: 100, height:700}
+  .col-sm-11
+    .container
+      .row
+        .col-md-12
+          %h4
+            certificado
+          %span{style: 'background-color: black; width: 500px; heigth: 100px;'}
+            
+          %h4
+            Concurso Nacional de Projetos
+          %h4
+            %b CEF - Centro de Ensino Fundamental
+
+      %br/
+      %br/
+      %br/
+      .row
+        .col-md-12{style: 'text-align: center'}
+          Certificamos que
+
+
+      %br/
+      .row
+        .col-md-12{style: 'text-align: center'}
+          %b= "#{@candidate.name}, Nº de inscrição #{@candidate.id}"
+
+
+      %br/
+      .row
+        .col-md-12{style: 'text-align: justify'}
+          Certificamos que #{@candidate.name} participou do Concurso Público Nacional de Projetos de Arquitetura e Complementares para o #{@candidate.subscribe.project.title}, realizado pela CODHAB/DF - Companhia de Desenvolvimento Habitacional do Distrito Federal - com o apoio da SEGETH/DF - Secretaria de Gestão do Território e Habitação do Distrito Federal.
+
+
+      %br/
+      %br/
+      %br/
+      .row
+        .col-md-12{style: 'text-align: center'}
+          %b Brasília, xx de xx de 2016
+      %br/
+      %br/
+      %br/   
+      .row
+        .col-sm-4
+          %img{src:'/concourse/certificates/base/thiago_assinatura.png', width: 200}
+          %br/
+          %br/
+          %br/
+          %span{style: 'text-align: center'}
+            %p 
+              %b THIAGO DE ANDRADE
+            %p
+              Secretário de Gestão do Território e Habitação do Distrito Federal
+        .col-sm-4
+        .col-sm-4
+          .pull-right
+            %img{ src:'/concourse/certificates/base/gilson_assinatura.png', width: 200}
+            %span{style: 'text-align: center'}
+              %p 
+                %b GILSON PARANHOS
+              %p
+                Diretor Presidente da Companhia de Desenvolvimento Habitacional do Distrito Federal
+      .row
+        .col-sm-4
+          %img{src:'/concourse/certificates/base/logo_gdf.png', width: 250}
+        .col-sm-4
+        .col-md-4
+          .pull-right
+            %img{src:'/concourse/certificates/base/logo_codhab.png', width: 250}
+            
