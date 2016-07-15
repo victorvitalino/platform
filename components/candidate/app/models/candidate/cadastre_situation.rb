@@ -14,8 +14,6 @@ module Candidate
     def self.halted_day_count(day)
       self.where(created_at: day, situation_status_id: 50).count
     end
-    
-    private
 
     def self.create_status(mirror_id, cadastre_id, situation_status)
       @cadastre_situation = Candidate::CadastreSituation.new
