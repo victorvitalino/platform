@@ -1,9 +1,9 @@
 require_dependency 'regularization_portal/application_controller'
 
 module RegularizationPortal
-  class CadastresController < ApplicationController 
-    before_action :set_cors_headers
-    
+  class CadastresController < ApplicationController
+    before_action :add_cors_headers
+
     def show
       @candidate = ::Candidate::Cadastre.regularization.find_by_cpf(params[:id])
 
@@ -52,6 +52,6 @@ module RegularizationPortal
       headers['Access-Control-Allow-Credentials'] = 'true'
       headers['Access-Control-Max-Age'] = '1728000'
     end
-    
+
   end
 end
