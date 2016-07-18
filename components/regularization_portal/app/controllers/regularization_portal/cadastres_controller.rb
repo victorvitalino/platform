@@ -4,7 +4,14 @@ module RegularizationPortal
   class CadastresController < ApplicationController 
     
     def show
-      @candidate = ::Candidate::Cadastre.find_by_cpf(params[:id])
+      @candidate = ::Candidate::Cadastre.regularization.find_by_cpf(params[:id])
+
+      respond_to do |format|
+        format.html
+        format.json {
+          render json: @candidate
+        }
+      end
     end
 
     def find_candidate
@@ -19,6 +26,7 @@ module RegularizationPortal
       else
         render action: 'find_candidate'
       end
+
     end
 
     private

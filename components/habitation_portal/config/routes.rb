@@ -6,6 +6,10 @@ HabitationPortal::Engine.routes.draw do
 
   resources :lists, path: 'listas'
   resources :candidates, path: 'candidato' do
+    get 'pontuation'
+    get 'position'
+    get 'indication'
+
     collection do
       get 'update_positions', path: 'lista_alteracao'
       get 'programs', path: 'programs'

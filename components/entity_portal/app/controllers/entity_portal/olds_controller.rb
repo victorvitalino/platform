@@ -9,8 +9,16 @@ module EntityPortal
     has_scope :status
 
     def index
-        @old = Entity::Old.order(:name).all
-        @old = apply_scopes(@old).paginate(:page => params[:page], :per_page => 20)
+      @old = Entity::Old.order(:name).all
+      @old = apply_scopes(@old).paginate(:page => params[:page], :per_page => 20)
+      
+      respond_to do |format|
+
+        format.html
+        format.json {
+          render json: @old
+        }
+      end
     end
 
     def show
