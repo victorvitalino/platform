@@ -8,38 +8,22 @@ namespace :update do
 
     @index = 0
 
+    CSV.foreach("lib/files/geo.csv", :col_sep => "#") do |row|
+      address = row[0].split(' ')
+      block   = "#{address[0]} #{address[1]}"
+      group   = address[3]
+      unit    = address[5]
+      
+      coord   = row[1].split('-----------')
 
-     CSV.foreach("lib/files/unit.csv", :col_sep => "#") do |row|
+      @address = Address::Unit.where(urb: "ETAPA 4C", block: block, group: group, unit: unit).first
+      
+      if coord.count == 2 && @address.present?
+        @address.lat = coord[0]
+        @address.lng = coord[1]
+        @address.save
+      end
 
-
-           @teste = Address::Unit.new(
-           acron_block: row[0],
-           block: row[1],
-           acron_group: row[2],
-           group: row[2],
-           unit: row[3],
-           cep_unit: row[4],
-           area: row[6],
-           complete_address: row[7],
-           burgh: row[8],
-           situation_unit_id: row[9],
-           donate: row[10],
-           city_id: row[11],
-           project_enterprise_id: row[11].to_s == "810" ? 17 : nil,
-           control_number: row[12]
-           )
-
-           #puts @teste.inspect
-           @teste.save
-
-           puts @index += 1
-       end
-          #    puts "EROOOOOOOREOROEOROEROEOROEOROEOROEOER #{@index}"
-          #  end
-
-
-
-    #select cnpj from protocol_assessments where cnpj is not null and length(cnpj) = 13
-
+    end
   end
 end

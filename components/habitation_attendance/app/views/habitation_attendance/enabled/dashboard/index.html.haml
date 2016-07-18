@@ -19,11 +19,9 @@
         .row
           .col-md-12
             = link_to "Iniciar novo atendimento", new_enabled_attendance_path(cpf: params[:cpf]), class: 'btn btn-default btn-lg'
-
-
       .col-md-8
         .row
           .col-md-12
-            = render 'show'
+            = render 'show' if @candidate.present?
 
     

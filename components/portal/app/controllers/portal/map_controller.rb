@@ -3,7 +3,7 @@ module Portal
   class MapController < ApplicationController
 
     def test
-      @address = Address::Unit.where(urb:'ETAPA 4C', block: ['QN 18', 'QN 19', 'QN 20'])
+      @address = Address::Unit.where(urb:'ETAPA 4C', block: ['QN 18', 'QN 19', 'QN 20', 'QN 33', 'QN 34'])
       
       @address = @address.joins(:cadastres) if params[:imovel] == "ocupados"
       
