@@ -10,8 +10,10 @@
         - @service_results.each do |result|
           .dados_slider
             .col-md-6
-              = pie_chart [["Morar Bem", result.program_morarbem],["Regularização",result.regularization], ["Escrituras", result.contract], ["Protocolo", result.protocol], ["Ouvidoria", result.ombudsman]]
-            .col-md-6
+              = pie_chart [["Morar Bem", result.program_morarbem],["Regularização",result.regularization], ["Escrituras", result.contract], ["Protocolo", result.protocol], ["Ouvidoria", result.ombudsman]],
+              colors: ['#5fb29d', '#9F2735', '#E34153', '#5FA5B4', '#6FB8C8'],
+              library:{ legend: "none"}
+            .col-md-6{:style => "margin-top: 40px;"}
               .row
                 .col-md-4.meta_element
                   .span.number_metas
@@ -45,8 +47,8 @@
                   .span.title_metas
                     TOTAL
       #slider_meses
-        %a{:href => "http://www.google.com"}
-          Anos Anteriores
+        -# %a{:href => "http://www.google.com"}
+        -#   Anos Anteriores
         - @service_results.each_with_index do |result, i|
           %a{"data-slide-index" => i, :href => ""}
             = t("date.abbr_month_names")[result.date.month]

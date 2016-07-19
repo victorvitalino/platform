@@ -11,8 +11,11 @@
 #slider_meses{
   position: relative;
 }
-.highcharts-background{
+rect{
   fill:rgba(255,255,255,0);
+}
+g text{
+  color:#fff;
 }
 #slider_meses a{
   color: #fff;
@@ -26,7 +29,7 @@
       border: 1px solid #fff;
 }
 .fundo_resultados{
-  display: none;
+  display: block;
   background-color: #3483DE;
   color:#fff;
   overflow: hidden;
@@ -73,10 +76,13 @@
   height: 643px;
 }
 .fundo_resultados{
-height: 450px
+height: 420px
 }
 .dados_slider .col-md-6{
-margin-top: 70px;
+
+}
+.slider_dados .bx-wrapper{
+  margin-bottom: 0px;
 }
 .span_dados{
   text-align: center;
@@ -1479,7 +1485,7 @@ img {
 .tab-fundo{background-image: url('/images/estadio.png');background-repeat: no-repeat;
   height: 715px;
   background-position: center top;
-  background-attachment: fixed; width: 100%;}
+  background-attachment: fixed; width: 100%;display: none;}
 .s-info{margin:0 auto;display: none;}
 .flip_ano{display: none;}
 .maskinfo{margin:0 auto;}
