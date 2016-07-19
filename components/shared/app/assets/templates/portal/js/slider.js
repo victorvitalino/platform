@@ -45,6 +45,10 @@ $(document).ready(function() {
       slideMargin: 0,
       controls: false
     });
+    $('.bxslide3').bxSlider({
+      slideMargin: 0,
+      controls: false
+    });
 
     $('.bottomSlider .flexslider').flexslider({
         animation: "slide",
