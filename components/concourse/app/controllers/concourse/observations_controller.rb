@@ -14,6 +14,11 @@ module Concourse
       @observation.save
     end
 
+    def destroy
+      @observation = @candidate.observations.find(params[:id])
+      @observation.destroy
+    end
+    
     private
 
     def set_params

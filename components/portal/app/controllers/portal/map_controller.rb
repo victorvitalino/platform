@@ -31,10 +31,10 @@ module Portal
         }
       end
       
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-      headers['Access-Control-Request-Method'] = '*'
-      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+      headers['Access-Control-Allow-Origin']    = '*'
+      headers['Access-Control-Allow-Methods']   = 'POST, PUT, DELETE, GET, OPTIONS'
+      headers['Access-Control-Request-Method']  = '*'
+      headers['Access-Control-Allow-Headers']   = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
       
       render json: @data
       #urb = 'ETAPA 4C' AND address_units.group ='8' and block = 'QN 18'
