@@ -6,7 +6,7 @@ module Candidate
 
 
 
-    enum status: ['reserva', 'distribuído', 'distrato','transferencia', 'permuta']
+    enum situation_id: ['reserva', 'distribuído', 'distrato','transferencia', 'permuta','sobrestado']
 
     scope :cpf,  -> (cpf) {joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
     scope :old_process,  -> (old_process) { joins("inner join candidate_cadastre_procedurals on candidate_cadastre_procedurals.cadastre_id = candidate_cadastre_addresses.cadastre_id").where('candidate_cadastre_procedurals.old_process = ?', old_process)}
@@ -22,6 +22,24 @@ module Candidate
     }
 
 
+    def self.update_tables_sale(cadastre_id, unit, situation, status, status_unit, firm_user, observation)
+         @cadastre_procedural = Candidate::CadastreProcedural.where(cadastre_id: cadastre_id).last
+
+         Candidate::CadastreProcedural.create_procedural(nil,@cadastre_procedural.cadastre_id,procedural,@cadastre_procedural.convocation_id,@cadastre_procedural.assessment_id,
+            @cadastre_procedural.old_process,observation,@cadastre_procedural.transfer_process, @cadastre_procedural.transfer_assessment_id)
+
+          if situation == 7
+            Candidate::CadastreSituation.create_status(nil, @cadastre_procedural.cadastre_id, 7)
+          end
+
+          @firms = Candidate::EnterpriseCadastre.where(cadastre_id: cadastre_id).last
+          Candidate::EnterpriseCadastre.create_enterprise_cadastre_situation(mirror_id, cadastre_id, @firms.id,status,observation,firm_user)
+
+          @unit = Address::Unit.find(unit)
+          @unit.update(situation_unit_id: status_unit)
+
+    end
+
     private
 
 
@@ -35,39 +53,6 @@ module Candidate
       end
     end
 
-    def update_tables_sale(procedural, situation, status, status_unit)
-         @cadastre_procedural = Candidate::CadastreProcedural.where(cadastre_id: self.cadastre_id).last
-
-         @cadastre_procedurals = Candidate::CadastreProcedural.new
-         @cadastre_procedurals.cadastre_mirror_id = @cadastre_procedural.cadastre_id
-         @cadastre_procedurals.cadastre_id = @cadastre_procedural.cadastre_id
-         @cadastre_procedurals.procedural_status_id = procedural
-         @cadastre_procedurals.convocation_id = @cadastre_procedural.convocation_id
-         @cadastre_procedurals.assessment_id = @cadastre_procedural.assessment_id
-         @cadastre_procedurals.old_process = @cadastre_procedural.old_process
-         @cadastre_procedurals.save
-
-          if situation == 7
-            @cadastre_situation = Candidate::CadastreSituation.new
-            @cadastre_situation.cadastre_mirror_id = @cadastre_procedural.cadastre_id
-            @cadastre_situation.cadastre_id = @cadastre_procedural.cadastre_id
-            @cadastre_situation.situation_status_id = 7
-            @cadastre_situation.save
-          end
-
-          @firms = Firm::EnterpriseCadastre.where(cadastre_id: self.cadastre_id).last
-
-          @enterprise_status = Firm::EnterpriseStatus.new
-          @enterprise_status.cadastre_id = @cadastre_procedural.cadastre_id
-          @enterprise_status.enterprise_cadastre_id = @firms.id
-          @enterprise_status.status_cadastre_id = status
-          @enterprise_status.observation = self.observation
-          @enterprise_status.save
-
-          @unit = Address::Unit.find(self.unit_id)
-          @unit.update(situation_unit_id: status_unit)
-
-      end
 
   end
 end

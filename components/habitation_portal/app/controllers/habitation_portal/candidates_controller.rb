@@ -30,6 +30,53 @@ module HabitationPortal
       end
     end
 
+    def pontuation
+      @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
+      render json: @candidate.pontuations.order('code DESC')
+    end
+
+    def position
+      @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
+      
+      @json = Array.new
+
+      if @candidate.list.present?
+        @candidate.list.each do |list|
+          @json << {
+            situation: @candidate.current_situation_name,
+            situation_status: @candidate.current_situation_status,
+            zone: list[1][0],
+            position: list[2],
+            list: list[0],
+            pontuation: @candidate.pontuations.present? ? @candidate.pontuations.last.total : nil 
+          }
+        end
+      end
+
+      render json: @json
+
+    end
+
+    def indication
+      
+      @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
+      
+      @json = Array.new
+
+      @candidate.enterprise_cadastres.order('created_at ASC').each do |ent|
+        @json << {
+          enterprise: ent.enterprise.name,
+          inactive: ent.inactive,
+          inactive_date: ent.inactive_date.present? ? ent.inactive_date : 'empty' ,
+          source_list: ent.source_list,
+          zone: ent.zone
+        }
+      end
+
+      render json: @json
+    end
+
+
     def detail
       @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
       @positions = @candidate.positions.where(program_id: params[:program_id]).map do |key|

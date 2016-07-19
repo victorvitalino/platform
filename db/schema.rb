@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711134329) do
+ActiveRecord::Schema.define(version: 20160715183118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,6 +179,9 @@ ActiveRecord::Schema.define(version: 20160711134329) do
     t.string   "latlng_group"
     t.string   "latlng_unit"
     t.string   "latlng_urb"
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "coordinate"
   end
 
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
@@ -1224,8 +1227,9 @@ ActiveRecord::Schema.define(version: 20160711134329) do
     t.string   "url"
     t.integer  "position"
     t.boolean  "publish"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
   end
 
   create_table "concourse_candidate_messages", force: :cascade do |t|

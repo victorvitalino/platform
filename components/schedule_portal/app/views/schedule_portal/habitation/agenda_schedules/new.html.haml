@@ -1,15 +1,20 @@
-.row
-  .col-md-12.box
-    .panel.panel-default
-      .panel-heading.green
-        .row
-          .col-md-12
-            %h1
-              %b.green Habitação
-              %br/
-              %small Agendamento de atendimento
-      %hr/
-      .panel-body
-        .row
-          .col-md-12.input-big
-            = render 'form'
+- if mobile_device?
+  .row
+    .col-md-10.input-big
+      = render 'form'
+- else
+  .row
+    .col-md-12.box
+      .panel.panel-default
+        .panel-heading.green
+          .row
+            .col-md-12
+              %h1
+                %b.green Habitação
+                %br/
+                %small Agendamento de atendimento
+        %hr/
+        .panel-body
+          .row
+            .col-md-12.input-big
+              = render 'form'

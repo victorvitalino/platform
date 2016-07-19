@@ -2,6 +2,8 @@ ConcoursePortal::Engine.routes.draw do
   default_url_options :host => "localhost:3000" if Rails.env.development? || Rails.env.test?
   default_url_options :host => "www.codhab.df.gov.br"  if Rails.env.production?
   
+  resources :certificates, path: 'certificados'
+  
   resources :projects, path: '/' do 
 
     get 'result', path: 'resultado', to: 'projects#result' 
