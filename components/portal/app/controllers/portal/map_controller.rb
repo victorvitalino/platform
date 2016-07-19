@@ -3,7 +3,7 @@ module Portal
   class MapController < ApplicationController
 
     def test
-      @address = Address::Unit.where(urb:'ETAPA 4C', block: ['QN 18', 'QN 19', 'QN 20', 'QN 33', 'QN 34'])
+      @address = Address::Unit.where(urb:'ETAPA 4C', block: ['QN 18', 'QN 19', 'QN 20', 'QN 33', 'QN 34', 'QN 30', 'QN 31', 'QN 32'])
       
       @address = @address.joins(:cadastres) if params[:imovel] == "ocupados"
       
@@ -31,10 +31,10 @@ module Portal
         }
       end
       
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-      headers['Access-Control-Request-Method'] = '*'
-      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+      headers['Access-Control-Allow-Origin']    = '*'
+      headers['Access-Control-Allow-Methods']   = 'POST, PUT, DELETE, GET, OPTIONS'
+      headers['Access-Control-Request-Method']  = '*'
+      headers['Access-Control-Allow-Headers']   = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
       
       render json: @data
       #urb = 'ETAPA 4C' AND address_units.group ='8' and block = 'QN 18'

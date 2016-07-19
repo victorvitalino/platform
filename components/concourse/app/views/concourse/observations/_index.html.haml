@@ -10,3 +10,5 @@
     %td= observation.content
     %td= observation.staff.name
     %td.col-md-2= observation.created_at.strftime('%d/%m/%Y às %H:%M')
+    %td.col-md-1
+      = link_to "", project_candidate_observation_path(project_id: @project, candidate_id: @candidate, id: observation), method: :delete, class: 'btn btn-danger glyphicon glyphicon-remove btn-xs', data: { confirm: t(:confirm)}, remote: true
