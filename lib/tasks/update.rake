@@ -8,7 +8,7 @@ namespace :update do
 
     @index = 0
 
-    CSV.foreach("lib/files/geo2.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/geo3.csv", :col_sep => "#") do |row|
       address = row[0].split(' ')
       block   = "#{address[0]} #{address[1]}"
       group   = address[3]
