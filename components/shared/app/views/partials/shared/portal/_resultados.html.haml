@@ -47,8 +47,6 @@
                   .span.title_metas
                     TOTAL
       #slider_meses
-        -# %a{:href => "http://www.google.com"}
-        -#   Anos Anteriores
         - @service_results.each_with_index do |result, i|
           %a{"data-slide-index" => i, :href => ""}
             = t("date.abbr_month_names")[result.date.month]
