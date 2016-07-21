@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715183118) do
+ActiveRecord::Schema.define(version: 20160721125413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -396,6 +396,27 @@ ActiveRecord::Schema.define(version: 20160715183118) do
   end
 
   add_index "candidate_activity_statuses", ["code"], name: "index_candidate_activity_statuses_on_code", unique: true, using: :btree
+
+  create_table "candidate_ammvs", force: :cascade do |t|
+    t.string   "cpf"
+    t.string   "name"
+    t.string   "address"
+    t.string   "unit"
+    t.string   "singnature_date"
+    t.string   "register_date"
+    t.string   "constructor"
+    t.string   "finance_agent"
+    t.string   "cdru"
+    t.string   "cdru_observation"
+    t.integer  "unit_id"
+    t.integer  "cadastre_id"
+    t.integer  "index_migrate"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "candidate_ammvs", ["cadastre_id"], name: "index_candidate_ammvs_on_cadastre_id", using: :btree
+  add_index "candidate_ammvs", ["unit_id"], name: "index_candidate_ammvs_on_unit_id", using: :btree
 
   create_table "candidate_attendance_log_statuses", force: :cascade do |t|
     t.string   "name"
@@ -2606,34 +2627,47 @@ ActiveRecord::Schema.define(version: 20160715183118) do
 
   add_index "schedule_data_references", ["code"], name: "index_schedule_data_references_on_code", using: :btree
 
-  create_table "sefaz_exemptions", force: :cascade do |t|
-    t.string   "sector"
-    t.string   "exemption_type"
-    t.string   "cnpj_notifiers"
+  create_table "sefaz_allotments", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.text     "error_message"
+    t.datetime "send_date"
+    t.integer  "send_staff_id"
+    t.string   "protocol_return"
+    t.integer  "exemption_type"
     t.string   "notifiers"
+    t.string   "cnpj_notifiers"
+    t.text     "observation"
+    t.integer  "send_status_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "sefaz_allotments", ["send_staff_id"], name: "index_sefaz_allotments_on_send_staff_id", using: :btree
+  add_index "sefaz_allotments", ["send_status_id"], name: "index_sefaz_allotments_on_send_status_id", using: :btree
+  add_index "sefaz_allotments", ["staff_id"], name: "index_sefaz_allotments_on_staff_id", using: :btree
+
+  create_table "sefaz_exemptions", force: :cascade do |t|
     t.string   "name"
     t.string   "cpf"
     t.string   "city"
     t.string   "address"
     t.string   "realty_number"
     t.string   "realty_value"
-    t.integer  "send_status_id"
-    t.integer  "allotment"
-    t.string   "return_protocol"
+    t.integer  "allotment_id"
     t.string   "act_number"
-    t.datetime "send_date"
-    t.string   "error_message"
-    t.integer  "year_act"
-    t.string   "type_ask"
+    t.boolean  "canceled"
+    t.datetime "canceled_date"
+    t.integer  "canceled_staff_id"
+    t.text     "return_message"
     t.integer  "staff_id"
-    t.integer  "staff_send_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "unitary"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
-  add_index "sefaz_exemptions", ["send_status_id"], name: "index_sefaz_exemptions_on_send_status_id", using: :btree
+  add_index "sefaz_exemptions", ["allotment_id"], name: "index_sefaz_exemptions_on_allotment_id", using: :btree
+  add_index "sefaz_exemptions", ["canceled_staff_id"], name: "index_sefaz_exemptions_on_canceled_staff_id", using: :btree
   add_index "sefaz_exemptions", ["staff_id"], name: "index_sefaz_exemptions_on_staff_id", using: :btree
-  add_index "sefaz_exemptions", ["staff_send_id"], name: "index_sefaz_exemptions_on_staff_send_id", using: :btree
 
   create_table "sefaz_send_statuses", force: :cascade do |t|
     t.string   "name"

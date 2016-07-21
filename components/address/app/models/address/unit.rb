@@ -7,6 +7,7 @@ module Address
     has_many :notary_offices
     has_many :cadastre_address, class_name: "Candidate::CadastreAddress"
     has_many :cadastres, through: :cadastre_address, class_name: "Candidate::Cadastre"
+    has_many :ammvs, class_name: "Candidate::Ammv", foreign_key: 'unit_id'
 
     scope :address, -> (address) {where("complete_address ILIKE ?", "%#{address}%")}
     scope :status, -> (status) {where(situation_unit_id: status)}
@@ -23,8 +24,36 @@ module Address
     scope :process_number, -> (process_number) {search_process(process_number)}
     scope :name_candidate, -> (name_candidate) {joins(cadastre_address: :cadastre).where("candidate_cadastres.name ILIKE ?","#{name_candidate}%")}
 
+
+    def set_color(in_unit, cdru)
+      return "blue" if in_unit.nil?
+      case cdru 
+        when "SIM"
+          'green'
+        when '4º Termo Aditivo'
+          'yellow'
+        when 'Migrado sem autorização e Não possui cadastro na CODHAB' 
+          'red'
+      end
+    end
+
+   def candidate_in_unit
+    ammvs = ammvs_candidate
+    if ammvs.present?
+      ammvs_candidate
+    else
+      unit = Candidate::CadastreAddress.where(unit_id: self.id).order('created_at').last rescue nil
+      return false if unit.nil?
+      Candidate::Cadastre.find(unit.cadastre_id)
+    end
+   end
+
+   
    private
 
+   def ammvs_candidate
+    Candidate::Ammv.find_by_unit_id(self.id) rescue false
+   end
 
    def self.search_process(process_number)
      @procedural = Candidate::CadastreProcedural.where(old_process: process_number).last
