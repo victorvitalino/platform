@@ -410,7 +410,10 @@ ActiveRecord::Schema.define(version: 20160721125413) do
     t.string   "cdru_observation"
     t.integer  "unit_id"
     t.integer  "cadastre_id"
+<<<<<<< HEAD
     t.integer  "index_migrate"
+=======
+>>>>>>> 9e35c7239f45fb7f75c6a748cb82a700ec6ca474
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

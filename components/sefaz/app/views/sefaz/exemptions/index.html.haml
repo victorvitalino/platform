@@ -1,0 +1,37 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Listagem de Documentos
+        = link_to "Voltar", allotments_path, class: 'pull-right mgl',data: {disable_with: "carregando..."}
+  .panel-body
+    .row
+      .col-md-12
+        = link_to "Upload planilha",  new_allotment_exemption_file_path(@allotment), remote:true, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+        = link_to "Incluir candidato", new_allotment_exemption_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."}
+    .row.form-filter{style:'margin-top: 20px;'}
+      .col-md-12
+        = simple_form_for  url_for, method: 'get' do |f|
+          .row
+            .col-md-2
+              = f.label 'CPF', class: 'fg-label'
+              = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+            .col-md-1
+              = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+    .row
+      .col-sm-12
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table#data-table-command.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Nome
+                %th CPF
+                %th Cidade
+                %th Endereço
+                %th IPTU
+                %th Valor
+                %th N do Ato
+                %th Retorno
+                %th Ações
+            %tbody.index-exemption
+              = render 'index'

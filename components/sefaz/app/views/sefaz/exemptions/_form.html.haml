@@ -1,8 +1,25 @@
-= simple_form_for @exemption, multipart: true do |f|
+= simple_form_for [@allotment, @exemption] do |f|
+  .row
+    .col-md-6
+      = f.label :name, class: 'fg-label'
+      = f.input :name,  label: false
+    .col-md-4
+      = f.label :cpf, class: 'fg-label'
+      = f.input :cpf,  label: false
   .row
     .col-md-4
-      = f.label :file, as: 'file', class: 'fg-label'
-      = f.input :file, as: 'file', label: false, input_html: { placeholder: 'Arquivo excell'}
+      = f.label :city, class: 'fg-label'
+      = f.input :city,  label: false
+    .col-md-6
+      = f.label :address, class: 'fg-label'
+      = f.input :address,  label: false
   .row
+    .col-md-4
+      = f.label :realty_number, class: 'fg-label'
+      = f.input :realty_number,  label: false
+    .col-md-4
+      = f.label :realty_value, class: 'fg-label'
+      = f.input :realty_value,  label: false
     .col-md-12
       = f.button :submit, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button) }
+      = link_to "Voltar", allotment_exemptions_path(@allotment),  class: 'btn btn-default btn-xs'

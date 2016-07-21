@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  staff_id: 
+  error_message: MyText
+  send_date: 2016-07-19 17:21:34
+  protocol_return: MyString
+  exemption_type: 1
+  notifiers: MyString
+  cnpj_notifiers: MyString
+  observation: MyText
+  send_status_id: 
+
+two:
+  staff_id: 
+  error_message: MyText
+  send_date: 2016-07-19 17:21:34
+  protocol_return: MyString
+  exemption_type: 1
+  notifiers: MyString
+  cnpj_notifiers: MyString
+  observation: MyText
+  send_status_id: 

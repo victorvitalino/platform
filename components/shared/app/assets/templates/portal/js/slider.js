@@ -1,39 +1,39 @@
 $(document).ready(function() {
-    // $('.topSlider .flexslider').flexslider({
-    //     animation: "slide",
-    //     useCSS: false,
-    //     animationLoop: true,
-    //     smoothHeight: true,
-    //     manualControls: '.flex-control-nav li a',
-    //     controlsContainer: '.flex-container',
-    //     start: function (slider) {
-    //         $('body').removeClass('loading');
-    //     },
-    //     before: function (slider) {
-    //         try {
-    //             $f(player).api('pause');
-    //         } catch (ex) {
-    //         }
-    //     }
-    // });
-    // $('.topSlider_action .flexslider').flexslider({
-    //     animation: "slide",
-    //     useCSS: false,
-    //     animationLoop: true,
-    //     controlNav: false,
-    //     smoothHeight: true,
-    //     manualControls: '.custom-controls li a',
-    //     controlsContainer: '.flex-container',
-    //     start: function (slider) {
-    //         $('body').removeClass('loading');
-    //     },
-    //     before: function (slider) {
-    //         try {
-    //             $f(player).api('pause');
-    //         } catch (ex) {
-    //         }
-    //     }
-    // });
+    $('.topSlider .flexslider').flexslider({
+        animation: "slide",
+        useCSS: false,
+        animationLoop: true,
+        smoothHeight: true,
+        manualControls: '.flex-control-nav li a',
+        controlsContainer: '.flex-container',
+        start: function (slider) {
+            $('body').removeClass('loading');
+        },
+        before: function (slider) {
+            try {
+                $f(player).api('pause');
+            } catch (ex) {
+            }
+        }
+    });
+    $('.topSlider_action .flexslider').flexslider({
+        animation: "slide",
+        useCSS: false,
+        animationLoop: true,
+        controlNav: false,
+        smoothHeight: true,
+        manualControls: '.custom-controls li a',
+        controlsContainer: '.flex-container',
+        start: function (slider) {
+            $('body').removeClass('loading');
+        },
+        before: function (slider) {
+            try {
+                $f(player).api('pause');
+            } catch (ex) {
+            }
+        }
+    });
 
     $('.bxslide').bxSlider({
       slideWidth: 390,

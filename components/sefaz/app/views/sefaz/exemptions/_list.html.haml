@@ -1,0 +1,22 @@
+.row
+  .col-sm-12
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Nome
+            %th CPF
+            %th Cidade
+            %th Endereço
+            %th IPTU
+            %th Valor
+        %tbody.index-exemption
+          - if @exemptions_unitary.present?
+            - @exemptions_unitary.each do |e|
+              %tr
+                %td= e.name
+                %td= e.cpf
+                %td= e.city
+                %td= e.address
+                %td= e.realty_number
+                %td= e.realty_value

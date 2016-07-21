@@ -1,0 +1,9 @@
+= simple_form_for [:allotment, @exemption_file], remote: true, multipart: true do |f|
+  .row
+    .col-md-4
+      = f.label :file_path, as: 'file', class: 'fg-label'
+      = f.input :file_path, as: 'file', label: false, input_html: { placeholder: 'Arquivo excel'}
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button) }

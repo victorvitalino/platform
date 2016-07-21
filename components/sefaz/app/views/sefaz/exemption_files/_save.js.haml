@@ -1,0 +1,5 @@
+- if @exemption_file.valid?
+  $('#modal').modal('hide')
+  $('.index-exemption').html("#{escape_javascript(render 'sefaz/exemptions/index')}")
+- else
+  $('#modal .modal-content .modal-body').html("#{escape_javascript(render 'form')}")
