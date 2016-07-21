@@ -1,17 +1,12 @@
-.homeVideoWrapper
-  .stocking-row3
-  .bottomSlider.container
-    %h2 CODHAB em Foco
-    .flexslider
-      %div{:style => "clear: both;"}
-      .flex-viewport
-        %ul.slides
-          - video_each(5) do |vid|
-            %li{"aria-hidden" => "true",:style => "text-align:center;"}
-              <iframe width="760" height="550" src="#{vid.url}" frameborder="0" allowfullscreen></iframe>
-      %ol.flex-control-nav.flex-control-paging
-        - video_each(5) do |vid|
-          %li
-            %a
-              = vid.title
-    %div{:style => "clear: both;"}
+.container.margint50
+  %h2.title_notice CODHAB na mídia
+  .bxslide3
+    - video_each(5) do |vid|
+      %li
+        .col-md-6
+          <iframe width="555" height="312" src="#{vid.url}" frameborder="0" allowfullscreen></iframe>
+        .col-md-6.bloco_texto_vide
+          %h3.title_vide
+            = vid.title
+          .description_vide
+            = vid.description.html_safe if vid.description.present?

@@ -8,14 +8,107 @@
 }
 
 /*inicio paralax novo*/
+#slider_meses{
+  position: relative;
+}
+rect{
+  fill:rgba(255,255,255,0);
+}
+g text{
+  color:#fff;
+}
+#slider_meses a{
+  color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      font-family: 'Roboto';
+      text-align: center;
+      padding: 5px;
+      margin: 0 4px;
+      border-radius: 3px;
+      border: 1px solid #fff;
+}
 .fundo_resultados{
-  display: none;
+  display: block;
   background-color: #3483DE;
   color:#fff;
   overflow: hidden;
   text-align: center;
+  padding: 20px 0;
+}
+
+.number_metas{
+  font-size: 30px;
+  font-family:"Roboto";
+  font-weight: 500;
+}
+
+.title_metas{
+  font-size: 15px;
+  font-family: "Roboto";
+}
+.meta_element{
+  margin: 20px 0;
+}
+.mascara{
+
+}
+.slider_dados{
+  background-color: rgba(52, 131, 222, 0.9);
+  height: 1080px;
+  position: absolute;
+  width: 100%;
+}
+.dados_slider.col-md-12{
+  position: absolute;
+  width: 100%;
+}
+#bgvid{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-size: cover;
+
+}
+#bgvid video{
+  height: 643px;
+}
+.fundo_resultados{
+height: 420px
+}
+.dados_slider .col-md-6{
+
+}
+.slider_dados .bx-wrapper{
+  margin-bottom: 0px;
+}
+.span_dados{
+  text-align: center;
+  font-size: 30px;
+  margin-top: 20px;
+  font-family: "Roboto";
+  font-weight: 500;
 }
 /*fim paralax novo*/
+
+/* novo bloco de vídeo*/
+.title_vide{
+    font-weight: 600;
+    color: #818285;
+}
+.description_vide{
+ font-family: Roboto;
+ font-size: 15px;
+ text-align: justify;
+}
+.bloco_texto_vide{
+  padding: 0 65px;
+}
+
+/* fim do novo bloco de vídeo*/
+
 .new-caption{
   display:block;
   float:left;
@@ -1390,9 +1483,9 @@ img {
 
 /*slider info*/
 .tab-fundo{background-image: url('/images/estadio.png');background-repeat: no-repeat;
-  background-size: 100% 100%;
+  height: 715px;
   background-position: center top;
-  background-attachment: fixed; width: 100%;}
+  background-attachment: fixed; width: 100%;display: none;}
 .s-info{margin:0 auto;display: none;}
 .flip_ano{display: none;}
 .maskinfo{margin:0 auto;}

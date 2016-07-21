@@ -1,36 +1,52 @@
-.container
-  .fundo_resultados
-    - results_each do |result|
-      .col-md-6
-        chart vai ser aqui
-      .col-md-6
-        .col-md-2
-          .span
-            = result.program_morarbem
-          .span
-            MORAR BEM
-        .col-md-2
-          .span
-            = result.regularization
-          .span
-            REGULARIZAÇÃO
-        .col-md-2
-          .span
-            = result.contract
-          .span
-            ESCRITURAS
-        .col-md-2
-          .span
-            = result.ombudsman
-          .span
-            OUVIDORIA
-        .col-md-2
-          .span
-            = result.protocol
-          .span
-            PROTOCOLO
-        .col-md-2
-          .span
-            = result.program_morarbem + result.regularization + result.contract + result.ombudsman + result.protocol
-          .span
-            TOTAL
+.container.margint50
+  .fundo_resultados.col-md-12.no_padding
+    #bgvid
+      %video{:autoplay => "", :loop => "", :poster => "video.jpg"}
+        %source{:src => "images/video1.mp4", :type => "video/mp4"}
+    .slider_dados
+      .span_dados
+        Resultados de Atendimento
+      .bxslide4
+        - @service_results.each do |result|
+          .dados_slider
+            .col-md-6
+              = pie_chart [["Morar Bem", result.program_morarbem],["Regularização",result.regularization], ["Escrituras", result.contract], ["Protocolo", result.protocol], ["Ouvidoria", result.ombudsman]],
+              colors: ['#5fb29d', '#9F2735', '#E34153', '#5FA5B4', '#6FB8C8'],
+              library:{ legend: "none"}
+            .col-md-6{:style => "margin-top: 40px;"}
+              .row
+                .col-md-4.meta_element
+                  .span.number_metas
+                    = result.program_morarbem
+                  .span.title_metas
+                    MORAR BEM
+                .col-md-4.meta_element
+                  .span.number_metas
+                    = result.regularization
+                  .span.title_metas
+                    REGULARIZAÇÃO
+                .col-md-4.meta_element
+                  .span.number_metas
+                    = result.contract
+                  .span.title_metas
+                    ESCRITURAS
+              .row
+                .col-md-4.meta_element
+                  .span.number_metas
+                    = result.ombudsman
+                  .span.title_metas
+                    OUVIDORIA
+                .col-md-4.meta_element
+                  .span.number_metas
+                    = result.protocol
+                  .span.title_metas
+                    PROTOCOLO
+                .col-md-4.meta_element
+                  .span.number_metas
+                    = result.program_morarbem + result.regularization + result.contract + result.ombudsman + result.protocol
+                  .span.title_metas
+                    TOTAL
+      #slider_meses
+        - @service_results.each_with_index do |result, i|
+          %a{"data-slide-index" => i, :href => ""}
+            = t("date.abbr_month_names")[result.date.month]

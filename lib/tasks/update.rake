@@ -8,6 +8,7 @@ namespace :update do
 
     @index = 0
 
+<<<<<<< HEAD
 
      CSV.foreach("lib/files/listagem.csv", :col_sep => "#") do |row|
 
@@ -37,5 +38,24 @@ namespace :update do
 
     #select cnpj from protocol_assessments where cnpj is not null and length(cnpj) = 13
 
+=======
+    CSV.foreach("lib/files/geo3.csv", :col_sep => "#") do |row|
+      address = row[0].split(' ')
+      block   = "#{address[0]} #{address[1]}"
+      group   = address[3]
+      unit    = address[5]
+      
+      coord   = row[1].split('-----------')
+
+      @address = Address::Unit.where(urb: "ETAPA 4C", block: block, group: group, unit: unit).first
+      
+      if coord.count == 2 && @address.present?
+        @address.lat = coord[0]
+        @address.lng = coord[1]
+        @address.save
+      end
+
+    end
+>>>>>>> 2ac4dbda3d4bdf31c3dce23e1762498cfe9beb49
   end
 end

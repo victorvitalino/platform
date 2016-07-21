@@ -1,11 +1,11 @@
 = simple_form_for [:habitation, @schedule] do |f|
   .row
-    .col-md-12{style: 'text-align: center'}
+    .col-sm-12{style: 'text-align: center'}
       %h2
         %b 1. Qual tipo de agendamento você deseja realizar?
   %hr/
   .row
-    .col-md-12
+    .col-sm-12
       = f.association :agenda, label: false, collection: Schedule::Agenda.habitation.active,prompt: 'selecione a agenda...', input_html: { style: 'font-size: 20px;height: 50px;'}
       #description
   %br/

@@ -45,25 +45,34 @@ $(document).ready(function() {
       slideMargin: 0,
       controls: false
     });
-
-    $('.bottomSlider .flexslider').flexslider({
-        animation: "slide",
-        useCSS: false,
-        animationLoop: false,
-        manualControls: '.flex-control-nav li a',
-        smoothHeight: true,
-        start: function (slider) {
-            $('body').removeClass('loading');
-            $('body').trigger('resize');
-        },
-        after: function (slider) {
-        },
-        before: function (slider) {
-            try {
-                $f(player).api('pause');
-            } catch (ex) {
-            }
-        }
+    $('.bxslide3').bxSlider({
+      slideMargin: 0,
+      controls: false
     });
+    $('.bxslide4').bxSlider({
+      slideMargin: 0,
+      controls: false,
+      pagerCustom: '#slider_meses'
+    });
+
+    // $('.bottomSlider .flexslider').flexslider({
+    //     animation: "slide",
+    //     useCSS: false,
+    //     animationLoop: false,
+    //     manualControls: '.flex-control-nav li a',
+    //     smoothHeight: true,
+    //     start: function (slider) {
+    //         $('body').removeClass('loading');
+    //         $('body').trigger('resize');
+    //     },
+    //     after: function (slider) {
+    //     },
+    //     before: function (slider) {
+    //         try {
+    //             $f(player).api('pause');
+    //         } catch (ex) {
+    //         }
+    //     }
+    // });
 
 });
