@@ -9,24 +9,20 @@ namespace :update do
     @index = 0
 
 
-     CSV.foreach("lib/files/unit.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/listagem.csv", :col_sep => "#") do |row|
 
 
-           @teste = Address::Unit.new(
-           acron_block: row[0],
-           block: row[1],
-           acron_group: row[2],
-           group: row[2],
-           unit: row[3],
-           cep_unit: row[4],
-           area: row[6],
-           complete_address: row[7],
-           burgh: row[8],
-           situation_unit_id: row[9],
-           donate: row[10],
-           city_id: row[11],
-           project_enterprise_id: row[11].to_s == "810" ? 17 : nil,
-           control_number: row[12]
+           @teste = Sefaz::Exemption.new(
+           name: row[2],
+           cpf: row[3].gsub('.','').gsub('-',''),
+           city: row[4],
+           address: row[5].strip,
+           realty_number: row[6],
+           realty_value: row[7],
+           allotment_id: row[0],
+           created_at: row[9],
+           act_number: row[8].to_s == "NULL" ? nil :row[8],
+           unitary: false,
            )
 
            #puts @teste.inspect

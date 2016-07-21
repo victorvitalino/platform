@@ -1,0 +1,19 @@
+- if @exemptions.present?
+  - @exemptions.each do |e|
+    %tr
+      %td= e.name
+      %td= e.cpf
+      %td= e.city
+      %td= e.address
+      %td= e.realty_number
+      %td= e.realty_value
+      %td= e.act_number
+      %td
+        - if e.return_message.present?
+          = link_to "", "#", title: e.return_message,  class: 'btn btn-xs btn-danger glyphicon glyphicon-warning-sign'
+        - else
+          %span.label.label-success
+            %i.glyphicon.glyphicon-ok
+      %td
+        = link_to "",edit_allotment_exemption_path(e.allotment_id,e), title: "Candidatos",  class: 'glyphicon glyphicon-edit btn btn-info btn-xs'
+        = link_to "", allotment_exemption_path(e.allotment_id,e), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."}

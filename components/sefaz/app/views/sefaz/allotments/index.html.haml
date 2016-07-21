@@ -1,0 +1,48 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Listagem de Lotes
+        = link_to 'Novo lote', new_allotment_path,class: 'pull-right mgl',data: {disable_with: "carregando..."}
+  .panel-body
+    .row.form-filter
+      .col-md-12
+        = simple_form_for  url_for, method: 'get' do |f|
+          .row
+            .col-md-2
+              = f.label 'CPF', class: 'fg-label'
+              = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+            .col-md-1
+              = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+    .row
+      .col-md-12
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table#data-table-command.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th #
+                %th Setor
+                %th Transmitente
+                %th Quantidade
+                %th Tipo de Isenção
+                %th Protocolo
+                %th Data
+                %th Status
+                %th Ações
+            %tbody
+              - @allotments.order('created_at desc').each do |a|
+                %tr
+                  %td= a.id
+                  %td= a.staff.sector_current.acron if a.staff.present?
+                  %td= a.notifiers
+                  %td= a.exemptions.count
+                  %td= a.exemption_type.upcase
+                  %td= a.protocol_return
+                  %td= a.created_at.strftime('%d/%m/%Y - %H:%M')
+                  %td= a.send_status.name if a.send_status.present?
+                  %td
+                    = link_to "", allotment_to_process_path(a), title: "Processar lote",  class: 'glyphicon glyphicon-download-alt btn btn-info btn-xs' if a.send_status_id == 3
+                    = link_to "", "#", title: "Enviar lote",  class: 'glyphicon glyphicon-send btn btn-warning btn-xs' if a.send_status_id == 2
+                    = link_to "",allotment_exemptions_path(a), title: "Candidatos",  class: 'glyphicon glyphicon-user btn btn-success btn-xs'
+                    = link_to "", edit_allotment_path(a), title: "editar",  class: 'glyphicon glyphicon-edit btn btn-info btn-xs',data: {disable_with: "carregando..."}
+                    = link_to "", allotment_path(a), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."}
