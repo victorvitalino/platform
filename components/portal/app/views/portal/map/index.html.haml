@@ -41,4 +41,4 @@
                   %td{style: 'width: 1%'}
                     %span{class: "label label-#{addr.set_color}"}
                       = addr.ammvs_cdru
-                  %td.col-md-1= addr.ammvs_cdru_observation
+                  %td.col-md-1= addr.ammvs_cdru_observation == "Sem informação" ? "-" : addr.ammvs_cdru_observation
