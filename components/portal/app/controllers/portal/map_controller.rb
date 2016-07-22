@@ -8,9 +8,9 @@ module Portal
                                         ON am.unit_id = address_units.id")
                                       .where("urb = 'ETAPA 4C'")
 
-      if params[:by_cdru] == "false"
+      if params[:by_cdru] == "0"
         @address = @address.where("am.cdru = 'NÃO'")
-      elsif params[:by_cdru] == "true"
+      elsif params[:by_cdru] == "1"
         @address = @address.where("am.cdru = 'SIM'")
       end
 
