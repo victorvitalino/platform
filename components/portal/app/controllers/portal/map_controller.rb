@@ -5,9 +5,18 @@ module Portal
     def index
       @address = Address::Unit.includes([:cadastres, :ammvs]).select('address_units.*, am.cdru')
                                       .joins("LEFT JOIN candidate_ammvs AS am
-                                        ON am.unit_id = address_units.id")
+                                              ON am.unit_id = address_units.id")
+                                      .joins("LEFT JOIN candidate_cadastres AS cand
+                                              ON cand.cpf = am.cpf")
+                                      .joins("LEFT JOIN entity_old_candidates AS ent_cad
+                                              ON ent_cad.cadastre_id = cand.id")
+                                      .joins("LEFT JOIN entity_olds AS old
+                                              ON old.id = ent_cad.old_id")
                                       .where("urb = 'ETAPA 4C'")
-
+      if params[:by_entity].present?
+        @address = @address.where("ent_cad.id = ?", params[:by_entity])
+      end
+      
       if params[:by_situation] == "1"
         @address = @address.where("address_units.situation_unit_id <> 1")
       elsif params[:by_situation] == "0"

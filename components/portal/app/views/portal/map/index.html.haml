@@ -16,6 +16,8 @@
           .col-md-2
             = f.input :by_construct, label: "Construtora", as: :select, collection: {'Sem informação' => 0, 'AMMVS' => 1, 'DIRECIONAL' => 2, 'IPE OMNI' => 3, 'JCGONTIJO' => 4}, include_blank: 'Todos', input_html: { name: 'by_construct'}, selected: params[:by_construct]
           .col-md-2
+            = f.input :by_entity, label: "Entidade", as: :select, collection: Entity::Old.where(old: "Credenciada").order(:fantasy_name), label_method: :fantasy_name, include_blank: 'Todos', input_html: { name: 'by_entity'}, selected: params[:by_entity]
+          .col-md-2
             = f.submit "filtrar", name: nil, class: 'btn btn-success btn filter-button', data: { disable_with: t(:disable_with)}
       .row
         .col-md-12
