@@ -10,7 +10,7 @@
           .col-md-2
             = f.input :by_situation, label: "Situação do imóvel", as: :select, selected: params[:by_situation], collection: {vago: 0, ocupado: 1},include_blank: 'Todos', input_html: { name: 'by_situation'}
           .col-md-2
-            = f.input :by_cdru, label: "Possuí cdru?", as: :select, include_blank: 'Todos', input_html: { name: 'by_cdru'}, selected: params[:by_cdru]
+            = f.input :by_cdru, label: "Possuí cdru?", as: :select, collection: { "Sim" => 1, "Não" => 0}, include_blank: 'Todos', input_html: { name: 'by_cdru'}, selected: params[:by_cdru]
           .col-md-2
             = f.input :by_finance_agent, label: "Agente financeiro", as: :select, collection: {'Auto gestão' => 0, 'Sem agente definido' => 1, 'Caixa' => 2}, include_blank: 'Todos', input_html: { name: 'by_finance_agent'}, selected: params[:by_finance_agent]
           .col-md-2
