@@ -2,25 +2,40 @@ require_dependency 'portal/application_controller'
 module Portal
   class MapController < ApplicationController
 
-    def test
-      @address = Address::Unit.select('address_units.id, address_units.complete_address,
-                                      address_units.unit, address_units.coordinate, am.id,
-                                      am.unit_id')
+    def index
+      @address = Address::Unit.includes([:cadastres, :ammvs]).select('address_units.*')
                                       .joins('LEFT JOIN candidate_ammvs AS am
                                         ON am.unit_id = address_units.id')
                                       .where("urb = 'ETAPA 4C' and coordinate IS NOT NULL")
-      
-      @data = Array.new
-      @index = 0
-      @address.each do |addr|
-        @index += 1
-        @cdru     = Candidate::Ammv.where(unit_id: addr.id).last
-        @tcu      = Candidate::CadastreAddress.where(unit_id: addr.id).order(:created_at).last
-        @cadastre = @tcu.present? ? @tcu.cadastre_id : nil
+=begin
+      sql = <<-SQL
+        select *, ad.id from address_units as ad
+        left join candidate_ammvs as am
+        on am.unit_id = ad.id
+        where ad.urb = 'ETAPA 4C' and coordinate is not null
+      SQL
 
-        @in_unit    =  addr.candidate_in_unit
-        @crdu_resp  =  @cdru.present? ? @cdru.set_cdru(@tcu) : "Sem registro"
+      @address = Address::Unit.find_by_sql(sql)
+=end
+      
+      respond_to do |format|
+        format.json {
+          headers['Access-Control-Allow-Origin']    = '*'
+          headers['Access-Control-Allow-Methods']   = 'POST, PUT, DELETE, GET, OPTIONS'
+          headers['Access-Control-Request-Method']  = '*'
+          headers['Access-Control-Allow-Headers']   = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+          
+          render json: Address::Unit.json(@address)
+        }
+
+        format.html 
+      end
         
+=begin      
+      @data = Array.new
+
+      @address.each do |addr|
+
         @data << {
           coordinate: addr.coordinate.split(','),
           complete_address: addr.complete_address,
@@ -36,20 +51,8 @@ module Portal
           color: addr.set_color(@in_unit, @crdu_resp)
         }
       end
-
+=end
       
-      respond_to do |format|
-        format.json {
-          headers['Access-Control-Allow-Origin']    = '*'
-          headers['Access-Control-Allow-Methods']   = 'POST, PUT, DELETE, GET, OPTIONS'
-          headers['Access-Control-Request-Method']  = '*'
-          headers['Access-Control-Allow-Headers']   = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-          
-          render json: @data
-        }
-
-        format.html 
-      end
       
     end
 

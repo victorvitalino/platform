@@ -7,7 +7,7 @@ module Address
     has_many :notary_offices
     has_many :cadastre_address, class_name: "Candidate::CadastreAddress"
     has_many :cadastres, through: :cadastre_address, class_name: "Candidate::Cadastre"
-    has_many :ammvs, class_name: "Candidate::Ammv", foreign_key: 'unit_id'
+    has_many :ammvs, class_name: "Candidate::Ammv"
 
     scope :address, -> (address) {where("complete_address ILIKE ?", "%#{address}%")}
     scope :status, -> (status) {where(situation_unit_id: status)}
@@ -25,15 +25,79 @@ module Address
     scope :name_candidate, -> (name_candidate) {joins(cadastre_address: :cadastre).where("candidate_cadastres.name ILIKE ?","#{name_candidate}%")}
 
 
-    def set_color(in_unit, cdru)
-      return "blue" if in_unit.nil?
-      case cdru 
-        when "SIM"
-          'green'
-        when '4º Termo Aditivo'
-          'yellow'
-        when 'Migrado sem autorização e Não possui cadastro na CODHAB' 
-          'red'
+    def dweller
+      object_ammvs      = self.ammvs.last
+      object_cadastre   = self.cadastres.last
+
+      if object_ammvs.present?
+        object_ammvs
+      elsif object_cadastre.present?
+        object_cadastre
+      else
+        nil
+      end
+    end
+
+    def dweller_name
+      return "Sem informação" if dweller.nil?
+      dweller.name.upcase
+    end
+
+    def dweller_cpf
+      return "Sem informação" if dweller.nil?
+      dweller.cpf
+    end
+
+
+    def date_tcu 
+      last_cadastre_address = self.cadastre_address.last
+      if last_cadastre_address.present?
+        last_cadastre_address.created_at.strftime("%d/%m/%Y")
+      else
+        nil
+      end
+    end
+
+    def ammvs_cdru
+      cdru_ammvs = self.ammvs.last
+      cadastre   = self.cadastres.last
+
+      tcu = Date.parse(date_tcu) rescue nil
+      if cdru_ammvs.present? && cdru_ammvs.cdru == "SIM"
+        "Incluso na CDRU" 
+      elsif cadastre.present?
+        not_present_cdru(tcu)
+      else
+        "Imóvel vago"
+      end
+    end
+
+    def not_present_cdru(tcu)
+      if tcu.present?
+        if tcu >= Date.parse('05/05/2016')
+          "4º Termo Aditivo"
+        elsif tcu < Date.parse('05/05/2016')
+          "Migrado sem autorização"
+        elsif !cdru_ammvs.cadastre_exists?
+          "Não possui cadastro na CODHAB"
+        end
+      end
+    end
+
+    def set_color
+      case self.ammvs_cdru
+      when 'Incluso na CDRU'
+        'success'
+      when '4º Termo Aditivo'
+        'danger'
+      when 'Migrado sem autorização'
+        'danger'
+      when 'Não possui cadastro na CODHAB'
+        'danger'
+      when 'Imóvel vago'
+        'primary'
+      when 'black'
+        'black'
       end
     end
 
@@ -48,7 +112,26 @@ module Address
     end
    end
 
-   
+   def self.json(address)
+    data = Array.new
+
+    address.order(:complete_address).each do |addr|
+      data << {
+        coordinate: addr.coordinate.split(','),
+        complete_address: addr.complete_address,
+        unit: addr.unit,
+        name: addr.dweller_name,
+        cpf:  addr.dweller_cpf,
+        cpf_formated: (addr.dweller_cpf != "Sem informação") ? addr.dweller_cpf.format_cpf : "",
+        tcu:  addr.date_tcu.present? ? addr.date_tcu : "Sem informação",
+        color: addr.set_color,
+        cdru: addr.ammvs_cdru
+      }
+    end
+
+    data
+   end
+
    private
 
    def ammvs_candidate

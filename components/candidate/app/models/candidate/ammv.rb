@@ -1,17 +1,8 @@
 module Candidate
   class Ammv < ActiveRecord::Base
-
-    def set_cdru(tcu)
-      
-      if self.cdru == "SIM"
-        "Incluso na CDRU"
-      else 
-        if tcu.nil?
-          "Sem registro na CODHAB"
-        else
-          "Não"
-        end
-      end 
+    
+    def cadastre_exists?
+      Candidate::Cadastre.find_by_cpf(self.cpf) rescue nil
     end
   end
 end
