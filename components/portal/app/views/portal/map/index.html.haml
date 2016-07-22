@@ -30,6 +30,7 @@
                 %th Endereço
                 %th Nome 
                 %th CPF
+                %th Entidade
                 %th Ag. Fin
                 %th TCU
                 %th CDRU
@@ -40,6 +41,7 @@
                   %td.col-md-2= addr.complete_address
                   %td.col-md-3= addr.dweller_name
                   %td= link_to addr.dweller_cpf, habitation_portal.candidate_path(addr.dweller_cpf), target: '_blank'
+                  %td.col-md-1= addr.ammvs_entity_name
                   %td= addr.ammvs_finance_agent
                   %td= addr.date_tcu.present? ? addr.date_tcu : "Sem informação" 
                   %td{style: 'width: 1%'}

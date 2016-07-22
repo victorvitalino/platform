@@ -8,6 +8,12 @@ module Portal
                                         ON am.unit_id = address_units.id")
                                       .where("urb = 'ETAPA 4C'")
 
+      if params[:by_situation] == "1"
+        @address = @address.where("address_units.situation_unit_id <> 1")
+      elsif params[:by_situation] == "0"
+        @address = @address.where("address_units.situation_unit_id = 1")
+      end
+                                       
       if params[:by_cdru] == "0"
         @address = @address.where("am.cdru = 'NÃO'")
       elsif params[:by_cdru] == "1"

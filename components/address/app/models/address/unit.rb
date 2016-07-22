@@ -91,6 +91,20 @@ module Address
       cdru_ammvs.constructor
     end
 
+    def ammvs_entity_name
+      cdru_ammvs = self.ammvs.last
+      cadastre   = self.cadastres.last
+
+      if cdru_ammvs.present?
+        cadastre_ammvs    = Candidate::Cadastre.find_by_cpf(cdru_ammvs.cpf) rescue nil
+        candidate_entity  = Entity::OldCandidate.find_by_cadastre_id(cadastre_ammvs.id) rescue nil
+      elsif cadastre.present?
+        candidate_entity = Entity::OldCandidate.find_by_cadastre_id(cadastre.id) rescue nil
+      end
+        
+      candidate_entity.present? ? candidate_entity.old.fantasy_name : "Sem informação"
+    end
+
     def not_present_cdru(tcu)
       if tcu.present?
         if tcu >= Date.parse('05/05/2016')
@@ -147,7 +161,8 @@ module Address
         cdru: addr.ammvs_cdru,
         cdru_observation: addr.ammvs_cdru_observation,
         cdru_finance_agent: addr.ammvs_finance_agent,
-        cdru_constructor: addr.ammvs_constructor
+        cdru_constructor: addr.ammvs_constructor,
+        entity: addr.ammvs_entity_name
       }
     end
 
