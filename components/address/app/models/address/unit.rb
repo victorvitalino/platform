@@ -62,14 +62,27 @@ module Address
       cdru_ammvs = self.ammvs.last
       cadastre   = self.cadastres.last
 
+      return "Imóvel vago" if cdru_ammvs.nil? && cadastre.nil?
+      
       tcu = Date.parse(date_tcu) rescue nil
+      
       if cdru_ammvs.present? && cdru_ammvs.cdru == "SIM"
         "Incluso na CDRU" 
-      elsif cadastre.present?
-        not_present_cdru(tcu)
       else
-        "Imóvel vago"
+        return "Não possui cadastro na CODHAB" if cadastre.nil?
+        not_present_cdru(tcu)
       end
+    end
+
+    def ammvs_cdru_observation
+      cdru_ammvs = self.ammvs.last
+      cdru_ammvs.present? ? cdru_ammvs.cdru_observation.downcase : "Sem informação"
+    end
+
+    def ammvs_finance_agent
+      cdru_ammvs = self.ammvs.last
+      return "Sem informação" if cdru_ammvs.nil?
+      cdru_ammvs.finance_agent
     end
 
     def not_present_cdru(tcu)
@@ -78,9 +91,9 @@ module Address
           "4º Termo Aditivo"
         elsif tcu < Date.parse('05/05/2016')
           "Migrado sem autorização"
-        elsif !cdru_ammvs.cadastre_exists?
-          "Não possui cadastro na CODHAB"
         end
+      else
+        "Sem informação"
       end
     end
 
@@ -125,7 +138,8 @@ module Address
         cpf_formated: (addr.dweller_cpf != "Sem informação") ? addr.dweller_cpf.format_cpf : "",
         tcu:  addr.date_tcu.present? ? addr.date_tcu : "Sem informação",
         color: addr.set_color,
-        cdru: addr.ammvs_cdru
+        cdru: addr.ammvs_cdru,
+        cdru_observation: addr.ammvs_cdru_observation
       }
     end
 

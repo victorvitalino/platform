@@ -3,11 +3,17 @@ module Portal
   class MapController < ApplicationController
 
     def index
-      @address = Address::Unit.includes([:cadastres, :ammvs]).select('address_units.*')
-                                      .joins('LEFT JOIN candidate_ammvs AS am
-                                        ON am.unit_id = address_units.id')
+      @address = Address::Unit.includes([:cadastres, :ammvs]).select('address_units.*, am.cdru')
+                                      .joins("LEFT JOIN candidate_ammvs AS am
+                                        ON am.unit_id = address_units.id")
                                       .where("urb = 'ETAPA 4C' and coordinate IS NOT NULL")
-=begin
+
+      if params[:by_cdru] == "false"
+        @address = @address.where("am.cdru = 'NÃO'")
+      elsif params[:by_cdru] == "true"
+        @address = @address.where("am.cdru = 'SIM'")
+      end
+=begin 
       sql = <<-SQL
         select *, ad.id from address_units as ad
         left join candidate_ammvs as am

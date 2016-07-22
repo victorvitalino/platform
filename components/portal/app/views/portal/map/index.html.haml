@@ -1,33 +1,44 @@
-.row
-  = simple_form_for url_for, method: :get do |f|
-    .col-md-2
-      = f.input :by_situation, label: "Situação do imóvel", as: :select, collection: ['vago', 'ocupado'],include_blank: 'Todos'
-    .col-md-2
-      = f.input :by_cdru, label: "Possuí cdru?", as: :select, include_blank: 'Todos'
-    .col-md-2
-      = f.submit "filtrar", name: nil, class: 'btn btn-success btn filter-button'
-.row
-  .col-md-12
-    %h2 
-      %b Total listado:
-      #{@address.to_a.count}
-.row
-  .col-md-12
-    %table.table.table-striped.table-bordered
-      %thead 
-        %tr 
-          %th Endereço
-          %th Nome 
-          %th CPF
-          %th TCU
-          %th CDRU
-      %tbody
-        - @address.order(:complete_address).each do |addr|
-          %tr 
-            %td.col-md-2= addr.complete_address
-            %td= addr.dweller_name
-            %td= addr.dweller_cpf
-            %td= addr.date_tcu.present? ? addr.date_tcu : "Sem informação" 
-            %td
-              %span{class: "label label-#{addr.set_color}"}
-                = addr.ammvs_cdru
+.col-md-12.box
+  .panel.panel-default
+    .panel-heading
+      %h2
+        %b Riacho Fundo 4ª Etapa
+    %hr/
+    .panel-body
+      .row
+        = simple_form_for url_for, method: :get do |f|
+          .col-md-2
+            = f.input :by_situation, label: "Situação do imóvel", as: :select, selected: params[:by_situation], collection: {vago: 0, ocupado: 1},include_blank: 'Todos', input_html: { name: 'by_situation'}
+          .col-md-2
+            = f.input :by_cdru, label: "Possuí cdru?", as: :select, include_blank: 'Todos', input_html: { name: 'by_cdru'}, selected: params[:by_cdru]
+          .col-md-2
+            = f.submit "filtrar", name: nil, class: 'btn btn-success btn filter-button', data: { disable_with: t(:disable_with)}
+      .row
+        .col-md-12
+          %h2 
+            %b Total listado:
+            #{@address.to_a.count}
+      .row
+        .col-md-12
+          %table.table.table-striped.table-bordered{style: 'font-size: 13px'}
+            %thead 
+              %tr 
+                %th Endereço
+                %th Nome 
+                %th CPF
+                %th Ag. Fin
+                %th TCU
+                %th CDRU
+                %th Observação
+            %tbody
+              - @address.order(:complete_address).each do |addr|
+                %tr 
+                  %td.col-md-2= addr.complete_address
+                  %td.col-md-3= addr.dweller_name
+                  %td= link_to addr.dweller_cpf, habitation_portal.candidate_path(addr.dweller_cpf), target: '_blank'
+                  %td= addr.ammvs_finance_agent
+                  %td= addr.date_tcu.present? ? addr.date_tcu : "Sem informação" 
+                  %td{style: 'width: 1%'}
+                    %span{class: "label label-#{addr.set_color}"}
+                      = addr.ammvs_cdru
+                  %td.col-md-1= addr.ammvs_cdru_observation
