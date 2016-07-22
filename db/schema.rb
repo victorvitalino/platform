@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20160722170928) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -410,7 +412,14 @@ ActiveRecord::Schema.define(version: 20160722170928) do
     t.string   "cdru_observation"
     t.integer  "unit_id"
     t.integer  "cadastre_id"
+<<<<<<< HEAD
     t.integer  "index_migrate"
+=======
+<<<<<<< HEAD
+    t.integer  "index_migrate"
+=======
+>>>>>>> 9e35c7239f45fb7f75c6a748cb82a700ec6ca474
+>>>>>>> ff1baebbe4ce044fe6dc65d6f6d16925e4078acf
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

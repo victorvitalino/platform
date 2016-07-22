@@ -10,6 +10,7 @@ module Candidate
     belongs_to :city, class_name: "Address::City"
     belongs_to :work_city, class_name: "Address::City"
 
+    has_many :ammvs
     has_many :cadastre_mirrors
     has_many :dependents
     has_many :cadastre_situations

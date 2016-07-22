@@ -10,7 +10,7 @@ module EntityPortal
 
     def index
       @old = Entity::Old.order(:name).all
-      @old = apply_scopes(@old).paginate(:page => params[:page], :per_page => 20)
+      @old = apply_scopes(@old).paginate(:page => params[:page], :per_page => params[:per_page].present? ? params[:per_page] : 20)
       
       respond_to do |format|
 
