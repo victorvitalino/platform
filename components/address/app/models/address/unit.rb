@@ -85,6 +85,12 @@ module Address
       cdru_ammvs.finance_agent
     end
 
+    def ammvs_constructor
+      cdru_ammvs = self.ammvs.last
+      return "Sem informação" if cdru_ammvs.nil?
+      cdru_ammvs.constructor
+    end
+
     def not_present_cdru(tcu)
       if tcu.present?
         if tcu >= Date.parse('05/05/2016')
@@ -100,7 +106,7 @@ module Address
     def set_color
       case self.ammvs_cdru
       when 'Incluso na CDRU'
-        'success'
+        'warning'
       when '4º Termo Aditivo'
         'danger'
       when 'Migrado sem autorização'
@@ -130,7 +136,7 @@ module Address
 
     address.order(:complete_address).each do |addr|
       data << {
-        coordinate: addr.coordinate.split(','),
+        coordinate: addr.coordinate.to_s.split(','),
         complete_address: addr.complete_address,
         unit: addr.unit,
         name: addr.dweller_name,
@@ -139,7 +145,9 @@ module Address
         tcu:  addr.date_tcu.present? ? addr.date_tcu : "Sem informação",
         color: addr.set_color,
         cdru: addr.ammvs_cdru,
-        cdru_observation: addr.ammvs_cdru_observation
+        cdru_observation: addr.ammvs_cdru_observation,
+        cdru_finance_agent: addr.ammvs_finance_agent,
+        cdru_constructor: addr.ammvs_constructor
       }
     end
 

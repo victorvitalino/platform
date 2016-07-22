@@ -6,24 +6,36 @@ module Portal
       @address = Address::Unit.includes([:cadastres, :ammvs]).select('address_units.*, am.cdru')
                                       .joins("LEFT JOIN candidate_ammvs AS am
                                         ON am.unit_id = address_units.id")
-                                      .where("urb = 'ETAPA 4C' and coordinate IS NOT NULL")
+                                      .where("urb = 'ETAPA 4C'")
 
       if params[:by_cdru] == "false"
         @address = @address.where("am.cdru = 'NÃO'")
       elsif params[:by_cdru] == "true"
         @address = @address.where("am.cdru = 'SIM'")
       end
-=begin 
-      sql = <<-SQL
-        select *, ad.id from address_units as ad
-        left join candidate_ammvs as am
-        on am.unit_id = ad.id
-        where ad.urb = 'ETAPA 4C' and coordinate is not null
-      SQL
 
-      @address = Address::Unit.find_by_sql(sql)
-=end
-      
+      case params[:by_finance_agent]
+      when '0'
+        @address = @address.where("am.finance_agent = 'AUTOGESTÃO'")
+      when '1'
+        @address = @address.where("am.finance_agent = 'SEM AGENTE DEFINIDO'")
+      when '2'
+        @address = @address.where("am.finance_agent = 'CAIXA'")
+      end
+
+      case params[:by_construct]
+      when '0'
+        @address = @address.where("am.constructor = 'ASSENTADO NO SISTEMA'")
+      when '1'
+        @address = @address.where("am.constructor = 'AMMVS'")
+      when '2'
+        @address = @address.where("am.constructor = 'DIRECIONAL'")
+      when '3'
+        @address = @address.where("am.constructor = 'IPE OMNI'")
+      when '4'
+        @address = @address.where("am.constructor = 'JCGONTIJO'")
+      end
+
       respond_to do |format|
         format.json {
           headers['Access-Control-Allow-Origin']    = '*'
