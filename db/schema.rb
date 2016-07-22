@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721125413) do
-
+ActiveRecord::Schema.define(version: 20160722170928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -411,6 +410,7 @@ ActiveRecord::Schema.define(version: 20160721125413) do
     t.string   "cdru_observation"
     t.integer  "unit_id"
     t.integer  "cadastre_id"
+    t.integer  "index_migrate"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -2640,6 +2640,7 @@ ActiveRecord::Schema.define(version: 20160721125413) do
     t.integer  "send_status_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "send_type"
   end
 
   add_index "sefaz_allotments", ["send_staff_id"], name: "index_sefaz_allotments_on_send_staff_id", using: :btree
@@ -2663,6 +2664,7 @@ ActiveRecord::Schema.define(version: 20160721125413) do
     t.boolean  "unitary"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "system_message"
   end
 
   add_index "sefaz_exemptions", ["allotment_id"], name: "index_sefaz_exemptions_on_allotment_id", using: :btree

@@ -32,15 +32,7 @@ module Sefaz
 			redirect_to action: 'new'
 		end
 
-		def send_exemption
-			client = Savon.client(wsdl: 'http://publica.agencianet.fazenda.df.gov.br/codhab/ConsessaoImovel.asmx?wsdl')
-			@teste = client.operations
-
-			@exemptions = Exemption.where(send_status_id: 1)
-			type = @exemptions.last.exemption_type == "ITBI" ? 1 : 2
-		  @exemption = Exemption.xml(@exemptions)
-		end
-
+	
 		def destroy
 			if @exemption.destroy
 				redirect_to action: 'index'

@@ -3,6 +3,9 @@
     .col-md-4
       = f.label :exemption_type, class: 'fg-label'
       = f.input :exemption_type, as: 'select', label: false, collection:(Sefaz::Allotment.exemption_types.map {|k,v| [k.upcase,k]}), prompt: 'selecione...'
+    .col-md-4
+      = f.label :send_type, class: 'fg-label'
+      = f.input :send_type, as: 'select', label: false, collection:(Sefaz::Allotment.send_types.map {|ke,va| [ke.upcase,ke]}), prompt: 'selecione...' 
   .row
     .col-md-4
       = f.label :notifiers, class: 'fg-label'

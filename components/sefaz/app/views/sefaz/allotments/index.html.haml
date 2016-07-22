@@ -10,8 +10,21 @@
         = simple_form_for  url_for, method: 'get' do |f|
           .row
             .col-md-2
-              = f.label 'CPF', class: 'fg-label'
-              = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+              = f.label 'Protocolo', class: 'fg-label'
+              = f.input :protocolo, label: false, input_html: { name: 'protocolo', value: params[:protocolo]}
+            .col-md-2
+              = f.label 'Data', class: 'fg-label'
+              = f.input :date_create, label: false, input_html: { name: 'date_create', value: params[:date_create]}
+            .col-md-2
+              = f.label 'Tipo de solicitação', class: 'fg-label'
+              = f.input :send_type, as: 'select', collection:(Sefaz::Allotment.send_types.map {|ke,va| [ke.humanize,ke]}), label: false,prompt: "Selecione...", input_html: { name: 'send_type', value: params[:send_type]}
+          .row
+            .col-md-4
+              = f.label 'Transmitente', class: 'fg-label'
+              = f.input :notifiers, label: false, input_html: { name: 'notifiers', value: params[:notifiers]}
+            .col-md-2
+              = f.label 'Status', class: 'fg-label'
+              = f.input :send_status, as: 'select', collection: Sefaz::SendStatus.all, label: false,prompt: "Selecione...", input_html: { name: 'send_status', value: params[:send_status]}
             .col-md-1
               = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
     .row
@@ -28,6 +41,7 @@
                 %th Protocolo
                 %th Data
                 %th Status
+                %th Tipo de Envio
                 %th Ações
             %tbody
               - @allotments.order('created_at desc').each do |a|
@@ -40,9 +54,13 @@
                   %td= a.protocol_return
                   %td= a.created_at.strftime('%d/%m/%Y - %H:%M')
                   %td= a.send_status.name if a.send_status.present?
+                  %td= a.send_type_i18n
                   %td
                     = link_to "", allotment_to_process_path(a), title: "Processar lote",  class: 'glyphicon glyphicon-download-alt btn btn-info btn-xs' if a.send_status_id == 3
-                    = link_to "", "#", title: "Enviar lote",  class: 'glyphicon glyphicon-send btn btn-warning btn-xs' if a.send_status_id == 2
+                    = link_to "", allotment_send_exemption_path(a), title: "Enviar lote",  class: 'glyphicon glyphicon-send btn btn-warning btn-xs' if a.send_status_id == 2
                     = link_to "",allotment_exemptions_path(a), title: "Candidatos",  class: 'glyphicon glyphicon-user btn btn-success btn-xs'
-                    = link_to "", edit_allotment_path(a), title: "editar",  class: 'glyphicon glyphicon-edit btn btn-info btn-xs',data: {disable_with: "carregando..."}
-                    = link_to "", allotment_path(a), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."}
+                    = link_to "", edit_allotment_path(a), title: "editar",  class: 'glyphicon glyphicon-edit btn btn-info btn-xs',data: {disable_with: "carregando..."} if a.send_status_id < 3
+                    = link_to "", allotment_path(a), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."} if a.send_status_id < 3
+    .row
+      .col-md-6.col-md-offset-3
+        = will_paginate @allotments, renderer: BootstrapPagination::Rails
