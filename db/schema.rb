@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160722170928) do
-
+ActiveRecord::Schema.define(version: 20160725193509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,8 +170,8 @@ ActiveRecord::Schema.define(version: 20160722170928) do
     t.integer  "type_use_unit_id"
     t.integer  "city_id"
     t.integer  "program"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "project_enterprise_id"
     t.string   "urb"
     t.integer  "control_number"
@@ -184,6 +182,8 @@ ActiveRecord::Schema.define(version: 20160722170928) do
     t.string   "lat"
     t.string   "lng"
     t.string   "coordinate"
+    t.boolean  "contract_delivered"
+    t.datetime "contract_delivered_date"
   end
 
   add_index "address_units", ["city_id"], name: "index_address_units_on_city_id", using: :btree
@@ -412,14 +412,7 @@ ActiveRecord::Schema.define(version: 20160722170928) do
     t.string   "cdru_observation"
     t.integer  "unit_id"
     t.integer  "cadastre_id"
-<<<<<<< HEAD
     t.integer  "index_migrate"
-=======
-<<<<<<< HEAD
-    t.integer  "index_migrate"
-=======
->>>>>>> 9e35c7239f45fb7f75c6a748cb82a700ec6ca474
->>>>>>> ff1baebbe4ce044fe6dc65d6f6d16925e4078acf
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

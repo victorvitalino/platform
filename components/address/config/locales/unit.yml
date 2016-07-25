@@ -21,3 +21,5 @@ pt-BR:
         situation_unit: "Situação da unidade"
         type_use_unit_id: "Tipo de uso"
         firm_enterprise_id: "Empreendimento"
+        contract_delivered: "Escritura entregue?"
+        contract_delivered_date: "Data de entrega da escritura"

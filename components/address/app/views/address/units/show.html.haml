@@ -93,6 +93,13 @@
             %label Escriturado?:
             = @unit.registry_units.last.situation if @unit.registry_units.present?
         .row
+          .col-md-4
+            %label Escritura Entregue?:
+            = @unit.contract_delivered ? "Sim" : "Não"
+          .col-md-4
+            %label Data de entrega da escritura:
+            = @unit.contract_delivered_date.strftime("%d/%m/Y") if @unit.contract_delivered_date.present?
+        .row
           .col-md-8
             %label Empreendimento:
             = @unit.enterprises.name if @unit.enterprises.present?

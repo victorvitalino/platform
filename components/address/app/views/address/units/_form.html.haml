@@ -64,6 +64,13 @@
     = f.label :project_enterprise_id, class: 'fg-label'
     = f.input :project_enterprise_id, as: 'select', collection: Project::Enterprise.all, label: false, prompt: "Selecione..."
   .row
+   .col-md-4
+    = f.label :contract_delivered, class: 'fg-label'
+    = f.input :contract_delivered, label: false, input_html: { placeholder: 'Preencha'}
+   .col-md-4
+    = f.label :contract_delivered_date, class: 'fg-label'
+    = f.input :contract_delivered_date, as: 'string',  label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@unit.contract_delivered_date) ? localize(f.object.contract_delivered_date) : nil}
+  .row
    .col-md-8
     = f.submit 'salvar' , class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
     = link_to "voltar",  units_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}
