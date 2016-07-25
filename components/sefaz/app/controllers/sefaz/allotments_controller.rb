@@ -15,11 +15,15 @@ module Sefaz
 		has_scope	:send_type
 
     def index
-			@allotments = apply_scopes(@allotments).paginate(:page => params[:page], :per_page => 30)
+			authorize :allotment,  :index?
 
+			
+
+			@allotments = apply_scopes(@allotments).paginate(:page => params[:page], :per_page => 30)
     end
 
     def new
+			authorize :allotment,  :create?
       @allotment = Sefaz::Allotment.new
     end
 
@@ -27,7 +31,7 @@ module Sefaz
 			@allotment = Sefaz::Allotment.new(allotment_params)
 			@allotment.staff_id = current_user.id
 			@allotment.send_status_id = 1
-			#authorize :sector,  :create?
+			authorize :allotment,  :create?
 			if @allotment.save
 					redirect_to action: 'index'
 			else
@@ -39,20 +43,20 @@ module Sefaz
 		end
 
 		def update
-			#authorize :sector,  :update?
+			authorize :allotment,  :update?
 			@allotment.update(allotment_params)
 			redirect_to allotments_path
 		end
 
 		def destroy
-			#authorize :sector,  :destroy?
+			authorize :allotment,  :update?
 			if @allotment.destroy
 				redirect_to action: 'index'
 			end
 		end
 
 		def to_process
-
+			authorize :allotment,  :to_process?
 			@allotment = Sefaz::Allotment.find(params[:allotment_id])
 
 			message = { "num_protocolo"  => @allotment.protocol_return.to_s }
@@ -98,6 +102,7 @@ module Sefaz
 		end
 
 		def send_exemption
+			authorize :allotment,  :send_allotment?
 
 			@exemption = Sefaz::Exemption.where(allotment_id: params[:allotment_id])
 

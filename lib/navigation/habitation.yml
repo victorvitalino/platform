@@ -161,6 +161,16 @@ nav:
             code: 11011
             label: 'Gestão de tipos de checklist'
             controller: '/candidate/checklist_types'
+      sefaz:
+        code: 12001
+        label: 'SEFAZ'
+        controller: '#'
+        sub:
+          allotments:
+            module: 'sefaz'
+            code: 12001
+            label: 'Pedido de isenção'
+            controller: '/sefaz/allotments'
       data_base:
         code: [118103,118101]
         label: 'Base de dados'

@@ -1,4 +1,4 @@
-module Address
+module Sefaz
   class ApplicationPolicy
     attr_reader :user, :record
 

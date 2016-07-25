@@ -8,23 +8,27 @@ module Sefaz
 		before_action :set_exemption, only: [:edit, :destroy, :update]
 
 		def index
+			authorize :exemption,  :index?
 			@exemptions = @allotment.exemptions
 		end
 
     def new
+			authorize :exemption,  :create?
       @exemption = @allotment.exemptions.new
     end
 
 		def edit
-
+			authorize :exemption,  :update?
 		end
 
 		def update
+			authorize :exemption,  :update?
 			@exemption.update(set_exemption_params)
 			redirect_to action: 'index'
 		end
 
     def create
+			authorize :exemption,  :create?
       @exemption = @allotment.exemptions.new(set_exemption_params)
 			@exemption.unitary = true
 			@exemption.save
@@ -32,8 +36,9 @@ module Sefaz
 			redirect_to action: 'new'
 		end
 
-	
+
 		def destroy
+			authorize :exemption,  :destroy?
 			if @exemption.destroy
 				redirect_to action: 'index'
 			end

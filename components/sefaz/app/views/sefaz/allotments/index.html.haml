@@ -44,7 +44,7 @@
                 %th Tipo de Envio
                 %th Ações
             %tbody
-              - @allotments.order('created_at desc').each do |a|
+              - @allotments.current_sector(current_user).order('created_at desc').each do |a|
                 %tr
                   %td= a.id
                   %td= a.staff.sector_current.acron if a.staff.present?
