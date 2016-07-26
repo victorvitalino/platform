@@ -10,12 +10,13 @@ module Portal
                                               ON cand.cpf = am.cpf")
                                       .joins("LEFT JOIN entity_old_candidates AS ent_cad
                                               ON ent_cad.cadastre_id = cand.id")
-                                      .joins("LEFT JOIN entity_olds AS old
+                                      .joins("INNER JOIN entity_olds AS old
                                               ON old.id = ent_cad.old_id")
                                       .where("urb = 'ETAPA 4C'")
       
+      
       if params[:by_entity].present? && params[:by_entity] != 'null'
-        @address = @address.where("ent_cad.id = ?", params[:by_entity])
+        @address = @address.where("old.id = ?", params[:by_entity])
       end
       
       if params[:by_situation] == "1"

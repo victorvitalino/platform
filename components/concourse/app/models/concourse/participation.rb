@@ -5,5 +5,7 @@ module Concourse
 
     validates :team_description, :archive_one, :archive_two,
               :archive_three,:archive_four,:archive_five, presence: true
+
+    teste
   end
 end
