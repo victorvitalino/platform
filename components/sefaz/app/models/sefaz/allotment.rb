@@ -33,6 +33,71 @@ module Sefaz
       self.all.joins(:staff).where('person_staffs.sector_current_id in (?)', current_sector_id)
     end
 
+    def self.process(allotment_id)
+
+      allotment = Sefaz::Allotment.find(allotment_id)
+      
+      set_client
+      message = { "num_protocolo"  => allotment.protocol_return.to_s }
+
+      @response = @client.call(:consulta_protocolo, message: message )
+
+      process = @response.hash[:envelope][:body][:consulta_protocolo_response][:consulta_protocolo_result][:ok]
+
+      if process
+        result = @response.hash[:envelope][:body][:consulta_protocolo_response][:consulta_protocolo_result][:detalhe_protocolo_][:detalhe_protocolo]
+       if result.count == 5
+         cpf = result[:cpf_adquirente]
+         @candidate = allotment.exemptions.find_by_cpf(cpf) rescue nil
+
+         if @candidate.present?
+           @candidate.act_number = result[:num_ato_declaratorio]
+           @candidate.return_message = result[:msg_ret]
+
+           @candidate.save
+         end
+       else
+         result.each do |r|
+           cpf = r[:cpf_adquirente]
+           @candidate = allotment.exemptions.find_by_cpf(cpf) rescue nil
+
+           if @candidate.present?
+             @candidate.act_number = r[:num_ato_declaratorio].to_s
+             @candidate.return_message = r[:msg_ret].to_s
+             @candidate.save
+
+           end
+         end
+       end
+       allotment.update(send_status_id: 4)
+        return true
+       else
+ 				return false
+ 			end
+    end
+
+    def self.send_allotment(allotment_id)
+      exemption = Sefaz::Exemption.where(allotment_id)
+
+      @xml = Sefaz::Exemption.xml(exemption)
+
+      alltoment = Sefaz::Allotment.find(allotment_id)
+
+      set_client
+      message = { "imoveis_xml"  => @xml, "tpImposto" =>  alltoment.exemption_type.upcase}
+
+      result = @client.call(:receber_inf_imovel_construido, message: message)
+      protocol = result.hash[:envelope][:body][:receber_inf_imovel_construido_response][:receber_inf_imovel_construido_result][:protocolo]
+
+      alltoment.update(send_status_id: 3, send_date: DateTime.now, send_staff_id: current_user.id, protocol_return: protocol)
+
+    end
+
+    private
+
+    def set_client
+				@client = Savon.client(wsdl: 'http://publica.agencianet.fazenda.df.gov.br/codhab/ConsessaoImovel.asmx?wsdl',namespace: nil,encoding: "UTF-8", env_namespace: :soap,open_timeout: 900,read_timeout:900)
+		end
 
   end
 end
