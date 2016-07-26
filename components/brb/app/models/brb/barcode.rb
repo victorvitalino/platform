@@ -11,6 +11,7 @@ module Brb
     #variaveis de execução
     attr_accessor :sequential, :due, :value
 
+    #igor é um otário
     #variaveis de calculo
     attr_accessor :key_digit_one, :key_digit_two
 
