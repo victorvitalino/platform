@@ -7,8 +7,9 @@
   .panel-body
     .row
       .col-md-12
-        = link_to "Upload planilha",  new_allotment_exemption_file_path(@allotment), remote:true, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
-        = link_to "Incluir candidato", new_allotment_exemption_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."}
+        - unless @allotment.send_status_id > 2
+          = link_to "Upload planilha",  new_allotment_exemption_file_path(@allotment), remote:true, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+          = link_to "Incluir candidato", new_allotment_exemption_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."}
         = link_to "Reprocessar", allotment_to_process_path(@allotment), class: 'btn btn-warning pull-right mgl',data: {disable_with: "carregando..."} if @allotment.send_status_id > 2
         = link_to "Enviar solicitação", allotment_send_exemption_path(@allotment),  class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2
     .row.form-filter{style:'margin-top: 20px;'}
@@ -34,6 +35,7 @@
                 %th Valor
                 %th Mensagem
                 %th Retorno
-                %th Ações
+                - unless @allotment.send_status_id > 2
+                  %th Ações
             %tbody.index-exemption
               = render 'index'
