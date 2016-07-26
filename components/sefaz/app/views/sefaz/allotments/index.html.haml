@@ -25,6 +25,9 @@
             .col-md-2
               = f.label 'Status', class: 'fg-label'
               = f.input :send_status, as: 'select', collection: Sefaz::SendStatus.all, label: false,prompt: "Selecione...", input_html: { name: 'send_status', value: params[:send_status]}
+            .col-md-2
+              = f.label 'CPF', class: 'fg-label'
+              = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
             .col-md-1
               = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
     .row
