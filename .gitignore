@@ -26,3 +26,4 @@ database.yml
 /public/projects/*
 !/public/barcodes/.keep
 .vscode/*
+.vscode
