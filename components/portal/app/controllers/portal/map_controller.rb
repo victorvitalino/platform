@@ -10,7 +10,7 @@ module Portal
                                               ON cand.cpf = am.cpf")
                                       .joins("LEFT JOIN entity_old_candidates AS ent_cad
                                               ON ent_cad.cadastre_id = cand.id")
-                                      .joins("INNER JOIN entity_olds AS old
+                                      .joins("LEFT JOIN entity_olds AS old
                                               ON old.id = ent_cad.old_id")
                                       .where("urb = 'ETAPA 4C'")
       
