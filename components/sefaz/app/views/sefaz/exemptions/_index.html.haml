@@ -18,6 +18,7 @@
         - else
           %span.label.label-success
             %i.glyphicon.glyphicon-ok
-      %td
-        = link_to "",edit_allotment_exemption_path(e.allotment_id,e), title: "Candidatos",  class: 'glyphicon glyphicon-edit btn btn-info btn-xs'
-        = link_to "", allotment_exemption_path(e.allotment_id,e), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."}
+      - unless @allotment.send_status_id > 2
+        %td
+          = link_to "",edit_allotment_exemption_path(e.allotment_id,e), title: "Candidatos",  class: 'glyphicon glyphicon-edit btn btn-info btn-xs'
+          = link_to "", allotment_exemption_path(e.allotment_id,e), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."}

@@ -4,7 +4,7 @@ module Sefaz
 	class AllotmentsController < ApplicationController
 
     before_action :set_allotments, only: [:index, :create, :destroy, :update]
-		before_action :set_allotment, only: [:edit, :destroy, :update]
+		before_action :set_allotment, only: [:edit, :destroy, :update, :to_process]
 		before_action :set_client, only: [:to_process, :send_exemption]
 
 
@@ -17,7 +17,7 @@ module Sefaz
     def index
 			authorize :allotment,  :index?
 
-			
+
 
 			@allotments = apply_scopes(@allotments).paginate(:page => params[:page], :per_page => 30)
     end
@@ -57,9 +57,8 @@ module Sefaz
 
 		def to_process
 			authorize :allotment,  :to_process?
-			@allotment = Sefaz::Allotment.find(params[:allotment_id])
 
-			message = { "num_protocolo"  => @allotment.protocol_return.to_s }
+   		message = { "num_protocolo"  => @allotment.protocol_return.to_s }
 			@response = @client.call(:consulta_protocolo, message: message )
 
 			process = @response.hash[:envelope][:body][:consulta_protocolo_response][:consulta_protocolo_result][:ok]
@@ -69,7 +68,7 @@ module Sefaz
 
 				if result.count == 5
 					cpf = result[:cpf_adquirente]
-					@candidate = Sefaz::Exemption.find_by_cpf(cpf)
+					@candidate = @allotment.exemptions.find_by_cpf(cpf) rescue nil
 
 					if @candidate.present?
 						@candidate.act_number = result[:num_ato_declaratorio]
@@ -79,14 +78,14 @@ module Sefaz
 					end
 				else
 					result.each do |r|
-
 						cpf = r[:cpf_adquirente]
-						@candidate = Sefaz::Exemption.find_by_cpf(cpf)
+						@candidate = @allotment.exemptions.find_by_cpf(cpf) rescue nil
 
 						if @candidate.present?
-						  @candidate.act_number = r[:num_ato_declaratorio]
-						  @candidate.return_message = r[:msg_ret]
+						  @candidate.act_number = r[:num_ato_declaratorio].to_s
+						  @candidate.return_message = r[:msg_ret].to_s
 						  @candidate.save
+
 					  end
 					end
 
@@ -130,7 +129,7 @@ module Sefaz
 		end
 
 		def set_client
-				@client = Savon.client(wsdl: 'http://publica.agencianet.fazenda.df.gov.br/codhab/ConsessaoImovel.asmx?wsdl',namespace: nil,encoding: "UTF-8", env_namespace: :soap)
+				@client = Savon.client(wsdl: 'http://publica.agencianet.fazenda.df.gov.br/codhab/ConsessaoImovel.asmx?wsdl',namespace: nil,encoding: "UTF-8", env_namespace: :soap,open_timeout: 900,read_timeout:900)
 		end
 
     def set_allotments
@@ -138,6 +137,7 @@ module Sefaz
 		end
 
 		def set_allotment
+			params[:id] = params[:id].present? ? params[:id] : params[:allotment_id]
 			@allotment = Sefaz::Allotment.find(params[:id])
 		end
 
