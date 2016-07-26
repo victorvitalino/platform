@@ -65,7 +65,7 @@ module Address
         def unit_params
             params.require(:unit).permit(:acron_block, :block,:acron_group,:group, :unit, :cep_unit, :area, :complete_address,
                                                                  :burgh, :sefaz, :donate, :date_donate, :date_iptu, :registration_iptu, :certificate, :situation_unit_id,
-                                                                 :type_use_unit_id, :city_id, :firm_enterprise_id)
+                                                                 :type_use_unit_id, :city_id, :firm_enterprise_id, :contract_delivered_date, :contract_delivered)
         end
 
 

@@ -8,23 +8,27 @@ module Sefaz
 		before_action :set_exemption, only: [:edit, :destroy, :update]
 
 		def index
+			authorize :exemption,  :index?
 			@exemptions = @allotment.exemptions
 		end
 
     def new
+			authorize :exemption,  :create?
       @exemption = @allotment.exemptions.new
     end
 
 		def edit
-
+			authorize :exemption,  :update?
 		end
 
 		def update
+			authorize :exemption,  :update?
 			@exemption.update(set_exemption_params)
 			redirect_to action: 'index'
 		end
 
     def create
+			authorize :exemption,  :create?
       @exemption = @allotment.exemptions.new(set_exemption_params)
 			@exemption.unitary = true
 			@exemption.save
@@ -32,16 +36,9 @@ module Sefaz
 			redirect_to action: 'new'
 		end
 
-		def send_exemption
-			client = Savon.client(wsdl: 'http://publica.agencianet.fazenda.df.gov.br/codhab/ConsessaoImovel.asmx?wsdl')
-			@teste = client.operations
-
-			@exemptions = Exemption.where(send_status_id: 1)
-			type = @exemptions.last.exemption_type == "ITBI" ? 1 : 2
-		  @exemption = Exemption.xml(@exemptions)
-		end
 
 		def destroy
+			authorize :exemption,  :destroy?
 			if @exemption.destroy
 				redirect_to action: 'index'
 			end

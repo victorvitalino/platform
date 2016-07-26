@@ -7,10 +7,14 @@
       %td= e.address
       %td= e.realty_number
       %td= e.realty_value
-      %td= e.act_number
       %td
-        - if e.return_message.present?
-          = link_to "", "#", title: e.return_message,  class: 'btn btn-xs btn-danger glyphicon glyphicon-warning-sign'
+        - if e.act_number.present?
+          = e.act_number
+        -if e.return_message.present?
+          = e.return_message
+      %td
+        - if e.system_message.present?
+          = link_to "", "#", title: e.system_message,  class: 'btn btn-xs btn-danger glyphicon glyphicon-warning-sign'
         - else
           %span.label.label-success
             %i.glyphicon.glyphicon-ok

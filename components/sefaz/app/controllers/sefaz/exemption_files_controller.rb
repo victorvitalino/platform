@@ -5,15 +5,18 @@ module Sefaz
 		before_action :set_cadastres_alloment
 
     def new
+			authorize :exemption,  :create?
       @exemption_file = Sefaz::ExemptionFile.new
     end
 
     def create
+			authorize :exemption,  :create?
+			
 			@exemption_file = Sefaz::ExemptionFile.new(set_params)
 			@exemption_file.user_id 		 = current_user.id
 			@exemption_file.allotment_id = @allotment.id
-			@exemption_file.import_file!
-			@allotment.update(send_status_id: 2)			
+			@exemption_file.import_files!
+			@allotment.update(send_status_id: 2)
     end
 
     private

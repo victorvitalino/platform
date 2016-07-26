@@ -1,0 +1,19 @@
+pt-BR:
+  enums:
+    'sefaz/allotment':
+      send_type:
+        cancelation: "Cancelamento"
+        send_allotment: "Pedido de isenção"
+  activerecord:
+    models:
+      'sefaz/allotment': Lotes
+    attributes:
+      'sefaz/allotment':
+        erro_message: "Mensagem de erro"
+        send_date: "Data de envio"
+        protocol_return: "Protocolo de envio"
+        exemption_type: "Tipo de isenção"
+        notifiers: "Transmitente"
+        cnpj_notifiers: "CNPJ Transmitente"
+        observation: "Observação"
+        send_type: "Tipo de solicitação"

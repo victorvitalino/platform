@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      'sefaz/exemption': Isenção
+    attributes:
+      'sefaz/exemption':
+        name: "Nome"
+        cpf: "CPF"
+        city: "Cidade"
+        address: "Endereço"
+        realty_number: "IPTU"
+        realty_value: "Valor Unitario"
+        act_number: "Ato declaratorio"
+        return_message: "Messagem de retorno"
+        system_message: "Messagem de sistema"

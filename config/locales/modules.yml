@@ -19,6 +19,7 @@ pt-BR:
     indication: "Indicação"
     profile_user: "Meu perfil"
     habitation_attendance: "Atendimento habitação"
+    sefaz: 'sefaz'
   modules:
     habitation_attendance:
       dashboard: "Visão geral"
@@ -89,6 +90,9 @@ pt-BR:
       advices_types: "Tipos de acompanhamentos"
       lawsuits: "Tipo de ação"
       housing_programs: "Programas habitacionais"
+    sefaz:
+      allotments: "Lotes"
+      exemptions: "Isenção"
   actions:
     index: "Listagem"
     new: "Novo"
