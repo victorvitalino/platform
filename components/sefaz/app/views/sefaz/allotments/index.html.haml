@@ -17,7 +17,7 @@
               = f.input :date_create, label: false, input_html: { name: 'date_create', value: params[:date_create]}
             .col-md-2
               = f.label 'Tipo de solicitação', class: 'fg-label'
-              = f.input :send_type, as: 'select', collection:(Sefaz::Allotment.send_types.map {|ke,va| [ke.humanize,ke]}), label: false,prompt: "Selecione...", input_html: { name: 'send_type', value: params[:send_type]}
+              = f.input :send_type, as: 'select', collection:(Sefaz::Allotment.send_types.map {|ke,va| [I18n.t("send_type.#{ke}"),ke]}), label: false,prompt: "Selecione...", input_html: { name: 'send_type', value: params[:send_type]}
           .row
             .col-md-4
               = f.label 'Transmitente', class: 'fg-label'
