@@ -14,8 +14,9 @@ module Portal
                                               ON old.id = ent_cad.old_id")
                                       .where("urb = 'ETAPA 4C'")
       
+      
       if params[:by_entity].present? && params[:by_entity] != 'null'
-        @address = @address.where("ent_cad.id = ?", params[:by_entity])
+        @address = @address.where("old.id = ?", params[:by_entity])
       end
       
       if params[:by_situation] == "1"
