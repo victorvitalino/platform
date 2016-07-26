@@ -23,17 +23,5 @@
             - if galeria.flickr
               = galeria.flickr.html_safe
       %hr
-    -# .row
-    -#   .col-md-12.no_padding
-    -#     .box_internal
-    -#       - @galerias.each do |galeria|
-    -#         .box_galerias
-    -#           %h2{:id => "item_#{galeria.id}"}
-    -#             = galeria.title
-    -#           %p
-    -#             = galeria.content.html_safe
-    -#           - if galeria.flickr
-    -#             = galeria.flickr.html_safe
-    -#         %hr
 = render 'partials/shared/portal/footer'
 :javascript
