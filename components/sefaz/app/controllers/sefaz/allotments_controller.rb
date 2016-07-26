@@ -13,6 +13,7 @@ module Sefaz
 		has_scope	:notifiers
 		has_scope	:send_status
 		has_scope	:send_type
+		has_scope	:cpf
 
     def index
 			authorize :allotment,  :index?
