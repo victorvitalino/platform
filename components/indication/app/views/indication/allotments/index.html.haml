@@ -26,12 +26,13 @@
           %tbody
             - @allotments.each do |allotment|
               %tr
-                %td{style: 'width: 1%'}= allotment.id
-                %td{style: 'width: 1%'}= allotment.zone
-                %td{style: 'width: 1%'}= allotment.demand
-                %td{style: 'width: 1%'}= allotment.rii
-                %td{style: 'width: 1%'}= allotment.rie
-                %td{style: 'width: 1%'}= allotment.old
-                %td{style: 'width: 1%'}= allotment.vulnerable
-                %td{style: 'width: 1%'}= allotment.special
-                %td{style: 'width: 1%'}= allotment.created_at.strftime('%d/%m/%Y')
+                %td= allotment.id
+                %td= allotment.zone
+                %td= allotment.demand
+                %td= allotment.rii
+                %td= allotment.rie
+                %td= allotment.old
+                %td= allotment.vulnerable
+                %td= allotment.special
+                %td= allotment.created_at.strftime('%d/%m/%Y')
+                %td

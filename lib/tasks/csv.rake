@@ -8,14 +8,13 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/inactive.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/renda.csv", :col_sep => "#") do |row|
 
-      @lift = Candidate::EnterpriseCadastre.where(cadastre_id:row[0],enterprise_id:12).last
+      @lift = Candidate::Cadastre.find_by_cpf(row[0])
 
       if @lift.present?
         #puts l.cnpj
-        @lift.inactive = true
-        @lift.inactive_date = row[1]
+        @lift.income = row[1]
         @lift.save
       end
       #puts @lift.inspect
