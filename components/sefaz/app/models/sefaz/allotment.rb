@@ -6,7 +6,7 @@ module Sefaz
     has_many :exemptions
 
     enum exemption_type: {itbi: 1, itcd: 2}
-    enum send_type: [:cancelation, :send_allotment]
+    enum send_type: ["cancelamento", "pedido de isenção"]
 
     validates :exemption_type,  presence: true
     validates :notifiers,  presence: true
@@ -95,7 +95,7 @@ module Sefaz
 
     private
 
-    def set_client
+    def self.set_client
 				@client = Savon.client(wsdl: 'http://publica.agencianet.fazenda.df.gov.br/codhab/ConsessaoImovel.asmx?wsdl',namespace: nil,encoding: "UTF-8", env_namespace: :soap,open_timeout: 900,read_timeout:900)
 		end
 
