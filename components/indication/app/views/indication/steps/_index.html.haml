@@ -9,3 +9,4 @@
     %td{style: 'width: 1%'}= step.special
     %td{style: 'width: 1%'}= step.vulnerable
     %td
+      = link_to "", edit_enterprise_step_path(enterprise_id: @enterprise.id, id: step.id), remote: true, title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}

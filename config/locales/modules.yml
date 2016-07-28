@@ -77,6 +77,7 @@ pt-BR:
       controls: "Controle de entrada"
       control_routes: "Encaminhamento"
       control_interesteds: "Interessado e/ou remetente"
+      call_controls: "Controle de ligação"
     entity:
       cadastres: "Cadastros"
       document_categories: "Categoria de Documentos"

@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      'protocol/call_control': "Controle de ligações"
+    attributes:
+      'protocol/call_control':
+        time_start: "Hora Início"
+        time_end: "Hora Final"
+        phone_number: "Nº de telefone"
+        interested: "Interessado"
+        observation: "Observação"
