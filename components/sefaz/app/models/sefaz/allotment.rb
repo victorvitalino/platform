@@ -36,7 +36,7 @@ module Sefaz
     def self.process(allotment_id)
 
       allotment = Sefaz::Allotment.find(allotment_id)
-      
+
       set_client
       message = { "num_protocolo"  => allotment.protocol_return.to_s }
 
@@ -76,10 +76,10 @@ module Sefaz
  			end
     end
 
-    def self.send_allotment(allotment_id)
-      exemption = Sefaz::Exemption.where(allotment_id)
+    def self.send_allotment(allotment_id, user)
+      allotment = Sefaz::Allotment.find(allotment_id)
 
-      @xml = Sefaz::Exemption.xml(exemption)
+      @xml = Sefaz::Exemption.xml(allotment.id)
 
       alltoment = Sefaz::Allotment.find(allotment_id)
 
@@ -89,7 +89,7 @@ module Sefaz
       result = @client.call(:receber_inf_imovel_construido, message: message)
       protocol = result.hash[:envelope][:body][:receber_inf_imovel_construido_response][:receber_inf_imovel_construido_result][:protocolo]
 
-      alltoment.update(send_status_id: 3, send_date: DateTime.now, send_staff_id: current_user.id, protocol_return: protocol)
+      alltoment.update(send_status_id: 3, send_date: DateTime.now, send_staff_id: user, protocol_return: protocol)
 
     end
 
