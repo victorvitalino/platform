@@ -9,8 +9,9 @@ module Sefaz
 
     validate :virtual_validate!
 
-  def self.xml(new_exemption)
-
+  def self.xml(id)
+   new_exemption = Sefaz::Exemption.where(allotment_id: id)
+   
    xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml|
 
      xml.ArrayofImovelConstruido do
@@ -55,7 +56,7 @@ module Sefaz
     private
 
     def virtual_validate!
-      
+
       add_message_error("CPF inválido")       if !ValidatesCpfCnpj::Cpf.valid?(self.cpf.format_cpf)
       add_message_error("Nome em branco")     if self.name.to_s.empty?
       add_message_error("CPF em branco")      if self.cpf.to_s.empty?

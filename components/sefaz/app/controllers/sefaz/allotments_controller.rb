@@ -66,7 +66,7 @@ module Sefaz
 		def send_exemption
 			authorize :allotment,  :send_allotment?
 
-		  Sefaz::Allotment.send_allotment(params[:allotment_id])
+		  Sefaz::Allotment.send_allotment(params[:allotment_id], current_user.id)
 
 			redirect_to allotments_path
 		end
