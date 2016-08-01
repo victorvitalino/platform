@@ -1,3 +1,5 @@
+require_dependency 'brb/calculation'
+
 module Brb
   class Barcode
     include ActiveModel::Model
@@ -104,22 +106,26 @@ module Brb
       "#{'%06d' % @sequential.to_i}"
     end
 
+
+    def date_factor
+      self.due_factor
+    end
+    
     private
 
     def set_key_digits
-      digit = "#{self.agency_and_benefict_code}#{@bank_wallet}#{self.formated_sequential}#{@bank}".calculate!
 
+      digit = "#{self.agency_and_benefict_code}#{@bank_wallet}#{self.formated_sequential}#{@bank}".calculate!
+      
       @key_digit_one = digit[:digit_one]
       @key_digit_two = digit[:digit_two]
     end
-
-
     protected
 
 
     def barcode_digit
       barcode = self.barcode_without_digit
-      barcode.module_11({multiplier: [2,3,4,5,6,7,8,9]})
+      barcode.module_11_digit
     end
 
     def due_factor
