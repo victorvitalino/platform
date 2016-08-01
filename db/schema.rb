@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725193509) do
+ActiveRecord::Schema.define(version: 20160801125755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -2664,9 +2664,11 @@ ActiveRecord::Schema.define(version: 20160725193509) do
     t.text     "return_message"
     t.integer  "staff_id"
     t.boolean  "unitary"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "system_message"
+    t.integer  "year_act"
+    t.string   "number_act_to_cancel"
   end
 
   add_index "sefaz_exemptions", ["allotment_id"], name: "index_sefaz_exemptions_on_allotment_id", using: :btree

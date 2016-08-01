@@ -26,8 +26,10 @@ module Sefaz
         exemption_new.city                   = exemption_hash["CIDADE"]
         exemption_new.address                = exemption_hash["ENDERECO"]
         iptu = exemption_hash["IPTU"]
-        exemption_new.realty_number          = iptu.class == Float ? exemption_hash["IPTU"].to_i : exemption_hash["IPTU"]    
+        exemption_new.realty_number          = iptu.class == Float ? exemption_hash["IPTU"].to_i : exemption_hash["IPTU"]
         exemption_new.realty_value           = exemption_hash["VALOR"]
+        exemption_new.year_act               = exemption_hash["ANO"].present? ? exemption_hash["ANO"]  : nil
+        exemption_new.number_act_to_cancel   = exemption_hash["NUMERO"].present? ? exemption_hash["NUMERO"] : nil
         exemption_new.allotment_id           = self.allotment_id
         exemption_new.staff_id               = self.user_id
 
