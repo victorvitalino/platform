@@ -1,0 +1,30 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Atendimento habitacional
+      %span.pull-right
+        = link_to "Retornar para listagem", details_path(@query_params)
+  .panel-body
+    .row
+      .col-md-12
+        %h1 Detalhamento de candidato
+    .row
+      .col-md-12
+        %br/
+        - if @candidate.present?
+          %table.table.table-striped.table-hover.table-condensed
+            %thead
+              %tr
+                %td Nome
+                %td CPF
+                %td RG
+            %tbody
+              %tr
+                %td= @candidate.name
+                %td= @candidate.cpf.format_cpf
+                %td= @candidate.rg
+        - else
+          Não encontrado
+
+
+      

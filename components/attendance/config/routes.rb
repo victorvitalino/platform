@@ -1,13 +1,34 @@
 Attendance::Engine.routes.draw do
-  resources :stations do 
-    resources :station_attendants
-    resources :counters
+  root 'details#index'
+
+  resources :details, only: [:index, :show]
+
+  namespace :basic do 
+    resources :cadastres
   end
-  
-  
-  get 'counters', to: 'stations#counters'
-  
-  resources :attendants
-  resources :counter_attendants
-  resources :subjects
+
+  namespace :enabled do
+    resources :cadastre_mirrors
+    resources :dependent_mirrors
+    resources :checklists
+    resources :attendant_verifications
+    resources :supervisor_verifications
+  end
+
+  namespace :convoked do 
+    resources :cadastre_mirrors
+    resources :dependent_mirrors
+    resources :checklists
+    resources :attendant_verifications
+    resources :supervisor_verifications
+  end
+
+  namespace :regularization do 
+    resources :requeriments
+    resources :cadastre_mirrors
+    resources :dependent_mirrors
+    resources :checklists
+    resources :attendant_verifications
+    resources :supervisor_verifications
+  end
 end

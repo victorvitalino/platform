@@ -1,8 +1,0 @@
-pt-BR:
-  activemodel:
-    models:
-      'attendance/counter_attendant': Guichê
-    attributes:
-      'attendance/counter_attendant':
-        counter: "Guichê"
-        station: "Posto"
