@@ -9,9 +9,12 @@
       .col-md-12
         - unless @allotment.send_status_id > 2
           = link_to "Upload planilha",  new_allotment_exemption_file_path(@allotment), remote:true, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
-          = link_to "Incluir candidato", new_allotment_exemption_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."}
+          = link_to "Incluir candidato", new_allotment_exemption_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."} if @allotment.send_type == "pedido de isenção"
+          = link_to "Incluir candidato", allotment_new_parcial_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."} if @allotment.send_type.to_i == "cancelamento parcial"
         = link_to "Reprocessar", allotment_to_process_path(@allotment), class: 'btn btn-warning pull-right mgl',data: {disable_with: "carregando..."} if @allotment.send_status_id > 2
-        = link_to "Enviar solicitação", allotment_send_exemption_path(@allotment),  class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2
+        = link_to "Enviar solicitação", allotment_send_exemption_path(@allotment),  class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2 && @allotment.send_type == "pedido de isenção"
+        = link_to "Enviar cancelamento", allotment_send_parcial_cancelation_path(@allotment), class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2 && @allotment.send_type == "cancelamento parcial"
+        = link_to "Enviar cancelamento", allotment_send_total_cancelation_path(@allotment),  class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2 && @allotment.send_type == "cancelamento total"
     .row.form-filter{style:'margin-top: 20px;'}
       .col-md-12
         = simple_form_for  url_for, method: 'get' do |f|
@@ -21,21 +24,7 @@
               = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
             .col-md-1
               = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
-    .row
-      .col-sm-12
-        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-          %table#data-table-command.table.table-striped.table-bordered
-            %thead
-              %tr
-                %th Nome
-                %th CPF
-                %th Cidade
-                %th Endereço
-                %th IPTU
-                %th Valor
-                %th Mensagem
-                %th Retorno
-                - unless @allotment.send_status_id > 2
-                  %th Ações
-            %tbody.index-exemption
-              = render 'index'
+    - if @allotment.send_type == "pedido de isenção"
+      = render 'index'
+    - else
+      = render 'index_cancelation'

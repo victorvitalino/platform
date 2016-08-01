@@ -6,10 +6,10 @@
           %tr
             %th Nome
             %th CPF
-            %th Cidade
-            %th Endereço
+            %th Número do ato
+            %th Ano do ato
             %th IPTU
-            %th Valor
+            %th Justificativa
             %th Mensagem
             %th Retorno
             - unless @allotment.send_status_id > 2
@@ -20,10 +20,10 @@
               %tr
                 %td= e.name
                 %td= e.cpf
-                %td= e.city
-                %td= e.address
+                %td= e.number_act_to_cancel
+                %td= e.year_act
                 %td= e.realty_number
-                %td= e.realty_value
+                %td= e.allotment.observation
                 %td
                   - if e.act_number.present?
                     = e.act_number

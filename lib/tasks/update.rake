@@ -10,32 +10,22 @@ namespace :update do
 
 
 
-     CSV.foreach("lib/files/indicacao.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/deps.csv", :col_sep => "#") do |row|
 
 
-           @teste = Indication::Cadastre.new(
-           cadastre_id: row[2],
-           allotment_id: 64,
-           program_id: row[5],
-           pontuation_id: row[4],
-           situation: 0,
-           zone: 2,
-           source_list: row[3],
+           @teste = Candidate::Dependent.new(
+           cadastre_id: row[9],
+           name: row[0],
+           cpf: row[1].present? ? row[5].gsub('.','').gsub('-','') : nil,
+           rg: row[8],
+           born: row[3],
+           gender: row[4].to_i,
+           income: row[6],
+           kinship_id: row[2],
+           cid: row[7],
+           special_condition_id: row[5],
            )
            @teste.save
-
-           if @teste.present?
-
-             @teste1 = Candidate::EnterpriseCadastre.new(
-             enterprise_id: 22,
-             cadastre_id: row[2],
-             indication_cadastre_id:  @teste.id,
-             zone: 2,
-             source_list: row[3],
-             )
-             @teste1.save
-
-           end
 
            #puts @teste.inspect
 
