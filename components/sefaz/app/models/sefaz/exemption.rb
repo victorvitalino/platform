@@ -139,6 +139,7 @@ module Sefaz
     private
 
     def virtual_validate!
+      self.system_message = ""
 
       add_message_error("CPF inválido")       if !ValidatesCpfCnpj::Cpf.valid?(self.cpf.format_cpf)
       add_message_error("Nome em branco")     if self.name.to_s.empty?
