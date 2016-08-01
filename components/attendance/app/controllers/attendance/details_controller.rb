@@ -22,7 +22,9 @@ module Attendance
     end 
 
     def show
-      @candidate = Candidate::Cadastre.find_by_cpf(params[:id]) rescue nil
+      @candidate    = Candidate::Cadastre.find_by_cpf(params[:id]) rescue nil
+      @requeriments = Regularization::Requeriment.where(cpf: params[:id])
+      @schedules    = Schedule::AgendaSchedule.where(cpf:  params[:id])
     end
 
     private

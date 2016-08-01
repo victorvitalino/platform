@@ -54,6 +54,14 @@ module Candidate
     validates :cpf, cpf: true
 
 
+    def enabled?
+      self.current_situation_id == 4
+    end
+
+    def convoked?
+      self.current_situation_id == 3
+    end
+
     def self.updated_day(day)
       self.where(updated_at: day).count
     end

@@ -28,6 +28,7 @@ module Sefaz
         sector_id  = Person::Sector.status(true).map(&:id)
       else
         sector_id  = Person::Sector.status(true).where(father_id: current_sector_id).map(&:id)
+        sector_id  << current_sector_id 
       end
 
       current_sector_id = (sector_id.present?) ? sector_id : current_sector_id

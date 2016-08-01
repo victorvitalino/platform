@@ -8,11 +8,14 @@ Attendance::Engine.routes.draw do
   end
 
   namespace :enabled do
-    resources :cadastre_mirrors
-    resources :dependent_mirrors
-    resources :checklists
-    resources :attendant_verifications
-    resources :supervisor_verifications
+    resources :cadastre_mirrors do 
+      get 'init'
+
+      resources :dependent_mirrors
+      resources :checklists
+      resources :attendant_verifications
+      resources :supervisor_verifications
+    end
   end
 
   namespace :convoked do 

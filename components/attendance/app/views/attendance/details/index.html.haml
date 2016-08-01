@@ -36,7 +36,7 @@
         %hr/
         .row
           .col-md-12
-            %table.table.table-striped.table-condensed.table-hover
+            %table.table.table-striped.table-condensed.table-hover.table-bordered
               %thead
                 %tr
                   %th #
@@ -49,13 +49,13 @@
               %tbody
                 - @schedules.each do |item|
                   %tr
-                    %td= item.id
-                    %td= item.name
-                    %td= item.cpf.format_cpf if item.cpf.present?
-                    %td= item.date.strftime('%d/%m/%Y')
-                    %td= item.hour.strftime('%H:%M')
+                    %td.col-md-1= item.id
+                    %td.col-md-6= item.name
+                    %td.col-md-2= item.cpf.format_cpf if item.cpf.present?
+                    %td.col-md-1= item.date.strftime('%d/%m/%Y')
+                    %td.col-md-1= item.hour.strftime('%H:%M')
                     %td
-                      %b= item.status
+                      %b= item.status.humanize.downcase
                     %td
                       .btn-group{:role => "group"}
                         %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
