@@ -1,0 +1,19 @@
+require_dependency 'attendance/application_controller'
+
+module Attendance
+  module Enabled
+    class ChecklistsController < ApplicationController
+      before_action :set_cadastre_mirror
+      
+      def index
+      end
+      
+      private
+
+      def set_cadastre_mirror
+        @cadastre_mirror = Candidate::CadastreMirror.find(params[:cadastre_mirror_id])
+      end
+
+    end
+  end
+end

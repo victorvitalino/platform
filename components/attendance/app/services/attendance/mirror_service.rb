@@ -7,7 +7,7 @@ module Attendance
       @cadastre = Candidate::Cadastre.find(cadastre_id) rescue nil
       return false if @cadastre.nil?
 
-      @mirror   = cadastre.cadastre_mirrors.new
+      @mirror   = @cadastre.cadastre_mirrors.new
   
       @cadastre.attributes.each do |key, value|
         unless %w(id created_at updated_at).include? key

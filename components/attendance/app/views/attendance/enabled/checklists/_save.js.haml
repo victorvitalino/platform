@@ -1,0 +1,3 @@
+- if @mirror_check.errors.any?
+- else
+  $(".checklist-index").html("#{escape_javascript(render 'index')}")
