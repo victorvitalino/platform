@@ -22,9 +22,26 @@ module Attendance
     end 
 
     def show
-      @candidate    = Candidate::Cadastre.find_by_cpf(params[:id]) rescue nil
-      @requeriments = Regularization::Requeriment.where(cpf: params[:id])
-      @schedules    = Schedule::AgendaSchedule.where(cpf:  params[:id])
+      @candidate     = Candidate::Cadastre.find_by_cpf(params[:id]) rescue nil
+    end
+
+    def resume
+      @attendance    = Attendance::Cadastre.find(params[:detail_id])
+    end
+
+    def continue
+      @attendance    = Attendance::Cadastre.find(params[:detail_id])
+      @router        = Attendance::RouterService.new(@attendance, view_context)
+
+      if @router.routing!
+        redirect_to @router.url
+      else
+        redirect_to detail_path(@candidate.cpf)
+      end
+
+    end
+
+    def cancel
     end
 
     private

@@ -7,8 +7,12 @@ module Candidate
     belongs_to :work_city, class_name: 'Address::City'
     belongs_to :civil_state
     belongs_to :program
-    belongs_to :city, class_name: "Address::City"
     belongs_to :work_city, class_name: "Address::City"
+
+    has_many :attendance_loggers, class_name: "Attendance::Cadastre"
+
+    has_many :requeriments, primary_key: :cpf, foreign_key: :cpf, class_name: "Regularization::Requeriment"
+    has_many :schedules,    primary_key: :cpf, foreign_key: :cpf, class_name: "Schedule::AgendaSchedule"
 
     has_many :ammvs
     has_many :cadastre_mirrors

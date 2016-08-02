@@ -1,7 +1,11 @@
 Attendance::Engine.routes.draw do
   root 'details#index'
 
-  resources :details, only: [:index, :show]
+  resources :details, only: [:index, :show] do 
+    get 'resume',     path: 'resumo'
+    get 'cancel',     path: 'cancelar'
+    get 'continue',   path: 'continue'
+  end
 
   namespace :basic do 
     resources :cadastres
@@ -10,6 +14,7 @@ Attendance::Engine.routes.draw do
   namespace :enabled do
     resources :cadastre_mirrors do 
       get 'init'
+      get 'continue'
 
       resources :dependent_mirrors
       resources :checklists

@@ -1,0 +1,87 @@
+.row
+  .col-md-12
+    %h3 
+      Dados do candidato
+      %b= link_to "Atualizar dados de contato", edit_basic_cadastre_path(@candidate.id), remote: true, class: 'pull-right'
+    %table.table.table-striped.table-bordered.table-condensed
+      %thead
+        %tr
+          %th Nome
+          %th CPF
+          %th Situação
+          %th Programa
+      %tbody
+        %tr
+          %td= @candidate.name
+          %td= @candidate.cpf.format_cpf
+          %td
+            %b= @candidate.current_situation_name
+          %td= @candidate.program.name if @candidate.program.present?
+   
+.row
+  .col-md-12
+    %h3 
+      Atendimentos
+      %b= link_to "Iniciar atualização cadastral", enabled_cadastre_mirror_init_path(@candidate.id), class: 'pull-right' if @candidate.enabled?
+      %b= link_to "Iniciar atendimento para habilitação"  '#', class: 'pull-right' if @candidate.convoked?
+    %table.table.table-striped.table-hover.table-condensed.table-bordered
+      %thead
+        %tr
+          %td Data
+          %td Tipo
+          %td Atendente
+          %td Supervisão
+          %td Situação
+          %td Ações
+      %tbody
+        - @candidate.attendance_loggers.order('start DESC').each do |item|
+          %tr
+            %td= item.created_at.strftime("%d/%m/%Y às %H:%M")
+            %td= item.type.title if item.type.present? 
+            %td= item.staff.code if item.staff.present?
+            %td= item.supervisor.code if item.supervisor.present?
+            %td= item.status
+            %td
+              = present('Attendance::Action', item).dropdown_actions
+.row
+  .col-md-12
+    %h3 Requerimentos
+    %br/
+    %table.table.table-striped.table-hover.table-condensed.table-bordered
+      %thead
+        %tr
+          %td Data
+          %td Cidade
+          %td Endereço
+      %tbody
+        - @candidate.requeriments.each do |item|
+          %tr
+            %td= item.created_at.strftime('%d/%m/%Y')
+            %td= item.city.name if item.city.present?
+            %td= item.unit.complete_address if item.unit.present?
+
+.row
+  .col-md-12
+    %h3 Agendamentos
+    %table.table.table-striped.table-hover.table-condensed.table-bordered
+      %thead
+        %tr
+          %td Data
+          %td Hora
+          %td Situação
+          %td Observação
+      %tbody
+        - @candidate.schedules.each do |item|
+          %tr
+            %td.col-md-2= item.date.strftime("%d/%m/%Y")
+            %td.col-md-1= item.hour.strftime("%H:%M")
+            %td.col-md-2
+              %b= item.status
+            %td.col-md-8
+              = item.observation
+
+
+
+  
+
+  

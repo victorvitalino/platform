@@ -24,7 +24,7 @@ pt-BR:
         address_complement: "Complemento Endereço"
         work_city: "Cidade de Trabalho"
         work_cep: "CEP de Trabalho"
-        work_address: "Endereço do Trabalho"
+        work_address: "Endereço do Trabalho & Cidade"
         income: "Renda"
         special_condition: "Condição Especial"
         adapted_property: "Propriedade Adaptada?"

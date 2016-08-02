@@ -1,0 +1,5 @@
+- if @cadastre.errors.any?
+  $("#modal .modal-body").html("#{escape_javascript(render 'form')}")
+- else
+  $("#modal .modal-body").html("#{escape_javascript(render 'success')}")
+  setTimeout(function(){$("#modal").modal('hide')}, 3000);

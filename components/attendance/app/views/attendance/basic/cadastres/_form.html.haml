@@ -1,10 +1,9 @@
-= simple_form_for @cadastre, url: basic_cadastre_path, method: :put, remote: true do |f|
+= simple_form_for @cadastre, url: basic_cadastre_path(@cadastre), method: :put, remote: true do |f|
   .row
-    .col-md-2
+    .col-md-3
       = f.input :cpf, input_html: { disabled: true }
-    .col-md-10
+    .col-md-9
       = f.input :name, input_html: { disabled: true }
-  %hr/
   .row
     .col-md-3
       = f.input :telephone
@@ -16,11 +15,11 @@
       = f.input :email
   %hr/
   .row
-    .col-md-2
-      = f.input :cep
+    .col-md-3
+      = f.input :cep, input_html: { class: 'cep'}
     .col-md-3
       = f.association :city, collection: Address::City.federal_district, include_blank: 'Selecione...'
-    .col-md-7
+    .col-md-6
       = f.input :address
   .row
     .col-md-12
@@ -29,11 +28,12 @@
   .row
     .col-md-2
       = f.input :work_cep
-    .col-md-3
-      = f.input :work_city, collection: Address::City.federal_district, include_blank: 'Selecione...'
     .col-md-7
       = f.input :work_address
   %hr/
   .row
     .col-md-12
       = f.submit "Atualizar dados de contato", class: 'btn btn-success'
+
+:javascript
+  $('.cep').mask("00000-000", {placeholder: "00000-000"});
