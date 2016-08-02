@@ -3,9 +3,9 @@ require_dependency 'attendance/application_controller'
 module Attendance
   module Enabled
     class CadastreMirrorsController < ApplicationController
-    
+      before_action :set_cadastre_mirror, only: [:edit, :update]
       def init
-        @candidate = Candidate::Cadastre.find_by_cpf(params[:cadastre_mirror_id])
+        @candidate = Candidate::Cadastre.find(params[:cadastre_mirror_id])
         @mirror    = Attendance::MirrorService.new 
 
         
@@ -20,6 +20,14 @@ module Attendance
       end
 
       def update
+        redirect_to enabled_cadastre_mirror_dependent_mirrors_path(@cadastre_mirror.id)
+      end
+
+
+      private
+
+      def set_cadastre_mirror
+        @cadastre_mirror = Candidate::CadastreMirror.find(params[:id])
       end
 
     end

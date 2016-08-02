@@ -1,0 +1,30 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Atendimento - Atualização de dependentes
+  .panel-body
+    .row
+      .col-md-12
+    %br/
+    %br/
+    .row
+      .col-md-12
+        %table.table.tabel-hover.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Sexo
+              %th Nascimento
+              %th Condição Especial
+              %th Co-adquirente
+              %th Renda R$
+              %th Ação
+          %tbody.index-dependent
+            = render 'index'
+
+    %hr/
+    .row
+      .col-md-12
+        = link_to "Voltar para atualização cadastral", edit_enabled_cadastre_mirror_path(@cadastre_mirror.id), class: 'btn btn-default'
+        = link_to "Ir para preenchimento do checklist", enabled_cadastre_mirror_checklists_path(@cadastre_mirror.id), class: 'btn pull-right btn-success'

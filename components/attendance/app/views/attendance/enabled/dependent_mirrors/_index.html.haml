@@ -1,0 +1,10 @@
+- @cadastre_mirror.dependent_mirrors.each do |mirror|
+  %tr
+    %td= mirror.name
+    %td= mirror.cpf
+    %td= mirror.gender
+    %td= mirror.born.strftime("%d/%m/%Y") if mirror.born.present?
+    %td= mirror.special_condition.name if mirror.special_condition.present?
+    %td= mirror.co_acquirer ? mirror.percentage : 'Não'
+    %td= number_to_currency mirror.income
+    %td
