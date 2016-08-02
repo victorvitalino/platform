@@ -10,6 +10,11 @@ module Sefaz
 		def index
 			authorize :exemption,  :index?
 			@exemptions = @allotment.exemptions
+
+			respond_to do |format|
+				format.html
+				format.xlsx  { response.headers['Content-Disposition'] = 'attachment; filename="relatorio_processos.xlsx"' }
+			end
 		end
 
     def new

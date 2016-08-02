@@ -24,6 +24,9 @@
               = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
             .col-md-1
               = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+            .col-md-2
+              - if @exemptions.present?
+                = link_to "Exportar Excell", allotment_exemptions_path({format: :xlsx}),  class:  'btn btn-success btn-sm'
     - if @allotment.send_type == "pedido de isenção"
       = render 'index'
     - else
