@@ -22,11 +22,11 @@
   .col-md-12
     %h3 
       Atendimentos
-      %b= link_to "Iniciar atualização cadastral", enabled_cadastre_mirror_init_path(@candidate.id), class: 'pull-right' if @candidate.enabled?
-      %b= link_to "Iniciar atendimento para habilitação"  '#', class: 'pull-right' if @candidate.convoked?
+      = present('Attendance::Action', @candidate).initialize_action
     %table.table.table-striped.table-hover.table-condensed.table-bordered
       %thead
         %tr
+          %td Cod.
           %td Data
           %td Tipo
           %td Atendente
@@ -36,11 +36,12 @@
       %tbody
         - @candidate.attendance_loggers.order('start DESC').each do |item|
           %tr
+            %td= item.protocol
             %td= item.created_at.strftime("%d/%m/%Y às %H:%M")
             %td= item.type.title if item.type.present? 
             %td= item.staff.code if item.staff.present?
             %td= item.supervisor.code if item.supervisor.present?
-            %td= item.status
+            %td= present('Attendance::Cadastre', item).situation
             %td
               = present('Attendance::Action', item).dropdown_actions
 .row

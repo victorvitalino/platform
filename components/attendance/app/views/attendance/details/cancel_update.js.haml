@@ -1,0 +1,5 @@
+- if @attendance.errors.any?
+  $('#modal .modal-body').html("#{escape_javascript(render 'cancel_form')}")
+- else
+  $("#modal").modal('hide')
+  setTimeout(function(){ location.reload(); }, 1000);

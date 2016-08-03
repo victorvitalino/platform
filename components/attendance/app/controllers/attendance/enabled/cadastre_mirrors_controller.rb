@@ -24,13 +24,26 @@ module Attendance
       end
 
       def update
-        redirect_to enabled_cadastre_mirror_dependent_mirrors_path(@cadastre_mirror.id)
+        if @cadastre_mirror.update(set_params_update_mirror)
+          flash[:success] = t :success
+          redirect_to edit_enabled_cadastre_mirror_path(@cadastre_mirror.id)
+        else
+          flash[:danger] = t :danger
+          render action: :edit
+        end
+
       end
 
       private
 
+      def set_params_update_mirror
+        params.require(:enabled_cadastre_mirror).permit(:civil_state_id, :born, :gender, :arrival_df, 
+                                                :income, :special_condition_id, :adapted_property, :cid, :nis)
+
+      end
+
       def set_cadastre_mirror
-        @cadastre_mirror = Candidate::CadastreMirror.find(params[:id])
+        @cadastre_mirror = Attendance::Enabled::CadastreMirror.find(params[:id])
       end
 
       def set_params_logger

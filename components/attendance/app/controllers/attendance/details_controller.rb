@@ -42,6 +42,12 @@ module Attendance
     end
 
     def cancel
+      @attendance  = Attendance::Cadastre.find(params[:detail_id])
+    end
+
+    def cancel_update
+      @attendance  = Attendance::Cadastre.find(params[:detail_id])
+      @attendance.cancel!(current_user, set_cancel_params)
     end
 
     private
@@ -52,6 +58,10 @@ module Attendance
 
     def invoke_query_params
       @query_params = @@query_params
+    end
+
+    def set_cancel_params
+      params.require(:cadastre).permit(:cancel_observation)
     end
   end
 end

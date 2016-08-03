@@ -15,6 +15,27 @@ module Attendance
       end
     end
 
+
+    def initialize_action
+
+      @attendance_loggers = @model.attendance_loggers.where(status: 0)
+      if !@attendance_loggers.present?
+        if @model.program_id != 3
+          case @model.current_situation_id
+          when 3
+            h.link_to "Iniciar processo de habilitação", h.convoke_cadastre_mirror_init_path(@model.id), class: 'pull-right bold'
+          when 4
+            h.link_to "Iniciar novo atendimento", h.enabled_cadastre_mirror_init_path(@model.id), class: 'pull-right bold'
+          end
+        else
+          h.link_to "Iniciar novo atendimento", h.regularization_cadastre_mirror_init_path(@model.id), class: 'pull-right bold'
+        end
+      else
+        h.content_tag(:b, "#{@attendance_loggers.count} atendimento pedente", class: 'warning pull-right')
+      end
+    
+    end
+
     private
 
     def cog_button
@@ -43,7 +64,7 @@ module Attendance
         end
 
         if policy(:action, namespace: Attendance).cancel?
-          arr << h.content_tag(:a, 'Cancelar', href: h.detail_cancel_path(@model))
+          arr << h.content_tag(:a, 'Cancelar', href: h.detail_cancel_path(@model), data: { remote: true })
         end
       end
       

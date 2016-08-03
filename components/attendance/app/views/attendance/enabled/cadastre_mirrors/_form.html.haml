@@ -28,4 +28,6 @@
   .row
     .col-md-12
       = link_to "Voltar para detalhamento", detail_path(@cadastre_mirror.cpf), class: 'btn btn-default'
-      = f.submit "Ir para atualização de dependentes", class: 'btn pull-right btn-success'
+      %span.pull-right
+        = f.submit "Salvar alterações", class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+        = link_to "Ir para atualização de dependentes", enabled_cadastre_mirror_dependent_mirrors_path(@cadastre_mirror.id), class: 'btn btn-primary', data: {disable_with: t(:disable_with)}

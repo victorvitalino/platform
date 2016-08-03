@@ -1,5 +1,11 @@
 pt-BR:
   activerecord:
+    errors:
+      models:
+        'candidate/cadastre_mirror':
+          attributes:
+            born:
+              invalid_date: "data inválida"
     models:
       'candidate/cadastre_mirror': Cadastro Espelho
     attributes:

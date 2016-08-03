@@ -1,7 +1,7 @@
-= simple_form_for [:convoke, @cadastre_mirror, @dependent_mirror], remote: true do |f|
+= simple_form_for [@cadastre_mirror, @dependent_mirror], remote: true do |f|
   .row
     .col-md-4
-      = f.input :cpf
+      = f.input :cpf, input_html: { class: 'cpf' }
     .col-md-4
       = f.input :rg, as: :string
     .col-md-4
@@ -21,7 +21,7 @@
   %hr/
   .row
     .col-md-3
-      = f.input :income, as: :string, input_html: { class: 'icon-mask'}
+      = f.input :income, as: :string, input_html: { class: 'coin_mask'}
   %hr/
   .row
     .col-md-4
@@ -38,3 +38,11 @@
   .row
     .col-md-12
       = f.submit "Salvar dependente", class: 'btn btn-success btn-lg', data: { disable_with: t(:disable_with)}
+
+:javascript
+  $(document).ready(function() {
+    $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true,allowZero:true, thousands:'', decimal:'.', affixesStay: false});
+    $('.cpf').mask("000.000.000-00", {placeholder: "000.000.000-00"});
+ 
+
+  })

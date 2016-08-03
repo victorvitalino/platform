@@ -8,11 +8,21 @@ module Attendance
     belongs_to :cadastre,   class_name: "Candidate::Cadastre"
 
     enum status: ['pendente', 'finalizado', 'cancelado']
-    
-    enum attendance_type: [
-                            'atualização_dados_de_contato',
-                            'processo_de_habilitação',
-                            'atualização_cadastral_de_habilitado'  
-                          ]
+
+    def protocol
+      "#{self.id}"
+    end
+
+    def cancel!(user, params)
+      if params[:cancel_observation].empty?
+        self.errors.add(:cancel_observation, "Observação não pode ficar em branco")
+      else
+        self.canceler_id        = user.id
+        self.cancel_observation = params[:cancel_observation]
+        self.cancel_date        = Time.now
+        self.status             = 2
+        self.save
+      end
+    end
   end
 end
