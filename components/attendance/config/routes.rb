@@ -20,7 +20,12 @@ Attendance::Engine.routes.draw do
       get 'init'
 
       resources :dependent_mirrors
-      resources :checklists
+
+      resources :checklists do 
+        get 'check'
+        get 'uncheck'
+      end
+
       resources :attendant_verifications
       resources :supervisor_verifications
     end

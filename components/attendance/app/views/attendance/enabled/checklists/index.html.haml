@@ -5,7 +5,7 @@
   .panel-body
     .row
       .col-md-12
-        %h3 Checklist
+        %h3 Preenchimento do checklist
     %hr/
     .row
       .col-md-12
@@ -13,29 +13,9 @@
           %thead
             %tr
               %th Item
-              %th Autenticado
               %th Checado
           %tbody.checklist-index
-    .row
-      .col-md-12
-        %h3 Verificações
-    %hr/
-    .row
-      .col-md-12
-        %table.table.table-striped.table-bordered.table-hover
-          %thead
-            %tr
-              %th Item
-              %th Autenticado
-              %th Checado
-          %tbody.checklist-index
-    .row
-      .col-md-12
-        %h3 Parecer do Analista
-    %hr/
-    .row
-      .col-md-12
-        
+            = render 'index'
     %hr/
     .row
       .col-md-12

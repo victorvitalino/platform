@@ -9,6 +9,8 @@ module Candidate
     belongs_to :city, class_name: "Address::City"
     belongs_to :work_city, class_name: "Address::City"
     belongs_to :cadastre
+    
+    has_one    :attendance_cadastre, class_name: "Attendance::Cadastre"
 
     has_many :dependent_mirrors, dependent: :destroy
     has_many :attendance_logs
@@ -17,6 +19,7 @@ module Candidate
     has_many :attendances
     has_many :iptus, foreign_key: 'cpf'
     has_many :cadastre_attendances
+
 
     has_one :pontuation
 
