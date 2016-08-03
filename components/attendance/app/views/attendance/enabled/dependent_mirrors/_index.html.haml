@@ -1,0 +1,13 @@
+- @cadastre_mirror.dependent_mirrors.each do |mirror|
+  %tr
+    %td= mirror.name
+    %td= mirror.cpf
+    %td= mirror.gender
+    %td= mirror.born.strftime("%d/%m/%Y") if mirror.born.present?
+    %td= mirror.special_condition.name if mirror.special_condition.present?
+    %td= mirror.co_acquirer ? mirror.percentage : 'Não'
+    %td= number_to_currency mirror.income
+    %td
+      = link_to "", edit_enabled_cadastre_mirror_dependent_mirror_path(cadastre_mirror_id: @cadastre_mirror.id, id: mirror), class: 'btn btn-success glyphicon glyphicon-pencil btn-xs', remote: true
+      = link_to "", enabled_cadastre_mirror_dependent_mirror_path(cadastre_mirror_id: @cadastre_mirror.id, id: mirror), remote: true, class: 'btn btn-danger glyphicon glyphicon-remove btn-xs', method: 'delete'
+      

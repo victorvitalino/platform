@@ -11,7 +11,7 @@ module Sefaz
 
   def self.xml(id)
    new_exemption = Sefaz::Exemption.where(allotment_id: id)
-   
+
    xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml|
 
      xml.ArrayofImovelConstruido do
@@ -53,9 +53,93 @@ module Sefaz
    end
 
 
+   def self.xml_parcial(id)
+    new_exemption = Sefaz::Exemption.where(allotment_id: id)
+
+    xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml|
+
+      xml.ArrayofCancelamentoParcial do
+        new_exemption.each do |exemption|
+          xml.cancelamentoParcial do
+            xml.nomeTransmitente exemption.allotment.notifiers
+            xml.cnpj  exemption.allotment.cnpj_notifiers.gsub('.','').gsub('-','').gsub('/','')
+            xml.cpfAdquirente exemption.cpf.gsub('.','').gsub('-','')
+            xml.inscricaoImovel exemption.realty_number
+            xml.tipoTransacao exemption.allotment.exemption_type == "ITBI" ? 1 : 2
+            xml.anoAto exemption.year_act
+            xml.atoGerado exemption.number_act_to_cancel
+            xml.justificativa exemption.allotment.observation
+          end
+        end
+        xml.Signature(xmlns:"http://www.w3.org/2000/09/xmldsig#" ) do
+          xml.SignedInfo do
+            xml.CanonicalizationMethod(Algorithm: "http://www.w3.org/TR/2001/REC-xml-c14n-20010315")
+            xml.SignatureMethod(Algorithm:"http://www.w3.org/2000/09/xmldsig#rsa-sha1")
+            xml.Reference(URI: "") do
+             xml.Transforms do
+               xml.Transform(Algorithm:"http://www.w3.org/2000/09/xmldsig#enveloped-signature")
+               xml.Transform(Algorithm:"http://www.w3.org/TR/2001/REC-xml-c14n-20010315")
+             end
+             xml.DigestMethod(Algorithm:"http://www.w3.org/2000/09/xmldsig#sha1")
+             xml.DigestValue "Sz6U97pYO4t4k8pBtv8egpQMtqM="
+            end
+          end
+          xml.SignatureValue "WWsmiSrpztVRCFOkGnX1d2FTCeu0hxd0krXHI3fhmm0Dw983YpolJ4/OTDXNFJBLSq52ftqoPG/aUmd2wcWW1eLD5WZO6ONlFGCHBRN1jPRYl0iwu2OihsDfVa+kwhBttMpQ/UzOGbgMm3xGSIEV+ADrgzMMGamdcu1Ol0UQiQHNiDOyDF/uBlVS+LvQpvM7tAaCyBcBuKo+04mEW6baXz25U3E//iJazs/uYaWBJ0UehKBnlWSWB1lgk1ZJI7ht8n1zVjaPHkIp/SZ31tToBthSgMHbALWsRRdQXIK7yqO0/CSwmgdkGu8TNf7Hih2VRE7ElS7mghLZhOl07zyteA=="
+          xml.KeyInfo do
+            xml.X509Data do
+              xml.X509Certificate "MIIIezCCBmOgAwIBAgIQUxdul9aF6bD98slw/aEwNjANBgkqhkiG9w0BAQsFADB4MQswCQYDVQQGEwJCUjETMBEGA1UEChMKSUNQLUJyYXNpbDE2MDQGA1UECxMtU2VjcmV0YXJpYSBkYSBSZWNlaXRhIEZlZGVyYWwgZG8gQnJhc2lsIC0gUkZCMRwwGgYDVQQDExNBQyBDZXJ0aXNpZ24gUkZCIEc0MB4XDTE1MDQwNjAwMDAwMFoXDTE4MDQwNDIzNTk1OVowggEIMQswCQYDVQQGEwJCUjETMBEGA1UEChQKSUNQLUJyYXNpbDELMAkGA1UECBMCREYxETAPBgNVBAcUCEJSQVNJTElBMTYwNAYDVQQLFC1TZWNyZXRhcmlhIGRhIFJlY2VpdGEgRmVkZXJhbCBkbyBCcmFzaWwgLSBSRkIxFjAUBgNVBAsUDVJGQiBlLUNOUEogQTMxKTAnBgNVBAsUIEF1dGVudGljYWRvIHBvciBBUiBGZWNvbWVyY2lvIERGMUkwRwYDVQQDE0BDT01QQU5ISUEgREUgREVTRU5WT0xWSU1FTlRPIEhBQklUQUNJT05BTCBETyBESVNUOjA5MzM1NTc1MDAwMTMwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtvYI0p+WlwRWNH1uo+fGLdUNZNn82C1jZhFgB1CFGBGk2ih+TLCP6ytl4xyR0tOsszTbgC8AsJ8MHRbt1XZUnYV0j3zywg5QXOqwUAvTI9blNQ0e7okaf5VhcvC92ksgAR6hy1CBA8Zwb/FyI/lBlKmS8OWwMvLp/QIbZylBloh3ss6uJFuRR8Bb2dZniT4P3DHXGGQivE0Ae9l6HagUWCRtCF/UTeLi4404VfARnABq5GuGBww3ZZnSYglPBEMxwB9MxYSITuDnKWu6ni0GgRfVEVfQirRBQdI6Ap/jE9c5M3Zj/3UrePLIQAjo2eZiQompGJJ7HWMcuAe1Q5KWbQIDAQABo4IDbTCCA2kwgdIGA1UdEQSByjCBx6A9BgVgTAEDBKA0BDIyODA0MTk1NTExOTc4ODU2MTcyMDAwMDAwMDAwMDAwMDAwMDAwMDAzMDU3NzZTU1BERqAwBgVgTAEDAqAnBCVHSUxTT04gSk9TRSBQQVJBTkhPUyBERSBQQVVMQSBFIFNJTFZBoBkGBWBMAQMDoBAEDjA5MzM1NTc1MDAwMTMwoBcGBWBMAQMHoA4EDDAwMDAwMDAwMDAwMIEgZ2VvdmFuZS5tYXJ0aW5zQGNvZGhhYi5kZi5nb3YuYnIwCQYDVR0TBAIwADAfBgNVHSMEGDAWgBQukerWbeWyWYLcOIUpdjQWVjzQPjAOBgNVHQ8BAf8EBAMCBeAwfwYDVR0gBHgwdjB0BgZgTAECAwYwajBoBggrBgEFBQcCARZcaHR0cDovL2ljcC1icmFzaWwuY2VydGlzaWduLmNvbS5ici9yZXBvc2l0b3Jpby9kcGMvQUNfQ2VydGlzaWduX1JGQi9EUENfQUNfQ2VydGlzaWduX1JGQi5wZGYwggEWBgNVHR8EggENMIIBCTBXoFWgU4ZRaHR0cDovL2ljcC1icmFzaWwuY2VydGlzaWduLmNvbS5ici9yZXBvc2l0b3Jpby9sY3IvQUNDZXJ0aXNpZ25SRkJHNC9MYXRlc3RDUkwuY3JsMFagVKBShlBodHRwOi8vaWNwLWJyYXNpbC5vdXRyYWxjci5jb20uYnIvcmVwb3NpdG9yaW8vbGNyL0FDQ2VydGlzaWduUkZCRzQvTGF0ZXN0Q1JMLmNybDBWoFSgUoZQaHR0cDovL3JlcG9zaXRvcmlvLmljcGJyYXNpbC5nb3YuYnIvbGNyL0NlcnRpc2lnbi9BQ0NlcnRpc2lnblJGQkc0L0xhdGVzdENSTC5jcmwwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMIGbBggrBgEFBQcBAQSBjjCBizBfBggrBgEFBQcwAoZTaHR0cDovL2ljcC1icmFzaWwuY2VydGlzaWduLmNvbS5ici9yZXBvc2l0b3Jpby9jZXJ0aWZpY2Fkb3MvQUNfQ2VydGlzaWduX1JGQl9HNC5wN2MwKAYIKwYBBQUHMAGGHGh0dHA6Ly9vY3NwLmNlcnRpc2lnbi5jb20uYnIwDQYJKoZIhvcNAQELBQADggIBAIkrkr9znEherwSqs3cqDzxgpeSlQn0f2hvP9pECO9IL6p+1XRUg+q36NVXcBzhWaPHedhp6MrLtqJ13Oe/7XL1E7cuSlkAONX1FjXopEQp9xMcDe/Q73bW5PaZs+8AkREalNpLRoWVFkxuJGubKqE2KFrg+xYobl4J9Lq3tfWJq6O6SyNsQq65jkw64PyWL7hSGRYURltTzt0uGY1I/YNyaEvzyYcy5HIZF5x/IAQXHrEBMaXfnB+Zt9h2DgB8/ZqtjxPvUyGjzvc3jp1eu+URFvO9yG5tBYoo50ToH9sNNZ9qHMeXh84P2iDDBRIRgVPxZFGtU2VFpXcpvtnRD3/O3MJ0TTv+qqZn+nEaw4f1xjU107ICAvmqo/LtjJd1FBszE6btSeUniPQr8XnnDg+e7o8V8KgDlDbK6kUJMAnX9+MzDWcfb10DLr929XUd8NPXlRsoXHSa3vBpRfIz3MXs6vC0AI+r2D6Ywc5Q7dKmrqCLqdviO2J9iiL7GCxiCrX2Wv30y0RPZLqKAM4GKiLvoyCcsM3Qr5YXzO/JMdt8fFUgASdcJp8l20B31C2a7sb5NssGfHdg9ohQ9LfJ0nUrc46iEt0+oOrLLR6gbiABh+DD9/rn6jZvP34LgtkvubR9hJQRNzwxvIRc2em1euUIkaAzb7mS51/hVtaIy9xBX"
+            end
+          end
+        end
+      end
+      }.to_xml
+
+    end
+
+
+    def self.xml_total(id)
+     new_exemption = Sefaz::Exemption.where(allotment_id: id)
+
+     xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml|
+
+       xml.ArrayofCancelamentoTotal do
+         new_exemption.each do |exemption|
+           xml.cancelamentoTotal do
+             xml.nomeTransmitente exemption.allotment.notifiers
+             xml.cnpj  exemption.allotment.cnpj_notifiers.gsub('.','').gsub('-','').gsub('/','')
+             xml.tipoTransacao exemption.allotment.exemption_type == "ITBI" ? 1 : 2
+          end
+        end
+         xml.Signature(xmlns:"http://www.w3.org/2000/09/xmldsig#" ) do
+           xml.SignedInfo do
+             xml.CanonicalizationMethod(Algorithm: "http://www.w3.org/TR/2001/REC-xml-c14n-20010315")
+             xml.SignatureMethod(Algorithm:"http://www.w3.org/2000/09/xmldsig#rsa-sha1")
+             xml.Reference(URI: "") do
+              xml.Transforms do
+                xml.Transform(Algorithm:"http://www.w3.org/2000/09/xmldsig#enveloped-signature")
+                xml.Transform(Algorithm:"http://www.w3.org/TR/2001/REC-xml-c14n-20010315")
+              end
+              xml.DigestMethod(Algorithm:"http://www.w3.org/2000/09/xmldsig#sha1")
+              xml.DigestValue "Sz6U97pYO4t4k8pBtv8egpQMtqM="
+             end
+           end
+           xml.SignatureValue "WWsmiSrpztVRCFOkGnX1d2FTCeu0hxd0krXHI3fhmm0Dw983YpolJ4/OTDXNFJBLSq52ftqoPG/aUmd2wcWW1eLD5WZO6ONlFGCHBRN1jPRYl0iwu2OihsDfVa+kwhBttMpQ/UzOGbgMm3xGSIEV+ADrgzMMGamdcu1Ol0UQiQHNiDOyDF/uBlVS+LvQpvM7tAaCyBcBuKo+04mEW6baXz25U3E//iJazs/uYaWBJ0UehKBnlWSWB1lgk1ZJI7ht8n1zVjaPHkIp/SZ31tToBthSgMHbALWsRRdQXIK7yqO0/CSwmgdkGu8TNf7Hih2VRE7ElS7mghLZhOl07zyteA=="
+           xml.KeyInfo do
+             xml.X509Data do
+               xml.X509Certificate "MIIIezCCBmOgAwIBAgIQUxdul9aF6bD98slw/aEwNjANBgkqhkiG9w0BAQsFADB4MQswCQYDVQQGEwJCUjETMBEGA1UEChMKSUNQLUJyYXNpbDE2MDQGA1UECxMtU2VjcmV0YXJpYSBkYSBSZWNlaXRhIEZlZGVyYWwgZG8gQnJhc2lsIC0gUkZCMRwwGgYDVQQDExNBQyBDZXJ0aXNpZ24gUkZCIEc0MB4XDTE1MDQwNjAwMDAwMFoXDTE4MDQwNDIzNTk1OVowggEIMQswCQYDVQQGEwJCUjETMBEGA1UEChQKSUNQLUJyYXNpbDELMAkGA1UECBMCREYxETAPBgNVBAcUCEJSQVNJTElBMTYwNAYDVQQLFC1TZWNyZXRhcmlhIGRhIFJlY2VpdGEgRmVkZXJhbCBkbyBCcmFzaWwgLSBSRkIxFjAUBgNVBAsUDVJGQiBlLUNOUEogQTMxKTAnBgNVBAsUIEF1dGVudGljYWRvIHBvciBBUiBGZWNvbWVyY2lvIERGMUkwRwYDVQQDE0BDT01QQU5ISUEgREUgREVTRU5WT0xWSU1FTlRPIEhBQklUQUNJT05BTCBETyBESVNUOjA5MzM1NTc1MDAwMTMwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtvYI0p+WlwRWNH1uo+fGLdUNZNn82C1jZhFgB1CFGBGk2ih+TLCP6ytl4xyR0tOsszTbgC8AsJ8MHRbt1XZUnYV0j3zywg5QXOqwUAvTI9blNQ0e7okaf5VhcvC92ksgAR6hy1CBA8Zwb/FyI/lBlKmS8OWwMvLp/QIbZylBloh3ss6uJFuRR8Bb2dZniT4P3DHXGGQivE0Ae9l6HagUWCRtCF/UTeLi4404VfARnABq5GuGBww3ZZnSYglPBEMxwB9MxYSITuDnKWu6ni0GgRfVEVfQirRBQdI6Ap/jE9c5M3Zj/3UrePLIQAjo2eZiQompGJJ7HWMcuAe1Q5KWbQIDAQABo4IDbTCCA2kwgdIGA1UdEQSByjCBx6A9BgVgTAEDBKA0BDIyODA0MTk1NTExOTc4ODU2MTcyMDAwMDAwMDAwMDAwMDAwMDAwMDAzMDU3NzZTU1BERqAwBgVgTAEDAqAnBCVHSUxTT04gSk9TRSBQQVJBTkhPUyBERSBQQVVMQSBFIFNJTFZBoBkGBWBMAQMDoBAEDjA5MzM1NTc1MDAwMTMwoBcGBWBMAQMHoA4EDDAwMDAwMDAwMDAwMIEgZ2VvdmFuZS5tYXJ0aW5zQGNvZGhhYi5kZi5nb3YuYnIwCQYDVR0TBAIwADAfBgNVHSMEGDAWgBQukerWbeWyWYLcOIUpdjQWVjzQPjAOBgNVHQ8BAf8EBAMCBeAwfwYDVR0gBHgwdjB0BgZgTAECAwYwajBoBggrBgEFBQcCARZcaHR0cDovL2ljcC1icmFzaWwuY2VydGlzaWduLmNvbS5ici9yZXBvc2l0b3Jpby9kcGMvQUNfQ2VydGlzaWduX1JGQi9EUENfQUNfQ2VydGlzaWduX1JGQi5wZGYwggEWBgNVHR8EggENMIIBCTBXoFWgU4ZRaHR0cDovL2ljcC1icmFzaWwuY2VydGlzaWduLmNvbS5ici9yZXBvc2l0b3Jpby9sY3IvQUNDZXJ0aXNpZ25SRkJHNC9MYXRlc3RDUkwuY3JsMFagVKBShlBodHRwOi8vaWNwLWJyYXNpbC5vdXRyYWxjci5jb20uYnIvcmVwb3NpdG9yaW8vbGNyL0FDQ2VydGlzaWduUkZCRzQvTGF0ZXN0Q1JMLmNybDBWoFSgUoZQaHR0cDovL3JlcG9zaXRvcmlvLmljcGJyYXNpbC5nb3YuYnIvbGNyL0NlcnRpc2lnbi9BQ0NlcnRpc2lnblJGQkc0L0xhdGVzdENSTC5jcmwwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMIGbBggrBgEFBQcBAQSBjjCBizBfBggrBgEFBQcwAoZTaHR0cDovL2ljcC1icmFzaWwuY2VydGlzaWduLmNvbS5ici9yZXBvc2l0b3Jpby9jZXJ0aWZpY2Fkb3MvQUNfQ2VydGlzaWduX1JGQl9HNC5wN2MwKAYIKwYBBQUHMAGGHGh0dHA6Ly9vY3NwLmNlcnRpc2lnbi5jb20uYnIwDQYJKoZIhvcNAQELBQADggIBAIkrkr9znEherwSqs3cqDzxgpeSlQn0f2hvP9pECO9IL6p+1XRUg+q36NVXcBzhWaPHedhp6MrLtqJ13Oe/7XL1E7cuSlkAONX1FjXopEQp9xMcDe/Q73bW5PaZs+8AkREalNpLRoWVFkxuJGubKqE2KFrg+xYobl4J9Lq3tfWJq6O6SyNsQq65jkw64PyWL7hSGRYURltTzt0uGY1I/YNyaEvzyYcy5HIZF5x/IAQXHrEBMaXfnB+Zt9h2DgB8/ZqtjxPvUyGjzvc3jp1eu+URFvO9yG5tBYoo50ToH9sNNZ9qHMeXh84P2iDDBRIRgVPxZFGtU2VFpXcpvtnRD3/O3MJ0TTv+qqZn+nEaw4f1xjU107ICAvmqo/LtjJd1FBszE6btSeUniPQr8XnnDg+e7o8V8KgDlDbK6kUJMAnX9+MzDWcfb10DLr929XUd8NPXlRsoXHSa3vBpRfIz3MXs6vC0AI+r2D6Ywc5Q7dKmrqCLqdviO2J9iiL7GCxiCrX2Wv30y0RPZLqKAM4GKiLvoyCcsM3Qr5YXzO/JMdt8fFUgASdcJp8l20B31C2a7sb5NssGfHdg9ohQ9LfJ0nUrc46iEt0+oOrLLR6gbiABh+DD9/rn6jZvP34LgtkvubR9hJQRNzwxvIRc2em1euUIkaAzb7mS51/hVtaIy9xBX"
+             end
+           end
+         end
+       end
+       }.to_xml
+
+     end
+
+
     private
 
     def virtual_validate!
+      self.system_message = ""
 
       add_message_error("CPF inválido")       if !ValidatesCpfCnpj::Cpf.valid?(self.cpf.format_cpf)
       add_message_error("Nome em branco")     if self.name.to_s.empty?

@@ -1,0 +1,64 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Resumo do atendimento - ##{@attendance.id}
+      = link_to "Retornar para listagem", detail_path(@attendance.cadastre.cpf),class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-9
+        .row
+          .col-md-12
+            %h3 Detalhamento
+            %table.table.table-striped.table-bordered.table-hover
+              %thead
+                %tr
+                  %td Tipo de atendimento
+                  %td Atendente 
+                  %td Supervisor
+                  %td Criado em
+                  %td Finalizado em
+                  %td Situação
+              %tbody
+                %tr
+                  %td= @attendance.type.title
+                  %td= @attendance.staff.code
+                  %td= @attendance.supervisor.code if @attendance.supervisor.present?
+                  %td= @attendance.start.strftime("%d/%m/%Y às %H:%M")
+                  %td= @attendance.end.strftime("%d/%m/%Y às %H:%M") if @attendance.end.present?
+                  %td= @attendance.status.humanize
+            %h3 Cadastro referência
+            %table.table.table-striped.table-bordered.table-hover
+              %thead
+                %tr
+                  %td CPF
+                  %td Situação 
+                  %td Supervisor
+                  %td Criado em
+                  %td Finalizado em
+                  %td Situação
+              %tbody
+                %tr
+                  %td= @attendance.cadastre.cpf.format_cpf
+                  %td
+                    %b= @attendance.cadastre.current_situation_name
+                  %td= @attendance.supervisor.code if @attendance.supervisor.present?
+                  %td= @attendance.start.strftime("%d/%m/%Y às %H:%M")
+                  %td= @attendance.end.strftime("%d/%m/%Y às %H:%M") if @attendance.end.present?
+                  %td
+                    %b= @attendance.status.humanize
+        .row
+          .col-md-12
+            %h3 Log do atendimento
+            %table.table.table-striped.table-bordered.table-hover
+              %thead
+                %tr
+                  %td Cod.
+                  %td Ação
+                  %td Data/Hora
+                  %td Funcionário
+              %tbody
+                %tr
+                  %td
+                  %td
+                  %td
+                  %td

@@ -1,0 +1,31 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4 Novo candidato
+  .panel-body
+    .row
+      .col-md-12
+        = simple_form_for [@allotment, @exemption] do |f|
+          .row
+            .col-md-6
+              = f.label :name, class: 'fg-label'
+              = f.input :name,  label: false
+            .col-md-4
+              = f.label :cpf, class: 'fg-label'
+              = f.input :cpf,  label: false
+          .row
+            .col-md-4
+              = f.label :year_act, class: 'fg-label'
+              = f.input :year_act,  label: false
+            .col-md-6
+              = f.label :number_act_to_cancel, class: 'fg-label'
+              = f.input :number_act_to_cancel,  label: false
+          .row
+            .col-md-4
+              = f.label :realty_number, class: 'fg-label'
+              = f.input :realty_number,  label: false
+            .col-md-12
+              = f.button :submit, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button) }
+              = link_to "Voltar", allotment_exemptions_path(@allotment),  class: 'btn btn-default btn-xs'
+    %hr
+    = render 'list_cancelation'

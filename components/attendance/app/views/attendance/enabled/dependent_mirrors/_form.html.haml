@@ -1,0 +1,48 @@
+= simple_form_for [@cadastre_mirror, @dependent_mirror], remote: true do |f|
+  .row
+    .col-md-4
+      = f.input :cpf, input_html: { class: 'cpf' }
+    .col-md-4
+      = f.input :rg, as: :string
+    .col-md-4
+      = f.input :rg_org, as: :string
+  .row
+    .col-md-12
+      = f.input :name
+  .row
+    .col-md-3
+      = f.input :born, as: :string, input_html: { class: 'date', value: (f.object.born.present?) ? localize(f.object.born) : ''}
+    .col-md-3
+      = f.input :gender, as: :select, collection: Candidate::DependentMirror.genders.keys, include_blank: false
+    .col-md-3
+      = f.association :civil_state, include_blank: false
+    .col-md-3
+      = f.association :kinship, include_blank: false
+  %hr/
+  .row
+    .col-md-3
+      = f.input :income, as: :string, input_html: { class: 'coin_mask'}
+  %hr/
+  .row
+    .col-md-4
+      = f.association :special_condition, include_blank: false
+    .col-md-2
+      = f.input :nis
+    .col-md-2
+      = f.input :cid
+    .col-md-2
+      = f.input :co_acquirer, as: :select, include_blank: false
+    .col-md-2
+      = f.input :percentage
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Salvar dependente", class: 'btn btn-success btn-lg', data: { disable_with: t(:disable_with)}
+
+:javascript
+  $(document).ready(function() {
+    $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true,allowZero:true, thousands:'', decimal:'.', affixesStay: false});
+    $('.cpf').mask("000.000.000-00", {placeholder: "000.000.000-00"});
+ 
+
+  })

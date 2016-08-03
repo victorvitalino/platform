@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Exemption") do |sheet|
+  sheet.add_row ["Nome", "CPF", "Cidade", "Endereço", "Iptu", "Valor", "Número do Ato","Retorno SEFAZ" ]
+  @exemptions.each do |a|
+    sheet.add_row [a.name, a.cpf,a.city, a.address, a.realty_number, a.realty_value, a.act_number, a.return_message]
+  end
+end

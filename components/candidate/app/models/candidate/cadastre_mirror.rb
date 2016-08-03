@@ -20,8 +20,6 @@ module Candidate
 
     has_one :pontuation
 
-
-
     enum situation: ['em_progresso','pendente', 'aprovado']
     enum gender: ['N/D', 'masculino', 'feminino']
 
@@ -29,56 +27,15 @@ module Candidate
 
     # => abstração
 
-    def last_attendance
-      if self.attendaces.present?
-        self.attendances.order(:created_at).last.present? ? attendaces.last : "Sem informação"
-      end
-    end
-
-    def last_attendance_name
-      attendace_status = attendances.order(:created_at).last.attendance_status rescue nil
-      attendances.present? ? attendace_status.name : "Sem informação"
-    end
-
-    def last_attendance_staff
-      attendance_staff = attendances.order(:created_at).last.staff rescue nil
-      attendance_staff.present? ? attendance_staff.code : "Sem informação"
-    end
-
-    def last_attendance_open?
-      attendance_status  = attendances.order(:created_at).last.attendance_status.id rescue nil
-      attendance_status == 7 
+    def age
+      (Date.today - self.born).to_i / 365
     end
 
     def pontuation?
       Candidate::Pontuation.where(cadastre_mirror_id: self.id).present?  
     end
 
-    def set_clone(attributes = {})
-      attributes.each do |key, value|
-        unless %w(id created_at updated_at).include? key
-          self[key] = value if self.attributes.has_key?(key)
-        end
-      end
-    end
-
-    def set_clone_dependent(dependents = {})
-      
-      dependents.each do |dependent|
-
-        @new_dependent = self.dependent_mirrors.new 
-
-        dependent.attributes.each do |key, value|
-          unless %w(id created_at updated_at).include? key 
-            @new_dependent[key] = value
-          end
-        end
-
-        @new_dependent.save
-      end
-
-    end
-
+ 
     def arrival_df_time(date)
       date.year - self.arrival_df.strftime("%Y").to_i if self.arrival_df.present?
     end
@@ -86,30 +43,6 @@ module Candidate
     def timelist_time(date)
       date.year - self.created_at.year
     end
-
-    def supervisor_step?
-      self.cadastre_procedurals.present?
-    end
-
-    def attendant_step?
-      !self.cadastre_procedurals.present?
-    end
-
-    # => logs
-
-    def attendance_log!(content, user_id)
-      cadastre = Candidate::Cadastre.find(self.cadastre_id)
-
-      cadastre.attendance_logs.create({
-        cadastre_id: cadastre.id,
-        cadastre_mirror_id: self.id,
-        content: content,
-        user_id: user_id
-      })
-    end
-
-
-    # => validações do mundo legal
 
     def self.check_arrival_df(id)
       mirror = Candidate::CadastreMirror.find(id)
@@ -130,31 +63,6 @@ module Candidate
 
       (income_dep + mirror.income) > FAMILY_INCOME
     end
-
-
-    # => functions
-
-    def attendance_under_review? 
-      self.attendaces.where(attendance_status_id: 4).present? 
-    end
-
-    def supervisor_under_review?
-      attendance_under_review?  && self.cadastre_procedurals.where(procedural_status_id: [76, 7]).present?
-    end
-
-    def finish_attendance!(staff_id, observation, situation)
-
-      # => criação de ordem processual
-      @procedural = Candidate::CadastreProcedural.new({
-        cadastre_mirror_id: self.id,
-        cadastre_id: self.cadastre_id,
-        staff_id: staff_id,
-        observation: observation,
-        assessment_id: 1,
-        procedural_status_id: situation
-      })
-
-      @procedural.save
-    end
+  
   end
 end

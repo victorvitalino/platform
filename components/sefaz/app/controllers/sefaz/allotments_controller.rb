@@ -65,9 +65,19 @@ module Sefaz
 
 		def send_exemption
 			authorize :allotment,  :send_allotment?
-
 		  Sefaz::Allotment.send_allotment(params[:allotment_id], current_user.id)
+			redirect_to allotments_path
+		end
 
+		def send_parcial_cancelation
+			#authorize :allotment,  :send_allotment?
+		  Sefaz::Allotment.send_parcial_cancelation(params[:allotment_id], current_user.id)
+			redirect_to allotments_path
+		end
+
+		def send_total_cancelation
+			#authorize :allotment,  :send_allotment?
+		  Sefaz::Allotment.send_total_cancelation(params[:allotment_id], current_user.id)
 			redirect_to allotments_path
 		end
 

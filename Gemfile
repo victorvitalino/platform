@@ -87,11 +87,11 @@ path 'components' do
   gem 'dashboard'
   gem 'person'
   gem 'cms'
-  #gem 'helpdesk'
   gem 'protocol'
   gem 'concourse'
   gem 'concourse_portal'
-  gem 'attendance'
+ 
+ 
   gem 'candidate'
   gem 'address'
 
@@ -135,6 +135,8 @@ path 'components' do
 
   gem 'indication'
   gem 'indication_portal'
+
+  gem 'attendance'
 
   gem 'project'
   gem 'visit'

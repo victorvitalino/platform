@@ -7,6 +7,12 @@
   .panel-body
     .row.form-filter
       .col-md-12
+        .row
+          .col-md-12
+            = link_to 'Modelo de pedido de isenção', '/uploads/archive/files/eff6034d6b6c02d75b7aea7f58e96044.xlsx'
+            %br
+            = link_to 'Modelo de cancelamento', '/uploads/archive/files/e5a5620b16464b4dbbe1c4d0d61cfbc0.xlsx'
+        %hr
         = simple_form_for  url_for, method: 'get' do |f|
           .row
             .col-md-2
@@ -60,7 +66,9 @@
                   %td= a.send_type_i18n
                   %td
                     = link_to "", allotment_to_process_path(a), title: "Processar lote",  class: 'glyphicon glyphicon-download-alt btn btn-info btn-xs' if a.send_status_id == 3
-                    = link_to "", allotment_send_exemption_path(a), title: "Enviar lote",  class: 'glyphicon glyphicon-send btn btn-warning btn-xs' if a.send_status_id == 2
+                    = link_to "", allotment_send_exemption_path(a), title: "Enviar lote",  class: 'glyphicon glyphicon-send btn btn-warning btn-xs' if a.send_status_id == 2 && a.send_type == "pedido de isenção"
+                    = link_to "", allotment_send_parcial_cancelation_path(a), title: "Enviar cancelamento parcial",  class: 'glyphicon glyphicon-send btn btn-warning btn-xs' if a.send_status_id == 2 && a.send_type == "cancelamento parcial"
+                    = link_to "", allotment_send_total_cancelation_path(a), title: "Enviar cancelamento total",  class: 'glyphicon glyphicon-send btn btn-warning btn-xs' if a.send_status_id == 2 && a.send_type.to_i == "cancelamento total"
                     = link_to "",allotment_exemptions_path(a), title: "Candidatos",  class: 'glyphicon glyphicon-user btn btn-success btn-xs'
                     = link_to "", edit_allotment_path(a), title: "editar",  class: 'glyphicon glyphicon-edit btn btn-info btn-xs',data: {disable_with: "carregando..."} if a.send_status_id < 3
                     = link_to "", allotment_path(a), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."} if a.send_status_id < 3

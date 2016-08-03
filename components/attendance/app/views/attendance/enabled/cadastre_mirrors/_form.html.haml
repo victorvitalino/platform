@@ -1,0 +1,33 @@
+= simple_form_for @cadastre_mirror, url: enabled_cadastre_mirror_path(@cadastre_mirror) do |f|
+  .row
+    .col-md-2
+      = f.input :cpf, input_html: { disabled: true}
+    .col-md-10
+      = f.input :name, input_html: { disabled: true}
+  .row
+    .col-md-2
+      = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : ''}
+    .col-md-2
+      = f.input :gender, as: :select, collection: Candidate::CadastreMirror.genders.keys, include_blank: false
+    .col-md-2
+      = f.association :civil_state, include_blank: false
+    .col-md-2
+      = f.input :arrival_df, as: :string, input_html: { class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : ''}
+    .col-md-2
+      = f.input :income, as: :string, input_html: { class: 'coin_mask'}
+  .row
+    .col-md-2
+      = f.association :special_condition, include_blank: false
+    .col-md-2
+      = f.input :adapted_property, as: :select, include_blank: false
+    .col-sm-2
+      = f.input :cid
+    .col-md-2
+      = f.input :nis
+  %hr/
+  .row
+    .col-md-12
+      = link_to "Voltar para detalhamento", detail_path(@cadastre_mirror.cpf), class: 'btn btn-default'
+      %span.pull-right
+        = f.submit "Salvar alterações", class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+        = link_to "Ir para atualização de dependentes", enabled_cadastre_mirror_dependent_mirrors_path(@cadastre_mirror.id), class: 'btn btn-primary', data: {disable_with: t(:disable_with)}

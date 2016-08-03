@@ -30,8 +30,6 @@ PATH
     archive (0.0.1)
       rails (~> 4.2.1)
     attendance (0.0.1)
-      haml-rails
-      pundit
       rails (~> 4.2.1)
     authenticate (0.0.1)
       rails (~> 4.2.1)

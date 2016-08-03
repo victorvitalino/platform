@@ -1,5 +1,11 @@
 pt-BR:
   activerecord:
+    errors:
+      models:
+        dependent_mirror:
+          attributes:
+            born:
+              invalid_date: "data inválida"
     models:
       'candidate/dependent_mirror': Dependente
     attributes:

@@ -1,9 +1,0 @@
-pt-BR:
-  activerecord:
-    models:
-      'attendance/attendant': Atendente
-    attributes:
-      'attendance/attendant':
-        staff: "Funcionário"
-        description: "Observação"
-        status: "Ativo?"

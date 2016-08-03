@@ -1,0 +1,18 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Atendimento habitacional
+      %span.pull-right
+        = link_to "Retornar para listagem", details_path(@query_params)
+  .panel-body
+    .row
+      .col-md-8
+        .row
+          .col-md-12
+            %h1 Detalhamento de dados para atendimento
+        .row
+          .col-md-12
+            - if @candidate.present?
+              = render 'candidate_present'
+            - else 
+              = render 'candidate_not_exist'

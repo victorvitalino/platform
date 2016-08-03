@@ -1,3 +1,11 @@
+.bold {
+  font-weight: bold;
+}
+.warning { color: orange; }
+.danger, .danger a, .danger:hover {
+  color: #c70909;
+}
+
 body {
   background-color: #FFF9F0  !important;
 }

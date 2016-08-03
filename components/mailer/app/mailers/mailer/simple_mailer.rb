@@ -9,5 +9,13 @@ module Mailer
     def send_text(email, subject)
       mail(to: email, subject: subject)
     end
+
+    def send_with_template(email, subject)
+      mail(to: email, subject: subject)
+    end
+
+    def send_with_template_base(email, subject)
+      mail(to: email, subject: subject)
+    end
   end
 end

@@ -1,13 +1,16 @@
-require_dependency 'app/helpers/application_helper'
+require_dependency 'authenticate/staff_service'
+require_dependency 'authenticate/staff_helper'
+require_dependency 'navigation_helper'
 
 module Attendance
   class ApplicationController < ActionController::Base
-    layout 'layouts/material'
-
-    helper ::ApplicationHelper
-
+    layout 'patternfly/application'
+    
     include Pundit
-
-    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    include Authenticate::StaffService
+    helper  Authenticate::StaffHelper
+    helper  ::NavigationHelper
+    
+    before_action :authenticate_staff?
   end
 end
