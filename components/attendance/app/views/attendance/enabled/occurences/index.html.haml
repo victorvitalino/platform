@@ -1,0 +1,25 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Atendimento - Validação de cadastro
+  .panel-body
+    .row
+      .col-md-12
+        %h3 Ocorrências
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th Item
+              %th Descrição
+              %th Situação
+              %th Ações
+          %tbody.checklist-index
+            = render 'index'
+    %hr/
+    .row
+      .col-md-12
+        = link_to "Voltar para preenchimento de checklist", enabled_cadastre_mirror_checklists_path(@cadastre_mirror.id), class: 'btn btn-default'
+        = link_to "Finalizar o atendimento", enabled_cadastre_mirror_occurences_path(@cadastre_mirror.id), class: 'btn pull-right btn-success'      

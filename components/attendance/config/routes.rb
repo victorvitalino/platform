@@ -3,8 +3,6 @@ Attendance::Engine.routes.draw do
 
   resources :details, only: [:index, :show] do 
     get 'resume',     path: 'resumo'
-    
-    
     get 'continue',   path: 'continue'
 
     get  'cancel',        path: 'cancelar'
@@ -20,14 +18,14 @@ Attendance::Engine.routes.draw do
       get 'init'
 
       resources :dependent_mirrors
-
+      
       resources :checklists do 
         get 'check'
         get 'uncheck'
       end
 
-      resources :attendant_verifications
-      resources :supervisor_verifications
+      resources :occurences
+
     end
   end
 

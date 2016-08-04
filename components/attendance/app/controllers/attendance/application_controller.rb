@@ -12,5 +12,6 @@ module Attendance
     helper  ::NavigationHelper
     
     before_action :authenticate_staff?
+
   end
 end
