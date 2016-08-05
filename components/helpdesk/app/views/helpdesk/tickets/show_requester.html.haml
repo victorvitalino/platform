@@ -1,0 +1,61 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Dados do chamado
+        = link_to 'Voltar', ticket_requester_path, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-4
+            %label Usuário:
+            = @ticket.requester.name if @ticket.requester.present?
+          .col-md-4
+            %label Assunto:
+            = @ticket.ticket_subject.title if @ticket.ticket_subject.present?
+        .row
+          .col-md-4
+            %label Início do atendimento:
+            = @ticket.attendance_start
+          .col-md-4
+            %label Final do atendimento:
+            = @ticket.attendance_end
+        .row
+          .col-md-12
+            %label Descrição:
+            = @ticket.description
+        .row
+          .col-md-4
+            %label Prazo final:
+            = @ticket.deadline
+          .col-md-4
+            %label Situação:
+            = @ticket.status ? "Ativo" : "Inativo"
+        %hr
+        .row
+          .col-md-12
+            - if @ticket.ticket_ocurrences.present?
+              .row
+                .col-md-12.index-ocurrence
+                  - if @ticket_ocurrences.present?
+                    .panel-body.index-ocurrence
+                      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                        %table#data-table-command.table.table-striped.table-bordered
+                          %thead
+                            %tr
+                              %th.col-md-1 Nº
+                              %th Responsável
+                              %th Ocorrência
+                              %th Data
+                              %th Solução
+                              %th Data da solução
+                          %tbody
+                            - @ticket_ocurrences.each do |o|
+                              %tr
+                                %td= o.id
+                                %td= o.responsible.name if o.responsible.present?
+                                %td= o.ocurrence
+                                %td= o.created_at
+                                %td= o.description_solution
+                                %td= o.solution_date

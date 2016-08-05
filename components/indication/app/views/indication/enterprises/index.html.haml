@@ -1,6 +1,6 @@
 .panel.panel-default
   .panel-heading
-    %h4.panel-title 
+    %h4.panel-title
       Empreendimentos
   .panel-body
     %table.table.table-bordered.table-striped.table-hover
@@ -15,7 +15,7 @@
           %th Situação
           %th Ativo?
       %tbody
-        - @enterprises.each do |ent|
+        - @enterprises.order(:id).each do |ent|
           %tr
             %td{style: 'width: 1%'}= ent.id
             %td.col-md-2= link_to ent.name, enterprise_steps_path(ent)

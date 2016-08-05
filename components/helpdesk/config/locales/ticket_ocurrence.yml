@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      'helpdesk/ticket_ocurrence': "Ocorrência"
+    attributes:
+      'helpdesk/ticket_ocurrence':
+        ocurrence: "Ocorrência"
+        description_solution: "Descrição"
+        ticket_solution: "Solução"
+        responsible: "Responsável"
+        scheduled: "Agendado"
+        scheduled_date: "Data do agendamento"

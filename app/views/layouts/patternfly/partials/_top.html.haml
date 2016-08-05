@@ -9,6 +9,10 @@
         %span.icon-bar
       %a.navbar-brand{:href => "#{dashboard.root_path}"}
         %img{:alt => "...", :src => "/images/codhab.png", width: 150}/
+    .nav.navbar-nav.navbar-right
+      %ul
+        %li{style: "list-style-type: none"}
+          = link_to 'ABRIR CHAMADO', helpdesk.new_ticket_path, remote: true, class: 'btn btn-danger'
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         %li.user-last-signed
@@ -37,4 +41,3 @@
             %li.divider{:role => "presentation"}
             %li{:role => "presentation"}
               = link_to "Encerrar sessão", authenticate.logout_staffs_path
-           

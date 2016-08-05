@@ -5,6 +5,7 @@ class CreateHelpdeskTicketSubjects < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.boolean :status
+      t.string :subject_sla
 
       t.timestamps null: false
     end

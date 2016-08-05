@@ -3,7 +3,7 @@
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
       %table#data-table-command.table.table-striped.table-bordered
         %thead
-          %tr.info
+          %tr
             %th.col-md-1 Nº
             %th Assunto
             %th Solicitante
@@ -23,7 +23,9 @@
                 - if o.open?
                   %span.label.label-success aberto
                 - if o.in_progress?
-                  %span.label.label-primary em andamento
+                  %span.label.label-primary em atendimento
+                - if o.scheduled?
+                  %span.label.label-primary agendado
                 - if o.closed?
                   %span.label.label-danger fechado
               %td.col-md-2

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801125755) do
+ActiveRecord::Schema.define(version: 20160805132112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -227,6 +227,95 @@ ActiveRecord::Schema.define(version: 20160801125755) do
   add_index "archive_images", ["hash_name"], name: "index_archive_images_on_hash_name", unique: true, using: :btree
   add_index "archive_images", ["sector_id"], name: "index_archive_images_on_sector_id", using: :btree
   add_index "archive_images", ["staff_id"], name: "index_archive_images_on_staff_id", using: :btree
+
+  create_table "attendance_activities", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "activity_situation_id"
+    t.integer  "staff_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "attendance_activities", ["activity_situation_id"], name: "index_attendance_activities_on_activity_situation_id", using: :btree
+  add_index "attendance_activities", ["cadastre_id"], name: "index_attendance_activities_on_cadastre_id", using: :btree
+  add_index "attendance_activities", ["staff_id"], name: "index_attendance_activities_on_staff_id", using: :btree
+
+  create_table "attendance_activity_situations", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "attendance_cadastre_checklists", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "checklist_id"
+    t.boolean  "authenticate", default: false
+    t.integer  "staff_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "attendance_cadastre_checklists", ["cadastre_id"], name: "index_attendance_cadastre_checklists_on_cadastre_id", using: :btree
+  add_index "attendance_cadastre_checklists", ["checklist_id"], name: "index_attendance_cadastre_checklists_on_checklist_id", using: :btree
+  add_index "attendance_cadastre_checklists", ["staff_id"], name: "index_attendance_cadastre_checklists_on_staff_id", using: :btree
+
+  create_table "attendance_cadastres", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "cadastre_mirror_id"
+    t.integer  "program_id"
+    t.integer  "situation_id"
+    t.integer  "staff_id"
+    t.integer  "supervisor_id"
+    t.integer  "attendance_type_id"
+    t.integer  "schedule_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "status",             default: 0
+    t.integer  "canceler_id"
+    t.datetime "cancel_date"
+    t.text     "cancel_observation"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "attendance_cadastres", ["attendance_type_id"], name: "index_attendance_cadastres_on_attendance_type_id", using: :btree
+  add_index "attendance_cadastres", ["cadastre_id"], name: "index_attendance_cadastres_on_cadastre_id", using: :btree
+  add_index "attendance_cadastres", ["cadastre_mirror_id"], name: "index_attendance_cadastres_on_cadastre_mirror_id", using: :btree
+  add_index "attendance_cadastres", ["canceler_id"], name: "index_attendance_cadastres_on_canceler_id", using: :btree
+  add_index "attendance_cadastres", ["program_id"], name: "index_attendance_cadastres_on_program_id", using: :btree
+  add_index "attendance_cadastres", ["schedule_id"], name: "index_attendance_cadastres_on_schedule_id", using: :btree
+  add_index "attendance_cadastres", ["situation_id"], name: "index_attendance_cadastres_on_situation_id", using: :btree
+  add_index "attendance_cadastres", ["staff_id"], name: "index_attendance_cadastres_on_staff_id", using: :btree
+  add_index "attendance_cadastres", ["supervisor_id"], name: "index_attendance_cadastres_on_supervisor_id", using: :btree
+
+  create_table "attendance_checklist_types", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.integer  "program_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "attendance_checklist_types", ["program_id"], name: "index_attendance_checklist_types_on_program_id", using: :btree
+
+  create_table "attendance_checklists", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",            default: true
+    t.string   "code"
+    t.integer  "checklist_type_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "attendance_checklists", ["checklist_type_id"], name: "index_attendance_checklists_on_checklist_type_id", using: :btree
+
+  create_table "attendance_types", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "boolean",    default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -1747,23 +1836,43 @@ ActiveRecord::Schema.define(version: 20160801125755) do
   add_index "helpdesk_ticket_attendants", ["staff_id"], name: "index_helpdesk_ticket_attendants_on_staff_id", using: :btree
   add_index "helpdesk_ticket_attendants", ["ticket_type_id"], name: "index_helpdesk_ticket_attendants_on_ticket_type_id", using: :btree
 
-  create_table "helpdesk_ticket_comments", force: :cascade do |t|
+  create_table "helpdesk_ticket_ocurrences", force: :cascade do |t|
     t.integer  "ticket_id"
-    t.integer  "user_type"
-    t.text     "comment"
-    t.boolean  "read"
-    t.datetime "read_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "staff_id"
+    t.integer  "responsible_id"
+    t.text     "ocurrence"
+    t.integer  "ticket_solution_id"
+    t.text     "description_solution"
+    t.datetime "solution_date"
+    t.datetime "scheduled_date"
+    t.boolean  "scheduled"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "helpdesk_ticket_comments", ["ticket_id"], name: "index_helpdesk_ticket_comments_on_ticket_id", using: :btree
+  add_index "helpdesk_ticket_ocurrences", ["responsible_id"], name: "index_helpdesk_ticket_ocurrences_on_responsible_id", using: :btree
+  add_index "helpdesk_ticket_ocurrences", ["staff_id"], name: "index_helpdesk_ticket_ocurrences_on_staff_id", using: :btree
+  add_index "helpdesk_ticket_ocurrences", ["ticket_id"], name: "index_helpdesk_ticket_ocurrences_on_ticket_id", using: :btree
+  add_index "helpdesk_ticket_ocurrences", ["ticket_solution_id"], name: "index_helpdesk_ticket_ocurrences_on_ticket_solution_id", using: :btree
+
+  create_table "helpdesk_ticket_solutions", force: :cascade do |t|
+    t.integer  "ticket_type_id"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "status"
+    t.string   "solution_sla"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "helpdesk_ticket_solutions", ["ticket_type_id"], name: "index_helpdesk_ticket_solutions_on_ticket_type_id", using: :btree
 
   create_table "helpdesk_ticket_subjects", force: :cascade do |t|
     t.integer  "ticket_type_id"
     t.string   "title"
     t.text     "description"
     t.boolean  "status"
+    t.string   "subject_sla"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -1793,6 +1902,7 @@ ActiveRecord::Schema.define(version: 20160801125755) do
     t.integer  "status",            default: 0
     t.text     "description"
     t.text     "meta_tags"
+    t.string   "code_computer"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end

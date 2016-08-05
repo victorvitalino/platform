@@ -1,0 +1,33 @@
+#scheduled.tab-pane{:class => (params[:q] == 'scheduled') ? 'active' : '', :role => "tabpanel"}
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th.col-md-1 Nº
+            %th Assunto
+            %th Solicitante
+            %th Abertura
+            %th Atendente
+            %th Status
+            %th Ações
+        %tbody
+          - @scheduled.each do |o|
+            %tr
+              %td= o.id
+              %td= o.ticket_subject.title if o.ticket_subject.present?
+              %td= "#{o.requester.name} - #{o.requester.sector_current.acron.upcase}" if o.requester.present? && o.requester.present? && o.requester.sector_current.present?
+              %td= o.created_at.strftime('%d/%m/%Y às %H:%M')
+              %td= o.attendant.name if o.attendant_id.present? && o.attendant.present?
+              %td
+                - if o.open?
+                  %span.label.label-success aberto
+                - if o.in_progress?
+                  %span.label.label-primary em atendimento
+                - if o.scheduled?
+                  %span.label.label-primary agendado
+                - if o.closed?
+                  %span.label.label-danger fechado
+              %td.col-md-2
+                = link_to "", ticket_path(id: o, q: 'in_progress'), class: 'glyphicon glyphicon-info-sign btn btn-primary btn-xs', title: "detalhes da solicitação"
+                = link_to "", ticket_closed_path(ticket_id: o, q: 'in_progress'), class: 'glyphicon glyphicon-ok-sign btn btn-danger  btn-xs', title: "fechar solicitação"

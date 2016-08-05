@@ -1,32 +1,31 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4 Minhas solicitações
-    .panel-body
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-        %table#data-table-command.table.table-striped.table-bordered
-          %thead
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4 Minhas solicitações
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Nº
+            %th Assunto
+            %th Data/Hora
+            %th Status
+            %th Atendente
+            %th Ações
+        %tbody
+          - @tickets.each do |t|
             %tr
-              %th Nº
-              %th Assunto
-              %th Data/Hora
-              %th Status
-              %th Atendente
-              %th Ações
-          %tbody
-            - @tickets.each do |t|
-              %tr
-                %td= "Nº #{t.id}"
-                %td= t.ticket_subject.title if t.ticket_subject.present?
-                %td= t.created_at.strftime('%d/%m/%Y às %H:%M')
-                %td
-                  - if t.open?
-                    %span.label.label-success aberto
-                  - if t.in_progress?
-                    %span.label.label-primary em andamento
-                  - if t.closed?
-                    %span.label.label-danger fechado
-                %td= t.attendant.name if t.attendant.present?
-                %td.col-md-2
-                  = link_to '', ticket_path(t), class: 'glyphicon glyphicon-share-alt  btn btn-success btn-xs',data: {disable_with: "carregando..."}
+              %td= "Nº #{t.id}"
+              %td= t.ticket_subject.title if t.ticket_subject.present?
+              %td= t.created_at.strftime('%d/%m/%Y às %H:%M')
+              %td
+                - if t.open?
+                  %span.label.label-success aberto
+                - if t.in_progress?
+                  %span.label.label-primary em andamento
+                - if t.closed?
+                  %span.label.label-danger fechado
+              %td= t.attendant.name if t.attendant.present?
+              %td.col-md-2
+                = link_to '', ticket_show_requester_path(t), class: 'glyphicon glyphicon-share-alt  btn btn-info btn-xs',data: {disable_with: "carregando..."}
