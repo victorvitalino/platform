@@ -1,0 +1,32 @@
+Tentando interpretar textos estranhos pt.1
+
+
+1 - Qual seu nome?
+2 - Qual seu cpf?
+3 - Qual seu nº de celular?
+4 - Qual seu endereço?
+5 - Quantas casas tem em seu lote?
+6 - Quem mora no lote?
+7 - Onde você mora tem água, luz, esgoto, calçada, asfalto?
+8 - Sua casa tem banheiro? Quantos?
+9 - Sua casa tem cozinha?
+10 - Qual a situação do telhado da sua casa?
+11 - Sua casa tem laje?
+12 - Você tem escritura de seu lote?
+13 - Qual documento você tem?
+14 - Quantas pessoas moram em sua casa?
+15 - Existe paredes entre quartos , cozinha , sala , etc..?
+16 - Quantos quartos tem?
+17 - Quem dorme onde ?
+18 - Você é dono ou paga aluguel?
+19 - Quanto você paga de aluguel por mês?
+20 - se a CODHAB te vendesse um lote onde gostaria de comprar?
+
+Objetivos
+
+1)  Verificar - Precariedade
+            - Coabitação
+            - Onus Excessivo
+            - Adensamento Excessivo
+
+2) Montar um mapa da realidade habitacional das pessoas que estão na listagem da CODHAB.
