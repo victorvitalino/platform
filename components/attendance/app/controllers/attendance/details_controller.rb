@@ -27,6 +27,7 @@ module Attendance
 
     def resume
       @attendance    = Attendance::Cadastre.find(params[:detail_id])
+      @checklists    = Attendance::ChecklistType.find_by_name('morar_bem').checklists
     end
 
     def continue

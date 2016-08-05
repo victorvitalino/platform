@@ -7,6 +7,8 @@ module Attendance
     belongs_to :supervisor, class_name: "Person::Staff"
     belongs_to :cadastre,   class_name: "Candidate::Cadastre"
 
+    has_many :cadastre_checklists
+
     enum status: ['pendente', 'finalizado', 'cancelado']
 
     def protocol

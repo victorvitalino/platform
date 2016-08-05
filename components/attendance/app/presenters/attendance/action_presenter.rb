@@ -1,7 +1,6 @@
 module Attendance
   class ActionPresenter < BasePresenter
     
-    include Pundit
     include Authenticate::StaffService
     
     def dropdown_actions

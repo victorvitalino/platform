@@ -48,6 +48,23 @@
                     %b= @attendance.status.humanize
         .row
           .col-md-12
+            %h3 Checklist do atendimento
+            %table.table.table-striped.table-bordered.table-hover
+              %thead
+                %tr
+                  %td Descrição
+                  %td Checado?
+              %tbody
+                - @checklists.order(:name).each do |check|
+                  %tr
+                    %td= check.name
+                    %td
+                      - if @attendance.cadastre_checklists.contains?(check)
+                        %b.success Sim
+                      - else
+                        %b.danger Não
+        .row
+          .col-md-12
             %h3 Log do atendimento
             %table.table.table-striped.table-bordered.table-hover
               %thead
