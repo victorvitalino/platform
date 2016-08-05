@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20160805132112) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -463,17 +465,12 @@ ActiveRecord::Schema.define(version: 20160805132112) do
     t.boolean  "status",               default: true
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "checklist_id",                                     array: true
-    t.string   "cpf"
-    t.integer  "requeriment_id"
   end
 
   add_index "candidate_attendances", ["attendance_status_id"], name: "index_candidate_attendances_on_attendance_status_id", using: :btree
   add_index "candidate_attendances", ["cadastre_id"], name: "index_candidate_attendances_on_cadastre_id", using: :btree
   add_index "candidate_attendances", ["cadastre_mirror_id"], name: "index_candidate_attendances_on_cadastre_mirror_id", using: :btree
-  add_index "candidate_attendances", ["checklist_id"], name: "index_candidate_attendances_on_checklist_id", using: :btree
   add_index "candidate_attendances", ["convocation_id"], name: "index_candidate_attendances_on_convocation_id", using: :btree
-  add_index "candidate_attendances", ["requeriment_id"], name: "index_candidate_attendances_on_requeriment_id", using: :btree
   add_index "candidate_attendances", ["staff_id"], name: "index_candidate_attendances_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_activities", force: :cascade do |t|
@@ -547,19 +544,6 @@ ActiveRecord::Schema.define(version: 20160805132112) do
   add_index "candidate_cadastre_attendances", ["cadastre_id"], name: "index_candidate_cadastre_attendances_on_cadastre_id", using: :btree
   add_index "candidate_cadastre_attendances", ["cadastre_mirror_id"], name: "index_candidate_cadastre_attendances_on_cadastre_mirror_id", using: :btree
   add_index "candidate_cadastre_attendances", ["staff_id"], name: "index_candidate_cadastre_attendances_on_staff_id", using: :btree
-
-  create_table "candidate_cadastre_checklists", force: :cascade do |t|
-    t.integer  "cadastre_mirror_id"
-    t.integer  "checklist_id"
-    t.boolean  "document_authenticate"
-    t.string   "document_file"
-    t.text     "description"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "candidate_cadastre_checklists", ["cadastre_mirror_id"], name: "index_candidate_cadastre_checklists_on_cadastre_mirror_id", using: :btree
-  add_index "candidate_cadastre_checklists", ["checklist_id"], name: "index_candidate_cadastre_checklists_on_checklist_id", using: :btree
 
   create_table "candidate_cadastre_events", force: :cascade do |t|
     t.integer  "staff_id"
@@ -736,27 +720,6 @@ ActiveRecord::Schema.define(version: 20160805132112) do
   add_index "candidate_cadins", ["city_id"], name: "index_candidate_cadins_on_city_id", using: :btree
   add_index "candidate_cadins", ["occurrence_cadin_id"], name: "index_candidate_cadins_on_occurrence_cadin_id", using: :btree
   add_index "candidate_cadins", ["signed_instrument_id"], name: "index_candidate_cadins_on_signed_instrument_id", using: :btree
-
-  create_table "candidate_checklist_types", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "status"
-    t.integer  "program_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "candidate_checklist_types", ["program_id"], name: "index_candidate_checklist_types_on_program_id", using: :btree
-
-  create_table "candidate_checklists", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "status",            default: true
-    t.string   "code"
-    t.integer  "checklist_type_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-  end
-
-  add_index "candidate_checklists", ["checklist_type_id"], name: "index_candidate_checklists_on_checklist_type_id", using: :btree
 
   create_table "candidate_civil_states", force: :cascade do |t|
     t.string   "name"

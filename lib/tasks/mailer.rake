@@ -2,44 +2,22 @@ require 'csv'
 
 namespace :mailer do
   
-  task :old_entity => :environment do
-    index = 0
-    CSV.foreach("public/files/old_entity.csv", :col_sep => "#") do |row|
-      cnpj  = row[0].to_s.gsub('.','').gsub('-','').gsub('/','')
-      email = row[3].to_s.downcase.strip
+  task :with_template => :environment do 
 
-      unless Entity::Cadastre.find_by_cnpj(cnpj).present?        
-        index += 1
-        begin
-          Mailer::SimpleMailer.send_mail_entity(email).deliver_now!
-        rescue
-          puts "OPS"
-        end
-        puts index
-      end
-
-    end
-
-    index2 = 0
-    CSV.foreach("public/files/new_entity.csv", :col_sep => "#") do |row|
-      email = row[0].to_s.downcase.strip
-      index2 += 1
-      begin
-        Mailer::SimpleMailer.send_mail_entity(email).deliver_now!
-      rescue
-        puts "OPS"
-      end
-      puts index2
+    Concourse::Candidate.where('subscribe_id = 6 and status <> 2').each do |candidate|
+      puts candidate.email
+      Mailer::SimpleMailer.send_with_template(candidate.email, "Últimos dias para pagamento do boleto").deliver_now!
     end
 
   end
 
-  task :sam => :environment do 
-    
-    Concourse::Candidate.where(subscribe_id: 5).each do |candidate|
+  task :with_template_base => :environment do 
+
+    Concourse::Candidate.where(subscribe_id: 6).each do |candidate|
       puts candidate.email
-      Mailer::SimpleMailer.send_text(candidate.email, "Informação importante - Concursos Codhab").deliver_now!
+      Mailer::SimpleMailer.send_with_template_base(candidate.email, "Concursos CODHAB: Errata nº 01 - Notificação").deliver_now!
     end
+
   end
 
 end

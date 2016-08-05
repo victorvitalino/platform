@@ -1,6 +1,6 @@
-class CreateCandidateCadatreAddresses < ActiveRecord::Migration
+class CreateCandidateCadastreAddresses < ActiveRecord::Migration
   def change
-    create_table :candidate_cadatre_addresses do |t|
+    create_table :candidate_cadastre_addresses do |t|
       t.references :cadastre, index: true#, foreign_key: true
       t.references :cadastre_mirror, index: true#, foreign_key: true
       t.references :unit, index: true#, foreign_key: true

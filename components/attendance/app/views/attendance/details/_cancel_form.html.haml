@@ -1,0 +1,22 @@
+= simple_form_for @attendance, url: detail_cancel_update_path(@attendance), remote: true, method: :put do |f|
+  .row
+    .col-md-6
+      %p 
+        %h4
+          %b Data do cancelamento:
+      %p
+        %h4= Time.now.strftime("%d/%m/%Y às %H:%M")
+    .col-md-6
+      %p 
+        %h4
+          %b Responsável pelo cancelamento:
+      %p
+        %h4= current_user.name
+  %hr/
+  .row
+    .col-md-12
+      = f.input :cancel_observation, label: 'Motivo', input_html: { placeholder: 'Descreva o motivo do cancelamento',  style: 'min-height: 200px;'}
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Realizar o cancelamento", class: 'btn btn-danger'

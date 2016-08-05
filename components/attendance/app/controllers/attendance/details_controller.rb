@@ -22,9 +22,33 @@ module Attendance
     end 
 
     def show
-      @candidate    = Candidate::Cadastre.find_by_cpf(params[:id]) rescue nil
-      @requeriments = Regularization::Requeriment.where(cpf: params[:id])
-      @schedules    = Schedule::AgendaSchedule.where(cpf:  params[:id])
+      @candidate     = Candidate::Cadastre.find_by_cpf(params[:id]) rescue nil
+    end
+
+    def resume
+      @attendance    = Attendance::Cadastre.find(params[:detail_id])
+      @checklists    = Attendance::ChecklistType.find_by_name('morar_bem').checklists
+    end
+
+    def continue
+      @attendance    = Attendance::Cadastre.find(params[:detail_id])
+      @router        = Attendance::RouterService.new(@attendance, view_context)
+
+      if @router.routing!
+        redirect_to @router.url
+      else
+        redirect_to detail_path(@candidate.cpf)
+      end
+
+    end
+
+    def cancel
+      @attendance  = Attendance::Cadastre.find(params[:detail_id])
+    end
+
+    def cancel_update
+      @attendance  = Attendance::Cadastre.find(params[:detail_id])
+      @attendance.cancel!(current_user, set_cancel_params)
     end
 
     private
@@ -35,6 +59,10 @@ module Attendance
 
     def invoke_query_params
       @query_params = @@query_params
+    end
+
+    def set_cancel_params
+      params.require(:cadastre).permit(:cancel_observation)
     end
   end
 end
