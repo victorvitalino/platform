@@ -6,7 +6,7 @@ module Entity
     layout 'patternfly/mobile-less-application'
 
     def index
-    @inspections = @cadastre.inspections.all
+      @inspections = @cadastre.inspections.all
     end
 
     def show
