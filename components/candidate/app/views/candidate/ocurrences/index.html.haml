@@ -4,16 +4,16 @@
   .panel-body
     .row
       .col-md-3
-        %h3 Pesquisar CPF
+        %h3 Pesquisar por CPF
         .row
           .col-md-12
-            = simple_form_for @cadastre, url: search_ocurrences_path, method: :post do |f|
+            = simple_form_for @cadastre, url: detail_ocurrences_path, method: :get do |f|
               .row
                 .col-md-10
-                  = f.input :cpf, label: false, input_html: { class: 'cpf'}
+                  = f.input :cpf, label: false, input_html: { name: 'cpf', class: 'cpf', value: params[:cpf]}
               .row
                 .col-md-10
-                  = f.submit "Pesquisar", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+                  = f.submit "Pesquisar", name: nil, class: 'btn btn-success', data: { disable_with: t(:disable_with)}
       .col-md-9
         %h3 Últimas ocorrências
         .row

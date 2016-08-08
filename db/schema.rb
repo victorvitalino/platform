@@ -629,6 +629,7 @@ ActiveRecord::Schema.define(version: 20160808122811) do
     t.integer  "ocurrence_type_id"
     t.integer  "attendance_id"
     t.integer  "program_id"
+    t.text     "description"
     t.boolean  "solved",                 default: false
     t.integer  "feedback_staff_id"
     t.text     "feedback_observation"

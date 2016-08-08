@@ -8,6 +8,8 @@ class CreateCandidateCadastreOcurrences < ActiveRecord::Migration
       t.integer :attendance_id,           index: true
       t.integer :program_id,              index: true
       
+      t.text    :description
+      
       t.boolean   :solved,                     default: false
       t.integer   :feedback_staff_id,          index: true
       t.text      :feedback_observation
