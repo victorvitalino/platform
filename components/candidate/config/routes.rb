@@ -25,11 +25,8 @@ Candidate::Engine.routes.draw do
   resources :reports, path: 'relatorios'
 
 
-  resources :ocurrences, path: 'ocorrencias' do 
-    collection do 
-      get  'detail', to: 'ocurrences#detail', as: 'detail', path: 'detalhe'
-      get  'verify', to: 'ocurrences#verify', as: 'verify', path: 'verificar'
-    end
+  resources :occurrences, path: 'ocorrencias' do 
+    get  'verify'
   end
 
 

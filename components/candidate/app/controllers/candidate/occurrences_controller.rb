@@ -1,27 +1,16 @@
 require_dependency 'candidate/application_controller'
 
 module Candidate
-  class OcurrencesController < ApplicationController
+  class OccurrencesController < ApplicationController
 
     # per day
     def index
-      @cadastre = Candidate::Cadastre.new
-    end
-
-    # per [:cpf, :name]
-    def detail
-
       @cadastre = Candidate::Cadastre.find_by_cpf(params[:cpf].unformat_cpf) rescue nil
-     
-      if !@cadastre.present?
-        flash[:danger] = "CPF não foi encontrado"
-        redirect_to ocurrences_path(cpf: params[:cpf]) 
-      end
     end
 
     # load data of validations of a cpf 
     def verify
-      @cadastre  = Candidate::Cadastre.find_by_cpf(params[:cpf].unformat_cpf) rescue nil
+      @cadastre  = Candidate::Cadastre.find_by_cpf(params[:occurrence_id]) rescue nil
 
       if @cadastre.nil?
         flash[:danger] = t(:danger)
@@ -30,7 +19,7 @@ module Candidate
         flash[:success] =  t(:success)
       end
       
-      redirect_to detail_ocurrences_path(cpf: params[:cpf])
+      redirect_to occurrences_path(cpf: params[:occurrence_id].to_s.format_cpf)
     end
 
     def new

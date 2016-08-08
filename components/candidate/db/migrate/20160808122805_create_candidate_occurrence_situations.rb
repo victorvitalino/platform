@@ -1,6 +1,6 @@
-class CreateCandidateOcurrenceSituations < ActiveRecord::Migration
+class CreateCandidateOccurrenceSituations < ActiveRecord::Migration
   def change
-    create_table :candidate_ocurrence_situations do |t|
+    create_table :candidate_occurrence_situations do |t|
 
       t.string  :name
       t.string  :description

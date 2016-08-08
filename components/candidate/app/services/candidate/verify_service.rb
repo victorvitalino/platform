@@ -31,17 +31,17 @@ module Candidate
     def create_ocurrence!(options = {})
       return nil if ocurrence_on_cadastre_exists?(options[:situation_id])
 
-      ocurrence = @cadastre.cadastre_ocurrences.new
+      ocurrence = @cadastre.cadastre_occurrences.new
 
-      ocurrence.ocurrence_situation_id = options[:situation_id] ||= nil
-      ocurrence.ocurrence_type_id      = options[:type_id]      ||= nil
-      ocurrence.description            = options[:description]  ||= nil
-      ocurrence.program_id             = @cadastre.program_id
+      ocurrence.occurrence_situation_id = options[:situation_id] ||= nil
+      ocurrence.occurrence_type_id      = options[:type_id]      ||= nil
+      ocurrence.description             = options[:description]  ||= nil
+      ocurrence.program_id              = @cadastre.program_id
       ocurrence.save
     end
 
     def ocurrence_on_cadastre_exists?(situation_id)
-      @cadastre.cadastre_ocurrences.where(ocurrence_situation_id: situation_id, solved: false).present?
+      @cadastre.cadastre_occurrences.where(occurrence_situation_id: situation_id, solved: false).present?
     end
 
   end
