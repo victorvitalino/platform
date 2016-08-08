@@ -46,6 +46,7 @@ module Helpdesk
       authorize :ticket,  :to_attendant?
       @ticket = Helpdesk::Ticket.find(params[:ticket_id])
       if @ticket.update(status: 0, attendant_id: current_user.id, attendance_start: Time.now)
+        TicketOcurrence.create_ocurrence(@ticket.id, current_user.id,"reabertura de chamado.")
         flash[:success] = t :success
         redirect_to action: 'index', q: params[:q]
       else

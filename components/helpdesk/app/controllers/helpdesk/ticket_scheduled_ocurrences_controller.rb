@@ -5,12 +5,12 @@ module Helpdesk
     before_action :set_ticket
 
     def new
-      authorize :ticket_solution,  :scheduled?
+      authorize :ticket_ocurrence,  :scheduled?
       @ticket_scheduled_ocurrence = @ticket.ticket_ocurrences.new
     end
 
     def create
-      authorize :ticket_solution,  :scheduled?
+      authorize :ticket_ocurrence,  :scheduled?
       @ticket_scheduled_ocurrence = @ticket.ticket_ocurrences.new(set_params)
       @ticket_scheduled_ocurrence.staff_id = current_user.id
       @ticket_scheduled_ocurrence.scheduled = true
