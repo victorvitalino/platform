@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ticket_type_id: 
+  title: MyString
+  description: MyText
+  status: 
+
+two:
+  ticket_type_id: 
+  title: MyString
+  description: MyText
+  status: 

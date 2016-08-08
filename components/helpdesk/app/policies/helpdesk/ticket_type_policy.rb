@@ -1,19 +1,19 @@
 module Helpdesk
   class TicketTypePolicy < ApplicationPolicy
     def index?
-      allow?(5202)
+      allow?(41410)
     end
 
     def create?
-      allow?(5201)
+      allow?(41411)
     end
 
     def update?
-      allow?(5201)
+      allow?(41412)
     end
 
     def destroy?
-      allow?(5201)
+      allow?(41413)
     end
   end
 end

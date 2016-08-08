@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/enterprise_situation_status': Situação candidato empresa
+    attributes:
+      'candidate/enterprise_situation_status':
+        name: "Nome"
+        description: "Descrição"
+  

@@ -10,14 +10,17 @@ module Helpdesk
     end
 
     def index
+      authorize :ticket_subject,  :index?
       @ticket_subjects = @ticket_type.ticket_subjects.order(:title)
     end
 
     def new
+      authorize :ticket_subject,  :create?
       @ticket_subject = @ticket_type.ticket_subjects.new
     end
 
     def create
+      authorize :ticket_subject,  :create?
       @ticket_subject = @ticket_type.ticket_subjects.new(set_params)
       if @ticket_subject.save
         flash[:success] = t :success
@@ -28,9 +31,11 @@ module Helpdesk
     end
 
     def edit
+      authorize :ticket_subject,  :update?
     end
 
     def update
+      authorize :ticket_subject,  :update?
       if @ticket_subject.update(set_params)
         flash[:success] = t :success
         redirect_to action: 'index'
@@ -40,11 +45,12 @@ module Helpdesk
     end
 
     def destroy
+      authorize :ticket_subject,  :destroy?
       if @ticket_subject.destroy
         flash[:success] = t :success
         redirect_to action: 'index'
       end
-    end 
+    end
 
     private
 

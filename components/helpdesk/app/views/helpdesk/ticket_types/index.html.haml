@@ -1,30 +1,29 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Centrais de serviço
-          = link_to 'Nova Central', new_ticket_type_path, class: 'btn btn-success pull-right btn-sm',data: {disable_with: "carregando..."} if policy(:TicketType, namespace: Helpdesk).create?
-    .panel-body
-      .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-        %table#data-table-command.table.table-striped.table-bordered
-          %thead
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Centrais de serviço
+        = link_to 'Nova Central', new_ticket_type_path, class: 'pull-right',data: {disable_with: "carregando..."}
+  .panel-body
+    .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+      %table#data-table-command.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Setor
+            %th Título
+            %th Descrição
+            %th Publicado
+            %th Ações
+        %tbody
+          - @ticket_types.each do |t|
             %tr
-              %th Setor
-              %th Título
-              %th Descrição
-              %th Publicado
-              %th Ações
-          %tbody
-            - @ticket_types.each do |t|
-              %tr
-                %td= t.sector.name if t.sector.present?
-                %td= t.title
-                %td= t.description
-                %td= t.status ? "ativo" : "inativo"
-                %td.col-md-2
-                  = link_to '', ticket_type_ticket_attendants_path(t), title: 'Atendentes', class: 'glyphicon glyphicon-user btn btn-warning btn-xs',data: {disable_with: "carregando..."} if policy(:TicketAttendant, namespace: Helpdesk).index?
-                  = link_to '', ticket_type_ticket_subjects_path(t), title: 'Assuntos', class: 'glyphicon glyphicon-globe btn btn-success btn-xs',data: {disable_with: "carregando..."}
-                  = link_to '', edit_ticket_type_path(t), title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."} if policy(:TicketType, namespace: Helpdesk).update?
-                  = link_to '', ticket_type_path(t), title: 'Excluir', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :method => :delete, :data => { :confirm => t(:confirm_delete) } if policy(:TicketType, namespace: Helpdesk).destroy?
-
+              %td= t.sector.name if t.sector.present?
+              %td= t.title
+              %td= t.description
+              %td= t.status ? "ativo" : "inativo"
+              %td.col-md-2
+                = link_to '', ticket_type_ticket_attendants_path(t), title: 'Atendentes', class: 'glyphicon glyphicon-user btn btn-warning btn-xs',data: {disable_with: "carregando..."} if policy(:TicketAttendant, namespace: Helpdesk).index?
+                = link_to '', ticket_type_ticket_subjects_path(t), title: 'Assuntos', class: 'glyphicon glyphicon-info-sign btn btn-success btn-xs',data: {disable_with: "carregando..."}
+                = link_to '', ticket_type_ticket_solutions_path(t), title: 'Soluções', class: 'glyphicon glyphicon-ok-sign btn btn-info btn-xs',data: {disable_with: "carregando..."}
+                = link_to '', edit_ticket_type_path(t), title: 'Editar', class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."} if policy(:TicketType, namespace: Helpdesk).update?
+                = link_to '', ticket_type_path(t), title: 'Excluir', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', :method => :delete, :data => { :confirm => t(:confirm_delete) } if policy(:TicketType, namespace: Helpdesk).destroy?

@@ -1,0 +1,28 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Nova ocorrência
+.modal-body
+  = simple_form_for [@ticket,@ticket_ocurrence], remote: true do |f|
+    .row
+      .col-md-12
+        = f.label :ticket_solution, class: 'fg-label'
+        = f.association :ticket_solution, label: false, prompt: 'selecione...'
+    .row
+      .col-md-12
+        = f.label :description_solution, class: 'fg-label'
+        = f.input :description_solution, label: false  
+    %br/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'
+  :javascript
+
+    $(function() {
+      $("#description_solution").on('focus', function(){
+        $.get("#{helpdesk.ticket_solution_json_path}?ticket_type_id="+ $("#{@ticket.ticket_type.id}").val(), function(data) {
+          $('#description_solution').autocomplete({source: data});
+          $('#description_solution').prop("readonly", false)
+        });
+      });
+    })

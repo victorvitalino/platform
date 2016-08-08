@@ -1,0 +1,19 @@
+/ conteudo da pagina
+.container
+  .row
+    .col-md-9.box
+      .box_internal
+        .post{:style => "color:#333333;"}
+          .content_post
+            - @videos.each do |video|
+              %h3
+                = video.title if video.title.present?
+              %p
+                %strong
+                  Publicado em: 
+                = video.created_at.strftime('%d/%m/%Y')
+              %p.post-post
+                <iframe width="100%" height="400" src="#{video.url}" frameborder="0" allowfullscreen></iframe>
+              %hr
+            %a.button_back{"arial-label" => "back to top", :href => "#"} VOLTAR AO TOPO
+    = render('partials/shared/portal/sidebar')

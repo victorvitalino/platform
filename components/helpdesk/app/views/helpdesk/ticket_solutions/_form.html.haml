@@ -1,0 +1,19 @@
+= simple_form_for([@ticket_type, @ticket_solution]) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-6
+        = f.label :title, class: 'fg-label'
+        = f.input :title, label: false, input_html: { placeholder: "Digite o título do assunto"}
+    .row
+      .col-md-6
+        = f.label :description, class: 'fg-label'
+        = f.input :description, label: false, input_html: { placeholder: "Descreva brevemente sobre o assunto"}
+    .row
+      .col-md-12
+        = f.label :status
+        = f.input :status, id: 'ts4',hidden: 'hidden', type: 'checkbox', label: false
+    %hr/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+        = link_to "voltar", ticket_type_ticket_solutions_path(@ticket_type), class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}

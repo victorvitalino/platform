@@ -1,0 +1,42 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Dados do chamado
+        = link_to 'Voltar', tickets_path, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-4
+            %label Usuário:
+            = @ticket.requester.name if @ticket.requester.present?
+          .col-md-4
+            %label Assunto:
+            = @ticket.ticket_subject.title if @ticket.ticket_subject.present?
+        .row
+          .col-md-4
+            %label Início do atendimento:
+            = @ticket.attendance_start
+          .col-md-4
+            %label Final do atendimento:
+            = @ticket.attendance_end
+        .row
+          .col-md-12
+            %label Descrição:
+            = @ticket.description
+        .row
+          .col-md-4
+            %label Prazo final:
+            = @ticket.deadline
+          .col-md-4
+            %label Situação:
+            = @ticket.status ? "Ativo" : "Inativo"
+        %hr
+        .row
+          .col-md-12
+            = link_to 'Abrir ocorrência', new_ticket_ticket_ocurrence_path(@ticket), remote: true, class: 'btn btn-primary'
+        - if @ticket.ticket_ocurrences.present?
+          .row
+            .col-md-12.index-ocurrence
+              = render 'index_ocurrence'

@@ -71,6 +71,9 @@ PATH
       rails (~> 4.2.1)
     habitation_portal (0.0.1)
       rails (~> 4.2.1)
+    helpdesk (0.0.1)
+      haml-rails
+      rails (~> 4.2.1)
     indication (0.0.1)
       rails (~> 4.2.1)
     indication_portal (0.0.1)
@@ -551,6 +554,7 @@ DEPENDENCIES
   habitation_portal!
   haml-rails
   has_scope
+  helpdesk!
   i18n
   indication!
   indication_portal!

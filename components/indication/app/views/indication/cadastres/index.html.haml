@@ -1,0 +1,31 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      #{@allotment.step.enterprise.name} - #{@allotment.step.name} - Indicados
+      = link_to 'Voltar para lotes', enterprise_step_allotments_path(enterprise_id: @allotment.step.enterprise_id, step_id:@allotment.step.id), class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        %b
+          = "Total de Candidatos: #{@cadastres.count}"
+    %hr
+    .row
+      .col-md-12
+        %table.table.table-bordered.table-striped.table-hover
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Programa
+              %th Pontuação
+              %th Lista de Origem
+              %th Ações
+          %tbody
+            - @cadastres.each do |c|
+              %tr
+                %td= c.cadastre.name
+                %td= link_to c.cadastre.cpf, candidate.cadastres_path(cpf: c.cadastre.cpf)
+                %td= c.cadastre.program.name if c.cadastre.program.present?
+                %td= c.cadastre.pontuations.last.total if c.cadastre.pontuations.present?
+                %td= c.source_list
+                %td

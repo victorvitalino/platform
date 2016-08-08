@@ -1,24 +1,22 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Solicitações
-    .panel-body
-      .card-body.card-padding
-        .row
-          .col-md-4
-            %ul.list-group.list-group-full
-              %li.list-group-item
-                %a{"aria-controls" => "open", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#open", :role => "tab"} Pendentes
-              %li.list-group-item
-                %a{"aria-controls" => "in_progress", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#in_progress", :role => "tab"} Em andamento
-              %li.list-group-item
-                %a{"aria-controls" => "closed", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#closed", :role => "tab"} Finalizados
-        .tab-content
-          = render 'open'
-          = render 'in_progress'
-          = render 'closed'
-
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Solicitações
+  .panel-body
+    %ul.nav.nav-tabs{"data-tabs" => "tabs"}
+      %li
+        %a{"aria-controls" => "open", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#open", :role => "tab"} Pendentes
+      %li
+        %a{"aria-controls" => "in_progress", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#in_progress", :role => "tab"} Em atendimento
+      %li
+        %a{"aria-controls" => "scheduled", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#scheduled", :role => "tab"} Agendado
+      %li
+        %a{"aria-controls" => "closed", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#closed", :role => "tab"} Finalizados
+    .tab-content
+      = render 'open'
+      = render 'in_progress'
+      = render 'scheduled'
+      = render 'closed'
 :javascript
   setInterval(function(){ location.reload(); }, 60000);
