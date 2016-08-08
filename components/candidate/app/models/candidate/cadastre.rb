@@ -14,6 +14,7 @@ module Candidate
     has_many :requeriments, primary_key: :cpf, foreign_key: :cpf, class_name: "Regularization::Requeriment"
     has_many :schedules,    primary_key: :cpf, foreign_key: :cpf, class_name: "Schedule::AgendaSchedule"
 
+    has_many :cadastre_ocurrences
     has_many :ammvs
     has_many :cadastre_mirrors
     has_many :dependents

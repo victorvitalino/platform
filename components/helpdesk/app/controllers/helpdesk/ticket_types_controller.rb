@@ -5,14 +5,17 @@ module Helpdesk
     before_action :set_ticket_type, only: [:destroy, :edit, :update]
 
     def index
+      authorize :ticket_type,  :index?
       @ticket_types = TicketType.all
     end
 
     def new
+      authorize :ticket_type,  :create?
       @ticket_type = TicketType.new
     end
 
     def create
+      authorize :ticket_type,  :create?
       @ticket_type = TicketType.new(set_params)
       if @ticket_type.save
         flash[:success] = t :success
@@ -23,9 +26,11 @@ module Helpdesk
     end
 
     def edit
+      authorize :ticket_type,  :update?
     end
 
     def update
+      authorize :ticket_type,  :update?
       if @ticket_type.update(set_params)
         flash[:success] = t :success
         redirect_to action: 'index'
@@ -35,11 +40,12 @@ module Helpdesk
     end
 
     def destroy
+      authorize :ticket_type,  :destroy?
       if @ticket_type.destroy
         flash[:success] = t :success
         redirect_to action: 'index'
       end
-    end 
+    end
 
     private
 

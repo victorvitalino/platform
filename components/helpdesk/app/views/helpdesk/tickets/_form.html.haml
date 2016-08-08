@@ -6,8 +6,12 @@
   .row
     .col-md-12
       = f.label :ticket_subject_title, class: 'fg-label'
+      = f.input :ticket_subject_title, label: false, hint: "<b>Ao digitar verifique se sua questão já não está sendo listada abaixo!</b>".html_safe, input_html: {id:"ticket_ticket_subject_title", autocomplete: 'on', readonly: true }
+  .row
+    .col-md-12
+      = f.label :code_computer, class: 'fg-label'
+      = f.input :code_computer, label: false, hint: "<b>O código da máquina deve ser digitado da seguinte maneira: Ex. 392WSxxxx, Digitar: 392WS0000</b>".html_safe
 
-      = f.input :ticket_subject_title, label: false, hint: "<b>Ao digitar verifique se sua questão já não está sendo listada abaixo!</b>".html_safe, input_html: {id:"ticket_ticket_subject_title", readonly: true }
   %br/
   .row
     .col-md-12
@@ -19,13 +23,13 @@
     .col-md-12
       = f.button :submit, class: 'btn btn-success'
   %br
-:javascript
+  :javascript
   
-  $(document).ready(function() {
-    $("#ticket_ticket_type_id").on('change', function(){
-      $.get("#{helpdesk.ticket_subjects_json_path}?ticket_type_id="+ $(this).val(), function(data) {
-        $('#ticket_ticket_subject_title').autocomplete({source: data});
-        $('#ticket_ticket_subject_title').prop("readonly", false)
+    $(function() {
+      $("#ticket_ticket_type_id").on('change', function(){
+        $.get("#{helpdesk.ticket_subjects_json_path}?ticket_type_id="+ $(this).val(), function(data) {
+          $('#ticket_ticket_subject_title').autocomplete({source: data});
+          $('#ticket_ticket_subject_title').prop("readonly", false)
+        });
       });
-    });
-  })
+    })

@@ -90,8 +90,9 @@ path 'components' do
   gem 'protocol'
   gem 'concourse'
   gem 'concourse_portal'
- 
- 
+  gem 'helpdesk'
+
+
   gem 'candidate'
   gem 'address'
 

@@ -1,0 +1,18 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Nova ocorrência
+.modal-body
+  = simple_form_for [@ticket,@ticket_ocurrence], remote: true do |f|
+    .row
+      .col-md-12
+        = f.label :ocurrence, class: 'fg-label'
+        = f.input :ocurrence, label: false
+    .row
+      .col-md-12
+        = f.label :responsible, class: 'fg-label'
+        = f.association :responsible, label: false, prompt: 'selecione...'
+    %br/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'

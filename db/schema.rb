@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803182814) do
+ActiveRecord::Schema.define(version: 20160808122811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -463,12 +463,17 @@ ActiveRecord::Schema.define(version: 20160803182814) do
     t.boolean  "status",               default: true
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "checklist_id",                                     array: true
+    t.string   "cpf"
+    t.integer  "requeriment_id"
   end
 
   add_index "candidate_attendances", ["attendance_status_id"], name: "index_candidate_attendances_on_attendance_status_id", using: :btree
   add_index "candidate_attendances", ["cadastre_id"], name: "index_candidate_attendances_on_cadastre_id", using: :btree
   add_index "candidate_attendances", ["cadastre_mirror_id"], name: "index_candidate_attendances_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_attendances", ["checklist_id"], name: "index_candidate_attendances_on_checklist_id", using: :btree
   add_index "candidate_attendances", ["convocation_id"], name: "index_candidate_attendances_on_convocation_id", using: :btree
+  add_index "candidate_attendances", ["requeriment_id"], name: "index_candidate_attendances_on_requeriment_id", using: :btree
   add_index "candidate_attendances", ["staff_id"], name: "index_candidate_attendances_on_staff_id", using: :btree
 
   create_table "candidate_cadastre_activities", force: :cascade do |t|
@@ -543,6 +548,19 @@ ActiveRecord::Schema.define(version: 20160803182814) do
   add_index "candidate_cadastre_attendances", ["cadastre_mirror_id"], name: "index_candidate_cadastre_attendances_on_cadastre_mirror_id", using: :btree
   add_index "candidate_cadastre_attendances", ["staff_id"], name: "index_candidate_cadastre_attendances_on_staff_id", using: :btree
 
+  create_table "candidate_cadastre_checklists", force: :cascade do |t|
+    t.integer  "cadastre_mirror_id"
+    t.integer  "checklist_id"
+    t.boolean  "document_authenticate"
+    t.string   "document_file"
+    t.text     "description"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "candidate_cadastre_checklists", ["cadastre_mirror_id"], name: "index_candidate_cadastre_checklists_on_cadastre_mirror_id", using: :btree
+  add_index "candidate_cadastre_checklists", ["checklist_id"], name: "index_candidate_cadastre_checklists_on_checklist_id", using: :btree
+
   create_table "candidate_cadastre_events", force: :cascade do |t|
     t.integer  "staff_id"
     t.integer  "cadastre_id"
@@ -604,6 +622,32 @@ ActiveRecord::Schema.define(version: 20160803182814) do
   add_index "candidate_cadastre_mirrors", ["special_condition_id"], name: "index_candidate_cadastre_mirrors_on_special_condition_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["state_id"], name: "index_candidate_cadastre_mirrors_on_state_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["work_city_id"], name: "index_candidate_cadastre_mirrors_on_work_city_id", using: :btree
+
+  create_table "candidate_cadastre_ocurrences", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "ocurrence_situation_id"
+    t.integer  "ocurrence_type_id"
+    t.integer  "attendance_id"
+    t.integer  "program_id"
+    t.text     "description"
+    t.boolean  "solved",                 default: false
+    t.integer  "feedback_staff_id"
+    t.text     "feedback_observation"
+    t.string   "feedback_archive"
+    t.datetime "feedback_datetime"
+    t.boolean  "visible_portal",         default: true
+    t.boolean  "default_label",          default: true
+    t.string   "custom_label"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "candidate_cadastre_ocurrences", ["attendance_id"], name: "index_candidate_cadastre_ocurrences_on_attendance_id", using: :btree
+  add_index "candidate_cadastre_ocurrences", ["cadastre_id"], name: "index_candidate_cadastre_ocurrences_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_ocurrences", ["feedback_staff_id"], name: "index_candidate_cadastre_ocurrences_on_feedback_staff_id", using: :btree
+  add_index "candidate_cadastre_ocurrences", ["ocurrence_situation_id"], name: "index_candidate_cadastre_ocurrences_on_ocurrence_situation_id", using: :btree
+  add_index "candidate_cadastre_ocurrences", ["ocurrence_type_id"], name: "index_candidate_cadastre_ocurrences_on_ocurrence_type_id", using: :btree
+  add_index "candidate_cadastre_ocurrences", ["program_id"], name: "index_candidate_cadastre_ocurrences_on_program_id", using: :btree
 
   create_table "candidate_cadastre_procedurals", force: :cascade do |t|
     t.integer  "cadastre_mirror_id"
@@ -718,6 +762,27 @@ ActiveRecord::Schema.define(version: 20160803182814) do
   add_index "candidate_cadins", ["city_id"], name: "index_candidate_cadins_on_city_id", using: :btree
   add_index "candidate_cadins", ["occurrence_cadin_id"], name: "index_candidate_cadins_on_occurrence_cadin_id", using: :btree
   add_index "candidate_cadins", ["signed_instrument_id"], name: "index_candidate_cadins_on_signed_instrument_id", using: :btree
+
+  create_table "candidate_checklist_types", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.integer  "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "candidate_checklist_types", ["program_id"], name: "index_candidate_checklist_types_on_program_id", using: :btree
+
+  create_table "candidate_checklists", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",            default: true
+    t.string   "code"
+    t.integer  "checklist_type_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "candidate_checklists", ["checklist_type_id"], name: "index_candidate_checklists_on_checklist_type_id", using: :btree
 
   create_table "candidate_civil_states", force: :cascade do |t|
     t.string   "name"
@@ -975,6 +1040,24 @@ ActiveRecord::Schema.define(version: 20160803182814) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "candidate_ocurrence_situations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "color"
+    t.boolean  "status",         default: true
+    t.boolean  "visible_portal", default: true
+    t.string   "label_portal"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  create_table "candidate_ocurrence_types", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "candidate_pontuations", force: :cascade do |t|
@@ -1797,23 +1880,43 @@ ActiveRecord::Schema.define(version: 20160803182814) do
   add_index "helpdesk_ticket_attendants", ["staff_id"], name: "index_helpdesk_ticket_attendants_on_staff_id", using: :btree
   add_index "helpdesk_ticket_attendants", ["ticket_type_id"], name: "index_helpdesk_ticket_attendants_on_ticket_type_id", using: :btree
 
-  create_table "helpdesk_ticket_comments", force: :cascade do |t|
+  create_table "helpdesk_ticket_ocurrences", force: :cascade do |t|
     t.integer  "ticket_id"
-    t.integer  "user_type"
-    t.text     "comment"
-    t.boolean  "read"
-    t.datetime "read_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "staff_id"
+    t.integer  "responsible_id"
+    t.text     "ocurrence"
+    t.integer  "ticket_solution_id"
+    t.text     "description_solution"
+    t.datetime "solution_date"
+    t.datetime "scheduled_date"
+    t.boolean  "scheduled"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "helpdesk_ticket_comments", ["ticket_id"], name: "index_helpdesk_ticket_comments_on_ticket_id", using: :btree
+  add_index "helpdesk_ticket_ocurrences", ["responsible_id"], name: "index_helpdesk_ticket_ocurrences_on_responsible_id", using: :btree
+  add_index "helpdesk_ticket_ocurrences", ["staff_id"], name: "index_helpdesk_ticket_ocurrences_on_staff_id", using: :btree
+  add_index "helpdesk_ticket_ocurrences", ["ticket_id"], name: "index_helpdesk_ticket_ocurrences_on_ticket_id", using: :btree
+  add_index "helpdesk_ticket_ocurrences", ["ticket_solution_id"], name: "index_helpdesk_ticket_ocurrences_on_ticket_solution_id", using: :btree
+
+  create_table "helpdesk_ticket_solutions", force: :cascade do |t|
+    t.integer  "ticket_type_id"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "status"
+    t.string   "solution_sla"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "helpdesk_ticket_solutions", ["ticket_type_id"], name: "index_helpdesk_ticket_solutions_on_ticket_type_id", using: :btree
 
   create_table "helpdesk_ticket_subjects", force: :cascade do |t|
     t.integer  "ticket_type_id"
     t.string   "title"
     t.text     "description"
     t.boolean  "status"
+    t.string   "subject_sla"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -1843,6 +1946,7 @@ ActiveRecord::Schema.define(version: 20160803182814) do
     t.integer  "status",            default: 0
     t.text     "description"
     t.text     "meta_tags"
+    t.string   "code_computer"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end

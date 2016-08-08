@@ -1,6 +1,7 @@
 module Indication
   class Allotment < ActiveRecord::Base
     belongs_to :step, -> { order(:id) }, class_name: "Project::Step"
+    has_many :cadastres
 
     attr_accessor :code, :password
 

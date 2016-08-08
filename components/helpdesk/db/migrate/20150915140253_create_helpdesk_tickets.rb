@@ -12,6 +12,7 @@ class CreateHelpdeskTickets < ActiveRecord::Migration
       t.integer :status, default: 0
       t.text :description
       t.text :meta_tags
+      t.string :code_computer
 
       t.timestamps null: false
     end

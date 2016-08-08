@@ -36,3 +36,4 @@
                 %td= allotment.special
                 %td= allotment.created_at.strftime('%d/%m/%Y')
                 %td
+                  = link_to '', cadastres_path(allotment_id: allotment.id), title: "Visualizar indicados",class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}

@@ -6,29 +6,29 @@ module Candidate
 
     # GET /inheritors
     def index
-      #authorize :inheritor, :index?
+      authorize :enterprise_situation_status, :index?
       @enterprise_situation_statuses = EnterpriseSituationStatus.all
     end
 
     # GET /inheritors/1
     def show
-      #authorize :inheritor, :index?
+      authorize :enterprise_situation_status, :index?
     end
 
     # GET /inheritors/new
     def new
-      #authorize :inheritor, :create?
+      authorize :enterprise_situation_status, :create?
       @enterprise_situation_status = EnterpriseSituationStatus.new
     end
 
     # GET /inheritors/1/edit
     def edit
-      #authorize :inheritor, :update?
+      authorize :enterprise_situation_status, :update?
     end
 
     # POST /inheritors
     def create
-      #authorize :inheritor, :create?
+      authorize :enterprise_situation_status, :create?
       @enterprise_situation_status = EnterpriseSituationStatus.new(enterprise_situation_status_params)
 
       if @enterprise_situation_status.save
@@ -41,7 +41,7 @@ module Candidate
 
     # PATCH/PUT /inheritors/1
     def update
-      #authorize :inheritor, :update?
+      authorize :enterprise_situation_status, :update?
       if @enterprise_situation_status.update(enterprise_situation_status_params)
         redirect_to enterprise_situation_statuses_path
       else
@@ -51,7 +51,7 @@ module Candidate
 
     # DELETE /inheritors/1
     def destroy
-      #authorize :inheritor, :destroy?
+      authorize :enterprise_situation_status, :destroy?
       @enterprise_situation_status.destroy
       redirect_to enterprise_situation_statuses_path
     end

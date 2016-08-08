@@ -62,3 +62,18 @@ nav:
             code: 0
             label: 'Acompanhamento'
             controller: '/juridical/legal_advices'
+      helpdesk:
+        code: 0
+        label: 'Helpdesk'
+        controller: '#'
+        sub:
+          ticket:
+            module: 'helpdesk'
+            code: 0
+            label: 'Chamado'
+            controller: '/helpdesk/tickets'
+          ticket_type:
+            module: 'helpdesk'
+            code: 0
+            label: 'Tipos'
+            controller: '/helpdesk/ticket_types'

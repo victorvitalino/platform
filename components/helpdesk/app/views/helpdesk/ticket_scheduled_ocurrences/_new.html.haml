@@ -1,0 +1,18 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Agendamento
+.modal-body
+  = simple_form_for @ticket_scheduled_ocurrence, url: ticket_ticket_scheduled_ocurrences_path(@ticket), method: :post , remote: true do |f|
+    .row
+      .col-md-12
+        = f.label "Motivo do agendamento", class: 'fg-label'
+        = f.input :ocurrence, label: false
+    .row
+      .col-md-12
+        = f.label "Data do agendamento", class: 'fg-label'
+        = f.input :scheduled_date, as: :string, label: false, input_html: { class: 'date', placeholder: '00/00/0000'}
+    %br/
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success'

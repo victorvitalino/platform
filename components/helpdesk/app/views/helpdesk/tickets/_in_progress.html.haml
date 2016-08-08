@@ -3,7 +3,7 @@
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
       %table#data-table-command.table.table-striped.table-bordered
         %thead
-          %tr.info
+          %tr
             %th.col-md-1 Nº
             %th Assunto
             %th Solicitante
@@ -23,9 +23,12 @@
                 - if o.open?
                   %span.label.label-success aberto
                 - if o.in_progress?
-                  %span.label.label-primary em andamento
+                  %span.label.label-primary em atendimento
+                - if o.scheduled?
+                  %span.label.label-primary agendado
                 - if o.closed?
                   %span.label.label-danger fechado
               %td.col-md-2
                 = link_to "", ticket_path(id: o, q: 'in_progress'), class: 'glyphicon glyphicon-info-sign btn btn-primary btn-xs', title: "detalhes da solicitação"
+                = link_to "", new_ticket_ticket_scheduled_ocurrence_path(ticket_id: o), remote: true, class: 'glyphicon glyphicon-calendar btn btn-success btn-xs', title: "Agendar atendimento"
                 = link_to "", ticket_closed_path(ticket_id: o, q: 'in_progress'), class: 'glyphicon glyphicon-ok-sign btn btn-danger  btn-xs', title: "fechar solicitação"

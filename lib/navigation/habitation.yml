@@ -147,7 +147,7 @@ nav:
             controller: '/indication/enterprises'
             action: 'index'
       assistent:
-        code: [118103,118101]
+        code: [118103,118101,11602]
         label: 'Auxiliares'
         controller: '#'
         sub:
@@ -161,6 +161,11 @@ nav:
             code: 11011
             label: 'Gestão de tipos de checklist'
             controller: '/candidate/checklist_types'
+          enterprise_status:
+            module: 'candidate'
+            code: 11601
+            label: 'Situações empresas'
+            controller: '/candidate/enterprise_situation_statuses'
       sefaz:
         code: 12001
         label: 'SEFAZ'
