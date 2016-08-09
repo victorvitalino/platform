@@ -95,6 +95,12 @@ pt-BR:
     sefaz:
       allotments: "Lotes"
       exemptions: "Isenção"
+    helpdesk:
+      tickets: "Ordems de serviço"
+      ticket_types: "Tipos de serviços"
+      ticket_subjects: "Assuntos"
+      ticket_ocurrence: "Ocorrência"
+      ticket_attendants: "Atendentes"
   actions:
     index: "Listagem"
     new: "Novo"
@@ -102,3 +108,4 @@ pt-BR:
     destroy: "Excluir"
     show: "Detalhes"
     index_attendent: "Listagem"
+    new_parcial: "Novo"

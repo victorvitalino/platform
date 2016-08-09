@@ -1,5 +1,5 @@
 .row
-  .col-sm-12
+  .col-sm-12.index-exemption
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
       %table#data-table-command.table.table-striped.table-bordered
         %thead
@@ -14,36 +14,35 @@
             %th Retorno
             - unless @allotment.send_status_id > 2
               %th Ações
-        %tbody.index-exemption
-          - if @exemptions.present?
-            - @exemptions.each do |e|
-              %tr
-                %td= e.name
-                %td= e.cpf
-                %td= e.city
-                %td= e.address
-                %td= e.realty_number
-                %td= e.realty_value
-                %td
-                  - if e.act_number.present?
-                    = e.act_number
-                  -if e.return_message.present?
-                    = e.return_message
-                %td
-                  - if @allotment.send_status_id != 4
-                    - if e.system_message.present?
-                      = link_to "", "#", title: e.system_message,  class: 'btn btn-xs btn-danger glyphicon glyphicon-warning-sign'
-                    - else
-                      %span.label.label-success
-                        %i.glyphicon.glyphicon-ok
+        %tbody
+          - @exemptions.each do |e|
+            %tr
+              %td= e.name
+              %td= e.cpf
+              %td= e.city
+              %td= e.address
+              %td= e.realty_number
+              %td= e.realty_value
+              %td
+                - if e.act_number.present?
+                  = e.act_number
+                -if e.return_message.present?
+                  = e.return_message
+              %td
+                - if @allotment.send_status_id != 4
+                  - if e.system_message.present?
+                    = link_to "", "#", title: e.system_message,  class: 'btn btn-xs btn-danger glyphicon glyphicon-warning-sign'
                   - else
-                    - if e.act_number.present?
-                      %span.label.label-success
-                        %i.glyphicon.glyphicon-ok
-                    - if e.return_message.present?
-                      %span.label.label-danger
-                        %i.glyphicon.glyphicon-warning-sign
-                - unless @allotment.send_status_id > 2
-                  %td
-                    = link_to "",edit_allotment_exemption_path(e.allotment_id,e), title: "Candidatos",  class: 'glyphicon glyphicon-edit btn btn-info btn-xs'
-                    = link_to "", allotment_exemption_path(e.allotment_id,e), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."}
+                    %span.label.label-success
+                      %i.glyphicon.glyphicon-ok
+                - else
+                  - if e.act_number.present?
+                    %span.label.label-success
+                      %i.glyphicon.glyphicon-ok
+                  - if e.return_message.present?
+                    %span.label.label-danger
+                      %i.glyphicon.glyphicon-warning-sign
+              - unless @allotment.send_status_id > 2
+                %td
+                  = link_to "",edit_allotment_exemption_path(e.allotment_id,e), title: "Candidatos",  class: 'glyphicon glyphicon-edit btn btn-info btn-xs'
+                  = link_to "", allotment_exemption_path(e.allotment_id,e), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."}

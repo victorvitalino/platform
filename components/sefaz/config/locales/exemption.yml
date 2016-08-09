@@ -13,3 +13,5 @@ pt-BR:
         act_number: "Ato declaratorio"
         return_message: "Messagem de retorno"
         system_message: "Messagem de sistema"
+        year_act: "Ano do ato"
+        number_act_to_cancel: "Número do ato"
