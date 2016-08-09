@@ -10,7 +10,7 @@ module Candidate
     attr_accessor :quantity, :rii, :rie, :special, :old, :vul, :situation_id,
                   :enterprise_id, :min_salary, :max_salary
 
-    attr_accessor :rii_list, :rie_list, :special_list, :old_list, :vul_list
+    attr_accessor :general_list, :rii_list, :rii_older, :rii_special
     
     def initialize(options = {})
       @quantity       = options[:quantity]    ||= 0
@@ -23,49 +23,33 @@ module Candidate
       @old      = options[:old]       ||= 8.0
       @vul      = options[:vul]       ||= 4.0
 
-      @situation_id   = options[:situation_id]  ||= nil
       @enterprise_id  = options[:enterprise_id] ||= nil
     end
 
-    def ranking!
-      values_valid?
+    def execute!
+      @general_list = Candidate::IndicationQuery.new({enterprise_id: @enterprise_id, min_income: @min_salary, max_income: @max_salary})
+      
+      @rii_list     = @general_list.rii_with_zone.where('extract(year from age(born)) < 60 AND 
+                                                       (special_condition_id not in (2,3,4) OR
+                                                       (select COUNT(*) from candidate_dependents 
+                                                       where special_condition_id not in (2,3)
+                                                       and cadastre_id = general_pontuations.id) > 0)').order('total ASC')
 
-    end
+      @rii_older    = @general_list.rii_with_zone.where('extract(year from age(born)) >= 60 AND 
+                                                       (special_condition_id in (1, 4) OR
+                                                       (select COUNT(*) from candidate_dependents 
+                                                       where special_condition_id not in (2, 3)
+                                                       and cadastre_id = general_pontuations.id) > 0)').order('total ASC')
 
-    def mount_lists
-      @general  = Candidate::View::GeneralPontuation.where(income: @min_salary..@max_salary)
-      @rii_list = @general.where(program_id: 1)
-      @rie_list = @general.where(program_id: 2)
-      @general.where(program_id: 2)
+      @rii_special  = @general_list.rii_with_zone.where('(special_condition_id in (2,3) OR
+                                                       (select COUNT(*) from candidate_dependents 
+                                                       where special_condition_id in (2,3)
+                                                       and cadastre_id = general_pontuations.id) > 0)').order('total ASC')
 
-    end
-
-    def list_old
-      @object = general_pontuations
-      @query  = "extract(year from age(born)) >= 60 
-                AND convocation_id > 1524 
-                AND procedural_status_id <> 14 
-                AND income BETWEEN #{income_min} 
-                AND #{income_max} and situation_status_id = 4"
-
-      Candidate::View::GeneralPontuation.where(@query).order('total ASC')
-    end
-
-    def list_vul
-      Candidate::View::GeneralPontuation.where(program_id: 4, situation_status_id: 4)
-                                        .where('procedural_status_id <> 14')
-                                        .order('total ASC')
     end
 
     private
 
-    def general_pontuations
-      @query = "situation_status_id = 4
-                AND procedural_status_id <> 14"
-      Candidate::View::GeneralPontuation.where(situation_status_id: 4)
-                                        .where('procedural_status_id <> 14')
-    end
-    
     def values_valid?
       if (@rii + @rie + @special + @old + @vul) != 100.0
         raise ArgumentError, 'Porcentagens não resultam 100%'
