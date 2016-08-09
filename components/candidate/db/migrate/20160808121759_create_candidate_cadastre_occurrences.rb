@@ -1,12 +1,14 @@
-class CreateCandidateCadastreOcurrences < ActiveRecord::Migration
+class CreateCandidateCadastreOccurrences < ActiveRecord::Migration
   def change
-    create_table :candidate_cadastre_ocurrences do |t|
+    create_table :candidate_cadastre_occurrences do |t|
       
       t.integer :cadastre_id,             index: true
-      t.integer :ocurrence_situation_id,  index: true
-      t.integer :ocurrence_type_id,       index: true
+      t.integer :occurrence_situation_id,  index: true
+      t.integer :occurrence_type_id,       index: true
       t.integer :attendance_id,           index: true
       t.integer :program_id,              index: true
+      
+      t.text    :description
       
       t.boolean   :solved,                     default: false
       t.integer   :feedback_staff_id,          index: true

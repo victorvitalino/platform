@@ -623,30 +623,31 @@ ActiveRecord::Schema.define(version: 20160808122811) do
   add_index "candidate_cadastre_mirrors", ["state_id"], name: "index_candidate_cadastre_mirrors_on_state_id", using: :btree
   add_index "candidate_cadastre_mirrors", ["work_city_id"], name: "index_candidate_cadastre_mirrors_on_work_city_id", using: :btree
 
-  create_table "candidate_cadastre_ocurrences", force: :cascade do |t|
+  create_table "candidate_cadastre_occurrences", force: :cascade do |t|
     t.integer  "cadastre_id"
-    t.integer  "ocurrence_situation_id"
-    t.integer  "ocurrence_type_id"
+    t.integer  "occurrence_situation_id"
+    t.integer  "occurrence_type_id"
     t.integer  "attendance_id"
     t.integer  "program_id"
-    t.boolean  "solved",                 default: false
+    t.text     "description"
+    t.boolean  "solved",                  default: false
     t.integer  "feedback_staff_id"
     t.text     "feedback_observation"
     t.string   "feedback_archive"
     t.datetime "feedback_datetime"
-    t.boolean  "visible_portal",         default: true
-    t.boolean  "default_label",          default: true
+    t.boolean  "visible_portal",          default: true
+    t.boolean  "default_label",           default: true
     t.string   "custom_label"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
-  add_index "candidate_cadastre_ocurrences", ["attendance_id"], name: "index_candidate_cadastre_ocurrences_on_attendance_id", using: :btree
-  add_index "candidate_cadastre_ocurrences", ["cadastre_id"], name: "index_candidate_cadastre_ocurrences_on_cadastre_id", using: :btree
-  add_index "candidate_cadastre_ocurrences", ["feedback_staff_id"], name: "index_candidate_cadastre_ocurrences_on_feedback_staff_id", using: :btree
-  add_index "candidate_cadastre_ocurrences", ["ocurrence_situation_id"], name: "index_candidate_cadastre_ocurrences_on_ocurrence_situation_id", using: :btree
-  add_index "candidate_cadastre_ocurrences", ["ocurrence_type_id"], name: "index_candidate_cadastre_ocurrences_on_ocurrence_type_id", using: :btree
-  add_index "candidate_cadastre_ocurrences", ["program_id"], name: "index_candidate_cadastre_ocurrences_on_program_id", using: :btree
+  add_index "candidate_cadastre_occurrences", ["attendance_id"], name: "index_candidate_cadastre_occurrences_on_attendance_id", using: :btree
+  add_index "candidate_cadastre_occurrences", ["cadastre_id"], name: "index_candidate_cadastre_occurrences_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_occurrences", ["feedback_staff_id"], name: "index_candidate_cadastre_occurrences_on_feedback_staff_id", using: :btree
+  add_index "candidate_cadastre_occurrences", ["occurrence_situation_id"], name: "index_candidate_cadastre_occurrences_on_occurrence_situation_id", using: :btree
+  add_index "candidate_cadastre_occurrences", ["occurrence_type_id"], name: "index_candidate_cadastre_occurrences_on_occurrence_type_id", using: :btree
+  add_index "candidate_cadastre_occurrences", ["program_id"], name: "index_candidate_cadastre_occurrences_on_program_id", using: :btree
 
   create_table "candidate_cadastre_procedurals", force: :cascade do |t|
     t.integer  "cadastre_mirror_id"
@@ -1041,7 +1042,7 @@ ActiveRecord::Schema.define(version: 20160808122811) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "candidate_ocurrence_situations", force: :cascade do |t|
+  create_table "candidate_occurrence_situations", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.string   "color"
@@ -1052,7 +1053,7 @@ ActiveRecord::Schema.define(version: 20160808122811) do
     t.datetime "updated_at",                    null: false
   end
 
-  create_table "candidate_ocurrence_types", force: :cascade do |t|
+  create_table "candidate_occurrence_types", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status",     default: true
     t.datetime "created_at",                null: false

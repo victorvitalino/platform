@@ -8,3 +8,11 @@
         = nav_link_to('protocol')
         = nav_link_to('management')
         = nav_link_to('report')
+
+      %ul.nav.navbar-nav.navbar-right
+        %li{style: 'padding-top: 12px'}
+          %span
+            %a{href: "#{helpdesk.new_ticket_path}", data: { remote: true }, class: 'btn btn-danger'}
+              %b ABRIR CHAMADO
+            
+   

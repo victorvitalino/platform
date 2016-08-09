@@ -1,3 +1,6 @@
+.panel-side {
+  border-right: #dedede 1px solid;
+}
 .bold {
   font-weight: bold;
 }

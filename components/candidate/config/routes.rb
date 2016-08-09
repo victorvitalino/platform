@@ -25,18 +25,11 @@ Candidate::Engine.routes.draw do
   resources :reports, path: 'relatorios'
 
 
-  resources :ocurrences, path: 'ocorrencias' do 
-    collection do 
-      get   'new/:cpf',     to: 'ocurrences#new'
-      post  ':cpf',         to: 'ocurrences#create'
-
-      get   'edit/:id',     to: 'ocurrences#edit'
-      put   ':id',          to: 'ocurrences#update'
-
-      post  'search',       to: 'ocurrences#search', as: 'search'
-      get   'detail/:cpf',  to: 'ocurrences#detail', as: 'detail'
-    end
+  resources :occurrences, path: 'ocorrencias' do 
+    get  'verify'
   end
 
 
 end
+
+#407.400.483-68

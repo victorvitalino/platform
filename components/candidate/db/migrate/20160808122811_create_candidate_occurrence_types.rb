@@ -1,6 +1,6 @@
-class CreateCandidateOcurrenceTypes < ActiveRecord::Migration
+class CreateCandidateOccurrenceTypes < ActiveRecord::Migration
   def change
-    create_table :candidate_ocurrence_types do |t|
+    create_table :candidate_occurrence_types do |t|
 
       t.string :name
       t.boolean :status, default: true
