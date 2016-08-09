@@ -10,7 +10,7 @@
         - unless @allotment.send_status_id > 2
           = link_to "Upload planilha",  new_allotment_exemption_file_path(@allotment), remote:true, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
           = link_to "Incluir candidato", new_allotment_exemption_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."} if @allotment.send_type == "pedido de isenção"
-          = link_to "Incluir candidato", allotment_new_parcial_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."} if @allotment.send_type.to_i == "cancelamento parcial"
+          = link_to "Incluir candidato", allotment_new_parcial_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."} if @allotment.send_type == "cancelamento parcial"
         = link_to "Reprocessar", allotment_to_process_path(@allotment), class: 'btn btn-warning pull-right mgl',data: {disable_with: "carregando..."} if @allotment.send_status_id > 2
         = link_to "Enviar solicitação", allotment_send_exemption_path(@allotment),  class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2 && @allotment.send_type == "pedido de isenção"
         = link_to "Enviar cancelamento", allotment_send_parcial_cancelation_path(@allotment), class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2 && @allotment.send_type == "cancelamento parcial"

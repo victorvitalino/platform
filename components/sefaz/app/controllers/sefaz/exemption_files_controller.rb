@@ -11,12 +11,16 @@ module Sefaz
 
     def create
 			authorize :exemption,  :create?
-			
+
 			@exemption_file = Sefaz::ExemptionFile.new(set_params)
 			@exemption_file.user_id 		 = current_user.id
 			@exemption_file.allotment_id = @allotment.id
-			@exemption_file.import_files!
-			@allotment.update(send_status_id: 2)
+			begin
+				@exemption_file.import_files!
+				@allotment.update(send_status_id: 2)
+			rescue
+				flash["warning"] = "Nenhuma linha encontrada."
+			end
     end
 
     private

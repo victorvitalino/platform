@@ -6,7 +6,7 @@
   .row
     .col-md-12
       = f.label :ticket_subject_title, class: 'fg-label'
-      = f.input :ticket_subject_title, label: false, hint: "<b>Ao digitar verifique se sua questão já não está sendo listada abaixo!</b>".html_safe, input_html: {id:"ticket_ticket_subject_title", autocomplete: 'on', readonly: true }
+      = f.input :ticket_subject_title,  label: false, hint: "<b>Ao digitar verifique se sua questão já não está sendo listada abaixo!</b>".html_safe, input_html: {id:"ticket_ticket_subject_title", autocomplete: 'on', readonly: true }
   .row
     .col-md-12
       = f.label :code_computer, class: 'fg-label'
@@ -24,7 +24,7 @@
       = f.button :submit, class: 'btn btn-success'
   %br
   :javascript
-  
+
     $(function() {
       $("#ticket_ticket_type_id").on('change', function(){
         $.get("#{helpdesk.ticket_subjects_json_path}?ticket_type_id="+ $(this).val(), function(data) {
