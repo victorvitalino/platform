@@ -1,5 +1,22 @@
-%table.table.table-striped.table-bordered.table-hover
-  %thead
-    %tr
-      %th O
-  %tbody
+.row
+  .col-md-12
+    %h3 Demanda levantada
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th{style: 'width:1%'}
+          %th RII
+          %th RIE
+          %th IDOSOS
+          %th DEFICIENTES
+          %th VULNERÁVEIS
+          %th TOTAL
+      %tbody
+        %tr
+          %th{style: 'width:1%'}TOTAL
+          %td= @processing.preview_cadastres[:rii].count
+          %td= @processing.preview_cadastres[:rie].count
+          %td= @processing.preview_cadastres[:old].count
+          %td= @processing.preview_cadastres[:special].count
+          %td= @processing.preview_cadastres[:vul].count
+        

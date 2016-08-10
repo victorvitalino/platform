@@ -9,7 +9,8 @@ Indication::Engine.routes.draw do
 
   resources :processings, path: 'processamento' do 
     collection do 
-      post 'preview_demand', to: 'processings#preview_demand'
+      post 'preview_demand',    to: 'processings#preview_demand'
+      get  'preview_cadastres', to: 'processings#preview_cadastres'
     end
   end
 end

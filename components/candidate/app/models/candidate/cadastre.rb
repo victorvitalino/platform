@@ -56,7 +56,7 @@ module Candidate
 
     accepts_nested_attributes_for :dependents, allow_destroy: true
 
-    validates :cpf, cpf: true
+    #validates :cpf, cpf: true
 
 
     def enabled?

@@ -1,32 +1,34 @@
 %h3 Novo lote de indicação
 = simple_form_for @processing, url: preview_demand_processings_path, method: :post, remote: true do |f|
   .row
-    .col-md-1
-      = f.input :rii, label: '(%) RII', input_html: { id: 'rii', value: '0', onchange: 'sum_values()', maxlength: 2}
-    .col-md-1
-      = f.input :rie, label: '(%) RIE', input_html: {  id: 'rie', value: '0', onchange: 'sum_values()', maxlength: 2}
-    .col-md-1
-      = f.input :special, label: '(%) DEF', input_html: {  id: 'special', value: '0', onchange: 'sum_values()', maxlength: 2}
-    .col-md-1
-      = f.input :old, label: '(%) IDO', input_html: {id: 'old', value: '0', onchange: 'sum_values()', maxlength: 2}
-    .col-md-1
-      = f.input :vul, label: '(%) VUL', input_html: { id: 'vul', value: '0', onchange: 'sum_values()', maxlength: 2}
-    .col-md-2
-      = f.input :percent_total, label: '(%) TOTAL', input_html: { name: 'percent_total', readonly: true, id: 'percent_total', maxlength: 2}
+    .col-md-3
+      = f.input :zone_id, label: "Faixa de renda", as: :select, collection: f.object.zone, include_blank: false
+    .col-md-3
+      = f.input :target_demand, label: "Demanda", as: :string, placeholder: "Informe a demanda para indicação"
   .row
-    .col-md-4
-      = f.submit "Verificar existência cadastral", name: nil, class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+    .col-md-12
+      %table.table.table-striped.table-bordered.table-form
+        %thead
+          %tr
+            %th   
+            %th RII.
+            %th RIE.
+            %th DEF.
+            %th VUL.
+            %th IDO.
+            %th TOTAL
+        %tbody
+          %tr
+            %th QTD.
+            %td= f.input :rii, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :rie, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :special, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :vul, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :old, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.object.total_demand
+        %thead.thead-percent
+          = render 'thead_percent'
+      .row
+        .col-md-4
+          = f.submit "Processar demanda", name: nil, class: 'btn btn-success', data: { disable_with: t(:disable_with)}
 %hr/
-
-:javascript
-  function sum_values() {
-    rii = parseFloat($("#rii").val())
-    rie = parseFloat($("#rie").val())
-    vul = parseFloat($("#vul").val())
-    old = parseFloat($("#old").val())
-    spc = parseFloat($("#special").val())
-    total = rii + rie + vul + old + spc
-    $("#percent_total").val(total)
-  }
-
-
