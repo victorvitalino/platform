@@ -7,6 +7,11 @@ module Indication
     before_action :set_steps
 
     def index
+      respond_to do |format|
+        format.json {
+          render json: @enterprise.steps
+        }
+      end
     end
 
     def new

@@ -7,6 +7,7 @@ $(document).ready(function(){
   $('.cnpj').mask("00.000.000/0000-00", {placeholder: "00.000.000/0000-00"});
   $('.document_number').mask("000-000.000/0000", {placeholder: "000-000.000/0000"});
   $('.cep').mask("00000-000", {placeholder: "00000-000"});
+  $('.percent').mask("00.0", {placeholder: "00.0"});
 
   $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true,allowZero:true, thousands:'', decimal:'.', affixesStay: false});
 

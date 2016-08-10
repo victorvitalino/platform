@@ -1,0 +1,4 @@
+- if @processing.preview_step.present?
+  $("#preview_step_table").html("#{escape_javascript(render 'preview_step_table')}")
+- if @processing.remnant_indications > 0
+  $("#form_allotment").html("#{escape_javascript(render 'form_allotment')}")

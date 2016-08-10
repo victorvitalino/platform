@@ -1,0 +1,3 @@
+- if !@processing.errors.any?
+  $("#preview_table").html("#{escape_javascript(render 'preview_demand_table')}")
+$("#form_allotment").html("#{escape_javascript(render 'form_allotment')}")

@@ -6,6 +6,16 @@ module Indication
 
     def index
       @allotments = @step.allotments
+      @result     = @allotments.sum(:demand)
+
+      respond_to do |format|
+        format.json {
+          render json: [{data: @allotments, allotments_total: @result, step_demand: @step.demand, current_demand: @step.demand - @result}]
+        }
+
+        format.html {}
+      end
+
     end
 
     def new
