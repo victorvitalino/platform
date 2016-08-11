@@ -1,0 +1,58 @@
+%h3
+  Detalhamento de demanda
+  %small
+    %br/
+    %a{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_one", :role => "button", id: "button_collapse_one"}
+      
+.collapse.in#collapse_one
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th Empreendimento
+        %th Etapa
+    %tbody
+      %tr
+        %td= @processing.preview_step[:enterprise_title]
+        %td= @processing.preview_step[:step_name]
+    
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th Demanda da Etapa
+        %th Demanda enviada
+        %th Demanda retornada
+        %th Demanda Restante
+    %tbody
+      %tr
+        %td= @processing.preview_step[:step_demand]
+        %td= @processing.preview_step[:alloment_indications]
+        %td
+        %td= @processing.preview_step[:remnant_indications]
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th{style: 'width:1%'}
+        %th RII
+        %th RIE
+        %th IDOSOS
+        %th DEFICIENTES
+        %th VULNERÁVEIS
+        %th TOTAL
+    %tbody
+      %tr
+        %th{style: 'width:1%'}TOTAL
+        %td= @processing.preview_step[:programs][:rii]
+        %td= @processing.preview_step[:programs][:rie]
+        %td= @processing.preview_step[:programs][:old]
+        %td= @processing.preview_step[:programs][:special]
+        %td= @processing.preview_step[:programs][:vul]
+        %td= @processing.preview_step[:alloment_indications]
+      %tr
+        %th{style: 'width:1%'} %
+        %td= "#{@processing.preview_step[:programs][:rii].percent_of(@processing.preview_step[:step_demand])} %"
+        %td= "#{@processing.preview_step[:programs][:rie].percent_of(@processing.preview_step[:step_demand])} %"
+        %td= "#{@processing.preview_step[:programs][:old].percent_of(@processing.preview_step[:step_demand])} %"
+        %td= "#{@processing.preview_step[:programs][:special].percent_of(@processing.preview_step[:step_demand])} %"
+        %td= "#{@processing.preview_step[:programs][:vul].percent_of(@processing.preview_step[:step_demand])} %"
+        %td= "#{@processing.preview_step[:alloment_indications].percent_of(@processing.preview_step[:step_demand])} %"
+%hr/

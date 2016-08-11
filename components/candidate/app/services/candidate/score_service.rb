@@ -1,20 +1,25 @@
 module Candidate
-  class PontuationService
+  class ScoreService
     
+    # => 09 de agosto de  2016
+
+    # => Esta pontuação é baseada no DECRETO Nº 220 de 30 de outubro de 2012, do governo do Agnelo Queiroz
+    # Inicia-se a explicação da fórmula na página 4
+    # => Este algoritmo foi implementado em 2012 em .net usando Webforms, o mesmo foi implementado errado.
+    # Onde o programador não seguiu a regra do PNL corretamente, isso fez com que todos habilitados de 2012
+    # não recebesse pontuação correta em tempo_de_lista, isso não foi corrigido
+    # => Para maior detalhamento somente verificando por extrato de dados e executando esta classe
+
+    # => toda pontuação é baseada em mirrors
     attr_accessor :cadastre_mirror
 
-    attr_accessor :min_salary, :dsp_value, :created_at_value
+    attr_accessor :min_salary, :dsp_value, :created_at_value, :pml
    
     # => PMB são os pontos máximos de tempo de residência no Distrito Federal.
     # =>1.1. Tempo de residência no Distrito Federal: 4.000 pontos, distribuídos diretamente proporcional
     # ao tempo apurado com base nos dados cadastrais; 
     PMB = 4000
     
-    # => PML são os pontos máximos de tempo de inscrição em Programas Habitacionais.
-    # => 1.2. Tempo de inscrição em Programas Habitacionais no DF: 1.500 pontos, distribuídos de acordo
-    # com o tempo apurado com base nos dados cadastrais;
-    PML = 800
-
     # => PMR são os pontos máximos de renda familiar per capita.
     # => 1.5. Renda familiar mensal bruta per capita: 500 pontos, distribuídos inversamente proporcional
     # ao valor da renda mensal bruta per capita apurada com base nos dados cadastrais; 
@@ -30,12 +35,21 @@ module Candidate
 
     def initialize(options = {})
       @cadastre_mirror = Candidate::CadastreMirror.find(options[:cadastre_mirror_id])
-
       return nil if @cadastre_mirror.nil?
-        # => SAL_MIM é o valor do salário mínimo na data de geração dos pontos.
+
+      # => SAL_MIM é o valor do salário mínimo na data de geração dos pontos.
       @min_salary        = options[:min_salary]   ||= 880.0
+
+      # => DSP é a data de geração dos pontos. 
       @dsp_value         = options[:dsp]          ||= proc_dsp
+      
+      # => DT_INSCRICAO(i) é a data de inscrição do candidato em Programas Habitacionais. 
       @created_at_value  = @cadastre_mirror.created_at.strftime("%Y-%m-%d")
+
+      # => PML são os pontos máximos de tempo de inscrição em Programas Habitacionais.
+      # => 1.2. Tempo de inscrição em Programas Habitacionais no DF: 1.500 pontos, distribuídos de acordo
+      # com o tempo apurado com base nos dados cadastrais;
+      @pml               = options[:pml]          ||= 1500
     end
 
     def scoring_cadastre!
@@ -52,6 +66,7 @@ module Candidate
     end
 
     # => DSP é a data de geração dos pontos.
+    # => Deverá ser validado para que o mesmo seja coerente com a pontuação dos candidatos
     def proc_dsp
       '01/01/2016'
     end
@@ -68,7 +83,7 @@ module Candidate
     # => MADIL são os pontos médios anteriores a data de início das inscrições.
     # => MADIL = ( PML + PML * (DSP – DIL) / (DSP – DIC) ) / 2 
     def madil
-      (PML + PML * ((dsp - DIL).to_i) / ((dsp - DIC).to_i)) / 2
+      (@pml + @pml * ((dsp - DIL).to_i) / ((dsp - DIC).to_i)) / 2
     end
 
     # => f) PT_RENDA(i) = PMR* (SAL_MIN * 12 – (R_TOTAL(i) / (DP(i)+1))) / (SAL_MIN * 12)
@@ -111,13 +126,16 @@ module Candidate
     def timelist_score
       #=> DATA REFERENTE PARA CALCULO DE 2012 - 01/10/2012 - NAO PERDER ESSA DATA
       #UNS MANE JA PERDERAM, FAÇA O FAVOR, VALEU
+      total = 0
 
       if @cadastre_mirror.arrival_df < DIL && created_at == DIL
-        madil
+        total = madil
       else 
-        PML * (dsp - created_at).to_f / (dsp - DIC).to_f + mb_11 * 700
+        total = @pml * (dsp - created_at).to_f / (dsp - DIC).to_f + mb_11 * 700
       end
 
+      #=> O tempo de lista não deve exceder o teto demonstrado no decreto de 1500
+      total = total > 1500 ? 1500 : total
     end
 
 

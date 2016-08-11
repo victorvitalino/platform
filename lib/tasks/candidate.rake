@@ -31,6 +31,18 @@ namespace :candidate do
     end
   end
 
+  task :update_count_dep => :environment do 
+    @cadastres = Candidate::Cadastre.select(:id)
+    @cadastres.order(:id).each do |cad|
+      dep = cad.dependents.where(special_condition_id: 2)
+      if dep.present?
+        cad.update(special_dependent_count: dep.count) 
+        puts 'ok'
+      end
+      puts cad.id
+    end
+  end
+
   task :position => :environment do
 
     #Rake::Task["candidate:refresh_view"].invoke

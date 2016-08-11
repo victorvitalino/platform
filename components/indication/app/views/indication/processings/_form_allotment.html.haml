@@ -1,0 +1,34 @@
+%h3 Novo lote de indicação
+= simple_form_for @processing, url: preview_demand_processings_path, method: :post, remote: true do |f|
+  .row
+    .col-md-3
+      = f.input :zone_id, label: "Faixa de renda", as: :select, collection: f.object.zone, include_blank: false
+    .col-md-3
+      = f.input :target_demand, label: "Demanda", as: :string, placeholder: "Informe a demanda para indicação"
+  .row
+    .col-md-12
+      %table.table.table-striped.table-bordered.table-form
+        %thead
+          %tr
+            %th   
+            %th RII.
+            %th RIE.
+            %th DEF.
+            %th VUL.
+            %th IDO.
+            %th TOTAL
+        %tbody
+          %tr
+            %th QTD.
+            %td= f.input :rii, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :rie, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :special, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :vul, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :old, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.object.total_demand
+        %thead.thead-percent
+          = render 'thead_percent'
+      .row
+        .col-md-4
+          = f.submit "Processar demanda", name: nil, class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+%hr/

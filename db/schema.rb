@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808122811) do
+ActiveRecord::Schema.define(version: 20160810190102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -579,7 +579,7 @@ ActiveRecord::Schema.define(version: 20160808122811) do
 
   create_table "candidate_cadastre_mirrors", force: :cascade do |t|
     t.string   "name"
-    t.string   "cpf",                    default: "", null: false
+    t.string   "cpf",                     default: "", null: false
     t.integer  "gender"
     t.date     "born"
     t.string   "born_uf"
@@ -609,10 +609,11 @@ ActiveRecord::Schema.define(version: 20160808122811) do
     t.integer  "program_id"
     t.boolean  "adapted_property"
     t.integer  "cadastre_id"
-    t.integer  "cadastre_type",          default: 0
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "situation",              default: 0
+    t.integer  "cadastre_type",           default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "situation",               default: 0
+    t.integer  "special_dependent_count"
   end
 
   add_index "candidate_cadastre_mirrors", ["cadastre_id"], name: "index_candidate_cadastre_mirrors_on_cadastre_id", using: :btree
@@ -685,7 +686,7 @@ ActiveRecord::Schema.define(version: 20160808122811) do
 
   create_table "candidate_cadastres", force: :cascade do |t|
     t.string   "name"
-    t.string   "cpf",                    default: "", null: false
+    t.string   "cpf",                     default: "", null: false
     t.integer  "gender"
     t.date     "born"
     t.string   "born_uf"
@@ -723,8 +724,9 @@ ActiveRecord::Schema.define(version: 20160808122811) do
     t.string   "secret_answer"
     t.string   "remember_token"
     t.string   "session_token"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "special_dependent_count"
   end
 
   add_index "candidate_cadastres", ["city_id"], name: "index_candidate_cadastres_on_city_id", using: :btree
@@ -1179,6 +1181,18 @@ ActiveRecord::Schema.define(version: 20160808122811) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "candidate_zones", force: :cascade do |t|
+    t.string   "name"
+    t.float    "start_value", default: 0.0
+    t.float    "end_value",   default: 0.0
+    t.string   "code"
+    t.boolean  "status"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "candidate_zones", ["code"], name: "index_candidate_zones_on_code", unique: true, using: :btree
 
   create_table "cms_galleries", force: :cascade do |t|
     t.string   "title"
