@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810190102) do
+ActiveRecord::Schema.define(version: 20160811194002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1973,7 +1973,7 @@ ActiveRecord::Schema.define(version: 20160810190102) do
 
   create_table "indication_allotments", force: :cascade do |t|
     t.integer  "step_id"
-    t.integer  "zone"
+    t.integer  "zone_id"
     t.integer  "demand"
     t.integer  "rii"
     t.integer  "rie"
@@ -1992,7 +1992,7 @@ ActiveRecord::Schema.define(version: 20160810190102) do
   add_index "indication_allotments", ["staff_id"], name: "index_indication_allotments_on_staff_id", using: :btree
   add_index "indication_allotments", ["step_id"], name: "index_indication_allotments_on_step_id", using: :btree
   add_index "indication_allotments", ["supervisor_id"], name: "index_indication_allotments_on_supervisor_id", using: :btree
-  add_index "indication_allotments", ["zone"], name: "index_indication_allotments_on_zone", using: :btree
+  add_index "indication_allotments", ["zone_id"], name: "index_indication_allotments_on_zone_id", using: :btree
 
   create_table "indication_cadastres", force: :cascade do |t|
     t.integer  "allotment_id"
@@ -2005,6 +2005,7 @@ ActiveRecord::Schema.define(version: 20160810190102) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "source_list"
+    t.integer  "zone_id"
   end
 
   add_index "indication_cadastres", ["allotment_id"], name: "index_indication_cadastres_on_allotment_id", using: :btree

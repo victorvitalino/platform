@@ -10,7 +10,7 @@ module Candidate
     attr_accessor :quantity, :rii, :rie, :special, :old, :vul, :situation_id,
                   :enterprise_id, :min_salary, :max_salary
 
-    attr_accessor :general_list, :rii_list, :rie_list, :rii_general, :rie_general, :old_list, :special_list, :vul_list
+    attr_accessor :general_list, :rii_list, :rie_list, :rii_general, :rie_general, :old_list, :special_list, :vul_list, :total_lists
     
     def initialize(options = {})
       @quantity       = options[:quantity]    ||= 0
@@ -26,7 +26,7 @@ module Candidate
       @enterprise_id  = options[:enterprise_id] ||= nil
     end
 
-    def generate_rank!
+    def generate
       @general_list = Candidate::IndicationQuery.new({enterprise_id: @enterprise_id, min_income: @min_salary, max_income: @max_salary})
       
       @rii_list     = @general_list.rii_with_zone.limit(rii_calc_demand)
@@ -82,10 +82,26 @@ module Candidate
       
       @old_list     = @old_list.sort! { |a,b| b.total <=> a.total }
       @old_list     = @old_list[0..@old.to_i - 1]
-      
-      @vul_list     = @vul_list
 
-      {rii: @rii_general, rie: @rie_general, special: @special_list, old: @old_list, vul: @vul_list}
+      @total_lists  = @rii_general.count + @rie_general.count +
+                      @special_list.count + @old_list.count + @vul_list.count
+      
+      [{
+       rii: @rii_general, 
+       rie: @rie_general, 
+       special: @special_list, 
+       old: @old_list, 
+       vulnerable: @vul_list
+      }, 
+      {
+        rii_percent: @rii_general.count.percent_of(@total_lists),
+        rie_percent: @rie_general.count.percent_of(@total_lists),
+        special_percent: @special_list.count.percent_of(@total_lists),
+        old_percent: @old_list.count.percent_of(@total_lists),
+        vulnerable_percent: @vul_list.count.percent_of(@total_lists),
+        total: @total_lists 
+      }]
+
     end
 
     def rii_calc_demand

@@ -5,7 +5,7 @@ module Indication
     
     def new
       session[:step_id] = params[:step_id] ||= nil
-      @processing = Indication::Processing.new(params)
+      
       @processing.load_step_data
     end
     

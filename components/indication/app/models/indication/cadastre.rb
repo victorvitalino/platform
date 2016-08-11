@@ -1,7 +1,9 @@
 module Indication
   class Cadastre < ActiveRecord::Base
     belongs_to :cadastre, class_name: "Candidate::Cadastre"
+    belongs_to :pontuation, class_name: "Candidate::Pontuation"
     belongs_to :allotment
+    belongs_to :zone, class_name: "Candidate::Zone"
     
     has_many :enterprise_cadastres, foreign_key: 'indication_cadastre_id', class_name: "Candidate::EnterpriseCadastre"
     
