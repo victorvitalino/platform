@@ -10,12 +10,15 @@ Helpdesk::Engine.routes.draw do
   resources :reports
 
   resources :tickets do
-    get 'in_progress',  to: 'tickets#in_progress',            as: 'in_progress'
-    get 'closed',       to: 'tickets#closed',                 as: 'closed'
-    get 'open',         to: 'tickets#open',                   as: 'open'
-    get 'show_requester',         to: 'tickets#show_requester',                   as: 'show_requester'
+    get 'in_progress',                  to: 'tickets#in_progress',                 as: 'in_progress'
+    get 'closed',                       to: 'tickets#closed',                      as: 'closed'
+    get 'open',                         to: 'tickets#open',                        as: 'open'
+    get 'show_requester',               to: 'tickets#show_requester',              as: 'show_requester'
 
     resources :ticket_ocurrences, path: "ocorrencias"
+    get 'transfer_responsible',         to: 'ticket_ocurrences#transfer_responsible',        as: 'transfer_responsible'
+    get 'transfer_responsible_ticket',  to: 'ticket_ocurrences#transfer_responsible_ticket', as: 'transfer_responsible_ticket'
+
     resources :ticket_scheduled_ocurrences
   end
 

@@ -1,0 +1,5 @@
+- if @ticket_ocurrence.errors.any?
+  $('#modal .modal-content').html("#{escape_javascript(render 'transfer_responsible')}")
+- else
+  $('#modal').modal('hide')
+  $('.index-ticket').html("#{escape_javascript(render '/helpdesk/tickets/index')}")

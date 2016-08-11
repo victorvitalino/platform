@@ -3,7 +3,7 @@ require_dependency 'protocol/application_controller'
 module Protocol
     class AllotmentsController < ApplicationController
         before_action :set_allotments, only: [:index, :create, :destroy, :update]
-        before_action :set_allotment, only: [:edit, :destroy, :update]
+        before_action :set_allotment, only: [:edit, :destroy, :update, :show]
 
         def index
            authorize :allotment,  :index?
@@ -27,6 +27,10 @@ module Protocol
         def edit
         end
 
+        def show
+
+        end
+
         def update
             authorize :allotment,  :update?
             @allotment.update(allotment_params)
@@ -47,7 +51,7 @@ module Protocol
 
         def set_allotments
             if  current_user.sector_current.present?
-              @allotments =   Allotment.where(:sector_id => current_user.sector_current.id, status: false)
+              @allotments =   Allotment.where(:sector_id => current_user.sector_current.id)
             else
                 flash[:danger] = "Usuário não está alocado em um setor."
                 redirect_to '/'

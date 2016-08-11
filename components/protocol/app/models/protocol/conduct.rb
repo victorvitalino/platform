@@ -2,8 +2,8 @@ module Protocol
   class Conduct < ActiveRecord::Base
     belongs_to :assessment
     belongs_to :allotment
-    belongs_to :staff, class_name: "Person::Staff"
-    belongs_to :sector, class_name: "Person::Sector"
+    belongs_to :staff, -> { where(status: true).order(:name) }, class_name: "Person::Staff"
+    belongs_to :sector, -> { where(status: true).order(:name) }, class_name: "Person::Sector"
 
     enum :conduct_type => [:doc_create, :doc_send, :doc_return, :doc_cancel, :doc_receive]
 

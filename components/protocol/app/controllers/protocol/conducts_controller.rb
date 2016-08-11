@@ -63,8 +63,13 @@ module Protocol
                     @conduct.staff_id = current_user.id
                     @conduct .save
                 end
-            flash[:success] = "Documento(s) recebido(s) com sucesso!"
-            redirect_to receive_path
+            if params[:type].to_i  == 4
+              flash[:success] = "Documento(s) recebido(s) com sucesso!"
+              redirect_to receive_path
+            else
+              flash[:success] = "Documento(s) devolvido(s) com sucesso!"
+              redirect_to return_path
+            end
         end
 
 
@@ -81,12 +86,12 @@ module Protocol
 
         def update_allotment
             @allotment.update(amount_docs:@allotment_conduct.count, status: true)
-       end
+        end
 
         def create
 
             @allotment_conduct = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.sector_current.id)
-           authorize :conduct,  :create?
+             authorize :conduct,  :create?
              @allotment_conduct.each do |lote|
                 @conduct = Protocol::Conduct.new(set_conduct_params)
                 @conduct.allotment_id = params[:allotment_id]

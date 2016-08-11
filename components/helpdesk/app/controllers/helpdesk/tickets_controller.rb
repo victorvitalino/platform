@@ -44,27 +44,39 @@ module Helpdesk
 
     def open
       authorize :ticket,  :to_attendant?
-      @ticket = Helpdesk::Ticket.find(params[:ticket_id])
-      if @ticket.update(status: 0, attendant_id: current_user.id, attendance_start: Time.now)
-        TicketOcurrence.create_ocurrence(@ticket.id, current_user.id,"reabertura de chamado.")
-        flash[:success] = t :success
-        redirect_to action: 'index', q: params[:q]
-      else
-        flash[:danger] = t :danger
-        redirect_to action: 'index', q: params[:q]
-      end
+
+
+        @ticket = Helpdesk::Ticket.find(params[:ticket_id])
+        if @ticket.update(status: 0, attendant_id: current_user.id, attendance_start: Time.now)
+          TicketOcurrence.create_ocurrence(@ticket.id, current_user.id,"reabertura de chamado.",current_user.id)
+          flash[:success] = t :success
+          redirect_to action: 'index', q: params[:q]
+        else
+          flash[:danger] = t :danger
+          redirect_to action: 'index', q: params[:q]
+        end
+
     end
 
     def in_progress
       authorize :ticket,  :to_attendant?
-      @ticket = Helpdesk::Ticket.find(params[:ticket_id])
-      if @ticket.update(status: 1, attendant_id: current_user.id, attendance_start: Time.now)
-        flash[:success] = t :success
-        redirect_to action: 'index', q: params[:q]
+
+      attendant = Helpdesk::TicketAttendant.where(staff_id: current_user.id)
+
+      if attendant.present?
+        @ticket = Helpdesk::Ticket.find(params[:ticket_id])
+        if @ticket.update(status: 1, attendant_id: current_user.id, attendance_start: Time.now)
+          flash[:success] = t :success
+          redirect_to action: 'index', q: params[:q]
+        else
+          flash[:danger] = t :danger
+          redirect_to action: 'index', q: params[:q]
+        end
       else
-        flash[:danger] = t :danger
+        flash[:danger] = "Você não está cadastrado como atendente"
         redirect_to action: 'index', q: params[:q]
       end
+
     end
 
 
@@ -80,6 +92,7 @@ module Helpdesk
         redirect_to action: 'index', q: params[:q]
       end
     end
+
 
     def edit
     end

@@ -8,6 +8,7 @@
         .row
           .col-md-6
             = f.button :submit, "Receber documento", class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
+            = link_to "voltar",  allotments_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}
         %br
         %br
         .row
@@ -21,9 +22,10 @@
                     %th Tipo de Documento
                     %th Remessa
                     %th Prioridade
+                    %th Data de envio
                     %th Marcar
                 %tbody.index-docs
-                  - @conduct_receive.each_with_index do |j, i|
+                  - @conduct_receive.order('created_at desc').each_with_index do |j, i|
                     %tr
                       %td.col-md-1
                         = i + 1
@@ -35,6 +37,8 @@
                         = j.allotment.description
                       %td
                         = j.allotment.priority
+                      %td
+                        = j.created_at.strftime('%d/%m/%Y - %H:%M')
                       %td
                         = check_box_tag "assessment_ids[]", j.assessment_id
     - else
