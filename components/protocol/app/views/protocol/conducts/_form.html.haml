@@ -26,7 +26,6 @@
       = render 'index_search'
   .row
     .col-md-12
-      = flash_message.html_safe
       - if @conducts.present?
         = render 'index_result'
         %br

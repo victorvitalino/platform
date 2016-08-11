@@ -10,35 +10,21 @@ namespace :update do
 
 
 
-     CSV.foreach("lib/files/inidcar.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/log_ind.csv", :col_sep => "#") do |row|
 
 
-           @teste = Indication::Cadastre.new(
-           allotment_id: 67,
-           cadastre_id: row[0],
-           program_id: row[4],
-           pontuation_id: row[5],
-           zone: 2,
+           @teste = Candidate::CadastreMirror.new(
+           enterprise_cadastre_id: row[8],
+           enterprise_cadastre_status_id: row[2],
+           observation: row[3],
+           file_path: row[4],
            created_at: row[1],
-           source_list: row[2],
+           firm_user_id: row[7]
            )
            @teste.save
 
-           if @teste.present?
 
-             @teste1 = Candidate::EnterpriseCadastre.new(
-             enterprise_id: 12,
-             cadastre_id: row[0],
-             indication_cadastre_id: @teste.id,
-             zone: 2,
-             created_at: row[1],
-             source_list: row[2],
-             )
-             @teste1.save
-
-           end
-
-           #puts @teste.inspect
+          # puts @teste.inspect
 
            puts @index += 1
        end

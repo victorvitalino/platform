@@ -10,7 +10,11 @@
    = j.replay_date
   %td
    = j.amount_docs if j.amount_docs.present?
+  %td
+   = j.status ? "Enviado" : "Não enviado"
   %td.col-md-2
-   = link_to "", new_allotment_conduct_path(j),title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'glyphicon glyphicon-share-alt btn btn-success btn-xs',data: {disable_with: "carregando..."}  
-   = link_to "", edit_allotment_path(j), remote: true, class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}  if policy(:Allotment, namespace: Protocol).edit?
-   = link_to "", allotment_path(j), method: :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', data: {confirm: "#{t(:confirm_delete)}"} if policy(:Allotment, namespace: Protocol).destroy?
+   = link_to "", allotment_path(j),title: 'Visualizar Remessa', 'data-toggle' => 'tooltip',  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs'
+   - if !j.status
+    = link_to "", new_allotment_conduct_path(j),title: 'Gerar Remessa', 'data-toggle' => 'tooltip',  class: 'glyphicon glyphicon-share-alt btn btn-warning btn-xs',data: {disable_with: "carregando..."}
+    = link_to "", edit_allotment_path(j), remote: true, class: 'glyphicon glyphicon-pencil btn btn-primary btn-xs',data: {disable_with: "carregando..."}  if policy(:Allotment, namespace: Protocol).edit?
+    = link_to "", allotment_path(j), method: :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', data: {confirm: "#{t(:confirm_delete)}"} if policy(:Allotment, namespace: Protocol).destroy?

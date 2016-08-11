@@ -1,0 +1,18 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Transeferir Chamado
+.modal-body
+  = simple_form_for @ticket_ocurrence, url: ticket_transfer_responsible_ticket_path(@ticket), method: 'get', remote: true do |f|
+    .row
+      .col-md-12
+        = f.label "transferir Para", class: 'fg-label'
+        = f.association :responsible,label: false,  prompt: 'selecione...'
+    .row
+      .col-md-12
+        = f.label "Ocorrência", class: 'fg-label'
+        = f.input :ocurrence, label: false
+    %br/
+    .row
+      .col-md-12
+        = f.button :submit, "Trasferir chamado", class: 'btn btn-success'

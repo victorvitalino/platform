@@ -28,6 +28,25 @@ module Helpdesk
       authorize :ticket_ocurrence,  :update?
     end
 
+    def transfer_responsible
+      @ticket_ocurrence = @ticket.ticket_ocurrences.new
+    end
+
+    def transfer_responsible_ticket
+      @ticket_ocurrence = @ticket.ticket_ocurrences.new
+      @ticket_ocurrence.ocurrence = "Transferência de resposabilidade. #{params[:ticket_ocurrence][:ocurrence]}"
+      @ticket_ocurrence.staff_id = current_user.id
+      @ticket_ocurrence.responsible_id = params[:ticket_ocurrence][:responsible_id]
+      @ticket_ocurrence.save
+      @ticket.update(attendant_id: params[:ticket_ocurrence][:responsible_id])
+
+      @open         = Helpdesk::Ticket.open
+      @in_progress  = Helpdesk::Ticket.in_progress
+      @closed       = Helpdesk::Ticket.closed
+      @scheduled    = Helpdesk::Ticket.scheduled
+    end
+
+
     def update
       authorize :ticket_ocurrence,  :update?
       if @ticket_ocurrence.update(set_params)

@@ -22,5 +22,9 @@ module Protocol
 		def return?
 			allow?(31105)
 		end
+
+		def create?
+			allow?(31104)
+		end
 	end
 end

@@ -8,14 +8,15 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/renda.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/update_insc.csv", :col_sep => "#") do |row|
 
-      @lift = Candidate::Cadastre.find_by_cpf(row[0])
+      @lift = Candidate::CadastreMirror.find(row[2])
 
       if @lift.present?
-        #puts l.cnpj
-        @lift.income = row[1]
+       if row[1].to_s != "NULL" && row[0].to_s != "NULL"
+        @lift.created_at = row[1].to_s == "NULL" ? row[0] : row[1]
         @lift.save
+       end
       end
       #puts @lift.inspect
      puts @index += 1
