@@ -12,23 +12,3 @@
     #preview_allotment_table
     #preview_cadastre_count
 
-:javascript
-  function update_step(enterprise_id) {
-    $.getJSON("/indicacao/empreendimentos/"+enterprise_id+"/etapas.json", function(data) {
-      var html = '';
-        
-      for(var i = 0; i < data.length; i++) {
-        html += "<option value="+ data[i].id +">"+ data[i].name +"</option>"
-      }
-      
-      $("#step_id").html(html);
-
-    });
-  }
-
-  function update_demand(step_id) {
-    enterprise_id = $('#enterprise_id').val()
-    $.getJSON("/indicacao/empreendimentos/"+ enterprise_id +"/etapas/"+ step_id+ "/lotes.json", function(data) {
-      $("#demand").val(data[0].current_demand)
-    });
-  }

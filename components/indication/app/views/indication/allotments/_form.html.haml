@@ -1,109 +1,82 @@
-:css
-  table .form-group {
-    margin-bottom: 5px !important;
-    margin-top: 5px !important;
-  }
-
-= simple_form_for @allotment do |f|
+= simple_form_for [@enterprise,@step, @allotment], remote: true do |f|
   .row
     .col-md-12
-      %h3 Informações do empreendimento
-  .row
-    .col-md-3
-      = f.association :enterprise, label: false, include_blank: 'Selecione o empreendimento...', input_html: { id: "enterprise_id"}
-    .col-md-3
-      = f.input :zone, as: :select, label: false, collection: {}, include_blank: 'Selecione a faixa...'
-    .col-md-6
-      %i
-        padrão de calculo
-        (40% RII,  40% RIE, %9 Idosos, %6 Deficiêntes, %5 Vulneráveis )
-
+      %h3 Solicitação 
   .row
     .col-md-12
-      %table.table.table-striped.table-bordered
+      - if !f.object.errors.any? && f.object.rank.present?
+        .alert.alert-success
+          %b A demanda é válida.
+          Clique em gerar prévia da indicação para prosseguir.
+  .row
+    .col-md-2
+      = f.association :zone, include_blank: false
+    .col-md-2
+      = f.input :demand, as: :string, input_html: { placeholder: "Digite a demanda"}
+  .row
+    .col-md-12
+      %table.table.table-striped.table-bordered.table-form
         %thead
           %tr
-            %th Disponível
-            %th RII
-            %th RIE
-            %th Idosos
-            %th Deficiêntes
-            %th Vulneráveis
+            %th{style: 'width: 1%'}   
+            %th{style: 'width: 15%'} RII.
+            %th{style: 'width: 15%'} RIE.
+            %th{style: 'width: 15%'} DEF.
+            %th{style: 'width: 15%'} IDO.
+            %th{style: 'width: 15%'} VUL.
+            %th{style: 'width: 15%'} TOTAL
         %tbody
           %tr
-            %td.col-md-2#allow 0
-            %td.col-md-2#rii-count 0
-            %td.col-md-2#rie-count 0
-            %td.col-md-2#old-count 0
-            %td.col-md-2#special-count 0
-            %td.col-md-2#vulnerable-count 0
-  .row
-    .col-md-12
-      %table.table.table-striped.table-bordered.table-condensed
+            %th QTD.
+            %td= f.input :rii, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :rie, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :special, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :old, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :vulnerable, label: false, input_html: { placeholder: "Clique e digite a quantidade"}
+            %td= f.input :total, label: false,input_html: { readonly: true }
         %thead
           %tr
-            %th Demanda
-            %th RII
-            %th RIE
-            %th Idosos
-            %th Deficiêntes
-            %th Vulneráveis
-        %tbody
-          %tr
-            %td= f.input :demand, as: :string, label: false, input_html: { value: 0 }
-            %td= f.input :rii, as: :string, label: false, input_html: { value: 0, id: 'rii_user', class: 'allotment_demand_fields'}
-            %td= f.input :rie, as: :string, label: false, input_html: { value: 0, id: 'rie_user', class: 'allotment_demand_fields'}
-            %td= f.input :old, as: :string, label: false, input_html: { value: 0, id: 'old_user', class: 'allotment_demand_fields'}
-            %td= f.input :special, as: :string, label: false, input_html: { value: 0, id: 'special_user', class: 'allotment_demand_fields'}
-            %td= f.input :vulnerable, as: :string, label: false, input_html: { value: 0, id: 'vulnerable_user', class: 'allotment_demand_fields'}
-      %i É necessário que todos os números sejam arredondados para inteiro
-  %hr/
-  .row
-    .col-md-12
-      = f.input :observation, label: "Justificativa / Descrição"
-  %hr/
-  .row
-    .col-md-2
-      = f.input :code, label: "Matrícula"
-    .col-md-2
-      = f.input :password, label: "Senha"
-    .col-md-2
-      = f.submit "Realizar a criação de lote", class: 'btn btn-success filter-button'
-:javascript
-
-  $(document).ready(function() {
-
-    $('#enterprise_id').on('change', function() {
-      
-
-      $("#info").fadeIn();
-
-
-    })
-
-    $('#allotment_demand').on('change', function() {
-      update_default_demand($(this).val());
-    })
-
-
-    
-  })
+            %th (%)
+            %td= "#{f.object.rii_percent} %"
+            %td= "#{f.object.rie_percent} %"
+            %td= "#{f.object.special_percent} %"
+            %td= "#{f.object.old_percent} %"
+            %td= "#{f.object.vulnerable_percent} %"
+            %td= f.input :total_percent, label: false, input_html: { readonly: true }
   
-  function update_default_demand(demand) {
-    var rii_defaul_demand         = percentage(demand, 40)
-    var rie_defaul_demand         = percentage(demand, 40)
-    var old_defaul_demand         = percentage(demand, 9)
-    var special_defaul_demand     = percentage(demand, 6)
-    var vulnerable_defaul_demand  = percentage(demand, 5) 
-    
-    $('#rii_user').val(rii_defaul_demand)
-    $('#rie_user').val(rie_defaul_demand)
-    $('#old_user').val(old_defaul_demand)
-    $('#special_user').val(special_defaul_demand)
-    $('#vulnerable_user').val(vulnerable_defaul_demand)
-  }
-
-  function percentage(num, per) {
-    value = (num/100) * per;
-    return value
-  }
+      - if f.object.rank.present?
+        %h4 Demanda disponível 
+        %table.table.table-striped.table-bordered.table-form
+          %thead
+            %tr
+              %th{style: 'width: 1%'}  
+              %th{style: 'width: 15%'} RII.
+              %th{style: 'width: 15%'} RIE.
+              %th{style: 'width: 15%'} DEF.
+              %th{style: 'width: 15%'} IDO.
+              %th{style: 'width: 15%'} VUL.
+              %th{style: 'width: 15%'} TOTAL
+          %tbody
+            %tr
+              %th QTD.
+              %td= f.object.rank[0][:rii].count
+              %td= f.object.rank[0][:rie].count
+              %td= f.object.rank[0][:special].count
+              %td= f.object.rank[0][:old].count
+              %td= f.object.rank[0][:vulnerable].count
+              %td= f.object.rank[1][:total]
+          %thead
+            %tr
+              %th (%)
+              %td= "#{f.object.rank[1][:rii_percent]} %"
+              %td= "#{f.object.rank[1][:rie_percent]} %"
+              %td= "#{f.object.rank[1][:special_percent]} %"
+              %td= "#{f.object.rank[1][:old_percent]} %"
+              %td= "#{f.object.rank[1][:vulnerable_percent]} %"
+              %td= "#{f.object.rank[1][:total]} %"
+  %hr/
+  .row
+    .col-md-4
+      = f.submit "Processar demanda", name: nil, class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+      - if !f.object.errors.any? && f.object.rank.present?
+        = link_to "Gerar prévia da indicação", execute_enterprise_step_allotments_path(enterprise_id: @enterprise, step_id: @step), data: { disable_with: "Gerando..."}, class: 'btn btn-danger'

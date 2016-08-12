@@ -3,6 +3,15 @@ require "open-uri"
 
 namespace :update do
 
+  task :zone => :environment do 
+    
+    @allotments = Indication::Allotment.all 
+
+    @allotments.each do |item|
+      
+    end
+  end
+
   desc "migração de log"
   task :firm => :environment do
 

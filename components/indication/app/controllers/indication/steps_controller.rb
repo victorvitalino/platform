@@ -11,6 +11,8 @@ module Indication
         format.json {
           render json: @enterprise.steps
         }
+
+        format.html { @steps }
       end
     end
 

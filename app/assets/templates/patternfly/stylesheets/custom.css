@@ -1,3 +1,8 @@
+.table-form .help-block {
+  margin-top: 0px !important; 
+  margin-bottom: 0px !important;
+}
+
 .table-form input {
   border: 0px solid #BABABA !important;
   padding: 0 !important;

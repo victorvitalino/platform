@@ -6,17 +6,49 @@
   .panel-body
     .row
       .col-md-12
-        %table.table.table-striped.table-bordered.table-hover
+        %h2= @enterprise.name
+        %h3= @step.name
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-bordered.table-striped
           %thead
             %tr
-              %th Demanda da etapa
-              %th Cumprido
-              %th Retornado do último lote
-              %th Dispónivel
+              %th Demanda
+              %th Enviado
+              %th Disponível na etapa
           %tbody
             %tr
               %td.col-md-1= @step.demand
-              %td.col-md-1 0
-              %td.col-md-1
-              %td.col-md-1
-        
+              %td.col-md-1= @step.total_demand_count
+              %td.col-md-1= @step.residual_count
+    .row
+      .col-md-12
+        %table.table.table-bordered.table-striped
+          %thead
+            %tr
+              %th{colspan: 2} RII
+              %th{colspan: 2} RIE
+              %th{colspan: 2} IDOSOS
+              %th{colspan: 2} DEFICIENTES
+              %th{colspan: 2} VULNERÁVEIS
+              %th{colspan: 2} TOTAL
+          %tbody
+            - @step.detail_lists.each do |list|
+              %tr
+                %td= list[:rii]
+                %td= "#{list[:rii_percent]} %"
+                %td= list[:rie]
+                %td= "#{list[:rie_percent]} %"
+                %td= list[:old]
+                %td= "#{list[:old_percent]} %"
+                %td= list[:special]
+                %td= "#{list[:special_percent]} %"
+                %td= list[:vulnerable]
+                %td= "#{list[:vulnerable_percent]} %"
+                %td= list[:total]
+                %td= "#{list[:total_percent]} %"
+    %hr/
+    .row
+      .col-md-12.partial-form
+        = render 'form'
