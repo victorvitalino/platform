@@ -18,7 +18,7 @@
               %td= o.responsible.name if o.responsible.present?
               %td= o.ocurrence
               %td= o.created_at
-              %td= o.description_solution
+              %td= o.ticket_solution.title if o.ticket_solution.present?     
               %td= o.solution_date
               %td
                 = link_to "", edit_ticket_ticket_ocurrence_path(ticket_id: @ticket, id: o.id), remote: true, class: 'glyphicon glyphicon-ok-sign btn btn-danger  btn-xs', title: "fechar ocorrência"

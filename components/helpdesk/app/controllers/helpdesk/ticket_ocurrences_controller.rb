@@ -49,12 +49,8 @@ module Helpdesk
 
     def update
       authorize :ticket_ocurrence,  :update?
-      if @ticket_ocurrence.update(set_params)
-        flash[:success] = t :success
-        redirect_to action: 'index'
-      else
-        render action: 'edit'
-      end
+      @ticket_ocurrence.update(set_params)
+      @ticket_ocurrences = @ticket.ticket_ocurrences
     end
 
     def destroy
@@ -65,10 +61,37 @@ module Helpdesk
       end
     end
 
+    def closed_ticket
+       @ticket_ocurrence = Helpdesk::TicketOcurrence.new
+    end
+
+    def closed
+      #authorize :ticket,  :closed?
+      @ticket.update(status: 2, attendant_id: current_user.id, attendance_end: Time.now)
+
+      @ticket_ocurrence = @ticket.ticket_ocurrences.new(set_params)
+      @ticket_ocurrence.staff_id = current_user.id
+      @ticket_ocurrence.ocurrence = 'Chamado encerrado'
+      @ticket_ocurrence.responsible_id =  current_user.id
+      @ticket_ocurrence.ticket_solution_title = params[:ticket_ocurrence][:ticket_solution_title]
+      @ticket_ocurrence.solution_date = Time.now
+      @ticket_ocurrence.save
+
+      @open         = Helpdesk::Ticket.open
+      @in_progress  = Helpdesk::Ticket.in_progress
+      @closed       = Helpdesk::Ticket.closed
+      @scheduled    = Helpdesk::Ticket.scheduled
+
+    end
+
+
+
+
+
     private
 
     def set_params
-      params.require(:ticket_ocurrence).permit(:ocurrence, :responsible_id)
+      params.require(:ticket_ocurrence).permit(:ocurrence,:ticket_id, :responsible_id,:ticket_solution_title, :solution_date)
     end
 
     def set_ticket

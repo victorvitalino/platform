@@ -27,6 +27,11 @@
       - if @enterprise_cadastres.present?
         .row
           .col-md-12
+            %h5
+              Total de candidatos:
+              = @enterprise_cadastres.count
+        .row
+          .col-md-12
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
               %thead
                 %tr
@@ -43,10 +48,12 @@
                       %td.col-md-4= cand.name
                       %td.col-md-2= cand.cpf
                       %td.col-md-2= cand.cadastre.special_condition.name if cand.cadastre.special_condition_id.present?
-                      %td.col-md-2= cand.enterprise_cadastre_situation.present? ? cand.enterprise_cadastre_situation.enterprise_situation_status.name : "Não Contactado"
+                      %td.col-md-2= cand.situations.present? ? cand.situations : "Não Contactado"
                       %td.col-md-2= cand.total
-                      - if !cand.enterprise_cadastre_situation.present? || cand.enterprise_cadastre_situation.enterprise_situation_status.id == 9 || cand.enterprise_cadastre_situation.enterprise_situation_status.id == 12
+                      - if cand.enterprise_cadastre_status_id == 9 || cand.enterprise_cadastre_status_id == 12
                         %td.col-md-1= link_to "Situação", new_enterprise_cadastre_situation_path(id: cand.id, cadastre_id: cand.cadastre_id), remote: true
+                      -else
+                        %td.col-md-1
         .row
           .col-md-6.col-md-offset-3
             .container

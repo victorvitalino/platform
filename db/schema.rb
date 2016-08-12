@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810190102) do
+ActiveRecord::Schema.define(version: 20160811121912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1900,12 +1900,11 @@ ActiveRecord::Schema.define(version: 20160810190102) do
     t.integer  "responsible_id"
     t.text     "ocurrence"
     t.integer  "ticket_solution_id"
-    t.text     "description_solution"
     t.datetime "solution_date"
     t.datetime "scheduled_date"
     t.boolean  "scheduled"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "helpdesk_ticket_ocurrences", ["responsible_id"], name: "index_helpdesk_ticket_ocurrences_on_responsible_id", using: :btree
@@ -1961,6 +1960,7 @@ ActiveRecord::Schema.define(version: 20160810190102) do
     t.text     "description"
     t.text     "meta_tags"
     t.string   "code_computer"
+    t.string   "file_path"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
@@ -1973,7 +1973,7 @@ ActiveRecord::Schema.define(version: 20160810190102) do
 
   create_table "indication_allotments", force: :cascade do |t|
     t.integer  "step_id"
-    t.integer  "zone"
+    t.integer  "zone_id"
     t.integer  "demand"
     t.integer  "rii"
     t.integer  "rie"
@@ -1992,7 +1992,7 @@ ActiveRecord::Schema.define(version: 20160810190102) do
   add_index "indication_allotments", ["staff_id"], name: "index_indication_allotments_on_staff_id", using: :btree
   add_index "indication_allotments", ["step_id"], name: "index_indication_allotments_on_step_id", using: :btree
   add_index "indication_allotments", ["supervisor_id"], name: "index_indication_allotments_on_supervisor_id", using: :btree
-  add_index "indication_allotments", ["zone"], name: "index_indication_allotments_on_zone", using: :btree
+  add_index "indication_allotments", ["zone_id"], name: "index_indication_allotments_on_zone_id", using: :btree
 
   create_table "indication_cadastres", force: :cascade do |t|
     t.integer  "allotment_id"

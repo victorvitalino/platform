@@ -1,10 +1,9 @@
-class Protocol::DocPathUploader < CarrierWave::Uploader::Base
-
+class Helpdesk::FilePathUploader < CarrierWave::Uploader::Base
 
   storage :file
 
   def store_dir
-    "/public/uploads/docs"
+    "uploads/docs"
   end
 
 
@@ -18,5 +17,4 @@ class Protocol::DocPathUploader < CarrierWave::Uploader::Base
       "#{@name}.#{file.extension}"
     end
   end
-
 end

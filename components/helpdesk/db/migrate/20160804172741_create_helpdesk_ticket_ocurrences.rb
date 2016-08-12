@@ -6,7 +6,6 @@ class CreateHelpdeskTicketOcurrences < ActiveRecord::Migration
       t.references :responsible, index: true#, foreign_key: true
       t.text :ocurrence
       t.references :ticket_solution, index: true#, foreign_key: true
-      t.text :description_solution
       t.datetime :solution_date
       t.datetime :scheduled_date
       t.boolean :scheduled

@@ -8,6 +8,8 @@ module Helpdesk
 
     has_many :ticket_ocurrences
 
+    mount_uploader :file_path, Helpdesk::FilePathUploader
+
     enum status: [:open, :in_progress, :closed, :scheduled]
 
     scope :open,        -> { where(status: 0).order('created_at ASC') }

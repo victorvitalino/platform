@@ -13,6 +13,7 @@ class CreateHelpdeskTickets < ActiveRecord::Migration
       t.text :description
       t.text :meta_tags
       t.string :code_computer
+      t.string :file_path
 
       t.timestamps null: false
     end
