@@ -1,5 +1,8 @@
 module Portal
   module ApplicationHelper
+
+
+    
     def link_each(category, order = 'ASC')
       @category = Cms::NavCategory.find_by_name(category)
       if @category.present? && @category.navs.present?
