@@ -14,8 +14,14 @@ module Helpdesk
       @ticket_scheduled_ocurrence = @ticket.ticket_ocurrences.new(set_params)
       @ticket_scheduled_ocurrence.staff_id = current_user.id
       @ticket_scheduled_ocurrence.scheduled = true
+      @ticket_scheduled_ocurrence.responsible_id = current_user.id
       @ticket_scheduled_ocurrence.save
       @ticket.update(status: 3)
+
+      @open         = Helpdesk::Ticket.open
+      @in_progress  = Helpdesk::Ticket.in_progress
+      @closed       = Helpdesk::Ticket.closed
+      @scheduled    = Helpdesk::Ticket.scheduled
 
     end
 

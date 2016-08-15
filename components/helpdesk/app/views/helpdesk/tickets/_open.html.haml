@@ -31,4 +31,4 @@
               %td.col-md-2
                 = link_to "", ticket_path(id: o, q: 'open'), class: 'glyphicon glyphicon-info-sign btn btn-primary btn-xs', title: "detalhes da solicitação"
                 = link_to "", ticket_in_progress_path(ticket_id: o, q: 'open'),class: 'glyphicon glyphicon-log-in btn btn-success btn-xs', title: "deixar a solicitação em andamento"
-                = link_to "", ticket_closed_path(ticket_id: o, q: 'open'), class: 'glyphicon glyphicon-ok-sign btn btn-danger btn-xs', title: "fechar solicitação"
+                = link_to "", ticket_closed_ticket_path(ticket_id: o, q: 'open'),remote: true, class: 'glyphicon glyphicon-ok-sign btn btn-danger btn-xs', title: "fechar solicitação"

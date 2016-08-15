@@ -18,6 +18,10 @@
     .col-md-12
       = f.label :description, class: 'fg-label'
       = f.input :description, label: false, placeholder: 'Descreva aqui...', input_html: { style: "min-height: 100px"}
+  .row
+    .col-md-12
+      = f.label :file_path, class: 'fg-label'
+      = f.input :file_path, as: 'file', label: false, input_html: { placeholder: 'Anexo'}
   %br/
   %br/
   .row

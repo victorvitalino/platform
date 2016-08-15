@@ -96,7 +96,7 @@ pt-BR:
       allotments: "Lotes"
       exemptions: "Isenção"
     helpdesk:
-      tickets: "Ordems de serviço"
+      tickets: "Ordens de serviço"
       ticket_types: "Tipos de serviços"
       ticket_subjects: "Assuntos"
       ticket_ocurrence: "Ocorrência"

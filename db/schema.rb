@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160815121358) do
+=======
+
+ActiveRecord::Schema.define(version: 20160811121912) do
+
+
+>>>>>>> ba584b959d10209bb1fd78473a772feebd680fff
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1911,12 +1918,11 @@ ActiveRecord::Schema.define(version: 20160815121358) do
     t.integer  "responsible_id"
     t.text     "ocurrence"
     t.integer  "ticket_solution_id"
-    t.text     "description_solution"
     t.datetime "solution_date"
     t.datetime "scheduled_date"
     t.boolean  "scheduled"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "helpdesk_ticket_ocurrences", ["responsible_id"], name: "index_helpdesk_ticket_ocurrences_on_responsible_id", using: :btree
@@ -1972,6 +1978,7 @@ ActiveRecord::Schema.define(version: 20160815121358) do
     t.text     "description"
     t.text     "meta_tags"
     t.string   "code_computer"
+    t.string   "file_path"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end

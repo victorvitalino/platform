@@ -11,7 +11,8 @@ Helpdesk::Engine.routes.draw do
 
   resources :tickets do
     get 'in_progress',                  to: 'tickets#in_progress',                 as: 'in_progress'
-    get 'closed',                       to: 'tickets#closed',                      as: 'closed'
+    get 'closed_ticket',                to: 'ticket_ocurrences#closed_ticket',     as: 'closed_ticket'
+    put 'closed',                       to: 'ticket_ocurrences#closed',                      as: 'closed'
     get 'open',                         to: 'tickets#open',                        as: 'open'
     get 'show_requester',               to: 'tickets#show_requester',              as: 'show_requester'
 
