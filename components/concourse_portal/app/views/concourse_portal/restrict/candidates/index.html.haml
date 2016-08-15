@@ -19,7 +19,8 @@
             = link_to "ENVIAR MEU PROJETO", project_restrict_participations_path(project_id: @project), class: 'btn btn-primary btn-lg'
           %hr/
       - else
-        = link_to "VISUALIZAR MEU PROJETO ENVIADO", project_restrict_participation_path(project_id: @project, id: @candidate.candidate_participation.last.id ), class: 'btn btn-success btn-lg'
+        - if @candidate.candidate_participation.present?
+          = link_to "VISUALIZAR MEU PROJETO ENVIADO", project_restrict_participation_path(project_id: @project, id: @candidate.candidate_participation.last.id ), class: 'btn btn-success btn-lg'
         = link_to "ENVIAR MEU PROJETO", project_restrict_participations_path(project_id: @project), class: 'btn btn-primary btn-lg'
 .row
   .col-md-12
