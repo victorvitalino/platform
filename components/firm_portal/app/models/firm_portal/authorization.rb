@@ -12,7 +12,7 @@ module FirmPortal
     private
 
     def authenticate
-      @firm = Firm::UserCompany.where(login_user: self.login_user, password: self.password)
+      @firm = Firm::UserCompany.where(login_user: self.login_user, password: self.password, status: true)
 
       if @firm.present?
         self.id = @firm.last.id

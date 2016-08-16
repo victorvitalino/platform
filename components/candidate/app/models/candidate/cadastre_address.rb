@@ -40,18 +40,19 @@ module Candidate
 
     end
 
-    private
-
-
-    def get_dominial_chain(unit, cadastre)
+    def self.get_dominial_chain(unit, cadastre)
       @cadastre_address = Candidate::CadastreAddress.where('unit_id = ? AND cadastre_id <> ?', unit, cadastre).last
 
       if @cadastre_address.present?
-           @cadastre_address.dominial_chain + 1
+           @cadastre_address.dominial_chain.to_i + 1
       else
              0
       end
     end
+
+
+
+
 
 
   end

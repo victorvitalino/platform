@@ -1,12 +1,10 @@
 .panel.panel-default
   .panel-heading
     .panel-title
+      %h4 Desassentar
   .panel-body
     .row
       .col-md-12
-        %section
-          %h2.bold Desassentar
-        %hr/
         %section
           - if @candidate.present?
             .row
@@ -97,7 +95,7 @@
                       = f.input :status_cadastre, label: false,   as: :select, collection: Candidate::SituationStatus.order(:name), label_method: :name, value_method: :id, prompt: 'Situação de cadastro...'
                   .row
                     .col-md-5
-                      = f.label :observation, class: 'fg-label'
+                      = f.label "Observação", class: 'fg-label'
                       = f.input :observation, label: false, as: 'text', input_html: {placeholder: 'Observação'}
                   .row
                     .col-md-2

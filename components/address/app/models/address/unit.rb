@@ -49,7 +49,7 @@ module Address
     end
 
 
-    def date_tcu 
+    def date_tcu
       last_cadastre_address = self.cadastre_address.last
       if last_cadastre_address.present?
         last_cadastre_address.created_at.strftime("%d/%m/%Y")
@@ -63,11 +63,11 @@ module Address
       cadastre   = self.cadastres.last
 
       return "Imóvel vago" if cdru_ammvs.nil? && cadastre.nil?
-      
+
       tcu = Date.parse(date_tcu) rescue nil
-      
+
       if cdru_ammvs.present? && cdru_ammvs.cdru == "SIM"
-        "Incluso na CDRU" 
+        "Incluso na CDRU"
       else
         return "Não possui cadastro na CODHAB" if cadastre.nil?
         not_present_cdru(tcu)
@@ -101,7 +101,7 @@ module Address
       elsif cadastre.present?
         candidate_entity = Entity::OldCandidate.find_by_cadastre_id(cadastre.id) rescue nil
       end
-        
+
       candidate_entity.present? ? candidate_entity.old.fantasy_name : "Sem informação"
     end
 
@@ -184,7 +184,7 @@ module Address
    end
 
    def self.update_situation(unit,status)
-       @unit = Address::Unit.find(sunit)
+       @unit = Address::Unit.find(unit)
        @unit.update(situation_unit_id: status)
    end
 
