@@ -22,7 +22,7 @@ module Protocol
               .joins(:assessment)
               .select("MAX(protocol_conducts.created_at)")
               .where("protocol_assessments.document_number = ?
-                           AND protocol_assessments.document_type_id = ?
+                           AND protocol_assessments.document_type_id in (?)
                            AND protocol_conducts.sector_id = ? AND protocol_assessments.id <> ?",
                           document_number, document_type, sector_id,document_current)
               .group(:assessment_id), conduct_type: type)}

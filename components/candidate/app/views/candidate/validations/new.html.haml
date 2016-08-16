@@ -1,0 +1,9 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title 
+      Gestão de validações de cadastro - nova validação
+      = link_to "Voltar para listagem", validations_path, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        = render 'form'

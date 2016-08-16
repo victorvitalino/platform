@@ -4,9 +4,9 @@ namespace :mailer do
   
   task :with_template => :environment do 
 
-    Concourse::Candidate.where('subscribe_id = 6 and status <> 2').each do |candidate|
+    Concourse::Candidate.where('subscribe_id = 6 and status = 2').each do |candidate|
       puts candidate.email
-      Mailer::SimpleMailer.send_with_template(candidate.email, "Últimos dias para pagamento do boleto").deliver_now!
+      Mailer::SimpleMailer.send_with_template(candidate.email, "Envio dos projetos").deliver_now!
     end
 
   end
