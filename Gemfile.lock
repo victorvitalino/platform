@@ -583,7 +583,6 @@ DEPENDENCIES
   pundit!
   rails (= 4.2.1)
   rails_db
-  rake
   regularization!
   regularization_portal!
   remotipart
@@ -610,3 +609,6 @@ DEPENDENCIES
   visit!
   wicked
   will_paginate-bootstrap
+
+BUNDLED WITH
+   1.12.5

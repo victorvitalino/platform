@@ -630,7 +630,10 @@ ActiveRecord::Schema.define(version: 20160815175025) do
     t.integer  "occurrence_type_id"
     t.integer  "attendance_id"
     t.integer  "program_id"
+    t.integer  "creator_id"
     t.text     "description"
+    t.string   "target_model_name"
+    t.integer  "target_model_id"
     t.boolean  "solved",                  default: false
     t.integer  "feedback_staff_id"
     t.text     "feedback_observation"
@@ -641,13 +644,11 @@ ActiveRecord::Schema.define(version: 20160815175025) do
     t.string   "custom_label"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
-    t.string   "target_model_name"
-    t.string   "target_model_function"
-    t.integer  "target_model_id"
   end
 
   add_index "candidate_cadastre_occurrences", ["attendance_id"], name: "index_candidate_cadastre_occurrences_on_attendance_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["cadastre_id"], name: "index_candidate_cadastre_occurrences_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_occurrences", ["creator_id"], name: "index_candidate_cadastre_occurrences_on_creator_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["feedback_staff_id"], name: "index_candidate_cadastre_occurrences_on_feedback_staff_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["occurrence_situation_id"], name: "index_candidate_cadastre_occurrences_on_occurrence_situation_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["occurrence_type_id"], name: "index_candidate_cadastre_occurrences_on_occurrence_type_id", using: :btree

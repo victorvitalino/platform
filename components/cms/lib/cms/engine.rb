@@ -1,3 +1,5 @@
+require "rails"
+
 module Cms
   class Engine < ::Rails::Engine
     isolate_namespace Cms
