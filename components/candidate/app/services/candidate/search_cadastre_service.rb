@@ -13,8 +13,8 @@ module Candidate
     def search!
       document = Protocol::Assessment.find_by_document_number(@assessment) rescue nil
       
-      if document.candidate.present?
-        document 
+      if document.present? && document.candidate.present?
+        document.candidate 
       else 
 
         @candidate = Candidate::Cadastre.where(cpf: @cpf.unformat_cpf) if @cpf.present?
