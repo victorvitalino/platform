@@ -9,7 +9,7 @@
   .col-md-12
     - if @candidate.id == 465
       = render 'form'
-    - if @project.start_participation <= Date.today && @project.end_participation >= Date.today
+    - elsif @project.start_participation <= Date.today && @project.end_participation >= Date.today
       - if @candidate.homologado?
         - if @candidate.candidate_participation.count > 0
           %h4 Você já enviou seu projeto.
