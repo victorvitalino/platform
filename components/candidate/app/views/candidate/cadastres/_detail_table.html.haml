@@ -1,0 +1,12 @@
+.row
+  .col-md-12
+    %table.table.table-striped.table-bordered.table-hover
+      %thead 
+        %tr
+          %th Nome
+          %th CPF
+      %tbody 
+        - @cadastre.each do |cadastre|
+          %tr 
+            %td= cadastre.name
+            %td= link_to cadastre.cpf.format_cpf, cadastres_path(cpf: cadastre.cpf)

@@ -1,0 +1,26 @@
+= simple_form_for @validate do |f|
+  .row
+    .col-md-12
+      = f.input :name
+  .row
+    .col-md-12
+      = f.input :description
+  .row
+    .col-md-4
+      = f.input :target_model_query
+    .col-md-4
+      = f.input :target_model_function
+  .row
+    .col-md-2
+      = f.input :contain, as: :select, include_blank: false
+    .col-md-2
+      = f.input :code
+    .col-md-4
+      = f.association :program, include_blank: false, input_html: { class: 'chosen-select', multiple: true}
+    .col-md-2
+      = f.input :status, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
+      = link_to "Voltar para listagem", validations_path, class: 'btn btn-default'
