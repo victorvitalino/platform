@@ -1,12 +1,10 @@
 .panel.panel-default
   .panel-heading
     .panel-title
+      %h4 Assentar
   .panel-body
     .row
       .col-md-12
-        %section
-          %h2.bold Assentar
-        %hr/
         %section
           - if @candidate.present?
             - @candidate_last = @candidate.last
@@ -52,20 +50,6 @@
                         %td= @candidate_last.unit.registry_units.last.situation
                         %td= @candidate_last.unit.registration_iptu
                         %td= @candidate_last.unit.situation_unit.description
-            .row
-              .col-md-12
-                .bootstrap-table
-                  %table.table.table-striped.table-bordered.table-condensed
-                    %thead{:style => "display: table-header-group;"}
-                      %tr
-                        %th{:colspan => "2"} Endereço
-                        %th Cidade
-                        %th Data TCU
-                    %tbody
-                      %tr
-                        %td{:colspan => "2"}= @candidate_last.unit.complete_address
-                        %td= @candidate_last.unit.city.name
-                        %td= @candidate_last.created_at.strftime('%d/%m/%Y')
             .row
               .col-md-12
                 .bootstrap-table

@@ -55,21 +55,21 @@
         .row
           .col-md-4
             %label Finalizado:
-            = @assessment.finalized
+            = @assessment.finalized ? "Sim" : "Não"
           .col-md-4
             %label Data de finalização:
-            = @assessment.finalized_date
+            = @assessment.finalized_date.strftime("%d/%m/%Y - %H:%M:%S") if @assessment.finalized_date.present?
         .row
           .col-md-4
             %label Respondido:
-            = @assessment.responded
+            = @assessment.responded ? "Sim" : "Não"
           .col-md-4
             %label Data de resposta:
-            = @assessment.responded_date
+            = @assessment.responded_date.strftime("%d/%m/%Y - %H:%M:%S")  if @assessment.responded_date.present?
         .row
           .col-md-4
             %label Data do documento:
-            = @assessment.created_at.strftime("%d-%m-%Y - %H:%M:%S")
+            = @assessment.created_at.strftime("%d/%m/%Y - %H:%M:%S")
         .row
           .col-md-12
             %br

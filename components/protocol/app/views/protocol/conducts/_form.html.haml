@@ -4,15 +4,15 @@
     .lv-item.media
       .media-body
         .lv-title
-          = f.label :document, class: 'fg-label'
+          = f.label "Número do Documento", class: 'fg-label'
         .lv-small
           = f.input :document, label: false, input_html: { name: 'document', value: params[:document], class: 'document_number'}
     .lv-item.media
       .media-body
         .lv-title
-          = f.label :document_type, class: 'fg-label'
+          = f.label "Tipo de Documento", class: 'fg-label'
         .lv-small
-          = f.input :document_type, as: 'select', collection: Protocol::DocumentType.all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
+          = f.input :document_type, as: 'select', collection: Protocol::DocumentType.order(:name).all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
     .lv-item.media
       .media-body
         .lv-small
