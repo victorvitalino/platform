@@ -39,7 +39,7 @@ module ConcoursePortal
 
       def set_params
         params.require(:candidate_participation).permit(:team_description, :archive_one, :archive_two,
-                                             :archive_three, :archive_four, :archive_five)
+                                             team_participations_attributes: [:id, :_destroy, :name, :observation, :job])
       end
 
       def set_candidate

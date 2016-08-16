@@ -1,0 +1,98 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_one", :role => "button"}
+            Informações básicas
+.row.collapse#collapse_one.in
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th{colspan: 3} Nome Completo
+          %th CPF
+          %th Nascimento
+          %th Idade
+      %tbody
+        %tr
+          %td{colspan: 3}= cadastre.name
+          %td= cadastre.cpf
+          %td= cadastre.born.strftime('%d/%m/%Y') if cadastre.born.present?
+          %td= "#{cadastre.age} ano(s)" if cadastre.born.present?
+      %thead
+        %tr
+          %th Sexo
+          %th Estado Cívil
+          %th Chegada ao DF
+          %th Naturalidade
+          %th Condição Especial
+          %th CID
+          %th NIS
+      %tbody
+        %tr
+          %td.col-md-1= cadastre.gender
+          %td.col-md-1= cadastre.civil_state.name if cadastre.civil_state.present?
+          %td.col-md-1= cadastre.arrival_df.strftime('%d/%m/%Y') if cadastre.arrival_df.present?
+          %td.col-md-1= "#{cadastre.place_birth} #{cadastre.born_uf}"
+          %td.col-md-2= cadastre.special_condition.name if cadastre.special_condition.present?
+          %td.col-md-1= cadastre.cid
+          %td.col-md-1= cadastre.nis
+
+
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_two", :role => "button"}
+            Informações de contato
+.row.collapse#collapse_two.in
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th CEP
+          %th Cidade
+          %th{colspan: 2} Endereço
+      %tbody
+        %tr
+          %td.col-md-1= cadastre.cep
+          %td.col-md-2= "#{cadastre.city.name} / #{cadastre.city.state.acronym}" if cadastre.city.present? && cadastre.city.state.present?
+          %td.col-md-4{colspan: 2}= cadastre.address
+      %thead
+        %tr
+          %th Telefone
+          %th Telefone Opcional
+          %th Celular
+          %th E-mail
+      %tbody
+        %tr
+          %td.col-md-2= cadastre.telephone
+          %td.col-md-2= cadastre.telephone_optional
+          %td.col-md-1= cadastre.celphone
+          %td.col-md-1= cadastre.email.to_s.downcase
+
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_three", :role => "button"}
+            Ocorrências
+          %a.pull-right{href: cadastre_cadastre_occurrences_path(cadastre), data: { remote: 'true' }}
+            Re-processar validações
+
+.row.collapse#collapse_three.in
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Descrição
+          %th Tipo
+          %th Data
+      %tbody
+        - cadastre.cadastre_occurrences.each do |occurrence|
+          %tr
+            %td= occurence.id
+%hr/

@@ -1,0 +1,40 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title Gestão de validações de cadastro
+  .panel-body
+    .row
+      .col-md-12
+        = link_to "+ Adicionar nova validação", new_validation_path, class: 'btn btn-success'
+    %br/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th{style: 'width: 1px'} # 
+              %th Nome 
+              %th Descrição
+              %th Model
+              %th Função
+              %th Tipo
+              %th Programa
+              %th Cod.
+              %th Status
+              %th Ações
+          %tbody
+            - @validations.each do |item|
+              %tr
+                %td= item.id
+                %td= item.name
+                %td= item.description
+                %td= item.target_model_query
+                %td= item.target_model_function
+                %td= item.contain ? "Existe" : "Não existe"
+                %td
+                  - item.program_names.each do |pr|
+                    %span.label.label-default= pr
+                %td= item.code
+                %td= item.status ? "Ativa" : "Inativa"
+                %td.col-md-1
+                  = link_to "", edit_validation_path(item), class: 'btn btn-success btn-xs glyphicon glyphicon-pencil'
+                  = link_to "", validation_path(item), method: :delete, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove '

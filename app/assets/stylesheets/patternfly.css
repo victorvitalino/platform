@@ -3,6 +3,7 @@
 *= require patternfly/stylesheets/addition.min
 *= require patternfly/stylesheets/custom.css
 *= require patternfly/stylesheets/print.css
+*= require patternfly/stylesheets/chosen.min
 *= require jquery.minicolors
 *= require jquery-ui
 */

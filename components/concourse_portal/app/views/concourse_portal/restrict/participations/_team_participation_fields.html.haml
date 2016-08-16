@@ -1,0 +1,11 @@
+%fieldset
+  .row  
+    .col-md-4 
+      = f.input :name, label: "Nome"
+    .col-md-3
+      = f.input :job, label: "Função", as: :select, collection: Concourse::TeamParticipation.jobs.keys, include_blank: false
+    .col-md-4
+      = f.input :observation, label: "Observação"
+    .col-md-1
+      = f.hidden_field :_destroy
+      = link_to "", "#", class: 'remove_fields btn btn-danger glyphicon glyphicon-remove filter-button'

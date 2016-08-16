@@ -2,7 +2,9 @@ module Concourse
   class CandidateParticipation < ActiveRecord::Base
     belongs_to :candidate
 
-    
+    has_many  :team_participations, dependent: :destroy
+    accepts_nested_attributes_for :team_participations, allow_destroy: true, reject_if: :all_blank
+
     validates :archive_one, :archive_two,  presence: true
 
     validates :candidate, uniqueness: true 

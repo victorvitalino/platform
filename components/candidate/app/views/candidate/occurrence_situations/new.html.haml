@@ -1,0 +1,9 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title 
+      Gestão de situações de ocorrência - nova situação
+      = link_to "Voltar para listagem", occurrence_situations_path, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        = render 'form'
