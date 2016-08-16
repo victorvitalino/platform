@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160815121358) do
-=======
-
-ActiveRecord::Schema.define(version: 20160811121912) do
-
-
->>>>>>> ba584b959d10209bb1fd78473a772feebd680fff
+ActiveRecord::Schema.define(version: 20160815140914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1162,6 +1155,22 @@ ActiveRecord::Schema.define(version: 20160811121912) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "candidate_validations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "code"
+    t.text     "sql_query"
+    t.boolean  "sql_contain",             default: true
+    t.integer  "program_id"
+    t.integer  "occurrence_situation_id"
+    t.boolean  "status",                  default: true
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "candidate_validations", ["occurrence_situation_id"], name: "index_candidate_validations_on_occurrence_situation_id", using: :btree
+  add_index "candidate_validations", ["program_id"], name: "index_candidate_validations_on_program_id", using: :btree
+
   create_table "candidate_verifications", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -1918,11 +1927,12 @@ ActiveRecord::Schema.define(version: 20160811121912) do
     t.integer  "responsible_id"
     t.text     "ocurrence"
     t.integer  "ticket_solution_id"
+    t.text     "description_solution"
     t.datetime "solution_date"
     t.datetime "scheduled_date"
     t.boolean  "scheduled"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "helpdesk_ticket_ocurrences", ["responsible_id"], name: "index_helpdesk_ticket_ocurrences_on_responsible_id", using: :btree
@@ -1978,7 +1988,6 @@ ActiveRecord::Schema.define(version: 20160811121912) do
     t.text     "description"
     t.text     "meta_tags"
     t.string   "code_computer"
-    t.string   "file_path"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
@@ -2030,6 +2039,36 @@ ActiveRecord::Schema.define(version: 20160811121912) do
   add_index "indication_cadastres", ["cadastre_id"], name: "index_indication_cadastres_on_cadastre_id", using: :btree
   add_index "indication_cadastres", ["pontuation_id"], name: "index_indication_cadastres_on_pontuation_id", using: :btree
   add_index "indication_cadastres", ["program_id"], name: "index_indication_cadastres_on_program_id", using: :btree
+
+  create_table "info_center_deficits", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "phone"
+    t.string   "address"
+    t.integer  "lot_houses"
+    t.text     "lot_people"
+    t.boolean  "water"
+    t.boolean  "light"
+    t.boolean  "sidewalk"
+    t.boolean  "sewer"
+    t.boolean  "asphalt"
+    t.boolean  "bathroom"
+    t.integer  "total_bathroom"
+    t.boolean  "kitchen"
+    t.text     "roof"
+    t.boolean  "slab"
+    t.boolean  "contract"
+    t.text     "document"
+    t.integer  "people_living"
+    t.boolean  "wall"
+    t.integer  "room"
+    t.text     "sleep_local"
+    t.boolean  "rent"
+    t.string   "rent_total"
+    t.string   "buy_lot"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "juridical_advice_types", force: :cascade do |t|
     t.string   "name"

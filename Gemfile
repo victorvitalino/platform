@@ -136,7 +136,7 @@ path 'components' do
 
   gem 'indication'
   gem 'indication_portal'
-
+  gem 'info_center'
   gem 'attendance'
 
   gem 'project'
