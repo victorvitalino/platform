@@ -1,1 +1,1 @@
-rails g model name
+rails g model deficit name cpf phone address lot_houses:integer lot_people:text water:bool light:bool sidewalk:bool sewer:bool asphalt:bool, bathroom:bool total_bathroom:integer kitchen:bool roof:text slab:bool contract:bool document:text people_living:integer wall:boolean room:integer sleep_local:text rent:boolean rent_total:string buy_lot

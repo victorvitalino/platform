@@ -15,6 +15,7 @@ module ConcoursePortal
       end
 
       def create
+
         @participation = @candidate.candidate_participation.new(set_params)
         if @participation.save
           ConcoursePortal::SubscribeMailer.project_send(@candidate.email,@candidate.id, @candidate.subscribe.project_id).deliver_now
@@ -38,7 +39,7 @@ module ConcoursePortal
       end
 
       def set_params
-        params.require(:candidate_participation).permit(:team_description, :archive_one, :archive_two,
+        params.fetch(:candidate_participation, {}).permit(:archive_one, :archive_two, :archive_three,
                                              team_participations_attributes: [:id, :_destroy, :name, :observation, :job])
       end
 

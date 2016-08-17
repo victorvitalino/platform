@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cpf: MyString
+  phone: MyString
+  address: MyString
+  lot_houses: 1
+  lot_people: MyText
+  water: 
+  light: 
+  sidewalk: 
+  sewer: 
+  asphalt: 
+  bathroom: 
+  total_bathroom: 1
+  kitchen: 
+  roof: MyText
+  slab: 
+  contract: 
+  document: MyText
+  people_living: 1
+  wall: false
+  room: 1
+  sleep_local: MyText
+  rent: false
+  rent_total: MyString
+  buy_lot: MyString
+
+two:
+  name: MyString
+  cpf: MyString
+  phone: MyString
+  address: MyString
+  lot_houses: 1
+  lot_people: MyText
+  water: 
+  light: 
+  sidewalk: 
+  sewer: 
+  asphalt: 
+  bathroom: 
+  total_bathroom: 1
+  kitchen: 
+  roof: MyText
+  slab: 
+  contract: 
+  document: MyText
+  people_living: 1
+  wall: false
+  room: 1
+  sleep_local: MyText
+  rent: false
+  rent_total: MyString
+  buy_lot: MyString

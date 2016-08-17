@@ -3,6 +3,8 @@ module Concourse
     belongs_to :state, class_name: "Address::State"
     belongs_to :subscribe
     
+    audited
+    
     has_many :observations
     has_many :candidate_participation
     has_many :attendances

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160815140914) do
+=======
 ActiveRecord::Schema.define(version: 20160815175025) do
+>>>>>>> 49240520b4adf7f2adc4ec0e4f79328d8bb7ecd3
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -630,7 +634,10 @@ ActiveRecord::Schema.define(version: 20160815175025) do
     t.integer  "occurrence_type_id"
     t.integer  "attendance_id"
     t.integer  "program_id"
+    t.integer  "creator_id"
     t.text     "description"
+    t.string   "target_model_name"
+    t.integer  "target_model_id"
     t.boolean  "solved",                  default: false
     t.integer  "feedback_staff_id"
     t.text     "feedback_observation"
@@ -641,13 +648,11 @@ ActiveRecord::Schema.define(version: 20160815175025) do
     t.string   "custom_label"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
-    t.string   "target_model_name"
-    t.string   "target_model_function"
-    t.integer  "target_model_id"
   end
 
   add_index "candidate_cadastre_occurrences", ["attendance_id"], name: "index_candidate_cadastre_occurrences_on_attendance_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["cadastre_id"], name: "index_candidate_cadastre_occurrences_on_cadastre_id", using: :btree
+  add_index "candidate_cadastre_occurrences", ["creator_id"], name: "index_candidate_cadastre_occurrences_on_creator_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["feedback_staff_id"], name: "index_candidate_cadastre_occurrences_on_feedback_staff_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["occurrence_situation_id"], name: "index_candidate_cadastre_occurrences_on_occurrence_situation_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["occurrence_type_id"], name: "index_candidate_cadastre_occurrences_on_occurrence_type_id", using: :btree
@@ -1162,10 +1167,16 @@ ActiveRecord::Schema.define(version: 20160815175025) do
     t.string   "name"
     t.string   "description"
     t.string   "code"
+<<<<<<< HEAD
+    t.text     "sql_query"
+    t.boolean  "sql_contain",             default: true
+    t.integer  "program_id"
+=======
     t.string   "target_model_query"
     t.string   "target_model_function"
     t.boolean  "contain",                 default: true
     t.text     "program_id",                                          array: true
+>>>>>>> 49240520b4adf7f2adc4ec0e4f79328d8bb7ecd3
     t.integer  "occurrence_situation_id"
     t.boolean  "status",                  default: true
     t.datetime "created_at",                             null: false
@@ -1173,6 +1184,10 @@ ActiveRecord::Schema.define(version: 20160815175025) do
   end
 
   add_index "candidate_validations", ["occurrence_situation_id"], name: "index_candidate_validations_on_occurrence_situation_id", using: :btree
+<<<<<<< HEAD
+  add_index "candidate_validations", ["program_id"], name: "index_candidate_validations_on_program_id", using: :btree
+=======
+>>>>>>> 49240520b4adf7f2adc4ec0e4f79328d8bb7ecd3
 
   create_table "candidate_verifications", force: :cascade do |t|
     t.string   "name"

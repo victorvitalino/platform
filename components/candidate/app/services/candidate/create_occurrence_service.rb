@@ -20,9 +20,9 @@ module Candidate
         object = object.send("#{validate.target_model_function}", @cadastre.cpf) rescue false
         
         if validate.contain
-          add_occurrence(validate, object) if object.present?
+          add_occurrence(validate, object.map(&:id)) if object.present?
         else 
-          add_occurrence(validate, object) if object.nil?
+          add_occurrence(validate, object.map(&:id)) if object.nil?
         end
       end
     end
@@ -33,23 +33,29 @@ module Candidate
       Candidate::Validation.where("'#{@cadastre.program_id}' = ANY (program_id) AND status = true")
     end
 
-    def add_occurrence(validate, object)
-      object_id =  object.present? ? object.id : nil
-      # <Candidate::Validation id: 1, 
-      # name: "IPTU existente? ",
-      # description: "",
-      # code: "rii_iptu", 
-      # target_model_query:
-      # "Candidate::Iptu", 
-      # target_model_function: "find_by_cpf",
-      # contain: false, program_id: ["", "1", "2", "4", "5", "6", "7", "8"],
-      # occurrence_situation_id: nil, status: true, 
-      # created_at: "2016-08-15 18:26:51",
-      # updated_at: "2016-08-15 18:41:06">
+    def add_occurrence(validate, object_return)
+      object_id =  object_return.present? ? object_return : nil
 
-      occurrence = @cadastre.cadastre_occurrences.new({
-        occurrence_situation_id: validate.occurrence_situation_id
-      })
+      occurrences = @cadastre.cadastre_occurrences.where(
+        program_id:          @cadastre.program_id,
+        target_model_name:   validate.target_model_query,
+        target_model_id:     object_id
+      )
+
+      if occurrences.present?
+        current = occurrences.max(:created_at)
+        if current.created_at < Time.now - 1.month && !current.solved 
+          occurrence = @cadastre.cadastre_occurrences.new({
+            occurrence_situation_id: validate.occurrence_situation_id,
+            occurrence_type_id:      validate.occurrence_type_id,
+            program_id:              @cadastre.program_id,
+            creator_id:              @user.id,
+            target_model_name:       validate.target_model_query,
+            target_model_return:     object_id
+          })
+        end
+      end
+
     end
   end
 end

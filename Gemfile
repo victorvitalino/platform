@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '4.2.1'
-gem 'rake'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
@@ -54,11 +53,12 @@ gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'file_validators'
 
 gem 'jquery-minicolors-rails'
+
 group :test do
   gem 'sqlite3'
   gem 'rspec-rails'
-  gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'capybara'
   gem 'poltergeist'
 end
 
@@ -136,7 +136,7 @@ path 'components' do
 
   gem 'indication'
   gem 'indication_portal'
-
+  gem 'info_center'
   gem 'attendance'
 
   gem 'project'
