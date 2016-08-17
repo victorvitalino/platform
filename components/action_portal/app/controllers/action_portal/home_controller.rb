@@ -8,6 +8,10 @@ module ActionPortal
       @events_c = Action::SocialEvent.where(situation:'0',status: true).limit(3).order(date: 'DESC')
     end
 
+    def done
+      @events = Action::SocialEvent.where(situation:'0',status: true).order(date: 'ASC')
+    end
+
     def cadastro
     end
 

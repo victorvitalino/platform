@@ -12,7 +12,7 @@
         .lv-title
           = f.label "Tipo de Documento", class: 'fg-label'
         .lv-small
-          = f.input :document_type, as: 'select', collection: Protocol::DocumentType.order(:name).all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type'}
+          = f.input :document_type, as: 'select', selected: params[:document_type], collection: Protocol::DocumentType.order(:name).all, label: false, :prompt => 'Selecione', input_html: { name: 'document_type', value: params[:document_type]}
     .lv-item.media
       .media-body
         .lv-small

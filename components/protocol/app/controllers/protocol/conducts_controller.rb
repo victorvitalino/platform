@@ -18,8 +18,11 @@ module Protocol
             sector = current_user.sector_current.id
 
             #parametro 4 documento recebido pelo setor
-            @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],[0,4],sector, 0)
+            @conduct_result = Protocol::Conduct.find_document(params[:document],params[:document_type],[0,4,5],sector, 0)
 
+            if !@conduct_result.present? && params[:document].present? && params[:document_type].present?
+              flash[:warning] = "Documento não encontrado, ou não está no seu setor."
+            end
         end
 
         def add
@@ -29,7 +32,7 @@ module Protocol
             @allotment = Protocol::Allotment.find(params[:id])
             @conduct = @allotment.conducts.new
             @conduct.set_data(current_user, params[:assessment_id])
-
+          
             if @conduct.save
                 flash[:success] = t :success
                 redirect_to new_allotment_conduct_path(@allotment)
@@ -90,7 +93,7 @@ module Protocol
 
         def create
 
-            @allotment_conduct = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 0, sector_id: current_user.sector_current.id)
+            @allotment_conduct = Protocol::Conduct.where(allotment_id: params[:allotment_id], conduct_type: 5, sector_id: current_user.sector_current.id)
              authorize :conduct,  :create?
              @allotment_conduct.each do |lote|
                 @conduct = Protocol::Conduct.new(set_conduct_params)
@@ -139,7 +142,7 @@ module Protocol
 
 
         def set_conduct_params
-                params.require(:conduct).permit(:description, :conduct_type,:assessment_id,:sector_id,:allotment_id)
+            params.require(:conduct).permit(:description, :conduct_type,:assessment_id,:sector_id,:allotment_id)
         end
 
     end
