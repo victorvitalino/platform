@@ -39,7 +39,7 @@ module ConcoursePortal
       end
 
       def set_params
-        params.fetch(:candidate_participation, {}).permit(:archive_one, :archive_two,
+        params.fetch(:candidate_participation, {}).permit(:archive_one, :archive_two, :archive_three,
                                              team_participations_attributes: [:id, :_destroy, :name, :observation, :job])
       end
 
