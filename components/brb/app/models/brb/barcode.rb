@@ -20,13 +20,19 @@ module Brb
 
     DATE_CORRECTION = "03/07/2000" #Essa data é para criação do fator vencimento, capitulo 7
 
+    AGENCY          = "208"
+    ACCOUNT_BANK    = "0149304"
+    BANK            = "070"
+    COIN            = "9"
+    WALLET          = "1"
+    
     def initialize(options = {})
       #valores padrão do manual
-      @bank_wallet  = options[:bank_wallet]     ||= '1'
+      @bank_wallet  = options[:bank_wallet]     ||= WALLET
       @sequential   = options[:sequential]      ||= '1'
-      @bank         = options[:bank]            ||= '070'
-      @bank_agency  = options[:bank_agency]     ||= '058'
-      @bank_account = options[:bank_account]    ||= '6002006'
+      @bank         = options[:bank]            ||= BANK
+      @bank_agency  = options[:bank_agency]     ||= AGENCY
+      @bank_account = options[:bank_account]    ||= ACCOUNT_BANK
 
       @due          = options[:due]             ||= '0'
       @coin         = options[:coin]            ||= '9'
@@ -34,6 +40,7 @@ module Brb
     end
 
 
+  
     #agência / código do beneficário
     def agency_and_benefict_code_formated
       "000 - #{@bank_agency} - #{@bank_account}"
@@ -104,22 +111,26 @@ module Brb
       "#{'%06d' % @sequential.to_i}"
     end
 
+
+    def date_factor
+      self.due_factor
+    end
+    
     private
 
     def set_key_digits
-      digit = "#{self.agency_and_benefict_code}#{@bank_wallet}#{self.formated_sequential}#{@bank}".calculate!
 
+      digit = "#{self.agency_and_benefict_code}#{@bank_wallet}#{self.formated_sequential}#{@bank}".calculate!
+      
       @key_digit_one = digit[:digit_one]
       @key_digit_two = digit[:digit_two]
     end
-
-
     protected
 
 
     def barcode_digit
       barcode = self.barcode_without_digit
-      barcode.module_11({multiplier: [2,3,4,5,6,7,8,9]})
+      barcode.module_11_digit
     end
 
     def due_factor

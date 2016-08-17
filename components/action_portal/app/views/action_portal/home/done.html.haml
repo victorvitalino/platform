@@ -1,0 +1,29 @@
+= render 'partials/shared/portal/top_nav'
+= render 'partials/shared/portal/header'
+%div{class: (controller_name != 'home') ? 'container main' : '' }
+  .container
+    .row
+      .col-md-12.no_padding
+        .gallerys_title
+          %span
+            AÇÕES CONCLUIDAS
+
+    .row
+      .col-md-12.no_padding.box_internal
+        - @events.each_with_index do |event, index|
+          .col-md-4.action_home_inscription{style:'min-height: 655px;'}
+            .action_thumb{:class => "action_thumb_#{index}",:style => "background-image: url(#{event.thumb})"}
+            = link_to 'Concluido', social_event_path(event),class:"action_inscription_button action_inscription_button_2"
+            .action_inscription_title
+              = event.name
+              %br
+                = "#{event.city.name}-#{event.district}"
+            .action_inscription_sub_title
+              %b
+                = event.date.strftime('%d.%m /// ')
+                = I18n.translate("date.day_names")[event.date.strftime('%w').to_i]
+              %br
+              = event.hour
+      %hr
+= render 'partials/shared/portal/footer'
+:javascript
