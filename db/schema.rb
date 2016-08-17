@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160815140914) do
-=======
-ActiveRecord::Schema.define(version: 20160815175025) do
->>>>>>> 49240520b4adf7f2adc4ec0e4f79328d8bb7ecd3
+ActiveRecord::Schema.define(version: 20160817131626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +86,7 @@ ActiveRecord::Schema.define(version: 20160815175025) do
     t.string   "thumb"
     t.string   "hour"
     t.string   "district"
+    t.string   "report"
   end
 
   add_index "action_social_events", ["city_id"], name: "index_action_social_events_on_city_id", using: :btree
@@ -1167,16 +1164,10 @@ ActiveRecord::Schema.define(version: 20160815175025) do
     t.string   "name"
     t.string   "description"
     t.string   "code"
-<<<<<<< HEAD
-    t.text     "sql_query"
-    t.boolean  "sql_contain",             default: true
-    t.integer  "program_id"
-=======
     t.string   "target_model_query"
     t.string   "target_model_function"
     t.boolean  "contain",                 default: true
     t.text     "program_id",                                          array: true
->>>>>>> 49240520b4adf7f2adc4ec0e4f79328d8bb7ecd3
     t.integer  "occurrence_situation_id"
     t.boolean  "status",                  default: true
     t.datetime "created_at",                             null: false
@@ -1184,10 +1175,6 @@ ActiveRecord::Schema.define(version: 20160815175025) do
   end
 
   add_index "candidate_validations", ["occurrence_situation_id"], name: "index_candidate_validations_on_occurrence_situation_id", using: :btree
-<<<<<<< HEAD
-  add_index "candidate_validations", ["program_id"], name: "index_candidate_validations_on_program_id", using: :btree
-=======
->>>>>>> 49240520b4adf7f2adc4ec0e4f79328d8bb7ecd3
 
   create_table "candidate_verifications", force: :cascade do |t|
     t.string   "name"

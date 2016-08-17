@@ -34,14 +34,17 @@
         = f.label "Bairro", class: 'fg-label'
         = f.input :district, label: false, input_html: {placeholder: 'Digite o nome da localização'}
     .row
-      .col-md-6
+      .col-md-4
         = f.label "Foto pequena", class: 'fg-label'
         = f.input :thumb, as: :file, label: false
         = link_to "visualizar arquivo atual", f.object.thumb.url, target: '_blank' if !f.object.thumb.to_s.empty?
-      .col-md-6
+      .col-md-4
         = f.label "Foto interna", class: 'fg-label'
         = f.input :photo, as: :file, label: false
         = link_to "visualizar arquivo atual", f.object.photo.url, target: '_blank' if !f.object.photo.to_s.empty?
+      .col-md-4
+        = f.label "Relatório", class: 'fg-label'
+        = f.input :report, label: false, input_html: {placeholder: 'Cole aqui o link do relatório'}
     %hr/
     .row
       .col-md-12

@@ -64,6 +64,18 @@
                 %br
                 = event.hour
         .row
+          .col-md-12.no_padding.action_inscription_button_2.texto-gigante{style:'margin-top:30px'}
+            .col-md-6
+              %p
+                Confira aqui
+                %br
+                todas as ações concluidas
+                %br
+                pela CODHAB em sua cidade.
+            .col-md-6
+              = link_to 'Ações Concluidas','http://www.codhab.df.gov.br/acoesurbanas/acoes_concluidas', class:"action_button action_button_galeria", style:"width:435px!important;margin-bottom: 30px;"
+
+        .row
           .col-md-12.action_map_head
             %h3.texto_branco.titulo_home_mapa
               Encontre a Ação

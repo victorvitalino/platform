@@ -53,7 +53,7 @@ module Action
 
       # Only allow a trusted parameter "white list" through.
       def social_event_params
-        params.require(:social_event).permit(:name, :status, :date, :description, :district, :city_id, :situation, :hour,:photo, :thumb)
+        params.require(:social_event).permit(:name, :report, :status, :date, :description, :district, :city_id, :situation, :hour,:photo, :thumb)
       end
   end
 end

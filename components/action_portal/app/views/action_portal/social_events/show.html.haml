@@ -30,6 +30,15 @@
           -else
             = link_to 'Inscreva-se','http://www.portaldovoluntariado.df.gov.br/main/visualizar_projeto.xhtml?projeto=1744' ,class:"action_button action_button_galeria2"
 
+    -if @event.situation == 'concluido' && @event.report.present?
+      .row
+        .col-md-12.no_padding.bloco_amarelo.texto-gigante{style:'margin-top:0px'}
+          .col-md-6
+            %span.texto-bold{style:'margin-top:40px;text-align:center;display:block;'}
+              Confira as metas da ação!!!
+          .col-md-6
+            = link_to 'Relatório da Ação', @event.report, target:'_blank', class:"action_button action_button_galeria", style:"width:435px!important;margin-bottom: 30px;"
+
     = render 'partials/contato'
     = render 'partials/home_admin'
 = render 'partials/shared/portal/footer'
