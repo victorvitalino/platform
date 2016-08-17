@@ -3,12 +3,12 @@ require "open-uri"
 
 namespace :update do
 
-  task :zone => :environment do 
-    
-    @allotments = Indication::Allotment.all 
+  task :zone => :environment do
+
+    @allotments = Indication::Allotment.all
 
     @allotments.each do |item|
-      
+
     end
   end
 
@@ -19,21 +19,22 @@ namespace :update do
 
 
 
-     CSV.foreach("lib/files/log_ind.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/procedural_1.csv", :col_sep => "#") do |row|
 
 
-           @teste = Candidate::CadastreMirror.new(
-           enterprise_cadastre_id: row[8],
-           enterprise_cadastre_status_id: row[2],
-           observation: row[3],
-           file_path: row[4],
-           created_at: row[1],
-           firm_user_id: row[7]
+           @teste = Candidate::CadastreProcedural.new(
+           cadastre_id: row[5],
+           procedural_status_id: row[1],
+           convocation_id: row[2],
+           old_process: row[3],
+           created_at: row[4]
            )
            @teste.save
 
 
-          # puts @teste.inspect
+
+           #puts @teste.inspect
+          # puts @status.inspect
 
            puts @index += 1
        end

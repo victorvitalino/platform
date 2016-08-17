@@ -3,10 +3,11 @@ pt-BR:
     'protocol/conduct':
       conduct_type:
         doc_create: "Criado"
-        doc_send: "Enviado"
+        doc_sent: "Enviado"
         doc_return: "Devolvido"
         doc_cancel: "Cancelado"
         doc_receive: "Recebido"
+        doc_to_send: "Para enviar"
   activerecord:
     models:
       'protocol/conduct': Tramitação
@@ -14,4 +15,3 @@ pt-BR:
       'protocol/conduct':
         document: "Documento"
         document_type: "Tipo de Documento"
-
