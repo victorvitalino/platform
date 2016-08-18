@@ -23,6 +23,29 @@ Tentando interpretar textos estranhos pt.1
 19 - Quanto você paga de aluguel por mês? string
 20 - se a CODHAB te vendesse um lote onde gostaria de comprar? string
 
+
+------------------------------------------------------------------------------------------------------------------
+
+Segundo email para inserção de campos
+
+Localidade (cidade) - references
+Recebe beneficio do governo?
+  - Bolsa Família
+  - Auxilio Aluguel
+  - Outros: Descrever
+
+Tipo de Imóvel (urbano ou rural)
+
+Faixa de renda Familiar -
+  0 a 3
+  3 a 6
+  6 a 10
+  10 +
+
+Sua casa tem paredes de alvenaria? - boolean
+
+
+
 Objetivos
 
 1)  Verificar - Precariedade
