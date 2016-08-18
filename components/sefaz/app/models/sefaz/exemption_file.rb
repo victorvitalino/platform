@@ -24,7 +24,17 @@ module Sefaz
           exemption = Sefaz::Exemption.where(cpf: exemption_hash["CPF"])
           exemption_new = Sefaz::Exemption.new
           exemption_new.name                   = exemption_hash["NOME"]
-          exemption_new.cpf                    = exemption_hash["CPF"]
+
+          cpf = exemption_hash["CPF"].to_s
+
+          if cpf.length <= 12
+            cpf = '%011d' % cpf.to_i
+          end
+          if cpf.length > 11
+            cpf = cpf.to_i
+          end
+
+          exemption_new.cpf                    = cpf
           exemption_new.city                   = exemption_hash["CIDADE"]
           exemption_new.address                = exemption_hash["ENDERECO"]
           iptu = exemption_hash["IPTU"]
