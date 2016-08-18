@@ -7,6 +7,17 @@ module Sefaz
     belongs_to :staff_send, class_name: "Person::Staff"
     belongs_to :allotment
 
+    enum return: ["Com problemas", "Sem problemas"]
+
+    scope :cpf, -> (cpf) {where(cpf: cpf)}
+    scope :return_message, -> (return_message) {
+      if return_message == "0"
+        where(act_number: '')
+      else
+        where(return_message: '')
+      end
+      }
+
     validate :virtual_validate!
 
   def self.xml(id)
@@ -141,7 +152,7 @@ module Sefaz
     def virtual_validate!
       self.system_message = ""
 
-      add_message_error("CPF inválido")       if !ValidatesCpfCnpj::Cpf.valid?(self.cpf.format_cpf)      
+      add_message_error("CPF inválido")       if !ValidatesCpfCnpj::Cpf.valid?(self.cpf.format_cpf)
       add_message_error("Nome em branco")     if self.name.to_s.empty?
       add_message_error("CPF em branco")      if self.cpf.to_s.empty?
       add_message_error("Cidade em branco")   if self.city.to_s.empty?
