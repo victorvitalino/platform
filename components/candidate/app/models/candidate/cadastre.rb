@@ -13,6 +13,7 @@ module Candidate
 
     has_many :requeriments, primary_key: :cpf, foreign_key: :cpf, class_name: "Regularization::Requeriment"
     has_many :schedules,    primary_key: :cpf, foreign_key: :cpf, class_name: "Schedule::AgendaSchedule"
+    has_many :assessments,  primary_key: :cpf, foreign_key: :cpf, class_name: "Protocol::Assessment"
 
     has_many :cadastre_occurrences
     has_many :ammvs
