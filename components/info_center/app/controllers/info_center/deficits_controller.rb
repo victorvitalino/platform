@@ -43,7 +43,7 @@ module InfoCenter
       end
 
       def deficit_params
-        params.require(:deficit).permit( :name,:cpf,:phone,:address,:lot_houses,:lot_people,:water,:light,:sidewalk,:sewer,:asphalt,:bathroom,:total_bathroom,:kitchen,:roof,:slab,:contract,:document,:people_living,:wall,:room,:sleep_local,:rent,:rent_total,:buy_lot)
+        params.require(:deficit).permit( :name, :property_type, :benefit,:family_income,:cpf,:phone,:address,:lot_houses,:lot_people,:water,:light,:sidewalk,:sewer,:asphalt,:bathroom,:total_bathroom,:kitchen,:roof,:slab,:contract,:document,:people_living,:wall,:room,:sleep_local,:rent,:rent_total,:buy_lot)
       end
   end
 end
