@@ -25,8 +25,12 @@ module Sefaz
           exemption_new = Sefaz::Exemption.new
           exemption_new.name                   = exemption_hash["NOME"]
 
-          cpf = exemption_hash["CPF"].to_s
-
+          if exemption_hash["CPF"].to_s.length == 14
+            cpf = exemption_hash["CPF"].gsub('-','').gsub('.','').to_s
+          else
+            cpf = exemption_hash["CPF"].to_s
+          end
+          
           if cpf.length <= 12
             cpf = '%011d' % cpf.to_i
           end
