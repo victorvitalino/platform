@@ -45,7 +45,7 @@ text-align: left;
   color:#fff;
   text-decoration: none;
 }
-.linkmenus:hover{
+.linkmenus:hover, .linkmenus:focus{
   color:#fff;
 }
 .dropdown-menu-top{
