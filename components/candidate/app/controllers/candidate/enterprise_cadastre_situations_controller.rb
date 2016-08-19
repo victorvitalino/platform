@@ -3,7 +3,7 @@ require_dependency "candidate/application_controller"
 module Candidate
   class EnterpriseCadastreSituationsController < ApplicationController
     before_action :set_enterprise_cadastre
-    before_action :set_enterprise_cadastre_situation, only: [, :edit, :update, :destroy]
+    before_action :set_enterprise_cadastre_situation, only: [ :edit, :update, :destroy]
 
     # GET /inheritors
     def index
