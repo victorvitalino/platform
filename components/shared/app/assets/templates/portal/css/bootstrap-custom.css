@@ -297,18 +297,19 @@ float: right;
   font-size: 17px;
   }
 
-.navbar-default .navbar-nav>.open.habitacao>a, .navbar-default .navbar-nav>.open.habitacao>a:focus, .navbar-default .navbar-nav>.open.habitacao>a:hover{
-background-color:#289728;
-color: #fff;
+.navbar-default .navbar-nav>.habitacao>a:focus, .navbar-default .navbar-nav>.habitacao>a:hover{
+background-color:#289728!important;
+color: #fff!important;
 }
-.habitacao:hover{
-  background-color: #289728;
+.habitacao:hover, .habitacao:focus>li>a, .habitacao:active{
+  background-color: #289728!important;
+  color:#fff!important;
 }
 
-.item_menu:hover>ul{
+.item_menu:hover>ul, .item-menu:focus>ul{
   display: block!important;
 }
-.link_submenu a, .menu-insider-li span, .item_menu:hover>a {
+.item_menu:focus>a, .link_submenu a, .menu-insider-li span, .item_menu:hover>a {
   color:#fff!important;
 }
 
@@ -316,7 +317,6 @@ color: #fff;
   background-color:#289728;
   width: 500px;
 }
-
 .menu-insider-li{
   float: left;
   display: block;
@@ -329,13 +329,13 @@ color: #fff;
 }
 
 
-.navbar-default .navbar-nav>.open.regularizacao>a, .navbar-default .navbar-nav>.open.regularizacao>a:focus, .navbar-default .navbar-nav>.open.regularizacao>
-a:hover{
-background-color:#feaa15;
-color: #fff;
+.navbar-default .navbar-nav>.regularizacao>a:focus, .navbar-default .navbar-nav>.regularizacao>a:hover{
+background-color:#feaa15!important;
+color: #fff!important;
 }
-.regularizacao:hover{
-  background-color: #feaa15;
+.regularizacao:hover,  .regularizacao:focus>li>a, .regularizacao:active{
+  background-color: #feaa15!important;
+  color:#fff;
 }
 
 #regularizacao{
@@ -352,13 +352,16 @@ color: #fff;
   -webkit-box-shadow: none;
 }
 
-.navbar-default .navbar-nav>.open.entidades>a, .navbar-default .navbar-nav>.open.entidades>a:focus, .navbar-default .navbar-nav>.open.entidades>
+.navbar-default .navbar-nav>.entidades>a:focus, .navbar-default .navbar-nav>.entidades>
 a:hover{
-background-color:#f4400a;
-color: #fff;
+background-color:#f4400a!important;
+color: #fff!important;
 }
-.entidades:hover{
-  background-color: #f4400a;
+.entidades:hover,
+.entidades:focus>li>a,
+.entidades:active{
+  background-color: #f4400a!important;
+  color:#fff!important;
 }
 #entidades{
   background-color:#f4400a;
@@ -374,45 +377,49 @@ color: #fff;
   -webkit-box-shadow: none;
 }
 
-.navbar-default .navbar-nav>.open.servicos>a, .navbar-default .navbar-nav>.open.servicos>a:focus, .navbar-default .navbar-nav>.open.servicos>
+.navbar-default .navbar-nav>.servicos>a:focus, .navbar-default .navbar-nav>.servicos>
 a:hover{
-background-color:#147EA1;
+background-color:#147EA1!important;
+color:#fff!important;
 }
 .servicos:hover{
   background-color: #147EA1;
+  color:#fff!important;
 }
 #servicos{
   background-color:#147EA1;
   width: 540px;
 }
-.navbar-default .navbar-nav>.open.editais>a, .navbar-default .navbar-nav>.open.editais>a:focus, .navbar-default .navbar-nav>.open.editais>
+ .navbar-default .navbar-nav>.editais>a:focus, .navbar-default .navbar-nav>.editais>
 a:hover{
-background-color:#7c3961;
-color: #fff;
+background-color:#7c3961!important;
+color: #fff!important;
 }
 .editais:hover{
   background-color: #7c3961;
+  color:#fff!important;
 }
 #editais{
   background-color:#7c3961;
   width:800px;
   margin-left: -250px;
 }
-.navbar-default .navbar-nav>.open.concursos>a, .navbar-default .navbar-nav>.open.concursos>a:focus, .navbar-default .navbar-nav>.open.concursos>
+.navbar-default .navbar-nav>.concursos>a:focus, .navbar-default .navbar-nav>.concursos>
 a:hover{
-background-color:#83847b;
-color: #fff;
+background-color:#83847b!important;
+color:#fff!important;
 }
-.navbar-default .navbar-nav>.open.producao>a, .navbar-default .navbar-nav>.open.producao>a:focus, .navbar-default .navbar-nav>.open.producao>
+.navbar-default .navbar-nav>.producao>a:focus, .navbar-default .navbar-nav>.producao>
 a:hover{
-background-color:#c9155c;
-color: #fff;
+background-color:#c9155c!important;
+color: #fff!important;
 }
 .concursos:hover{
   background-color: #83847b;
 }
 .producao:hover{
   background-color: #c9155c;
+  color:#fff!important;
 }
 #concursos{
   background-color:#83847b;
