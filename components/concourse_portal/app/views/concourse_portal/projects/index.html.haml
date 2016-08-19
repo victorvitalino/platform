@@ -75,7 +75,7 @@
                               %h5
                                 %strong= project.title.upcase
                                 %small
-                                  %p= project.mini_description
+                                  %p= project.mini_description.html_safe
                               %h5
                                 %span.label.label-info
                                   = project.step
