@@ -28,7 +28,7 @@
             - @allotments.order('created_at DESC').each do |allotment|
               %tr
                 %td= allotment.id
-                %td= allotment.zone.name
+                %td= allotment.zone.name if allotment.zone.present?
                 %td= allotment.demand
                 %td= allotment.rii
                 %td= "#{allotment.rii.percent_of(allotment.demand)} %"

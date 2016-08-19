@@ -5,6 +5,7 @@ module Candidate
     belongs_to :indication_cadastre, class_name: "Indication::Cadastre"
     has_many :enterprise_cadastre_situations, class_name: "Candidate::EnterpriseCadastreSituation"
 
+
     scope :prepare_allotment, -> (allotment_id) {
       cadastres = Indication::Cadastre.where(allotment_id: allotment_id).map(&:id)
     }
@@ -24,22 +25,21 @@ module Candidate
     scope :desactive, -> { where(inactive: true) }
 
     scope :contemplated, -> (enterprise_id = nil){
-      self.joins('INNER JOIN general_pontuations AS point
-                   ON point.id = candidate_enterprise_cadastres.cadastre_id
-                  inner join candidate_cadastre_addresses
-                   on candidate_cadastre_addresses.cadastre_id = candidate_enterprise_cadastres.cadastre_id
-                   inner join address_units as unit
-                   on unit.id = candidate_cadastre_addresses.unit_id')
-                  .where('point.situation_status_id IN(7,14) and candidate_cadastre_addresses.situation_id = 1
-                   and unit.situation_unit_id = 3 and unit.project_enterprise_id = ?', enterprise_id)
-    }
 
-    #scope :contemplated, -> (enterprise_id = nil){
-    #  Candidate::View::IndicatedContemplated.where('situation_status_id in (7,14)
-    #                                                AND situation_id = 1 AND situation_unit_id = 3
-    #                                                and project_enterprise_id = ?', enterprise_id)
+      @max_cadastre_address = Candidate::CadastreAddress.joins(:general_pontuation)
+                                                        .where('general_pontuations.situation_status_id IN(7, 44)')
+                                                        .group('candidate_cadastre_addresses.cadastre_id, candidate_cadastre_addresses.unit_id')
+                                                        .select('max(candidate_cadastre_addresses.id)')
 
-   #}
+      @cadastre_address     = Candidate::CadastreAddress.joins(:unit)
+                                                        .where(id: @max_cadastre_address)
+                                                        .where('address_units.project_enterprise_id = ?', enterprise_id)
+                                                        .where('address_units.situation_unit_id = 3')
+=begin
+
+      return @cadastre_address
+=end
+  }
 
 
 
@@ -48,5 +48,6 @@ module Candidate
                   ON point.id = candidate_enterprise_cadastres.cadastre_id')
                 .where('point.situation_status_id = 4')
     }
+
   end
 end
