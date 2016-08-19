@@ -10,7 +10,7 @@
     .col-md-3
       = f.input :cpf, label: "CPF (somente números)", input_html: {disabled: true}
     .col-md-3
-      = f.input :rg
+      = f.input :rg, label: "RG (somente números)"
     .col-md-2
       = f.input :born,  as: :string, input_html: { class: 'date', value: f.object.born ? localize(f.object.born) : nil }
     .col-md-2
@@ -58,7 +58,7 @@
   %hr/
   .row
     .col-md-4
-      = f.input :professional_type, label: "Tipo de profissional", as: :select, collection: Concourse::Candidate.professional_types.keys, include_blank: false
+      = f.input :professional_type, label: "Tipo de profissional", as: :select, collection: Concourse::Candidate.professional_types.map { |k,v| [k, v], include_blank: false
   .row
     = f.simple_fields_for :properties, OpenStruct.new(@candidate.properties) do |builder|
       - @candidate.subscribe.fields.each_with_index do |field, index|
