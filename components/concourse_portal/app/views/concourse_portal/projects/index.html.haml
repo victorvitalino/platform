@@ -45,7 +45,7 @@
                               %h5
                                 %strong= link_to project.title.upcase, concourse_portal.project_path(project), data: {'turbolinks'=> false}
                                 %h6
-                                  %p= link_to project.mini_description.html_safe, concourse_portal.project_path(project), data: {'turbolinks'=> false}
+                                  %p= project.mini_description.html_safe
                               %span
                                 %p
                                   %b Início - #{project.start.strftime('%d/%m/%Y')}
