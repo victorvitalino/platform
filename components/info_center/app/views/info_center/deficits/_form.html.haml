@@ -14,6 +14,12 @@
         = f.label "Endereço"
         = f.input :address,label: false,input_html: { placeholder: 'Digite um endereço válido'}
       .col-md-12
+        = f.label "Qual tipo do seu imóvel"
+        = f.input :property_type, label: false, include_blank: false
+      .col-md-12
+        = f.label "Recebe beneficio do governo? qual?"
+        = f.input :benefit, label: false
+      .col-md-12
         = f.label "Quantas casas tem em seu lote?"
         = f.input :lot_houses, label: false, include_blank: false, input_html: {placeholder: 'Apenas números'}
       .col-md-12
@@ -53,6 +59,9 @@
       .col-md-12
         = f.label "Quem dorme onde?"
         = f.input :sleep_local, label: false, input_html: { placeholder: 'Descreva...', id: 'roof', rows: 5, cols: 80}
+      .col-md-12
+        = f.label "Qual sua renda familiar? (Salarios mínimos)"
+        = f.input :family_income,label: false, include_blank: false
       .col-md-12
         = f.label "Você paga aluguel?"
         = f.input :rent, as: :select, label: false, include_blank: false

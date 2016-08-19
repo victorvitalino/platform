@@ -14,12 +14,14 @@
           %th CPF
           %th Nascimento
           %th Idade
+          %th Renda
       %tbody
         %tr
           %td{colspan: 3}= cadastre.name
           %td= cadastre.cpf
           %td= cadastre.born.strftime('%d/%m/%Y') if cadastre.born.present?
           %td= "#{cadastre.age} ano(s)" if cadastre.born.present?
+          %td= cadastre.income
       %thead
         %tr
           %th Sexo
@@ -47,7 +49,7 @@
         %h4.panel-title
           %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_two", :role => "button"}
             Informações de contato
-.row.collapse#collapse_two.in
+.row.collapse#collapse_two
   .col-md-12
     %table.table.table-striped.table-condensed.table-bordered
       %thead
@@ -79,11 +81,72 @@
       .panel-heading{style: 'margin-bottom: 0px;'}
         %h4.panel-title
           %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_three", :role => "button"}
+            Cônjuge
+.row.collapse#collapse_three
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Nome
+          %th CPF
+          %th Data de nascimento
+          %th RG
+          %th Renda
+      - spouse = cadastre.dependents.where(kinship_id: 6).first
+      -if spouse.present?
+        %tbody
+          %tr
+            %td= spouse.name.upcase
+            %td= spouse.cpf
+            %td= spouse.born.strftime('%d/%m/%Y') if spouse.born.present?
+            %td= spouse.rg
+            %td= spouse.income
+        %thead
+          %tr
+            %th Condição especial
+            %th CID
+            %th NIS
+        %tbody
+          %tr
+            %td= spouse.special_condition.name
+            %td= spouse.cid
+            %td= spouse.nis
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_four", :role => "button"}
+            Dependentes
+.row.collapse#collapse_four
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Nome
+          %th CPF
+          %th Data de nascimento
+          %th Parentesco
+          %th Renda
+      %tbody
+        - cadastre.dependents.where('kinship_id <> 6').each do |dependents|
+          %tr
+            %td= dependents.name.upcase
+            %td= dependents.cpf
+            %td= dependents.born.strftime('%d/%m/%Y') if dependents.born.present?
+            %td= dependents.kinship.name if dependents.kinship.present?
+            %td= dependents.income
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_five", :role => "button"}
             Ocorrências
           %a.pull-right{href: cadastre_cadastre_occurrences_path(cadastre), data: { remote: 'true' }}
             Re-processar validações
 
-.row.collapse#collapse_three.in
+.row.collapse#collapse_five
   .col-md-12
     %table.table.table-striped.table-condensed.table-bordered
       %thead
@@ -95,4 +158,196 @@
         - cadastre.cadastre_occurrences.each do |occurrence|
           %tr
             %td= occurence.id
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_six", :role => "button"}
+            Situação de cadastro
+.row.collapse#collapse_six
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Situação
+          %th Data da situação
+      %tbody
+        - cadastre.cadastre_situations.each do |situations|
+          %tr
+            %td= situations.situation_status.name.upcase
+            %td= situations.created_at.strftime('%d/%m/%Y') if situations.created_at.present?
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_seven", :role => "button"}
+            Situação de processo
+.row.collapse#collapse_seven
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Situação
+          %th Covocação
+          %th Processo
+          %th Data da situação
+      %tbody
+        - cadastre.cadastre_procedurals.each do |procedurals|
+          %tr
+            %td= procedurals.procedural_status.name.upcase
+            %td= procedurals.convocation.description.upcase
+            %td= procedurals.old_process
+            %td= procedurals.created_at.strftime('%d/%m/%Y') if procedurals.created_at.present?
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_eight", :role => "button"}
+            Indicação para empreendimento
+.row.collapse#collapse_eight
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Empreendimento
+          %th Status da indicação
+          %th Data de inativação
+          %th Data da indicação
+      %tbody
+        - cadastre.enterprise_cadastres.each do |enterprise_cadastres|
+          %tr
+            %td= enterprise_cadastres.enterprise.name.upcase
+            %td= enterprise_cadastres.inactive == false ? "Inativa" : "Ativa"
+            %td= enterprise_cadastres.inactive_date.strftime('%d/%m/%Y') if enterprise_cadastres.inactive_date.present?
+            %td= enterprise_cadastres.created_at.strftime('%d/%m/%Y') if enterprise_cadastres.created_at.present?
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_nine", :role => "button"}
+            Endereço vinculado
+.row.collapse#collapse_nine
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Cidade
+          %th Endereço Completo
+          %th Situação do imóvel
+          %th Data
+      %tbody
+        - cadastre.cadastre_address.each do |cadastre_address|
+          %tr
+            %td= cadastre_address.unit.city.name.upcase
+            %td= cadastre_address.unit.complete_address
+            %td= cadastre_address.unit.situation_unit.description
+            %td= cadastre_address.created_at.strftime('%d/%m/%Y') if cadastre_address.created_at.present?
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_ten", :role => "button"}
+            Pontuação
+.row.collapse#collapse_ten
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Tempo de bsb
+          %th Dependentes
+          %th Tempo de lista
+          %th Condição especial
+          %th Renda
+          %th Pontuação total
+          %th Data
+      %tbody
+        - cadastre.pontuations.each do |pontuations|
+          %tr
+            %td= pontuations.bsb
+            %td= pontuations.dependent
+            %td= pontuations.timelist
+            %td= pontuations.special_condition
+            %td= pontuations.income
+            %td= pontuations.total
+            -if pontuations.code == 20110801
+              - date = "01/08/2011"
+            -elsif pontuations.code == 20120915
+              - date = "15/09/2012"
+            -else
+              - date = "01/12/2014"
+            %td= date
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_eleven", :role => "button"}
+            Documentos
+.row.collapse#collapse_eleven
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Número do documento
+          %th Tipo de documento
+          %th Assunto
+          %th Data do documento
+      %tbody
+        - cadastre.assessments.each do |assessments|
+          %tr
+            %td= link_to assessments.document_number, protocol.assessment_path(assessments.id), target: '_blank'
+            %td= assessments.document_type.name
+            %td= assessments.subject.name
+            %td= assessments.created_at.strftime('%d/%m/%Y') if assessments.created_at.present?
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_twelve", :role => "button"}
+            Vinculo com entidade
+.row.collapse#collapse_twelve
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Entidade
+          %th Nome fantasia
+          %th CNPJ
+          %th Presidente
+      %tbody
+        - cadastre.old_candidates.each do |old_candidates|
+          %tr
+            %td= old_candidates.old.name
+            %td= old_candidates.old.fantasy_name
+            %td= old_candidates.old.cnpj
+            %td= old_candidates.old.president_name
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading{style: 'margin-bottom: 0px;'}
+        %h4.panel-title
+          %a.no-color{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapse_thirteen", :role => "button"}
+            Atividades
+.row.collapse#collapse_thirteen
+  .col-md-12
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Atividade
+          %th Tipo
+          %th Observação
+          %th Data
+      %tbody
+        - cadastre.cadastre_activities.each do |cadastre_activities|
+          %tr
+            %td= cadastre_activities.activity_status.title
+            %td= cadastre_activities.type_activity
+            %td= cadastre_activities.observation
+            %td= cadastre_activities.created_at.strftime('%d/%m/%Y') if cadastre_activities.created_at.present?
 %hr/

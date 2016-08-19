@@ -25,14 +25,23 @@ module Candidate
 
     scope :contemplated, -> (enterprise_id = nil){
       self.joins('INNER JOIN general_pontuations AS point
-                  ON point.id = candidate_enterprise_cadastres.cadastre_id
+                   ON point.id = candidate_enterprise_cadastres.cadastre_id
                   inner join candidate_cadastre_addresses
-                  on candidate_cadastre_addresses.cadastre_id = candidate_enterprise_cadastres.cadastre_id
-                  inner join address_units as unit
-                  on unit.id = candidate_cadastre_addresses.unit_id')
+                   on candidate_cadastre_addresses.cadastre_id = candidate_enterprise_cadastres.cadastre_id
+                   inner join address_units as unit
+                   on unit.id = candidate_cadastre_addresses.unit_id')
                   .where('point.situation_status_id IN(7,14) and candidate_cadastre_addresses.situation_id = 1
-                  and unit.situation_unit_id = 3 and unit.project_enterprise_id = ?', enterprise_id)
+                   and unit.situation_unit_id = 3 and unit.project_enterprise_id = ?', enterprise_id)
     }
+
+    #scope :contemplated, -> (enterprise_id = nil){
+    #  Candidate::View::IndicatedContemplated.where('situation_status_id in (7,14)
+    #                                                AND situation_id = 1 AND situation_unit_id = 3
+    #                                                and project_enterprise_id = ?', enterprise_id)
+
+   #}
+
+
 
     scope :in_process, -> {
       self.where(inactive: nil).joins('INNER JOIN general_pontuations AS point

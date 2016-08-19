@@ -6,10 +6,12 @@ module Sefaz
 		before_action :set_allotment
 		before_action :set_exemption_unitary, only: [:new, :create, :new_parcial]
 		before_action :set_exemption, only: [:edit, :destroy, :update]
+	  has_scope	:cpf
+		has_scope :return_message
 
 		def index
 			authorize :exemption,  :index?
-			@exemptions = @allotment.exemptions
+			@exemptions = apply_scopes(@allotment.exemptions).paginate(:page => params[:page], :per_page => 100)
 
 			respond_to do |format|
 				format.html

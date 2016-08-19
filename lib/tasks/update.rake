@@ -19,15 +19,16 @@ namespace :update do
 
 
 
-     CSV.foreach("lib/files/procedural_1.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/address.csv", :col_sep => "#") do |row|
 
 
-           @teste = Candidate::CadastreProcedural.new(
-           cadastre_id: row[5],
-           procedural_status_id: row[1],
-           convocation_id: row[2],
-           old_process: row[3],
-           created_at: row[4]
+           @teste = Candidate::CadastreAddress.new(
+           cadastre_id: row[1],
+           unit_id: row[3],
+           dominial_chain: 0,
+           type_receipt: 0,
+           situation_id: 1,
+           created_at: row[2]
            )
            @teste.save
 
