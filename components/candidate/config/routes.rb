@@ -4,8 +4,8 @@ Candidate::Engine.routes.draw do
 
   resources :validations, path: 'validacoes'
   resources :occurrence_situations, path: 'situacoes_ocorrencia'
-  
-  resources :cadastres, path: 'cadastros' do 
+
+  resources :cadastres, path: 'cadastros' do
     resources :cadastre_occurrences
   end
 
@@ -22,7 +22,9 @@ Candidate::Engine.routes.draw do
   resources :enterprise_situation_statuses, path: 'situacao_empresas'
   resources :reports, path: 'relatorios'
 
+  resources :enterprise_cadastres do
+    resources :enterprise_cadastre_situations
+  end
+
 
 end
-
-#407.400.483-68

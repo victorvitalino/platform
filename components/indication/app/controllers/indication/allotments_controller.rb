@@ -41,7 +41,7 @@ module Indication
 
     def show
       @cadastres = apply_scopes(@step.allotments.find(params[:id]).cadastres).includes(:pontuation).order('candidate_pontuations.total DESC')
-    end
+   end
 
     def edit
     end

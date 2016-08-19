@@ -5,6 +5,7 @@ module Candidate
     belongs_to :cadastre_procedural
 
 
+    belongs_to :general_pontuation, class_name: "Candidate::View::GeneralPontuation", primary_key: :id, foreign_key: :cadastre_id
 
     enum situation_id: ['reserva', 'distribuído', 'distrato','transferencia', 'permuta','sobrestado']
 
