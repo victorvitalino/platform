@@ -4,7 +4,8 @@
       %li
         %a.link_top_esquecido{:href => "http://www.df.gov.br/agencia-brasilia.html", :target => "_blank"} Portal de Brasília
       %li.item-menu-top
-        Acesso à Informação
+        %a.linkmenus{:href => "#/Acesso_a_informação"}
+          Acesso à Informação
         %ul.dropdown-menu-top
           %li.item-submenu-top
             %span.submenu_title_top A Companhia
@@ -54,7 +55,8 @@
               %li
                 %a.link_submenu_top{:href => "http://www.codhab.df.gov.br/pagina/143"} Relatórios da Ouvidoria
       %li.item-menu-top
-        Imprensa
+        %a.linkmenus{:href => "#/Imprensa"}
+          Imprensa
         %ul.dropdown-menu-top
           %li.item-submenu-top
             %span.submenu_title_top A Companhia
@@ -70,7 +72,8 @@
       %li
         %a.link_top_esquecido{:href => "http://www.codhab.df.gov.br/pagina/74"} TAC
       %li.item-menu-top
-        Fale Conosco
+        %a.linkmenus{:href => "#/fale_conosco"}
+          Fale Conosco
         %ul.dropdown-menu-top
           %li.item-submenu-top
             %span.submenu_title_top Telefone
@@ -111,6 +114,16 @@
               %li.submenu_title_top_fone Telefone
               %li
                 %a.link_submenu_top 162
+      %li.item-menu-top
+        %a.linkmenus{:href => "#/Libras"}
+          Libras
+        %ul.dropdown-menu-top
+          %li{:style => "padding:20px;color:#818285;width:260px;font-size: 16px;font-weight: 600;"}
+            %img{:alt => "Acessibilidade CODHAB", :src => "/images/vlibras.gif"}/
+            %p
+              O conteúdo deste portal pode ser acessível em Libras usando o
+              %a{:href => "http://www.vlibras.gov.br/"}
+                Vlibras.
       %li.bug-bugado
         = simple_form_for url_for, url: portal.posts_path, method: :get, html: { class: 'inline-form top_search'} do |f|
           = f.input :title,label: false, input_html: { name: 'by_title'}, placeholder: 'Pesquise aqui...'

@@ -40,7 +40,13 @@ text-align: left;
 /** menu superior*/
 .item-menu-top:hover>ul{
   display: block!important;
-    cursor: pointer;
+}
+.linkmenus{
+  color:#fff;
+  text-decoration: none;
+}
+.linkmenus:hover, .linkmenus:focus{
+  color:#fff;
 }
 .dropdown-menu-top{
   position: absolute;
