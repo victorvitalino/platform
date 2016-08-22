@@ -12,7 +12,7 @@
         .post
           .imagem_post
             - if @post.active_photo?
-              = image_tag @post.thumbnail
+              = image_tag @post.thumbnail , :alt => "#{(@post.photo_description.present?) ? @post.photo_description : 'Foto sem descrição'}"
           .author_custom
             - if @post.photo_description? && @post.photo_author?
               = @post.photo_description

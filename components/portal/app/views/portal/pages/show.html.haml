@@ -10,7 +10,7 @@
         .post{:style => "color:#333333;"}
           .imagem_post
             - if @page.active_photo? && @page.photo_author?
-              = image_tag @page.thumbnail
+              = image_tag @page.thumbnail , :alt => "#{(@page.photo_description.present?) ? @page.photo_description : 'Foto sem descrição'}"
           .author_custom
             - if @page.photo_description? && @page.photo_author?
               = @page.photo_description

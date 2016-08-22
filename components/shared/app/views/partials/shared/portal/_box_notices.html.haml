@@ -8,7 +8,7 @@
           .thumbnail.thumbnoticia
             .thumbnail-img
               - if p.thumbnail?
-                = image_tag p.thumbnail
+                = image_tag p.thumbnail , :alt => "#{(p.photo_description.present?) ? p.photo_description : 'Foto sem descrição'}"
               - else
                 = image_tag '/images/codhab.png'
             .caption.caption_notice
