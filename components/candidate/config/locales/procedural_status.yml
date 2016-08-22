@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/procedural_status': Situação de processo
+    attributes:
+      'candidate/procedural_status':
+        name: "Nome"
+        description: "Descrição"
+        code: "Código"

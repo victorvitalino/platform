@@ -23,8 +23,9 @@ module IndicationPortal
 
 
         @cadastres_desactive_count    = @cadastres.where(inactive: true).count
-        @cadastres_contemplated_count = @cadastres.contemplated(params[:by_enterprise]).count
-        @cadastres_in_progress_count  =  @cadastres.in_process.count
+        @cadastres_contemplated       = @cadastres.contemplated(params[:by_enterprise], params[:by_step], params[:by_allotment])
+        @cadastres_contemplated_count = @cadastres_contemplated.count
+        @cadastres_in_progress_count  = @cadastres.in_process.count
 
       else
         @cadastres = nil

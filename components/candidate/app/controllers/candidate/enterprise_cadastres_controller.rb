@@ -2,12 +2,13 @@ require_dependency "candidate/application_controller"
 
 module Candidate
   class EnterpriseCadastresController < ApplicationController
+    before_action :set_indication_cadastre
     before_action :set_enterprise_cadastre, only: [:show, :edit, :update, :destroy]
 
     # GET /inheritors
     def index
       #authorize :enterprise_cadastre, :index?
-      @enterprise_cadastres = EnterpriseCadastres.all
+      @enterprise_cadastres = @indication_cadastre.enterprise_cadastres.all
     end
 
     # GET /inheritors/1
@@ -18,7 +19,7 @@ module Candidate
     # GET /inheritors/new
     def new
       #authorize :enterprise_cadastre, :create?
-      @enterprise_cadastre = EnterpriseCadastres.new
+      @enterprise_cadastre = @indication_cadastre.enterprise_cadastres.new
     end
 
     # GET /inheritors/1/edit
@@ -29,7 +30,7 @@ module Candidate
     # POST /inheritors
     def create
       #authorize :enterprise_cadastre, :create?
-      @enterprise_cadastre = EnterpriseCadastres.new(enterprise_situation_status_params)
+      @enterprise_cadastre = EnterpriseCadastre.new(enterprise_cadastre_params)
 
       if @enterprise_cadastre.save
         redirect_to enterprise_cadastre_path
@@ -59,12 +60,16 @@ module Candidate
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_enterprise_cadastre
-        @enterprise_cadastre = EnterpriseCadastres.find(params[:id])
+        @enterprise_cadastre = @indication_cadastre.enterprise_cadastres.find(params[:id])
+      end
+
+      def set_indication_cadastre
+        @indication_cadastre = Indication::Cadastre.find(params[:indication_cadastre_id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def enterprise_cadastre_params
-        params.require(:enterprise_cadastre).permit(:name, :description, :status)
+        params.require(:enterprise_cadastre).permit(:inactive_date, :inactive, :source_list, :zone)
       end
   end
 end
