@@ -980,6 +980,12 @@ body{
           .dropdown-menu {
             position: absolute!important;
           }
+          .publicity{
+            margin: 0 0 25px 0;
+          }
+          .publicity2{
+            margin: 0;
+          }
           #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
             width: 100%!important;
           }
@@ -1151,6 +1157,12 @@ body{
       .image_bloco_responsivo{
         display: none;
       }
+      .publicity{
+        margin: 0 0 25px 0;
+      }
+      .publicity2{
+        margin: 0;
+      }
       #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
         width: 100%!important;
       }
@@ -1235,6 +1247,12 @@ body{
         .image_bloco_responsivo{
           display: none;
         }
+        .publicity{
+          margin: 0 0 25px 0;
+        }
+        .publicity2{
+          margin: 0;
+        }
         #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
           width: 100%!important;
         }
@@ -1302,7 +1320,6 @@ body{
       /* Landscape iphone 6 Plus*/
       @media only screen
         and (device-width: 736px)
-        and (device-height: 414px)
         and (-webkit-device-pixel-ratio: 3)
         and (orientation: landscape) {
           .bxslide2 li img{
@@ -1387,7 +1404,6 @@ body{
   /* Portrait Galaxy Note - S4 - S3*/
   @media only screen
     and (device-width: 360px)
-    and (device-height: 640px)
     and (-webkit-min-device-pixel-ratio: 2)
     and (orientation: portrait) {
       .bxslide2 li img{
@@ -1410,6 +1426,12 @@ body{
       }
       .image_bloco_responsivo{
         display: none;
+      }
+      .publicity{
+        margin: 0 0 25px 0;
+      }
+      .publicity2{
+        margin: 0;
       }
       #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
         width: 100%!important;
@@ -1641,7 +1663,6 @@ and (orientation: landscape) {
 
 @media screen
 and (device-width: 384px)
-and (device-height: 567px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: portrait) {
   .bxslide2 li img{
@@ -1658,6 +1679,12 @@ and (orientation: portrait) {
   }
   .image_bloco_responsivo{
     display: none;
+  }
+  .publicity{
+    margin: 0 0 25px 0;
+  }
+  .publicity2{
+    margin: 0;
   }
   #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
     width: 100%!important;
@@ -1725,7 +1752,6 @@ and (orientation: portrait) {
 /*Portrait nexus 4* - 5x - 6p*/
 @media screen
 and (device-width: 384px)
-and (device-height: 567px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: portrait) {
   .bxslide2 li img{
@@ -1742,6 +1768,12 @@ and (orientation: portrait) {
   }
   .image_bloco_responsivo{
     display: none;
+  }
+  .publicity{
+    margin: 0 0 25px 0;
+  }
+  .publicity2{
+    margin: 0;
   }
   #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
     width: 100%!important;
