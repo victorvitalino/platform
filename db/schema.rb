@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818131620) do
+ActiveRecord::Schema.define(version: 20160823170357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -631,10 +631,7 @@ ActiveRecord::Schema.define(version: 20160818131620) do
     t.integer  "occurrence_type_id"
     t.integer  "attendance_id"
     t.integer  "program_id"
-    t.integer  "creator_id"
     t.text     "description"
-    t.string   "target_model_name"
-    t.integer  "target_model_id"
     t.boolean  "solved",                  default: false
     t.integer  "feedback_staff_id"
     t.text     "feedback_observation"
@@ -645,11 +642,13 @@ ActiveRecord::Schema.define(version: 20160818131620) do
     t.string   "custom_label"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
+    t.string   "target_model_name"
+    t.string   "target_model_function"
+    t.integer  "target_model_id"
   end
 
   add_index "candidate_cadastre_occurrences", ["attendance_id"], name: "index_candidate_cadastre_occurrences_on_attendance_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["cadastre_id"], name: "index_candidate_cadastre_occurrences_on_cadastre_id", using: :btree
-  add_index "candidate_cadastre_occurrences", ["creator_id"], name: "index_candidate_cadastre_occurrences_on_creator_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["feedback_staff_id"], name: "index_candidate_cadastre_occurrences_on_feedback_staff_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["occurrence_situation_id"], name: "index_candidate_cadastre_occurrences_on_occurrence_situation_id", using: :btree
   add_index "candidate_cadastre_occurrences", ["occurrence_type_id"], name: "index_candidate_cadastre_occurrences_on_occurrence_type_id", using: :btree
@@ -1554,6 +1553,31 @@ ActiveRecord::Schema.define(version: 20160818131620) do
   add_index "concourse_winners", ["project_id"], name: "index_concourse_winners_on_project_id", using: :btree
   add_index "concourse_winners", ["subscribe_id"], name: "index_concourse_winners_on_subscribe_id", using: :btree
 
+  create_table "core_extranet_navs", force: :cascade do |t|
+    t.integer  "order",       default: 0
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "status",      default: true
+    t.boolean  "only_admin",  default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "core_extranet_subnavs", force: :cascade do |t|
+    t.integer  "extranet_nav_id"
+    t.integer  "privilege_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "url"
+    t.boolean  "status",          default: true
+    t.boolean  "only_admin",      default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "core_extranet_subnavs", ["extranet_nav_id"], name: "index_core_extranet_subnavs_on_extranet_nav_id", using: :btree
+  add_index "core_extranet_subnavs", ["privilege_id"], name: "index_core_extranet_subnavs_on_privilege_id", using: :btree
+
   create_table "dashboard_warnings", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
@@ -1932,12 +1956,11 @@ ActiveRecord::Schema.define(version: 20160818131620) do
     t.integer  "responsible_id"
     t.text     "ocurrence"
     t.integer  "ticket_solution_id"
-    t.text     "description_solution"
     t.datetime "solution_date"
     t.datetime "scheduled_date"
     t.boolean  "scheduled"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "helpdesk_ticket_ocurrences", ["responsible_id"], name: "index_helpdesk_ticket_ocurrences_on_responsible_id", using: :btree
@@ -1993,6 +2016,7 @@ ActiveRecord::Schema.define(version: 20160818131620) do
     t.text     "description"
     t.text     "meta_tags"
     t.string   "code_computer"
+    t.string   "file_path"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
@@ -2086,6 +2110,17 @@ ActiveRecord::Schema.define(version: 20160818131620) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "juridical_complainants", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "staff_id"
+    t.integer  "legal_advice_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "juridical_complainants", ["legal_advice_id"], name: "index_juridical_complainants_on_legal_advice_id", using: :btree
+  add_index "juridical_complainants", ["staff_id"], name: "index_juridical_complainants_on_staff_id", using: :btree
+
   create_table "juridical_complements", force: :cascade do |t|
     t.integer  "document_type_id"
     t.integer  "lawsuit_id"
@@ -2114,6 +2149,17 @@ ActiveRecord::Schema.define(version: 20160818131620) do
   add_index "juridical_complements", ["legal_advice_id"], name: "index_juridical_complements_on_legal_advice_id", using: :btree
   add_index "juridical_complements", ["responsible_lawyer_id"], name: "index_juridical_complements_on_responsible_lawyer_id", using: :btree
   add_index "juridical_complements", ["staff_id"], name: "index_juridical_complements_on_staff_id", using: :btree
+
+  create_table "juridical_defendants", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "staff_id"
+    t.integer  "legal_advice_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "juridical_defendants", ["legal_advice_id"], name: "index_juridical_defendants_on_legal_advice_id", using: :btree
+  add_index "juridical_defendants", ["staff_id"], name: "index_juridical_defendants_on_staff_id", using: :btree
 
   create_table "juridical_housing_programs", force: :cascade do |t|
     t.string   "name"
@@ -2163,7 +2209,7 @@ ActiveRecord::Schema.define(version: 20160818131620) do
     t.boolean  "status"
     t.date     "start_date"
     t.date     "end_date"
-    t.boolean  "process_type"
+    t.integer  "process_type"
     t.string   "suitor"
     t.integer  "staff_id"
     t.integer  "old_id"

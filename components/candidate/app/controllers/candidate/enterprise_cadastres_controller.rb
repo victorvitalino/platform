@@ -2,13 +2,21 @@ require_dependency "candidate/application_controller"
 
 module Candidate
   class EnterpriseCadastresController < ApplicationController
-    before_action :set_indication_cadastre
+
     before_action :set_enterprise_cadastre, only: [:show, :edit, :update, :destroy]
+
+    has_scope :name_candidate
+    has_scope :by_cpf
+    has_scope :by_enterprise
+    has_scope :status
+    has_scope :indication_date
+    has_scope :by_allotment
 
     # GET /inheritors
     def index
       #authorize :enterprise_cadastre, :index?
-      @enterprise_cadastres = @indication_cadastre.enterprise_cadastres.all
+      @enterprise_cadastres = EnterpriseCadastre.all
+      @enterprise_cadastres = apply_scopes(@enterprise_cadastres).paginate(:page => params[:page], :per_page => 50)
     end
 
     # GET /inheritors/1
@@ -19,7 +27,7 @@ module Candidate
     # GET /inheritors/new
     def new
       #authorize :enterprise_cadastre, :create?
-      @enterprise_cadastre = @indication_cadastre.enterprise_cadastres.new
+      @enterprise_cadastre = EnterpriseCadastre.new
     end
 
     # GET /inheritors/1/edit
@@ -60,11 +68,7 @@ module Candidate
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_enterprise_cadastre
-        @enterprise_cadastre = @indication_cadastre.enterprise_cadastres.find(params[:id])
-      end
-
-      def set_indication_cadastre
-        @indication_cadastre = Indication::Cadastre.find(params[:indication_cadastre_id])
+        @enterprise_cadastre = EnterpriseCadastre.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.

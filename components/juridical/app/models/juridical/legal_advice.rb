@@ -8,9 +8,13 @@ module Juridical
     belongs_to :housing_program
     belongs_to :document_type, class_name: "Protocol::DocumentType"
     belongs_to :responsible_lawyer, foreign_key: "staff_id", class_name: "Person::Staff"
-    belongs_to :staff_id, class_name: "Person::Staff"
+    belongs_to :staff, class_name: "Person::Staff"
 
-    has_many :complement
+    enum process_type: ['normal','eletrônico']
+
+    has_many :complements
+    has_many :complainants
+    has_many :defendants
 
     scope :process,  -> (process) {where(process_number: process)}
     scope :lawyer,  -> (lawyer) {where(responsible_lawyer: lawyer)}

@@ -37,6 +37,18 @@
       .col-md-4
         %label Tipo de Processo:
         = @legal_advice.process_type == false ? "Normal" : "Eletrônico"
+    -if @complainants.present? || @defendants.present?
+      .row
+        .col-md-4
+          %label Autor(es):
+          - @complainants.each do |c|
+            = c.name.upcase if c.name.present?
+            %br
+        .col-md-4
+          %label Réu(s):
+          - @defendants.each do |c|
+            = c.name.upcase if c.name.present?
+            %br
     .row
       .col-md-4
         %label Data de inclusão:
@@ -63,7 +75,6 @@
               - @data.each_with_index do |data, index|
                 -if index > 2
                   %tr
-                    %td= data[0]
+                    %td.col-md-2= data[0]
                     %td= data[1]
                     %td= data[2]
-                    %td= @hrefs

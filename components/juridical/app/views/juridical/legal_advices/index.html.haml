@@ -1,40 +1,38 @@
-.page-content
-  .panel
-    .panel-heading
-      .panel-title
-        %h4
-          Listar processos
-          = link_to 'Novo acompanhamento', new_legal_advice_path,class: 'btn btn-success pull-right mgl btn-sm',data: {disable_with: "carregando..."}  #if policy(:Assessment, namespace: Protocol).create?
-    .panel-body
-      .row.form-filter
-        .col-md-12
-          = simple_form_for  url_for, method: 'get' do |f|
-            .row
-              .col-md-3
-                = f.label 'Processo', class: 'fg-label'
-                = f.input :process, label: false, input_html: { name: 'process', value: params[:process]}
-              .col-md-4
-                = f.label 'Advogado responsável', class: 'fg-label'
-                = f.input :lawyer, label: false, input_html: { name: 'lawyer', value: params[:lawyer]}
-              .col-md-3
-                = f.label 'Situação', class: 'fg-label'
-                = f.input :status, label: false, input_html: { name: 'status', value: params[:status]}
-              .col-md-2
-                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
-      .row
-        .col-md-12
-          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-            %table#data-table-command.table.table-striped.table-bordered
-              %thead
-                %tr
-                  %th
-                  %th Processo
-                  %th Tipo de Ação
-                  %th Advogado Responsável
-                  %th Ações
-              %tbody
-                - if @legal_advices.present?
-                  = render 'index'
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Listar processos
+        = link_to 'Novo acompanhamento', new_legal_advice_path,class: 'pull-right mgl',data: {disable_with: "carregando..."}  #if policy(:Assessment, namespace: Protocol).create?
+  .panel-body
+    .row.form-filter
+      .col-md-12
+        = simple_form_for  url_for, method: 'get' do |f|
           .row
-            .col-md-6.col-md-offset-3
-              = will_paginate @legal_advices, renderer: BootstrapPagination::Rails
+            .col-md-3
+              = f.label 'Processo', class: 'fg-label'
+              = f.input :process, label: false, input_html: { name: 'process', value: params[:process]}
+            .col-md-4
+              = f.label 'Advogado responsável', class: 'fg-label'
+              = f.input :lawyer, label: false, input_html: { name: 'lawyer', value: params[:lawyer]}
+            .col-md-3
+              = f.label 'Situação', class: 'fg-label'
+              = f.input :status, label: false, input_html: { name: 'status', value: params[:status]}
+            .col-md-2
+              = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered.table-condensed.table-hover
+          %thead
+            %tr
+              %th
+              %th Processo
+              %th Tipo de Ação
+              %th Advogado Responsável
+              %th{style: 'width: 1%'} Ações
+          %tbody.index-legal_advices
+            - if @legal_advices.present?
+              = render 'index'
+        .row
+          .col-md-6.col-md-offset-3
+            = will_paginate @legal_advices, renderer: BootstrapPagination::Rails
