@@ -5,6 +5,8 @@ module Protocol
     belongs_to :staff, class_name: "Person::Staff"
     belongs_to :sector, class_name: "Person::Sector"
 
+    belongs_to :candidate, class_name: "Candidate::Cadastre", primary_key: :cpf, foreign_key: :cpf 
+    
     has_many :conducts
     has_many :digital_documents
     has_many :locations

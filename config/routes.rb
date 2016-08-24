@@ -43,8 +43,8 @@ Rails.application.routes.draw do
     mount Mailer::Engine                   => "/mailer",         as: 'mailer',                module: 'mailer'
     mount Sefaz::Engine                    => "/sefaz",          as: 'sefaz',                 module: 'sefaz'
     mount Helpdesk::Engine                 => "/helpdesk",       as: 'helpdesk',              module: 'helpdesk'
-
     mount HabitationAttendance::Engine     => "/atendimento_habitacao",    as: 'habitation_attendance',  module: 'atendimento_habitacao'
+    mount InfoCenter::Engine               => "/info_center",    as:  'info_center',          module: 'info_center'
   end
 
   constraints DomainConstraint do

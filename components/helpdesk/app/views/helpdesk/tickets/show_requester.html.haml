@@ -32,6 +32,13 @@
           .col-md-4
             %label Situação:
             = @ticket.status ? "Ativo" : "Inativo"
+        .row
+          .col-md-4
+            %label Código do computador:
+            = @ticket.code_computer
+          .col-md-4
+            - if @ticket.file_path_url.present?
+              = link_to "Ver anexo", @ticket.file_path_url, target: '_blank'
         %hr
         .row
           .col-md-12
@@ -57,5 +64,5 @@
                                 %td= o.responsible.name if o.responsible.present?
                                 %td= o.ocurrence
                                 %td= o.created_at
-                                %td= o.description_solution
+                                %td= o.ticket_solution.title if o.ticket_solution.present?
                                 %td= o.solution_date

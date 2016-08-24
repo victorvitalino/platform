@@ -1,0 +1,51 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Dados da Remessa
+  .panel-body
+    .row
+      .col-md-12
+        .row
+          .col-md-4
+            %label Descrição:
+            = @allotment.description
+          .col-md-4
+            %label Prioridade:
+            = @allotment.priority
+        .row
+          .col-md-4
+            %label Data da resposta:
+            = @allotment.replay_date
+          .col-md-4
+            %label Quantidade de documentos:
+            = @allotment.amount_docs
+        - if @allotment.conducts.count > 0
+          %hr
+          .row
+            .col-md-12
+              %h4 Documentos da remessa
+          .row
+            .col-md-12
+              .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+                %table#data-table-command.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th Número
+                      %th Setor
+                      %th Ação
+                      %th Data
+                  %tbody
+                    - @allotment.conducts.each_with_index do |j, i|
+                      %tr
+                        %td.col-md-1
+                          = i + 1
+                        %td
+                          = j.sector.name if j.sector.present?
+                        %td
+                          = j.conduct_type_i18n
+                        %td
+                          = j.created_at.strftime('%d/%m/%Y - %H:%M')
+        .row
+          .col-md-12
+            = link_to "voltar",  allotments_path, class: 'btn btn-default btn-sm',data: {disable_with: "carregando..."}

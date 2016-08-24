@@ -2,13 +2,11 @@ Candidate::Engine.routes.draw do
   resources :inheritors, path: 'herdeiros', only: [:index, :show]
   resources :cadins
 
-  resources :cadastres, path: 'cadastros' do
-    get   'cadastre_situation/id', path: 'situacao', to: 'cadastres#cadastre_situation', as: 'cadastre_situation'
-    post  'cadastre_situation_create', path: 'criar_situacao', to: 'cadastres#cadastre_situation_create', as: 'cadastre_situation_create'
+  resources :validations, path: 'validacoes'
+  resources :occurrence_situations, path: 'situacoes_ocorrencia'
 
-    get   'cadastre_procedural/id', path: 'situacao_processual', to: 'cadastres#cadastre_procedural', as: 'cadastre_procedural'
-    post  'cadastre_procedural_create', path: 'criar_situacao_processual', to: 'cadastres#cadastre_procedural_create', as: 'cadastre_procedural_create'
-    resources :inheritors, path: 'herdeiros', only: [:new, :edit, :destroy]
+  resources :cadastres, path: 'cadastros' do
+    resources :cadastre_occurrences
   end
 
   resources :cadastre_addresses, path: 'enderecos'
@@ -23,13 +21,12 @@ Candidate::Engine.routes.draw do
   resources :verifications
   resources :enterprise_situation_statuses, path: 'situacao_empresas'
   resources :reports, path: 'relatorios'
+  resources :situation_statuses, path: 'situacao_cadastros'
+  resources :procedural_statuses, path: 'situacao_processos'
 
-
-  resources :occurrences, path: 'ocorrencias' do 
-    get  'verify'
+  resources :enterprise_cadastres do
+    resources :enterprise_cadastre_situations
   end
 
 
 end
-
-#407.400.483-68

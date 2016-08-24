@@ -1,0 +1,12 @@
+- @procedural_statuses.order(:name).each do |situation|
+  %tr
+    %td= situation.name.to_s.upcase
+    %td= situation.description.to_s.upcase
+    %td= situation.code
+    %td
+      - if situation.status
+        %span.label.label-success ativo
+      - else
+        %span.label.label-default inativo
+    %td
+      = link_to "", edit_procedural_status_path(situation), title: 'Editar', 'data-toggle' => 'tooltip',  remote: true, class: 'glyphicon glyphicon-pencil btn-xs btn btn-primary waves-effect waves-button waves-float'

@@ -78,6 +78,8 @@ PATH
       rails (~> 4.2.1)
     indication_portal (0.0.1)
       rails (~> 4.2.1)
+    info_center (0.0.1)
+      rails (~> 4.2.1)
     juridical (0.0.1)
       rails (~> 4.2.1)
     mailer (0.0.1)
@@ -558,6 +560,7 @@ DEPENDENCIES
   i18n
   indication!
   indication_portal!
+  info_center!
   jquery-datatables-rails (~> 3.3.0)
   jquery-minicolors-rails
   jquery-rails
@@ -583,7 +586,6 @@ DEPENDENCIES
   pundit!
   rails (= 4.2.1)
   rails_db
-  rake
   regularization!
   regularization_portal!
   remotipart

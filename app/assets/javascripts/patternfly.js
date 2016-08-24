@@ -7,6 +7,7 @@
 //= require tinymce-jquery
 //= require patternfly/javascripts/custom
 //= require patternfly/javascripts/highchart.min
+//= require patternfly/javascripts/chosen.jquery.min
 //= require chartkick
 //= require jquery.minicolors
 //= require jquery.minicolors.simple_form

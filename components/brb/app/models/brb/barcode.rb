@@ -1,7 +1,7 @@
 module Brb
   class Barcode
     include ActiveModel::Model
-    
+
 
     # capitulo 1 - composição da chave
 
@@ -16,7 +16,7 @@ module Brb
     attr_accessor :key_digit_one, :key_digit_two
 
     #variaveis de configuração
-    attr_accessor :coin 
+    attr_accessor :coin
 
     DATE_CORRECTION = "03/07/2000" #Essa data é para criação do fator vencimento, capitulo 7
 
@@ -132,7 +132,7 @@ module Brb
 
     def value_factor
       value = sprintf('%.2f', @value)
-      "#{'%010d' % value.to_s.gsub('.','').to_i}" 
+      "#{'%010d' % value.to_s.gsub('.','').to_i}"
     end
   end
 end

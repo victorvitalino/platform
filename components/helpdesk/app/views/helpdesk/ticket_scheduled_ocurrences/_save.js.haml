@@ -1,4 +1,5 @@
 - if @ticket_scheduled_ocurrence.errors.any?
   $('#modal .modal-content').html("#{escape_javascript(render 'new')}")
 - else
-  $('#modal .modal-content').html("#{escape_javascript(render '/ticket/in_progress')}")
+  $('#modal').modal('hide')
+  $('.index-ticket').html("#{escape_javascript(render '/helpdesk/tickets/index')}")

@@ -1,0 +1,22 @@
+= simple_form_for @situation do |f|
+  .row
+    .col-md-12
+      = f.input :name, placeholder: "Digite um nome para a situação"
+  .row
+    .col-md-12
+      = f.input :description, placeholder: "Descreva a situação"
+  .row
+    .col-md-2
+      = f.input :visible_portal, as: :select, include_blank: false
+    .col-md-10
+      = f.input :label_portal, placeholder: "Descrevar o que deverá aparecer no portal"
+  .row
+    .col-md-2
+      = f.input :color, placeholder: ".class"
+    .col-md-2
+      = f.input :status, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success'
+      = link_to "Voltar para listagem", occurrence_situations_path, class: 'btn btn-default'

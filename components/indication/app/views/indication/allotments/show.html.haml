@@ -1,0 +1,42 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Lote de indicação
+  .panel-body
+    .row
+      .col-md-12
+        %h2= @enterprise.name
+        %h3= @step.name
+    %hr/
+    .row
+      .col-md-12
+        = simple_form_for url_for, method: :get do |f|
+          .row
+            .col-md-2
+              = f.input :by_program, label: 'Por lista', selected: params[:by_program], collection: Candidate::Program.all, input_html: { name: 'by_program' }
+            .col-md-2
+              = f.input :by_cpf, as: :string, label: "Por CPF", input_html: { value: params[:by_name], class: 'cpf'}
+            .col-md-4
+              = f.input :by_name, as: :string, label: "Por nome", input_html: { value: params[:by_name]}
+            .col-md-2
+              = f.submit "Filtrar", name: nil, class: 'btn btn-success filter-button', data: { disable_with: t(:disable_with)}
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-bordered.table-striped
+          %thead
+            %tr
+              %th CPF
+              %th NOME
+              %th Pontuação
+              %th Programa
+              %th Faixa
+          %tbody
+            - @cadastres.each do |item|
+              %tr
+                %td= link_to item.cadastre.cpf.format_cpf, candidate.cadastre_path(cpf: item.cadastre.cpf), target: '_blank'
+                %td= item.cadastre.name
+                %td= item.pontuation.total
+                %td= item.source_list
+                %td= item.zone.name if item.zone.present?
+                

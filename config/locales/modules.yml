@@ -40,6 +40,8 @@ pt-BR:
       cadastres: "Cadastro"
       cadins: "Cadastro imobiliário"
       reports: "Relatórios"
+      situation_statuses: "Situação de cadastro"
+      procedural_statuses: "Situação de processo"
       enterprise_situation_statuses: "Situação candidato empresa"
     person:
       staffs: "Usuários"
@@ -96,7 +98,7 @@ pt-BR:
       allotments: "Lotes"
       exemptions: "Isenção"
     helpdesk:
-      tickets: "Ordems de serviço"
+      tickets: "Ordens de serviço"
       ticket_types: "Tipos de serviços"
       ticket_subjects: "Assuntos"
       ticket_ocurrence: "Ocorrência"

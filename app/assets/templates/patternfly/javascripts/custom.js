@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
 
+  $(".chosen-select").chosen({no_results_text: "Ops, não foi encontrado"}); 
+
   $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
   $('.hour').mask("00:00", {placeholder: "00:00"});
   $('.cpf').mask("000.000.000-00", {placeholder: "000.000.000-00"});

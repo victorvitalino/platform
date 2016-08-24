@@ -5,6 +5,7 @@ module Candidate
     belongs_to :cadastre_procedural
 
 
+    belongs_to :general_pontuation, class_name: "Candidate::View::GeneralPontuation", primary_key: :id, foreign_key: :cadastre_id
 
     enum situation_id: ['reserva', 'distribuído', 'distrato','transferencia', 'permuta','sobrestado']
 
@@ -40,18 +41,19 @@ module Candidate
 
     end
 
-    private
-
-
-    def get_dominial_chain(unit, cadastre)
+    def self.get_dominial_chain(unit, cadastre)
       @cadastre_address = Candidate::CadastreAddress.where('unit_id = ? AND cadastre_id <> ?', unit, cadastre).last
 
       if @cadastre_address.present?
-           @cadastre_address.dominial_chain + 1
+           @cadastre_address.dominial_chain.to_i + 1
       else
              0
       end
     end
+
+
+
+
 
 
   end

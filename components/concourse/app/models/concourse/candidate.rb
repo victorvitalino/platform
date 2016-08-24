@@ -3,6 +3,8 @@ module Concourse
     belongs_to :state, class_name: "Address::State"
     belongs_to :subscribe
     
+    audited
+    
     has_many :observations
     has_many :candidate_participation
     has_many :attendances
@@ -13,7 +15,7 @@ module Concourse
     scope :by_cpf, -> (cpf) { where(cpf: cpf)}
     scope :by_id, -> (id) { where(id: id)}
 
-    enum professional_type: ['arquiteto','engenheiro civil']
+    enum professional_type: ['arquiteto_e_urbanista','engenheiro_civil']
     enum gender: [:masculino, :feminino]
     enum status: [:processando, :pendente, :homologado, :indeferido]
 

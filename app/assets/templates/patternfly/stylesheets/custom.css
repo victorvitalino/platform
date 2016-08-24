@@ -1,3 +1,11 @@
+.no-color {
+  color: black !important;
+}
+.table-form .help-block {
+  margin-top: 0px !important; 
+  margin-bottom: 0px !important;
+}
+
 .table-form input {
   border: 0px solid #BABABA !important;
   padding: 0 !important;
@@ -82,11 +90,6 @@ body {
 .navbar-default {
   background-color: #FFFFFF !important;
   border-color: #C3C3C3 !important;
-}
-
-.panel-heading {
-  border-bottom: 1px #E0E0E0 solid;
-  margin-bottom: 35px;
 }
 
 .panel-heading h4 {

@@ -31,11 +31,19 @@
             = @ticket.deadline
           .col-md-4
             %label Situação:
-            = @ticket.status ? "Ativo" : "Inativo"
+            = @ticket.status_i18n
+        .row
+          .col-md-4
+            %label Código do computador:
+            = @ticket.code_computer
+          .col-md-4
+            - if @ticket.file_path_url.present?
+              = link_to "Ver anexo", @ticket.file_path_url, target: '_blank'
         %hr
         .row
           .col-md-12
-            = link_to 'Abrir ocorrência', new_ticket_ticket_ocurrence_path(@ticket), remote: true, class: 'btn btn-primary'
+            - if @ticket.status != 'closed'
+              = link_to 'Abrir ocorrência', new_ticket_ticket_ocurrence_path(@ticket), remote: true, class: 'btn btn-primary'
         - if @ticket.ticket_ocurrences.present?
           .row
             .col-md-12.index-ocurrence

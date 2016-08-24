@@ -1,0 +1,34 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title Gestão de situações de ocorrência
+  .panel-body
+    .row
+      .col-md-12
+        = link_to "+ Adicionar nova situação de ocorrência", new_occurrence_situation_path, class: 'btn btn-success'
+    %br/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th{style: 'width: 1px'} # 
+              %th Nome 
+              %th Descrição
+              %th Query
+              %th Tipo
+              %th Programa
+              %th Cod.
+              %th Ações
+          %tbody
+            - @situations.each do |item|
+              %tr
+                %td= item.id
+                %td= item.name
+                %td= item.description
+                %td= item.visible_portal ? "Sim" : "Não"
+                %td= item.label_portal
+                %td= item.color
+                %td= item.status ? "Ativo" : "Inativo"
+                %td.col-md-1
+                  = link_to "", edit_occurrence_situation_path(item), class: 'btn btn-success btn-xs glyphicon glyphicon-pencil'
+                  = link_to "", occurrence_situation_path(item), method: :delete, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove '

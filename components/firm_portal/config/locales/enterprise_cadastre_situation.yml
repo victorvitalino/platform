@@ -1,0 +1,9 @@
+pt-BR:
+  activemodel:
+    models:
+      'firm_portal/enterprise_cadastre_situation': "Situação do candidato"
+    attributes:
+      'firm_portal/enterprise_cadastre_situation':
+        observation: "observação"
+        enterprise_cadastre_status: "status"
+        file_path: "anexo"

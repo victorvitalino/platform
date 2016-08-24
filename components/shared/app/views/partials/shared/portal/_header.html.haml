@@ -7,11 +7,11 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand{:href => "#{portal.root_path}"}
-        %img{:alt => "...", :height => "71", :src => "/images/codhab.png"}/
+        %img{:alt => "CODHAB", :height => "71", :src => "/images/codhab.png"}/
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.dropdown.item_menu.habitacao
-          %a#link_habitacao.dropdown-toggle.item_menu{:href => "#"}
+          %a#link_habitacao.dropdown-toggle.item_menu{:href => "#/habitacao","aria-expanded" => "false", "data-toggle" => "dropdown"}
             Habitação
             %span.sr-only (current)
           %ul#habitacao.dropdown-menu-mod.dropdown-menu
@@ -28,7 +28,7 @@
                   %li.link_submenu
                     = link_to_nav l
         %li.dropdown.item_menu.regularizacao
-          %a#link_regularizacao.dropdown-toggle.item_menu{:href => "#"}
+          %a#link_regularizacao.dropdown-toggle.item_menu{:href => "#/regularizacao","aria-expanded" => "false", "data-toggle" => "dropdown"}
             Regularização
             %span.sr-only (current)
           %ul#regularizacao.dropdown-menu-mod.dropdown-menu
@@ -45,7 +45,7 @@
                   %li.link_submenu
                     = link_to_nav l
         %li.dropdown.item_menu.servicos
-          %a#link_servicos.dropdown-toggle.item_menu{:href => "#"}
+          %a#link_servicos.dropdown-toggle.item_menu{:href => "#/servicos","aria-expanded" => "false", "data-toggle" => "dropdown"}
             Produtos e Serviços
             %span.sr-only (current)
           %ul#servicos.dropdown-menu-mod.dropdown-menu
@@ -68,7 +68,7 @@
                     %li.link_submenu
                       = link_to_nav l
         %li.dropdown.item_menu.entidades
-          %a#link_entidades.dropdown-toggle.item_menu{:href => "#"}
+          %a#link_entidades.dropdown-toggle.item_menu{:href => "#/entidades","aria-expanded" => "false", "data-toggle" => "dropdown"}
             Entidades
             %span.sr-only (current)
           %ul#entidades.dropdown-menu-mod.dropdown-menu
@@ -87,7 +87,7 @@
 
 
         %li.dropdown.item_menu.editais
-          %a#link_editais.dropdown-toggle.item_menu{:href => "#"}
+          %a#link_editais.dropdown-toggle.item_menu{:href => "#/editais","aria-expanded" => "false", "data-toggle" => "dropdown"}
             Editais
             %span.sr-only (current)
           %ul#editais.dropdown-menu-mod.dropdown-menu
@@ -123,7 +123,7 @@
                     = link_to_nav l
 
         %li.dropdown.item_menu.concursos
-          %a#link_concursos.dropdown-toggle.item_menu{:href => "#"}
+          %a#link_concursos.dropdown-toggle.item_menu{:href => "#/concursos","aria-expanded" => "false", "data-toggle" => "dropdown"}
             Concursos
             %span.sr-only (current)
           %ul#concursos.dropdown-menu-mod.dropdown-menu

@@ -1,24 +1,27 @@
 = simple_form_for @participation, url: project_restrict_participations_path(project_id: @project) do |f|
   .row
     .col-md-12
-      = f.label "Membros da sua equipe"
-      = f.input :team_description, label: false, input_html: { placeholder: "Insira os nomes dos integrantes da sua equipe: Maria, Jonas, Pedro, Marcelo, Fernanda.. etc"}
+      %h4 Adicione os dados da sua equipe abaixo:
+  .row
+    .col-md-12
+      = f.simple_fields_for :team_participations do |builder|
+        = render 'team_participation_fields', f: builder
+  .row
+    .col-md-12
+      = link_to_add_fields "+ Adicionar membro", f, :team_participations
   %hr/
   .row
-    .col-md-5
-      = f.input :archive_one, label: "Prancha A3-01 (PDF, máximo de 3MB)", as: :file
+    .col-md-12
+      %h4 Projeto
   .row
     .col-md-5
-      = f.input :archive_two, label: "Prancha A3-02 (PDF, máximo de 3MB)", as: :file
+      = f.input :archive_one, label: "Pranchas A3 em um único arquivo PDF(máximo de 18MB)", as: :file
   .row
     .col-md-5
-      = f.input :archive_three, label: "Prancha A3-03 (PDF, máximo de 3MB)", as: :file
+      = f.input :archive_two, label: "Prancha A2 (PDF, máximo de 3MB)", as: :file
   .row
     .col-md-5
-      = f.input :archive_four, label: "Prancha A3-04 (PDF, máximo de 3MB)", as: :file
-  .row
-    .col-md-5
-      = f.input :archive_five, label: "Prancha síntese A2-01 (PDF, máximo de 3MB)", as: :file
+      = f.input :archive_three, label: "Imagem ilustrativa (PNG ou JPEG, máximo de 3MB)", as: :file
   %hr/
   .row
     .col-md-12

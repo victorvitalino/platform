@@ -160,17 +160,17 @@
                       %th Situação Cad.
                       %th Data
                   %tbody
-                    - @cadastres.contemplated(params[:by_enterprise]).order('candidate_cadastres.name').each do |cad|
+                    - @cadastres_contemplated.paginate(:page => params[:page], :per_page => 20).each do |cad|
                       %tr
                         %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.cpf)
                         %td= cad.cadastre.cpf.format_obfuscator_cpf
                         %td= cad.source_list
-                        %td= "Faixa #{cad.zone}"
+                        %td= "Faixa #{cad.enterprise_cadastre.zone}"
                         %td= cad.cadastre.current_situation_name
-                        %td= cad.created_at.strftime("%d/%m/%Y")
+                        %td= cad.enterprise_cadastre.created_at.strftime("%d/%m/%Y")
             .row
               .col-md-8.col-md-offset-3.paginate
-                = will_paginate @cadastres.contemplated, renderer: BootstrapPagination::Rails
+                = will_paginate  @cadastres_contemplated.paginate(:page => params[:page], :per_page => 20), renderer: BootstrapPagination::Rails
           - if params[:list] == 'desactived'
             .row
               .col-md-12
@@ -286,7 +286,7 @@
 
         } else {
 
-          html = "<option>Não existem lotes</option>"
+          html = "<option value>Não existem lotes</option>"
           $("#allotment_id").html(html)
         }
 

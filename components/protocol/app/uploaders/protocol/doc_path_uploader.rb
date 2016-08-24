@@ -4,7 +4,7 @@ class Protocol::DocPathUploader < CarrierWave::Uploader::Base
   storage :file
 
   def store_dir
-    "uploads/docs"
+    "/public/uploads/docs"
   end
 
 

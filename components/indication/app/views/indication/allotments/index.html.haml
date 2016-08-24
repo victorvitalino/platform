@@ -16,24 +16,33 @@
               %th #
               %th Faixa.
               %th Demanda
-              %th RII
-              %th RIE
-              %th ID.
-              %th VUL.
-              %th DEF.
+              %th{colspan: 2} RII
+              %th{colspan: 2} RIE
+              %th{colspan: 2} IDOSO
+              %th{colspan: 2} VUL.
+              %th{colspan: 2} DEF.
               %th Data
+              %th Situação
               %th Ações
           %tbody
-            - @allotments.each do |allotment|
+            - @allotments.order('created_at DESC').each do |allotment|
               %tr
                 %td= allotment.id
-                %td= allotment.zone
+                %td= allotment.zone.name if allotment.zone.present?
                 %td= allotment.demand
                 %td= allotment.rii
+                %td= "#{allotment.rii.percent_of(allotment.demand)} %"
                 %td= allotment.rie
+                %td= "#{allotment.rie.percent_of(allotment.demand)} %"
                 %td= allotment.old
+                %td= "#{allotment.old.percent_of(allotment.demand)} %"
                 %td= allotment.vulnerable
+                %td= "#{allotment.vulnerable.percent_of(allotment.demand)} %"
                 %td= allotment.special
+                %td= "#{allotment.special.percent_of(allotment.demand)} %"
                 %td= allotment.created_at.strftime('%d/%m/%Y')
+                %td= allotment.situation
                 %td
-                  = link_to '', cadastres_path(allotment_id: allotment.id), title: "Visualizar indicados",class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+                  = link_to '', enterprise_step_allotment_path(enterprise_id: @enterprise.id, step_id: @step.id, id: allotment.id), title: "Visualizar indicados",class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."}
+                  - if !allotment.status
+                    = link_to '', enterprise_step_allotment_path(enterprise_id: @enterprise.id, step_id: @step.id, id: allotment.id), method: :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-sm' , data: { confirm: t(:confirm)}

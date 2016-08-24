@@ -6,12 +6,45 @@
         = link_to "Voltar", allotments_path, class: 'pull-right mgl',data: {disable_with: "carregando..."}
   .panel-body
     .row
+      .col-md-6
+        .row
+          .col-md-12
+            %b Transmitente:
+            = " #{@allotment.notifiers} - CNPJ: #{@allotment.cnpj_notifiers}"
+        .row
+          .col-md-12
+            %b Tipo de isenção:
+            = @allotment.exemption_type.upcase
+        .row
+          .col-md-12
+            %b Status da solicitação:
+            = @allotment.send_status.name if @allotment.send_status.present?
+        .row
+          .col-md-12
+            %b Usuário solicitante:
+            = @allotment.staff.name if @allotment.staff.present?
+        .row
+          .col-md-12
+            %b Observação:
+            = @allotment.observation
+        - if @allotment.send_status_id == 4
+          .row
+            .col-md-12
+              %b Retorno com problemas:
+              = @exemptions.where(act_number: '').count
+          .row
+            .col-md-12
+              %b Retorno com Ato:
+              = @exemptions.where(return_message: '').count
+      .col-md-6
+        = link_to "Reprocessar", allotment_to_process_path(@allotment), class: 'btn btn-warning pull-right mgl',data: {disable_with: "carregando..."} if @allotment.send_status_id > 2
+    %hr
+    .row
       .col-md-12
         - unless @allotment.send_status_id > 2
           = link_to "Upload planilha",  new_allotment_exemption_file_path(@allotment), remote:true, class: 'btn btn-success btn-sm',data: {disable_with: "carregando..."}
           = link_to "Incluir candidato", new_allotment_exemption_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."} if @allotment.send_type == "pedido de isenção"
           = link_to "Incluir candidato", allotment_new_parcial_path(@allotment), class: 'btn btn-info btn-sm',data: {disable_with: "carregando..."} if @allotment.send_type == "cancelamento parcial"
-        = link_to "Reprocessar", allotment_to_process_path(@allotment), class: 'btn btn-warning pull-right mgl',data: {disable_with: "carregando..."} if @allotment.send_status_id > 2
         = link_to "Enviar solicitação", allotment_send_exemption_path(@allotment),  class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2 && @allotment.send_type == "pedido de isenção"
         = link_to "Enviar cancelamento", allotment_send_parcial_cancelation_path(@allotment), class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2 && @allotment.send_type == "cancelamento parcial"
         = link_to "Enviar cancelamento", allotment_send_total_cancelation_path(@allotment),  class: 'btn btn-warning btn-sm pull-right mgl' if @allotment.send_status_id == 2 && @allotment.send_type == "cancelamento total"
@@ -22,6 +55,9 @@
             .col-md-2
               = f.label 'CPF', class: 'fg-label'
               = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf]}
+            .col-md-2
+              = f.label 'Retorno', class: 'fg-label'
+              = f.input :return_message, as: 'select', collection:(Sefaz::Exemption.returns.map {|ke,va| [ke,va]}), selected: params[:return_message], label: false,prompt: "Selecione...", input_html: { name: 'return_message', value: params[:return_message]}
             .col-md-1
               = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
             .col-md-2
@@ -31,3 +67,6 @@
       = render 'index'
     - else
       = render 'index_cancelation'
+    .row
+      .col-md-6.col-md-offset-3
+        = will_paginate @exemptions, renderer: BootstrapPagination::Rails

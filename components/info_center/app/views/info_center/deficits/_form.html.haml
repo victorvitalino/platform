@@ -1,0 +1,77 @@
+= simple_form_for(@deficit) do |f|
+  .card-body.card-padding
+    .row
+      .col-md-12
+        = f.label "Nome"
+        = f.input :name,label: false,input_html: { placeholder: 'Digite um nome'}
+      .col-md-12
+        = f.label "CPF"
+        = f.input :cpf,label: false,input_html: { placeholder: 'Digite um cpf'}
+      .col-md-12
+        = f.label "Telefone"
+        = f.input :phone,label: false,input_html: { placeholder: 'Digite apenas números'}
+      .col-md-12
+        = f.label "Endereço"
+        = f.input :address,label: false,input_html: { placeholder: 'Digite um endereço válido'}
+      .col-md-12
+        = f.label "Qual tipo do seu imóvel"
+        = f.input :property_type, label: false, include_blank: false
+      .col-md-12
+        = f.label "Recebe beneficio do governo? qual?"
+        = f.input :benefit, label: false
+      .col-md-12
+        = f.label "Quantas casas tem em seu lote?"
+        = f.input :lot_houses, label: false, include_blank: false, input_html: {placeholder: 'Apenas números'}
+      .col-md-12
+        = f.label "Quem mora no Lote?"
+        = f.input :lot_people, label: false, input_html: { placeholder: 'Ex: Maria Pereira - CPF: 00882853161 ',id: 'lot_people', rows: 5, cols: 80}
+      .col-md-12
+        = f.label "Onde você mora tem:"
+        = f.input :water, inline_label: 'Água'
+        = f.input :light, inline_label: 'Luz'
+        = f.input :asphalt, inline_label: 'Asfalto'
+        = f.input :sewer, inline_label: 'Esgoto'
+        = f.input :sidewalk, inline_label: 'Calçada'
+      .col-md-12
+        = f.label "Sua casa tem cozinha?"
+        = f.input :kitchen, as: :select, label: false, include_blank: false
+      .col-md-12
+        = f.label "Sua casa tem laje?"
+        = f.input :slab, as: :select, label: false, include_blank: false
+      .col-md-12
+        = f.label "Você tem a escritura do seu lote?"
+        = f.input :contract, as: :select, label: false, include_blank: false
+      .col-md-12
+        = f.label "Quais documentos do lote você possui?"
+        = f.input :document, label: false, include_blank: false, input_html: { placeholder: 'Descreva...', id: 'roof', rows: 5, cols: 80}
+      .col-md-12
+        = f.label "Qual a situação do telhado da sua casa?"
+        = f.input :roof, label: false, input_html: { placeholder: 'Descreva...', id: 'roof', rows: 5, cols: 80}
+      .col-md-12
+        = f.label "Existem paredes entre quartos, coziha, sala, etc?"
+        = f.input :wall, as: :select, label: false, include_blank: false
+      .col-md-12
+        = f.label "Quantas pessoas moram em sua casa?"
+        = f.input :people_living,  label: false, include_blank: false
+        .col-md-12
+        = f.label "Quantos quartos tem?"
+        = f.input :room,  label: false, include_blank: false
+      .col-md-12
+        = f.label "Quem dorme onde?"
+        = f.input :sleep_local, label: false, input_html: { placeholder: 'Descreva...', id: 'roof', rows: 5, cols: 80}
+      .col-md-12
+        = f.label "Qual sua renda familiar? (Salarios mínimos)"
+        = f.input :family_income,label: false, include_blank: false
+      .col-md-12
+        = f.label "Você paga aluguel?"
+        = f.input :rent, as: :select, label: false, include_blank: false
+      .col-md-12
+        = f.label "Se sim, quanto paga?"
+        = f.input :rent_total, label: false, include_blank: false
+      .col-md-12
+        = f.label "Se a CODHAB te vendesse um lote você gostaria de comprar ?"
+        = f.input :buy_lot, as: :select, label: false, include_blank: false
+    .row
+      .col-md-12
+        = f.button :submit, class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+        = link_to t(:button_back) ,deficits_path , class: 'btn btn-default'

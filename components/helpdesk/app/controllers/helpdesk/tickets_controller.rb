@@ -2,8 +2,9 @@ require_dependency 'helpdesk/application_controller'
 
 module Helpdesk
   class TicketsController < ApplicationController
-    before_action :set_ticket, only: [:show, :show_requester, :destroy, :edit, :update]
+    before_action :set_ticket, only: [:show, :show_requester, :destroy, :edit, :update, :closed_ticket, :closed]
     before_action :set_ticket_ocurrence, only: [:show,:show_requester]
+
 
     def index
       authorize :ticket,  :index?
@@ -32,6 +33,8 @@ module Helpdesk
         ticket_type_id: params[:ticket][:ticket_type_id],
         ticket_subject_title: params[:ticket][:ticket_subject_title],
         description: params[:ticket][:description],
+        code_computer: params[:ticket][:code_computer],
+        file_path: params[:ticket][:file_path],
         requester_id: current_user.id
       })
 
@@ -44,41 +47,44 @@ module Helpdesk
 
     def open
       authorize :ticket,  :to_attendant?
-      @ticket = Helpdesk::Ticket.find(params[:ticket_id])
-      if @ticket.update(status: 0, attendant_id: current_user.id, attendance_start: Time.now)
-        TicketOcurrence.create_ocurrence(@ticket.id, current_user.id,"reabertura de chamado.")
-        flash[:success] = t :success
-        redirect_to action: 'index', q: params[:q]
-      else
-        flash[:danger] = t :danger
-        redirect_to action: 'index', q: params[:q]
-      end
+
+        @ticket = Helpdesk::Ticket.find(params[:ticket_id])
+        if @ticket.update(status: 0, attendant_id: current_user.id, attendance_start: Time.now)
+          @ticket_ocurrence = @ticket.ticket_ocurrences.new(
+          staff_id:  current_user.id,
+          ocurrence: 'Reabertura de chamado',
+          responsible_id:  current_user.id,
+          )
+          @ticket_ocurrence.save
+
+          flash[:success] = t :success
+          redirect_to action: 'index', q: params[:q]
+        else
+          flash[:danger] = t :danger
+          redirect_to action: 'index', q: params[:q]
+        end
+
     end
 
     def in_progress
       authorize :ticket,  :to_attendant?
-      @ticket = Helpdesk::Ticket.find(params[:ticket_id])
-      if @ticket.update(status: 1, attendant_id: current_user.id, attendance_start: Time.now)
-        flash[:success] = t :success
-        redirect_to action: 'index', q: params[:q]
+
+      attendant = Helpdesk::TicketAttendant.where(staff_id: current_user.id)
+
+      if attendant.present?
+        @ticket = Helpdesk::Ticket.find(params[:ticket_id])
+        if @ticket.update(status: 1, attendant_id: current_user.id, attendance_start: Time.now)
+          flash[:success] = t :success
+          redirect_to action: 'index', q: params[:q]
+        else
+          flash[:danger] = t :danger
+          redirect_to action: 'index', q: params[:q]
+        end
       else
-        flash[:danger] = t :danger
+        flash[:danger] = "Você não está cadastrado como atendente"
         redirect_to action: 'index', q: params[:q]
       end
-    end
 
-
-
-    def closed
-      authorize :ticket,  :closed?
-      @ticket = Helpdesk::Ticket.find(params[:ticket_id])
-      if @ticket.update(status: 2, attendant_id: current_user.id, attendance_end: Time.now)
-        flash[:success] = t :success
-        redirect_to action: 'index', q: params[:q]
-      else
-        flash[:danger] = t :danger
-        redirect_to action: 'index', q: params[:q]
-      end
     end
 
     def edit
@@ -103,13 +109,15 @@ module Helpdesk
     private
 
     def set_params
-      params.require(:ticket).permit(:ticket_subject_title, :ticket_type_id)
+      params.require(:ticket).permit(:ticket_subject_title, :ticket_type_id, :code_computer, :file_path)
     end
 
     def set_ticket
       params[:id] = params[:id].present? ? params[:id] : params[:ticket_id]
       @ticket = Ticket.find(params[:id])
     end
+
+
 
     def set_ticket_subject
       @ticket_subject = TicketSubject.unscoped.find(params[:id])

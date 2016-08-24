@@ -1,0 +1,25 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      Cadastro de Déficit
+      = link_to 'Novo', new_deficit_path,  data: { no_turbolink: true }, class: 'pull-right'
+  .panel-body
+
+    %br/
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Ações
+
+          %tbody
+            - @deficits.each do |deficit|
+              %tr
+                %td= deficit.name
+                %td= deficit.cpf
+                %td.col-md-2
+                  = link_to '', edit_deficit_path(deficit), class: 'glyphicon glyphicon-pencil  btn btn-primary btn-xs', data: {turbolinks: false}
+                  = link_to '', deficit, class: 'glyphicon glyphicon-remove  btn btn-danger btn-xs', :method => :delete, :data => { :confirm => 'Are you sure?' }

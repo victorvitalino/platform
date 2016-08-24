@@ -18,4 +18,4 @@
           %td
             = a.sector.name if a.sector.present?
           %td
-            = link_to "", allotment_conduct_path(@conduct.allotment.id,a.id), method: :delete, remote:true, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', data: {confirm: "#{t(:confirm_delete)}"}
+            = link_to "", allotment_conduct_path(@conduct.allotment.id,a.id), method: :delete, class: 'glyphicon glyphicon-remove btn btn-danger btn-xs', data: {confirm: "#{t(:confirm_delete)}"}

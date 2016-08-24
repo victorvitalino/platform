@@ -1,3 +1,4 @@
+
 module Candidate
   class EnterpriseCadastre < ActiveRecord::Base
     belongs_to :cadastre
@@ -13,25 +14,30 @@ module Candidate
       allotments = Indication::Allotment.where(step_id: step_id).map(&:id)
       self.prepare_allotment(allotments)
     }
-    scope :by_enterprise, -> (enterprise_id = nil)  { where(enterprise_id: enterprise_id)}
-    scope :by_allotment,  -> (allotment_id = nil)   { where(indication_cadastre_id: prepare_allotment(allotment_id))}
-    scope :by_step,       -> (step_id = nil)        { where(indication_cadastre_id: prepare_step(step_id))}
-    scope :by_cpf,        -> (cpf = nil)            { joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
+    scope :by_enterprise,    -> (enterprise_id = nil)   { where(enterprise_id: enterprise_id)}
+    scope :by_allotment,     -> (allotment_id = nil)    { where(indication_cadastre_id: prepare_allotment(allotment_id))}
+    scope :by_step,          -> (step_id = nil)         { where(indication_cadastre_id: prepare_step(step_id))}
+    scope :by_cpf,           -> (cpf = nil)             { joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
+    scope :indication_date,  -> (indication_date = nil) { where('created_at::date = ?', Date.parse(indication_date) )}
+
 
     scope :name_candidate,  -> (name) {joins(:cadastre).where('candidate_cadastres.name like ?', "#{name}%")}
-    scope :status, -> (status) { where(status: status) }
+    scope :status, -> (status) { where(inactive: status) }
 
     scope :desactive, -> { where(inactive: true) }
 
-    scope :contemplated, -> (enterprise_id = nil){
-      self.joins('INNER JOIN general_pontuations AS point
-                  ON point.id = candidate_enterprise_cadastres.cadastre_id
-                  inner join candidate_cadastre_addresses
-                  on candidate_cadastre_addresses.cadastre_id = candidate_enterprise_cadastres.cadastre_id
-                  inner join address_units as unit
-                  on unit.id = candidate_cadastre_addresses.unit_id')
-                  .where('point.situation_status_id IN(7,14) and candidate_cadastre_addresses.situation_id = 1
-                  and unit.situation_unit_id = 3 and unit.project_enterprise_id = ?', enterprise_id)
+    scope :contemplated, -> (enterprise_id = nil, step_id = nil, allotment_id = nil){
+      query = Candidate::View::IndicatedContemplated.per_enterprise(enterprise_id)
+
+      query = query.joins('INNER JOIN indication_cadastres
+                           ON indication_cadastres.id = indicated_contemplateds.indication_id')
+      query = query.joins('INNER JOIN indication_allotments
+                           ON indication_allotments.id = indication_cadastres.allotment_id')
+
+      query = query.where('indication_allotments.id = ?', allotment_id)  if !allotment_id.nil? && !allotment_id.empty?
+      query = query.where('indication_allotments.step_id = ?', step_id)  if !step_id.nil? && !step_id.empty?
+
+      return query
     }
 
     scope :in_process, -> {

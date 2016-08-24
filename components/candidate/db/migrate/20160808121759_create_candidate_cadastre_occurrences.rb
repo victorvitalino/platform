@@ -3,15 +3,20 @@ class CreateCandidateCadastreOccurrences < ActiveRecord::Migration
     create_table :candidate_cadastre_occurrences do |t|
       
       t.integer :cadastre_id,             index: true
-      t.integer :occurrence_situation_id,  index: true
-      t.integer :occurrence_type_id,       index: true
+      t.integer :occurrence_situation_id, index: true
+      t.integer :occurrence_type_id,      index: true
       t.integer :attendance_id,           index: true
       t.integer :program_id,              index: true
-      
+      t.integer :creator_id,              index: true
       t.text    :description
+        
+      #TARGET VALIDATION
+      t.string    :target_model_name
+      t.integer   :target_model_id
       
-      t.boolean   :solved,                     default: false
-      t.integer   :feedback_staff_id,          index: true
+      #SOLVED FEEDBACK
+      t.boolean   :solved,                default: false
+      t.integer   :feedback_staff_id,     index: true
       t.text      :feedback_observation
       t.string    :feedback_archive
       t.datetime  :feedback_datetime

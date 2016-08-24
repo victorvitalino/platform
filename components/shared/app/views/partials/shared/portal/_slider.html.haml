@@ -3,7 +3,10 @@
     - slider_each(6,'DESC') do |s|
       - batata(s.post_category.title) do |b|
         %li.clone{"aria-hidden" => "true", :style => "height: 413px;"}
-          = image_tag s.thumb, :style => "width:68%;float:left;"
+          - if s.thumb.present?
+            = image_tag s.thumb, :style => "width:68%;float:left;"
+          - else
+            = image_tag '/images/codhab.png', :style => "width:68%;float:left;"
           - if s.color.present?
             .new-caption{:style =>"background-color: #{s.color}"}
               %h3{:style => "margin-top:0px;"}

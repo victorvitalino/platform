@@ -1,5 +1,6 @@
 require_dependency 'application_helper'
 require_dependency 'portal/application_helper'
+require_dependency 'concourse/application_helper'
 
 module ConcoursePortal
   class ApplicationController < ActionController::Base
@@ -8,6 +9,7 @@ module ConcoursePortal
 
     helper ::ApplicationHelper
     helper Portal::ApplicationHelper
+    helper ConcoursePortal::ApplicationHelper
     
     private
 

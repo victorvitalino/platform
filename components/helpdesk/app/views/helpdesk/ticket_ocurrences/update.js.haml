@@ -1,1 +1,5 @@
-= render 'save'
+- if @ticket_ocurrence.errors.any?
+  $('#modal .modal-content').html("#{escape_javascript(render 'edit')}")
+- else
+  $('#modal').modal('hide')
+  $('.index-ocurrence').html("#{escape_javascript(render '/helpdesk/tickets/index_ocurrence')}")

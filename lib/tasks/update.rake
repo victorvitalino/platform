@@ -3,6 +3,15 @@ require "open-uri"
 
 namespace :update do
 
+  task :zone => :environment do
+
+    @allotments = Indication::Allotment.all
+
+    @allotments.each do |item|
+
+    end
+  end
+
   desc "migração de log"
   task :firm => :environment do
 
@@ -10,35 +19,23 @@ namespace :update do
 
 
 
-     CSV.foreach("lib/files/inidcar.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/address.csv", :col_sep => "#") do |row|
 
 
-           @teste = Indication::Cadastre.new(
-           allotment_id: 67,
-           cadastre_id: row[0],
-           program_id: row[4],
-           pontuation_id: row[5],
-           zone: 2,
-           created_at: row[1],
-           source_list: row[2],
+           @teste = Candidate::CadastreAddress.new(
+           cadastre_id: row[1],
+           unit_id: row[3],
+           dominial_chain: 0,
+           type_receipt: 0,
+           situation_id: 1,
+           created_at: row[2]
            )
            @teste.save
 
-           if @teste.present?
 
-             @teste1 = Candidate::EnterpriseCadastre.new(
-             enterprise_id: 12,
-             cadastre_id: row[0],
-             indication_cadastre_id: @teste.id,
-             zone: 2,
-             created_at: row[1],
-             source_list: row[2],
-             )
-             @teste1.save
-
-           end
 
            #puts @teste.inspect
+          # puts @status.inspect
 
            puts @index += 1
        end
