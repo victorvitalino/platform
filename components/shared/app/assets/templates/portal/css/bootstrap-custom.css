@@ -1320,7 +1320,6 @@ body{
       /* Landscape iphone 6 Plus*/
       @media only screen
         and (device-width: 736px)
-        and (device-height: 414px)
         and (-webkit-device-pixel-ratio: 3)
         and (orientation: landscape) {
           .bxslide2 li img{
@@ -1405,7 +1404,6 @@ body{
   /* Portrait Galaxy Note - S4 - S3*/
   @media only screen
     and (device-width: 360px)
-    and (device-height: 640px)
     and (-webkit-min-device-pixel-ratio: 2)
     and (orientation: portrait) {
       .bxslide2 li img{
@@ -1665,7 +1663,6 @@ and (orientation: landscape) {
 
 @media screen
 and (device-width: 384px)
-and (device-height: 567px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: portrait) {
   .bxslide2 li img{
@@ -1755,7 +1752,6 @@ and (orientation: portrait) {
 /*Portrait nexus 4* - 5x - 6p*/
 @media screen
 and (device-width: 384px)
-and (device-height: 567px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: portrait) {
   .bxslide2 li img{
