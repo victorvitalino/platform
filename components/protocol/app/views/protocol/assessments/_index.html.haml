@@ -5,12 +5,26 @@
     %td
       = a.document_type.name if a.document_type.present?
     %td
+      = a.subject.name if a.subject.present?
+    %td
       = a.sector.acron if a.sector.present?
-    %td.col-md-3
-      = link_to "", edit_assessment_path(a), title: "editar",  class: 'glyphicon glyphicon-share-alt btn btn-primary btn-xs',data: {disable_with: "carregando..."} if policy(:Assessment, namespace: Protocol).update?
-      = link_to "", assessment_path(a), title: "visualizar",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs',data: {disable_with: "carregando..."} if policy(:Assessment, namespace: Protocol).index?
-      = link_to "", assessment_show_print_path(a), target: "_blank", title: "impressão",  class: 'glyphicon glyphicon-print btn btn-success btn-xs' if policy(:Assessment, namespace: Protocol).index?
-      = link_to "" ,  new_assessment_digital_document_path(a), title: 'Documento Digital', class: 'glyphicon glyphicon-open-file btn btn-info btn-xs',data: {disable_with: "carregando..."}
-      = link_to "", new_assessment_attach_document_path(a), title: 'Anexar/Apensar Documento', class: 'glyphicon glyphicon-duplicate btn btn-info btn-xs',data: {disable_with: "carregando..."}
-      = link_to "", assessment_path(a), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar', class: 'glyphicon glyphicon-remove btn btn-danger btn-xs',data: {disable_with: "carregando..."} if policy(:Assessment, namespace: Protocol).destroy?
-      = link_to "", assessment_call_controls_path(a), title: 'Ligação', class: 'glyphicon glyphicon-earphone btn btn-warning btn-xs',data: {disable_with: "carregando..."} if policy(:Call_control, namespace: Protocol).index?
+    %td{style: 'width: 1%'}
+      .btn-group{:role => "group"}
+        %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+          %i.glyphicon.glyphicon-cog
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            = link_to "Editar", edit_assessment_path(a), title: "editar",data: {disable_with: "carregando..."} if policy(:Assessment, namespace: Protocol).update?
+          %li
+            = link_to "Visualizar", assessment_path(a), title: "visualizar",data: {disable_with: "carregando..."} if policy(:Assessment, namespace: Protocol).index?
+          %li
+            = link_to "Impressão", assessment_show_print_path(a), target: "_blank", title: "impressão" if policy(:Assessment, namespace: Protocol).index?
+          %li
+            = link_to "Documento Digital" ,  new_assessment_digital_document_path(a), title: 'Documento Digital',data: {disable_with: "carregando..."}
+          %li
+            = link_to "Anexar/Apensar Documento", new_assessment_attach_document_path(a), title: 'Anexar/Apensar Documento',data: {disable_with: "carregando..."}
+          %li
+            = link_to "Excluir", assessment_path(a), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Deletar',data: {disable_with: "carregando..."} if policy(:Assessment, namespace: Protocol).destroy?
+          %li
+            = link_to "Ligação", assessment_call_controls_path(a), title: 'Ligação',data: {disable_with: "carregando..."} if policy(:Call_control, namespace: Protocol).index?

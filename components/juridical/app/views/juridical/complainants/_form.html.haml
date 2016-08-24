@@ -1,0 +1,9 @@
+= simple_form_for [@legal_advice,@complainant], remote: true do |f|
+  .row
+    .col-md-12
+      = f.label :name, class: 'fg-label'
+      = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button) }

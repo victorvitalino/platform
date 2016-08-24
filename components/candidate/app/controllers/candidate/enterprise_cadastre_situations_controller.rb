@@ -8,7 +8,7 @@ module Candidate
     # GET /inheritors
     def index
       #authorize :enterprise_cadastre_situation, :index?
-      @enterprise_cadastre_situations = @enterprise_cadastre.enterprise_cadastre.all
+      @enterprise_cadastre_situations = @enterprise_cadastre.enterprise_cadastre_situations.all
     end
 
     # GET /inheritors/1

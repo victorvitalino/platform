@@ -14,13 +14,15 @@ module Candidate
       allotments = Indication::Allotment.where(step_id: step_id).map(&:id)
       self.prepare_allotment(allotments)
     }
-    scope :by_enterprise, -> (enterprise_id = nil)  { where(enterprise_id: enterprise_id)}
-    scope :by_allotment,  -> (allotment_id = nil)   { where(indication_cadastre_id: prepare_allotment(allotment_id))}
-    scope :by_step,       -> (step_id = nil)        { where(indication_cadastre_id: prepare_step(step_id))}
-    scope :by_cpf,        -> (cpf = nil)            { joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
+    scope :by_enterprise,    -> (enterprise_id = nil)   { where(enterprise_id: enterprise_id)}
+    scope :by_allotment,     -> (allotment_id = nil)    { where(indication_cadastre_id: prepare_allotment(allotment_id))}
+    scope :by_step,          -> (step_id = nil)         { where(indication_cadastre_id: prepare_step(step_id))}
+    scope :by_cpf,           -> (cpf = nil)             { joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf)}
+    scope :indication_date,  -> (indication_date = nil) { where('created_at::date = ?', Date.parse(indication_date) )}
+
 
     scope :name_candidate,  -> (name) {joins(:cadastre).where('candidate_cadastres.name like ?', "#{name}%")}
-    scope :status, -> (status) { where(status: status) }
+    scope :status, -> (status) { where(inactive: status) }
 
     scope :desactive, -> { where(inactive: true) }
 

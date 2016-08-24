@@ -1,0 +1,14 @@
+- @enterprise_cadastres.each do |a|
+  %tr
+    %td
+      = a.cadastre.name if a.cadastre.present?
+    %td
+      = link_to a.cadastre.cpf, cadastres_path(cpf: a.cadastre.cpf) if a.cadastre.present?
+    %td
+      = a.enterprise.name if a.enterprise.present?
+    %td
+      = a.inactive == false ? "Inativa" : "Ativa"
+    %td
+      = a.created_at.strftime('%d/%m/%Y')
+    %td
+      = link_to '',enterprise_cadastre_enterprise_cadastre_situations_path(a), title: "Retorno da empresa",  class: 'glyphicon glyphicon-eye-open btn btn-success btn-xs'

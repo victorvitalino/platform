@@ -11,16 +11,16 @@
             %tr
               %th Nome
               %th CPF
-              %th Observação
               %th Status
+              %th Observação
               %th Documento
               %th Data
-              %th Ações
           %tbody
             - @enterprise_cadastre_situations.each do |e|
               %tr
                 %td= e.enterprise_cadastre.cadastre.name if e.enterprise_cadastre.cadastre.present?
-                %td= e.enterprise_cadastre.cadastre.cpf if e.enterprise_cadastre.cpf.present?
-                %td= e.observation
+                %td= e.enterprise_cadastre.cadastre.cpf if e.enterprise_cadastre.cadastre.cpf.present?
                 %td= e.enterprise_situation_status.name if e.enterprise_situation_status.present?
-                %td= e.created_at
+                %td= e.observation
+                %td= e.file_path
+                %td= e.created_at.strftime('%d/%m/%Y - %H:%m:%S')
