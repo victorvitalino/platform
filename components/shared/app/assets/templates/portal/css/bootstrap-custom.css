@@ -713,6 +713,12 @@ body{
     .image_bloco_responsivo{
       display: none;
     }
+    .publicity{
+      margin: 0 0 25px 0;
+    }
+    .publicity2{
+      margin: 0;
+    }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
       width: 100%!important;
     }
@@ -746,6 +752,8 @@ body{
     }
     .topSlider_action{
       display: none;
+    }
+
     }
     .about_action_title{
       font-size: 100px!important;
@@ -795,6 +803,12 @@ body{
     }
     .image_bloco_responsivo{
       display: none;
+    }
+    .publicity{
+      margin: 0 0 20px 0!important;
+    }
+    .publicity2{
+      margin: 0;
     }
     #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
       width: 100%!important;
