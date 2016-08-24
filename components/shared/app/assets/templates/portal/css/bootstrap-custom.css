@@ -639,7 +639,9 @@ body{
   background-color: #EBECF0;
 }
 /*carta*/
-
+.totalresult{
+  margin-top: 40px;
+}
 .carta{
   top: 0px!important;
   margin-left: 30px!important;
@@ -660,15 +662,24 @@ body{
   width: 66px;
   height: 67px;
 }
+.mes_corrente_result{
+  display: none;
+}
 /* Portrait and Landscape iphone4*/
 @media only screen
   and (min-device-width: 320px)
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
-    .navbar-superior{
+    .fundo_resultados{
+      height: 665px;
+    }
+    .totalresult{
+      margin-top: 10px;
+    }
+    .navbar-superior,.blocovid,.bx-controls,.graficoresult{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -690,7 +701,7 @@ body{
     .dropdown-menu {
       position: absolute!important;
     }
-    }
+  }
 /* Landscape iphone 4*/
 /* Portrait */
 @media only screen
@@ -698,16 +709,19 @@ body{
   and (device-height: 480px)
   and (-webkit-device-pixel-ratio: 2)
   and (orientation: portrait) {
+    .fundo_resultados{
+      height: 665px;
+    }
     .bxslide2 li img{
       display: none!important;
     }
     .bxslide2 .new-caption{
       width: 100%;
     }
-    .navbar-superior{
+      .navbar-superior,.blocovid,.bx-controls{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -789,16 +803,19 @@ body{
   and (device-height: 320px)
   and (-webkit-device-pixel-ratio: 2)
   and (orientation: landscape)  {
+    .fundo_resultados{
+      height: 665px;
+    }
     .bxslide2 li img{
       display: none!important;
     }
     .bxslide2 .new-caption{
       width: 100%;
     }
-    .navbar-superior{
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -876,16 +893,19 @@ body{
   and (device-height: 320px)
   and (-webkit-device-pixel-ratio: 2)
   and (orientation: landscape) {
+    .fundo_resultados{
+      height: 665px;
+    }
     .bxslide2 li img{
       display: none!important;
     }
     .bxslide2 .new-caption{
       width: 100%;
     }
-    .navbar-superior{
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -962,16 +982,19 @@ body{
       and (device-height: 568px)
       and (-webkit-device-pixel-ratio: 2)
       and (orientation: portrait) {
+        .fundo_resultados{
+          height: 665px;
+        }
         .bxslide2 li img{
           display: none!important;
         }
         .bxslide2 .new-caption{
           width: 100%;
         }
-        .navbar-superior{
+          .navbar-superior,.blocovid,.bx-controls,.graficoresult{
           display: none;
         }
-        .bloco_responsivo{
+        .bloco_responsivo, .mes_corrente_result{
           display: block!important;
         }
         .image_bloco_responsivo{
@@ -1057,16 +1080,19 @@ body{
   and (device-height: 375px)
   and (-webkit-device-pixel-ratio: 2)
   and (orientation: landscape) {
+    .fundo_resultados{
+      height: 665px;
+    }
     .bxslide2 li img{
       display: none!important;
     }
     .bxslide2 .new-caption{
       width: 100%;
     }
-    .navbar-superior {
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult {
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -1142,16 +1168,19 @@ body{
     and (device-height: 667px)
     and (-webkit-device-pixel-ratio: 2)
     and (orientation: portrait) {
+      .fundo_resultados{
+        height: 665px;
+      }
       .bxslide2 li img{
         display: none!important;
       }
       .bxslide2 .new-caption{
         width: 100%;
       }
-      .navbar-superior {
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult{
         display: none;
       }
-      .bloco_responsivo{
+      .bloco_responsivo, .mes_corrente_result{
         display: block!important;
       }
       .image_bloco_responsivo{
@@ -1232,16 +1261,19 @@ body{
       and (device-height: 736px)
       and (-webkit-device-pixel-ratio: 3)
       and (orientation: portrait) {
+        .fundo_resultados{
+          height: 665px;
+        }
         .bxslide2 li img{
           display: none!important;
         }
         .bxslide2 .new-caption{
           width: 100%;
         }
-        .navbar-superior {
+        .navbar-superior,.blocovid,.bx-controls,.graficoresult {
           display: none;
         }
-        .bloco_responsivo{
+        .bloco_responsivo, .mes_corrente_result{
           display: block!important;
         }
         .image_bloco_responsivo{
@@ -1322,16 +1354,19 @@ body{
         and (device-width: 736px)
         and (-webkit-device-pixel-ratio: 3)
         and (orientation: landscape) {
+          .fundo_resultados{
+            height: 665px;
+          }
           .bxslide2 li img{
             display: none!important;
           }
           .bxslide2 .new-caption{
             width: 100%;
           }
-          .navbar-superior {
+        .navbar-superior,.blocovid,.bx-controls,.graficoresult {
             display: none;
           }
-          .bloco_responsivo{
+          .bloco_responsivo, .mes_corrente_result{
             display: block!important;
           }
           .image_bloco_responsivo{
@@ -1406,22 +1441,25 @@ body{
     and (device-width: 360px)
     and (-webkit-min-device-pixel-ratio: 2)
     and (orientation: portrait) {
+      .fundo_resultados{
+        height: 665px;
+      }
       .bxslide2 li img{
         display: none!important;
       }
       .bxslide2 .new-caption{
         width: 100%;
       }
-      .navbar-superior{
+        .navbar-superior,.blocovid,.bx-controls,.graficoresult{
         display: none;
       }
-      .bloco_responsivo{
+      .bloco_responsivo, .mes_corrente_result{
         display: block!important;
       }
       .image_bloco_responsivo{
         display: none;
       }
-      .bloco_responsivo{
+      .bloco_responsivo, .mes_corrente_result{
         display: block!important;
       }
       .image_bloco_responsivo{
@@ -1501,16 +1539,19 @@ body{
   and (device-height: 360px)
   and (-webkit-device-pixel-ratio: 3)
   and (orientation: landscape) {
+    .fundo_resultados{
+      height: 665px;
+    }
     .bxslide2 li img{
       display: none!important;
     }
     .bxslide2 .new-caption{
       width: 100%;
     }
-    .navbar-superior{
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -1583,16 +1624,19 @@ and (device-width: 640px)
 and (device-height: 360px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: landscape) {
+  .fundo_resultados{
+    height: 665px;
+  }
   .bxslide2 li img{
     display: none!important;
   }
   .bxslide2 .new-caption{
     width: 100%;
   }
-  .navbar-superior{
+    .navbar-superior,.blocovid,.bx-controls,.graficoresult{
     display: none;
   }
-  .bloco_responsivo{
+  .bloco_responsivo, .mes_corrente_result{
     display: block!important;
   }
   .image_bloco_responsivo{
@@ -1665,16 +1709,19 @@ and (orientation: landscape) {
 and (device-width: 384px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: portrait) {
+  .fundo_resultados{
+    height: 665px;
+  }
   .bxslide2 li img{
     display: none!important;
   }
   .bxslide2 .new-caption{
     width: 100%;
   }
-  .navbar-superior{
+    .navbar-superior,.blocovid,.bx-controls,.graficoresult{
     display: none;
   }
-  .bloco_responsivo{
+  .bloco_responsivo, .mes_corrente_result{
     display: block!important;
   }
   .image_bloco_responsivo{
@@ -1754,16 +1801,19 @@ and (orientation: portrait) {
 and (device-width: 384px)
 and (-webkit-device-pixel-ratio: 2)
 and (orientation: portrait) {
+  .fundo_resultados{
+    height: 665px;
+  }
   .bxslide2 li img{
     display: none!important;
   }
   .bxslide2 .new-caption{
     width: 100%;
   }
-  .navbar-superior{
+  .navbar-superior,.blocovid,.bx-controls,.graficoresult{
     display: none;
   }
-  .bloco_responsivo{
+  .bloco_responsivo, .mes_corrente_result{
     display: block!important;
   }
   .image_bloco_responsivo{
