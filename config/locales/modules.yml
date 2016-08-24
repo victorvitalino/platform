@@ -40,6 +40,8 @@ pt-BR:
       cadastres: "Cadastro"
       cadins: "Cadastro imobiliário"
       reports: "Relatórios"
+      situation_statuses: "Situação de cadastro"
+      procedural_statuses: "Situação de processo"
       enterprise_situation_statuses: "Situação candidato empresa"
     person:
       staffs: "Usuários"

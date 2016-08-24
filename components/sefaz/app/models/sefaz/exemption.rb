@@ -152,11 +152,14 @@ module Sefaz
     def virtual_validate!
       self.system_message = ""
 
+      if self.allotment.send_type == 1
+        add_message_error("Cidade em branco")   if self.city.to_s.empty?
+        add_message_error("Endereço em branco") if self.address.to_s.empty?
+      end
+
       add_message_error("CPF inválido")       if !ValidatesCpfCnpj::Cpf.valid?(self.cpf.format_cpf)
       add_message_error("Nome em branco")     if self.name.to_s.empty?
-      add_message_error("CPF em branco")      if self.cpf.to_s.empty?
-      add_message_error("Cidade em branco")   if self.city.to_s.empty?
-      add_message_error("Endereço em branco") if self.address.to_s.empty?
+      add_message_error("CPF em branco")      if self.cpf.to_s.empty?    
       add_message_error("IPTU em branco")     if self.realty_number.to_s.empty?
       add_message_error("Valor em branco")    if self.realty_value.to_s.empty?
 

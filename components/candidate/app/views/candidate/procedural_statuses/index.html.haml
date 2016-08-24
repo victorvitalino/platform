@@ -1,0 +1,19 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Situação de processo
+        = link_to 'nova situação de processo', new_procedural_status_path, remote: true, class: 'pull-right'
+  .panel-body
+    .row
+      .col-md-12
+        %table.table.table-hover.table-bordered.table-striped
+          %thead
+            %tr
+              %th Nome
+              %th Descrição
+              %th Código
+              %th Status
+              %th Ações
+          %tbody.index-procedural_status
+            = render 'index'

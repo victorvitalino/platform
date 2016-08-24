@@ -1,0 +1,55 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Listagem de Indicados
+  .panel-body
+    .row.form-filter
+      .col-md-12
+        = simple_form_for  url_for, method: 'get' do |f|
+          .row
+            .col-md-3
+              = f.label 'Nome', class: 'fg-label'
+              = f.input :name_candidate, label: false, input_html: { name: 'name_candidate', value: params[:name_candidate]}
+            .col-md-2
+              = f.label 'CPF', class: 'fg-label'
+              = f.input :by_cpf, label: false, input_html: { name: 'by_cpf', value: params[:by_cpf], class: 'cpf'}
+            .col-md-2
+              = f.label "Indicação ativa?"
+              = f.input :status, as: :select, label: false, selected: params[:status], include_blank: "Todos", input_html: { name: :status}
+            .col-md-2
+              = f.label "Data de indicação"
+              = f.input :indication_date, label: false, input_html: { name: 'indication_date', value: params[:indication_date], class: 'date'}
+          .row
+            .col-md-3
+              = f.label 'Empreendimento', class: 'fg-label'
+              = f.input :by_enterprise, as: :select, collection: Project::Enterprise.all, label: false, prompt: 'selecione...',input_html: { name: 'by_enterprise', selected: params[:by_enterprise]}
+            .col-md-2
+              = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary btn-sm', data: {  disable_with: "Pesquisando aguarde..."}
+            .col-md-1
+              = link_to "Limpar pesquisa",  enterprise_cadastres_path, class: 'btn btn-warning btn-sm',data: {disable_with: "carregando..."}
+    %hr
+    .row
+      .col-md-6
+        %b
+          Total de registros:
+          = @enterprise_cadastres.count
+    %hr
+    .row
+      .col-md-12
+        .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+          %table#data-table-command.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Nome
+                %th CPF
+                %th Empreendimento
+                %th Situação da Indicação
+                %th Data da Indicação
+                %th Ações
+            %tbody
+              - if @enterprise_cadastres.present?
+                = render 'index'
+    .row
+      .col-md-6.col-md-offset-3
+        = will_paginate @enterprise_cadastres, renderer: BootstrapPagination::Rails

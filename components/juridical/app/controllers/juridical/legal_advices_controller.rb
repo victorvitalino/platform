@@ -37,22 +37,21 @@ module Juridical
        process = @legal_advice.process_number.gsub('.','').gsub('-','')
        url = "http://tjdf19.tjdft.jus.br/cgi-bin/tjcgi1?NXTPGM=tjhtml105&SELECAO=1&ORIGEM=INTER&CIRCUN=1&CDNUPROC=#{process}"
 
-        doc = Nokogiri::HTML(open(url))
+        doc =  Nokogiri::HTML(open(url))
          @data = []
           doc.xpath('//tr').each_with_index do |link, index|
             @data[index] =  []
             link.xpath('td').each_with_index do |a, i|
               #@teste = a.inner_html
-              @data[index][i] = a.text
+              @data[index][i] = a.content
               if @data[index][2]
-               @data[index][2] = a.text
-               @hrefs = a.xpath('//font/a').map {|link| a.attribute('href').to_s}.uniq.sort.delete_if {|href| href.empty?}
-
+              @data[index][2] = a.children.to_s.encode("UTF-8").html_safe
               end
-
             end
-          end
 
+          end
+        @complainants = @legal_advice.complainants.all
+        @defendants = @legal_advice.defendants.all
     end
 
     def edit

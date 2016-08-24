@@ -21,6 +21,8 @@ Candidate::Engine.routes.draw do
   resources :verifications
   resources :enterprise_situation_statuses, path: 'situacao_empresas'
   resources :reports, path: 'relatorios'
+  resources :situation_statuses, path: 'situacao_cadastros'
+  resources :procedural_statuses, path: 'situacao_processos'
 
   resources :enterprise_cadastres do
     resources :enterprise_cadastre_situations

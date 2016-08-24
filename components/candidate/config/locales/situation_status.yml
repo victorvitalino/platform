@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'candidate/situation_status': Situação de cadastro
+    attributes:
+      'candidate/situation_status':
+        name: "Nome"
+        description: "Descrição"
+        code: "Código"

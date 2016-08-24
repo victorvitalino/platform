@@ -16,7 +16,7 @@
  .row
   .col-md-4
    = f.label :instancy, class: 'fg-label'
-   = f.input :instancy, as: :select, collection: Juridical::Instancy.all, selected:@legal_advice.instancy_place.instancy.id , label: false, prompt: 'selecione...',input_html: { name: 'instancy'}
+   = f.input :instancy, as: :select, collection: Juridical::Instancy.all, label: false, prompt: 'selecione...',input_html: { name: 'instancy'}
   .col-md-4
    = f.label :instancy_place, class: 'fg-label'
    = f.association :instancy_place, label:false, as: :select, selected: @legal_advice.instancy_place_id, collection: (@legal_advice.instancy_place.present?) ? Juridical::InstancyPlace.where(instancy_id: @legal_advice.instancy).distinct : {}, label_method: :instancy_place, value_method: :instancy_place, prompt: 'selecione o local de instância...', input_html: { value: @legal_advice.instancy}
@@ -53,6 +53,6 @@
           $("#legal_advice_instancy_place_id").html(html)
       });
     });
-    
+
 
   });
