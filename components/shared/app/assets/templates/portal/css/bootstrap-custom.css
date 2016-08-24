@@ -662,6 +662,9 @@ body{
   width: 66px;
   height: 67px;
 }
+.mes_corrente_result{
+  display: none;
+}
 /* Portrait and Landscape iphone4*/
 @media only screen
   and (min-device-width: 320px)
@@ -676,7 +679,7 @@ body{
     .navbar-superior,.blocovid,.bx-controls,.graficoresult{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -718,7 +721,7 @@ body{
       .navbar-superior,.blocovid,.bx-controls{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -812,7 +815,7 @@ body{
       .navbar-superior,.blocovid,.bx-controls,.graficoresult{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -902,7 +905,7 @@ body{
       .navbar-superior,.blocovid,.bx-controls,.graficoresult{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -991,7 +994,7 @@ body{
           .navbar-superior,.blocovid,.bx-controls,.graficoresult{
           display: none;
         }
-        .bloco_responsivo{
+        .bloco_responsivo, .mes_corrente_result{
           display: block!important;
         }
         .image_bloco_responsivo{
@@ -1089,7 +1092,7 @@ body{
       .navbar-superior,.blocovid,.bx-controls,.graficoresult {
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -1177,7 +1180,7 @@ body{
       .navbar-superior,.blocovid,.bx-controls,.graficoresult{
         display: none;
       }
-      .bloco_responsivo{
+      .bloco_responsivo, .mes_corrente_result{
         display: block!important;
       }
       .image_bloco_responsivo{
@@ -1270,7 +1273,7 @@ body{
         .navbar-superior,.blocovid,.bx-controls,.graficoresult {
           display: none;
         }
-        .bloco_responsivo{
+        .bloco_responsivo, .mes_corrente_result{
           display: block!important;
         }
         .image_bloco_responsivo{
@@ -1363,7 +1366,7 @@ body{
         .navbar-superior,.blocovid,.bx-controls,.graficoresult {
             display: none;
           }
-          .bloco_responsivo{
+          .bloco_responsivo, .mes_corrente_result{
             display: block!important;
           }
           .image_bloco_responsivo{
@@ -1450,13 +1453,13 @@ body{
         .navbar-superior,.blocovid,.bx-controls,.graficoresult{
         display: none;
       }
-      .bloco_responsivo{
+      .bloco_responsivo, .mes_corrente_result{
         display: block!important;
       }
       .image_bloco_responsivo{
         display: none;
       }
-      .bloco_responsivo{
+      .bloco_responsivo, .mes_corrente_result{
         display: block!important;
       }
       .image_bloco_responsivo{
@@ -1548,7 +1551,7 @@ body{
       .navbar-superior,.blocovid,.bx-controls,.graficoresult{
       display: none;
     }
-    .bloco_responsivo{
+    .bloco_responsivo, .mes_corrente_result{
       display: block!important;
     }
     .image_bloco_responsivo{
@@ -1633,7 +1636,7 @@ and (orientation: landscape) {
     .navbar-superior,.blocovid,.bx-controls,.graficoresult{
     display: none;
   }
-  .bloco_responsivo{
+  .bloco_responsivo, .mes_corrente_result{
     display: block!important;
   }
   .image_bloco_responsivo{
@@ -1718,7 +1721,7 @@ and (orientation: portrait) {
     .navbar-superior,.blocovid,.bx-controls,.graficoresult{
     display: none;
   }
-  .bloco_responsivo{
+  .bloco_responsivo, .mes_corrente_result{
     display: block!important;
   }
   .image_bloco_responsivo{
@@ -1810,7 +1813,7 @@ and (orientation: portrait) {
   .navbar-superior,.blocovid,.bx-controls,.graficoresult{
     display: none;
   }
-  .bloco_responsivo{
+  .bloco_responsivo, .mes_corrente_result{
     display: block!important;
   }
   .image_bloco_responsivo{
