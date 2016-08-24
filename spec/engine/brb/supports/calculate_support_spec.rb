@@ -4,7 +4,7 @@ RSpec.describe Brb::CalculateSupport do
 
   before do 
     @base_key_default = '00005860020061000001070'
-    @calc_support     =  Brb::CalculateSupport.new({base_key: @base_key_default})
+    @calc_support     =  Brb::CalculateSupport.new(@base_key_default)
   end
 
   describe 'calculate digit' do

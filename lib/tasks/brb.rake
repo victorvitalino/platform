@@ -2,6 +2,28 @@ require 'csv'
 
 namespace :brb do
   desc "migração csv"
+
+  task :barcode => :environment do 
+    
+    @index = 1000
+
+    20.times do 
+      @barcode_service = Brb::CreateBarcodeService.new({
+          due: '2016-08-28',
+          value: 300,
+          sequential: @index,
+          bank_wallet: 1,
+          bank_agency: 208,
+          bank_account: '0149304'
+      })
+
+      puts @barcode_service.barcode_with_digit
+
+      @index += 1
+    end
+
+  end
+
   task :remessa => :environment do
     Dir.foreach("lib/files/brb") do |file|
       unless File.directory?(file)
