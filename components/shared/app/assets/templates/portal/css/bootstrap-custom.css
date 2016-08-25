@@ -606,7 +606,7 @@ width:80%;
 .title_contact_footer {
   font-family: Arial;
   color:#292728;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   padding: 5px 30px 15px;
   border-bottom: 1px dotted #cdcdcd;
@@ -618,6 +618,9 @@ width:80%;
 .contact_box{
   padding:5px;
 
+}
+.contact_box_4{
+  margin-top: 34px;
 }
 .contact {
   font-family: arial;
