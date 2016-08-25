@@ -5,7 +5,7 @@ module Helpdesk
     belongs_to :responsible,-> { joins('inner join helpdesk_ticket_attendants on person_staffs.id = helpdesk_ticket_attendants.staff_id') }, class_name: "Helpdesk::Staff"
     belongs_to :ticket_solution
 
-
+    validates :ocurrence, presence: true
 
 
     def ticket_solution_title

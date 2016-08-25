@@ -1,0 +1,18 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4 Empreendimentos
+  .panel-body
+    .row
+      .col-md-12
+        %h5
+          Total de indicados:
+          %b= number_with_delimiter(@enterprises_cadastres.count, delimiter: ".")
+    %hr
+    .row
+      .col-md-6
+        %h4 Indicados por empreendimento
+        = column_chart @enterprises_count
+      .col-md-6
+        %h4 Indicação inativa por empreendimento
+        = column_chart @enterprises_inactive_count

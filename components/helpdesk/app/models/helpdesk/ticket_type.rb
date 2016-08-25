@@ -1,6 +1,6 @@
 module Helpdesk
   class TicketType < ActiveRecord::Base
-    belongs_to :sector
+    belongs_to :sector, -> {where(status: true)}
     has_many :ticket_attendants
     has_many :ticket_subjects
     has_many :ticket_solutions
