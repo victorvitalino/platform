@@ -13,7 +13,7 @@ module HabitationPortal
       @candidate = Find.new(set_params_find)
 
       if @candidate.valid?
-        redirect_to action: 'show', id: @candidate.cpf
+        redirect_to action: 'show', id: @candidate.id
       else
         render action: 'find_candidate'
       end
@@ -21,7 +21,7 @@ module HabitationPortal
 
     def show
 
-      @candidate = Candidate::Cadastre.by_cpf(params[:id]).first
+      @candidate = Candidate::Cadastre.find(params[:id])
       respond_to do |format|
         format.html
         format.json {

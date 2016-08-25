@@ -1,19 +1,22 @@
 .container.margint50
   .fundo_resultados.col-md-12.no_padding
-    #bgvid
-      %video{:autoplay => "", :loop => "", :poster => "video.jpg"}
-        %source{:src => "images/video1.mp4", :type => "video/mp4"}
+    -# #bgvid
+    -#   %video{:autoplay => "", :loop => "", :poster => "video.jpg"}
+    -#     %source{:src => "images/video1.mp4", :type => "video/mp4"}
     .slider_dados
       .span_dados
         Resultados de Atendimento
       .bxslide4
         - @service_results.each do |result|
           .dados_slider
-            .col-md-6
+            .col-md-6.graficoresult
               = pie_chart [["Morar Bem", result.program_morarbem],["Regularização",result.regularization], ["Escrituras", result.contract], ["Protocolo", result.protocol], ["Ouvidoria", result.ombudsman]],
               colors: ['#5fb29d', '#9F2735', '#E34153', '#5FA5B4', '#6FB8C8'],
               library:{ legend: "none"}
-            .col-md-6{:style => "margin-top: 40px;"}
+            .col-md-6.totalresult
+              .mes_corrente_result
+                = t("date.month_names")[result.date.month]
+                = result.date.strftime("/ %Y")
               .row
                 .col-md-4.meta_element
                   .span.number_metas
