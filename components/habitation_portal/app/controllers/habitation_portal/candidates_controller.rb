@@ -21,10 +21,13 @@ module HabitationPortal
 
     def show
 
-      @candidate = Candidate::Cadastre.find(params[:id])
+
       respond_to do |format|
-        format.html
+        format.html{
+        @candidate =  Candidate::Cadastre.find(params[:id])
+        }
         format.json {
+          @candidate = Candidate::Cadastre.find_by_cpf(params[:id])
           render json: @candidate
         }
       end
@@ -37,7 +40,7 @@ module HabitationPortal
 
     def position
       @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
-      
+
       @json = Array.new
 
       if @candidate.list.present?
@@ -48,7 +51,7 @@ module HabitationPortal
             zone: list[1][0],
             position: list[2],
             list: list[0],
-            pontuation: @candidate.pontuations.present? ? @candidate.pontuations.last.total : nil 
+            pontuation: @candidate.pontuations.present? ? @candidate.pontuations.last.total : nil
           }
         end
       end
@@ -58,9 +61,9 @@ module HabitationPortal
     end
 
     def indication
-      
+
       @candidate = Candidate::Cadastre.by_cpf(params[:candidate_id]).first
-      
+
       @json = Array.new
 
       @candidate.enterprise_cadastres.order('created_at ASC').each do |ent|
