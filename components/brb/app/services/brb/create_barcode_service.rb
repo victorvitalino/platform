@@ -127,5 +127,15 @@ module Brb
       "#{@due}#{@value}"
     end
 
+    # => formated barcode 
+
+    def barcode_with_regex
+      barcode_with_digit
+
+      barcode = barcode_with_digit
+      barcode =~ /(\d{5})\.?(\d{5})\.?(\d{5})\.?(\d{6})\.?(\d{5})\.?(\d{6})\.?(\d{1})\.?(\d{14})/
+      barcode = "#{$1}.#{$2} #{$3}.#{$4} #{$5}.#{$6} #{$7} #{$8}"
+    end
+
   end
 end

@@ -63,5 +63,36 @@ RSpec.describe Brb::CreateBarcodeService do
 
       expect(@barcode_service.barcode_with_digit).to eq(mock)
     end
+
+    it '.fix brb exception' do 
+      mock = '07090002028014930410901346070285468800000030000'
+
+      @barcode_service = Brb::CreateBarcodeService.new({
+        due: '2016-08-08',
+        value: 300,
+        sequential: 1346,
+        bank_wallet: 1,
+        bank_agency: 208,
+        bank_account: '0149304'
+      })
+
+      expect(@barcode_service.barcode_with_digit).to eq(mock)     
+    end
+
+    it '.fix our number exception' do 
+      mock = '100134607028'
+
+      @barcode_service = Brb::CreateBarcodeService.new({
+        due: '2016-08-08',
+        value: 300,
+        sequential: 1346,
+        bank_wallet: 1,
+        bank_agency: 208,
+        bank_account: '0149304'
+      })
+
+      expect(@barcode_service.our_number_with_digits).to eq(mock)   
+    end
+
   end
 end

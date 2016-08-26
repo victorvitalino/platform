@@ -30,8 +30,8 @@
             %td= link_to winner.participation.candidate_id, project_candidate_path(id: winner.participation.candidate_id), target: '_blank'
             %td= link_to "Baixar arquivo", winner.participation.archive_one.url, target: '_blank'
             %td= link_to "Baixar arquivo", winner.participation.archive_two.url, target: '_blank'
-            %td= link_to "Baixar arquivo", winner.participation.archive_three.url, target: '_blank'
-            %td= link_to "Baixar arquivo", winner.participation.archive_four.url, target: '_blank'
-            %td= link_to "Baixar arquivo", winner.participation.archive_five.url, target: '_blank'
+            %td= link_to "Baixar arquivo", winner.participation.archive_three.url, target: '_blank' 
+            %td= link_to "Baixar arquivo", winner.participation.archive_four.url, target: '_blank' if winner.participation.archive_four.to_s.present?
+            %td= link_to "Baixar arquivo", winner.participation.archive_five.url, target: '_blank' if winner.participation.archive_five.to_s.present?
             %td
               = link_to "remover", project_winner_path(project_id: @project, id: winner), method: :delete,  class: 'btn btn-danger '

@@ -13,6 +13,7 @@ RSpec.describe Brb::CalculateSupport do
     end
 
     it 'module 11' do
+      @calc_support.calc_module_10
       expect(@calc_support.calc_module_11).to eq(5)
     end
   end

@@ -14,6 +14,8 @@ module Brb
       calc_module_10
       calc_module_11
 
+      calc_case_module_11
+
       {digit_one: @digit_module_10, digit_two: @digit_module_11}
     end
 
@@ -38,35 +40,38 @@ module Brb
 
 
     def calc_module_11
-      base_key_module_10 = "#{@base_key}#{calc_module_10}"
+      base = "#{@base_key}#{@digit_module_10}"
 
       multiplier = [2,3,4,5,6,7]
       each_index = 0
       total_int  = 0
 
-      base_key_module_10.split(//).reverse!.each do |char|
+      base.split(//).reverse!.each do |char|
         total_int  += char.to_i * multiplier[each_index]
         each_index  = (each_index == (multiplier.count - 1)) ? 0 : each_index + 1
       end
+      
+      @digit_module_11 = total_int % 11
 
-      total = total_int % 11
-
-      case total
+      case @digit_module_11
       when 0
         @digit_module_11 = 0
       when 1
         pre_digit         = @digit_module_10 + 1
         @digit_module_10  = pre_digit == 10 ? 0 : pre_digit
-        @digit_module_11  = total
-
-        #recalcular?
+        @digit_module_11  = 1
       else
-        @digit_module_11  = 11 - total
+        @digit_module_11  = 11 - @digit_module_11
       end
 
       @digit_module_11
     end
 
+    def calc_case_module_11
+      while @digit_module_11 == 1
+        calc_module_11
+      end
+    end
 
     def calc_module_11_barcode
 

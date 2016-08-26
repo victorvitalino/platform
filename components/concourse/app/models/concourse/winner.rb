@@ -18,7 +18,7 @@ module Concourse
       self.winner_types.map do |key, value|
         winner = Concourse::Winner.where(project_id: project_id, winner_type: value)
 
-        @keys.push key if !winner.present? || value == 0
+        @keys.push key if !winner.present? || value == 0 || value == 1
       end
       
       @keys
@@ -28,7 +28,7 @@ module Concourse
 
     def position?
       type = Concourse::Winner.winner_types[self.winner_type]
-      return true if type == 0
+      return true if type == 0 || type == 1
       
       @position = Concourse::Winner.where(project_id: self.project_id, winner_type: type)
       errors.add(:winner_type, 'Já noemado um candidato para essa posição') if @position.present?

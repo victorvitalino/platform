@@ -32,9 +32,9 @@ module Brb
         line[3..5]       = "208"
         line[6..12]      = "0149304"
         line[13..26]     = i.cpf.to_s.ljust(14)
-        line[27..61]     = I18n.transliterate(i.name.mb_chars.upcase.ljust(35))  
-        line[62..96]     = I18n.transliterate(i.address.mb_chars.ljust(35)).upcase  
-        line[97..111]    = I18n.transliterate(i.city.mb_chars.ljust(15)).upcase 
+        line[27..61]     = I18n.transliterate(i.name.strip.mb_chars.upcase.ljust(35))  
+        line[62..96]     = I18n.transliterate(i.address.strip.mb_chars.ljust(35)).upcase  
+        line[97..111]    = I18n.transliterate(i.city.strip.mb_chars.ljust(15)).upcase 
         line[112..113]   = i.state.acronym.mb_chars.upcase.ljust(2)  
         line[114..121]   = i.cep.ljust(8)     
         line[122]       = "1"

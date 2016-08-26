@@ -20,24 +20,44 @@
             <b>Nº de inscrição</b> #{@winner.participation.candidate_id} - <b>Nº do projeto</b> #{@winner.participation_id} - <b>#{@winner.participation.candidate.city} / #{@winner.participation.candidate.state.acronym}</b>
       %p.white
         %h2
-          %i= @winner.participation.team_description
+          %i
+            - if @winner.participation.team_description.present?
+              = @winner.participation.team_description
+            - else
+              - @winner.participation.team_participations.each do |team|
+                = "#{team.name}, "
   %hr/
   %br/
   %br/
   %br/
   .container
-    .row
-      .col-md-1
-      .col-md-2
-        = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/concourse/original/#{@winner.participation_id}/01.pdf", target: '_blank'
-      .col-md-2
-        = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/concourse/original/#{@winner.participation_id}/02.pdf", target: '_blank'
-      .col-md-2
-        = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/concourse/original/#{@winner.participation_id}/03.pdf", target: '_blank'
-      .col-md-2
-        = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/concourse/original/#{@winner.participation_id}/04.pdf", target: '_blank'
-      .col-md-2
-        = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/concourse/original/#{@winner.participation_id}/05.pdf", target: '_blank'
+    .row{style: 'text-align: center'}
+      - if @winner.participation.archive_one.to_s.present?
+        .col-md-4{style: 'text-align: center'}
+          = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br#{@winner.participation.archive_one}", target: '_blank'
+          %br/
+          %b Arquivo 1
+
+      - if @winner.participation.archive_two.to_s.present?
+        .col-md-4{style: 'text-align: center'}
+          = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br#{@winner.participation.archive_two}", target: '_blank'
+          %br/
+          %b Arquivo 2
+      - if @winner.participation.archive_three.to_s.present?
+        .col-md-4
+          = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br#{@winner.participation.archive_three}", target: '_blank'
+          %br/
+          %b Arquivo 3
+      - if @winner.participation.archive_four.to_s.present?
+        .col-md-2
+          = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/concourse/original/#{@winner.participation_id}/04.pdf", target: '_blank'
+          %br/
+          %b Arquivo 4
+      - if @winner.participation.archive_five.to_s.present?
+        .col-md-2
+          = link_to image_tag('/images/pdf_flat.png', width: '150'), "http://www.codhab.df.gov.br/concourse/original/#{@winner.participation_id}/05.pdf", target: '_blank'
+          %br/
+          %b Arquivo 5
     %br/
     %br/
     %br/

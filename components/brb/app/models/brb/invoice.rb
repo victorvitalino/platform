@@ -8,19 +8,14 @@ module Brb
     enum status: ['não pago', 'pagamento realizado']
 
     validates :due, :cpf, :name, :address, :state, :city, :cep, presence: true
-    validates_date :due, after: :due_validate , on: :create
     
     after_create :generate_invoice!
 
     private
 
-    def due_validate
-      Date.today - 1.day
-    end
-
     def generate_invoice!
-      barcode = Barcode.new({
-        due: self.due,
+      barcode = Brb::CreateBarcodeService.new({
+        due: self.due.strftime("%d/%m/%Y"),
         value: self.category.default_value,
         sequential: self.id,
         bank_wallet: 1,
@@ -39,11 +34,11 @@ module Brb
       @value        = options[:value]           ||= 100
 =end
       self.update({
-        barcode: barcode.barcode_without_format,
-        barcode_with_format: barcode.barcode_with_format,
+        barcode: barcode.barcode_with_digit,
+        barcode_with_format: barcode.barcode_with_regex,
         value: self.category.default_value,
-        our_number: barcode.our_number,
-        document_number: barcode.formated_sequential
+        our_number: barcode.our_number_with_digits,
+        document_number: barcode.sequential
       })
     end
   end
