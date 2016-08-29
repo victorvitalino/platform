@@ -770,31 +770,6 @@ body{
     .topSlider_action{
       display: none;
     }
-
-    }
-    .about_action_title{
-      font-size: 100px!important;
-      text-align: center;
-      transform: rotate(0deg)!important;
-
-    /* Safari */
-    -webkit-transform: rotate(0deg)!important;
-
-    /* Firefox */
-    -moz-transform: rotate(0deg)!important;
-
-    /* IE */
-    -ms-transform: rotate(0deg)!important;
-
-    /* Opera */
-    -o-transform: rotate(0deg)!important;
-
-    /* Internet Explorer */
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
-    }
-    .about_action{
-      height: auto!important;
-    }
     .action_thumb{
       background-repeat: no-repeat;
       width: 100%;
