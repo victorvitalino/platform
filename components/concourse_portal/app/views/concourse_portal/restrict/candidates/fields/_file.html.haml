@@ -5,4 +5,4 @@
     %span.help-block
       = c.errors.full_messages_for(:"#{field.label}")[0]
 .col-md-4
-  = link_to "Visualizar arquivo anterior, cliquei aqui", "http://api.codhab.df.gov.br/static/#{@candidate.properties.to_a[i][1]}", target: '_blank'
+  = link_to "Visualizar arquivo anterior, cliquei aqui", "http://www.codhab.df.gov.br/files/concourse/project/#{@candidate.properties.to_a[i][1]}", target: '_blank'
