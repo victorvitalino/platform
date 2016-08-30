@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823170357) do
+ActiveRecord::Schema.define(version: 20160830194131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1508,6 +1508,19 @@ ActiveRecord::Schema.define(version: 20160823170357) do
     t.date     "result_day"
     t.time     "result_hour"
   end
+
+  create_table "concourse_resources", force: :cascade do |t|
+    t.integer  "project_id"
+    t.text     "message"
+    t.integer  "candidate_id"
+    t.integer  "situation",    default: 0
+    t.text     "observation"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "concourse_resources", ["candidate_id"], name: "index_concourse_resources_on_candidate_id", using: :btree
+  add_index "concourse_resources", ["project_id"], name: "index_concourse_resources_on_project_id", using: :btree
 
   create_table "concourse_subscribes", force: :cascade do |t|
     t.integer  "project_id"

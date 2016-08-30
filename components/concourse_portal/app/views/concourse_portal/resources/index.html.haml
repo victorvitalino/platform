@@ -1,0 +1,31 @@
+.row
+  .col-md-12
+    %p
+      %h1 
+        %b Recursos recebidos
+    %p
+      %i Listagem de todos os recursos recebidos
+    %p
+      = link_to "Quero enviar um novo recurso", new_project_resource_path(@project), class: 'btn btn-success '
+%hr/
+.row
+  .col-md-12
+    %table.table.table-striped.table-bordred
+      %thead 
+        %tr 
+          %th Data
+          %th Nº de inscrição
+          %th Situação
+          %th 
+      %tbody
+        - if @resources.present?
+          - @resources.order("created_at DESC").each do |item|
+            %tr 
+              %td= item.created_at.strftime("%d/%m/%Y")
+              %td= item.candidate_id
+              %td= item.situation
+              %td= link_to "Visualizar", project_resource_path(project_id: @project, id: item)
+        - else
+          %tr 
+            %td{colspan: 4}
+              %i Nenhum recurso recebido até o momento

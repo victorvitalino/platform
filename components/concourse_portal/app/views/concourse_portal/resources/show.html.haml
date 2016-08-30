@@ -1,0 +1,31 @@
+.row
+  .col-md-12
+    %h1 
+      %b Recurso
+      %span.pull-right
+        Nº #{@resource.id}
+    %i= link_to "Retornar para listagem de recursos", project_resources_path(@project) 
+%hr/
+.row
+  .col-md-12
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr 
+          %th Nº  de inscrição
+          %th Data
+          %th Situação
+      %tbody
+        %tr
+          %td= @resource.candidate_id
+          %td= @resource.created_at.strftime("%d/%m/%Y")
+          %td= @resource.situation
+
+.row
+  .col-md-12
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr 
+          %th Recurso
+      %tbody
+        %tr 
+          %td= @resource.message

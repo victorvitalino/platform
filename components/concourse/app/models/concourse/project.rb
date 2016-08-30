@@ -18,7 +18,7 @@ module Concourse
     has_many :participations
     has_many :consults
     has_many :winners
-
+    has_many :resources
     
     enum step: ['desenvolvimento', 'previsto', 'aberto', 'finalizado']
 

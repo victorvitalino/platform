@@ -6,6 +6,8 @@ ConcoursePortal::Engine.routes.draw do
   
   resources :projects, path: '/' do 
 
+    resources :resources, path: 'recursos'
+
     get 'result', path: 'resultado', to: 'projects#result' 
     get 'all_projects', path: 'todos_projetos', to: 'projects#all_projects' 
 

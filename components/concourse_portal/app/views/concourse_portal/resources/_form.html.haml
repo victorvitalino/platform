@@ -1,0 +1,16 @@
+= simple_form_for [@project, @resource] do |f|
+  %hr/
+  .row
+    .col-md-4
+      = f.input :candidate_id, as: :string, label: "Nº de inscrição", placeholder: "Digite aqui seu nº de inscrição"
+    .col-md-4
+      = f.input :password, label: "Senha do Nº de inscrição", placeholder: "Informe sua senha"
+  %hr/
+  .row
+    .col-md-12
+      = f.input :message, label: "Descrição do recurso", input_html: { placeholder: "Descreva aqui seu recurso", style: "min-height: 200px"}
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Enviar meu recurso", class: 'btn btn-success'
+      = link_to "Cancelar e voltar", project_resources_path(@project), class: 'btn btn-default'
