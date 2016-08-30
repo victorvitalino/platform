@@ -45,5 +45,10 @@ module ConcoursePortal
     def crazy(email)
       mail(to: email, subject: "CODHAB - Informação importante: Unidades Habitacionais Coletivas - Samambaia")
     end
+
+    def resource(email, resource)
+      @resource = resource
+      mail(to: email, subject: "MANIFESTAÇÃO DE  INTERPOSIÇÃO DE RECURSO")
+    end
   end
 end

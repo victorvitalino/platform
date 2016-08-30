@@ -20,6 +20,7 @@ module ConcoursePortal
       @resource = @project.resources.new(set_params)
 
       if @resource.save 
+        ConcoursePortal::SubscribeMailer.resource(@resource.candidate.email, @resource).deliver_now!
         flash[:success] = t :success
         redirect_to action: :index
       else

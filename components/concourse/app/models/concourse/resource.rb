@@ -1,6 +1,7 @@
 module Concourse
   class Resource < ActiveRecord::Base
     belongs_to :project
+    belongs_to :candidate
 
     attr_accessor :password
 
