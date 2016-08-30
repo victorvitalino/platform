@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: "codhab_development"
+  database: "codhab_production2"
   username: "postgres"
   password: "@2016rootDB+072771472"
   host: "10.233.38.16"
