@@ -46,6 +46,7 @@ module Entity
     scope :fantasy_name,  -> (fantasy_name) {where(fantasy_name: fantasy_name)}
 
     attr_accessor :password_confirmation, :current_password, :change_password, :president
+   
 
     validates :cnpj, cnpj: true, presence: true, uniqueness: true
     validates :name, :fantasy_name,:city, :cep, :address, :complement, :number, presence: true
@@ -68,6 +69,10 @@ module Entity
 
     def password
       "[FILTRED]"
+    end
+
+    def cnpj
+      read_attribute(:cnpj).format_cnpj
     end
 
     def new_entity?
