@@ -33,6 +33,7 @@ module Geo
       
       respond_to do |format|
         format.json {
+          @entities = @entities.map { |key| [key, president: key.president]}
           render json: @entities
         }
 

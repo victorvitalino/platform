@@ -45,7 +45,7 @@ module Entity
     scope :name_entity,  -> (name_entity) {where(name: name_entity)}
     scope :fantasy_name,  -> (fantasy_name) {where(fantasy_name: fantasy_name)}
 
-    attr_accessor :password_confirmation, :current_password, :change_password
+    attr_accessor :password_confirmation, :current_password, :change_password, :president
 
     validates :cnpj, cnpj: true, presence: true, uniqueness: true
     validates :name, :fantasy_name,:city, :cep, :address, :complement, :number, presence: true
@@ -60,6 +60,15 @@ module Entity
 
     after_create :set_situation
 
+    def president
+      obj = self.members.where(member_job_id: 2)
+      
+      obj.present? ? obj.first.name : nil
+    end
+
+    def password
+      "[FILTRED]"
+    end
 
     def new_entity?
       Entity::Old.find_by_cnpj(self.cnpj) rescue false
