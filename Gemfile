@@ -25,6 +25,8 @@ gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem 'remotipart'
+gem 'correios-cep'
+gem 'geocoder'
 gem 'gmaps4rails'
 
 gem 'audited-activerecord', '~> 4.0'

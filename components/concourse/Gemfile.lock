@@ -9,7 +9,7 @@ PATH
       simple_form
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.2.3)
       actionpack (= 4.2.3)
@@ -133,3 +133,6 @@ PLATFORMS
 
 DEPENDENCIES
   concourse!
+
+BUNDLED WITH
+   1.12.5

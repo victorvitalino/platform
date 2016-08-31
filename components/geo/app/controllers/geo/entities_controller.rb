@@ -27,5 +27,18 @@ module Geo
       render json: @entity_complete
     end
 
+
+    def entities_2016
+      @entities    = Entity::Cadastre.all
+      
+      respond_to do |format|
+        format.json {
+          render json: @entities
+        }
+
+        format.html {}
+      end
+    end
+
   end
 end
