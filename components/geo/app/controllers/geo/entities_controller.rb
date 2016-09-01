@@ -32,7 +32,7 @@ module Geo
 
 
     def entities_2016
-      @entities    = apply_scopes(Entity::Cadastre).with_president
+      @entities    = apply_scopes(Entity::Cadastre).all
     end
 
   end
