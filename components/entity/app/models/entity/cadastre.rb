@@ -18,6 +18,12 @@ module Entity
 
     audited
 
+    scope :with_president, -> {
+      joins('LEFT JOIN entity_members 
+             ON entity_members.cadastre_id = entity_cadastres.id
+             AND entity_members.member_job_id = 2')
+    }
+
     scope :situation, -> (status) {
       Entity::Cadastre.joins(:situations)
       .where('entity_situations.situation_status_id = (SELECT MAX(entity_situations.situation_status_id)
@@ -41,6 +47,9 @@ module Entity
       where(id: count)
     }
 
+    scope :by_name, ->(value) {where("name ILIKE '%#{value}%'")}
+    scope :by_situation, ->(value) {where(situation_id: value)}
+    
     scope :cnpj,  -> (cnpj) {where(cnpj: cnpj)}
     scope :name_entity,  -> (name_entity) {where(name: name_entity)}
     scope :fantasy_name,  -> (fantasy_name) {where(fantasy_name: fantasy_name)}

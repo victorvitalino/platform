@@ -44,17 +44,18 @@
     }
     map = new google.maps.Map(document.getElementById("map"), myOptions);
     
-    $.getJSON("#{geo.entities_2016_entities_path}.json", function(data) {
-      for(var i = 0; i < data.length; i++) {
-        codeAddress(data[i])
-      }
-    });
+    data = #{@entities.to_json}
 
+    for(var i = 0; i < data.length; i++) {
+      codeAddress(data[i])
+    }
+    
   }
 
   function codeAddress(data) {
     
-    var Latlng = new google.maps.LatLng(parseFloat(data[0].lat),parseFloat(data[0].lng));
+    console.log(data)
+    var Latlng = new google.maps.LatLng(parseFloat(data.lat),parseFloat(data.lng));
     
     var marker = new google.maps.Marker({
         position: Latlng,
@@ -63,7 +64,7 @@
 
     var text = 'Credenciada'
 
-    if(data[0].situation_id == 1) {
+    if(data.situation_id == 1) {
       marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
     } else {
       text = 'Não Credenciada'  
@@ -71,15 +72,14 @@
     }
   
     var contentString = "" +
-    "<h4>"+ data[0].fantasy_name +"</h4>" +
-    "<h5>"+ data[0].name +"</h5>" +
-    "<h5>"+ data[0].cnpj +"</h5>" +
+    "<h4>"+ data.fantasy_name +"</h4>" +
+    "<h5>"+ data.name +"</h5>" +
+    "<h5>"+ data.cnpj +"</h5>" +
     "<hr/>" +
-    "<h5>"+ data[0].address +"</h5>" +
-    "<h5> CEP: "+ data[0].cep+"</h5>" +
+    "<h5>"+ data.address +"</h5>" +
+    "<h5> CEP: "+ data.cep+"</h5>" +
     "<hr/>" +
-    "<h5>Presidente: "+ data[1].president +"</h5>" +
-
+  
     "<hr/>" +
     "<h3>" + text + "</h3>"
     var infowindow = new google.maps.InfoWindow({

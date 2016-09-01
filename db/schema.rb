@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831192753) do
+ActiveRecord::Schema.define(version: 20160831193938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1566,30 +1566,39 @@ ActiveRecord::Schema.define(version: 20160831192753) do
   add_index "concourse_winners", ["project_id"], name: "index_concourse_winners_on_project_id", using: :btree
   add_index "concourse_winners", ["subscribe_id"], name: "index_concourse_winners_on_subscribe_id", using: :btree
 
-  create_table "core_extranet_navs", force: :cascade do |t|
-    t.integer  "order",       default: 0
+  create_table "core_navs", force: :cascade do |t|
+    t.integer  "order"
     t.string   "name"
-    t.string   "description"
-    t.boolean  "status",      default: true
-    t.boolean  "only_admin",  default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.text     "description"
+    t.boolean  "status"
+    t.boolean  "only_admin"
+    t.integer  "code"
+    t.integer  "system_module_id"
+    t.integer  "staff_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  create_table "core_extranet_subnavs", force: :cascade do |t|
-    t.integer  "extranet_nav_id"
-    t.integer  "privilege_id"
+  add_index "core_navs", ["staff_id"], name: "index_core_navs_on_staff_id", using: :btree
+  add_index "core_navs", ["system_module_id"], name: "index_core_navs_on_system_module_id", using: :btree
+
+  create_table "core_subnavs", force: :cascade do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.string   "url"
-    t.boolean  "status",          default: true
-    t.boolean  "only_admin",      default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.boolean  "status"
+    t.string   "code"
+    t.integer  "nav_id"
+    t.integer  "subnav_id"
+    t.boolean  "only_admin"
+    t.integer  "staff_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "core_extranet_subnavs", ["extranet_nav_id"], name: "index_core_extranet_subnavs_on_extranet_nav_id", using: :btree
-  add_index "core_extranet_subnavs", ["privilege_id"], name: "index_core_extranet_subnavs_on_privilege_id", using: :btree
+  add_index "core_subnavs", ["nav_id"], name: "index_core_subnavs_on_nav_id", using: :btree
+  add_index "core_subnavs", ["staff_id"], name: "index_core_subnavs_on_staff_id", using: :btree
+  add_index "core_subnavs", ["subnav_id"], name: "index_core_subnavs_on_subnav_id", using: :btree
 
   create_table "dashboard_warnings", force: :cascade do |t|
     t.string   "title"
@@ -1604,19 +1613,6 @@ ActiveRecord::Schema.define(version: 20160831192753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "entity_activities", force: :cascade do |t|
-    t.string   "description"
-    t.date     "start"
-    t.date     "end"
-    t.string   "observation"
-    t.integer  "situation"
-    t.integer  "cadastre_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "entity_activities", ["cadastre_id"], name: "index_entity_activities_on_cadastre_id", using: :btree
 
   create_table "entity_cadastres", force: :cascade do |t|
     t.string   "cnpj"
@@ -1689,45 +1685,6 @@ ActiveRecord::Schema.define(version: 20160831192753) do
   add_index "entity_documents", ["cadastre_id"], name: "index_entity_documents_on_cadastre_id", using: :btree
   add_index "entity_documents", ["cadastre_mirror_id"], name: "index_entity_documents_on_cadastre_mirror_id", using: :btree
   add_index "entity_documents", ["document_category_id"], name: "index_entity_documents_on_document_category_id", using: :btree
-
-  create_table "entity_inspections", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.string   "address_optional"
-    t.string   "general_photo_1"
-    t.string   "general_photo_2"
-    t.string   "general_photo_3"
-    t.string   "size"
-    t.integer  "property_type"
-    t.string   "property_owner"
-    t.text     "others_local"
-    t.string   "operating_time"
-    t.string   "location_time"
-    t.string   "meeting_frequency"
-    t.string   "elected"
-    t.string   "action_area"
-    t.string   "associated_amount"
-    t.string   "business_hour"
-    t.string   "business_days"
-    t.integer  "inspection_type"
-    t.string   "attorney"
-    t.string   "documentation_photo_1"
-    t.string   "documentation_photo_2"
-    t.string   "responsible_name"
-    t.string   "responsible_cpf"
-    t.string   "responsible_rg"
-    t.string   "responsible_title"
-    t.string   "responsible_photo"
-    t.string   "responsible_phone"
-    t.integer  "occupied_property"
-    t.text     "additional_information"
-    t.string   "attorney_name"
-    t.text     "property_description"
-    t.date     "current_elected"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "entity_inspections", ["cadastre_id"], name: "index_entity_inspections_on_cadastre_id", using: :btree
 
   create_table "entity_member_additionals", force: :cascade do |t|
     t.string   "cnpj"

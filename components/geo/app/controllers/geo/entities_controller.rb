@@ -3,6 +3,9 @@ require_dependency 'geo/application_controller'
 module Geo
   class EntitiesController < ApplicationController
 
+    has_scope :by_name
+    has_scope :by_situation
+    
     def index
       
       if params[:situation] == "complete" && params[:situation].present?
@@ -29,16 +32,7 @@ module Geo
 
 
     def entities_2016
-      @entities    = Entity::Cadastre.all
-      
-      respond_to do |format|
-        format.json {
-          @entities = @entities.map { |key| [key, president: key.president]}
-          render json: @entities
-        }
-
-        format.html {}
-      end
+      @entities    = apply_scopes(Entity::Cadastre).with_president
     end
 
   end
