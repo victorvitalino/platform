@@ -17,7 +17,9 @@ module Helpdesk
     scope :closed,      -> { where(status: 2).order('created_at desc') }
     scope :scheduled,   -> { where(status: 3).order('created_at desc') }
 
-    validates :ticket_type, :description, :ticket_subject_title, presence: true
+    validates :ticket_type, :ticket_subject_title, presence: true
+    validates :description, presence: true
+
 
     def ticket_subject_title
       ticket_subject.try(:title)

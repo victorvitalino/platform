@@ -37,4 +37,12 @@
           $('#ticket_ticket_subject_title').prop("readonly", false)
         });
       });
+      var value = $("#ticket_ticket_type_id").val();
+      if (value != 0)
+      {
+        $.get("#{helpdesk.ticket_subjects_json_path}?ticket_type_id="+ value, function(data) {
+          $('#ticket_ticket_subject_title').autocomplete({source: data, appendTo: '#subject-result' });
+          $('#ticket_ticket_subject_title').prop("readonly", false)
+        });
+      }
     })
