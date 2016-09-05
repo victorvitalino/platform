@@ -59,21 +59,27 @@ namespace :crawler do
   task :update_situation => :environment do 
     CSV.foreach("lib/entities.csv", :col_sep => "#") do |row|
 
-      @cnpj = "#{'%014d' % row[0].to_i}"
-      @entity = Entity::Cadastre.find_by_cnpj(@cnpj) rescue nil
+      @entity = Entity::Cadastre.find(row[0]) rescue nil
       
       if @entity.present?
-        if row[1] == "CREDENCIADA"
-          @entity.situation_id = 1
-        else
-          @entity.situation_id = 0
+        finder  = Correios::CEP::AddressFinder.new
+        address = finder.get(@entity.cep) rescue nil
+
+        if !address.nil?
+          geocode = Geocoder.coordinates("#{address[:address]}, #{address[:neighborhood]}, #{address[:state]}")
+        else 
+          geocode = nil 
         end
 
-        @entity.save
-
-        puts @entity.cnpj
+        if geocode.present?
+          @entity.lat     = geocode[0]
+          @entity.lng     = geocode[1]
+          
+          @entity.save
+        else
+          puts "ERROR"
+        end
       end
-      puts @cnpj
     end
   end
 

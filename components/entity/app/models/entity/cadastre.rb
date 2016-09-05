@@ -18,6 +18,12 @@ module Entity
 
     audited
 
+    scope :with_president, -> {
+      joins('LEFT JOIN entity_members 
+             ON entity_members.cadastre_id = entity_cadastres.id
+             AND entity_members.member_job_id = 2')
+    }
+
     scope :situation, -> (status) {
       Entity::Cadastre.joins(:situations)
       .where('entity_situations.situation_status_id = (SELECT MAX(entity_situations.situation_status_id)
@@ -41,11 +47,15 @@ module Entity
       where(id: count)
     }
 
+    scope :by_name, ->(value) {where("name ILIKE '%#{value}%'")}
+    scope :by_situation, ->(value) {where(situation_id: value)}
+    
     scope :cnpj,  -> (cnpj) {where(cnpj: cnpj)}
     scope :name_entity,  -> (name_entity) {where(name: name_entity)}
     scope :fantasy_name,  -> (fantasy_name) {where(fantasy_name: fantasy_name)}
 
     attr_accessor :password_confirmation, :current_password, :change_password, :president
+   
 
     validates :cnpj, cnpj: true, presence: true, uniqueness: true
     validates :name, :fantasy_name,:city, :cep, :address, :complement, :number, presence: true
@@ -68,6 +78,10 @@ module Entity
 
     def password
       "[FILTRED]"
+    end
+
+    def cnpj
+      read_attribute(:cnpj).format_cnpj
     end
 
     def new_entity?
