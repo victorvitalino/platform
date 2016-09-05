@@ -8,7 +8,7 @@ nav:
       link: '/'
     modules:
       cadastre:
-        code: 0
+        code: [61001,61002,61003,11016,11204]
         label: "Cadastro"
         controller: "#"
         sub:
@@ -25,7 +25,7 @@ nav:
             action: 'index'
           cadin:
             module: 'candidate'
-            code: 61003code
+            code: 61003
             label: 'Cadastro Imobiliário'
             controller: '/candidate/cadins'
           inheritors:

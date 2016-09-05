@@ -82,6 +82,7 @@ module Helpdesk
       @closed       = Helpdesk::Ticket.closed
       @scheduled    = Helpdesk::Ticket.scheduled
 
+
     end
 
 
