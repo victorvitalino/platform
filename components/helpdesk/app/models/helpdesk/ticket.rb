@@ -18,7 +18,7 @@ module Helpdesk
     scope :scheduled,   -> { where(status: 3).order('created_at desc') }
 
     validates :ticket_type, :ticket_subject_title, presence: true
-    validates :description, presence: true
+    validates :description, :code_computer, presence: true
 
 
     def ticket_subject_title
