@@ -80,5 +80,5 @@ nav:
           ticket_type:
             module: 'helpdesk'
             code: 0
-            label: 'Tipos'
+            label: 'Gerenciar'
             controller: '/helpdesk/ticket_types'
