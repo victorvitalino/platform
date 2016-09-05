@@ -1,0 +1,28 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %h4
+        Menus
+        = link_to 'novo menu', new_nav_path, remote: true, class: 'pull-right'
+  .panel-body
+    .row
+      = simple_form_for navs_path, method: :get do |f|
+        .col-md-2
+          = f.label "Ativos?"
+          = f.input :status, as: :select, label: false, selected: params[:status], include_blank: "Todos", input_html: { name: :status}
+        .col-md-2{style: 'padding-top: 24px'}
+          = f.submit "Filtar resultado", name: nil, class: 'btn btn-primary', data: { disable_with:  t(:disabled_button)}
+    %hr/
+    .row
+      .col-md-12
+        %table.table.table-hover.table-bordered.table-striped
+          %thead
+            %tr
+              %th Nome
+              %th Descrição
+              %th Ordem
+              %th Código
+              %th Status
+              %th Ações
+          %tbody.index-nav
+            = render 'index'

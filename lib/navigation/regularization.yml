@@ -1,0 +1,51 @@
+nav:
+  regularization:
+    info:
+      module: 'regularization'
+      label: "Regularização"
+      code: 61
+      icon: 'wb-order'
+      link: '/'
+    modules:
+      cadastre:
+        code: 0
+        label: "Cadastro"
+        controller: "#"
+        sub:
+          candidate:
+            module: 'candidate'
+            code: 61001
+            label: 'Pesquisa geral'
+            controller: '/candidate/cadastres'
+          requeriment:
+            module: 'regularization'
+            code: 61002
+            label: "Consulta Requerimentos"
+            controller: "/regularization/requeriments"
+            action: 'index'
+          cadin:
+            module: 'candidate'
+            code: 61003code
+            label: 'Cadastro Imobiliário'
+            controller: '/candidate/cadins'
+          inheritors:
+            module: 'candidate'
+            code: 11016
+            label: 'Herdeiros'
+            controller: '/candidate/inheritors'
+          general_search:
+            module: 'address'
+            code: 11204
+            label: 'Endereços'
+            controller: '/address/units'
+          search:
+            module: 'address'
+            code: 11207
+            label: 'Endereços Regularizados'
+            controller: '/address/units'
+            action: 'index_attendent'
+          allotments:
+            module: 'sefaz'
+            code: 12001
+            label: 'ITBI/ITCD'
+            controller: '/sefaz/allotments'

@@ -15,6 +15,8 @@ module Person
 
     has_many :branch_line
 
+    has_many :tickets, class_name: "Helpdesk::Ticket"
+
     has_many :assessments, class_name: "Protocol::Assessment"
 
     has_many :conducts, class_name: "Protocol::Conduct"

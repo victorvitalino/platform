@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order: 1
+  name: MyString
+  description: MyText
+  status: false
+  only_admin: false
+  code: 1
+  system_module_id: 
+  staff_id: 
+
+two:
+  order: 1
+  name: MyString
+  description: MyText
+  status: false
+  only_admin: false
+  code: 1
+  system_module_id: 
+  staff_id: 

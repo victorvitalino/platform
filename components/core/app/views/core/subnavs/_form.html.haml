@@ -1,0 +1,31 @@
+= simple_form_for [@nav, @subnav], remote: true do |f|
+  .row
+    .col-md-12
+      = f.label :name, class: 'fg-label'
+      = f.input :name, label: false, input_html: { placeholder: 'Digite um nome'}
+  .row
+    .col-md-12
+      = f.label :description, class: 'fg-label'
+      = f.input :description, label: false, input_html: { placeholder: 'Digite uma descrição'}
+  .row
+    .col-md-6
+      = f.label :url, class: 'fg-label'
+      = f.input :url, label: false, input_html: { placeholder: 'Digite uma order'}
+    .col-md-6
+      = f.label :status, class: 'fg-label'
+      = f.input :status, as: :select, label: false, include_blank: false
+  .row
+    .col-md-6
+      = f.label :code, class: 'fg-label'
+      = f.input :code, label: false, input_html: { placeholder: 'Digite um code'}
+    .col-md-6
+      = f.label :only_admin, class: 'fg-label'
+      = f.input :only_admin, as: :select, label: false, include_blank: false
+  .row
+    .col-md-6
+      = f.label :subnav, class: 'fg-label'
+      = f.association :subnav, collection: Core::Subnav.all, label: false, prompt: 'selecione...'
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success btn-sm', data: { disable_with: t(:disabled_button) }

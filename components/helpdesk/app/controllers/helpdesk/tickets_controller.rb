@@ -35,7 +35,8 @@ module Helpdesk
         description: params[:ticket][:description],
         code_computer: params[:ticket][:code_computer],
         file_path: params[:ticket][:file_path],
-        requester_id: current_user.id
+        requester_id: current_user.id,
+        sector_id: current_user.sector_current.id
       })
 
       @ticket.save

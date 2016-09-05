@@ -6,4 +6,6 @@
 *= require patternfly/stylesheets/chosen.min
 *= require jquery.minicolors
 *= require jquery-ui
+*= require wice_grid
+*= require bootstrap-table
 */

@@ -49,7 +49,7 @@ module Person
       end
     end
 
-  
+
     def enable
       authorize :staff,  :update?
       @staff.update(status: true)

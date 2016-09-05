@@ -1,12 +1,11 @@
 .modal-header
   %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
     %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Abertura de chamado
 .modal-body
   .row
     .col-md-12
-      %h1
-        %b Parabéns!
-      %h3 Sua solicitação foi enviada com sucesso!
+      %h3= "Sua solicitação foi enviada com sucesso, o número de seu chamado é: #{@ticket.id}"
   .row
     .col-md-12
       %h4 O mais breve possível a área requisitada ira notifica-lo(a) sobre sua solicitação.

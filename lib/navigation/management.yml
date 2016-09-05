@@ -42,6 +42,11 @@ nav:
             code: 0
             label: 'Tipos de cobrança'
             controller: '/brb/categories'
+          allotments:
+            module: 'sefaz'
+            code: 12001
+            label: 'ITBI/ITCD'
+            controller: '/sefaz/allotments'
       extranet:
         code: 0
         label: 'Extranet'

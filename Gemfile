@@ -28,6 +28,7 @@ gem 'remotipart'
 gem 'correios-cep'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem "wice_grid"
 
 gem 'audited-activerecord', '~> 4.0'
 gem 'wicked'
@@ -50,6 +51,7 @@ gem 'barby'
 gem 'chunky_png'
 gem 'axlsx_rails'
 gem 'roo'
+gem "bootstrap-table-rails"
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'file_validators'
@@ -145,4 +147,5 @@ path 'components' do
   gem 'visit'
   gem 'mailer'
   gem 'geo'
+  gem 'core'
 end

@@ -1,10 +1,10 @@
 .row
   .col-sm-12.index-exemption
     .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-      %table#data-table-command.table.table-striped.table-bordered
+      %table#data-table-command.table.table-striped.table-bordered{"data-toggle": :table}
         %thead
           %tr
-            %th Nome
+            %th{"data-sortable": :true} Nome
             %th CPF
             %th Cidade
             %th Endereço

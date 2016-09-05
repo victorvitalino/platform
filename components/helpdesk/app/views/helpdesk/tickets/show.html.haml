@@ -9,26 +9,35 @@
       .col-md-12
         .row
           .col-md-4
-            %label Usuário:
-            = @ticket.requester.name if @ticket.requester.present?
+            %label
+              %b= "Nº DO CHAMADO - #{@ticket.id}"              
+        .row
+          .col-md-4
+            %label Solicitante:
+            = @ticket.requester.name rescue ""
+          .col-md-4
+            %label Setor do solicitante:
+            = @ticket.sector.acron rescue ""
+        .row
           .col-md-4
             %label Assunto:
-            = @ticket.ticket_subject.title if @ticket.ticket_subject.present?
+            = @ticket.ticket_subject.title rescue ""
+          .col-md-4
+            %label Ramal(is):
+            - if @ticket.sector.present? && @ticket.sector.branch_line.present?
+              - @ticket.sector.branch_line.each do |r|
+                = r.telephone
         .row
           .col-md-4
             %label Início do atendimento:
-            = @ticket.attendance_start
+            = @ticket.attendance_start.strftime('%d/%m/%Y - %H:%M') rescue ""
           .col-md-4
             %label Final do atendimento:
-            = @ticket.attendance_end
-        .row
-          .col-md-12
-            %label Descrição:
-            = @ticket.description
+            = @ticket.attendance_end.strftime('%d/%m/%Y - %H:%M') rescue ""
         .row
           .col-md-4
-            %label Prazo final:
-            = @ticket.deadline
+            %label Atendente:
+            = @ticket.attendant.name rescue ""
           .col-md-4
             %label Situação:
             = @ticket.status_i18n
@@ -39,6 +48,14 @@
           .col-md-4
             - if @ticket.file_path_url.present?
               = link_to "Ver anexo", @ticket.file_path_url, target: '_blank'
+        .row
+          .col-md-4
+            %label Data da solicitação:
+            = @ticket.created_at.strftime('%d/%m/%Y - %H:%M')
+        .row
+          .col-md-12
+            %label Descrição:
+            = @ticket.description
         %hr
         .row
           .col-md-12

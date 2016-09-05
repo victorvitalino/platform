@@ -12,3 +12,5 @@
 //= require jquery.minicolors
 //= require jquery.minicolors.simple_form
 //= require jquery-ui
+//= require wice_grid
+//= require bootstrap-table

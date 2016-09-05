@@ -1,0 +1,15 @@
+- @subnavs.order(:name).each do |subnavs|
+  %tr
+    %td= subnavs.name.to_s.upcase
+    %td= subnavs.description.to_s.upcase
+    %td= subnavs.url
+    %td= subnavs.code
+    %td= subnavs.subnav.name if subnavs.subnav.present?
+    %td
+      - if subnavs.status
+        %span.label.label-success ativo
+      - else
+        %span.label.label-default inativo
+    %td
+      = link_to "", edit_nav_subnav_path(@nav,subnavs), title: 'Editar', 'data-toggle' => 'tooltip',  remote: true, class: 'glyphicon glyphicon-pencil btn-xs btn btn-primary waves-effect waves-button waves-float'
+      = link_to "", nav_subnav_path(@nav,subnavs), method: :delete, class: 'glyphicon glyphicon-remove btn-xs btn btn-danger', data: {confirm: "#{t(:confirm_delete)}"}

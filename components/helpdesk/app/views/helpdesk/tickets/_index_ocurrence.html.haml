@@ -4,7 +4,7 @@
       %table#data-table-command.table.table-striped.table-bordered
         %thead
           %tr
-            %th.col-md-1 Nº
+            %th Nº
             %th Responsável
             %th Ocorrência
             %th Data
@@ -15,10 +15,10 @@
           - @ticket_ocurrences.each do |o|
             %tr
               %td= o.id
-              %td= o.responsible.name if o.responsible.present?
-              %td= o.ocurrence
-              %td= o.created_at
-              %td= o.ticket_solution.title if o.ticket_solution.present?     
-              %td= o.solution_date
+              %td= o.responsible.name rescue ""
+              %td= o.scheduled? ? "Agendado para: #{o.scheduled_date.strftime('%d/%m/%Y %H:%M')} - #{o.ocurrence}" : o.ocurrence
+              %td= o.created_at.strftime('%d/%m/%Y %H:%M')
+              %td= o.ticket_solution.title rescue ""
+              %td= o.solution_date.strftime('%d/%m/%Y %H:%M') rescue ""
               %td
                 = link_to "", edit_ticket_ticket_ocurrence_path(ticket_id: @ticket, id: o.id), remote: true, class: 'glyphicon glyphicon-ok-sign btn btn-danger  btn-xs', title: "fechar ocorrência"
