@@ -1,0 +1,80 @@
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          %h4 Minhas solicitações
+      .panel-body
+        - if @tickets.present?
+          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+            %table#data-table-command.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Nº
+                  %th Assunto
+                  %th Data/Hora
+                  %th Status
+                  %th Atendente
+                  %th Ações
+              %tbody
+                - @tickets.each do |t|
+                  %tr
+                    %td= "Nº #{t.id}"
+                    %td= t.ticket_subject.title if t.ticket_subject.present?
+                    %td= t.created_at.strftime('%d/%m/%Y às %H:%M')
+                    %td
+                      - if t.open?
+                        %span.label.label-success aberto
+                      - if t.in_progress?
+                        %span.label.label-primary em andamento
+                      - if t.closed?
+                        %span.label.label-danger fechado
+                    %td= t.attendant.name if t.attendant.present?
+                    %td.col-md-2
+                      = link_to '', ticket_show_requester_path(t), class: 'glyphicon glyphicon-share-alt  btn btn-info btn-xs',data: {disable_with: "carregando..."}
+        - else
+          Nenhuma solicitação aberta!
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          %h4 Aniversariantes do mês
+      .panel-body
+        - if @birthday_person.present?
+          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+            %table#data-table-command.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Nome
+                  %th Data
+                  %th Setor
+              %tbody
+                - @birthday_person.each do |b|
+                  %tr
+                    %td= b.name
+                    %td= b.born.strftime('%d/%m')
+                    %td= b.sector_current.acron rescue ""
+        - else
+          Nenhuma aniversariante este mês!
+.row
+  .col-md-6{style:"height: 150px"}
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          %h4 Ramais
+      .panel-body
+        - if @branch_line.present?
+          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
+            %table#data-table-command.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Setor
+                  %th Ramal
+                  %th
+              %tbody
+                - @branch_line.each do |b|
+                  %tr
+                    %td= b.telephone
+                    %td= b.sector.acron rescue ""
+                    %td= b.description
+        - else
