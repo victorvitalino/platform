@@ -42,11 +42,6 @@ nav:
             code: 0
             label: 'Tipos de cobrança'
             controller: '/brb/categories'
-          allotments:
-            module: 'sefaz'
-            code: 12001
-            label: 'ITBI/ITCD'
-            controller: '/sefaz/allotments'
       extranet:
         code: 0
         label: 'Extranet'
@@ -80,5 +75,5 @@ nav:
           ticket_type:
             module: 'helpdesk'
             code: 0
-            label: 'Gerenciar'
+            label: 'Tipos'
             controller: '/helpdesk/ticket_types'

@@ -9,7 +9,7 @@ nav:
     modules:
       attendant:
         code: 0
-        label: "Atendimento"
+        label: "Habitação"
         controller: "#"
         sub:
           convocated:
@@ -24,67 +24,170 @@ nav:
             label: "Atendimento - Habilitado"
             controller: '/habitation_attendance/enabled/dashboard'
             action: 'index'
-          schedules:
-            module: 'schedule'
-            code: 118103
-            label: 'Agendamento'
-            controller: '/schedule/agendas'
+      regularization:
+        code: 119110
+        label: "Regularização"
+        controller: '#'
+        sub:
+          requeriment:
+            module: 'regularization'
+            code: 119110
+            label: "Requerimentos geral"
+            controller: "/regularization/requeriments"
             action: 'index'
+      entity:
+        code: 11501
+        label: 'Entidades'
+        controller: '#'
+        sub:
+          cadastre:
+            module: 'entity'
+            code: 11501
+            label: 'Cadastro'
+            controller: '/entity/cadastres'
       cadastre:
-        code: 0
-        label: "Cadastro"
-        controller: "#"
+        code: [11005, 11011,11016,11020]
+        label: 'Cadastro'
+        controller: '#'
         sub:
           general_search:
             module: 'candidate'
             code: 11005
             label: 'Pesquisa geral'
             controller: '/candidate/cadastres'
-          inheritors:
-            module: 'candidate'
-            code: 11016
-            label: 'Herdeiros'
-            controller: '/candidate/inheritors'
           cadastre_address:
             module: 'candidate'
             code: 11011
             label: 'Assentamento'
             controller: '/candidate/cadastre_addresses'
-          entity:
-            module: 'entity'
-            code: 11501
-            label: 'Entidades'
-            controller: '/entity/cadastres'
-          indication:
-            module: 'indication'
-            code: 0
-            label: "Indicação"
-            controller: '/indication/enterprises'
+          inheritors:
+            module: 'candidate'
+            code: 11016
+            label: 'Herdeiros'
+            controller: '/candidate/inheritors'
+          verification:
+            module: 'candidate'
+            code: 11011
+            label: 'Verificações'
+            controller: '/candidate/verifications'
+          report:
+            module: 'candidate'
+            code: 11020
+            label: 'Resumo de Habilitados'
+            controller: '/candidate/reports'
+      address:
+        code: [11204, 11207]
+        label: 'Endereço'
+        controller: '#'
+        sub:
+          general_search:
+            module: 'address'
+            code: 11204
+            label: 'Pesquisa geral'
+            controller: '/address/units'
+          iptu:
+            module: 'address'
+            code: 11207
+            label: 'Pesquisa atendentes'
+            controller: '/address/units'
+            action: 'index_attendent'
+      cadin:
+        code: 11304
+        label: 'Cadastro imobiliário'
+        controller: '#'
+        sub:
+          general_search:
+            module: 'candidate'
+            code: 11304
+            label: 'Pesquisa geral'
+            controller: '/candidate/cadins'
+      schedule:
+        code: [118103,118101]
+        label: 'Agendamento'
+        controller: '#'
+        sub:
+          new_schedule:
+            module: 'schedule'
+            code: 118101
+            label: 'Nova agenda'
+            controller: '/schedule/agendas'
+            action: 'new'
+          schedules:
+            module: 'schedule'
+            code: 118103
+            label: 'Agendas'
+            controller: '/schedule/agendas'
             action: 'index'
-          allotments:
-            module: 'sefaz'
-            code: 12001
-            label: 'ITBI/ITCD'
-            controller: '/sefaz/allotments'
-      enterprise:
+      project:
         code: 0
-        label: "Empreendimentos"
-        controller: "#"
+        label: 'Empreendimentos'
+        controller: '#'
         sub:
           enterprise:
-           module: 'project'
-           code: 118101
-           label: 'Gestão de empreendimentos'
-           controller: '/project/enterprises'
-           action: 'index'
+            module: 'project'
+            code: 118101
+            label: 'Gestão de empreendimentos'
+            controller: '/project/enterprises'
+            action: 'index'
           typologies:
             module: 'project'
             code: 118103
             label: 'Gestão de tipologias'
             controller: '/project/typologies'
             action: 'index'
-          address:
-            module: 'address'
-            code: 11204
-            label: 'Endereços'
-            controller: '/address/units'
+      indication:
+        code: 0
+        label: 'Indicação'
+        controller: '#'
+        sub:
+          dasboard:
+            module: 'indication'
+            code: 0
+            label: "Empreendimentos"
+            controller: '/indication/enterprises'
+            action: 'index'
+      assistent:
+        code: [118103,118101]
+        label: 'Auxiliares'
+        controller: '#'
+        sub:
+          checklist:
+            module: 'candidate'
+            code: 11011
+            label: 'Gestão de checklists'
+            controller: '/candidate/checklists'
+          checklist_type:
+            module: 'candidate'
+            code: 11011
+            label: 'Gestão de tipos de checklist'
+            controller: '/candidate/checklist_types'
+      sefaz:
+        code: 12001
+        label: 'SEFAZ'
+        controller: '#'
+        sub:
+          allotments:
+            module: 'sefaz'
+            code: 12001
+            label: 'Pedido de isenção'
+            controller: '/sefaz/allotments'
+      data_base:
+        code: [118103,118101]
+        label: 'Base de dados'
+        controller: '#'
+        sub:
+          dashboard:
+            module: 'candidate'
+            code: 11011
+            label: 'Visão geral'
+            controller: '/candidate/checklists'
+          reports:
+            module: 'candidate'
+            code: 11011
+            label: 'Relatórios'
+            controller: '/candidate/checklist_types'
+          verification:
+            module: 'candidate'
+            code: 11011
+            label: 'Auditor'
+            controller: '/candidate/checklist_types'
