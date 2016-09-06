@@ -28,7 +28,6 @@ module Helpdesk
     end
 
     def create
-      authorize :ticket,  :create?
       
       @ticket = Helpdesk::Ticket.new({
         ticket_type_id: params[:ticket][:ticket_type_id],
