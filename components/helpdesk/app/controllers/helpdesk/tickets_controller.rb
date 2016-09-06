@@ -15,7 +15,7 @@ module Helpdesk
     end
 
     def new
-      authorize :ticket,  :create?
+      #authorize :ticket,  :create?
       @ticket = Helpdesk::Ticket.new
     end
 
@@ -28,7 +28,7 @@ module Helpdesk
     end
 
     def create
-      
+
       @ticket = Helpdesk::Ticket.new({
         ticket_type_id: params[:ticket][:ticket_type_id],
         ticket_subject_title: params[:ticket][:ticket_subject_title],
