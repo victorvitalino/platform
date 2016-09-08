@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831193938) do
+ActiveRecord::Schema.define(version: 20160908122135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1568,8 +1568,6 @@ ActiveRecord::Schema.define(version: 20160831193938) do
 
   create_table "core_navs", force: :cascade do |t|
     t.integer  "order"
-<<<<<<< HEAD
-=======
     t.string   "name"
     t.text     "description"
     t.boolean  "status"
@@ -1750,6 +1748,29 @@ ActiveRecord::Schema.define(version: 20160831193938) do
 
   add_index "entity_messages", ["cadastre_id"], name: "index_entity_messages_on_cadastre_id", using: :btree
 
+  create_table "entity_occurrence_categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "entity_occurrences", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "category_id"
+    t.text     "description"
+    t.boolean  "solved",             default: false
+    t.text     "solved_description"
+    t.integer  "solved_user_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "entity_occurrences", ["cadastre_id"], name: "index_entity_occurrences_on_cadastre_id", using: :btree
+  add_index "entity_occurrences", ["category_id"], name: "index_entity_occurrences_on_category_id", using: :btree
+  add_index "entity_occurrences", ["solved_user_id"], name: "index_entity_occurrences_on_solved_user_id", using: :btree
+
   create_table "entity_old_candidates", force: :cascade do |t|
     t.integer  "old_id"
     t.integer  "cadastre_id"
@@ -1819,6 +1840,39 @@ ActiveRecord::Schema.define(version: 20160831193938) do
   add_index "entity_situations", ["cadastre_mirror_id"], name: "index_entity_situations_on_cadastre_mirror_id", using: :btree
   add_index "entity_situations", ["situation_status_id"], name: "index_entity_situations_on_situation_status_id", using: :btree
   add_index "entity_situations", ["staff_id"], name: "index_entity_situations_on_staff_id", using: :btree
+
+  create_table "entity_surveys", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "situation"
+    t.string   "address"
+    t.string   "number"
+    t.integer  "city_id"
+    t.integer  "property_type"
+    t.integer  "property_size"
+    t.integer  "property_structure"
+    t.string   "property_owner"
+    t.integer  "property_occupied"
+    t.text     "property_description"
+    t.text     "property_entities"
+    t.string   "operation_time"
+    t.string   "property_time"
+    t.string   "reunions_frequency"
+    t.date     "date_election_president"
+    t.string   "operation_area"
+    t.integer  "members_count"
+    t.string   "operation_hour"
+    t.string   "operation_days"
+    t.string   "representation_job_codhab"
+    t.string   "representation_name"
+    t.string   "representation_cpf"
+    t.string   "representation_rg"
+    t.integer  "representation_job"
+    t.integer  "representation_telephone"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "entity_surveys", ["cadastre_id"], name: "index_entity_surveys_on_cadastre_id", using: :btree
 
   create_table "firm_companies", force: :cascade do |t|
     t.string   "name"
@@ -2200,6 +2254,16 @@ ActiveRecord::Schema.define(version: 20160831193938) do
   add_index "juridical_legal_advices", ["old_id"], name: "index_juridical_legal_advices_on_old_id", using: :btree
   add_index "juridical_legal_advices", ["responsible_lawyer_id"], name: "index_juridical_legal_advices_on_responsible_lawyer_id", using: :btree
   add_index "juridical_legal_advices", ["staff_id"], name: "index_juridical_legal_advices_on_staff_id", using: :btree
+
+  create_table "person_branch_line_staffs", force: :cascade do |t|
+    t.integer  "branch_line_id"
+    t.integer  "staff_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "person_branch_line_staffs", ["branch_line_id"], name: "index_person_branch_line_staffs_on_branch_line_id", using: :btree
+  add_index "person_branch_line_staffs", ["staff_id"], name: "index_person_branch_line_staffs_on_staff_id", using: :btree
 
   create_table "person_branch_lines", force: :cascade do |t|
     t.string   "telephone"
@@ -2741,15 +2805,243 @@ ActiveRecord::Schema.define(version: 20160831193938) do
     t.time     "hour"
     t.date     "born"
     t.string   "name"
-    t.text     "description"
-    t.boolean  "status"
-    t.boolean  "only_admin"
-    t.integer  "code"
-    t.integer  "system_module_id"
-    t.integer  "staff_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "cpf"
+    t.string   "email"
+    t.string   "telephone"
+    t.string   "telephone_optional"
+    t.string   "celphone"
+    t.string   "observation"
+    t.text     "attendant_observation"
+    t.integer  "status",                default: 0
+    t.integer  "city_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "cnpj"
   end
 
-  add_index "core_navs", ["staff_id"], name: "index_core_navs_on_staff_id", using: :btree
-  add_index "core_navs", ["system_module_id"], name: "index_core_navs_on_system_module_id", using: :btree
+  add_index "schedule_agenda_schedules", ["agenda_id"], name: "index_schedule_agenda_schedules_on_agenda_id", using: :btree
+  add_index "schedule_agenda_schedules", ["city_id"], name: "index_schedule_agenda_schedules_on_city_id", using: :btree
+
+  create_table "schedule_agendas", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "avatar"
+    t.date     "start"
+    t.date     "end"
+    t.text     "disable_dates"
+    t.time     "start_hour"
+    t.time     "end_hour"
+    t.integer  "attendance_time",  default: 15
+    t.integer  "attendants"
+    t.boolean  "weekend",          default: false
+    t.boolean  "lunch_time",       default: false
+    t.integer  "lunch_attendants"
+    t.time     "lunch_start"
+    t.time     "lunch_end"
+    t.integer  "restriction_type", default: 0
+    t.text     "restriction_sql"
+    t.string   "location"
+    t.integer  "program_id"
+    t.integer  "staff_id"
+    t.boolean  "status",           default: true
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "local"
+  end
+
+  add_index "schedule_agendas", ["program_id"], name: "index_schedule_agendas_on_program_id", using: :btree
+  add_index "schedule_agendas", ["staff_id"], name: "index_schedule_agendas_on_staff_id", using: :btree
+
+  create_table "schedule_data_references", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "observation"
+    t.string   "code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "schedule_data_references", ["code"], name: "index_schedule_data_references_on_code", using: :btree
+
+  create_table "sefaz_allotments", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.text     "error_message"
+    t.datetime "send_date"
+    t.integer  "send_staff_id"
+    t.string   "protocol_return"
+    t.integer  "exemption_type"
+    t.string   "notifiers"
+    t.string   "cnpj_notifiers"
+    t.text     "observation"
+    t.integer  "send_status_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "send_type"
+  end
+
+  add_index "sefaz_allotments", ["send_staff_id"], name: "index_sefaz_allotments_on_send_staff_id", using: :btree
+  add_index "sefaz_allotments", ["send_status_id"], name: "index_sefaz_allotments_on_send_status_id", using: :btree
+  add_index "sefaz_allotments", ["staff_id"], name: "index_sefaz_allotments_on_staff_id", using: :btree
+
+  create_table "sefaz_exemptions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "city"
+    t.string   "address"
+    t.string   "realty_number"
+    t.string   "realty_value"
+    t.integer  "allotment_id"
+    t.string   "act_number"
+    t.boolean  "canceled"
+    t.datetime "canceled_date"
+    t.integer  "canceled_staff_id"
+    t.text     "return_message"
+    t.integer  "staff_id"
+    t.boolean  "unitary"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "system_message"
+    t.integer  "year_act"
+    t.string   "number_act_to_cancel"
+  end
+
+  add_index "sefaz_exemptions", ["allotment_id"], name: "index_sefaz_exemptions_on_allotment_id", using: :btree
+  add_index "sefaz_exemptions", ["canceled_staff_id"], name: "index_sefaz_exemptions_on_canceled_staff_id", using: :btree
+  add_index "sefaz_exemptions", ["staff_id"], name: "index_sefaz_exemptions_on_staff_id", using: :btree
+
+  create_table "sefaz_send_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "sefaz_transmission_candidates", force: :cascade do |t|
+    t.integer  "transmission_id"
+    t.string   "sector"
+    t.string   "exemption_type"
+    t.string   "organization"
+    t.string   "cnpj"
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "city"
+    t.string   "address"
+    t.string   "unit_code"
+    t.string   "unit_value"
+    t.integer  "status",          default: 0
+    t.string   "declaratory_act"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "sefaz_transmission_candidates", ["transmission_id"], name: "index_sefaz_transmission_candidates_on_transmission_id", using: :btree
+
+  create_table "sefaz_transmissions", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.string   "sector"
+    t.string   "exemption_type"
+    t.integer  "quantity",       default: 0
+    t.integer  "status",         default: 0
+    t.string   "csv"
+    t.string   "xml"
+    t.string   "sefaz_protocol"
+    t.datetime "sent_in"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "sefaz_transmissions", ["staff_id"], name: "index_sefaz_transmissions_on_staff_id", using: :btree
+
+  create_table "user_candidates", force: :cascade do |t|
+    t.string   "username",               default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "account_id"
+    t.string   "account_type"
+    t.text     "unique_session_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "user_candidates", ["account_id", "account_type"], name: "index_user_candidates_on_account_id_and_account_type", using: :btree
+  add_index "user_candidates", ["reset_password_token"], name: "index_user_candidates_on_reset_password_token", unique: true, using: :btree
+  add_index "user_candidates", ["username"], name: "index_user_candidates_on_username", unique: true, using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username",               default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "account_id"
+    t.string   "account_type"
+    t.text     "unique_session_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+
+  create_table "visit_liftings", force: :cascade do |t|
+    t.string   "localization"
+    t.string   "seal"
+    t.string   "name"
+    t.string   "naturality"
+    t.boolean  "sex"
+    t.date     "born"
+    t.string   "cpf"
+    t.string   "rg"
+    t.string   "rg_org"
+    t.date     "rg_org_date"
+    t.string   "phone"
+    t.string   "celphone"
+    t.integer  "retirement"
+    t.integer  "benefit"
+    t.integer  "pension"
+    t.string   "nis"
+    t.string   "income"
+    t.string   "spouse_name"
+    t.date     "spouse_born"
+    t.string   "spouse_cpf"
+    t.string   "spouse_rg"
+    t.string   "spouse_rg_org"
+    t.date     "spouse_rg_org_date"
+    t.integer  "deficiency"
+    t.string   "deficiency_specification"
+    t.integer  "civil_status"
+    t.integer  "lot_situation"
+    t.string   "lot_situation_time"
+    t.integer  "busy_lot"
+    t.integer  "busy_lot_user"
+    t.integer  "lot_vacated"
+    t.text     "lot_vacated_description"
+    t.integer  "business_activities"
+    t.text     "business_activities_description"
+    t.integer  "contractual_purpose"
+    t.text     "contractual_purpose_description"
+    t.text     "additional_information"
+    t.string   "geolocation"
+    t.string   "photo_one"
+    t.string   "photo_two"
+    t.string   "photo_three"
+    t.integer  "voi"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+end

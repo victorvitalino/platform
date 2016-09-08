@@ -3,12 +3,10 @@ require_dependency "person/application_controller"
 module Person
 	class BranchLinesController < ApplicationController
 
-		before_action :set_sector
-		before_action :set_branch_lines, only: [:index, :new,:create, :destroy, :update]
 		before_action :set_branch_line, only: [:show,:edit, :destroy, :update]
 
 		def index
-			authorize @branch_lines
+			@branch_lines = BranchLine.all
 		end
 
 		def show
@@ -16,12 +14,12 @@ module Person
 		end
 
 		def new
-			@branch_line = @sector.branch_line.new
+			@branch_line = BranchLine.new
 			authorize @branch_line
 		end
 
 		def create
-			@branch_line = @sector.branch_line.new(branch_line_params)
+			@branch_line = BranchLine.new(branch_line_params)
 			authorize @branch_line
 			@branch_line.save
 
@@ -38,14 +36,6 @@ module Person
 
 		def branch_line_params
 			params.require(:branch_line).permit(:description, :telephone,:status, :sector_id)
-		end
-
-		def set_branch_lines
-			 @branch_lines = BranchLine.where(:sector_id => params[:sector_id])
-		end
-
-		def set_sector
-			@sector = Sector.find(params[:sector_id])
 		end
 
 		def set_branch_line

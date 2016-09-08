@@ -56,25 +56,3 @@
                     %td= b.sector_current.acron rescue ""
         - else
           Nenhuma aniversariante este mês!
-.row
-  .col-md-6{style:"height: 150px"}
-    .panel.panel-default
-      .panel-heading
-        .panel-title
-          %h4 Ramais
-      .panel-body
-        - if @branch_line.present?
-          .table-responsive{:style => "overflow: hidden; outline: none;", :tabindex => "3"}
-            %table#data-table-command.table.table-striped.table-bordered
-              %thead
-                %tr
-                  %th Setor
-                  %th Ramal
-                  %th
-              %tbody
-                - @branch_line.each do |b|
-                  %tr
-                    %td= b.telephone
-                    %td= b.sector.acron rescue ""
-                    %td= b.description
-        - else

@@ -1,6 +1,6 @@
 .row
  .col-md-12
-  = simple_form_for [:sector, @branch_line], remote: true do |f|
+  = simple_form_for @branch_line, remote: true do |f|
    .row
     .col-md-12
      = f.label :description, class: 'fg-label'
@@ -9,6 +9,10 @@
     .col-md-4
      = f.label :telephone, class: 'fg-label'
      = f.input :telephone, label: false, input_html: { placeholder: 'Digite um ramal'}
+   .row
+    .col-md-4
+     = f.label :staff, class: 'fg-label'
+     = f.input :staff, as: 'select', collection: Person::Staff.where(status:true), label: false, prompt: 'selecione...'
     .col-md-4
      .checkbox.m-b-15
       %label
@@ -17,7 +21,3 @@
        = f.label :status, class: 'fg-label'
     .col-md-4
      = f.button :submit, class: 'btn btn-success btn-sm'
-   .row
-    .col-md-12
-     = render 'index'
-
