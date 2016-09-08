@@ -4,7 +4,7 @@
 #### 1.1 listagem, cadastro, edição, exclusão, inclusão e exclusão de ramais
 > contexto
 
-    * usuário com permissão realiza gestão de funcionários
+    * usuário com permissão realiza gestão de setores
 
 > permissões
 
