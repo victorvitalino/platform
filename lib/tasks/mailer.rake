@@ -4,9 +4,10 @@ namespace :mailer do
   
   task :with_template => :environment do 
 
-    Concourse::Candidate.where('subscribe_id = 5 and status = 2').each do |candidate|
-      puts candidate.email
-      Mailer::SimpleMailer.send_with_template(candidate.email, "Boletos: Vencimento prorrogado").deliver_now!
+    Concourse::CandidateParticipation.all.each do |item|
+      project = item.candidate.subscribe.project
+
+      Mailer::SimpleMailer.send_with_template(item.candidate.email, project, "CODHAB - Pesquisa de opnião").deliver_now!
     end
 
   end

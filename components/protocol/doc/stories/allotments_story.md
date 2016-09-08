@@ -1,10 +1,10 @@
 ## gestão de documentos - histórias de usuário
 
-### 2. Gestão de tipos de documento
+### 2. Gestão de remessas
 #### 2.1 listagem, cadastro, edição e exclusão
 > contexto
 
-    * usuário com permissão realiza gestão de funcionários
+    * usuário com permissão realiza gestão de remessas
 
 > permissões
 

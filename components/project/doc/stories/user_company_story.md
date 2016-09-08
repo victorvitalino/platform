@@ -1,10 +1,10 @@
 ## gestão de projetos habitacionais - histórias de usuário
 
-### 2. Gestão de empresas
+### 2. Gestão de usuários de empresas
 #### 2.1 listagem, cadastro, edição e exclusão
 > contexto
 
-    * usuário com permissão realiza gestão de funcionários
+    * usuário com permissão realiza gestão de usuários de empresas
 
 > permissões
 
