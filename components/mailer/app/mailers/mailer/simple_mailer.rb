@@ -10,7 +10,8 @@ module Mailer
       mail(to: email, subject: subject)
     end
 
-    def send_with_template(email, subject)
+    def send_with_template(email, project, subject)
+      @project = project
       mail(to: email, subject: subject)
     end
 
