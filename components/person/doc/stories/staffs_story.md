@@ -18,7 +18,7 @@
 
 > validações
 
-    *[nome, matrícula, cpf, senha, cargo] não podem estar em branco
+    *[nome, matrícula, cpf, senha, setor atual, hora de início, hora de saída, cargo] não podem estar em branco
     *[matrícula, cpf] não podem já estar em uso
     *[cpf] precisa ser válido
 

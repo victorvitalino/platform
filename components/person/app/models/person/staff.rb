@@ -23,6 +23,8 @@ module Person
 
     belongs_to :job
 
+    validates :name, :code, :cpf, :job, :sector_current, :start_hour, :end_hour, presence: true
+
     validates_uniqueness_of :code
 
     validates :password, presence: true,
