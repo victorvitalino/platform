@@ -31,7 +31,7 @@
                         %span.label.label-danger fechado
                     %td= t.attendant.name if t.attendant.present?
                     %td.col-md-2
-                      = link_to '', ticket_show_requester_path(t), class: 'glyphicon glyphicon-share-alt  btn btn-info btn-xs',data: {disable_with: "carregando..."}
+                      = link_to '', helpdesk.ticket_show_requester_path(t), class: 'glyphicon glyphicon-share-alt  btn btn-info btn-xs',data: {disable_with: "carregando..."}
         - else
           Nenhuma solicitação aberta!
   .col-md-4
