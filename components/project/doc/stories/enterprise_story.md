@@ -4,7 +4,7 @@
 #### 4.1 listagem, cadastro, edição e exclusão
 > contexto
 
-    * usuário com permissão realiza gestão de funcionários
+    * usuário com permissão realiza gestão de empreendimentos
 
 > permissões
 
