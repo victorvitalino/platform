@@ -4,14 +4,14 @@
       - if f.object.avatar.present?
         = image_tag f.object.avatar.url, size: '100x100', class: 'img-circle'
       - else
-        = image_tag '/images/default-avatar.png', size: '100x100', class: 'img-circle' 
+        = image_tag '/images/default-avatar.png', size: '100x100', class: 'img-circle'
       %hr/
       = f.input :avatar, as: :file
     .col-md-4
       - if f.object.personal_image.present?
-        = image_tag f.object.personal_image.url, size: '100x100', class: 'img-circle' 
+        = image_tag f.object.personal_image.url, size: '100x100', class: 'img-circle'
       - else
-        = image_tag '/images/default-avatar.png', size: '100x100', class: 'img-circle' 
+        = image_tag '/images/default-avatar.png', size: '100x100', class: 'img-circle'
       %hr/
       = f.input :personal_image, as: :file
     .col-md-4
@@ -34,7 +34,7 @@
     .col-md-2
       = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born ? localize(f.object.born) : ''}
     .col-md-2
-      = f.input :branch_line, as: :string, input_html: { placeholder: 'Informe seu ramal'}
+      = f.input :branch_line, as: 'select', collection: Person::BranchLine.order(:telephone) , include_blank: false,label_method: :telephone, input_html: { class: 'chosen-select', multiple: true }
   %hr/
   .row
     .col-md-12

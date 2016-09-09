@@ -52,6 +52,7 @@ module Juridical
           end
         @complainants = @legal_advice.complainants.all
         @defendants = @legal_advice.defendants.all
+        @complements = @legal_advice.complements.all
     end
 
     def edit

@@ -22,6 +22,7 @@ module Person
     belongs_to :sector_current, class_name: "Person::Sector"
 
     belongs_to :job
+    #belongs_to :branch_line
 
     validates :name, :code, :cpf, :job, :sector_current, :start_hour, :end_hour, presence: true
 

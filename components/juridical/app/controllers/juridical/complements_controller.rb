@@ -12,12 +12,12 @@ module Juridical
         end
 
         def new
-            @complement = @legal_advice.complement.new
+            @complement = @legal_advice.complements.new
            # authorize @lawsuit
         end
 
         def create
-            @complement = @legal_advice.complement.new(complement_params)
+            @complement = @legal_advice.complements.new(complement_params)
             #authorize @lawsuit
             @complement.save
 
@@ -49,7 +49,7 @@ module Juridical
         end
 
         def set_complements
-            @complements = @legal_advice.complement.all
+            @complements = @legal_advice.complements.all
         end
 
         def set_complement

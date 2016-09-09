@@ -15,7 +15,7 @@ module ProfileUser
         render action: :edit
       end
     end
-      
+
     private
 
     def set_user
@@ -24,7 +24,7 @@ module ProfileUser
 
     def set_params
       params.require(:staff).permit(:avatar, :personal_image, :curriculum,
-                                    :name, :email, :born, :branch_line)
+                                    :name, :email, :born, branch_line:[])
     end
   end
 end
