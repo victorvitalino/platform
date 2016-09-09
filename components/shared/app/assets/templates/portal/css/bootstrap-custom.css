@@ -1263,6 +1263,9 @@ body{
         .publicity2{
           margin: 0;
         }
+        .col-md-4.botoes1{
+        width: 113%;
+        }
         #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
           width: 100%!important;
         }
@@ -1448,6 +1451,9 @@ body{
       }
       .publicity2{
         margin: 0;
+      }
+      .col-md-4.botoes1{
+      width: 113%;
       }
       #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
         width: 100%!important;
@@ -1802,6 +1808,9 @@ and (orientation: portrait) {
   }
   .publicity2{
     margin: 0;
+  }
+  .col-md-4.botoes1{
+  width: 113%;
   }
   #habitacao, #regularizacao, #entidades, #servicos, #editais, #concursos, #producao{
     width: 100%!important;
