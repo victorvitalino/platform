@@ -1,10 +1,10 @@
-## gestão de pessoas - histórias de usuário
+## gestão de endereços - histórias de usuário
 
-### 1. Gestão de cargos
+### 1. Gestão de cidades
 #### 1.1 listagem, cadastro, edição e exclusão
 > contexto
 
-    * usuário com permissão realiza gestão de cargos
+    * usuário com permissão realiza gestão de cidades
 
 > permissões
 
@@ -14,12 +14,11 @@
 
 > filtros
 
-    *filtrar por [nome, status]
+    *filtrar por [nome, estado]
 
 > validações
 
-    *[nome] não podem estar em branco
-    *[nome] deve ser único
+    *[nome, estado] não podem estar em branco
 
 > retornos
 

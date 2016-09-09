@@ -1,10 +1,10 @@
-## gestão de documentos - histórias de usuário
+## gestão de projetos habitacionais - histórias de usuário
 
-### 4. Gestão de assuntos
+### 4. Gestão de empreendimentos
 #### 4.1 listagem, cadastro, edição e exclusão
 > contexto
 
-    * usuário com permissão realiza gestão de assuntos
+    * usuário com permissão realiza gestão de empreendimentos
 
 > permissões
 
@@ -14,12 +14,12 @@
 
 > filtros
 
-    *filtrar por [nome, status]
+    *filtrar por [nome, tipologia, status]
 
 > validações
 
-    *[nome] não podem estar em branco
-    *[nome] deve ser único
+    *[nome, tipologia] não podem estar em branco
+    *[cnpj] deve ser único
 
 > retornos
 

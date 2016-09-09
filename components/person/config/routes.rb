@@ -7,9 +7,9 @@ Person::Engine.routes.draw do
 
     end
   end
-  resources :branch_lines, path: 'ramais'
-  resources :sectors, path: 'setores' do
 
+  resources :sectors, path: 'setores' do
+    resources :branch_lines, path: 'ramais'
   end
   resources :profiles
   resources :staffs , path: 'usuarios' do

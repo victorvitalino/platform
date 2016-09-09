@@ -1,10 +1,10 @@
-## gestão de pessoas - histórias de usuário
+## gestão de projetos habitacionais - histórias de usuário
 
-### 1. Gestão de cargos
+### 1. Gestão de empresas
 #### 1.1 listagem, cadastro, edição e exclusão
 > contexto
 
-    * usuário com permissão realiza gestão de cargos
+    * usuário com permissão realiza gestão de empresas
 
 > permissões
 
@@ -14,12 +14,12 @@
 
 > filtros
 
-    *filtrar por [nome, status]
+    *filtrar por [nome, cnpj]
 
 > validações
 
-    *[nome] não podem estar em branco
-    *[nome] deve ser único
+    *[nome, cnpj] não podem estar em branco
+    *[cnpj] deve ser único
 
 > retornos
 

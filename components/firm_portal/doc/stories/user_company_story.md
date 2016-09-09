@@ -1,25 +1,25 @@
-## gestão de pessoas - histórias de usuário
+## gestão de empresas - histórias de usuário
 
-### 1. Gestão de cargos
+### 1. Gestão de usuários
 #### 1.1 listagem, cadastro, edição e exclusão
 > contexto
 
-    * usuário com permissão realiza gestão de cargos
+    * usuário com permissão realiza gestão de usuários
 
 > permissões
 
     * visualização
-    * criar e editar
-    * excluir
+    * cadastro, edição e exclusão
+
 
 > filtros
 
-    *filtrar por [nome, status]
+    *filtrar por [nome, cpf]
 
 > validações
 
-    *[nome] não podem estar em branco
-    *[nome] deve ser único
+    *[nome, login] não podem ficar em branco
+    *[login] deve ser único
 
 > retornos
 

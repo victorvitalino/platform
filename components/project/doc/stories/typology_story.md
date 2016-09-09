@@ -1,10 +1,10 @@
-## gestão de documentos - histórias de usuário
+## gestão de projetos habitacionais - histórias de usuário
 
-### 3. Gestão de tipos de documento
+### 3. Gestão de tipologias
 #### 3.1 listagem, cadastro, edição e exclusão
 > contexto
 
-    * usuário com permissão realiza gestão de tipos de documento
+    * usuário com permissão realiza gestão de tipologias
 
 > permissões
 
@@ -14,12 +14,11 @@
 
 > filtros
 
-    *filtrar por [nome, status]
+    *filtrar por [nome, renda]
 
 > validações
 
-    *[nome] não podem estar em branco
-    *[nome, prefixo] devem ser únicos
+    *[nome, tipo, area, renda familiar, valor inicial, valor final] não podem estar em branco
 
 > retornos
 
