@@ -31,6 +31,13 @@ module Juridical
           end
     end
 
+    def update_status
+       @legal_advice = LegalAdvice.find(params[:legal_advice_id])
+       @legal_advice.status == true ? @legal_advice.status = false : @legal_advice.status = true
+       @legal_advice.save
+       redirect_to action: 'index'
+    end
+
 
     def show
 

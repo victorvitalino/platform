@@ -1,6 +1,7 @@
 Juridical::Engine.routes.draw do
 
    resources :legal_advices, path: 'acompanhamentos'  do
+     get '/update_status', to: 'legal_advices#update_status',      as: 'update_status'
      resources :complements, path: 'complementos'
      resources :defendants, path: 'reu'
      resources :complainants, path: 'autor'

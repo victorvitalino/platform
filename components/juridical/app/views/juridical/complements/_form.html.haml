@@ -15,10 +15,10 @@
    = f.association :instancy_place, label:false, as: :select, collection: (@complement.instancy.present?) ? Juridical::InstancyPlace.where(instancy_id: @complement.instancy).distinct : {}, label_method: :instancy_place, value_method: :instancy_place, prompt: 'selecione o local de instância...', input_html: { value: @complement.instancy}
  .row
   .col-md-2
-   = f.label :distribution_date, class: 'fg-label'
+   = f.label :distribution_date, class: 'fg-label', as: 'string'
    = f.input :distribution_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@complement.distribution_date) ? localize(f.object.distribution_date) : nil}
   .col-md-2
-   = f.label :end_date, class: 'fg-label'
+   = f.label :end_date, class: 'fg-label', as: 'string'
    = f.input :end_date, as: 'string', label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@complement.end_date) ? localize(f.object.end_date) : nil}
   .col-md-2
    = f.label :days, class: 'fg-label'

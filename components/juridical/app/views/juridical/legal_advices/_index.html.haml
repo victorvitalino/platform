@@ -1,6 +1,10 @@
 - @legal_advices.each do |a|
   %tr
-    %td
+    %td.col-md-1
+      - if a.status
+        = link_to "aberto", legal_advice_update_status_path(a), class: 'btn btn-success btn-xs'
+      -else
+        = link_to "fechado", legal_advice_update_status_path(a), class: 'btn btn-danger btn-xs'
     %td
       = a.process_number
     %td

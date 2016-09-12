@@ -13,3 +13,5 @@ pt-BR:
         responsible_lawyer: "Advogado responsável"
         advice_type: "Tipo de acompanhamento"
         file_path: "Arquivo"
+        distribution_date: "Data de distribuição"
+        end_date: "Data final"
