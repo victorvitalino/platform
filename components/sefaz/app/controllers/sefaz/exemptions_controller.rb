@@ -11,7 +11,9 @@ module Sefaz
 
 		def index
 			authorize :exemption,  :index?
+			@exemptions_excel = @allotment.exemptions.all
 			@exemptions = apply_scopes(@allotment.exemptions).paginate(:page => params[:page], :per_page => 100)
+
 
 			respond_to do |format|
 				format.html
