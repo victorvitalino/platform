@@ -1,3 +1,5 @@
+require_dependency 'candidate/cadastre'
+
 module HabitationPortal
   class Find
     include ActiveModel::Model
@@ -10,12 +12,12 @@ module HabitationPortal
     private
 
     def cpf_exists?
-      cpf = Candidate::Cadastre.habitation.where(cpf: self.cpf)
+      cpf = ::Candidate::Cadastre.habitation.where(cpf: self.cpf)
 
       if cpf.present?
-        self.id = cpf.first.id 
-      else 
-        errors.add(:cpf, "CPF não encontrado") 
+        self.id = cpf.first.id
+      else
+        errors.add(:cpf, "CPF não encontrado")
       end
 
     end

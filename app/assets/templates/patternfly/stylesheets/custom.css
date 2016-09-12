@@ -1,8 +1,12 @@
 .no-color {
   color: black !important;
 }
+
+.label-yellow {
+  
+}
 .table-form .help-block {
-  margin-top: 0px !important; 
+  margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
 
@@ -20,7 +24,7 @@ small {
 }
 
 #button_collapse_one.collapsed:before {content:'expandir informações +';}
-#button_collapse_one:before { content:'esconder informações -';} 
+#button_collapse_one:before { content:'esconder informações -';}
 
 .panel-side {
   border-right: #dedede 1px solid;

@@ -17,6 +17,9 @@ module Address
       def positive_certificate
         @candidate = Candidate::CadastreAddress.where(cadastre_id: params[:id]).last
 
+        #if @candidate.
+      #  @obs    
+
         if @candidate.unit.registry_units.last.situation != 0 && @candidate.unit == true && @candidate.unit.notary_offices.last.declaratory_act_number.present?
           flash[:warning] = "Ficha não pode ser emitida para esse cadastro."
 

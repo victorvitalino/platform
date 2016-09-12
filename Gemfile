@@ -71,7 +71,7 @@ group :development do
   gem 'rails_db'
   gem 'derailed'
   gem 'byebug'
-  gem 'thin'
+  gem 'thin' 
   gem 'mina'
   gem 'mina-unicorn', :require => false
   gem 'guard'
@@ -95,7 +95,6 @@ path 'components' do
   gem 'concourse'
   gem 'concourse_portal'
   gem 'helpdesk'
-
 
   gem 'candidate'
   gem 'address'
