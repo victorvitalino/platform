@@ -35,7 +35,7 @@
       %div{:style => "padding: 5px; text-align: center;"}
         %b
           CERTIDÃO POSITIVA DO IMÓVEL DISTRIBUIDO PELA POLÍTICA HABITACIONAL DO GDF Nº
-          %label= @candidate.unit.id
+          %label= @candidate.unit.control_number
         %br/
         %div{:style => "font-size: 11px;"}
           Válida até:
@@ -152,9 +152,10 @@
     %div{:style => "width: 800px; height: 30px;"}
       %div{:style => "padding: 5px; font-weight: bold;"}
         OBSERVAÇÃO:
+        = @obs
         %label#lblObs{"font-bold" => "True", :runat => "server"}
-      %div{:style => "padding: 5px; font-size: 9px;"}
-        %label#lblObsCand{"font-bold" => "True", :runat => "server"}
+      %div{:style => "padding: 5px; font-size: 12px;"}
+        = @obs1
     %br/
     %br/
     %div{:style => "width: 800px; height: 45px; background-color: silver"}

@@ -8,12 +8,12 @@ namespace :csv do
 
     @index = 0
 
-    CSV.foreach("lib/files/renda2508.csv", :col_sep => "#") do |row|
+    CSV.foreach("lib/files/tipo_uso.csv", :col_sep => "#") do |row|
 
-      @lift = Candidate::Cadastre.find_by_cpf(row[0])
+      @lift = Address::Unit.find_by_control_number(row[0])
 
       if @lift.present?
-        @lift.income = row[1]
+        @lift.type_use_unit_id = row[1]
         @lift.save
       end
       #puts @lift.inspect
