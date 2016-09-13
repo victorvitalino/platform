@@ -58,7 +58,7 @@
   .row
     .col-md-2
       = f.label :branch_line, class: 'fg-label'
-      = f.association :branch_line, as: 'select', label: false, collection: Person::BranchLine.distinct(:telephone),include_blank: false,label_method: :telephone, input_html: { class: 'chosen-select', multiple: true }
+      = f.input :branch_line, as: 'select', label: false, collection: Person::BranchLine.distinct(:telephone),include_blank: false,label_method: :telephone, input_html: { class: 'chosen-select', multiple: true }
     .col-md-2
       = f.label :date_contract, as: 'string', class: 'fg-label'
       = f.input :date_contract, as: 'string', label: false, input_html: { class: 'date', value: f.object.date_contract.present? ? localize(f.object.date_contract) : ''}
