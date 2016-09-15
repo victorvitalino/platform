@@ -56,8 +56,8 @@
                           - if @candidate.enterprise_cadastres.present?
                             - if @candidate.enterprise_cadastres.last.enterprise_cadastre_situations.present?
                               - if @candidate.enterprise_cadastres.last.enterprise_id == 12 && @candidate.enterprise_cadastres.last.enterprise_cadastre_situations.last.enterprise_cadastre_status_id == 8
-                                %span.label.label-yellow{style: 'margin-left: 10px !important; background-color: #ffe51b !important;'}
-                                  = link_to "Necessário atualização cadastral.", shedule_portal.new_habitation_agenda_schedule_path, style: 'text-decoration: none; color:black !important;'
+                                %span.label.label-danger{style: 'margin-left: 10px !important; background-color: red !important;'}
+                                  = link_to "Necessária atualização cadastral.", shedule_portal.new_habitation_agenda_schedule_path, style: 'color:white !important;'
                         %td= program(@candidate.program_id)
                         %td= list[1][0]
                         %td= translate_list(list[0])

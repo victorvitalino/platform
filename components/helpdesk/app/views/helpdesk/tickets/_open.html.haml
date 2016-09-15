@@ -7,17 +7,15 @@
           %th Assunto
           %th Solicitante
           %th Abertura
-          %th Atendente
           %th Status
           %th Ações
       %tbody
         - @open.each do |o|
           %tr
             %td= o.id
-            %td= o.ticket_subject.title if o.ticket_subject.present?
+            %td= o.ticket_subject.title rescue ""
             %td= "#{o.requester.name} - #{o.requester.sector_current.acron.upcase}" if o.requester.present? && o.requester.present? && o.requester.sector_current.present?
             %td= o.created_at.strftime('%d/%m/%Y às %H:%M')
-            %td= o.attendant.name if o.attendant_id.present? && o.attendant.present?
             %td
               - if o.open?
                 %span.label.label-success aberto
@@ -39,3 +37,5 @@
                     = link_to "Atender chamado", ticket_in_progress_path(ticket_id: o, q: 'open'), title: "Atender chamado"
                   %li
                     = link_to "Fechar chamado", ticket_closed_ticket_path(ticket_id: o, q: 'open'),remote: true, title: "Fechar chamado"
+  :javascript
+    setInterval(function(){ location.reload(); }, 60000);
