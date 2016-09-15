@@ -2,7 +2,7 @@ module Portal
   module ApplicationHelper
 
 
-    
+
     def link_each(category, order = 'ASC')
       @category = Cms::NavCategory.find_by_name(category)
       if @category.present? && @category.navs.present?
@@ -50,7 +50,7 @@ module Portal
     end
 
     def post_each(limit = 10, order = 'ASC')
-      @posts = Cms::Post.where(publish: true, slider: false).limit(limit).order("id DESC")
+      @posts = Cms::Post.where(publish: true, slider: false).limit(limit).order("created_at DESC")
 
       @posts.each do |p|
         yield p
