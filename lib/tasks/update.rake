@@ -19,14 +19,14 @@ namespace :update do
 
 
 
-     CSV.foreach("lib/files/indicados14092016.csv", :col_sep => "#") do |row|
+     CSV.foreach("lib/files/indicate15092016.csv", :col_sep => "#") do |row|
 
 
            @teste = Indication::Cadastre.new(
            cadastre_id: row[0],
-           allotment_id: 70,
-           program_id: row[3],
-           pontuation_id: row[4],
+           allotment_id: 73,
+           program_id: row[4],
+           pontuation_id: row[3],
            created_at: row[1],
            source_list: row[2],
            zone_id: 2
@@ -40,7 +40,10 @@ namespace :update do
            indication_cadastre_id: @teste.id,
            created_at: row[1],
            source_list: row[2],
+           inactive_date: row[5].present? ? row[5] : nil,
+           inactive: row[5].present? ? true : nil,
            zone: 2
+
            )
            @teste1.save
 

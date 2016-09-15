@@ -17,7 +17,7 @@
                 .col-md-3
                   = f.input :by_step, label: "Etapa", collection: (params[:by_enterprise].present?) ? Project::Step.where(enterprise_id: params[:by_enterprise]) : {}, as: :select, include_blank: 'selecione a etapa...', selected: params[:by_step],input_html: { name: 'by_step', id: 'step_id'}
                 .col-md-2
-                  = f.input :by_allotment, label: "Lote", as: :select, collection: (params[:by_step].present?) ? Indication::Allotment.where(step_id: params[:by_step]) : {}, label_method: :created_at_formated, include_blank: 'selecione...', selected: params[:by_allotment], input_html: { name: 'by_allotment', id: 'allotment_id'}
+                  = f.input :by_allotment, label: "Lote", as: :select, collection: (params[:by_step].present?) ? Indication::Allotment.where(step_id: params[:by_step]).order(:created_at) : {}, label_method: :created_at_formated, include_blank: 'selecione...', selected: params[:by_allotment], input_html: { name: 'by_allotment', id: 'allotment_id'}
                 .col-md-2
                   = f.input :by_cpf, label: "CPF (somente números)", input_html: { name: 'by_cpf', id: 'by_cpf', value: params[:by_cpf]}
 
@@ -162,7 +162,7 @@
                   %tbody
                     - @cadastres_contemplated.paginate(:page => params[:page], :per_page => 20).each do |cad|
                       %tr
-                        %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.cpf)
+                        %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.id)
                         %td= cad.cadastre.cpf.format_obfuscator_cpf
                         %td= cad.source_list
                         %td= "Faixa #{cad.enterprise_cadastre.zone}"
@@ -197,7 +197,7 @@
                   %tbody
                     - @cadastres.desactive.order('candidate_cadastres.name').each do |cad|
                       %tr
-                        %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.cpf)
+                        %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.id)
                         %td= cad.cadastre.cpf.format_obfuscator_cpf
                         %td= cad.source_list
                         %td= "Faixa #{cad.zone}"
@@ -232,7 +232,7 @@
                   %tbody
                     - @cadastres.in_process.order('candidate_cadastres.name').each do |cad|
                       %tr
-                        %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.cpf)
+                        %td= link_to cad.cadastre.name, habitation_portal.candidate_path(cad.cadastre.id)
                         %td= cad.cadastre.cpf.format_obfuscator_cpf
                         %td= cad.source_list
                         %td= "Faixa #{cad.zone}"
