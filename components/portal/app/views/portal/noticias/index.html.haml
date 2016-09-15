@@ -7,8 +7,17 @@
           .content_post
             %h1 Todas as Notícias
             %hr
-            - post_each(100, 'DESC') do |p|
-              %b= link_to p.title, post_path(p)
-              Publicado em :
-              = p.date.strftime('%d/%m/%Y')
-              %br/
+            %table.table.table-hover
+              %thead
+                %tr
+                  %th
+                    Título
+                  %th
+                    Publicado em:
+              %tbody
+                - post_each(1000000, 'DESC') do |p|
+                  %tr
+                    %td
+                      %b= link_to p.title, post_path(p)
+                    %td
+                      = p.date.strftime('%d/%m/%Y')
