@@ -42,7 +42,7 @@
                 - @unit.cadastre_address.where(situation_id:[1,3]).each do |a|
                   %tr
                     %td= a.cadastre.name if a.cadastre.present?
-                    %td= a.cadastre.cpf if a.cadastre.present?
+                    %td= link_to a.cadastre.cpf, candidate.cadastres_path(cpf: a.cadastre.cpf) if a.cadastre.present?
                     %td= a.dominial_chain
                     %td= a.created_at.strftime('%d/%m/%Y')
                     - if a.type_receipt == 1

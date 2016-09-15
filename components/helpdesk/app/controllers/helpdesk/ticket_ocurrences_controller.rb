@@ -38,7 +38,8 @@ module Helpdesk
       @ticket_ocurrence.staff_id = current_user.id
       @ticket_ocurrence.responsible_id = params[:ticket_ocurrence][:responsible_id]
       @ticket_ocurrence.save
-      @ticket.update(attendant_id: params[:ticket_ocurrence][:responsible_id])
+      params[:ticket_ocurrence][:responsible_id].present? ? @ticket.update(attendant_id: params[:ticket_ocurrence][:responsible_id], status: 0) : @ticket.update(attendant_id: nil, status: 0)
+      @ticket.update(ticket_type_id: params[:ticket_ocurrence][:ticket_type], status: 0) if params[:ticket_ocurrence][:ticket_type].present?
 
       @open         = Helpdesk::Ticket.open
       @in_progress  = Helpdesk::Ticket.in_progress

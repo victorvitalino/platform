@@ -10,6 +10,9 @@
         = f.association :responsible,label: false,  prompt: 'selecione...'
     .row
       .col-md-12
+        = f.input :ticket_type, label: false, as: 'select', collection: Helpdesk::TicketType.all,  prompt: 'selecione...'
+    .row
+      .col-md-12
         = f.label "Ocorrência", class: 'fg-label'
         = f.input :ocurrence, label: false
     %br/
