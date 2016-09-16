@@ -7,6 +7,8 @@ module Helpdesk
 
     attr_accessor :ticket_type
 
+    mount_uploader :file_ocurrence, Helpdesk::FileOcurrenceUploader
+
     validates :ocurrence, presence: true
 
 

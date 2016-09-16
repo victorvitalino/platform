@@ -4,7 +4,7 @@ module Helpdesk
     has_many :ticket_solution
 
 
-    validates :solution, presence: true
+    validates :title, presence: true
 
   end
 end

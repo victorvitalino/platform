@@ -12,6 +12,10 @@
       .col-md-12
         = f.label :responsible, class: 'fg-label'
         = f.association :responsible, label: false, prompt: 'selecione...'
+    .row
+      .col-md-12
+        = f.label :file_ocurrence, class: 'fg-label'
+        = f.input :file_ocurrence, as: 'file', label: false, input_html: { placeholder: 'Anexo'}
     %br/
     .row
       .col-md-12

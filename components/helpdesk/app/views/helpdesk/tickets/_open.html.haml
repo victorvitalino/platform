@@ -12,7 +12,13 @@
       %tbody
         - @open.each do |o|
           %tr
-            %td= o.id
+            %td
+              - if o.ticket_type_id == 1
+                %span.label.label-success
+                  = "#{o.id} - Suporte"
+              -else
+                %span.label.label-primary
+                  = "#{o.id} - Sistemas"
             %td= o.ticket_subject.title rescue ""
             %td= "#{o.requester.name} - #{o.requester.sector_current.acron.upcase}" if o.requester.present? && o.requester.present? && o.requester.sector_current.present?
             %td= o.created_at.strftime('%d/%m/%Y às %H:%M')

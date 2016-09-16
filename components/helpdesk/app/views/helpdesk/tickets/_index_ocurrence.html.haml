@@ -10,8 +10,9 @@
             %th Data
             %th Solução
             %th Data da solução
+            %th Anexo
             %th Ações
-        %tbody
+        %tbody.index-ocurrence
           - @ticket_ocurrences.each do |o|
             %tr
               %td= o.id
@@ -20,5 +21,8 @@
               %td= o.created_at.strftime('%d/%m/%Y %H:%M')
               %td= o.ticket_solution.title rescue ""
               %td= o.solution_date.strftime('%d/%m/%Y %H:%M') rescue ""
+              %td
+                - if o.file_ocurrence_url.present?
+                  = link_to "Ver anexo", o.file_ocurrence_url, target: '_blank'
               %td
                 = link_to "", edit_ticket_ticket_ocurrence_path(ticket_id: @ticket, id: o.id), remote: true, class: 'glyphicon glyphicon-ok-sign btn btn-danger  btn-xs', title: "fechar ocorrência"

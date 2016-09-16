@@ -89,7 +89,7 @@ module Helpdesk
     private
 
     def set_params
-      params.require(:ticket_ocurrence).permit(:ocurrence,:ticket_id, :responsible_id,:ticket_solution_title, :solution_date)
+      params.require(:ticket_ocurrence).permit(:ocurrence,:ticket_id, :responsible_id,:ticket_solution_title, :solution_date, :file_ocurrence)
     end
 
     def set_ticket
